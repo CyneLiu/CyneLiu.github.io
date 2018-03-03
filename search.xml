@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[hexo建站记录]]></title>
     <url>%2F2018%2F03%2F03%2Fhexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%2F</url>
-    <content type="text"><![CDATA[##123## dsahdhahd dhsjhddhj hdjh]]></content>
+    <content type="text"><![CDATA[在遇到各种各样问题之后，终于搭建完成了这个博客。 其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T git@github.com“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。 还有一个问题是因为教程的问题，在修改主配置文件的“deploy”部署时，教程写的是https地址，我也是多次尝试也没成功，最后百度到原因写ssh地址就可以解决。当然也不能一概而论，若没有错误还是推荐使用https地址。 一个个的小地方就让我走了不少的弯路。最后终于找到一个比较详细准确的教程，在此分享给大家，在这也感谢作者Line, 无意侵犯作者原作，只是想让像我这样的小白少走些弯路。作者博客中有五篇关于hexo使用的教程，个人觉得比较适合小白看。 这就是这次建站的一些小心得，水平有限有什么说的不对的地方也感谢各位不吝赐教。]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
