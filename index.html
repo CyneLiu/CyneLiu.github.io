@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -96,7 +96,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -396,6 +396,36 @@
 </blockquote>
 <p>一个个的小地方就让我走了不少的弯路。最后终于找到一个比较详细准确的教程，在此分享给大家，在这也感谢作者<a href="http://fanzhenyu.me/categories/Hexo/" target="_blank" rel="noopener">Line</a>, 无意侵犯作者原作，只是想让像我这样的小白少走些弯路。作者博客中有五篇关于hexo使用的教程，个人觉得比较适合小白看。</p>
 <p>这就是这次建站的一些小心得，水平有限有什么说的不对的地方也感谢各位不吝赐教。</p>
+<p>后期添加：</p>
+<blockquote>
+<p>添加网易云音乐插件</p>
+<blockquote>
+<p><img src="https://i.loli.net/2018/03/10/5aa3e1773eb4d.png"><br>在别人的博客看到了这样一个音乐插件，实现很简单，打开<a href="http://music.163.com/#/outchain/0/2134628828/" target="_blank" rel="noopener">网易云音乐网页版</a>，选择自己想要分享的歌单，然后点击生成外链播放器即可，插件分为两种形式：iframe插件和flash插件，可根据情况选择。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>添加particles.js背景动画</p>
+<blockquote>
+<p><img src="https://i.loli.net/2018/03/11/5aa49a5ee0df1.jpg" alt="particles.js.jpg"><br>particles.js是一个粒子效果的js插件，在<a href="https://github.com/VincentGarreau/particles.js/" target="_blank" rel="noopener">Github</a>里可以找到这个项目的源码，但是百度了一下配置方法大多是在html中实现，反正我是小白，不知道怎么修改。回归正题，怎么在Hexo中实现particles.js效果呢？<br><br><strong>1.</strong>首先在<strong>\themes\next\layout\_layout.swig</strong>的<strong>&lt; /body &gt;</strong>标签上面添加</p>
+</blockquote>
+</blockquote>
+<pre><code>{% if theme.canvas_nest %}
+	 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+	{% endif %}
+</code></pre><blockquote>
+<blockquote>
+<p><strong>2.</strong>在<strong>\themes\next\_config.yml</strong>中添加以下字段开启此功能：</p>
+</blockquote>
+</blockquote>
+<pre><code># background settings
+# add canvas-nest effect
+# see detail from https://github.com/hustcc/canvas-nest.js
+canvas_nest: true
+</code></pre><blockquote>
+<blockquote>
+<p><strong>3.</strong>这样动态效果就添加成功了，你会发现博客默认的白色背景遮挡了大部分区域使得只有边缘能看见动态效果，这时候只要修改一下背景颜色即可。在<strong>\themes\next\source\css\_schemes\Pisces_layout.styl</strong>中，把<strong>.content-wrap</strong>中的<strong>background</strong>修改为<strong>none</strong>，注意我这里使用的是<strong>Pisces</strong>主题，如果你使用的是别的主题，在相应路径下修改即可。这样如果用手机打开体验会比较差，我们单独设置一下手机，把<strong>.content-wrap</strong>的<strong>+mobile()</strong>中的<strong>background</strong>修改为<strong>white</strong>，这样手机端的体验就好很多，却又不影响电脑端的炫酷动画。</p>
+</blockquote>
+</blockquote>
 
           
         
@@ -682,7 +712,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -749,6 +779,8 @@
   
 
 
+  
+
 
 
 
@@ -787,6 +819,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1207,5 +1244,8 @@
 
   
 
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
 </body>
 </html>
