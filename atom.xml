@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Cyne&#39;s Blog</title>
+  
+  <subtitle>越努力，越幸运！</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://cyne.tk/"/>
+  <updated>2018-03-24T04:41:44.576Z</updated>
+  <id>https://cyne.tk/</id>
+  
+  <author>
+    <name>Cyne Liu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo建站记录</title>
+    <link href="https://cyne.tk/2018/03/03/hexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/"/>
+    <id>https://cyne.tk/2018/03/03/hexo建站记录/</id>
+    <published>2018-03-03T02:22:23.000Z</published>
+    <updated>2018-03-24T04:41:44.576Z</updated>
+    
+    <content type="html"><![CDATA[<p>在遇到各种各样问题之后，终于搭建完成了这个博客。</p><blockquote><p>其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。</p><p>还有一个问题是因为教程的问题，在修改主配置文件的“deploy”部署时，教程写的是https地址，我也是多次尝试也没成功，最后百度到原因写ssh地址就可以解决。当然也不能一概而论，若没有错误还是推荐使用https地址。</p></blockquote><p>一个个的小地方就让我走了不少的弯路。最后终于找到一个比较详细准确的教程，在此分享给大家，在这也感谢作者<a href="http://fanzhenyu.me/categories/Hexo/" target="_blank" rel="noopener">Line</a>, 无意侵犯作者原作，只是想让像我这样的小白少走些弯路。作者博客中有五篇关于hexo使用的教程，个人觉得比较适合小白看。</p><p>这就是这次建站的一些小心得，水平有限有什么说的不对的地方也感谢各位不吝赐教。</p><p>后期添加：</p><blockquote><p>一、添加网易云音乐插件</p><blockquote><p><img src="https://i.loli.net/2018/03/10/5aa3e1773eb4d.png"><br>在别人的博客看到了这样一个音乐插件，实现很简单，打开<a href="http://music.163.com/#/outchain/0/2134628828/" target="_blank" rel="noopener">网易云音乐网页版</a>，选择自己想要分享的歌单，然后点击生成外链播放器即可，插件分为两种形式：iframe插件和flash插件，可根据情况选择。</p></blockquote></blockquote><blockquote><p>二、添加particles.js背景动画</p><blockquote><p><img src="https://i.loli.net/2018/03/11/5aa49a5ee0df1.jpg" alt="particles.js.jpg"><br>particles.js是一个粒子效果的js插件，在<a href="https://github.com/VincentGarreau/particles.js/" target="_blank" rel="noopener">Github</a>里可以找到这个项目的源码，但是百度了一下配置方法大多是在html中实现，反正我是小白，不知道怎么修改。回归正题，怎么在Hexo中实现particles.js效果呢？<br><br><strong>1.</strong>首先在<strong>\themes\next\layout\_layout.swig</strong>的<strong>&lt; /body &gt;</strong>标签上面添加</p></blockquote></blockquote><pre><code>{% if theme.canvas_nest %} <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>{% endif %}</code></pre><blockquote><blockquote><p><strong>2.</strong>在<strong>\themes\next\_config.yml</strong>中添加以下字段开启此功能：</p></blockquote></blockquote><pre><code># background settings# add canvas-nest effect# see detail from https://github.com/hustcc/canvas-nest.jscanvas_nest: true</code></pre><blockquote><blockquote><p><strong>3.</strong>这样动态效果就添加成功了，你会发现博客默认的白色背景遮挡了大部分区域使得只有边缘能看见动态效果，这时候只要修改一下背景颜色即可。在<strong>\themes\next\source\css\_schemes\Pisces_layout.styl</strong>中，把<strong>.content-wrap</strong>中的<strong>background</strong>修改为<strong>none</strong>，注意我这里使用的是<strong>Pisces</strong>主题，如果你使用的是别的主题，在相应路径下修改即可。这样如果用手机打开体验会比较差，我们单独设置一下手机，把<strong>.content-wrap</strong>的<strong>+mobile()</strong>中的<strong>background</strong>修改为<strong>white</strong>，这样手机端的体验就好很多，却又不影响电脑端的炫酷动画。</p></blockquote></blockquote><blockquote><p>三、设置文章摘要</p><blockquote><p>写出来的文章如果直接在首页全篇显示就比较别扭了，为了提高浏览体验，这时候就需要设置一下文章摘要了，我这里主要介绍三种方式。</p></blockquote></blockquote><blockquote><blockquote><p><strong>1.</strong>在文章中使用<font color="blue"><strong>&lt; !–more–&gt;</strong></font></p></blockquote></blockquote><blockquote><blockquote><p>这种方法可以根据文章的内容，自己在合适的位置添加 &lt; !–more–&gt; 标签，使用灵活，也是Hexo推荐的方法。</p></blockquote></blockquote><blockquote><blockquote><p><strong>2.</strong>在文章中的<font color="blue"><strong>front-matter</strong></font>中添加<font color="blue"><strong>description</strong></font>，并提供文章摘录。如图：<br><img src="https://i.loli.net/2018/03/11/5aa4d99ca9490.png" alt="description.png"></p></blockquote></blockquote><blockquote><blockquote><p><strong>3.</strong>在主题配置文件中设置自动摘要</p></blockquote></blockquote><blockquote><blockquote></blockquote><pre><code>auto_excerpt:enable: truelength: 150 #默认摘要为150字，可根据需要更改</code></pre></blockquote><p>官方文档：</p><blockquote><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">文档|Hexo</a><br><br><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在遇到各种各样问题之后，终于搭建完成了这个博客。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T &lt;a href=&quot;mailto:git@github.com&quot; target=&quot;_
+      
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://cyne.tk/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="https://cyne.tk/tags/Hexo/"/>
+    
+      <category term="GitHub Peges" scheme="https://cyne.tk/tags/GitHub-Peges/"/>
+    
+      <category term="Blog" scheme="https://cyne.tk/tags/Blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://cyne.tk/2018/03/03/hello-world/"/>
+    <id>https://cyne.tk/2018/03/03/hello-world/</id>
+    <published>2018-03-03T01:44:18.605Z</published>
+    <updated>2018-03-03T08:10:19.210Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="https://cyne.tk/tags/Hexo/"/>
+    
+  </entry>
+  
+</feed>
