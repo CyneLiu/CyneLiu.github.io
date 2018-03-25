@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="Cyne&#39;s Blog">
 <meta property="og:description" content="str.format 的引入在 Python 中，我们可以使用 + 来连接字符串，在简单情况下这种方式能够很好的工作。但是当我们需要进行复杂的字符串连接时，如果依然使用 + 来完成，不仅会使代码变得晦涩难懂，还会让代码变得难以维护，此时这种方式就显得力不从心了。例如，我们想打印这样一条记录：   User:John has completed Action:payment at Time:13:3">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-25T09:29:10.559Z">
+<meta property="og:updated_time" content="2018-03-25T10:20:09.143Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python中的str.format">
 <meta name="twitter:description" content="str.format 的引入在 Python 中，我们可以使用 + 来连接字符串，在简单情况下这种方式能够很好的工作。但是当我们需要进行复杂的字符串连接时，如果依然使用 + 来完成，不仅会使代码变得晦涩难懂，还会让代码变得难以维护，此时这种方式就显得力不从心了。例如，我们想打印这样一条记录：   User:John has completed Action:payment at Time:13:3">
@@ -404,7 +404,7 @@
       
 
       
-        <h3 id="str-format-的引入"><a href="#str-format-的引入" class="headerlink" title="str.format 的引入"></a>str.format 的引入</h3><p>在 Python 中，我们可以使用 + 来连接字符串，在简单情况下这种方式能够很好的工作。但是当我们需要进行复杂的字符串连接时，如果依然使用 + 来完成，不仅会使代码变得晦涩难懂，还会让代码变得难以维护，此时这种方式就显得力不从心了。<br><br>例如，我们想打印这样一条记录：<br></p>
+        <h1 id="str-format-的引入"><a href="#str-format-的引入" class="headerlink" title="str.format 的引入"></a>str.format 的引入</h1><p>在 Python 中，我们可以使用 + 来连接字符串，在简单情况下这种方式能够很好的工作。但是当我们需要进行复杂的字符串连接时，如果依然使用 + 来完成，不仅会使代码变得晦涩难懂，还会让代码变得难以维护，此时这种方式就显得力不从心了。<br><br>例如，我们想打印这样一条记录：<br></p>
 <blockquote>
 </blockquote>
 <pre><code>User:John has completed Action:payment at Time:13:30:00  
@@ -424,21 +424,21 @@ action_name + &quot; at Time:&quot; + current_time
 <pre><code>print &quot;User:{} has completed Action:{} at Time:{}&quot;.format( 
 user_name, action_name, current_time)
 </code></pre><p>str.format 既能够用于简单的场景，也能够胜任复杂的字符串替换，而无需繁琐的字符串连接操作。Python 的内置类型 str 和 unicode 均支持使用 str.format() 来格式化字符串。<br>我们接下来就详细地讨论 str.format() 的具体用法。</p>
-<h3 id="str-format-基本语法"><a href="#str-format-基本语法" class="headerlink" title="str.format 基本语法"></a>str.format 基本语法</h3><p>格式化字符串使用花括号 {} 来包围替换字段，也就是待替换的字符串。而未被花括号包围的字符会原封不动地出现在结果中。</p>
-<h5 id="使用位置索引"><a href="#使用位置索引" class="headerlink" title="使用位置索引"></a>使用位置索引</h5><p>以下两种写法是等价的：<br>“Hello, {} and {}!”.format(“John”, “Mary”)<br>“Hello, {0} and {1}!”.format(“John”, “Mary”)<br>花括号内部可以写上目标字符串的索引，也可以省略。如果省略，则按 format 括号里的目标字符串顺序依次替换。</p>
-<h5 id="使用关键字索引"><a href="#使用关键字索引" class="headerlink" title="使用关键字索引"></a>使用关键字索引</h5><p>除了通过位置来指定目标字符串，我们还可以通过关键字来指定它。<br><br>例如：</p>
+<h1 id="str-format-基本语法"><a href="#str-format-基本语法" class="headerlink" title="str.format 基本语法"></a>str.format 基本语法</h1><p>格式化字符串使用花括号 {} 来包围替换字段，也就是待替换的字符串。而未被花括号包围的字符会原封不动地出现在结果中。</p>
+<h2 id="使用位置索引"><a href="#使用位置索引" class="headerlink" title="使用位置索引"></a>使用位置索引</h2><p>以下两种写法是等价的：<br>“Hello, {} and {}!”.format(“John”, “Mary”)<br>“Hello, {0} and {1}!”.format(“John”, “Mary”)<br>花括号内部可以写上目标字符串的索引，也可以省略。如果省略，则按 format 括号里的目标字符串顺序依次替换。</p>
+<h2 id="使用关键字索引"><a href="#使用关键字索引" class="headerlink" title="使用关键字索引"></a>使用关键字索引</h2><p>除了通过位置来指定目标字符串，我们还可以通过关键字来指定它。<br><br>例如：</p>
 <blockquote>
 </blockquote>
 <p>“Hello, {boy} and {girl}!”.format(boy=”John”, girl=”Mary”)</p>
 <p>使用关键字索引的好处是，我们无需关心参数的位置，且字符串的最终结果能够一目了然。在以后的代码维护中，我们能够快速地修改对应的参数，而不用对照字符串挨个去寻找相应的参数。<br>注意：如果字符串本身含有花括号，则需要将其重复两次来转义。例如，字符串本身含有 &#123; ，为了让 Python 知道这是一个普通字符，而不是用于包围替换字段的花括号，我们只需将它改写成 &#123;&#123; 即可。</p>
-<h3 id="str-format-高级语法"><a href="#str-format-高级语法" class="headerlink" title="str.format 高级语法"></a>str.format 高级语法</h3><p>str.format 非常强大，足以完成日常工作中遇到的格式化输出。熟练掌握该方法，能够为以后的字符串处理打好基础，还能节省不少时间。</p>
-<h5 id="访问参数的属性或元素"><a href="#访问参数的属性或元素" class="headerlink" title="访问参数的属性或元素"></a>访问参数的属性或元素</h5><p>在使用 str.format 来格式化字符串时，我们通常将目标字符串作为参数传递给 format 方法。实际上，我们还可以在格式化字符串中访问参数的某个属性或某个元素：</p>
+<h1 id="str-format-高级语法"><a href="#str-format-高级语法" class="headerlink" title="str.format 高级语法"></a>str.format 高级语法</h1><p>str.format 非常强大，足以完成日常工作中遇到的格式化输出。熟练掌握该方法，能够为以后的字符串处理打好基础，还能节省不少时间。</p>
+<h2 id="访问参数的属性或元素"><a href="#访问参数的属性或元素" class="headerlink" title="访问参数的属性或元素"></a>访问参数的属性或元素</h2><p>在使用 str.format 来格式化字符串时，我们通常将目标字符串作为参数传递给 format 方法。实际上，我们还可以在格式化字符串中访问参数的某个属性或某个元素：</p>
 <blockquote>
 </blockquote>
 <pre><code>&quot;My car is {0.color}.&quot;.format(black_car)
 &quot;The first student is {student[0]}.&quot;.format(student=stu_list)
 &quot;John is {d[john]} years old.&quot;.format(d=age_dict)
-</code></pre><h5 id="参数输出转换"><a href="#参数输出转换" class="headerlink" title="参数输出转换"></a>参数输出转换</h5><p>参数的字符串输出，默认是由其自身的 <strong>format</strong> 方法来实现的。也就是说<strong>Python</strong> 使用参数的 <strong>format</strong> 输出来取代替换字段。如果我们想调用 str() 或 repr() 来转换参数，可以通过添加转换标志来实现：</p>
+</code></pre><h2 id="参数输出转换"><a href="#参数输出转换" class="headerlink" title="参数输出转换"></a>参数输出转换</h2><p>参数的字符串输出，默认是由其自身的 <strong>format</strong> 方法来实现的。也就是说<strong>Python</strong> 使用参数的 <strong>format</strong> 输出来取代替换字段。如果我们想调用 str() 或 repr() 来转换参数，可以通过添加转换标志来实现：</p>
 <blockquote>
 </blockquote>
 <pre><code> call str() on argument
@@ -447,7 +447,7 @@ user_name, action_name, current_time)
 </blockquote>
 <pre><code>call repr() on argument
 &quot;We can get info from {name!r}.&quot;
-</code></pre><h3 id="str-format-一般形式"><a href="#str-format-一般形式" class="headerlink" title="str.format 一般形式"></a>str.format 一般形式</h3><p>格式化字符串的一般形式如下：</p>
+</code></pre><h1 id="str-format-一般形式"><a href="#str-format-一般形式" class="headerlink" title="str.format 一般形式"></a>str.format 一般形式</h1><p>格式化字符串的一般形式如下：</p>
 <blockquote>
 </blockquote>
 <pre><code>&quot;... {field_name!conversion:format_spec} ...&quot;
@@ -710,7 +710,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#str-format-的引入"><span class="nav-number">1.</span> <span class="nav-text">str.format 的引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-format-基本语法"><span class="nav-number">2.</span> <span class="nav-text">str.format 基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用位置索引"><span class="nav-number">2.0.1.</span> <span class="nav-text">使用位置索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用关键字索引"><span class="nav-number">2.0.2.</span> <span class="nav-text">使用关键字索引</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-format-高级语法"><span class="nav-number">3.</span> <span class="nav-text">str.format 高级语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#访问参数的属性或元素"><span class="nav-number">3.0.1.</span> <span class="nav-text">访问参数的属性或元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参数输出转换"><span class="nav-number">3.0.2.</span> <span class="nav-text">参数输出转换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#str-format-一般形式"><span class="nav-number">4.</span> <span class="nav-text">str.format 一般形式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#str-format-的引入"><span class="nav-number">1.</span> <span class="nav-text">str.format 的引入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#str-format-基本语法"><span class="nav-number">2.</span> <span class="nav-text">str.format 基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用位置索引"><span class="nav-number">2.1.</span> <span class="nav-text">使用位置索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用关键字索引"><span class="nav-number">2.2.</span> <span class="nav-text">使用关键字索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#str-format-高级语法"><span class="nav-number">3.</span> <span class="nav-text">str.format 高级语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#访问参数的属性或元素"><span class="nav-number">3.1.</span> <span class="nav-text">访问参数的属性或元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数输出转换"><span class="nav-number">3.2.</span> <span class="nav-text">参数输出转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#str-format-一般形式"><span class="nav-number">4.</span> <span class="nav-text">str.format 一般形式</span></a></li></ol></div>
             
 
           </div>
