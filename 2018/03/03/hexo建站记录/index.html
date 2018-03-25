@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/03/25/5ab780018abe1.png">
 <meta property="og:image" content="https://i.loli.net/2018/03/25/5ab780018a55d.png">
 <meta property="og:image" content="https://i.loli.net/2018/03/25/5ab786e34f254.png">
-<meta property="og:updated_time" content="2018-03-25T11:30:55.243Z">
+<meta property="og:updated_time" content="2018-03-25T11:38:16.793Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo建站记录">
 <meta name="twitter:description" content="建站过程在遇到各种各样问题之后，终于搭建完成了这个博客。  其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T git@github.com“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。 还有">
@@ -485,7 +485,8 @@ length: 150 #默认摘要为150字，可根据需要更改
 <h2 id="123-125-引起的报错"><a href="#123-125-引起的报错" class="headerlink" title="&#123; &#125;引起的报错"></a>&#123; &#125;引起的报错</h2><p>今天写了一篇博客后按流程进行部署的时候，发现在生成静态页面的时候出现了如下的错误：<br><img src="https://i.loli.net/2018/03/25/5ab780018abe1.png" alt="snipaste_20180325_163706.png"></p>
 <p><img src="https://i.loli.net/2018/03/25/5ab780018a55d.png" alt="snipaste_20180325_163648.png"></p>
 <p>查了一下说什么的都有，每个方法也都试了一遍，最后发现是因为文章中直接引用了”&#123; &#125;”的原因，解决办法是将”&#123; &#125;”通过&amp;#123  &amp;#125后面加上分号”;”进行转换，就可以正常部署了。<br>这里也有一些常见的<a href="https://blog.csdn.net/chwshuang/article/details/52350551" target="_blank" rel="noopener">特殊字符</a>,可以根据需要转换。<br><img src="https://i.loli.net/2018/03/25/5ab786e34f254.png" alt="特殊字符.png"></p>
-<p>##标题无法正常解析<br>在浏览别人的博客的时候发现Hexo有自动解析目录的功能，是依靠markdown的标题实现的，在加了一个<strong>“#标题”</strong>这样时却发现博客无法解析到这是一个标题，查了一下原因是正规的标题写法是在”#”和标题之间加一个空格。</p>
+<h2 id="标题无法正常解析"><a href="#标题无法正常解析" class="headerlink" title="标题无法正常解析"></a>标题无法正常解析</h2><p>在浏览别人的博客的时候发现Hexo有自动解析目录的功能，是依靠markdown的标题实现的，在加了一个<strong>“#标题”</strong>这样时却发现博客无法解析到这是一个标题，查了一下原因是正规的标题写法是在”#”和标题之间加一个空格。</p>
+<h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><p>一开始刚刚接触markdown的时候一直用html的&#60;br/&#62;换行，这种换行方式貌似在换行的同时增加了行间距，无意间发现一个更好也更简单的换行方式，就是在要换行的位置敲两个空格，就可以换行。</p>
 
       
     </div>
@@ -733,7 +734,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建站过程"><span class="nav-number">1.</span> <span class="nav-text">建站过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、添加网易云音乐插件"><span class="nav-number">1.1.</span> <span class="nav-text">一、添加网易云音乐插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、添加particles-js背景动画"><span class="nav-number">1.2.</span> <span class="nav-text">二、添加particles.js背景动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、设置文章摘要"><span class="nav-number">1.3.</span> <span class="nav-text">三、设置文章摘要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官方文档："><span class="nav-number">2.</span> <span class="nav-text">官方文档：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误汇总"><span class="nav-number">3.</span> <span class="nav-text">错误汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#123-125-引起的报错"><span class="nav-number">3.1.</span> <span class="nav-text">{ }引起的报错</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建站过程"><span class="nav-number">1.</span> <span class="nav-text">建站过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、添加网易云音乐插件"><span class="nav-number">1.1.</span> <span class="nav-text">一、添加网易云音乐插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、添加particles-js背景动画"><span class="nav-number">1.2.</span> <span class="nav-text">二、添加particles.js背景动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、设置文章摘要"><span class="nav-number">1.3.</span> <span class="nav-text">三、设置文章摘要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官方文档："><span class="nav-number">2.</span> <span class="nav-text">官方文档：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误汇总"><span class="nav-number">3.</span> <span class="nav-text">错误汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#123-125-引起的报错"><span class="nav-number">3.1.</span> <span class="nav-text">{ }引起的报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标题无法正常解析"><span class="nav-number">3.2.</span> <span class="nav-text">标题无法正常解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#换行"><span class="nav-number">3.3.</span> <span class="nav-text">换行</span></a></li></ol></li></ol></div>
             
 
           </div>
