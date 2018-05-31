@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyne.tk/"/>
-  <updated>2018-05-07T13:40:34.463Z</updated>
+  <updated>2018-05-31T13:53:47.706Z</updated>
   <id>https://cyne.tk/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>专治疑难杂症</title>
+    <link href="https://cyne.tk/2018/05/30/%E4%B8%93%E6%B2%BB%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    <id>https://cyne.tk/2018/05/30/专治疑难杂症/</id>
+    <published>2018-05-30T12:50:21.000Z</published>
+    <updated>2018-05-31T13:53:47.706Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="显示器红斑"><a href="#显示器红斑" class="headerlink" title="显示器红斑"></a>显示器红斑</h1><p><img src="https://i.loli.net/2018/05/31/5b0ffadfde7b5.jpg" alt="红点.jpg"></p><blockquote><p>如图:前几天电脑出现过一小片红点，因为不太多，而且在换了一张桌面壁纸后就变好了，所以就没有在意。ps:之后百度有人说长时间显示一张照片会引起显示器出现问题，所以建议不要超长时间的用一张壁纸等。<br>当然这次的问题应该于此无关，当时是因为看了一个电影，复联3，在观看的过程中就出现了大量的红点，但是以为是视频的问题当时并没有注意，后来最小化后发现竟然到处都是。这就比较烦了，在坚持看完电影之后，我开始查找原因。<br>首先想到的是显卡的问题，因为红点的位置在每个背景下并不固定，所以初步排除显示器硬件的问题。我尝试用驱动精灵更新了驱动，并在几次重启之后依然没有好转。这就让我有点慌了，难道是显卡坏了？赶紧找来一个显示器插上，发现外接显示器显示正常。<br>这就有点奇怪了，我又联系三星的工程师远程，在他看了一些配置之后，并没有发现问题，但是他的一句话提醒了我：“硬件或者程序兼容性问题”，我就想着会不会是看电影导致的？赶紧重置了一下播放器的设置，结果红点就消失了。。。这就说明回退思想是多么的重要。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;显示器红斑&quot;&gt;&lt;a href=&quot;#显示器红斑&quot; class=&quot;headerlink&quot; title=&quot;显示器红斑&quot;&gt;&lt;/a&gt;显示器红斑&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/05/31/5b0ffadfde7b5.jpg&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="电脑维护" scheme="https://cyne.tk/tags/%E7%94%B5%E8%84%91%E7%BB%B4%E6%8A%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>自建ssr服务器</title>
