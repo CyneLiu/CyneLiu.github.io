@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyne.tk/"/>
-  <updated>2018-05-31T13:53:47.706Z</updated>
+  <updated>2018-06-03T02:46:34.867Z</updated>
   <id>https://cyne.tk/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于阿卡信自建聊天服务器</title>
+    <link href="https://cyne.tk/2018/06/03/%E5%9F%BA%E4%BA%8E%E9%98%BF%E5%8D%A1%E4%BF%A1%E8%87%AA%E5%BB%BA%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://cyne.tk/2018/06/03/基于阿卡信自建聊天服务器/</id>
+    <published>2018-06-03T01:55:23.000Z</published>
+    <updated>2018-06-03T02:46:34.867Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、安装JAVA和MAVEN环境"><a href="#一、安装JAVA和MAVEN环境" class="headerlink" title="一、安装JAVA和MAVEN环境"></a>一、安装JAVA和MAVEN环境</h1><p>这两个安装很简单，网上一大把的教程，因为我手头可用的只有一个Windows Server，所以这里只演示Win版的安装配置过程。</p><blockquote><p>①首先在<a href="http://www.oracle.com/technetwork/java/javase/downloads/jre10-downloads-4417026.html" target="_blank" rel="noopener">ORACLE官网</a>下载jre，然后直接运行安装就可以。<br>②同样，在<a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">maven官网</a>下载maven的压缩包，具体的安装配置过程可以参考CSDN博主的<a href="https://blog.csdn.net/h312387398/article/details/79136960" target="_blank" rel="noopener">教程</a>。<br>③安装成功后，在cmd命令行分别用一下两条命令测试是否正确安装配置：</p><blockquote><p>java -version<br>mvn -v</p></blockquote></blockquote><h1 id="二、安装Akaxin服务端程序"><a href="#二、安装Akaxin服务端程序" class="headerlink" title="二、安装Akaxin服务端程序"></a>二、安装Akaxin服务端程序</h1><p>在<a href="https://github.com/akaxincom/openzaly/blob/master/README.md" target="_blank" rel="noopener">Github</a>下载官方提供的jar包，并移动到C盘目录下，在cmd中首先切换到本目录：cd C:\ <img src="https://i.loli.net/2018/06/03/5b1352a48dbf1.png" alt="aaa.png"><br>然后直接运行jar包：java -jar openzaly-server.jar 然后看到提示就说明启动成功了。</p><h1 id="三、安装客户端程序连接使用"><a href="#三、安装客户端程序连接使用" class="headerlink" title="三、安装客户端程序连接使用"></a>三、安装客户端程序连接使用</h1><p>最后就是下载客户端程序了，在<a href="https://www.akaxin.com/" target="_blank" rel="noopener">官网</a>下载客户端程序后，输入服务器ip地址就可以正常使用了。<br><img src="https://i.loli.net/2018/06/03/5b1354ced508f.jpg" alt="QQ图片20180603103858.jpg">这里需要注意的是，首个成员需要输入邀请码：000000进入，这样就会默认成为站点的管理员并提供管理权限。</p><h1 id="四、问题"><a href="#四、问题" class="headerlink" title="四、问题"></a>四、问题</h1><p>我在配置完成之后遇到一个问题就是用客户端连接服务器的时候提示：请稍后重试，解决的办法是在服务器的安全组策略中放行：2021/2021端口。<br><img src="https://i.loli.net/2018/06/03/5b1355a46befb.png" alt="snipaste_20180603_104228.png"></p><h1 id="附"><a href="#附" class="headerlink" title="附"></a>附</h1><p>阿卡信官网：<a href="https://www.akaxin.com/" target="_blank" rel="noopener">https://www.akaxin.com/</a><br>Github项目：<a href="https://github.com/akaxincom/openzaly" target="_blank" rel="noopener">https://github.com/akaxincom/openzaly</a><br>码云：<a href="https://gitee.com/akaxin/openzaly" target="_blank" rel="noopener">https://gitee.com/akaxin/openzaly</a><br>QQ群：655249600</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;一、安装JAVA和MAVEN环境&quot;&gt;&lt;a href=&quot;#一、安装JAVA和MAVEN环境&quot; class=&quot;headerlink&quot; title=&quot;一、安装JAVA和MAVEN环境&quot;&gt;&lt;/a&gt;一、安装JAVA和MAVEN环境&lt;/h1&gt;&lt;p&gt;这两个安装很简单，网上一大把
+      
+    
+    </summary>
+    
+      <category term="Server" scheme="https://cyne.tk/categories/Server/"/>
+    
+    
+      <category term="聊天服务器" scheme="https://cyne.tk/tags/%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="阿卡信" scheme="https://cyne.tk/tags/%E9%98%BF%E5%8D%A1%E4%BF%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>专治疑难杂症</title>
@@ -44,7 +71,7 @@
     <link href="https://cyne.tk/2018/05/07/%E8%87%AA%E5%BB%BAssr%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     <id>https://cyne.tk/2018/05/07/自建ssr服务器/</id>
     <published>2018-05-07T13:09:20.000Z</published>
-    <updated>2018-05-07T13:40:34.463Z</updated>
+    <updated>2018-06-03T02:46:41.716Z</updated>
     
     <content type="html"><![CDATA[<h1 id="VPS购买"><a href="#VPS购买" class="headerlink" title="VPS购买"></a>VPS购买</h1><p><img src="https://i.loli.net/2018/05/07/5af051641868c.png" alt="vpsAO">昨天晚上看见了一个便宜的VPS没怎么想就买了，毕竟3.5刀一年，虽然平时对富强上网需求不是特别大，但是想借着这个便宜主机了解一下SSR的搭建使用，所以这点钱花的还是很值的我自己觉得。当然便宜也就意味着配置不会好了，96M内存，不过做SSR足够了。</p><h1 id="SSR安装部署"><a href="#SSR安装部署" class="headerlink" title="SSR安装部署"></a>SSR安装部署</h1><p>在这之前就有过搭建SSR的想法，所以当时找了一个比较不错的教程，写的比较详细，毕竟搭建SSR还是比较傻瓜的，没什么难度，按照提示写参数就行，教程地址：<a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">点这里</a>。<br>唯一的一个遗憾就是我买的这个VPS不支持教程里说的谷歌BBR加速，而且不知道是不是因为这个原因，我做出来的这个SSR延迟还是比较高的。如图：<br><img src="https://i.loli.net/2018/05/07/5af0549490164.png" alt="网速测试.png"><br>当然，网速还是不太稳定的，下午测试的时候是1M左右，晚上就到6.9M了，不过这也都无所谓了。</p><h1 id="SSR客户端"><a href="#SSR客户端" class="headerlink" title="SSR客户端"></a>SSR客户端</h1><p>最后附上Win和Android端的客户端  </p><blockquote><p>Windows：<a href="https://github.com/shadowsocksr-backup/shadowsocksr-csharp/releases" target="_blank" rel="noopener">下载地址</a><br>Android：<a href="https://github.com/shadowsocksr-backup/shadowsocksr-android/releases/download/3.4.0.8/shadowsocksr-release.apk" target="_blank" rel="noopener">下载地址</a></p></blockquote>]]></content>
     
@@ -57,10 +84,12 @@
     
     </summary>
     
-      <category term="SSR" scheme="https://cyne.tk/categories/SSR/"/>
+      <category term="Server" scheme="https://cyne.tk/categories/Server/"/>
     
     
       <category term="SSR" scheme="https://cyne.tk/tags/SSR/"/>
+    
+      <category term="Server" scheme="https://cyne.tk/tags/Server/"/>
     
   </entry>
   
