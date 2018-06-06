@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[OpenStack入门]]></title>
+    <url>%2F2018%2F06%2F06%2FOpenStack%E5%85%A5%E9%97%A8%2F</url>
+    <content type="text"><![CDATA[作为一个网络工程专业的大二学生，现在已经临近期末，也就是说马上就要大三了。最近身边的一些事，让我慢慢发现，如果以后只做一个普通的网工，只会敲敲命令行之类的，几乎没有什么前景，而且随着SDN、自动化运维的发展，普通网工的价值也显得越来越低，所以还是觉得应该学点别的东西来武装自己，比如——虚拟化。今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造的价值成正比的。虽然知道OpenStack体系结构复杂，知识涉及面庞大，但还是决定接触一下。今天也是无意间看到了一个名叫cloudman的博主的博客，他的这个系列教程《每天5分钟玩转OpenStack》个人感觉真的蛮不错，因为现在市面上真的很少有很体系化的教程（至少我没有找到），所以从今天开始就开始按照博主大佬的这份教程开始入门OpenStack了，也但愿我可以一路坚持下去。 1 虚拟化 这是博主给的图，如博主所说，OpenStack是云操作系统，要学习OpenStack，首先需要掌握一些虚拟化和云计算的相关知识。 物理机为宿主机Host，虚拟机为客户机Guest宿主机通过Hypervisor程序实现硬件的虚拟化根据实现方式分为1型虚拟化和2型虚拟化 1.1 1型虚拟化Hypervisor 直接安装在物理机上，多个虚拟机在 Hypervisor 上运行。 1.2 2型虚拟化物理机上首先安装常规的操作系统，Hypervisor 作为 OS 上的一个程序模块运行，并对管理虚拟机进行管理。]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>OpenStack</tag>
+        <tag>网工</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[基于阿卡信自建聊天服务器]]></title>
     <url>%2F2018%2F06%2F03%2F%E5%9F%BA%E4%BA%8E%E9%98%BF%E5%8D%A1%E4%BF%A1%E8%87%AA%E5%BB%BA%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
     <content type="text"><![CDATA[一、安装JAVA和MAVEN环境这两个安装很简单，网上一大把的教程，因为我手头可用的只有一个Windows Server，所以这里只演示Win版的安装配置过程。 ①首先在ORACLE官网下载jre，然后直接运行安装就可以。②同样，在maven官网下载maven的压缩包，具体的安装配置过程可以参考CSDN博主的教程。③安装成功后，在cmd命令行分别用一下两条命令测试是否正确安装配置： java -versionmvn -v 二、安装Akaxin服务端程序在Github下载官方提供的jar包，并移动到C盘目录下，在cmd中首先切换到本目录：cd C:\ 然后直接运行jar包：java -jar openzaly-server.jar 然后看到提示就说明启动成功了。 三、安装客户端程序连接使用最后就是下载客户端程序了，在官网下载客户端程序后，输入服务器ip地址就可以正常使用了。这里需要注意的是，首个成员需要输入邀请码：000000进入，这样就会默认成为站点的管理员并提供管理权限。 四、问题我在配置完成之后遇到一个问题就是用客户端连接服务器的时候提示：请稍后重试，解决的办法是在服务器的安全组策略中放行：2021/2021端口。 附阿卡信官网：https://www.akaxin.com/Github项目：https://github.com/akaxincom/openzaly码云：https://gitee.com/akaxin/openzalyQQ群：655249600]]></content>
