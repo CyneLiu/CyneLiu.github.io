@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[常用网址收藏]]></title>
+    <url>%2F2018%2F06%2F07%2F%E7%BD%91%E5%9D%80%E6%94%B6%E8%97%8F%2F</url>
+    <content type="text"><![CDATA[软件激活PyCharm激活：http://idea.liyang.io/ 适用于所有intellij IDEA的激活]]></content>
+      <categories>
+        <category>网址收藏</category>
+      </categories>
+      <tags>
+        <tag>网址收藏</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[OpenStack入门]]></title>
     <url>%2F2018%2F06%2F06%2FOpenStack%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[作为一个网络工程专业的大二学生，现在已经临近期末，也就是说马上就要大三了。最近身边的一些事，让我慢慢发现，如果以后只做一个普通的网工，只会敲敲命令行之类的，几乎没有什么前景，而且随着SDN、自动化运维的发展，普通网工的价值也显得越来越低，所以还是觉得应该学点别的东西来武装自己，比如——虚拟化。今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造的价值成正比的。虽然知道OpenStack体系结构复杂，知识涉及面庞大，但还是决定接触一下。今天也是无意间看到了一个名叫cloudman的博主的博客，他的这个系列教程《每天5分钟玩转OpenStack》个人感觉真的蛮不错，因为现在市面上真的很少有很体系化的教程（至少我没有找到），所以从今天开始就开始按照博主大佬的这份教程开始入门OpenStack了，也但愿我可以一路坚持下去。 1 虚拟化 这是博主给的图，如博主所说，OpenStack是云操作系统，要学习OpenStack，首先需要掌握一些虚拟化和云计算的相关知识。 物理机为宿主机Host，虚拟机为客户机Guest宿主机通过Hypervisor程序实现硬件的虚拟化根据实现方式分为1型虚拟化和2型虚拟化 1.1 1型虚拟化Hypervisor 直接安装在物理机上，多个虚拟机在 Hypervisor 上运行。 1.2 2型虚拟化物理机上首先安装常规的操作系统，Hypervisor 作为 OS 上的一个程序模块运行，并对管理虚拟机进行管理。]]></content>
+    <content type="text"><![CDATA[作为一个网络工程专业的大二学生，现在已经临近期末，也就是说马上就要大三了。最近身边的一些事，让我慢慢发现，如果以后只做一个普通的网工，只会敲敲命令行之类的，几乎没有什么前景，而且随着SDN、自动化运维的发展，普通网工的价值也显得越来越低，所以还是觉得应该学点别的东西来武装自己，比如——虚拟化。 今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造的价值成正比的。虽然知道OpenStack体系结构复杂，知识涉及面庞大，但还是决定接触一下。今天也是无意间看到了一个名叫cloudman的博主的博客，他的这个系列教程《每天5分钟玩转OpenStack》个人感觉真的蛮不错，因为现在市面上真的很少有很体系化的教程（至少我没有找到），所以从今天开始就开始按照博主大佬的这份教程开始入门OpenStack了，也但愿我可以一路坚持下去。 1 虚拟化 这是博主给的图，如博主所说，OpenStack是云操作系统，要学习OpenStack，首先需要掌握一些虚拟化和云计算的相关知识。 物理机为宿主机Host，虚拟机为客户机Guest宿主机通过Hypervisor程序实现硬件的虚拟化根据实现方式分为1型虚拟化和2型虚拟化 1.1 1型虚拟化Hypervisor 直接安装在物理机上，多个虚拟机在 Hypervisor 上运行。 1.2 2型虚拟化物理机上首先安装常规的操作系统，Hypervisor 作为 OS 上的一个程序模块运行，并对管理虚拟机进行管理。 2 KVM2.1 基本概念因为在 x86 平台上最热门运用最广泛的虚拟化方案莫过于 KVM同时OpenStack对KVM支持的最好，所以实验环境选择KVM。 KVM是2型虚拟化KVM有一个内核模块交kvm.ko，只用于广利虚拟cpu和内存IO如存储和网络的虚拟化由Linux内核和Qemu实现Libvirt简单的说就是KVM的管理工具 2.2 安装KVM因为手头没有可以用的Linux系统的主机，所以这里我选择在VMWare虚拟机安装KVM。为了能让 KVM 能创建 嵌套的虚机，要把 CPU 的虚拟化功能打开：Ubuntu启动后，用一下命令确认cpu支持虚拟化： # egrep -o &apos;(vmx|svm)&apos; /proc/cpuinfo # vmx 确认 Libvirtd 服务已经启动: # service libvirt-bin status libvirt-bin start/running, process 1478 到这里KVM准备就绪。]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
