@@ -95,7 +95,11 @@
 <meta property="og:image" content="https://i.loli.net/2018/06/06/5b17e2cc5d990.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/06/07/5b1919d6162be.png">
 <meta property="og:image" content="https://i.loli.net/2018/06/07/5b1921f5d79c7.jpg">
-<meta property="og:updated_time" content="2018-06-07T12:20:17.015Z">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a9434c5b2c.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a9434ba868.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a9434c3dc3.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/06/08/5b1a9434c8ec6.png">
+<meta property="og:updated_time" content="2018-06-08T15:00:00.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack入门">
 <meta name="twitter:description" content="作为一个网络工程专业的大二学生，现在已经临近期末，也就是说马上就要大三了。最近身边的一些事，让我慢慢发现，如果以后只做一个普通的网工，只会敲敲命令行之类的，几乎没有什么前景，而且随着SDN、自动化运维的发展，普通网工的价值也显得越来越低，所以还是觉得应该学点别的东西来武装自己，比如——虚拟化。   今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造">
@@ -433,7 +437,36 @@
 <pre><code># service libvirt-bin status
 libvirt-bin start/running, process 1478  
 </code></pre><p>到这里KVM准备就绪。</p>
-
+<h2 id="2-3-几个小问题"><a href="#2-3-几个小问题" class="headerlink" title="2.3 几个小问题"></a>2.3 几个小问题</h2><p>我在安装环境的时候遇到了以下两个小问题：  </p>
+<blockquote>
+<p>1.未发现软件包<br><img src="https://i.loli.net/2018/06/08/5b1a9434c5b2c.png" alt="q1.png"><br>解决方法很简单，在命令行下执行： </p>
+</blockquote>
+<pre><code>sudo apt-get update 
+</code></pre><blockquote>
+<p>更新apt的资源列表即可解决  </p>
+<p>2.ssh无法启动<br><img src="https://i.loli.net/2018/06/08/5b1a9434ba868.png" alt="q2.png"><br>这个主要是因为我安装的Ubuntu在安装时并没有安装ssh-server，执行：</p>
+</blockquote>
+<pre><code>sudo apt-get install openssh-server
+</code></pre><blockquote>
+<p>安装ssh服务端程序即可解决。  </p>
+<p>3.Ubuntu缺少管理员权限无法打开文件</p>
+<p>这个问题也是我用Ubuntu感觉不太方便的地方，百度了以下可以安装这个：</p>
+</blockquote>
+<pre><code>sudo apt-get install nautilus-open-terminal
+</code></pre><blockquote>
+<p>重启后，打开想要打开的目录执行：</p>
+</blockquote>
+<pre><code>sudo nautilus
+</code></pre><blockquote>
+</blockquote>
+<h1 id="3-启动第一个KVM虚拟机"><a href="#3-启动第一个KVM虚拟机" class="headerlink" title="3 启动第一个KVM虚拟机"></a>3 启动第一个KVM虚拟机</h1><p><img src="https://i.loli.net/2018/06/08/5b1a9434c3dc3.jpg" alt="3.jpg"><br>环境搭好，这个步骤就很简单了。要做笔记的可能就是博主推荐的用来测试效果的超轻量级的Linux系统cirros了，镜像文件只有几十兆。<br>这是我的第一个KVM——kvm1，截个图纪念一下：<br><img src="https://i.loli.net/2018/06/08/5b1a9434c8ec6.png" alt="result.png"><br>另外除了用virt-manager对虚机进行各种管理操作，也可以使用命令 virsh管理虚机，比如查看宿主机上的虚机：</p>
+<blockquote>
+</blockquote>
+<pre><code>root@ubuntu:~# virsh list
+Id    Name              State
+--------------------------------
+8     kvm1              running
+</code></pre>
       
     </div>
     
@@ -678,7 +711,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-虚拟化"><span class="nav-number">1.</span> <span class="nav-text">1 虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-1型虚拟化"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 1型虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-2型虚拟化"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 2型虚拟化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-KVM"><span class="nav-number">2.</span> <span class="nav-text">2 KVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-安装KVM"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 安装KVM</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-虚拟化"><span class="nav-number">1.</span> <span class="nav-text">1 虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-1型虚拟化"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 1型虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-2型虚拟化"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 2型虚拟化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-KVM"><span class="nav-number">2.</span> <span class="nav-text">2 KVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-安装KVM"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 安装KVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-几个小问题"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 几个小问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-启动第一个KVM虚拟机"><span class="nav-number">3.</span> <span class="nav-text">3 启动第一个KVM虚拟机</span></a></li></ol></div>
             
 
           </div>
