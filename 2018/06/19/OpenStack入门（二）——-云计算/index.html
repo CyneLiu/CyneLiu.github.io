@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="Hexo," />
+  <meta name="keywords" content="OpenStack,网工," />
 
 
 
@@ -82,18 +82,21 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords" content="Hexo">
+<meta name="description" content="基本概念这张图很形象的描述了云计算的基本概念：云平台是一个面向服务的架构，按照提供服务的不同分为 IaaS、PaaS 和 SaaS。IaaS（Infrastructure as a Service）提供的服务是虚拟机。  IaaS 负责管理虚机的生命周期，包括创建、修改、备份、启停、销毁等。使用者从云平台得到的是一个已经安装好镜像（操作系统+其他预装软件）的虚拟机。使用者需要关心虚机的类型（OS）">
+<meta name="keywords" content="OpenStack,网工">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://cyne.tk/2018/03/03/hello-world/index.html">
+<meta property="og:title" content="OpenStack入门（二）—— 云计算">
+<meta property="og:url" content="https://cyne.tk/2018/06/19/OpenStack入门（二）——-云计算/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="基本概念这张图很形象的描述了云计算的基本概念：云平台是一个面向服务的架构，按照提供服务的不同分为 IaaS、PaaS 和 SaaS。IaaS（Infrastructure as a Service）提供的服务是虚拟机。  IaaS 负责管理虚机的生命周期，包括创建、修改、备份、启停、销毁等。使用者从云平台得到的是一个已经安装好镜像（操作系统+其他预装软件）的虚拟机。使用者需要关心虚机的类型（OS）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-03T08:10:19.210Z">
+<meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160329-1459256505303011231.png">
+<meta property="og:image" content="http://img.blog.csdn.net/20160329205344575">
+<meta property="og:updated_time" content="2018-06-19T11:47:01.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="OpenStack入门（二）—— 云计算">
+<meta name="twitter:description" content="基本概念这张图很形象的描述了云计算的基本概念：云平台是一个面向服务的架构，按照提供服务的不同分为 IaaS、PaaS 和 SaaS。IaaS（Infrastructure as a Service）提供的服务是虚拟机。  IaaS 负责管理虚机的生命周期，包括创建、修改、备份、启停、销毁等。使用者从云平台得到的是一个已经安装好镜像（操作系统+其他预装软件）的虚拟机。使用者需要关心虚机的类型（OS）">
+<meta name="twitter:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160329-1459256505303011231.png">
 
 
 
@@ -123,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://cyne.tk/2018/03/03/hello-world/"/>
+  <link rel="canonical" href="https://cyne.tk/2018/06/19/OpenStack入门（二）——-云计算/"/>
 
 
 
 
 
-  <title>Hello World | Cyne's Blog</title>
+  <title>OpenStack入门（二）—— 云计算 | Cyne's Blog</title>
   
 
 
@@ -300,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cyne.tk/2018/03/03/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://cyne.tk/2018/06/19/OpenStack入门（二）——-云计算/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cyne Liu">
@@ -317,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">OpenStack入门（二）—— 云计算</h1>
         
 
         <div class="post-meta">
@@ -329,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T09:44:18+08:00">
-                2018-03-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-19T19:31:46+08:00">
+                2018-06-19
               </time>
             
 
@@ -340,6 +343,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -348,8 +373,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/03/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/03/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2018/06/19/OpenStack入门（二）——-云计算/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/19/OpenStack入门（二）——-云计算/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -382,15 +407,20 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>这张图很形象的描述了云计算的基本概念：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160329-1459256505303011231.png" alt="云计算"><br>云平台是一个面向服务的架构，按照提供服务的不同分为 IaaS、PaaS 和 SaaS。<br><img src="http://img.blog.csdn.net/20160329205344575" alt="分类"><br><em>IaaS</em>（Infrastructure as a Service）提供的服务是虚拟机。</p>
+<blockquote>
+<p>IaaS 负责管理虚机的生命周期，包括创建、修改、备份、启停、销毁等。<br>使用者从云平台得到的是一个已经安装好镜像（操作系统+其他预装软件）的虚拟机。<br>使用者需要关心虚机的类型（OS）和配置（CPU、内存、磁盘），并且自己负责部署上层的中间件和应用。<br>IaaS 的使用者通常是数据中心的系统管理员。<br>典型的 IaaS 例子有 AWS、Rackspace、阿里云等。  </p>
+</blockquote>
+<p><em>PaaS</em>（Platform as a Service）提供的服务是应用的运行环境和一系列中间件服务（比如数据库、消息队列等）。</p>
+<blockquote>
+<p>使用者只需专注应用的开发，并将自己的应用和数据部署到PaaS环境中。<br>PaaS负责保证这些服务的可用性和性能。<br>PaaS的使用者通常是应用的开发人员。<br>典型的 PaaS 有 Google App Engine、IBM BlueMix 等  </p>
+</blockquote>
+<p><em>SaaS</em>（Software as a Service）提供的是应用服务。</p>
+<blockquote>
+<p>使用者只需要登录并使用应用，无需关心应用使用什么技术实现，也不需要关系应用部署在哪里。<br>SaaS的使用者通常是应用的最终用户。<br>典型的 SaaS 有 Google Gmail、Salesforce 等</p>
+</blockquote>
+<h1 id="云计算和OpenStack"><a href="#云计算和OpenStack" class="headerlink" title="云计算和OpenStack"></a>云计算和OpenStack</h1><p>OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter, all managed through a dashboard that gives administrators control while empowering their users to provision resources through a web interface.  </p>
+<p>以上是官网对 OpenStack 的定义，OpenStack 对数据中心的计算、存储和网络资源进行统一管理。<br>由此可见，OpenStack 针对的是 IT 基础设施，是 IaaS 这个层次的云操作系统。</p>
 
       
     </div>
@@ -437,7 +467,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/OpenStack/" rel="tag"># OpenStack</a>
+          
+            <a href="/tags/网工/" rel="tag"># 网工</a>
           
         </div>
       
@@ -450,14 +482,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/06/11/SDN学习笔记/" rel="next" title="SDN学习笔记">
+                <i class="fa fa-chevron-left"></i> SDN学习笔记
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/03/hexo建站记录/" rel="prev" title="hexo建站记录">
-                hexo建站记录 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/19/OpenStack入门（三）——-OpenStack架构/" rel="prev" title="OpenStack入门（三）—— OpenStack架构">
+                OpenStack入门（三）—— OpenStack架构 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -630,7 +666,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#云计算和OpenStack"><span class="nav-number">2.</span> <span class="nav-text">云计算和OpenStack</span></a></li></ol></div>
             
 
           </div>

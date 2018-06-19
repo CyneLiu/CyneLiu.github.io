@@ -86,7 +86,7 @@
 <meta name="keywords" content="OpenStack,网工">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenStack入门（一）—— 虚拟化">
-<meta property="og:url" content="https://cyne.tk/2018/06/06/OpenStack入门/index.html">
+<meta property="og:url" content="https://cyne.tk/2018/06/06/OpenStack入门（一）——-虚拟化/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
 <meta property="og:description" content="作为一个网络工程专业的大二学生，现在已经临近期末，也就是说马上就要大三了。最近身边的一些事，让我慢慢发现，如果以后只做一个普通的网工，只会敲敲命令行之类的，几乎没有什么前景，而且随着SDN、自动化运维的发展，普通网工的价值也显得越来越低，所以还是觉得应该学点别的东西来武装自己，比如——虚拟化。   今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造">
 <meta property="og:locale" content="zh-Hans">
@@ -109,7 +109,11 @@
 <meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160317-1458221777406075614.jpg">
 <meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160317-1458221778960074364.png">
 <meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160317-1458221779001036894.png">
-<meta property="og:updated_time" content="2018-06-11T10:29:59.404Z">
+<meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160319-1458396234852047669.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/06/11/5b1e7bb8b2a03.png">
+<meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160324-1458779560823058198.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/06/19/5b28e7c40b35c.png">
+<meta property="og:updated_time" content="2018-06-19T11:27:40.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack入门（一）—— 虚拟化">
 <meta name="twitter:description" content="作为一个网络工程专业的大二学生，现在已经临近期末，也就是说马上就要大三了。最近身边的一些事，让我慢慢发现，如果以后只做一个普通的网工，只会敲敲命令行之类的，几乎没有什么前景，而且随着SDN、自动化运维的发展，普通网工的价值也显得越来越低，所以还是觉得应该学点别的东西来武装自己，比如——虚拟化。   今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造">
@@ -143,7 +147,7 @@
 
 
 
-  <link rel="canonical" href="https://cyne.tk/2018/06/06/OpenStack入门/"/>
+  <link rel="canonical" href="https://cyne.tk/2018/06/06/OpenStack入门（一）——-虚拟化/"/>
 
 
 
@@ -320,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cyne.tk/2018/06/06/OpenStack入门/">
+    <link itemprop="mainEntityOfPage" href="https://cyne.tk/2018/06/06/OpenStack入门（一）——-虚拟化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cyne Liu">
@@ -390,8 +394,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/06/OpenStack入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/06/OpenStack入门/" itemprop="commentsCount"></span>
+                <a href="/2018/06/06/OpenStack入门（一）——-虚拟化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/06/OpenStack入门（一）——-虚拟化/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -525,7 +529,27 @@ Id    Name              State
 <h3 id="其他类型的Storage-Pool"><a href="#其他类型的Storage-Pool" class="headerlink" title="其他类型的Storage Pool"></a>其他类型的Storage Pool</h3><p>KVM 还支持 iSCSI，Ceph 等多种类型的 Storage Pool。</p>
 <h2 id="网络虚拟化"><a href="#网络虚拟化" class="headerlink" title="网络虚拟化"></a>网络虚拟化</h2><p><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160317-1458221777139021452.jpg" alt="4.4"><br>下面这个图是OpenStack官网给出的计算节点（可以理解为 KVM 的宿主机）虚拟网络的逻辑图：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160317-1458221777406075614.jpg" alt="4.4.0"></p>
 <h3 id="Linux-Bridge"><a href="#Linux-Bridge" class="headerlink" title="Linux Bridge"></a>Linux Bridge</h3><h4 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h4><p>给 VM1 分配一个虚拟网卡 vnet0，通过 Linux Bridge  br0 将 eth0 和 vnet0 连接起来，如下图所示:<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160317-1458221778960074364.png" alt=""><br>Linux Bridge 是 Linux 上用来做 TCP/IP 二层协议交换的设备，其功能大家可以简单的理解为是一个二层交换机或者 Hub。多个网络设备可以连接到同一个 Linux Bridge，当某个设备收到数据包时，Linux Bridge 会将数据转发给其他设备。<br>在上面这个例子中，当有数据到达 eth0 时，br0 会将数据转发给 vnet0，这样 VM1 就能接收到来自外网的数据；反过来，VM1 发送数据给 vnet0，br0 也会将数据转发到 eth0，从而实现了 VM1 与外网的通信。<br>现在我们增加一个虚机 VM2，如下图所示:<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160317-1458221779001036894.png" alt=""><br>VM2 的虚拟网卡 vnet1 也连接到了 br0 上。<br>现在 VM1 和 VM2 之间可以通信，同时 VM1 和 VM2 也都可以与外网通信。</p>
-<h4 id="动手实践虚拟网络"><a href="#动手实践虚拟网络" class="headerlink" title="动手实践虚拟网络"></a>动手实践虚拟网络</h4><h4 id="理解virbr0"><a href="#理解virbr0" class="headerlink" title="理解virbr0"></a>理解virbr0</h4><h3 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h3><h3 id="Linux-Bridge-VLAN-虚拟交换机"><a href="#Linux-Bridge-VLAN-虚拟交换机" class="headerlink" title="Linux Bridge + VLAN = 虚拟交换机"></a>Linux Bridge + VLAN = 虚拟交换机</h3>
+<h4 id="动手实践虚拟网络"><a href="#动手实践虚拟网络" class="headerlink" title="动手实践虚拟网络"></a>动手实践虚拟网络</h4><h5 id="配置Linux-Bridge-br0"><a href="#配置Linux-Bridge-br0" class="headerlink" title="配置Linux Bridge br0"></a>配置Linux Bridge br0</h5><p>有两点需要注意：  </p>
+<blockquote>
+<p>1.之前宿主机的 IP 是通过 dhcp 配置在 eth0 上的；创建 Linux Bridge 之后，IP 就必须放到 br0 上了<br>2.在 br0 的配置信息中请注意最后一行 “bridge_ports eth0”，其作用就是将 eth0 挂到 br0 上</p>
+</blockquote>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>配置过程很简单，有一个影响不大的小问题是我的interfaces文件不太一样，不过按照博主的配置，虽然写的多了一点，但不影响效果。<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160319-1458396234852047669.jpg" alt=""><br>最后附一张成功的截图，学习的乐趣也就在于这种满足感吧，哈哈。<br><img src="https://i.loli.net/2018/06/11/5b1e7bb8b2a03.png" alt="snipaste_20180611_213328.png"></p>
+<h4 id="理解virbr0"><a href="#理解virbr0" class="headerlink" title="理解virbr0"></a>理解virbr0</h4><blockquote>
+<p>1.virbr0 是 KVM 默认创建的一个 Bridge，其作用是为连接其上的虚机网卡提供 NAT 访问外网的功能。<br>2.virbr0 默认分配了一个IP 192.168.122.1，并为连接其上的其他虚拟网卡提供 DHCP 服务。<br>3.使用 NAT 的虚机 VM1 可以访问外网，但外网无法直接访问 VM1。</p>
+</blockquote>
+<h3 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h3><p><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160324-1458779560823058198.jpg" alt=""><br>eth0 是宿主机上的物理网卡，有一个命名为 eth0.10 的子设备与之相连。<br>eth0.10 就是 VLAN 设备了，其 VLAN ID 就是 VLAN 10。<br>eth0.10 挂在命名为 brvlan10 的 Linux Bridge 上，虚机 VM1 的虚拟网卡 vent0 也挂在 brvlan10 上。 </p>
+<p>这样的配置其效果就是：  </p>
+<blockquote>
+<p>宿主机用软件实现了一个交换机（当然是虚拟的），上面定义了一个 VLAN10。<br>eth0.10，brvlan10 和 vnet0 都分别接到 VLAN10 的 Access口上。而 eth0 就是一个 Trunk 口。<br>VM1 通过 vnet0 发出来的数据包会被打上 VLAN10 的标签。  </p>
+</blockquote>
+<p>eth0.10 的作用是：定义了 VLAN10<br>brvlan10 的作用是：Bridge 上的其他网络设备自动加入到 VLAN10 中  </p>
+<p>配置上图的实验环境后，测试KVM1和KVM2的连通性结果如下：<br><img src="https://i.loli.net/2018/06/19/5b28e7c40b35c.png" alt="snipaste_20180619_191904.png"></p>
+<h3 id="Linux-Bridge-VLAN-虚拟交换机"><a href="#Linux-Bridge-VLAN-虚拟交换机" class="headerlink" title="Linux Bridge + VLAN = 虚拟交换机"></a>Linux Bridge + VLAN = 虚拟交换机</h3><p>现在对 KVM 的网络虚拟化做个总结。  </p>
+<blockquote>
+<p>1.物理交换机存在多个 VLAN，每个 VLAN 拥有多个端口。<br>同一 VLAN 端口之间可以交换转发，不同 VLAN 端口之间隔离。<br>所以交换机其包含两层功能：交换与隔离。<br>2.Linux 的 VLAN 设备实现的是隔离功能，但没有交换功能。<br>一个 VLAN 母设备（比如 eth0）不能拥有两个相同 ID 的 VLAN 子设备，因此也就不可能出现数据交换情况。<br>3.Linux Bridge 专门实现交换功能。将同一 VLAN 的子设备都挂载到一个 Bridge 上，设备之间就可以交换数据了。  </p>
+</blockquote>
+<p>总结起来，Linux Bridge 加 VLAN 在功能层面完整模拟现实世界里的二层交换机。</p>
+
       
     </div>
     
@@ -708,7 +732,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -770,7 +794,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#虚拟化"><span class="nav-number">1.</span> <span class="nav-text">虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1型虚拟化"><span class="nav-number">1.1.</span> <span class="nav-text">1型虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2型虚拟化"><span class="nav-number">1.2.</span> <span class="nav-text">2型虚拟化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KVM"><span class="nav-number">2.</span> <span class="nav-text">KVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装KVM"><span class="nav-number">2.2.</span> <span class="nav-text">安装KVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个小问题"><span class="nav-number">2.3.</span> <span class="nav-text">几个小问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动第一个KVM虚拟机"><span class="nav-number">3.</span> <span class="nav-text">启动第一个KVM虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动虚机"><span class="nav-number">3.1.</span> <span class="nav-text">启动虚机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程管理虚机"><span class="nav-number">3.2.</span> <span class="nav-text">远程管理虚机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KVM虚拟化原理"><span class="nav-number">4.</span> <span class="nav-text">KVM虚拟化原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu虚拟化"><span class="nav-number">4.1.</span> <span class="nav-text">cpu虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存虚拟化"><span class="nav-number">4.2.</span> <span class="nav-text">内存虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储虚拟化"><span class="nav-number">4.3.</span> <span class="nav-text">存储虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录类型的-Storage-Pool"><span class="nav-number">4.3.1.</span> <span class="nav-text">目录类型的 Storage Pool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVM类型的Storage-Pool"><span class="nav-number">4.3.2.</span> <span class="nav-text">LVM类型的Storage Pool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他类型的Storage-Pool"><span class="nav-number">4.3.3.</span> <span class="nav-text">其他类型的Storage Pool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络虚拟化"><span class="nav-number">4.4.</span> <span class="nav-text">网络虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-Bridge"><span class="nav-number">4.4.1.</span> <span class="nav-text">Linux Bridge</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念-1"><span class="nav-number">4.4.1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动手实践虚拟网络"><span class="nav-number">4.4.1.2.</span> <span class="nav-text">动手实践虚拟网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理解virbr0"><span class="nav-number">4.4.1.3.</span> <span class="nav-text">理解virbr0</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VLAN"><span class="nav-number">4.4.2.</span> <span class="nav-text">VLAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-Bridge-VLAN-虚拟交换机"><span class="nav-number">4.4.3.</span> <span class="nav-text">Linux Bridge + VLAN = 虚拟交换机</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#虚拟化"><span class="nav-number">1.</span> <span class="nav-text">虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1型虚拟化"><span class="nav-number">1.1.</span> <span class="nav-text">1型虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2型虚拟化"><span class="nav-number">1.2.</span> <span class="nav-text">2型虚拟化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KVM"><span class="nav-number">2.</span> <span class="nav-text">KVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装KVM"><span class="nav-number">2.2.</span> <span class="nav-text">安装KVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个小问题"><span class="nav-number">2.3.</span> <span class="nav-text">几个小问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动第一个KVM虚拟机"><span class="nav-number">3.</span> <span class="nav-text">启动第一个KVM虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动虚机"><span class="nav-number">3.1.</span> <span class="nav-text">启动虚机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程管理虚机"><span class="nav-number">3.2.</span> <span class="nav-text">远程管理虚机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KVM虚拟化原理"><span class="nav-number">4.</span> <span class="nav-text">KVM虚拟化原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu虚拟化"><span class="nav-number">4.1.</span> <span class="nav-text">cpu虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存虚拟化"><span class="nav-number">4.2.</span> <span class="nav-text">内存虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储虚拟化"><span class="nav-number">4.3.</span> <span class="nav-text">存储虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录类型的-Storage-Pool"><span class="nav-number">4.3.1.</span> <span class="nav-text">目录类型的 Storage Pool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVM类型的Storage-Pool"><span class="nav-number">4.3.2.</span> <span class="nav-text">LVM类型的Storage Pool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他类型的Storage-Pool"><span class="nav-number">4.3.3.</span> <span class="nav-text">其他类型的Storage Pool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络虚拟化"><span class="nav-number">4.4.</span> <span class="nav-text">网络虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-Bridge"><span class="nav-number">4.4.1.</span> <span class="nav-text">Linux Bridge</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念-1"><span class="nav-number">4.4.1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动手实践虚拟网络"><span class="nav-number">4.4.1.2.</span> <span class="nav-text">动手实践虚拟网络</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#配置Linux-Bridge-br0"><span class="nav-number">4.4.1.2.1.</span> <span class="nav-text">配置Linux Bridge br0</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小结"><span class="nav-number">4.4.1.2.2.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理解virbr0"><span class="nav-number">4.4.1.3.</span> <span class="nav-text">理解virbr0</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VLAN"><span class="nav-number">4.4.2.</span> <span class="nav-text">VLAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-Bridge-VLAN-虚拟交换机"><span class="nav-number">4.4.3.</span> <span class="nav-text">Linux Bridge + VLAN = 虚拟交换机</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
