@@ -82,18 +82,25 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.">
+<meta name="description" content="OpenStack架构OpenStack的Conceptual Architecture(概念体系结构)：  中间菱形是虚拟机，围绕 VM 的那些长方形代表 OpenStack 不同的模块（OpenStack 叫服务，后面都用服务这个术语），下面来分别介绍。   Nova：管理 VM 的生命周期，是 OpenStack 中最核心的服务。   Neutron：为 OpenStack 提供网络连接服">
 <meta name="keywords" content="OpenStack,网工">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenStack入门（三）—— OpenStack架构">
 <meta property="og:url" content="https://cyne.tk/2018/06/19/OpenStack入门（三）——-OpenStack架构/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="OpenStack架构OpenStack的Conceptual Architecture(概念体系结构)：  中间菱形是虚拟机，围绕 VM 的那些长方形代表 OpenStack 不同的模块（OpenStack 叫服务，后面都用服务这个术语），下面来分别介绍。   Nova：管理 VM 的生命周期，是 OpenStack 中最核心的服务。   Neutron：为 OpenStack 提供网络连接服">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-19T11:55:02.816Z">
+<meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396287488044421.jpg">
+<meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396288164018195.jpg">
+<meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396289980075632.jpg">
+<meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160403-1459686062619002987.jpg">
+<meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160403-1459686062793065054.jpg">
+<meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160404-1459724662268078986.png">
+<meta property="og:updated_time" content="2018-06-21T12:43:45.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack入门（三）—— OpenStack架构">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.">
+<meta name="twitter:description" content="OpenStack架构OpenStack的Conceptual Architecture(概念体系结构)：  中间菱形是虚拟机，围绕 VM 的那些长方形代表 OpenStack 不同的模块（OpenStack 叫服务，后面都用服务这个术语），下面来分别介绍。   Nova：管理 VM 的生命周期，是 OpenStack 中最核心的服务。   Neutron：为 OpenStack 提供网络连接服">
+<meta name="twitter:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396287488044421.jpg">
 
 
 
@@ -404,7 +411,50 @@
       
 
       
-        
+        <p><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396287488044421.jpg" alt=""></p>
+<h1 id="OpenStack架构"><a href="#OpenStack架构" class="headerlink" title="OpenStack架构"></a>OpenStack架构</h1><p>OpenStack的Conceptual Architecture(概念体系结构)：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396288164018195.jpg" alt=""></p>
+<blockquote>
+<p>中间菱形是虚拟机，围绕 VM 的那些长方形代表 OpenStack 不同的模块（OpenStack 叫服务，后面都用服务这个术语），下面来分别介绍。</p>
+</blockquote>
+<blockquote>
+<p>Nova：管理 VM 的生命周期，是 OpenStack 中最核心的服务。</p>
+</blockquote>
+<blockquote>
+<p>Neutron：为 OpenStack 提供网络连接服务，负责创建和管理L2、L3 网络，为 VM 提供虚拟网络和物理网络连接。</p>
+</blockquote>
+<blockquote>
+<p>Glance：管理 VM 的启动镜像，Nova 创建 VM 时将使用 Glance 提供的镜像。</p>
+</blockquote>
+<blockquote>
+<p>Cinder：为 VM 提供块存储服务。Cinder 提供的每一个 Volume 在 VM 看来就是一块虚拟硬盘，一般用作数据盘。</p>
+</blockquote>
+<blockquote>
+<p>Swift：提供对象存储服务。VM 可以通过 RESTful API 存放对象数据。作为可选的方案，Glance 可以将镜像存放在 Swift 中；Cinder 也可以将 Volume 备份到 Swift 中。</p>
+</blockquote>
+<blockquote>
+<p>Keystone：为 OpenStack 的各种服务提供认证和权限管理服务。简单的说，OpenStack 上的每一个操作都必须通过 Keystone 的审核。</p>
+</blockquote>
+<blockquote>
+<p>Ceilometer：提供 OpenStac k监控和计量服务，为报警、统计或计费提供数据。</p>
+</blockquote>
+<blockquote>
+<p>Horizon：为 OpenStack 用户提供一个 Web 的自服务 Portal。  </p>
+</blockquote>
+<p>OpenStack的Logical Architecture（逻辑体系结构）：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396289980075632.jpg" alt=""></p>
+<h1 id="搭建实验环境"><a href="#搭建实验环境" class="headerlink" title="搭建实验环境"></a>搭建实验环境</h1><p>我们分两个节点进行环境部署：<br>1.devstack-controller：控制节点 + 网络节点 + 块存储节点 + 计算节点<br>2.devstack-compute：计算节点<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160403-1459686062619002987.jpg" alt=""><br>配置要求：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160403-1459686062793065054.jpg" alt=""><br>网络规划：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160404-1459724662268078986.png" alt="network"><br>我们规划了三个网络： </p>
+<p>1.<em>Management Network：</em></p>
+<blockquote>
+<p>用于 OpenStack 内部管理用，比如各服务之间通信。<br>这里使用 eth0        </p>
+</blockquote>
+<p>2.<em>VM（Tenant）Network：</em></p>
+<blockquote>
+<p>OpenStack 部署的虚拟机所使用的网络。<br>OpenStack 支持多租户（Tenant），虚机是放在 Tenant 下的，所以叫 Tenant Network。<br>这里使用 eth1        </p>
+</blockquote>
+<p>3.<em>External Network：</em></p>
+<blockquote>
+<p>一般来说，Tenant Network 是内部私有网络，只用于 VM 之间通信，与其他非 VM 网络是隔离的。<br>这里我们规划了一个外部网络（External Network），通过 devstak-controller 的 eth2 连接。<br>Neutron 通过 L3 服务让 VM 能够访问到 External Network。<br>对于公有云，External Network 一般指的是 Internet。<br>对于企业私有云，External Network 则可以是 Intranet 中的某个网络。 </p>
+</blockquote>
+<h1 id="部署DevStack"><a href="#部署DevStack" class="headerlink" title="部署DevStack"></a>部署DevStack</h1>
       
     </div>
     
@@ -474,6 +524,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/24/SDN入门（一）——-环境搭建/" rel="prev" title="SDN入门（一）—— 环境搭建">
+                SDN入门（一）—— 环境搭建 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -558,8 +612,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -574,7 +637,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -585,7 +648,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -596,7 +659,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -626,6 +689,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OpenStack架构"><span class="nav-number">1.</span> <span class="nav-text">OpenStack架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建实验环境"><span class="nav-number">2.</span> <span class="nav-text">搭建实验环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署DevStack"><span class="nav-number">3.</span> <span class="nav-text">部署DevStack</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

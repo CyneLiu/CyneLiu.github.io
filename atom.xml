@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyne.tk/"/>
-  <updated>2018-06-19T11:55:02.816Z</updated>
+  <updated>2018-06-24T08:15:39.704Z</updated>
   <id>https://cyne.tk/</id>
   
   <author>
@@ -17,13 +17,48 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SDN入门（一）—— 环境搭建</title>
+    <link href="https://cyne.tk/2018/06/24/SDN%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>https://cyne.tk/2018/06/24/SDN入门（一）——-环境搭建/</id>
+    <published>2018-06-24T01:20:49.000Z</published>
+    <updated>2018-06-24T08:15:39.704Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Ubuntu安装"><a href="#Ubuntu安装" class="headerlink" title="Ubuntu安装"></a>Ubuntu安装</h1><h2 id="系统选择"><a href="#系统选择" class="headerlink" title="系统选择"></a>系统选择</h2><p>镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。</p><h2 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h2><h3 id="设置网卡"><a href="#设置网卡" class="headerlink" title="设置网卡"></a>设置网卡</h3><p>因为要使用ssh远程登录，这里我们添加一个网卡：<br><img src="https://i.loli.net/2018/06/24/5b2ef5cbec5f1.png" alt="01.png"><br>勾选“启用网络连接”，并选择仅主机模式。</p><h3 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h3><p>挂载镜像之后启动虚拟机进行安装，基本的安装过程不一一详细介绍，不会的地方可以百度。<br><img src="https://i.loli.net/2018/06/24/5b2ef77a37059.png" alt="02.png"><br>可以看到安装程序已经识别出了两块网卡，我们选择默认的nat网卡作为主网络接口。<br><img src="https://i.loli.net/2018/06/24/5b2ef9a7a101d.png" alt="03.png"><br>软件安装，我们只需要安装ssh server就可以了，记得空格选择，回车确认。  </p><p>安装完成后，我们看一下系统的网卡信息，发现并没有我们添加的网卡。<br><img src="https://i.loli.net/2018/06/24/5b2efcabda76f.png" alt="04.png"><br>执行“sudo dhclient enp0s8”启用enp0s8网卡。<br>再次查看网卡信息：<br><img src="https://i.loli.net/2018/06/24/5b2efed26c4cc.png" alt="05.png"><br>可以看到已经添加进来了。我们还需要将第二块网卡的配置加入到网络配置文件中，不然重启之后第二块网卡还是看不到的：  </p><blockquote></blockquote><pre><code>sudo vi /etc/network/interfaces</code></pre><p>在interfaces配置文件中加入enp0s8，同样使用dhcp方式获取ip<br><img src="https://i.loli.net/2018/06/24/5b2efffbe249f.png" alt="06.png"><br>至此，我们的系统就配置完成了，用ssh工具进行连接：<br><img src="https://i.loli.net/2018/06/24/5b2f00ad250a3.png" alt="07.png"><br>已经可以成功连接。</p><h1 id="安装Ryu"><a href="#安装Ryu" class="headerlink" title="安装Ryu"></a>安装Ryu</h1><p>详细内容可参考<a href="http://linton.tw/2014/02/15/note-install-ryu-36-sdn-framework/" target="_blank" rel="noopener">linton的博客</a>。</p><p>1.下载python的套件库，并更新pip（因为下载的pip并不是最新版本）</p><blockquote></blockquote><pre><code>sudo apt-get install python-pip python-dev build-essentialsudo pip install --upgrade pip</code></pre><p>2.安装Ryu相依性套件</p><blockquote></blockquote><pre><code>sudo apt-get install python-eventletsudo apt-get install python-routessudo apt-get install python-webobsudo apt-get install python-paramiko</code></pre><p>3.使用pip下载并安装Ryu</p><blockquote></blockquote><pre><code>sudo pip install ryu</code></pre><p>此步骤如果出现如下错误信息说明你被挡在城内了，富强上网即可解决。<br><img src="https://i.loli.net/2018/06/24/5b2f22b8832fc.png" alt="需要富强上网.png"><br>4.如果需要使用Ryu with GUI则进行此步骤：下载Ryu source code（需要使用git套件）</p><blockquote></blockquote><pre><code>sudo apt-get install gitgit clone https://github.com/osrg/ryu.git</code></pre><p>5.完成安装，执行ryu-manager验证有没有出现错误，没问题的话会出现如下信息：<br><img src="https://i.loli.net/2018/06/24/5b2f1ff8a73bd.png" alt="chenggong.png"></p><h1 id="安装mininet"><a href="#安装mininet" class="headerlink" title="安装mininet"></a>安装mininet</h1><h2 id="使用源码安装mininet"><a href="#使用源码安装mininet" class="headerlink" title="使用源码安装mininet"></a>使用源码安装mininet</h2><p>为了减少之后不必要的麻烦，建议在安装开始前执行：sudo su切换到root用户下并在富强网络下进行安装。<br>1.升级系统</p><blockquote></blockquote><pre><code>apt-get updateapt-get upgrade</code></pre><p>2.安装git（如果你像我一样在之前安装Ryu时我们已经安装过git了，那么请直接跳过此步骤）</p><blockquote></blockquote><pre><code>apt install git</code></pre><p>3.从github上获取源码</p><blockquote></blockquote><pre><code>git clone git://github.com/mininet/mininet</code></pre><p>获取之后可以使用如下命令查看mininet的版本</p><blockquote></blockquote><pre><code>cd mininetcat INSTALL</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4c772e56f.png" alt="cat.png"><br>4.确认无误后，安装mininet</p><blockquote></blockquote><pre><code>util/install.sh -a</code></pre><p>当你看到Enjoy Mininet！时，恭喜你已经安装成功了。<br><img src="https://i.loli.net/2018/06/24/5b2f4cb8a6bfc.png" alt="enjoy.png"><br>执行以下命令查看安装版本：</p><blockquote></blockquote><pre><code>mn --version</code></pre><h2 id="mininet可视化操作"><a href="#mininet可视化操作" class="headerlink" title="mininet可视化操作"></a>mininet可视化操作</h2><p>1.要进行mininet可视化操作，需要安装Xmanager套件，然后在通过Xshell远程连接主机时，在属性中做如下设置：<br><img src="https://i.loli.net/2018/06/24/5b2f4a82c2097.png" alt="suidao.png"><br>2.然后进入examples目录，执行miniedit.py即可启动可视化界面</p><blockquote></blockquote><pre><code>cd mininet/mininet/examples./miniedit.py</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4cf66b46e.png" alt="可视化.png"><br>至此，整个环境就搭建完成了。<br>如果对环境的安装有疑问，欢迎与我联系，一起沟通交流。  </p><blockquote><p>email: <a href="mailto:666@cyne.cf" target="_blank" rel="noopener">666@cyne.cf</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Ubuntu安装&quot;&gt;&lt;a href=&quot;#Ubuntu安装&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu安装&quot;&gt;&lt;/a&gt;Ubuntu安装&lt;/h1&gt;&lt;h2 id=&quot;系统选择&quot;&gt;&lt;a href=&quot;#系统选择&quot; class=&quot;headerlink&quot; 
+      
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="https://cyne.tk/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="网工" scheme="https://cyne.tk/tags/%E7%BD%91%E5%B7%A5/"/>
+    
+      <category term="SDN" scheme="https://cyne.tk/tags/SDN/"/>
+    
+  </entry>
+  
+  <entry>
     <title>OpenStack入门（三）—— OpenStack架构</title>
     <link href="https://cyne.tk/2018/06/19/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-OpenStack%E6%9E%B6%E6%9E%84/"/>
     <id>https://cyne.tk/2018/06/19/OpenStack入门（三）——-OpenStack架构/</id>
     <published>2018-06-19T11:51:37.000Z</published>
-    <updated>2018-06-19T11:55:02.816Z</updated>
+    <updated>2018-06-21T12:43:45.534Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396287488044421.jpg" alt=""></p><h1 id="OpenStack架构"><a href="#OpenStack架构" class="headerlink" title="OpenStack架构"></a>OpenStack架构</h1><p>OpenStack的Conceptual Architecture(概念体系结构)：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396288164018195.jpg" alt=""></p><blockquote><p>中间菱形是虚拟机，围绕 VM 的那些长方形代表 OpenStack 不同的模块（OpenStack 叫服务，后面都用服务这个术语），下面来分别介绍。</p></blockquote><blockquote><p>Nova：管理 VM 的生命周期，是 OpenStack 中最核心的服务。</p></blockquote><blockquote><p>Neutron：为 OpenStack 提供网络连接服务，负责创建和管理L2、L3 网络，为 VM 提供虚拟网络和物理网络连接。</p></blockquote><blockquote><p>Glance：管理 VM 的启动镜像，Nova 创建 VM 时将使用 Glance 提供的镜像。</p></blockquote><blockquote><p>Cinder：为 VM 提供块存储服务。Cinder 提供的每一个 Volume 在 VM 看来就是一块虚拟硬盘，一般用作数据盘。</p></blockquote><blockquote><p>Swift：提供对象存储服务。VM 可以通过 RESTful API 存放对象数据。作为可选的方案，Glance 可以将镜像存放在 Swift 中；Cinder 也可以将 Volume 备份到 Swift 中。</p></blockquote><blockquote><p>Keystone：为 OpenStack 的各种服务提供认证和权限管理服务。简单的说，OpenStack 上的每一个操作都必须通过 Keystone 的审核。</p></blockquote><blockquote><p>Ceilometer：提供 OpenStac k监控和计量服务，为报警、统计或计费提供数据。</p></blockquote><blockquote><p>Horizon：为 OpenStack 用户提供一个 Web 的自服务 Portal。  </p></blockquote><p>OpenStack的Logical Architecture（逻辑体系结构）：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396289980075632.jpg" alt=""></p><h1 id="搭建实验环境"><a href="#搭建实验环境" class="headerlink" title="搭建实验环境"></a>搭建实验环境</h1><p>我们分两个节点进行环境部署：<br>1.devstack-controller：控制节点 + 网络节点 + 块存储节点 + 计算节点<br>2.devstack-compute：计算节点<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160403-1459686062619002987.jpg" alt=""><br>配置要求：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160403-1459686062793065054.jpg" alt=""><br>网络规划：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160404-1459724662268078986.png" alt="network"><br>我们规划了三个网络： </p><p>1.<em>Management Network：</em></p><blockquote><p>用于 OpenStack 内部管理用，比如各服务之间通信。<br>这里使用 eth0        </p></blockquote><p>2.<em>VM（Tenant）Network：</em></p><blockquote><p>OpenStack 部署的虚拟机所使用的网络。<br>OpenStack 支持多租户（Tenant），虚机是放在 Tenant 下的，所以叫 Tenant Network。<br>这里使用 eth1        </p></blockquote><p>3.<em>External Network：</em></p><blockquote><p>一般来说，Tenant Network 是内部私有网络，只用于 VM 之间通信，与其他非 VM 网络是隔离的。<br>这里我们规划了一个外部网络（External Network），通过 devstak-controller 的 eth2 连接。<br>Neutron 通过 L3 服务让 VM 能够访问到 External Network。<br>对于公有云，External Network 一般指的是 Internet。<br>对于企业私有云，External Network 则可以是 Intranet 中的某个网络。 </p></blockquote><h1 id="部署DevStack"><a href="#部署DevStack" class="headerlink" title="部署DevStack"></a>部署DevStack</h1>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396287488044421.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;OpenStack架构&quot;&gt;&lt;
+      
     
     </summary>
     
@@ -64,33 +99,13 @@
   </entry>
   
   <entry>
-    <title>SDN学习笔记</title>
-    <link href="https://cyne.tk/2018/06/11/SDN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://cyne.tk/2018/06/11/SDN学习笔记/</id>
-    <published>2018-06-11T00:02:11.000Z</published>
-    <updated>2018-06-11T00:15:55.318Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://cyne.tk/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="网工" scheme="https://cyne.tk/tags/%E7%BD%91%E5%B7%A5/"/>
-    
-      <category term="SDN" scheme="https://cyne.tk/tags/SDN/"/>
-    
-  </entry>
-  
-  <entry>
     <title>常用网址收藏</title>
     <link href="https://cyne.tk/2018/06/07/%E7%BD%91%E5%9D%80%E6%94%B6%E8%97%8F/"/>
     <id>https://cyne.tk/2018/06/07/网址收藏/</id>
     <published>2018-06-07T11:59:04.000Z</published>
-    <updated>2018-06-07T12:05:03.219Z</updated>
+    <updated>2018-06-19T13:01:32.630Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="软件激活"><a href="#软件激活" class="headerlink" title="软件激活"></a>软件激活</h1><p>PyCharm激活：<a href="http://idea.liyang.io/" target="_blank" rel="noopener">http://idea.liyang.io/</a></p><blockquote><p>适用于所有intellij IDEA的激活</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="软件激活"><a href="#软件激活" class="headerlink" title="软件激活"></a>软件激活</h1><p>PyCharm激活：<a href="http://idea.liyang.io/" target="_blank" rel="noopener">http://idea.liyang.io/</a></p><blockquote><p>适用于所有intellij IDEA的激活</p></blockquote><h1 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h1><p>Java SE：<a href="https://course.tianmaying.com/java-basic+java-environment#0" target="_blank" rel="noopener">天码营</a><br>python3：<a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="noopener">廖雪峰</a><br>OpenStack：<a href="http://www.cnblogs.com/CloudMan6/" target="_blank" rel="noopener">每天五分钟玩转OpenStack</a></p>]]></content>
     
     <summary type="html">
     
@@ -248,83 +263,6 @@
     
     
       <category term="Linux" scheme="https://cyne.tk/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MathorCup数学建模参赛心得</title>
-    <link href="https://cyne.tk/2018/04/07/MathorCup%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%8F%82%E8%B5%9B%E5%BF%83%E5%BE%97/"/>
-    <id>https://cyne.tk/2018/04/07/MathorCup数学建模参赛心得/</id>
-    <published>2018-04-07T12:18:18.000Z</published>
-    <updated>2018-04-10T12:28:55.278Z</updated>
-    
-    <content type="html"><![CDATA[<p>应班里同学邀请在今年清明节假期参加了第八届MathorCup数学建模挑战赛，也让我一个学渣终于明白了什么是数学建模了。<br>在比赛之前，还三分钟热血的在很多网站和论坛找了不少关于数学建模的教程和资源，看了之后发现全是数学公式，然后我就果断的放弃了，把建模用到的SPSS和Matlab装上之后然后就放弃挣扎了，想着当个咸鱼依靠队友吧。<br>比赛开始看到题的那一刻我真的更懵逼了，C题是一个陆基导弹打击航母的题，看了好几遍也没有思路。D题感觉还好点，是数据分析题，因为之前涉猎过这方面的东西，至少心里还有点数。<br>但是我们最后决定并没有做D题，而是选择了没有思路的C题，因为我们三个人都觉得反正人很多，大神也多，就算做我们会做的D题也比不过人家，就索性做了C题。第一天上午决定了选题之后还找了一些相关的论文资料，但是我心里还是不清楚应该做什么。到了下午，等一个有比赛精力的队友写出第一个问题，我看过之后终于清楚是怎么一回事，就是把相关的模型往上扯，因为实在是不会做。就这样，我也走上了“编瞎话”的道路……<br>虽说是编瞎话，但也不能说容易，三个人分工合作终于在第二天把论文给编出来了，心里也是小有成就感。因为排版只能一个人做，第三天上午我就自己开始排版，这次排版也学会了不少word的使用技巧，所以说还是有收获。一上午的时间差不多就已经完成了。下午我们三个人又修改完善了一下，完整的论文也就成型了，然而查了一下重百分之六十多的相似度，不过倒也正常，毕竟摘录了那么多东西，这已经不能算高了，之后又先后修改了两遍，终稿重复率百分之四十多。<br>通过这次数学建模比赛，怎么说，有些许收获，最主要的还是了解了一下数学建模是干嘛的吧。趁热打铁又跟别人组队参加了下个周末比赛的认证杯，不求自己干点什么，跟比赛混个脸熟吧。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;应班里同学邀请在今年清明节假期参加了第八届MathorCup数学建模挑战赛，也让我一个学渣终于明白了什么是数学建模了。&lt;br&gt;在比赛之前，还三分钟热血的在很多网站和论坛找了不少关于数学建模的教程和资源，看了之后发现全是数学公式，然后我就果断的放弃了，把建模用到的SPSS和M
-      
-    
-    </summary>
-    
-      <category term="比赛" scheme="https://cyne.tk/categories/%E6%AF%94%E8%B5%9B/"/>
-    
-    
-      <category term="数学建模 MathorCup" scheme="https://cyne.tk/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-MathorCup/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MATLAB学习笔记</title>
-    <link href="https://cyne.tk/2018/04/03/MATLAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://cyne.tk/2018/04/03/MATLAB学习笔记/</id>
-    <published>2018-04-03T08:42:03.000Z</published>
-    <updated>2018-04-03T08:52:44.736Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="安装Excel-Link"><a href="#安装Excel-Link" class="headerlink" title="安装Excel Link"></a>安装Excel Link</h1><p>我学习的教程是卓金武的《MATLAB在数学建模中的应用》，书中在说明Excel Link的安装时，针对的是较早版本的office，百度也没有找到针对新版本的教程，自己摸索了一会是在加载项中添加，找不到这个功能的话可以直接搜索，然后把Excel Link勾选添加进去即可。如果没有此项，就需要手动添加，点击浏览，找到MATLAB安装目录下的<em>toolbox\exlink\exlink.xla</em>文件，然后再添加就可以了。安装需要一小段时间，安装完成后菜单栏会出现MATLAB按钮。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;安装Excel-Link&quot;&gt;&lt;a href=&quot;#安装Excel-Link&quot; class=&quot;headerlink&quot; title=&quot;安装Excel Link&quot;&gt;&lt;/a&gt;安装Excel Link&lt;/h1&gt;&lt;p&gt;我学习的教程是卓金武的《MATLAB在数学建模中的应用》，书
-      
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://cyne.tk/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="matlab" scheme="https://cyne.tk/tags/matlab/"/>
-    
-      <category term="数学建模" scheme="https://cyne.tk/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>创新创业大赛记录</title>
-    <link href="https://cyne.tk/2018/03/26/%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E5%A4%A7%E8%B5%9B%E8%AE%B0%E5%BD%95/"/>
-    <id>https://cyne.tk/2018/03/26/创新创业大赛记录/</id>
-    <published>2018-03-26T14:41:09.000Z</published>
-    <updated>2018-05-06T12:33:21.049Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="3-26组队"><a href="#3-26组队" class="headerlink" title="3-26组队"></a>3-26组队</h1><p>首先得感谢我们班长找到我给我这次参加创新创业大赛的机会，因为时间比较紧30号就得上交材料，组队页很快完成。队里老师给请来一个经验比较丰富的学长，一听人家说出的话，就瞬间感觉出差距了。首先创新创业大赛，创新就是创意，倒不一定要落地实施，但是一定要有创新，不能说人家已经做的很成熟的方向我们再拿出来去比赛；创业，就显得更加实际，不但要有成型的产品，更好有已经形成的市场和客户，这才能叫做创业。我也是像个小萌新一样从头听到尾，收获和感触颇多。</p><h1 id="3-27第一天准备"><a href="#3-27第一天准备" class="headerlink" title="3-27第一天准备"></a>3-27第一天准备</h1><p>昨天商量出具体的创新方向之后，那就得开始干活了，我是负责网站前台的，说实话自己一个人还真挺头疼的，毕竟时间这么紧，真怕给他们拖后腿。好在提前捋清楚了思路，网页做起来也就顺水推舟了。一天的时间忙下来还真没感觉到累，反而感觉这样的一天很充实很有意义，看看身边的大佬，好多比我低一级的学弟，想想当时的我还沉浸在游戏中无法自拔就感觉很悲哀。比不过人家也是正常，因为没有别人那样努力，好在还不是那么晚，加油吧。</p><h1 id="3-28第二天"><a href="#3-28第二天" class="headerlink" title="3-28第二天"></a>3-28第二天</h1><p>今天他们整理的文档差不多也已经成型了，我的前台网页做的也差不多了，因为只是做一个表皮，具体的内容不需要写很多，瞬间就感觉轻松了不少，明天就是收尾阶段的。大家都很努力，进度也超过预期，还是很充实的一天。</p><h1 id="3-29第三天收尾"><a href="#3-29第三天收尾" class="headerlink" title="3-29第三天收尾"></a>3-29第三天收尾</h1><p>现在是3-30的00:10了，按老师要求把设计思路过程还有产品功能写完了，既没有感觉到困也没有觉得累，还是要说这样的生活很充实吧。而且找了一个百度文库里的一篇网站策划，虽然内容跟我们的需求不一样但是提供了整体的思路，没有这个策划之前真不知道该如何下手不得不说人家写的很全面。</p><blockquote><p>①网站名称<br>②主题思想<br>③网站策划书<br>④网页制作步骤<br>⑤后期调试</p></blockquote><p>主要就是这几个方面吧，写完之后还是有不少收获的。</p><h1 id="3-30整合提交材料"><a href="#3-30整合提交材料" class="headerlink" title="3-30整合提交材料"></a>3-30整合提交材料</h1><p>五个人忙了差不都一个周，终于把材料赶出来了，好在终于走上了参加比赛的正轨，我们三个也就算正式组队了。  </p><h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p>哈哈 前几天知道这个比赛的全名——“浩方杯”全国高校商业精英挑战赛<br>因为刚组队，所有的资料都是刚开始写，前前后后这件事情一直没断过，也用这个作品报名了很多类似的创新比赛，期待都能取得一个满意的成绩。</p><p>#济南省赛<br>地点：山东英才学院<br>时间：2018.05.04<br>5月3号坐校车出发去济南，住在济南职业学院里的一个宾馆，别说人家职业学院都比我们学校大，不过也并不是很羡慕，相反这次出去比赛也让我感受到了我们学校的强大，首先好像只有我们是带着车去的，来来回回的都很方便，连黄岛的都很羡慕，还有就是英才的美化还是比较不错的，但是水餐里的饭不怎么样，还不如济南职业学院的好吃。<img src="https://i.loli.net/2018/05/06/5aeef50404fa2.jpg" alt="英才水上餐厅"><br>说正事，这次比赛之前并没有感到很紧张，就是下午比赛前紧张有点，不得不说现在心态比以前好很多了，要放在以前头一天可能就开始紧张了。在答辩过程中也出现了一点小插曲，视频卡顿了，之前就知道视频有问题，但是因为比赛在即，视频是比赛前重录的，所以已经来不及改了，但是没想到的是比赛时无法播放，当时真的很慌。<img src="https://i.loli.net/2018/05/06/5aeef56c7f43f.jpg" alt="参赛"><br>好在虽然出现了小插曲但最后的成绩还不错，拿了省一等奖，也算是对得起自己前一阶段的付出了，也让我们的首战打出了不错的成绩。<img src="https://i.loli.net/2018/05/06/5aeef5976cdbc.jpg" alt="获奖证书">老师说的很对，出现问题还是自己准备的不够充足，不能怪别人，这都是经验，也是这次比赛最重要的东西，加油！相信下次会更好。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;3-26组队&quot;&gt;&lt;a href=&quot;#3-26组队&quot; class=&quot;headerlink&quot; title=&quot;3-26组队&quot;&gt;&lt;/a&gt;3-26组队&lt;/h1&gt;&lt;p&gt;首先得感谢我们班长找到我给我这次参加创新创业大赛的机会，因为时间比较紧30号就得上交材料，组队页很快完成。队
-      
-    
-    </summary>
-    
-      <category term="比赛" scheme="https://cyne.tk/categories/%E6%AF%94%E8%B5%9B/"/>
-    
-    
-      <category term="大学，比赛，创新创业大赛" scheme="https://cyne.tk/tags/%E5%A4%A7%E5%AD%A6%EF%BC%8C%E6%AF%94%E8%B5%9B%EF%BC%8C%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E5%A4%A7%E8%B5%9B/"/>
     
   </entry>
   

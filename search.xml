@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SDN入门（一）—— 环境搭建]]></title>
+    <url>%2F2018%2F06%2F24%2FSDN%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[Ubuntu安装系统选择镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。 虚拟机安装设置网卡因为要使用ssh远程登录，这里我们添加一个网卡：勾选“启用网络连接”，并选择仅主机模式。 系统安装挂载镜像之后启动虚拟机进行安装，基本的安装过程不一一详细介绍，不会的地方可以百度。可以看到安装程序已经识别出了两块网卡，我们选择默认的nat网卡作为主网络接口。软件安装，我们只需要安装ssh server就可以了，记得空格选择，回车确认。 安装完成后，我们看一下系统的网卡信息，发现并没有我们添加的网卡。执行“sudo dhclient enp0s8”启用enp0s8网卡。再次查看网卡信息：可以看到已经添加进来了。我们还需要将第二块网卡的配置加入到网络配置文件中，不然重启之后第二块网卡还是看不到的： sudo vi /etc/network/interfaces 在interfaces配置文件中加入enp0s8，同样使用dhcp方式获取ip至此，我们的系统就配置完成了，用ssh工具进行连接：已经可以成功连接。 安装Ryu详细内容可参考linton的博客。 1.下载python的套件库，并更新pip（因为下载的pip并不是最新版本） sudo apt-get install python-pip python-dev build-essential sudo pip install --upgrade pip 2.安装Ryu相依性套件 sudo apt-get install python-eventlet sudo apt-get install python-routes sudo apt-get install python-webob sudo apt-get install python-paramiko 3.使用pip下载并安装Ryu sudo pip install ryu 此步骤如果出现如下错误信息说明你被挡在城内了，富强上网即可解决。4.如果需要使用Ryu with GUI则进行此步骤：下载Ryu source code（需要使用git套件） sudo apt-get install git git clone https://github.com/osrg/ryu.git 5.完成安装，执行ryu-manager验证有没有出现错误，没问题的话会出现如下信息： 安装mininet使用源码安装mininet为了减少之后不必要的麻烦，建议在安装开始前执行：sudo su切换到root用户下并在富强网络下进行安装。1.升级系统 apt-get update apt-get upgrade 2.安装git（如果你像我一样在之前安装Ryu时我们已经安装过git了，那么请直接跳过此步骤） apt install git 3.从github上获取源码 git clone git://github.com/mininet/mininet 获取之后可以使用如下命令查看mininet的版本 cd mininet cat INSTALL 4.确认无误后，安装mininet util/install.sh -a 当你看到Enjoy Mininet！时，恭喜你已经安装成功了。执行以下命令查看安装版本： mn --version mininet可视化操作1.要进行mininet可视化操作，需要安装Xmanager套件，然后在通过Xshell远程连接主机时，在属性中做如下设置：2.然后进入examples目录，执行miniedit.py即可启动可视化界面 cd mininet/mininet/examples ./miniedit.py 至此，整个环境就搭建完成了。如果对环境的安装有疑问，欢迎与我联系，一起沟通交流。 email: 666@cyne.cf]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>网工</tag>
+        <tag>SDN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[OpenStack入门（三）—— OpenStack架构]]></title>
     <url>%2F2018%2F06%2F19%2FOpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-OpenStack%E6%9E%B6%E6%9E%84%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[OpenStack架构OpenStack的Conceptual Architecture(概念体系结构)： 中间菱形是虚拟机，围绕 VM 的那些长方形代表 OpenStack 不同的模块（OpenStack 叫服务，后面都用服务这个术语），下面来分别介绍。 Nova：管理 VM 的生命周期，是 OpenStack 中最核心的服务。 Neutron：为 OpenStack 提供网络连接服务，负责创建和管理L2、L3 网络，为 VM 提供虚拟网络和物理网络连接。 Glance：管理 VM 的启动镜像，Nova 创建 VM 时将使用 Glance 提供的镜像。 Cinder：为 VM 提供块存储服务。Cinder 提供的每一个 Volume 在 VM 看来就是一块虚拟硬盘，一般用作数据盘。 Swift：提供对象存储服务。VM 可以通过 RESTful API 存放对象数据。作为可选的方案，Glance 可以将镜像存放在 Swift 中；Cinder 也可以将 Volume 备份到 Swift 中。 Keystone：为 OpenStack 的各种服务提供认证和权限管理服务。简单的说，OpenStack 上的每一个操作都必须通过 Keystone 的审核。 Ceilometer：提供 OpenStac k监控和计量服务，为报警、统计或计费提供数据。 Horizon：为 OpenStack 用户提供一个 Web 的自服务 Portal。 OpenStack的Logical Architecture（逻辑体系结构）： 搭建实验环境我们分两个节点进行环境部署：1.devstack-controller：控制节点 + 网络节点 + 块存储节点 + 计算节点2.devstack-compute：计算节点配置要求：网络规划：我们规划了三个网络： 1.Management Network： 用于 OpenStack 内部管理用，比如各服务之间通信。这里使用 eth0 2.VM（Tenant）Network： OpenStack 部署的虚拟机所使用的网络。OpenStack 支持多租户（Tenant），虚机是放在 Tenant 下的，所以叫 Tenant Network。这里使用 eth1 3.External Network： 一般来说，Tenant Network 是内部私有网络，只用于 VM 之间通信，与其他非 VM 网络是隔离的。这里我们规划了一个外部网络（External Network），通过 devstak-controller 的 eth2 连接。Neutron 通过 L3 服务让 VM 能够访问到 External Network。对于公有云，External Network 一般指的是 Internet。对于企业私有云，External Network 则可以是 Intranet 中的某个网络。 部署DevStack]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
@@ -25,21 +37,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SDN学习笔记]]></title>
-    <url>%2F2018%2F06%2F11%2FSDN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>网工</tag>
-        <tag>SDN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[常用网址收藏]]></title>
     <url>%2F2018%2F06%2F07%2F%E7%BD%91%E5%9D%80%E6%94%B6%E8%97%8F%2F</url>
-    <content type="text"><![CDATA[软件激活PyCharm激活：http://idea.liyang.io/ 适用于所有intellij IDEA的激活]]></content>
+    <content type="text"><![CDATA[软件激活PyCharm激活：http://idea.liyang.io/ 适用于所有intellij IDEA的激活 教程Java SE：天码营python3：廖雪峰OpenStack：每天五分钟玩转OpenStack]]></content>
       <categories>
         <category>网址收藏</category>
       </categories>
@@ -105,40 +105,6 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[MathorCup数学建模参赛心得]]></title>
-    <url>%2F2018%2F04%2F07%2FMathorCup%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%8F%82%E8%B5%9B%E5%BF%83%E5%BE%97%2F</url>
-    <content type="text"><![CDATA[应班里同学邀请在今年清明节假期参加了第八届MathorCup数学建模挑战赛，也让我一个学渣终于明白了什么是数学建模了。在比赛之前，还三分钟热血的在很多网站和论坛找了不少关于数学建模的教程和资源，看了之后发现全是数学公式，然后我就果断的放弃了，把建模用到的SPSS和Matlab装上之后然后就放弃挣扎了，想着当个咸鱼依靠队友吧。比赛开始看到题的那一刻我真的更懵逼了，C题是一个陆基导弹打击航母的题，看了好几遍也没有思路。D题感觉还好点，是数据分析题，因为之前涉猎过这方面的东西，至少心里还有点数。但是我们最后决定并没有做D题，而是选择了没有思路的C题，因为我们三个人都觉得反正人很多，大神也多，就算做我们会做的D题也比不过人家，就索性做了C题。第一天上午决定了选题之后还找了一些相关的论文资料，但是我心里还是不清楚应该做什么。到了下午，等一个有比赛精力的队友写出第一个问题，我看过之后终于清楚是怎么一回事，就是把相关的模型往上扯，因为实在是不会做。就这样，我也走上了“编瞎话”的道路……虽说是编瞎话，但也不能说容易，三个人分工合作终于在第二天把论文给编出来了，心里也是小有成就感。因为排版只能一个人做，第三天上午我就自己开始排版，这次排版也学会了不少word的使用技巧，所以说还是有收获。一上午的时间差不多就已经完成了。下午我们三个人又修改完善了一下，完整的论文也就成型了，然而查了一下重百分之六十多的相似度，不过倒也正常，毕竟摘录了那么多东西，这已经不能算高了，之后又先后修改了两遍，终稿重复率百分之四十多。通过这次数学建模比赛，怎么说，有些许收获，最主要的还是了解了一下数学建模是干嘛的吧。趁热打铁又跟别人组队参加了下个周末比赛的认证杯，不求自己干点什么，跟比赛混个脸熟吧。]]></content>
-      <categories>
-        <category>比赛</category>
-      </categories>
-      <tags>
-        <tag>数学建模 MathorCup</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[MATLAB学习笔记]]></title>
-    <url>%2F2018%2F04%2F03%2FMATLAB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[安装Excel Link我学习的教程是卓金武的《MATLAB在数学建模中的应用》，书中在说明Excel Link的安装时，针对的是较早版本的office，百度也没有找到针对新版本的教程，自己摸索了一会是在加载项中添加，找不到这个功能的话可以直接搜索，然后把Excel Link勾选添加进去即可。如果没有此项，就需要手动添加，点击浏览，找到MATLAB安装目录下的toolbox\exlink\exlink.xla文件，然后再添加就可以了。安装需要一小段时间，安装完成后菜单栏会出现MATLAB按钮。]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>matlab</tag>
-        <tag>数学建模</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[创新创业大赛记录]]></title>
-    <url>%2F2018%2F03%2F26%2F%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E5%A4%A7%E8%B5%9B%E8%AE%B0%E5%BD%95%2F</url>
-    <content type="text"><![CDATA[3-26组队首先得感谢我们班长找到我给我这次参加创新创业大赛的机会，因为时间比较紧30号就得上交材料，组队页很快完成。队里老师给请来一个经验比较丰富的学长，一听人家说出的话，就瞬间感觉出差距了。首先创新创业大赛，创新就是创意，倒不一定要落地实施，但是一定要有创新，不能说人家已经做的很成熟的方向我们再拿出来去比赛；创业，就显得更加实际，不但要有成型的产品，更好有已经形成的市场和客户，这才能叫做创业。我也是像个小萌新一样从头听到尾，收获和感触颇多。 3-27第一天准备昨天商量出具体的创新方向之后，那就得开始干活了，我是负责网站前台的，说实话自己一个人还真挺头疼的，毕竟时间这么紧，真怕给他们拖后腿。好在提前捋清楚了思路，网页做起来也就顺水推舟了。一天的时间忙下来还真没感觉到累，反而感觉这样的一天很充实很有意义，看看身边的大佬，好多比我低一级的学弟，想想当时的我还沉浸在游戏中无法自拔就感觉很悲哀。比不过人家也是正常，因为没有别人那样努力，好在还不是那么晚，加油吧。 3-28第二天今天他们整理的文档差不多也已经成型了，我的前台网页做的也差不多了，因为只是做一个表皮，具体的内容不需要写很多，瞬间就感觉轻松了不少，明天就是收尾阶段的。大家都很努力，进度也超过预期，还是很充实的一天。 3-29第三天收尾现在是3-30的00:10了，按老师要求把设计思路过程还有产品功能写完了，既没有感觉到困也没有觉得累，还是要说这样的生活很充实吧。而且找了一个百度文库里的一篇网站策划，虽然内容跟我们的需求不一样但是提供了整体的思路，没有这个策划之前真不知道该如何下手不得不说人家写的很全面。 ①网站名称②主题思想③网站策划书④网页制作步骤⑤后期调试 主要就是这几个方面吧，写完之后还是有不少收获的。 3-30整合提交材料五个人忙了差不都一个周，终于把材料赶出来了，好在终于走上了参加比赛的正轨，我们三个也就算正式组队了。 补充哈哈 前几天知道这个比赛的全名——“浩方杯”全国高校商业精英挑战赛因为刚组队，所有的资料都是刚开始写，前前后后这件事情一直没断过，也用这个作品报名了很多类似的创新比赛，期待都能取得一个满意的成绩。 #济南省赛地点：山东英才学院时间：2018.05.045月3号坐校车出发去济南，住在济南职业学院里的一个宾馆，别说人家职业学院都比我们学校大，不过也并不是很羡慕，相反这次出去比赛也让我感受到了我们学校的强大，首先好像只有我们是带着车去的，来来回回的都很方便，连黄岛的都很羡慕，还有就是英才的美化还是比较不错的，但是水餐里的饭不怎么样，还不如济南职业学院的好吃。说正事，这次比赛之前并没有感到很紧张，就是下午比赛前紧张有点，不得不说现在心态比以前好很多了，要放在以前头一天可能就开始紧张了。在答辩过程中也出现了一点小插曲，视频卡顿了，之前就知道视频有问题，但是因为比赛在即，视频是比赛前重录的，所以已经来不及改了，但是没想到的是比赛时无法播放，当时真的很慌。好在虽然出现了小插曲但最后的成绩还不错，拿了省一等奖，也算是对得起自己前一阶段的付出了，也让我们的首战打出了不错的成绩。老师说的很对，出现问题还是自己准备的不够充足，不能怪别人，这都是经验，也是这次比赛最重要的东西，加油！相信下次会更好。]]></content>
-      <categories>
-        <category>比赛</category>
-      </categories>
-      <tags>
-        <tag>大学，比赛，创新创业大赛</tag>
       </tags>
   </entry>
   <entry>
