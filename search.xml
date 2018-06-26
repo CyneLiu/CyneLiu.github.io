@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[虚拟化运维笔记]]></title>
+    <url>%2F2018%2F06%2F25%2F%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[UbuntuUbuntu设置静态ip通过修改“/etc/network/interfaces”进行修改，注：在设置多个DNS服务器的时候要加“s”,如： dns-nameservers 114.114.114.114 8.8.8.8 修改之后需要执行： sudo /etc/init.d/networking restart 重启网络。当然，如果是桌面版系统也可以直接在网络-编辑网络中进行设置。 安装TeamViewer1、到TeamViewer官网下载对应版本的安装包。2、下载完成之后切换到下载目录，执行： sudo dpkg -i teamviewer_13.0.9865_amd64.deb 版本号要根据下载的包进行更改。这时候可能会报出如下错误： 正在选中未选择的软件包 teamviewer。 (正在读取数据库 … 系统当前共安装有 253291 个文件和目录。) 正准备解包 teamviewer_13.0.6634_amd64.deb … 正在解包 teamviewer (13.0.6634) … dpkg：警告：无法删除原有的目录 /var/log/teamviewer12 ：目录非空 dpkg: 依赖关系问题使得 teamviewer 的配置工作不能继续： teamviewer 依赖于 qtdeclarative5-dialogs-plugin (&gt;= 5.2) | qml-module-qtquick-dialogs (&gt;= 5.2)；然而： 未安装软件包 qtdeclarative5-dialogs-plugin。 未安装软件包 qml-module-qtquick-dialogs。 dpkg: 处理软件包 teamviewer (–install)时出错： 依赖关系问题 - 仍未被配置 正在处理用于 desktop-file-utils (0.22-1ubuntu5.1) 的触发器 … 正在处理用于 gnome-menus (3.13.3-6ubuntu3.1) 的触发器 … 正在处理用于 bamfdaemon (0.5.3~bzr0+16.04.20160824-0ubuntu1) 的触发器 … Rebuilding /usr/share/applications/bamf-2.index… 正在处理用于 mime-support (3.59ubuntu1) 的触发器 … 正在处理用于 hicolor-icon-theme (0.15-0ubuntu1) 的触发器 … 在处理时有错误发生： teamviewer 目前我遇到的有两种解决方式：一、修复依赖关系 一种解决方法是执行如下命令修复依赖关系： sudo apt install f 执行完后再安装看看能否成功，如果还是不成功就要采用第二种方式了。二、更新源地址 ①删除安装到一半的teamviewer： sudo apt-get remove teamviewer ②在Ubuntu的源列表中找到对应系统的源，复制到/etc/apt/sources.list 里面，并把原来的链接注释掉。③更新系统软件： sudo apt-get update #更新软件列表 sudo apt-get upgrade #更新软件 ④运行安装命令： sudo dpkg -i teamviewer_13.0.9865_amd64.deb 3、在TeamViewer的使用中发现经常在系统重启后连接就出现“未知原因”的问题，原因还在摸索中，目前能解决的方法就是卸载重新安装： apt purge teamviewer sudo dpkg -i teamviewer_13.0.9865_amd64.deb 16.04出现“The system is running in low-graphics mode”在虚拟机中安装的Ubuntu16.04无法显示完全，尝试修改分辨率后会卡死，然后重启就会出现如题所示的错误。解决方法为：1、重启虚拟机，按ctrl + alt + F1 进入纯字符界面，输入账号和密码2、执行如下命令： cd /etc/X11 sudo cp xorg.conf.failsafe xorg.conf #刷新配置文件 sudo reboot 重启之后就可以正常显示了。 启用root用户 安装GNOME Shell桌面1、安装GNOME Shell sudo apt-get install gnome-shell 安装过程中出现如下界面，选择lightdm：2、退出当前账户，选择GNOME桌面系统3、重新登陆，安装gnome-tweak sudo apt-get install gnome-tweak-tool tweak是主题管理工具，具体使用方法参见：https://itsfoss.com/install-switch-themes-gnome-shell/ 4、使用tweak更换主题方法参考：https://itsfoss.com/gnome-shell-themes-ubuntu-1404/]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SDN入门（一）—— 环境搭建]]></title>
     <url>%2F2018%2F06%2F24%2FSDN%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[Ubuntu安装系统选择镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。 虚拟机安装设置网卡因为要使用ssh远程登录，这里我们添加一个网卡：勾选“启用网络连接”，并选择仅主机模式。 系统安装挂载镜像之后启动虚拟机进行安装，基本的安装过程不一一详细介绍，不会的地方可以百度。可以看到安装程序已经识别出了两块网卡，我们选择默认的nat网卡作为主网络接口。软件安装，我们只需要安装ssh server就可以了，记得空格选择，回车确认。 安装完成后，我们看一下系统的网卡信息，发现并没有我们添加的网卡。执行“sudo dhclient enp0s8”启用enp0s8网卡。再次查看网卡信息：可以看到已经添加进来了。我们还需要将第二块网卡的配置加入到网络配置文件中，不然重启之后第二块网卡还是看不到的： sudo vi /etc/network/interfaces 在interfaces配置文件中加入enp0s8，同样使用dhcp方式获取ip至此，我们的系统就配置完成了，用ssh工具进行连接：已经可以成功连接。 安装Ryu详细内容可参考linton的博客。 1.下载python的套件库，并更新pip（因为下载的pip并不是最新版本） sudo apt-get install python-pip python-dev build-essential sudo pip install --upgrade pip 2.安装Ryu相依性套件 sudo apt-get install python-eventlet sudo apt-get install python-routes sudo apt-get install python-webob sudo apt-get install python-paramiko 3.使用pip下载并安装Ryu sudo pip install ryu 此步骤如果出现如下错误信息说明你被挡在城内了，富强上网即可解决。4.如果需要使用Ryu with GUI则进行此步骤：下载Ryu source code（需要使用git套件） sudo apt-get install git git clone https://github.com/osrg/ryu.git 5.完成安装，执行ryu-manager验证有没有出现错误，没问题的话会出现如下信息： 安装mininet使用源码安装mininet为了减少之后不必要的麻烦，建议在安装开始前执行：sudo su切换到root用户下并在富强网络下进行安装。1.升级系统 apt-get update apt-get upgrade 2.安装git（如果你像我一样在之前安装Ryu时我们已经安装过git了，那么请直接跳过此步骤） apt install git 3.从github上获取源码 git clone git://github.com/mininet/mininet 获取之后可以使用如下命令查看mininet的版本 cd mininet cat INSTALL 4.确认无误后，安装mininet util/install.sh -a 当你看到Enjoy Mininet！时，恭喜你已经安装成功了。执行以下命令查看安装版本： mn --version mininet可视化操作1.要进行mininet可视化操作，需要安装Xmanager套件，然后在通过Xshell远程连接主机时，在属性中做如下设置：2.然后进入examples目录，执行miniedit.py即可启动可视化界面 cd mininet/mininet/examples ./miniedit.py 至此，整个环境就搭建完成了。如果对环境的安装有疑问，欢迎与我联系，一起沟通交流。 email: 666@cyne.cf]]></content>
@@ -8,8 +19,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>网工</tag>
         <tag>SDN</tag>
+        <tag>网工</tag>
       </tags>
   </entry>
   <entry>
@@ -20,8 +31,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>OpenStack</tag>
         <tag>网工</tag>
+        <tag>OpenStack</tag>
       </tags>
   </entry>
   <entry>
@@ -32,8 +43,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>OpenStack</tag>
         <tag>网工</tag>
+        <tag>OpenStack</tag>
       </tags>
   </entry>
   <entry>
@@ -55,8 +66,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>OpenStack</tag>
         <tag>网工</tag>
+        <tag>OpenStack</tag>
       </tags>
   </entry>
   <entry>
