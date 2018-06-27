@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="网工,OpenStack," />
+  <meta name="keywords" content="OpenStack,网工," />
 
 
 
@@ -83,7 +83,7 @@
 
 
 <meta name="description" content="作为一个网络工程专业的大二学生，现在已经临近期末，也就是说马上就要大三了。最近身边的一些事，让我慢慢发现，如果以后只做一个普通的网工，只会敲敲命令行之类的，几乎没有什么前景，而且随着SDN、自动化运维的发展，普通网工的价值也显得越来越低，所以还是觉得应该学点别的东西来武装自己，比如——虚拟化。   今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造">
-<meta name="keywords" content="网工,OpenStack">
+<meta name="keywords" content="OpenStack,网工">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenStack入门（一）—— 虚拟化">
 <meta property="og:url" content="https://cyne.tk/2018/06/06/OpenStack入门（一）——-虚拟化/index.html">
@@ -113,7 +113,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/06/11/5b1e7bb8b2a03.png">
 <meta property="og:image" content="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160324-1458779560823058198.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/06/19/5b28e7c40b35c.png">
-<meta property="og:updated_time" content="2018-06-19T11:27:40.149Z">
+<meta property="og:updated_time" content="2018-06-27T13:04:17.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack入门（一）—— 虚拟化">
 <meta name="twitter:description" content="作为一个网络工程专业的大二学生，现在已经临近期末，也就是说马上就要大三了。最近身边的一些事，让我慢慢发现，如果以后只做一个普通的网工，只会敲敲命令行之类的，几乎没有什么前景，而且随着SDN、自动化运维的发展，普通网工的价值也显得越来越低，所以还是觉得应该学点别的东西来武装自己，比如——虚拟化。   今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造">
@@ -429,8 +429,8 @@
 
       
         <p>作为一个网络工程专业的大二学生，现在已经临近期末，也就是说马上就要大三了。最近身边的一些事，让我慢慢发现，如果以后只做一个普通的网工，只会敲敲命令行之类的，几乎没有什么前景，而且随着SDN、自动化运维的发展，普通网工的价值也显得越来越低，所以还是觉得应该学点别的东西来武装自己，比如——虚拟化。  </p>
-<p>今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造的价值成正比的。虽然知道OpenStack体系结构复杂，知识涉及面庞大，但还是决定接触一下。今天也是无意间看到了一个名叫cloudman的博主的博客，他的这个系列教程<a href="http://www.cnblogs.com/CloudMan6/" target="_blank" rel="noopener">《每天5分钟玩转OpenStack》</a>个人感觉真的蛮不错，因为现在市面上真的很少有很体系化的教程（至少我没有找到），所以从今天开始就开始按照博主大佬的这份教程开始入门OpenStack了，也但愿我可以一路坚持下去。</p>
-<h1 id="虚拟化"><a href="#虚拟化" class="headerlink" title="虚拟化"></a>虚拟化</h1><p><img src="https://i.loli.net/2018/06/06/5b17cf7d178cc.jpg" alt="1.jpg"> 这是博主给的图，如博主所说，OpenStack是云操作系统，要学习OpenStack，首先需要掌握一些虚拟化和云计算的相关知识。  </p>
+<p>今天在知乎上看了一些大佬的解答，感觉很受启发，网工可能真的是一个轻松的工作，但一个人的工资总是与创造的价值成正比的。虽然知道OpenStack体系结构复杂，知识涉及面庞大，但还是决定接触一下。所以从今天开始就要入门OpenStack了，也但愿我可以一路坚持下去。</p>
+<h1 id="虚拟化"><a href="#虚拟化" class="headerlink" title="虚拟化"></a>虚拟化</h1><p><img src="https://i.loli.net/2018/06/06/5b17cf7d178cc.jpg" alt="1.jpg"> OpenStack是云操作系统，要学习OpenStack，首先需要掌握一些虚拟化和云计算的相关知识。  </p>
 <blockquote>
 <p>物理机为宿主机Host，虚拟机为客户机Guest<br>宿主机通过Hypervisor程序实现硬件的虚拟化<br>根据实现方式分为1型虚拟化和2型虚拟化  </p>
 </blockquote>
@@ -595,9 +595,9 @@ Id    Name              State
       
         <div class="post-tags">
           
-            <a href="/tags/网工/" rel="tag"># 网工</a>
-          
             <a href="/tags/OpenStack/" rel="tag"># OpenStack</a>
+          
+            <a href="/tags/网工/" rel="tag"># 网工</a>
           
         </div>
       
@@ -620,8 +620,8 @@ Id    Name              State
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/07/网址收藏/" rel="prev" title="常用网址收藏">
-                常用网址收藏 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/19/OpenStack入门（二）——-云计算/" rel="prev" title="OpenStack入门（二）—— 云计算">
+                OpenStack入门（二）—— 云计算 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -732,7 +732,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -743,7 +743,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -754,7 +754,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
