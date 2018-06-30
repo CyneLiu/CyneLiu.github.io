@@ -82,22 +82,23 @@
 
 
 
-<meta name="description" content="UbuntuUbuntu设置静态ip通过修改“/etc/network/interfaces”进行修改，注：在设置多个DNS服务器的时候要加“s”,如：   dns-nameservers 114.114.114.114 8.8.8.8 修改之后需要执行：     sudo /etc/init.d/networking restart 重启网络。当然，如果是桌面版系统也可以直接在网络-编辑网络中进">
+<meta name="description" content="UbuntuUbuntu设置静态ip通过修改“/etc/network/interfaces”进行修改，注：在设置多个DNS服务器的时候要加“s”,如：   dns-nameservers 114.114.114.114 8.8.8.8 修改之后需要执行：     sudo /etc/init.d/networking restart 使用这个方式修改ip地址，修改完interfaces文档中的内">
 <meta name="keywords" content="运维">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟化运维笔记">
 <meta property="og:url" content="https://cyne.tk/2018/06/25/虚拟化运维笔记/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="UbuntuUbuntu设置静态ip通过修改“/etc/network/interfaces”进行修改，注：在设置多个DNS服务器的时候要加“s”,如：   dns-nameservers 114.114.114.114 8.8.8.8 修改之后需要执行：     sudo /etc/init.d/networking restart 重启网络。当然，如果是桌面版系统也可以直接在网络-编辑网络中进">
+<meta property="og:description" content="UbuntuUbuntu设置静态ip通过修改“/etc/network/interfaces”进行修改，注：在设置多个DNS服务器的时候要加“s”,如：   dns-nameservers 114.114.114.114 8.8.8.8 修改之后需要执行：     sudo /etc/init.d/networking restart 使用这个方式修改ip地址，修改完interfaces文档中的内">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/06/25/5b30f4ef9991f.png">
 <meta property="og:image" content="https://img-blog.csdn.net/20160722112307840">
 <meta property="og:image" content="https://4bds6hergc-flywheel.netdna-ssl.com/wp-content/uploads/2014/06/Switch_between_gdm_and_lightgdm_Ubuntu.jpeg">
 <meta property="og:image" content="https://img-blog.csdn.net/20150602205903147?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaXRhczEwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-06-27T13:07:07.838Z">
+<meta property="og:image" content="https://i.loli.net/2018/06/30/5b37243cc1a2e.jpg">
+<meta property="og:updated_time" content="2018-06-30T06:40:50.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟化运维笔记">
-<meta name="twitter:description" content="UbuntuUbuntu设置静态ip通过修改“/etc/network/interfaces”进行修改，注：在设置多个DNS服务器的时候要加“s”,如：   dns-nameservers 114.114.114.114 8.8.8.8 修改之后需要执行：     sudo /etc/init.d/networking restart 重启网络。当然，如果是桌面版系统也可以直接在网络-编辑网络中进">
+<meta name="twitter:description" content="UbuntuUbuntu设置静态ip通过修改“/etc/network/interfaces”进行修改，注：在设置多个DNS服务器的时候要加“s”,如：   dns-nameservers 114.114.114.114 8.8.8.8 修改之后需要执行：     sudo /etc/init.d/networking restart 使用这个方式修改ip地址，修改完interfaces文档中的内">
 <meta name="twitter:image" content="https://i.loli.net/2018/06/25/5b30f4ef9991f.png">
 
 
@@ -417,8 +418,8 @@
 <blockquote>
 </blockquote>
 <pre><code>sudo /etc/init.d/networking restart
-</code></pre><p>重启网络。<br>当然，如果是桌面版系统也可以直接在网络-编辑网络中进行设置。</p>
-<h2 id="安装TeamViewer"><a href="#安装TeamViewer" class="headerlink" title="安装TeamViewer"></a>安装TeamViewer</h2><p>1、到TeamViewer官网下载对应版本的安装包。<br>2、下载完成之后切换到下载目录，执行：</p>
+</code></pre><p>使用这个方式修改ip地址，修改完interfaces文档中的内容后，需要修改/etc/NetworkManager/NetworkManager.conf文档中的managed参数，使之为true，并重启。否则，会提示说“有线网络设备未托管”。<br>重启网络或系统之后就修改完成了。  </p>
+<h2 id="安装TeamViewer"><a href="#安装TeamViewer" class="headerlink" title="安装TeamViewer"></a>安装TeamViewer</h2><p>teamviewer远程登录的方式不建议使用！<br>1、到TeamViewer官网下载对应版本的安装包。<br>2、下载完成之后切换到下载目录，执行：</p>
 <blockquote>
 </blockquote>
 <pre><code>sudo dpkg -i teamviewer_13.0.9865_amd64.deb
@@ -521,7 +522,13 @@ sudo apt remove appstream
 <blockquote>
 </blockquote>
 <pre><code>xrandr --output Virtual1 --mode 1440x900
-</code></pre><p>其中“Virtual1”是显示器的名称，要根据执行xrandr返回的信息进行相应的替换。<br>4、最后，也是我自己遇到的一点问题，有时候执行步骤3中所说的命令并不能永久更改，重启后会失效。目前一个方法就是在系统设置→显示中应用一下更改过来的分辨率，这样在重启之后就不会出现问题了。  </p>
+</code></pre><p>其中“Virtual1”是显示器的名称，要根据执行xrandr返回的信息进行相应的替换。<br>4、错误<br>这些也是我自己遇到的一点问题。</p>
+<blockquote>
+<p>①有时候执行步骤3中所说的命令并不能永久更改，重启后会失效。目前一个方法就是在系统设置→显示中应用一下更改过来的分辨率，这样在重启之后就不会出现问题了。<br>②“xrandr: Configure crtc 0 failed”  </p>
+<blockquote>
+<p>这是一个系统bug，在设置,关于这台计算机,检查更新。更新完重启后就没问题了。</p>
+</blockquote>
+</blockquote>
 <h2 id="Ubuntu16-04安装VNC"><a href="#Ubuntu16-04安装VNC" class="headerlink" title="Ubuntu16.04安装VNC"></a>Ubuntu16.04安装VNC</h2><p>“VNC有很多选择，VNC4server，tigervncserver等等，都不推荐，难装又难用。经过多次实验和测试，最后只采用x11vnc作为VNC服务器端。” <a href="https://blog.csdn.net/longhr/article/details/51657610" target="_blank" rel="noopener">查看原文</a><br>1、安装X11VNC</p>
 <blockquote>
 </blockquote>
@@ -551,11 +558,36 @@ WantedBy=multi-user.target
 <pre><code>sudo ufw allow 5900
 sudo systemctl enable x11vnc.service
 sudo systemctl daemon-reload
-</code></pre><p>5、重启系统</p>
+</code></pre><p>如果出现如下图所示的错误，就说明第三步中你的配置信息粘贴错误了，修改正确即可解决。<img src="https://i.loli.net/2018/06/30/5b37243cc1a2e.jpg" alt="QQ图片20180630142539.jpg"><br>5、重启系统</p>
 <blockquote>
 </blockquote>
 <pre><code>reboot
-</code></pre><h1 id="RHEL"><a href="#RHEL" class="headerlink" title="RHEL"></a>RHEL</h1><h2 id="系统意外重启后VNC连接失败"><a href="#系统意外重启后VNC连接失败" class="headerlink" title="系统意外重启后VNC连接失败"></a>系统意外重启后VNC连接失败</h2><p>在服务器中运行着几个RHEL实例，VNC是之前老师配置的，这几个实例在服务器断电重启之后会出现VNC连接出错的问题。解决方法如下：</p>
+</code></pre><h2 id="nat123配置"><a href="#nat123配置" class="headerlink" title="nat123配置"></a>nat123配置</h2><p>nat123端口映射是专业的内网端口映射软件，在内网启动映射后，可在外网轻松访问连接内网网站等应用，不需要设置路由器，不需要公网ip,不需要固定ip,不需要动态域名。  </p>
+<p>Ubuntu配置过程：（其它linux直接参考<a href="http://www.nat123.com/pages_17_600.jsp" target="_blank" rel="noopener">官网说明</a>）<br>0、注册账号<br>没有注册过账号的先到官网注册：<a href="http://www.nat123.com/" target="_blank" rel="noopener">http://www.nat123.com/</a><br>1、安装mono运行环境</p>
+<blockquote>
+</blockquote>
+<pre><code>apt-get  install  mono-complete
+</code></pre><p>安装完成后执行“mono -V”可查看安装的版本信息。<br>2、客户端安装</p>
+<blockquote>
+</blockquote>
+<pre><code>cd  /opt
+mkdir  nat123
+cd  /nat123
+wget  http://www.nat123.com/down/nat123linux.tar.gz
+tar  -zxvf  nat123linux.tar.gz
+</code></pre><p>3、启动客户端</p>
+<blockquote>
+</blockquote>
+<pre><code>cd  /opt/nat123
+mono  nat123linux.sh
+</code></pre><p>输入用户名和密码登录成功后，直接结束当前进程，然后执行如下命令改为后台运行：</p>
+<blockquote>
+</blockquote>
+<pre><code>cd  /opt/nat123
+mono  nat123linux.sh service &amp;
+ps  -ef|grep  nat123 #查看nat123状态
+</code></pre><p>4、登录网页添加端口映射或动态域名解析</p>
+<h1 id="RHEL"><a href="#RHEL" class="headerlink" title="RHEL"></a>RHEL</h1><h2 id="系统意外重启后VNC连接失败"><a href="#系统意外重启后VNC连接失败" class="headerlink" title="系统意外重启后VNC连接失败"></a>系统意外重启后VNC连接失败</h2><p>在服务器中运行着几个RHEL实例，VNC是之前老师配置的，这几个实例在服务器断电重启之后会出现VNC连接出错的问题。解决方法如下：</p>
 <blockquote>
 </blockquote>
 <pre><code>cd /tmp
@@ -800,7 +832,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu设置静态ip"><span class="nav-number">1.1.</span> <span class="nav-text">Ubuntu设置静态ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装TeamViewer"><span class="nav-number">1.2.</span> <span class="nav-text">安装TeamViewer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-04出现“The-system-is-running-in-low-graphics-mode”"><span class="nav-number">1.3.</span> <span class="nav-text">16.04出现“The system is running in low-graphics mode”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用root用户"><span class="nav-number">1.4.</span> <span class="nav-text">启用root用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装GNOME-Shell桌面"><span class="nav-number">1.5.</span> <span class="nav-text">安装GNOME Shell桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行sudo-apt-get-update出错"><span class="nav-number">1.6.</span> <span class="nav-text">执行sudo apt-get update出错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu在虚拟机中显示不全的问题"><span class="nav-number">1.7.</span> <span class="nav-text">Ubuntu在虚拟机中显示不全的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu16-04安装VNC"><span class="nav-number">1.8.</span> <span class="nav-text">Ubuntu16.04安装VNC</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RHEL"><span class="nav-number">2.</span> <span class="nav-text">RHEL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统意外重启后VNC连接失败"><span class="nav-number">2.1.</span> <span class="nav-text">系统意外重启后VNC连接失败</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu设置静态ip"><span class="nav-number">1.1.</span> <span class="nav-text">Ubuntu设置静态ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装TeamViewer"><span class="nav-number">1.2.</span> <span class="nav-text">安装TeamViewer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-04出现“The-system-is-running-in-low-graphics-mode”"><span class="nav-number">1.3.</span> <span class="nav-text">16.04出现“The system is running in low-graphics mode”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用root用户"><span class="nav-number">1.4.</span> <span class="nav-text">启用root用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装GNOME-Shell桌面"><span class="nav-number">1.5.</span> <span class="nav-text">安装GNOME Shell桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行sudo-apt-get-update出错"><span class="nav-number">1.6.</span> <span class="nav-text">执行sudo apt-get update出错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu在虚拟机中显示不全的问题"><span class="nav-number">1.7.</span> <span class="nav-text">Ubuntu在虚拟机中显示不全的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu16-04安装VNC"><span class="nav-number">1.8.</span> <span class="nav-text">Ubuntu16.04安装VNC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nat123配置"><span class="nav-number">1.9.</span> <span class="nav-text">nat123配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RHEL"><span class="nav-number">2.</span> <span class="nav-text">RHEL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统意外重启后VNC连接失败"><span class="nav-number">2.1.</span> <span class="nav-text">系统意外重启后VNC连接失败</span></a></li></ol></li></ol></div>
             
 
           </div>
