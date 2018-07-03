@@ -3,6 +3,28 @@
 
 
     
+  <url>
+    <loc>https://cyne.tk/2018/07/03/WinSCP%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8ESSH%E7%9A%84%E5%AE%89%E5%85%A8%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BD%AF%E4%BB%B6/</loc>
+    <lastmod>2018-07-03T02:34:47.347Z</lastmod>
+    <data>
+        <display>
+        <title>WinSCP——基于SSH的安全文件传输软件</title>
+        <pubTime>2018-07-03T02:10:14.000Z</pubTime>
+        
+        <tag>文件传输</tag>
+         
+        <tag>Server</tag>
+         
+         
+           
+             
+              <breadCrumb title="Server" url="https://cyne.tk/categories/Server/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://cyne.tk/2018/06/25/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0/</loc>
@@ -120,9 +142,9 @@
         <title>自建ssr服务器</title>
         <pubTime>2018-05-07T13:09:20.000Z</pubTime>
         
-        <tag>SSR</tag>
-         
         <tag>Server</tag>
+         
+        <tag>SSR</tag>
          
          
            

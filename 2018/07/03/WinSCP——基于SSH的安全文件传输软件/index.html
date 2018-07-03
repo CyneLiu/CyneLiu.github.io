@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Cyne, Blog" />
+  <meta name="keywords" content="文件传输,Server," />
 
 
 
@@ -82,16 +82,18 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cyne&#39;s Blog">
-<meta property="og:url" content="https://cyne.tk/tags/运维/index.html">
+<meta name="description" content="我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。   sftpsftp(Secure File Transfer Pro">
+<meta name="keywords" content="文件传输,Server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WinSCP——基于SSH的安全文件传输软件">
+<meta property="og:url" content="https://cyne.tk/2018/07/03/WinSCP——基于SSH的安全文件传输软件/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。   sftpsftp(Secure File Transfer Pro">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-03T02:34:47.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cyne&#39;s Blog">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.">
+<meta name="twitter:title" content="WinSCP——基于SSH的安全文件传输软件">
+<meta name="twitter:description" content="我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。   sftpsftp(Secure File Transfer Pro">
 
 
 
@@ -121,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://cyne.tk/tags/运维/"/>
+  <link rel="canonical" href="https://cyne.tk/2018/07/03/WinSCP——基于SSH的安全文件传输软件/"/>
 
 
 
 
 
-  <title>标签: 运维 | Cyne's Blog</title>
+  <title>WinSCP——基于SSH的安全文件传输软件 | Cyne's Blog</title>
   
 
 
@@ -146,7 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -284,54 +286,244 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>运维<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cyne.tk/2018/07/03/WinSCP——基于SSH的安全文件传输软件/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cyne Liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyne's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/06/25/虚拟化运维笔记/" itemprop="url">
-              
-                <span itemprop="name">虚拟化运维笔记</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">WinSCP——基于SSH的安全文件传输软件</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-25T21:50:33+08:00"
-              content="2018-06-25" >
-          06-25
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-03T10:10:14+08:00">
+                2018-07-03
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Server/" itemprop="url" rel="index">
+                    <span itemprop="name">Server</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/03/WinSCP——基于SSH的安全文件传输软件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/03/WinSCP——基于SSH的安全文件传输软件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。  </p>
+<h1 id="sftp"><a href="#sftp" class="headerlink" title="sftp"></a>sftp</h1><p>sftp(Secure File Transfer Protocol)，安全文件传送协议，可以为传输文件提供一种安全的网络的加密方法。sftp与ftp有着几乎一样的语法和功能。SFTP是SSH的一部分，其实在SSH软件包中，已经包含了一个叫作SFTP的安全文件信息传输子系统，SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接和答复操作，所以从某种意义上来说，SFTP并不像一个服务器程序，而更像是一个客户端程序。<br>SFTP同样是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，所以在对网络安全性要求更高时，可以使用SFTP代替FTP。</p>
+<h1 id="sftp于ftp的区别"><a href="#sftp于ftp的区别" class="headerlink" title="sftp于ftp的区别"></a>sftp于ftp的区别</h1><p>FTP是一种文件传输协议，一般是为了方便数据共享的，包括一个FTP服务器和多个FTP客户端，FTP客户端通过FTP协议在服务器上下载资源。而SFTP协议是基于SSH，并在FTP的基础上对数据进行加密，使得传输的数据相对来说更安全。但是这种安全是以牺牲效率为代价的，也就是说SFTP的传输效率比FTP要略低。<br>而且在我的使用过程中，并没有感觉sftp的效率较于ftp有太大的差异，而且使用sftp最大的一个好处就是不需要安装而且安全性更高。<br>更详细的区别可以移步这里：<a href="https://www.cnblogs.com/mfryf/archive/2013/05/29/3107286.html" target="_blank" rel="noopener">Sftp和ftp 区别、工作原理等（汇总ing）</a></p>
+<h1 id="WinSCP"><a href="#WinSCP" class="headerlink" title="WinSCP"></a>WinSCP</h1><p>官网地址：<a href="https://winscp.net/eng/docs/lang:chs" target="_blank" rel="noopener">https://winscp.net/eng/docs/lang:chs</a><br>除了WinSCP，Windows环境下还可以使用Core FTP，FileZilla, WinSCP，Xftp来连接SFTP进行上传，下载文件，建立，删除目录等操作。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://i.loli.net/2018/03/03/5a9a6f8dcc189.png" alt="Cyne Liu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://i.loli.net/2018/03/03/5a9a6f8dcc19b.jpg" alt="Cyne Liu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/文件传输/" rel="tag"># 文件传输</a>
+          
+            <a href="/tags/Server/" rel="tag"># Server</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/25/虚拟化运维笔记/" rel="next" title="虚拟化运维笔记">
+                <i class="fa fa-chevron-left"></i> 虚拟化运维笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -339,6 +531,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -359,8 +562,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -427,6 +639,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sftp"><span class="nav-number">1.</span> <span class="nav-text">sftp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sftp于ftp的区别"><span class="nav-number">2.</span> <span class="nav-text">sftp于ftp的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WinSCP"><span class="nav-number">3.</span> <span class="nav-text">WinSCP</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -594,6 +822,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -645,6 +877,30 @@
       </style>
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'CyneLiu',
+            repo: 'CyneLiu.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '6b1304551cceac866f5d96afe79c7e61e6dae3fc',
+            
+                client_id: 'd5b6c18929145810be08'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyne.tk/"/>
-  <updated>2018-06-30T06:40:50.493Z</updated>
+  <updated>2018-07-03T02:34:47.347Z</updated>
   <id>https://cyne.tk/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WinSCP——基于SSH的安全文件传输软件</title>
+    <link href="https://cyne.tk/2018/07/03/WinSCP%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8ESSH%E7%9A%84%E5%AE%89%E5%85%A8%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BD%AF%E4%BB%B6/"/>
+    <id>https://cyne.tk/2018/07/03/WinSCP——基于SSH的安全文件传输软件/</id>
+    <published>2018-07-03T02:10:14.000Z</published>
+    <updated>2018-07-03T02:34:47.347Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。  </p><h1 id="sftp"><a href="#sftp" class="headerlink" title="sftp"></a>sftp</h1><p>sftp(Secure File Transfer Protocol)，安全文件传送协议，可以为传输文件提供一种安全的网络的加密方法。sftp与ftp有着几乎一样的语法和功能。SFTP是SSH的一部分，其实在SSH软件包中，已经包含了一个叫作SFTP的安全文件信息传输子系统，SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接和答复操作，所以从某种意义上来说，SFTP并不像一个服务器程序，而更像是一个客户端程序。<br>SFTP同样是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，所以在对网络安全性要求更高时，可以使用SFTP代替FTP。</p><h1 id="sftp于ftp的区别"><a href="#sftp于ftp的区别" class="headerlink" title="sftp于ftp的区别"></a>sftp于ftp的区别</h1><p>FTP是一种文件传输协议，一般是为了方便数据共享的，包括一个FTP服务器和多个FTP客户端，FTP客户端通过FTP协议在服务器上下载资源。而SFTP协议是基于SSH，并在FTP的基础上对数据进行加密，使得传输的数据相对来说更安全。但是这种安全是以牺牲效率为代价的，也就是说SFTP的传输效率比FTP要略低。<br>而且在我的使用过程中，并没有感觉sftp的效率较于ftp有太大的差异，而且使用sftp最大的一个好处就是不需要安装而且安全性更高。<br>更详细的区别可以移步这里：<a href="https://www.cnblogs.com/mfryf/archive/2013/05/29/3107286.html" target="_blank" rel="noopener">Sftp和ftp 区别、工作原理等（汇总ing）</a></p><h1 id="WinSCP"><a href="#WinSCP" class="headerlink" title="WinSCP"></a>WinSCP</h1><p>官网地址：<a href="https://winscp.net/eng/docs/lang:chs" target="_blank" rel="noopener">https://winscp.net/eng/docs/lang:chs</a><br>除了WinSCP，Windows环境下还可以使用Core FTP，FileZilla, WinSCP，Xftp来连接SFTP进行上传，下载文件，建立，删除目录等操作。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的
+      
+    
+    </summary>
+    
+      <category term="Server" scheme="https://cyne.tk/categories/Server/"/>
+    
+    
+      <category term="文件传输" scheme="https://cyne.tk/tags/%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/"/>
+    
+      <category term="Server" scheme="https://cyne.tk/tags/Server/"/>
+    
+  </entry>
   
   <entry>
     <title>虚拟化运维笔记</title>
@@ -221,9 +248,9 @@
       <category term="Server" scheme="https://cyne.tk/categories/Server/"/>
     
     
-      <category term="SSR" scheme="https://cyne.tk/tags/SSR/"/>
-    
       <category term="Server" scheme="https://cyne.tk/tags/Server/"/>
+    
+      <category term="SSR" scheme="https://cyne.tk/tags/SSR/"/>
     
   </entry>
   
