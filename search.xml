@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[虚拟化运维笔记——服务器]]></title>
+    <url>%2F2018%2F07%2F11%2F%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[服务器通电自启实验室有三台浪潮的服务器，默认关闭了通电自启的功能，因为不使用，也一直没去在意它，今天没事给它把通电自启动打开了，省的以后麻烦，在此记录一下，下图内容拍自浪潮服务器：1、开机时按Delete键进入BIOS2、选择Chipset-PCH3、将Restore AC Power Loss修改为Power Off这里解释一下各个选项的意思： Restore AC Power Loss:如果发生断电，恢复供电后系统如何反应Power Off:接通电源后保持关机状态Power On:接通电源后开机Last State:恢复到断电前的状态]]></content>
+      <categories>
+        <category>运维，笔记</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[虚拟化运维笔记——vsphere]]></title>
+    <url>%2F2018%2F07%2F11%2F%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94vsphere%2F</url>
+    <content type="text"><![CDATA[设置虚拟机随主机自动启动0、选择虚拟机所在主机单击选择虚拟机所在的主机，在后侧选项卡中选择“配置” 1、设置属性单击右上角的属性 2、设置虚拟机自动启动勾选“允许虚拟机与系统一起自动启动和停止”，然后在“启动顺序”中将需要设置自动启动的虚拟机上移到自动启动一栏下，如果有需要，可根据情况设置启动延迟，最后点击确定即可。]]></content>
+      <categories>
+        <category>运维，笔记</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[WinSCP——基于SSH的安全文件传输软件]]></title>
     <url>%2F2018%2F07%2F03%2FWinSCP%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8ESSH%E7%9A%84%E5%AE%89%E5%85%A8%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BD%AF%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。 sftpsftp(Secure File Transfer Protocol)，安全文件传送协议，可以为传输文件提供一种安全的网络的加密方法。sftp与ftp有着几乎一样的语法和功能。SFTP是SSH的一部分，其实在SSH软件包中，已经包含了一个叫作SFTP的安全文件信息传输子系统，SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接和答复操作，所以从某种意义上来说，SFTP并不像一个服务器程序，而更像是一个客户端程序。SFTP同样是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，所以在对网络安全性要求更高时，可以使用SFTP代替FTP。 sftp于ftp的区别FTP是一种文件传输协议，一般是为了方便数据共享的，包括一个FTP服务器和多个FTP客户端，FTP客户端通过FTP协议在服务器上下载资源。而SFTP协议是基于SSH，并在FTP的基础上对数据进行加密，使得传输的数据相对来说更安全。但是这种安全是以牺牲效率为代价的，也就是说SFTP的传输效率比FTP要略低。而且在我的使用过程中，并没有感觉sftp的效率较于ftp有太大的差异，而且使用sftp最大的一个好处就是不需要安装而且安全性更高。更详细的区别可以移步这里：Sftp和ftp 区别、工作原理等（汇总ing） WinSCP官网地址：https://winscp.net/eng/docs/lang:chs除了WinSCP，Windows环境下还可以使用Core FTP，FileZilla, WinSCP，Xftp来连接SFTP进行上传，下载文件，建立，删除目录等操作。]]></content>
@@ -13,11 +35,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[虚拟化运维笔记]]></title>
-    <url>%2F2018%2F06%2F25%2F%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%2F</url>
+    <title><![CDATA[虚拟化运维笔记 —— Linux]]></title>
+    <url>%2F2018%2F06%2F25%2F%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Linux%2F</url>
     <content type="text"><![CDATA[UbuntuUbuntu设置静态ip通过修改“/etc/network/interfaces”进行修改，注：在设置多个DNS服务器的时候要加“s”,如： dns-nameservers 114.114.114.114 8.8.8.8 修改之后需要执行： sudo /etc/init.d/networking restart 使用这个方式修改ip地址，修改完interfaces文档中的内容后，需要修改/etc/NetworkManager/NetworkManager.conf文档中的managed参数，使之为true，并重启。否则，会提示说“有线网络设备未托管”。重启网络或系统之后就修改完成了。 安装TeamViewerteamviewer远程登录的方式不建议使用！1、到TeamViewer官网下载对应版本的安装包。2、下载完成之后切换到下载目录，执行： sudo dpkg -i teamviewer_13.0.9865_amd64.deb 版本号要根据下载的包进行更改。这时候可能会报出如下错误： 正在选中未选择的软件包 teamviewer。 (正在读取数据库 … 系统当前共安装有 253291 个文件和目录。) 正准备解包 teamviewer_13.0.6634_amd64.deb … 正在解包 teamviewer (13.0.6634) … dpkg：警告：无法删除原有的目录 /var/log/teamviewer12 ：目录非空 dpkg: 依赖关系问题使得 teamviewer 的配置工作不能继续： teamviewer 依赖于 qtdeclarative5-dialogs-plugin (&gt;= 5.2) | qml-module-qtquick-dialogs (&gt;= 5.2)；然而： 未安装软件包 qtdeclarative5-dialogs-plugin。 未安装软件包 qml-module-qtquick-dialogs。 dpkg: 处理软件包 teamviewer (–install)时出错： 依赖关系问题 - 仍未被配置 正在处理用于 desktop-file-utils (0.22-1ubuntu5.1) 的触发器 … 正在处理用于 gnome-menus (3.13.3-6ubuntu3.1) 的触发器 … 正在处理用于 bamfdaemon (0.5.3~bzr0+16.04.20160824-0ubuntu1) 的触发器 … Rebuilding /usr/share/applications/bamf-2.index… 正在处理用于 mime-support (3.59ubuntu1) 的触发器 … 正在处理用于 hicolor-icon-theme (0.15-0ubuntu1) 的触发器 … 在处理时有错误发生： teamviewer 目前我遇到的有两种解决方式：一、修复依赖关系 一种解决方法是执行如下命令修复依赖关系： sudo apt install f 执行完后再安装看看能否成功，如果还是不成功就要采用第二种方式了。二、更新源地址 ①删除安装到一半的teamviewer： sudo apt-get remove teamviewer ②在Ubuntu的源列表中找到对应系统的源，复制到/etc/apt/sources.list 里面，并把原来的链接注释掉。③更新系统软件： sudo apt-get update #更新软件列表 sudo apt-get upgrade #更新软件 ④运行安装命令： sudo dpkg -i teamviewer_13.0.9865_amd64.deb 3、在TeamViewer的使用中发现经常在系统重启后连接就出现“未知原因”的问题，原因还在摸索中，目前能解决的方法就是卸载重新安装： apt purge teamviewer sudo dpkg -i teamviewer_13.0.9865_amd64.deb 16.04出现“The system is running in low-graphics mode”在虚拟机中安装的Ubuntu16.04无法显示完全，尝试修改分辨率后会卡死，然后重启就会出现如题所示的错误。解决方法为：1、重启虚拟机，按ctrl + alt + F1 进入纯字符界面，输入账号和密码2、执行如下命令： cd /etc/X11 sudo cp xorg.conf.failsafe xorg.conf #刷新配置文件 sudo reboot 重启之后就可以正常显示了。 启用root用户执行： sudo passwd root 设置密码后即可使用su直接切换为root用户。 安装GNOME Shell桌面1、安装GNOME Shell sudo apt-get install gnome-shell 安装过程中出现如下界面，选择lightdm：2、退出当前账户，选择GNOME桌面系统3、重新登陆，安装gnome-tweak sudo apt-get install gnome-tweak-tool tweak是主题管理工具，具体使用方法参见：https://itsfoss.com/install-switch-themes-gnome-shell/ 4、使用tweak更换主题方法参考：https://itsfoss.com/gnome-shell-themes-ubuntu-1404/ 执行sudo apt-get update出错在运行sudo apt-get update时出现如下信息： Reading package lists... Done E: Problem executing scripts APT::Update::Post-Invoke-Success &apos;if /usr/bin/test -w /var/cache/app-info -a -e /usr/bin/appstreamcli; then appstreamcli refresh &gt; /dev/null; fi&apos; E: Sub-process returned an error code 解决方法如下： sudo pkill -KILL appstreamcli wget -P /tmp https://launchpad.net/ubuntu/+archive/primary/+files/appstream_0.9.4-1ubuntu1_amd64.deb https://launchpad.net/ubuntu/+archive/primary/+files/libappstream3_0.9.4-1ubuntu1_amd64.deb sudo dpkg -i /tmp/appstream_0.9.4-1ubuntu1_amd64.deb /tmp/libappstream3_0.9.4-1ubuntu1_amd64.deb 或者： apt show appstream sudo apt remove appstream Ubuntu在虚拟机中显示不全的问题关于这个问题之前也是尝试了无数的方法，今天无意间明白了原因并解决了问题。1、首先要明白的是不是随便一个分辨率都可以更改，首先执行以下命令查询当前的显示状态： xrandr 其中第一个带*的就是当前的分辨率，其下的数值是我们可以更改的分辨率，每个虚拟机可能略有不同。2、执行： xrandr -s 1440x900_59.9 即可将分辨率设置为1440x900。3、上述命令只能临时修改，永久修改需要执行： xrandr --output Virtual1 --mode 1440x900 其中“Virtual1”是显示器的名称，要根据执行xrandr返回的信息进行相应的替换。4、错误这些也是我自己遇到的一点问题。 ①有时候执行步骤3中所说的命令并不能永久更改，重启后会失效。目前一个方法就是在系统设置→显示中应用一下更改过来的分辨率，这样在重启之后就不会出现问题了。②“xrandr: Configure crtc 0 failed” 这是一个系统bug，在设置,关于这台计算机,检查更新。更新完重启后就没问题了。 Ubuntu16.04安装VNC“VNC有很多选择，VNC4server，tigervncserver等等，都不推荐，难装又难用。经过多次实验和测试，最后只采用x11vnc作为VNC服务器端。” 查看原文1、安装X11VNC sudo apt install x11vnc -y 2、配置访问密码 sudo x11vnc -storepasswd /etc/x11vnc.pass 3、创建服务 vi /lib/systemd/system/x11vnc.service 粘贴如下代码： [Unit] Description=Start x11vnc at startup. After=multi-user.target [Service] Type=simple ExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared [Install] WantedBy=multi-user.target 4、配置防火墙，配置并启动服务 sudo ufw allow 5900 sudo systemctl enable x11vnc.service sudo systemctl daemon-reload 如果出现如下图所示的错误，就说明第三步中你的配置信息粘贴错误了，修改正确即可解决。5、重启系统 reboot nat123配置nat123端口映射是专业的内网端口映射软件，在内网启动映射后，可在外网轻松访问连接内网网站等应用，不需要设置路由器，不需要公网ip,不需要固定ip,不需要动态域名。 Ubuntu配置过程：（其它linux直接参考官网说明）0、注册账号没有注册过账号的先到官网注册：http://www.nat123.com/1、安装mono运行环境 apt-get install mono-complete 安装完成后执行“mono -V”可查看安装的版本信息。2、客户端安装 cd /opt mkdir nat123 cd /nat123 wget http://www.nat123.com/down/nat123linux.tar.gz tar -zxvf nat123linux.tar.gz 3、启动客户端 cd /opt/nat123 mono nat123linux.sh 输入用户名和密码登录成功后，直接结束当前进程，然后执行如下命令改为后台运行： cd /opt/nat123 mono nat123linux.sh service &amp; ps -ef|grep nat123 #查看nat123状态 4、登录网页添加端口映射或动态域名解析 RHEL系统意外重启后VNC连接失败在服务器中运行着几个RHEL实例，VNC是之前老师配置的，这几个实例在服务器断电重启之后会出现VNC连接出错的问题。解决方法如下： cd /tmp rm -rvf .X11-unix #手动删除因为VNC非正常退出未删除的文件 vncserver :3 #重启服务]]></content>
       <categories>
-        <category>运维</category>
+        <category>运维，笔记</category>
       </categories>
       <tags>
         <tag>运维</tag>
