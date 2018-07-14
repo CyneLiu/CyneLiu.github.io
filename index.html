@@ -400,7 +400,7 @@ Restore AC Power Loss:如果发生断电，恢复供电后系统如何反应Powe
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/11/虚拟化运维笔记——服务器/#espandi" rel="contents">
+            <a class="btn" href="/2018/07/11/虚拟化运维笔记——服务器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -551,7 +551,7 @@ Restore AC Power Loss:如果发生断电，恢复供电后系统如何反应Powe
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/11/虚拟化运维笔记——vsphere/#espandi" rel="contents">
+            <a class="btn" href="/2018/07/11/虚拟化运维笔记——vsphere/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -700,7 +700,7 @@ sftpsftp(Secure File Transfer Protocol)，安全文件传送协议，可以为�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/03/WinSCP——基于SSH的安全文件传输软件/#espandi" rel="contents">
+            <a class="btn" href="/2018/07/03/WinSCP——基于SSH的安全文件传输软件/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -844,19 +844,25 @@ sftpsftp(Secure File Transfer Protocol)，安全文件传送协议，可以为�
       
         
           
-          UbuntuUbuntu设置静态ip通过修改“/etc/network/interfaces”进行修改，注：在设置多个DNS服务器的时候要加“s”,如：
+          LinuxLinux下使用Rinetd来实现端口转发安装centos0、对于centos，由于官方的源中并没有Rinetd，所以首先需要第三方源32位系统：
 
 
-dns-nameservers 114.114.114.114 8.8.8.8
-修改之后需要执行：  
+$ vim /etc/yum.repos.d/nux-misc.repo
+
+[nux-misc]
+name=Nux Misc
+baseurl=http://li.nux.ro/download/nux/misc/el6/i386/
+enabled=0
+gpgcheck=1
+gpgkey=http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+64位系统：
 
 
-sudo /etc/init.d/networking restart
-使用这个方式修改ip地址，修改完interfaces文档中的内容后，需要修改/etc/NetworkManager/NetworkManager.conf文档中的managed参数，使之为true，并重启。否则，会提示说“有线网络设备未托管”。重启网络或系统之后
+$ vim  /etc/yum.r
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/25/虚拟化运维笔记——Linux/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/25/虚拟化运维笔记——Linux/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1007,7 +1013,7 @@ sudo /etc/init.d/networking restart
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/24/SDN入门（一）——-环境搭建/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/24/SDN入门（一）——-环境搭建/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1170,7 +1176,7 @@ Cinder：为
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/06/19/OpenStack入门（三）——-OpenStack架构/#espandi" rel="contents">
+            <a class="btn" href="/2018/06/19/OpenStack入门（三）——-OpenStack架构/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
