@@ -319,13 +319,13 @@
   </entry>
   
   <entry>
-    <title>Linux入门</title>
+    <title>Linux入门笔记</title>
     <link href="https://cyne.tk/2018/04/10/Linux%E5%85%A5%E9%97%A8/"/>
     <id>https://cyne.tk/2018/04/10/Linux入门/</id>
     <published>2018-04-10T13:19:22.000Z</published>
-    <updated>2018-04-10T13:33:55.419Z</updated>
+    <updated>2018-07-26T12:12:52.350Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h1><h2 id="保存退出"><a href="#保存退出" class="headerlink" title="保存退出"></a>保存退出</h2><blockquote><p>按ESC键 跳到命令模式，然后：</p></blockquote><blockquote><blockquote><p>:w   保存文件但不退出vi<br><em>:w file</em> 将修改另外保存到file中，不退出vi<br><em>:w!</em>   强制保存，不推出vi<br><em>:wq</em>  保存文件并退出vi<br><em>:wq!</em> 强制保存文件，并退出vi<br>_q:_  不保存文件，退出vi<br><em>:q!</em> 不保存文件，强制退出vi<br><em>:e!</em> 放弃所有修改，从上次保存文件开始再编辑  </p></blockquote></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h1><h2 id="保存退出"><a href="#保存退出" class="headerlink" title="保存退出"></a>保存退出</h2><blockquote><p>按ESC键 跳到命令模式，然后：</p></blockquote><blockquote><blockquote><p>:w   保存文件但不退出vi<br><em>:w file</em> 将修改另外保存到file中，不退出vi<br><em>:w!</em>   强制保存，不推出vi<br><em>:wq</em>  保存文件并退出vi<br><em>:wq!</em> 强制保存文件，并退出vi<br>_q:_  不保存文件，退出vi<br><em>:q!</em> 不保存文件，强制退出vi<br><em>:e!</em> 放弃所有修改，从上次保存文件开始再编辑  </p></blockquote></blockquote><p>RPM:packge manager,通过将软件源代码和安装规则打包，从而降低软件安装难度。<br>YUM仓库:保存有大量常用的软件程序包，当用户需要的时候自动下载并按照依赖关系进行安装。</p><blockquote><p>本地:file://<br>网站:http://<br>文件服务器:ftp://</p></blockquote>]]></content>
     
     <summary type="html">
     
