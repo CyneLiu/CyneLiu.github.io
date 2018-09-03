@@ -3,11 +3,11 @@
   <title>Cyne&#39;s Blog</title>
   
   <subtitle>越努力，越幸运！</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="/cyneliu.github.io/atom.xml" rel="self"/>
   
-  <link href="https://cyne.tk/"/>
+  <link href="https://cyneliu.github.io/"/>
   <updated>2018-07-11T13:09:51.361Z</updated>
-  <id>https://cyne.tk/</id>
+  <id>https://cyneliu.github.io/</id>
   
   <author>
     <name>Cyne Liu</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>虚拟化运维笔记——服务器</title>
-    <link href="https://cyne.tk/2018/07/11/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://cyne.tk/2018/07/11/虚拟化运维笔记——服务器/</id>
+    <link href="https://cyneliu.github.io/2018/07/11/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://cyneliu.github.io/2018/07/11/虚拟化运维笔记——服务器/</id>
     <published>2018-07-11T12:28:09.000Z</published>
     <updated>2018-07-11T13:09:51.361Z</updated>
     
@@ -34,17 +34,17 @@
     
     </summary>
     
-      <category term="运维，笔记" scheme="https://cyne.tk/categories/%E8%BF%90%E7%BB%B4%EF%BC%8C%E7%AC%94%E8%AE%B0/"/>
+      <category term="运维，笔记" scheme="https://cyneliu.github.io/categories/%E8%BF%90%E7%BB%B4%EF%BC%8C%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="运维" scheme="https://cyne.tk/tags/%E8%BF%90%E7%BB%B4/"/>
+      <category term="运维" scheme="https://cyneliu.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
   <entry>
     <title>虚拟化运维笔记——vsphere</title>
-    <link href="https://cyne.tk/2018/07/11/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94vsphere/"/>
-    <id>https://cyne.tk/2018/07/11/虚拟化运维笔记——vsphere/</id>
+    <link href="https://cyneliu.github.io/2018/07/11/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94vsphere/"/>
+    <id>https://cyneliu.github.io/2018/07/11/虚拟化运维笔记——vsphere/</id>
     <published>2018-07-11T10:58:49.000Z</published>
     <updated>2018-07-11T11:25:03.427Z</updated>
     
@@ -59,17 +59,17 @@
     
     </summary>
     
-      <category term="运维，笔记" scheme="https://cyne.tk/categories/%E8%BF%90%E7%BB%B4%EF%BC%8C%E7%AC%94%E8%AE%B0/"/>
+      <category term="运维，笔记" scheme="https://cyneliu.github.io/categories/%E8%BF%90%E7%BB%B4%EF%BC%8C%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="运维" scheme="https://cyne.tk/tags/%E8%BF%90%E7%BB%B4/"/>
+      <category term="运维" scheme="https://cyneliu.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
   <entry>
     <title>WinSCP——基于SSH的安全文件传输软件</title>
-    <link href="https://cyne.tk/2018/07/03/WinSCP%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8ESSH%E7%9A%84%E5%AE%89%E5%85%A8%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BD%AF%E4%BB%B6/"/>
-    <id>https://cyne.tk/2018/07/03/WinSCP——基于SSH的安全文件传输软件/</id>
+    <link href="https://cyneliu.github.io/2018/07/03/WinSCP%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8ESSH%E7%9A%84%E5%AE%89%E5%85%A8%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BD%AF%E4%BB%B6/"/>
+    <id>https://cyneliu.github.io/2018/07/03/WinSCP——基于SSH的安全文件传输软件/</id>
     <published>2018-07-03T02:10:14.000Z</published>
     <updated>2018-07-03T02:34:47.347Z</updated>
     
@@ -84,23 +84,23 @@
     
     </summary>
     
-      <category term="Server" scheme="https://cyne.tk/categories/Server/"/>
+      <category term="Server" scheme="https://cyneliu.github.io/categories/Server/"/>
     
     
-      <category term="文件传输" scheme="https://cyne.tk/tags/%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/"/>
+      <category term="文件传输" scheme="https://cyneliu.github.io/tags/%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/"/>
     
-      <category term="Server" scheme="https://cyne.tk/tags/Server/"/>
+      <category term="Server" scheme="https://cyneliu.github.io/tags/Server/"/>
     
   </entry>
   
   <entry>
     <title>虚拟化运维笔记 —— Linux</title>
-    <link href="https://cyne.tk/2018/06/25/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Linux/"/>
-    <id>https://cyne.tk/2018/06/25/虚拟化运维笔记——Linux/</id>
+    <link href="https://cyneliu.github.io/2018/06/25/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Linux/"/>
+    <id>https://cyneliu.github.io/2018/06/25/虚拟化运维笔记——Linux/</id>
     <published>2018-06-25T13:50:33.000Z</published>
-    <updated>2018-07-14T08:35:32.095Z</updated>
+    <updated>2018-08-09T05:39:30.052Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="Linux下使用Rinetd来实现端口转发"><a href="#Linux下使用Rinetd来实现端口转发" class="headerlink" title="Linux下使用Rinetd来实现端口转发"></a>Linux下使用Rinetd来实现端口转发</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><strong>centos</strong><br>0、对于centos，由于官方的源中并没有Rinetd，所以首先需要第三方源<br>32位系统：</p><blockquote></blockquote><pre><code>$ vim /etc/yum.repos.d/nux-misc.repo[nux-misc]name=Nux Miscbaseurl=http://li.nux.ro/download/nux/misc/el6/i386/enabled=0gpgcheck=1gpgkey=http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</code></pre><p>64位系统：</p><blockquote></blockquote><pre><code>$ vim  /etc/yum.repos.d/nux-misc.repo:[nux-misc]name=Nux Miscbaseurl=http://li.nux.ro/download/nux/misc/el6/x86_64/enabled=0gpgcheck=1gpgkey=http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</code></pre><p>1、安装Rinetd</p><blockquote></blockquote><pre><code>$ yum --enablerepo=nux-misc install rinetd</code></pre><p><strong>Ubuntu</strong></p><blockquote></blockquote><pre><code>apt-get install rinetd</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>端口转发的配置文件在<em>/etc/rinetd.conf</em><br>配置文件的格式：</p><blockquote></blockquote><pre><code>[bindaddress] [bindport] [connectaddress] [connectport]绑定的地址    绑定的端口  连接的地址      连接的端口[Source Address] [Source Port] [Destination Address] [Destination Port]源地址            源端口         目的地址               目的端口</code></pre><p>例如：</p><blockquote></blockquote><pre><code>0.0.0.0 8080 172.19.94.3 80800.0.0.0 2222 192.168.0.103 33891.2.3.4 80 192.168.0.10 80allow *.*.*.*logfile /var/log/rinetd.log</code></pre><p>说明  </p><blockquote><p>0.0.0.0表示本机绑定所有可用地址<br>将所有发往本机8080端口的请求转发到172.19.94.3的8080端口<br>将所有发往本机2222端口的请求转发到192.168.0.103的3389端口<br>将所有发往1.2.3.4的80端口请求转发到192.168.0.10的80端口<br>allow设置允许访问的ip地址信息,<em>.</em>.<em>.</em>表示所有IP地址<br>logfil设置打印的log的位置  </p></blockquote><h3 id="启动程序"><a href="#启动程序" class="headerlink" title="启动程序"></a>启动程序</h3><blockquote></blockquote><pre><code>pkill rinetd  ##关闭进程rinetd -c /etc/rinetd.conf  ##启动转发</code></pre><p>把命令加到/etc/rc.local里面就可以开机自动运行</p><h1 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h1><h2 id="Ubuntu设置静态ip"><a href="#Ubuntu设置静态ip" class="headerlink" title="Ubuntu设置静态ip"></a>Ubuntu设置静态ip</h2><p>通过修改“/etc/network/interfaces”进行修改，<br><img src="https://i.loli.net/2018/06/25/5b30f4ef9991f.png" alt="QQ图片20180625214835.png"><br>注：在设置多个DNS服务器的时候要加“s”,如：</p><blockquote></blockquote><pre><code>dns-nameservers 114.114.114.114 8.8.8.8</code></pre><p>修改之后需要执行：  </p><blockquote></blockquote><pre><code>sudo /etc/init.d/networking restart</code></pre><p>使用这个方式修改ip地址，修改完interfaces文档中的内容后，需要修改/etc/NetworkManager/NetworkManager.conf文档中的managed参数，使之为true，并重启。否则，会提示说“有线网络设备未托管”。<br>重启网络或系统之后就修改完成了。  </p><h2 id="安装TeamViewer"><a href="#安装TeamViewer" class="headerlink" title="安装TeamViewer"></a>安装TeamViewer</h2><p>teamviewer远程登录的方式不建议使用！<br>1、到TeamViewer官网下载对应版本的安装包。<br>2、下载完成之后切换到下载目录，执行：</p><blockquote></blockquote><pre><code>sudo dpkg -i teamviewer_13.0.9865_amd64.deb</code></pre><p>版本号要根据下载的包进行更改。<br>这时候可能会报出如下错误：</p><blockquote></blockquote><pre><code>正在选中未选择的软件包 teamviewer。 (正在读取数据库 … 系统当前共安装有 253291 个文件和目录。) 正准备解包 teamviewer_13.0.6634_amd64.deb … 正在解包 teamviewer (13.0.6634) … dpkg：警告：无法删除原有的目录 /var/log/teamviewer12 ：目录非空 dpkg: 依赖关系问题使得 teamviewer 的配置工作不能继续： teamviewer 依赖于 qtdeclarative5-dialogs-plugin (&gt;= 5.2) | qml-module-qtquick-dialogs (&gt;= 5.2)；然而： 未安装软件包 qtdeclarative5-dialogs-plugin。 未安装软件包 qml-module-qtquick-dialogs。 dpkg: 处理软件包 teamviewer (–install)时出错： 依赖关系问题 - 仍未被配置 正在处理用于 desktop-file-utils (0.22-1ubuntu5.1) 的触发器 … 正在处理用于 gnome-menus (3.13.3-6ubuntu3.1) 的触发器 … 正在处理用于 bamfdaemon (0.5.3~bzr0+16.04.20160824-0ubuntu1) 的触发器 … Rebuilding /usr/share/applications/bamf-2.index… 正在处理用于 mime-support (3.59ubuntu1) 的触发器 … 正在处理用于 hicolor-icon-theme (0.15-0ubuntu1) 的触发器 … 在处理时有错误发生： teamviewer</code></pre><p>目前我遇到的有两种解决方式：<br>一、修复依赖关系</p><blockquote><p>一种解决方法是执行如下命令修复依赖关系：   </p></blockquote><pre><code>sudo apt install f</code></pre><p>执行完后再安装看看能否成功，如果还是不成功就要采用第二种方式了。<br>二、更新源地址</p><blockquote><p>①删除安装到一半的teamviewer：</p></blockquote><pre><code>sudo apt-get remove teamviewer</code></pre><p>②在Ubuntu的<a href="http://wiki.ubuntu.org.cn/%E6%BA%90%E5%88%97%E8%A1%A8" target="_blank" rel="noopener">源列表</a>中找到对应系统的源，复制到/etc/apt/sources.list 里面，并把原来的链接注释掉。<br>③更新系统软件：</p><blockquote></blockquote><pre><code>sudo apt-get update #更新软件列表sudo apt-get upgrade #更新软件</code></pre><p>④运行安装命令：</p><blockquote></blockquote><pre><code>sudo dpkg -i teamviewer_13.0.9865_amd64.deb</code></pre><p>3、在TeamViewer的使用中发现经常在系统重启后连接就出现“未知原因”的问题，原因还在摸索中，目前能解决的方法就是卸载重新安装：</p><blockquote></blockquote><pre><code>apt purge teamviewersudo dpkg -i teamviewer_13.0.9865_amd64.deb</code></pre><h2 id="16-04出现“The-system-is-running-in-low-graphics-mode”"><a href="#16-04出现“The-system-is-running-in-low-graphics-mode”" class="headerlink" title="16.04出现“The system is running in low-graphics mode”"></a>16.04出现“The system is running in low-graphics mode”</h2><p>在虚拟机中安装的Ubuntu16.04无法显示完全，尝试修改分辨率后会卡死，然后重启就会出现如题所示的错误。<br>解决方法为：<br>1、重启虚拟机，按ctrl + alt + F1 进入纯字符界面，输入账号和密码<br>2、执行如下命令：</p><blockquote></blockquote><pre><code>cd /etc/X11sudo cp xorg.conf.failsafe xorg.conf #刷新配置文件sudo reboot</code></pre><p>重启之后就可以正常显示了。</p><h2 id="启用root用户"><a href="#启用root用户" class="headerlink" title="启用root用户"></a>启用root用户</h2><p>执行：</p><blockquote></blockquote><pre><code>sudo passwd root</code></pre><p>设置密码后即可使用su直接切换为root用户。<br><img src="https://img-blog.csdn.net/20160722112307840" alt=""></p><h2 id="安装GNOME-Shell桌面"><a href="#安装GNOME-Shell桌面" class="headerlink" title="安装GNOME Shell桌面"></a>安装GNOME Shell桌面</h2><p>1、安装GNOME Shell</p><blockquote></blockquote><pre><code>sudo apt-get install gnome-shell</code></pre><p>安装过程中出现如下界面，选择lightdm：<br><img src="https://4bds6hergc-flywheel.netdna-ssl.com/wp-content/uploads/2014/06/Switch_between_gdm_and_lightgdm_Ubuntu.jpeg" alt=""><br>2、退出当前账户，选择GNOME桌面系统<br>3、重新登陆，安装gnome-tweak</p><blockquote></blockquote><pre><code>sudo apt-get install gnome-tweak-tool</code></pre><p>tweak是主题管理工具，具体使用方法参见：<br><a href="https://itsfoss.com/install-switch-themes-gnome-shell/" target="_blank" rel="noopener">https://itsfoss.com/install-switch-themes-gnome-shell/ </a><br>4、使用tweak更换主题<br>方法参考：<br><a href="https://itsfoss.com/gnome-shell-themes-ubuntu-1404/" target="_blank" rel="noopener">https://itsfoss.com/gnome-shell-themes-ubuntu-1404/</a>  </p><h2 id="执行sudo-apt-get-update出错"><a href="#执行sudo-apt-get-update出错" class="headerlink" title="执行sudo apt-get update出错"></a>执行sudo apt-get update出错</h2><p>在运行sudo apt-get update时出现如下信息：</p><blockquote></blockquote><pre><code>Reading package lists... DoneE: Problem executing scripts APT::Update::Post-Invoke-Success&apos;if /usr/bin/test -w /var/cache/app-info -a -e /usr/bin/appstreamcli;then appstreamcli refresh &gt; /dev/null;fi&apos;E: Sub-process returned an error code</code></pre><p>解决方法如下：</p><blockquote></blockquote><pre><code>sudo pkill -KILL appstreamcliwget -P /tmp https://launchpad.net/ubuntu/+archive/primary/+files/appstream_0.9.4-1ubuntu1_amd64.deb https://launchpad.net/ubuntu/+archive/primary/+files/libappstream3_0.9.4-1ubuntu1_amd64.debsudo dpkg -i /tmp/appstream_0.9.4-1ubuntu1_amd64.deb /tmp/libappstream3_0.9.4-1ubuntu1_amd64.deb</code></pre><p>或者：</p><blockquote></blockquote><pre><code>apt show appstreamsudo apt remove appstream</code></pre><h2 id="Ubuntu在虚拟机中显示不全的问题"><a href="#Ubuntu在虚拟机中显示不全的问题" class="headerlink" title="Ubuntu在虚拟机中显示不全的问题"></a>Ubuntu在虚拟机中显示不全的问题</h2><p>关于这个问题之前也是尝试了无数的方法，今天无意间明白了原因并解决了问题。<br>1、首先要明白的是不是随便一个分辨率都可以更改，首先执行以下命令查询当前的显示状态：</p><blockquote></blockquote><pre><code>xrandr</code></pre><p><img src="https://img-blog.csdn.net/20150602205903147?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaXRhczEwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>其中第一个带*的就是当前的分辨率，其下的数值是我们可以更改的分辨率，每个虚拟机可能略有不同。<br>2、执行：</p><blockquote></blockquote><pre><code>xrandr -s 1440x900_59.9</code></pre><p>即可将分辨率设置为1440x900。<br>3、上述命令只能临时修改，永久修改需要执行：</p><blockquote></blockquote><pre><code>xrandr --output Virtual1 --mode 1440x900</code></pre><p>其中“Virtual1”是显示器的名称，要根据执行xrandr返回的信息进行相应的替换。<br>4、错误<br>这些也是我自己遇到的一点问题。</p><blockquote><p>①有时候执行步骤3中所说的命令并不能永久更改，重启后会失效。目前一个方法就是在系统设置→显示中应用一下更改过来的分辨率，这样在重启之后就不会出现问题了。<br>②“xrandr: Configure crtc 0 failed”  </p><blockquote><p>这是一个系统bug，在设置,关于这台计算机,检查更新。更新完重启后就没问题了。</p></blockquote></blockquote><h2 id="Ubuntu16-04安装VNC"><a href="#Ubuntu16-04安装VNC" class="headerlink" title="Ubuntu16.04安装VNC"></a>Ubuntu16.04安装VNC</h2><p>“VNC有很多选择，VNC4server，tigervncserver等等，都不推荐，难装又难用。经过多次实验和测试，最后只采用x11vnc作为VNC服务器端。” <a href="https://blog.csdn.net/longhr/article/details/51657610" target="_blank" rel="noopener">查看原文</a><br>1、安装X11VNC</p><blockquote></blockquote><pre><code>sudo apt install x11vnc -y</code></pre><p>2、配置访问密码</p><blockquote></blockquote><pre><code>sudo x11vnc -storepasswd /etc/x11vnc.pass </code></pre><p>3、创建服务</p><blockquote></blockquote><pre><code>vi  /lib/systemd/system/x11vnc.service</code></pre><blockquote><p>粘贴如下代码：</p></blockquote><pre><code>[Unit]Description=Start x11vnc at startup.After=multi-user.target[Service]Type=simpleExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared[Install]WantedBy=multi-user.target</code></pre><p>4、配置防火墙，配置并启动服务</p><blockquote></blockquote><pre><code>sudo ufw allow 5900sudo systemctl enable x11vnc.servicesudo systemctl daemon-reload</code></pre><p>如果出现如下图所示的错误，就说明第三步中你的配置信息粘贴错误了，修改正确即可解决。<img src="https://i.loli.net/2018/06/30/5b37243cc1a2e.jpg" alt="QQ图片20180630142539.jpg"><br>5、重启系统</p><blockquote></blockquote><pre><code>reboot</code></pre><h2 id="nat123配置"><a href="#nat123配置" class="headerlink" title="nat123配置"></a>nat123配置</h2><p>nat123端口映射是专业的内网端口映射软件，在内网启动映射后，可在外网轻松访问连接内网网站等应用，不需要设置路由器，不需要公网ip,不需要固定ip,不需要动态域名。  </p><p>Ubuntu配置过程：（其它linux直接参考<a href="http://www.nat123.com/pages_17_600.jsp" target="_blank" rel="noopener">官网说明</a>）<br>0、注册账号<br>没有注册过账号的先到官网注册：<a href="http://www.nat123.com/" target="_blank" rel="noopener">http://www.nat123.com/</a><br>1、安装mono运行环境</p><blockquote></blockquote><pre><code>apt-get  install  mono-complete</code></pre><p>安装完成后执行“mono -V”可查看安装的版本信息。<br>2、客户端安装</p><blockquote></blockquote><pre><code>cd  /optmkdir  nat123cd  /nat123wget  http://www.nat123.com/down/nat123linux.tar.gztar  -zxvf  nat123linux.tar.gz</code></pre><p>3、启动客户端</p><blockquote></blockquote><pre><code>cd  /opt/nat123mono  nat123linux.sh</code></pre><p>输入用户名和密码登录成功后，直接结束当前进程，然后执行如下命令改为后台运行：</p><blockquote></blockquote><pre><code>cd  /opt/nat123mono  nat123linux.sh service &amp;ps  -ef|grep  nat123 #查看nat123状态</code></pre><p>4、登录网页添加端口映射或动态域名解析</p><h1 id="RHEL"><a href="#RHEL" class="headerlink" title="RHEL"></a>RHEL</h1><h2 id="系统意外重启后VNC连接失败"><a href="#系统意外重启后VNC连接失败" class="headerlink" title="系统意外重启后VNC连接失败"></a>系统意外重启后VNC连接失败</h2><p>在服务器中运行着几个RHEL实例，VNC是之前老师配置的，这几个实例在服务器断电重启之后会出现VNC连接出错的问题。解决方法如下：</p><blockquote></blockquote><pre><code>cd /tmprm -rvf .X11-unix #手动删除因为VNC非正常退出未删除的文件vncserver :3 #重启服务</code></pre>]]></content>
+    <content type="html"><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="Linux下使用Rinetd来实现端口转发"><a href="#Linux下使用Rinetd来实现端口转发" class="headerlink" title="Linux下使用Rinetd来实现端口转发"></a>Linux下使用Rinetd来实现端口转发</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><strong>centos</strong><br>0、对于centos，由于官方的源中并没有Rinetd，所以首先需要第三方源<br>32位系统：</p><blockquote></blockquote><pre><code>$ vim /etc/yum.repos.d/nux-misc.repo[nux-misc]name=Nux Miscbaseurl=http://li.nux.ro/download/nux/misc/el6/i386/enabled=0gpgcheck=1gpgkey=http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</code></pre><p>64位系统：</p><blockquote></blockquote><pre><code>$ vim  /etc/yum.repos.d/nux-misc.repo:[nux-misc]name=Nux Miscbaseurl=http://li.nux.ro/download/nux/misc/el6/x86_64/enabled=0gpgcheck=1gpgkey=http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</code></pre><p>1、安装Rinetd</p><blockquote></blockquote><pre><code>$ yum --enablerepo=nux-misc install rinetd</code></pre><p><strong>Ubuntu</strong></p><blockquote></blockquote><pre><code>apt-get install rinetd</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>端口转发的配置文件在<em>/etc/rinetd.conf</em><br>配置文件的格式：</p><blockquote></blockquote><pre><code>[bindaddress] [bindport] [connectaddress] [connectport]绑定的地址    绑定的端口  连接的地址      连接的端口[Source Address] [Source Port] [Destination Address] [Destination Port]源地址            源端口         目的地址               目的端口</code></pre><p>例如：</p><blockquote></blockquote><pre><code>0.0.0.0 8080 172.19.94.3 80800.0.0.0 2222 192.168.0.103 33891.2.3.4 80 192.168.0.10 80allow *.*.*.*logfile /var/log/rinetd.log</code></pre><p>说明  </p><blockquote><p>0.0.0.0表示本机绑定所有可用地址<br>将所有发往本机8080端口的请求转发到172.19.94.3的8080端口<br>将所有发往本机2222端口的请求转发到192.168.0.103的3389端口<br>将所有发往1.2.3.4的80端口请求转发到192.168.0.10的80端口<br>allow设置允许访问的ip地址信息,<em>.</em>.<em>.</em>表示所有IP地址<br>logfil设置打印的log的位置  </p></blockquote><h3 id="启动程序"><a href="#启动程序" class="headerlink" title="启动程序"></a>启动程序</h3><blockquote></blockquote><pre><code>pkill rinetd  ##关闭进程rinetd -c /etc/rinetd.conf  ##启动转发</code></pre><p>把命令加到/etc/rc.local里面就可以开机自动运行</p><h1 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h1><h2 id="默认编辑器nano"><a href="#默认编辑器nano" class="headerlink" title="默认编辑器nano"></a>默认编辑器nano</h2><p>用习惯了vim编辑器，有时候想修改配置文件，可设备又没网，Ubuntu默认使用的是nano编辑器，真心不如vim好用。</p><blockquote></blockquote><pre><code>ctrl+X  #退出ctrl+O  #保存</code></pre><h2 id="Ubuntu设置静态ip"><a href="#Ubuntu设置静态ip" class="headerlink" title="Ubuntu设置静态ip"></a>Ubuntu设置静态ip</h2><p>通过修改“/etc/network/interfaces”进行修改，<br><img src="https://i.loli.net/2018/06/25/5b30f4ef9991f.png" alt="QQ图片20180625214835.png"><br>注：在设置多个DNS服务器的时候要加“s”,如：</p><blockquote></blockquote><pre><code>dns-nameservers 114.114.114.114 8.8.8.8</code></pre><p>修改之后需要执行：  </p><blockquote></blockquote><pre><code>sudo /etc/init.d/networking restart</code></pre><p>使用这个方式修改ip地址，修改完interfaces文档中的内容后，需要修改/etc/NetworkManager/NetworkManager.conf文档中的managed参数，使之为true，并重启。否则，会提示说“有线网络设备未托管”。<br>重启网络或系统之后就修改完成了。  </p><h2 id="安装TeamViewer"><a href="#安装TeamViewer" class="headerlink" title="安装TeamViewer"></a>安装TeamViewer</h2><p>teamviewer远程登录的方式不建议使用！<br>1、到TeamViewer官网下载对应版本的安装包。<br>2、下载完成之后切换到下载目录，执行：</p><blockquote></blockquote><pre><code>sudo dpkg -i teamviewer_13.0.9865_amd64.deb</code></pre><p>版本号要根据下载的包进行更改。<br>这时候可能会报出如下错误：</p><blockquote></blockquote><pre><code>正在选中未选择的软件包 teamviewer。 (正在读取数据库 … 系统当前共安装有 253291 个文件和目录。) 正准备解包 teamviewer_13.0.6634_amd64.deb … 正在解包 teamviewer (13.0.6634) … dpkg：警告：无法删除原有的目录 /var/log/teamviewer12 ：目录非空 dpkg: 依赖关系问题使得 teamviewer 的配置工作不能继续： teamviewer 依赖于 qtdeclarative5-dialogs-plugin (&gt;= 5.2) | qml-module-qtquick-dialogs (&gt;= 5.2)；然而： 未安装软件包 qtdeclarative5-dialogs-plugin。 未安装软件包 qml-module-qtquick-dialogs。 dpkg: 处理软件包 teamviewer (–install)时出错： 依赖关系问题 - 仍未被配置 正在处理用于 desktop-file-utils (0.22-1ubuntu5.1) 的触发器 … 正在处理用于 gnome-menus (3.13.3-6ubuntu3.1) 的触发器 … 正在处理用于 bamfdaemon (0.5.3~bzr0+16.04.20160824-0ubuntu1) 的触发器 … Rebuilding /usr/share/applications/bamf-2.index… 正在处理用于 mime-support (3.59ubuntu1) 的触发器 … 正在处理用于 hicolor-icon-theme (0.15-0ubuntu1) 的触发器 … 在处理时有错误发生： teamviewer</code></pre><p>目前我遇到的有两种解决方式：<br>一、修复依赖关系</p><blockquote><p>一种解决方法是执行如下命令修复依赖关系：   </p></blockquote><pre><code>sudo apt install f</code></pre><p>执行完后再安装看看能否成功，如果还是不成功就要采用第二种方式了。<br>二、更新源地址</p><blockquote><p>①删除安装到一半的teamviewer：</p></blockquote><pre><code>sudo apt-get remove teamviewer</code></pre><p>②在Ubuntu的<a href="http://wiki.ubuntu.org.cn/%E6%BA%90%E5%88%97%E8%A1%A8" target="_blank" rel="noopener">源列表</a>中找到对应系统的源，复制到/etc/apt/sources.list 里面，并把原来的链接注释掉。<br>③更新系统软件：</p><blockquote></blockquote><pre><code>sudo apt-get update #更新软件列表sudo apt-get upgrade #更新软件</code></pre><p>④运行安装命令：</p><blockquote></blockquote><pre><code>sudo dpkg -i teamviewer_13.0.9865_amd64.deb</code></pre><p>3、在TeamViewer的使用中发现经常在系统重启后连接就出现“未知原因”的问题，原因还在摸索中，目前能解决的方法就是卸载重新安装：</p><blockquote></blockquote><pre><code>apt purge teamviewersudo dpkg -i teamviewer_13.0.9865_amd64.deb</code></pre><h2 id="16-04出现“The-system-is-running-in-low-graphics-mode”"><a href="#16-04出现“The-system-is-running-in-low-graphics-mode”" class="headerlink" title="16.04出现“The system is running in low-graphics mode”"></a>16.04出现“The system is running in low-graphics mode”</h2><p>在虚拟机中安装的Ubuntu16.04无法显示完全，尝试修改分辨率后会卡死，然后重启就会出现如题所示的错误。<br>解决方法为：<br>1、重启虚拟机，按ctrl + alt + F1 进入纯字符界面，输入账号和密码<br>2、执行如下命令：</p><blockquote></blockquote><pre><code>cd /etc/X11sudo cp xorg.conf.failsafe xorg.conf #刷新配置文件sudo reboot</code></pre><p>重启之后就可以正常显示了。</p><h2 id="启用root用户"><a href="#启用root用户" class="headerlink" title="启用root用户"></a>启用root用户</h2><p>执行：</p><blockquote></blockquote><pre><code>sudo passwd root</code></pre><p>设置密码后即可使用su直接切换为root用户。<br><img src="https://img-blog.csdn.net/20160722112307840" alt=""></p><h2 id="安装GNOME-Shell桌面"><a href="#安装GNOME-Shell桌面" class="headerlink" title="安装GNOME Shell桌面"></a>安装GNOME Shell桌面</h2><p>1、安装GNOME Shell</p><blockquote></blockquote><pre><code>sudo apt-get install gnome-shell</code></pre><p>安装过程中出现如下界面，选择lightdm：<br><img src="https://4bds6hergc-flywheel.netdna-ssl.com/wp-content/uploads/2014/06/Switch_between_gdm_and_lightgdm_Ubuntu.jpeg" alt=""><br>2、退出当前账户，选择GNOME桌面系统<br>3、重新登陆，安装gnome-tweak</p><blockquote></blockquote><pre><code>sudo apt-get install gnome-tweak-tool</code></pre><p>tweak是主题管理工具，具体使用方法参见：<br><a href="https://itsfoss.com/install-switch-themes-gnome-shell/" target="_blank" rel="noopener">https://itsfoss.com/install-switch-themes-gnome-shell/ </a><br>4、使用tweak更换主题<br>方法参考：<br><a href="https://itsfoss.com/gnome-shell-themes-ubuntu-1404/" target="_blank" rel="noopener">https://itsfoss.com/gnome-shell-themes-ubuntu-1404/</a>  </p><h2 id="执行sudo-apt-get-update出错"><a href="#执行sudo-apt-get-update出错" class="headerlink" title="执行sudo apt-get update出错"></a>执行sudo apt-get update出错</h2><p>在运行sudo apt-get update时出现如下信息：</p><blockquote></blockquote><pre><code>Reading package lists... DoneE: Problem executing scripts APT::Update::Post-Invoke-Success&apos;if /usr/bin/test -w /var/cache/app-info -a -e /usr/bin/appstreamcli;then appstreamcli refresh &gt; /dev/null;fi&apos;E: Sub-process returned an error code</code></pre><p>解决方法如下：</p><blockquote></blockquote><pre><code>sudo pkill -KILL appstreamcliwget -P /tmp https://launchpad.net/ubuntu/+archive/primary/+files/appstream_0.9.4-1ubuntu1_amd64.deb https://launchpad.net/ubuntu/+archive/primary/+files/libappstream3_0.9.4-1ubuntu1_amd64.debsudo dpkg -i /tmp/appstream_0.9.4-1ubuntu1_amd64.deb /tmp/libappstream3_0.9.4-1ubuntu1_amd64.deb</code></pre><p>或者：</p><blockquote></blockquote><pre><code>apt show appstreamsudo apt remove appstream</code></pre><h2 id="Ubuntu在虚拟机中显示不全的问题"><a href="#Ubuntu在虚拟机中显示不全的问题" class="headerlink" title="Ubuntu在虚拟机中显示不全的问题"></a>Ubuntu在虚拟机中显示不全的问题</h2><p>关于这个问题之前也是尝试了无数的方法，今天无意间明白了原因并解决了问题。<br>1、首先要明白的是不是随便一个分辨率都可以更改，首先执行以下命令查询当前的显示状态：</p><blockquote></blockquote><pre><code>xrandr</code></pre><p><img src="https://img-blog.csdn.net/20150602205903147?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaXRhczEwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>其中第一个带*的就是当前的分辨率，其下的数值是我们可以更改的分辨率，每个虚拟机可能略有不同。<br>2、执行：</p><blockquote></blockquote><pre><code>xrandr -s 1440x900_59.9</code></pre><p>即可将分辨率设置为1440x900。<br>3、上述命令只能临时修改，永久修改需要执行：</p><blockquote></blockquote><pre><code>xrandr --output Virtual1 --mode 1440x900</code></pre><p>其中“Virtual1”是显示器的名称，要根据执行xrandr返回的信息进行相应的替换。<br>4、错误<br>这些也是我自己遇到的一点问题。</p><blockquote><p>①有时候执行步骤3中所说的命令并不能永久更改，重启后会失效。目前一个方法就是在系统设置→显示中应用一下更改过来的分辨率，这样在重启之后就不会出现问题了。<br>②“xrandr: Configure crtc 0 failed”  </p><blockquote><p>这是一个系统bug，在设置,关于这台计算机,检查更新。更新完重启后就没问题了。</p></blockquote></blockquote><h2 id="Ubuntu16-04安装VNC"><a href="#Ubuntu16-04安装VNC" class="headerlink" title="Ubuntu16.04安装VNC"></a>Ubuntu16.04安装VNC</h2><p>“VNC有很多选择，VNC4server，tigervncserver等等，都不推荐，难装又难用。经过多次实验和测试，最后只采用x11vnc作为VNC服务器端。” <a href="https://blog.csdn.net/longhr/article/details/51657610" target="_blank" rel="noopener">查看原文</a><br>1、安装X11VNC</p><blockquote></blockquote><pre><code>sudo apt install x11vnc -y</code></pre><p>2、配置访问密码</p><blockquote></blockquote><pre><code>sudo x11vnc -storepasswd /etc/x11vnc.pass </code></pre><p>3、创建服务</p><blockquote></blockquote><pre><code>vi  /lib/systemd/system/x11vnc.service</code></pre><blockquote><p>粘贴如下代码：</p></blockquote><pre><code>[Unit]Description=Start x11vnc at startup.After=multi-user.target[Service]Type=simpleExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared[Install]WantedBy=multi-user.target</code></pre><p>4、配置防火墙，配置并启动服务</p><blockquote></blockquote><pre><code>sudo ufw allow 5900sudo systemctl enable x11vnc.servicesudo systemctl daemon-reload</code></pre><p>如果出现如下图所示的错误，就说明第三步中你的配置信息粘贴错误了，修改正确即可解决。<img src="https://i.loli.net/2018/06/30/5b37243cc1a2e.jpg" alt="QQ图片20180630142539.jpg"><br>5、重启系统</p><blockquote></blockquote><pre><code>reboot</code></pre><h2 id="nat123配置"><a href="#nat123配置" class="headerlink" title="nat123配置"></a>nat123配置</h2><p>nat123端口映射是专业的内网端口映射软件，在内网启动映射后，可在外网轻松访问连接内网网站等应用，不需要设置路由器，不需要公网ip,不需要固定ip,不需要动态域名。  </p><p>Ubuntu配置过程：（其它linux直接参考<a href="http://www.nat123.com/pages_17_600.jsp" target="_blank" rel="noopener">官网说明</a>）<br>0、注册账号<br>没有注册过账号的先到官网注册：<a href="http://www.nat123.com/" target="_blank" rel="noopener">http://www.nat123.com/</a><br>1、安装mono运行环境</p><blockquote></blockquote><pre><code>apt-get  install  mono-complete</code></pre><p>安装完成后执行“mono -V”可查看安装的版本信息。<br>2、客户端安装</p><blockquote></blockquote><pre><code>cd  /optmkdir  nat123cd  /nat123wget  http://www.nat123.com/down/nat123linux.tar.gztar  -zxvf  nat123linux.tar.gz</code></pre><p>3、启动客户端</p><blockquote></blockquote><pre><code>cd  /opt/nat123mono  nat123linux.sh</code></pre><p>输入用户名和密码登录成功后，直接结束当前进程，然后执行如下命令改为后台运行：</p><blockquote></blockquote><pre><code>cd  /opt/nat123mono  nat123linux.sh service &amp;ps  -ef|grep  nat123 #查看nat123状态</code></pre><p>4、登录网页添加端口映射或动态域名解析</p><h1 id="RHEL"><a href="#RHEL" class="headerlink" title="RHEL"></a>RHEL</h1><h2 id="系统意外重启后VNC连接失败"><a href="#系统意外重启后VNC连接失败" class="headerlink" title="系统意外重启后VNC连接失败"></a>系统意外重启后VNC连接失败</h2><p>在服务器中运行着几个RHEL实例，VNC是之前老师配置的，这几个实例在服务器断电重启之后会出现VNC连接出错的问题。解决方法如下：</p><blockquote></blockquote><pre><code>cd /tmprm -rvf .X11-unix #手动删除因为VNC非正常退出未删除的文件vncserver :3 #重启服务</code></pre>]]></content>
     
     <summary type="html">
     
@@ -111,17 +111,17 @@
     
     </summary>
     
-      <category term="运维，笔记" scheme="https://cyne.tk/categories/%E8%BF%90%E7%BB%B4%EF%BC%8C%E7%AC%94%E8%AE%B0/"/>
+      <category term="运维，笔记" scheme="https://cyneliu.github.io/categories/%E8%BF%90%E7%BB%B4%EF%BC%8C%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="运维" scheme="https://cyne.tk/tags/%E8%BF%90%E7%BB%B4/"/>
+      <category term="运维" scheme="https://cyneliu.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
   <entry>
     <title>SDN入门（一）—— 环境搭建</title>
-    <link href="https://cyne.tk/2018/06/24/SDN%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    <id>https://cyne.tk/2018/06/24/SDN入门（一）——-环境搭建/</id>
+    <link href="https://cyneliu.github.io/2018/06/24/SDN%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>https://cyneliu.github.io/2018/06/24/SDN入门（一）——-环境搭建/</id>
     <published>2018-06-24T01:20:49.000Z</published>
     <updated>2018-06-30T06:25:22.669Z</updated>
     
@@ -136,19 +136,19 @@
     
     </summary>
     
-      <category term="学习笔记" scheme="https://cyne.tk/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="学习笔记" scheme="https://cyneliu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="网工" scheme="https://cyne.tk/tags/%E7%BD%91%E5%B7%A5/"/>
+      <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
     
-      <category term="SDN" scheme="https://cyne.tk/tags/SDN/"/>
+      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
     
   </entry>
   
   <entry>
     <title>OpenStack入门（三）—— OpenStack架构</title>
-    <link href="https://cyne.tk/2018/06/19/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-OpenStack%E6%9E%B6%E6%9E%84/"/>
-    <id>https://cyne.tk/2018/06/19/OpenStack入门（三）——-OpenStack架构/</id>
+    <link href="https://cyneliu.github.io/2018/06/19/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-OpenStack%E6%9E%B6%E6%9E%84/"/>
+    <id>https://cyneliu.github.io/2018/06/19/OpenStack入门（三）——-OpenStack架构/</id>
     <published>2018-06-19T11:51:37.000Z</published>
     <updated>2018-06-21T12:43:45.534Z</updated>
     
@@ -164,19 +164,19 @@
     
     </summary>
     
-      <category term="学习笔记" scheme="https://cyne.tk/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="学习笔记" scheme="https://cyneliu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="OpenStack" scheme="https://cyne.tk/tags/OpenStack/"/>
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
     
-      <category term="网工" scheme="https://cyne.tk/tags/%E7%BD%91%E5%B7%A5/"/>
+      <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
     
   </entry>
   
   <entry>
     <title>OpenStack入门（二）—— 云计算</title>
-    <link href="https://cyne.tk/2018/06/19/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
-    <id>https://cyne.tk/2018/06/19/OpenStack入门（二）——-云计算/</id>
+    <link href="https://cyneliu.github.io/2018/06/19/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+    <id>https://cyneliu.github.io/2018/06/19/OpenStack入门（二）——-云计算/</id>
     <published>2018-06-19T11:31:46.000Z</published>
     <updated>2018-06-19T11:47:01.137Z</updated>
     
@@ -191,19 +191,19 @@
     
     </summary>
     
-      <category term="学习笔记" scheme="https://cyne.tk/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="学习笔记" scheme="https://cyneliu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="OpenStack" scheme="https://cyne.tk/tags/OpenStack/"/>
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
     
-      <category term="网工" scheme="https://cyne.tk/tags/%E7%BD%91%E5%B7%A5/"/>
+      <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
     
   </entry>
   
   <entry>
     <title>OpenStack入门（一）—— 虚拟化</title>
-    <link href="https://cyne.tk/2018/06/06/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    <id>https://cyne.tk/2018/06/06/OpenStack入门（一）——-虚拟化/</id>
+    <link href="https://cyneliu.github.io/2018/06/06/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    <id>https://cyneliu.github.io/2018/06/06/OpenStack入门（一）——-虚拟化/</id>
     <published>2018-06-06T11:45:18.000Z</published>
     <updated>2018-06-27T13:04:17.650Z</updated>
     
@@ -218,19 +218,19 @@
     
     </summary>
     
-      <category term="学习笔记" scheme="https://cyne.tk/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="学习笔记" scheme="https://cyneliu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="OpenStack" scheme="https://cyne.tk/tags/OpenStack/"/>
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
     
-      <category term="网工" scheme="https://cyne.tk/tags/%E7%BD%91%E5%B7%A5/"/>
+      <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
     
   </entry>
   
   <entry>
     <title>基于阿卡信自建聊天服务器</title>
-    <link href="https://cyne.tk/2018/06/03/%E5%9F%BA%E4%BA%8E%E9%98%BF%E5%8D%A1%E4%BF%A1%E8%87%AA%E5%BB%BA%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://cyne.tk/2018/06/03/基于阿卡信自建聊天服务器/</id>
+    <link href="https://cyneliu.github.io/2018/06/03/%E5%9F%BA%E4%BA%8E%E9%98%BF%E5%8D%A1%E4%BF%A1%E8%87%AA%E5%BB%BA%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://cyneliu.github.io/2018/06/03/基于阿卡信自建聊天服务器/</id>
     <published>2018-06-03T01:55:23.000Z</published>
     <updated>2018-06-03T02:46:34.867Z</updated>
     
@@ -245,19 +245,19 @@
     
     </summary>
     
-      <category term="Server" scheme="https://cyne.tk/categories/Server/"/>
+      <category term="Server" scheme="https://cyneliu.github.io/categories/Server/"/>
     
     
-      <category term="聊天服务器" scheme="https://cyne.tk/tags/%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <category term="聊天服务器" scheme="https://cyneliu.github.io/tags/%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
-      <category term="阿卡信" scheme="https://cyne.tk/tags/%E9%98%BF%E5%8D%A1%E4%BF%A1/"/>
+      <category term="阿卡信" scheme="https://cyneliu.github.io/tags/%E9%98%BF%E5%8D%A1%E4%BF%A1/"/>
     
   </entry>
   
   <entry>
     <title>专治疑难杂症</title>
-    <link href="https://cyne.tk/2018/05/30/%E4%B8%93%E6%B2%BB%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    <id>https://cyne.tk/2018/05/30/专治疑难杂症/</id>
+    <link href="https://cyneliu.github.io/2018/05/30/%E4%B8%93%E6%B2%BB%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    <id>https://cyneliu.github.io/2018/05/30/专治疑难杂症/</id>
     <published>2018-05-30T12:50:21.000Z</published>
     <updated>2018-05-31T13:53:47.706Z</updated>
     
@@ -273,14 +273,14 @@
     </summary>
     
     
-      <category term="电脑维护" scheme="https://cyne.tk/tags/%E7%94%B5%E8%84%91%E7%BB%B4%E6%8A%A4/"/>
+      <category term="电脑维护" scheme="https://cyneliu.github.io/tags/%E7%94%B5%E8%84%91%E7%BB%B4%E6%8A%A4/"/>
     
   </entry>
   
   <entry>
     <title>自建ssr服务器</title>
-    <link href="https://cyne.tk/2018/05/07/%E8%87%AA%E5%BB%BAssr%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://cyne.tk/2018/05/07/自建ssr服务器/</id>
+    <link href="https://cyneliu.github.io/2018/05/07/%E8%87%AA%E5%BB%BAssr%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://cyneliu.github.io/2018/05/07/自建ssr服务器/</id>
     <published>2018-05-07T13:09:20.000Z</published>
     <updated>2018-06-03T02:46:41.716Z</updated>
     
@@ -295,19 +295,19 @@
     
     </summary>
     
-      <category term="Server" scheme="https://cyne.tk/categories/Server/"/>
+      <category term="Server" scheme="https://cyneliu.github.io/categories/Server/"/>
     
     
-      <category term="Server" scheme="https://cyne.tk/tags/Server/"/>
+      <category term="Server" scheme="https://cyneliu.github.io/tags/Server/"/>
     
-      <category term="SSR" scheme="https://cyne.tk/tags/SSR/"/>
+      <category term="SSR" scheme="https://cyneliu.github.io/tags/SSR/"/>
     
   </entry>
   
   <entry>
     <title>Python入门</title>
-    <link href="https://cyne.tk/2018/04/10/Python%E5%85%A5%E9%97%A8/"/>
-    <id>https://cyne.tk/2018/04/10/Python入门/</id>
+    <link href="https://cyneliu.github.io/2018/04/10/Python%E5%85%A5%E9%97%A8/"/>
+    <id>https://cyneliu.github.io/2018/04/10/Python入门/</id>
     <published>2018-04-10T13:24:18.000Z</published>
     <updated>2018-04-10T13:24:18.190Z</updated>
     
@@ -320,12 +320,12 @@
   
   <entry>
     <title>Linux入门笔记</title>
-    <link href="https://cyne.tk/2018/04/10/Linux%E5%85%A5%E9%97%A8/"/>
-    <id>https://cyne.tk/2018/04/10/Linux入门/</id>
+    <link href="https://cyneliu.github.io/2018/04/10/Linux%E5%85%A5%E9%97%A8/"/>
+    <id>https://cyneliu.github.io/2018/04/10/Linux入门/</id>
     <published>2018-04-10T13:19:22.000Z</published>
-    <updated>2018-07-26T12:12:52.350Z</updated>
+    <updated>2018-08-18T09:20:39.593Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h1><h2 id="保存退出"><a href="#保存退出" class="headerlink" title="保存退出"></a>保存退出</h2><blockquote><p>按ESC键 跳到命令模式，然后：</p></blockquote><blockquote><blockquote><p>:w   保存文件但不退出vi<br><em>:w file</em> 将修改另外保存到file中，不退出vi<br><em>:w!</em>   强制保存，不推出vi<br><em>:wq</em>  保存文件并退出vi<br><em>:wq!</em> 强制保存文件，并退出vi<br>_q:_  不保存文件，退出vi<br><em>:q!</em> 不保存文件，强制退出vi<br><em>:e!</em> 放弃所有修改，从上次保存文件开始再编辑  </p></blockquote></blockquote><p>RPM:packge manager,通过将软件源代码和安装规则打包，从而降低软件安装难度。<br>YUM仓库:保存有大量常用的软件程序包，当用户需要的时候自动下载并按照依赖关系进行安装。</p><blockquote><p>本地:file://<br>网站:http://<br>文件服务器:ftp://</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h1><h2 id="保存退出"><a href="#保存退出" class="headerlink" title="保存退出"></a>保存退出</h2><blockquote><p>按ESC键 跳到命令模式，然后：</p></blockquote><blockquote><blockquote><p>:w   保存文件但不退出vi<br><em>:w file</em> 将修改另外保存到file中，不退出vi<br><em>:w!</em>   强制保存，不推出vi<br><em>:wq</em>  保存文件并退出vi<br><em>:wq!</em> 强制保存文件，并退出vi<br>_q:_  不保存文件，退出vi<br><em>:q!</em> 不保存文件，强制退出vi<br><em>:e!</em> 放弃所有修改，从上次保存文件开始再编辑  </p></blockquote></blockquote><p>RPM:packge manager,通过将软件源代码和安装规则打包，从而降低软件安装难度。<br>YUM仓库:保存有大量常用的软件程序包，当用户需要的时候自动下载并按照依赖关系进行安装。</p><blockquote><p>本地:file://<br>网站:http://<br>文件服务器:ftp://</p></blockquote><p>systemctl restart+服务名称 重启<br>systemctl stop+服务名称    停止服务<br>systemctl start+服务名称   开启<br>systemctl status+服务名称  查看状态<br>systemctl enable+服务名称  加入到启动项</p><h1 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a>Linux命令</h1><h2 id="常用的系统工作命令"><a href="#常用的系统工作命令" class="headerlink" title="常用的系统工作命令"></a>常用的系统工作命令</h2><h3 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h3><p>用于在终端输出字符串或变量提取后的值，格式为“echo[字符串|$变量]”。</p><h3 id="date命令"><a href="#date命令" class="headerlink" title="date命令"></a>date命令</h3><p>格式为“date[选项][+指定的格式]”。  </p><blockquote></blockquote><pre><code>%Y  #年%m  #月%d  #天%H  #小时%M  #分钟%S  #秒%j  #今年中的第几天</code></pre><h3 id="poweroff"><a href="#poweroff" class="headerlink" title="poweroff"></a>poweroff</h3><p>poweroff命令与shutdown等命令作用相同。</p><h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><p>用于在终端中下载网络文件，格式为“wget[参数]下载地址”。</p><blockquote></blockquote><pre><code>-P  #下载到指定目录-p  #下载页面所有资源，包括图片、视频等 -b  #后台下载模式-t  #最大尝试次数-c  #断点续传</code></pre><h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>用于查看系统中的进程状态，格式为“ps[参数]”。</p><blockquote></blockquote><pre><code>-a  #显示所有进程（包括其他用户的进程）-u  #用户以及其它详细信息-x  #显示没有控制终端的进程</code></pre><p>5种常见的进程状态：</p><blockquote></blockquote><pre><code>R(运行):进程正在运行或在运行队列中等待。S(中断):进程处于休眠中，当某个条件形成后或者接收到信号时，则脱离该状态。D(不可中端):不响应系统异步信号，即便用kill命令也无法中断。Z(僵死):进程已经终止，但描述符依然存在，依然占用系统资源。T(停止):收到停止信号后停止运行。</code></pre><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>用于动态地监视进程活动与系统负载等信息，类似Windows中的任务管理器。<br><img src="https://i.loli.net/2018/08/18/5b77e3c6aafc6.png" alt="top.png"><br>第一行：系统时间、运行时间、登录终端数、系统负载（三个数值分别表示1、5、15分钟内的平均值）<br>第二行：进程总数、运行中的进程数、睡眠中的进程数、停止的进程数、僵死的进程数。<br>第三行：用户占用资源百分比、系统内核占用资源百分比、改变过优先级的进程资源百分比、空闲的资源百分比。<br>第四行：物理内存总量、内存空闲量、内存使用量、作为内存缓存的内存量。<br>第五行：虚拟内存总量、虚拟内存空闲量、虚拟内存使用量、已被提前加载的内存量。</p><h3 id="pidof"><a href="#pidof" class="headerlink" title="pidof"></a>pidof</h3><p>查询某个指定服务进程的PID值。</p><h3 id="kill-amp-killall"><a href="#kill-amp-killall" class="headerlink" title="kill &amp; killall"></a>kill &amp; killall</h3><p>kill：终止某个指定PID的服务进程。<br>killall：终止某个指定名称的服务做对应的全部进程。<br>在命令后加上一个&amp;符号，命令将进入后天执行。</p><h2 id="系统状态检测命令"><a href="#系统状态检测命令" class="headerlink" title="系统状态检测命令"></a>系统状态检测命令</h2><h3 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h3><p>用于查看系统内核和系统版本等信息，通常使用<em>uname -a</em>。</p><h3 id="uptime"><a href="#uptime" class="headerlink" title="uptime"></a>uptime</h3><p>用于查看系统的负载信息，显示系统时间、已运行时间、启用终端数以及平均负载等信息。</p><blockquote><p>平均负载指的是最近1、5、15分钟内的压力情况；<br>负载值越低越好，尽量不要长期超过1，在生产环境中不要超过5。</p></blockquote><h3 id="free"><a href="#free" class="headerlink" title="free"></a>free</h3><p>显示当前系统中内存使用量信息，常用参数为“free -h”。</p><h3 id="who"><a href="#who" class="headerlink" title="who"></a>who</h3><p>查看登入主机的用户终端信息。</p><h3 id="last"><a href="#last" class="headerlink" title="last"></a>last</h3><p>查看所有本机的登录记录。</p><h3 id="history"><a href="#history" class="headerlink" title="history"></a>history</h3><p>显示执行过的命令，默认能显示出当前用户执行过的最近1000条命令，自定义记录数量可修改/etc/profile中的HISTSIZE的值，记录保存在家目录(~)中的“.bash_history”文件中。<br>清空当前用户的历史记录：</p><blockquote></blockquote><pre><code>history -c</code></pre><h3 id="sosreport"><a href="#sosreport" class="headerlink" title="sosreport"></a>sosreport</h3><p>手机系统配置及架构信息并输出诊断文档。</p><h2 id="工作目录切换命令"><a href="#工作目录切换命令" class="headerlink" title="工作目录切换命令"></a>工作目录切换命令</h2><h3 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h3><p>显示用户当先所处的工作目录。</p><h3 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h3><blockquote></blockquote><pre><code>cd -  #返回上一次所处的目录cd ..  #进入上级目录cd ~username  #切换到其他用户的家目录</code></pre><h3 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h3><blockquote></blockquote><pre><code>ls -l  #查看文件的属性、大小等详细信息ls -ld  #查看目录属性信息</code></pre><h2 id="文本文件编辑命令"><a href="#文本文件编辑命令" class="headerlink" title="文本文件编辑命令"></a>文本文件编辑命令</h2><h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><blockquote></blockquote><pre><code>cat -n  #显示行号</code></pre><h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><p>查看内容较多的纯文本文件，可使用空格或回车键翻页。</p><h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>查看纯文本文档的前N行，例如：</p><blockquote></blockquote><pre><code>head -n  6 .bash_profile #查看前6行</code></pre><h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>查看纯文本文档的后N行或持续刷新内容。例如：</p><blockquote></blockquote><pre><code>tail -n  6 .bash_profile</code></pre><p>还有一种情况是持续刷新一个文件的内容，比如日志文件:</p><blockquote></blockquote><pre><code>tail -f /var/log/message</code></pre><h3 id="tr"><a href="#tr" class="headerlink" title="tr"></a>tr</h3><p>用于替换文本文件中的字符。</p><blockquote></blockquote><pre><code>cat anaconda-ks.cfg | tr [a-z] [A-Z]  #将文件中的小写替换为大写。</code></pre><h3 id="wc"><a href="#wc" class="headerlink" title="wc"></a>wc</h3><p>统计指定文本的行数、字数、字节数。</p><blockquote></blockquote><pre><code>-l  #只显示行数-w  #只显示单词数-c  #只显示字节数</code></pre><h3 id="stat"><a href="#stat" class="headerlink" title="stat"></a>stat</h3><p>查看文件的具体存储信息和时间等信息。</p><h3 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h3><p>按列提取文本字符，用-f参数设置需要看的列数，用-d参数设置间隔符号。例如：</p><blockquote></blockquote><pre><code>[root@localhost etc]# head -n 3 passwd #查看前三行root:x:0:0:root:/root:/bin/bashbin:x:1:1:bin:/bin:/sbin/nologindaemon:x:2:2:daemon:/sbin:/sbin/nologin[root@localhost etc]# cut -d: -f1 passwd #查看以“：”为间隔符的第一列内容rootbindaemonadm......</code></pre><h3 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h3><p>用于比较多个文件的差异。</p><blockquote></blockquote><pre><code>diff diff a1.txt a2.txt  #找出文件内容中的具体不同diff --brief a1.txt a2.txt #直接输出结果判断结果diff  -c a1.txt a2.txt  #描述文件具体的不同</code></pre><h2 id="文件目录管理命令"><a href="#文件目录管理命令" class="headerlink" title="文件目录管理命令"></a>文件目录管理命令</h2><h2 id="打包压缩与搜索命令"><a href="#打包压缩与搜索命令" class="headerlink" title="打包压缩与搜索命令"></a>打包压缩与搜索命令</h2>]]></content>
     
     <summary type="html">
     
@@ -336,17 +336,17 @@
     
     </summary>
     
-      <category term="Linux" scheme="https://cyne.tk/categories/Linux/"/>
+      <category term="Linux" scheme="https://cyneliu.github.io/categories/Linux/"/>
     
     
-      <category term="Linux" scheme="https://cyne.tk/tags/Linux/"/>
+      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Python中的str.format</title>
-    <link href="https://cyne.tk/2018/03/25/Python%E4%B8%AD%E7%9A%84str-format/"/>
-    <id>https://cyne.tk/2018/03/25/Python中的str-format/</id>
+    <link href="https://cyneliu.github.io/2018/03/25/Python%E4%B8%AD%E7%9A%84str-format/"/>
+    <id>https://cyneliu.github.io/2018/03/25/Python中的str-format/</id>
     <published>2018-03-25T07:31:39.000Z</published>
     <updated>2018-03-25T10:20:09.143Z</updated>
     
@@ -361,21 +361,21 @@
     
     </summary>
     
-      <category term="Python" scheme="https://cyne.tk/categories/Python/"/>
+      <category term="Python" scheme="https://cyneliu.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="https://cyne.tk/tags/Python/"/>
+      <category term="Python" scheme="https://cyneliu.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>hexo建站记录</title>
-    <link href="https://cyne.tk/2018/03/03/hexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/"/>
-    <id>https://cyne.tk/2018/03/03/hexo建站记录/</id>
+    <link href="https://cyneliu.github.io/2018/03/03/hexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/"/>
+    <id>https://cyneliu.github.io/2018/03/03/hexo建站记录/</id>
     <published>2018-03-03T02:22:23.000Z</published>
-    <updated>2018-03-25T11:38:16.793Z</updated>
+    <updated>2018-07-27T02:01:27.630Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="建站过程"><a href="#建站过程" class="headerlink" title="建站过程"></a>建站过程</h1><p>在遇到各种各样问题之后，终于搭建完成了这个博客。</p><blockquote><p>其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。</p><p>还有一个问题是因为教程的问题，在修改主配置文件的“deploy”部署时，教程写的是https地址，我也是多次尝试也没成功，最后百度到原因写ssh地址就可以解决。当然也不能一概而论，若没有错误还是推荐使用https地址。</p></blockquote><p>一个个的小地方就让我走了不少的弯路。最后终于找到一个比较详细准确的教程，在此分享给大家，在这也感谢作者<a href="http://fanzhenyu.me/categories/Hexo/" target="_blank" rel="noopener">Line</a>, 无意侵犯作者原作，只是想让像我这样的小白少走些弯路。作者博客中有五篇关于hexo使用的教程，个人觉得比较适合小白看。</p><p>这就是这次建站的一些小心得，水平有限有什么说的不对的地方也感谢各位不吝赐教。</p><p>#后期添加：</p><blockquote><h2 id="一、添加网易云音乐插件"><a href="#一、添加网易云音乐插件" class="headerlink" title="一、添加网易云音乐插件"></a>一、添加网易云音乐插件</h2><blockquote><p><img src="https://i.loli.net/2018/03/10/5aa3e1773eb4d.png"><br>在别人的博客看到了这样一个音乐插件，实现很简单，打开<a href="http://music.163.com/#/outchain/0/2134628828/" target="_blank" rel="noopener">网易云音乐网页版</a>，选择自己想要分享的歌单，然后点击生成外链播放器即可，插件分为两种形式：iframe插件和flash插件，可根据情况选择。</p></blockquote></blockquote><blockquote><h2 id="二、添加particles-js背景动画"><a href="#二、添加particles-js背景动画" class="headerlink" title="二、添加particles.js背景动画"></a>二、添加particles.js背景动画</h2><blockquote><p><img src="https://i.loli.net/2018/03/11/5aa49a5ee0df1.jpg" alt="particles.js.jpg"><br>particles.js是一个粒子效果的js插件，在<a href="https://github.com/VincentGarreau/particles.js/" target="_blank" rel="noopener">Github</a>里可以找到这个项目的源码，但是百度了一下配置方法大多是在html中实现，反正我是小白，不知道怎么修改。回归正题，怎么在Hexo中实现particles.js效果呢？<br><br><strong>1.</strong>首先在<strong>\themes\next\layout\_layout.swig</strong>的<strong>&lt; /body &gt;</strong>标签上面添加</p></blockquote></blockquote><pre><code>{% if theme.canvas_nest %} <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>{% endif %}</code></pre><blockquote><blockquote><p><strong>2.</strong>在<strong>\themes\next\_config.yml</strong>中添加以下字段开启此功能：</p></blockquote></blockquote><pre><code># background settings# add canvas-nest effect# see detail from https://github.com/hustcc/canvas-nest.jscanvas_nest: true</code></pre><blockquote><blockquote><p><strong>3.</strong>这样动态效果就添加成功了，你会发现博客默认的白色背景遮挡了大部分区域使得只有边缘能看见动态效果，这时候只要修改一下背景颜色即可。在<strong>\themes\next\source\css\_schemes\Pisces_layout.styl</strong>中，把<strong>.content-wrap</strong>中的<strong>background</strong>修改为<strong>none</strong>，注意我这里使用的是<strong>Pisces</strong>主题，如果你使用的是别的主题，在相应路径下修改即可。这样如果用手机打开体验会比较差，我们单独设置一下手机，把<strong>.content-wrap</strong>的<strong>+mobile()</strong>中的<strong>background</strong>修改为<strong>white</strong>，这样手机端的体验就好很多，却又不影响电脑端的炫酷动画。</p></blockquote></blockquote><blockquote><h2 id="三、设置文章摘要"><a href="#三、设置文章摘要" class="headerlink" title="三、设置文章摘要"></a>三、设置文章摘要</h2><blockquote><p>写出来的文章如果直接在首页全篇显示就比较别扭了，为了提高浏览体验，这时候就需要设置一下文章摘要了，我这里主要介绍三种方式。</p></blockquote></blockquote><blockquote><blockquote><p><strong>1.</strong>在文章中使用<font color="blue"><strong>&lt; !–more–&gt;</strong></font></p></blockquote></blockquote><blockquote><blockquote><p>这种方法可以根据文章的内容，自己在合适的位置添加 &lt; !–more–&gt; 标签，使用灵活，也是Hexo推荐的方法。</p></blockquote></blockquote><blockquote><blockquote><p><strong>2.</strong>在文章中的<font color="blue"><strong>front-matter</strong></font>中添加<font color="blue"><strong>description</strong></font>，并提供文章摘录。如图：<br><img src="https://i.loli.net/2018/03/11/5aa4d99ca9490.png" alt="description.png"></p></blockquote></blockquote><blockquote><blockquote><p><strong>3.</strong>在主题配置文件中设置自动摘要</p></blockquote></blockquote><blockquote><blockquote></blockquote><pre><code>auto_excerpt:enable: truelength: 150 #默认摘要为150字，可根据需要更改</code></pre></blockquote><h1 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h1><blockquote><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">文档|Hexo</a><br><br><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a></p></blockquote><h1 id="错误汇总"><a href="#错误汇总" class="headerlink" title="错误汇总"></a>错误汇总</h1><p>在使用hexo博客的过程中，遇到了如下一些错误：</p><h2 id="123-125-引起的报错"><a href="#123-125-引起的报错" class="headerlink" title="&#123; &#125;引起的报错"></a>&#123; &#125;引起的报错</h2><p>今天写了一篇博客后按流程进行部署的时候，发现在生成静态页面的时候出现了如下的错误：<br><img src="https://i.loli.net/2018/03/25/5ab780018abe1.png" alt="snipaste_20180325_163706.png"></p><p><img src="https://i.loli.net/2018/03/25/5ab780018a55d.png" alt="snipaste_20180325_163648.png"></p><p>查了一下说什么的都有，每个方法也都试了一遍，最后发现是因为文章中直接引用了”&#123; &#125;”的原因，解决办法是将”&#123; &#125;”通过&amp;#123  &amp;#125后面加上分号”;”进行转换，就可以正常部署了。<br>这里也有一些常见的<a href="https://blog.csdn.net/chwshuang/article/details/52350551" target="_blank" rel="noopener">特殊字符</a>,可以根据需要转换。<br><img src="https://i.loli.net/2018/03/25/5ab786e34f254.png" alt="特殊字符.png"></p><h2 id="标题无法正常解析"><a href="#标题无法正常解析" class="headerlink" title="标题无法正常解析"></a>标题无法正常解析</h2><p>在浏览别人的博客的时候发现Hexo有自动解析目录的功能，是依靠markdown的标题实现的，在加了一个<strong>“#标题”</strong>这样时却发现博客无法解析到这是一个标题，查了一下原因是正规的标题写法是在”#”和标题之间加一个空格。</p><h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><p>一开始刚刚接触markdown的时候一直用html的&#60;br/&#62;换行，这种换行方式貌似在换行的同时增加了行间距，无意间发现一个更好也更简单的换行方式，就是在要换行的位置敲两个空格，就可以换行。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="建站过程"><a href="#建站过程" class="headerlink" title="建站过程"></a>建站过程</h1><p>在遇到各种各样问题之后，终于搭建完成了这个博客。</p><blockquote><p>其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。</p><p>还有一个问题是因为教程的问题，在修改主配置文件的“deploy”部署时，教程写的是https地址，我也是多次尝试也没成功，最后百度到原因写ssh地址就可以解决。当然也不能一概而论，若没有错误还是推荐使用https地址。</p></blockquote><p>一个个的小地方就让我走了不少的弯路。最后终于找到一个比较详细准确的教程，在此分享给大家，在这也感谢作者<a href="http://fanzhenyu.me/categories/Hexo/" target="_blank" rel="noopener">Line</a>, 无意侵犯作者原作，只是想让像我这样的小白少走些弯路。作者博客中有五篇关于hexo使用的教程，个人觉得比较适合小白看。</p><p>这就是这次建站的一些小心得，水平有限有什么说的不对的地方也感谢各位不吝赐教。</p><p>#后期添加：</p><blockquote><h2 id="一、添加网易云音乐插件"><a href="#一、添加网易云音乐插件" class="headerlink" title="一、添加网易云音乐插件"></a>一、添加网易云音乐插件</h2><blockquote><p><img src="https://i.loli.net/2018/03/10/5aa3e1773eb4d.png"><br>在别人的博客看到了这样一个音乐插件，实现很简单，打开<a href="http://music.163.com/#/outchain/0/2134628828/" target="_blank" rel="noopener">网易云音乐网页版</a>，选择自己想要分享的歌单，然后点击生成外链播放器即可，插件分为两种形式：iframe插件和flash插件，可根据情况选择。</p></blockquote></blockquote><blockquote><h2 id="二、添加particles-js背景动画"><a href="#二、添加particles-js背景动画" class="headerlink" title="二、添加particles.js背景动画"></a>二、添加particles.js背景动画</h2><blockquote><p><img src="https://i.loli.net/2018/03/11/5aa49a5ee0df1.jpg" alt="particles.js.jpg"><br>particles.js是一个粒子效果的js插件，在<a href="https://github.com/VincentGarreau/particles.js/" target="_blank" rel="noopener">Github</a>里可以找到这个项目的源码，但是百度了一下配置方法大多是在html中实现，反正我是小白，不知道怎么修改。回归正题，怎么在Hexo中实现particles.js效果呢？<br><br><strong>1.</strong>首先在<strong>\themes\next\layout\_layout.swig</strong>的<strong>&lt; /body &gt;</strong>标签上面添加</p></blockquote></blockquote><pre><code>{% if theme.canvas_nest %} <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>{% endif %}</code></pre><blockquote><blockquote><p><strong>2.</strong>在<strong>\themes\next\_config.yml</strong>中添加以下字段开启此功能：</p></blockquote></blockquote><pre><code># background settings# add canvas-nest effect# see detail from https://github.com/hustcc/canvas-nest.jscanvas_nest: true</code></pre><blockquote><blockquote><p><strong>3.</strong>这样动态效果就添加成功了，你会发现博客默认的白色背景遮挡了大部分区域使得只有边缘能看见动态效果，这时候只要修改一下背景颜色即可。在<strong>\themes\next\source\css\_schemes\Pisces_layout.styl</strong>中，把<strong>.content-wrap</strong>中的<strong>background</strong>修改为<strong>none</strong>，注意我这里使用的是<strong>Pisces</strong>主题，如果你使用的是别的主题，在相应路径下修改即可。这样如果用手机打开体验会比较差，我们单独设置一下手机，把<strong>.content-wrap</strong>的<strong>+mobile()</strong>中的<strong>background</strong>修改为<strong>white</strong>，这样手机端的体验就好很多，却又不影响电脑端的炫酷动画。</p></blockquote></blockquote><blockquote><h2 id="三、设置文章摘要"><a href="#三、设置文章摘要" class="headerlink" title="三、设置文章摘要"></a>三、设置文章摘要</h2><blockquote><p>写出来的文章如果直接在首页全篇显示就比较别扭了，为了提高浏览体验，这时候就需要设置一下文章摘要了，我这里主要介绍三种方式。</p></blockquote></blockquote><blockquote><blockquote><p><strong>1.</strong>在文章中使用<font color="blue"><strong>&lt; !–more–&gt;</strong></font></p></blockquote></blockquote><blockquote><blockquote><p>这种方法可以根据文章的内容，自己在合适的位置添加 &lt; !–more–&gt; 标签，使用灵活，也是Hexo推荐的方法。</p></blockquote></blockquote><blockquote><blockquote><p><strong>2.</strong>在文章中的<font color="blue"><strong>front-matter</strong></font>中添加<font color="blue"><strong>description</strong></font>，并提供文章摘录。如图：<br><img src="https://i.loli.net/2018/03/11/5aa4d99ca9490.png" alt="description.png"></p></blockquote></blockquote><blockquote><blockquote><p><strong>3.</strong>在主题配置文件中设置自动摘要</p></blockquote></blockquote><blockquote><blockquote></blockquote><pre><code>auto_excerpt:enable: truelength: 150 #默认摘要为150字，可根据需要更改</code></pre></blockquote><h1 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h1><blockquote><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">文档|Hexo</a><br><br><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a></p></blockquote><h1 id="错误汇总"><a href="#错误汇总" class="headerlink" title="错误汇总"></a>错误汇总</h1><p>在使用hexo博客的过程中，遇到了如下一些错误：</p><h2 id="123-125-引起的报错"><a href="#123-125-引起的报错" class="headerlink" title="&#123; &#125;引起的报错"></a>&#123; &#125;引起的报错</h2><p>今天写了一篇博客后按流程进行部署的时候，发现在生成静态页面的时候出现了如下的错误：<br><img src="https://i.loli.net/2018/03/25/5ab780018abe1.png" alt="snipaste_20180325_163706.png"></p><p><img src="https://i.loli.net/2018/03/25/5ab780018a55d.png" alt="snipaste_20180325_163648.png"></p><p>查了一下说什么的都有，每个方法也都试了一遍，最后发现是因为文章中直接引用了”&#123; &#125;”的原因，解决办法是将”&#123; &#125;”通过&amp;#123  &amp;#125后面加上分号”;”进行转换，就可以正常部署了。<br>这里也有一些常见的<a href="https://blog.csdn.net/chwshuang/article/details/52350551" target="_blank" rel="noopener">特殊字符</a>,可以根据需要转换。<br><img src="https://i.loli.net/2018/03/25/5ab786e34f254.png" alt="特殊字符.png"></p><h2 id="标题无法正常解析"><a href="#标题无法正常解析" class="headerlink" title="标题无法正常解析"></a>标题无法正常解析</h2><p>在浏览别人的博客的时候发现Hexo有自动解析目录的功能，是依靠markdown的标题实现的，在加了一个<strong>“#标题”</strong>这样时却发现博客无法解析到这是一个标题，查了一下原因是正规的标题写法是在”#”和标题之间加一个空格。</p><h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><p>一开始刚刚接触markdown的时候一直用html的&#60;br/&#62;换行，这种换行方式貌似在换行的同时增加了行间距，无意间发现一个更好也更简单的换行方式，就是在要换行的位置敲两个空格，就可以换行。</p><h1 id="markdown的使用"><a href="#markdown的使用" class="headerlink" title="markdown的使用"></a>markdown的使用</h1><h2 id="插入表格"><a href="#插入表格" class="headerlink" title="插入表格"></a>插入表格</h2><blockquote></blockquote><pre><code>| 一个普通标题 | 左对齐标题 | 右对齐标题 | 居中对齐标题 | #默认标题栏居中对齐| - | :- | -: | :-: | #默认内容居左对齐| 文本 | 文本 | 文本 | 文本 | #每行第一个|和最后一个|可以省略| 文本 | 文本 | 文本 | 文本 | #内容和 | 之前多余的空格会被忽略</code></pre>]]></content>
     
     <summary type="html">
     
@@ -388,21 +388,21 @@
     
     </summary>
     
-      <category term="Hexo" scheme="https://cyne.tk/categories/Hexo/"/>
+      <category term="Hexo" scheme="https://cyneliu.github.io/categories/Hexo/"/>
     
     
-      <category term="Hexo" scheme="https://cyne.tk/tags/Hexo/"/>
+      <category term="Hexo" scheme="https://cyneliu.github.io/tags/Hexo/"/>
     
-      <category term="GitHub Pages" scheme="https://cyne.tk/tags/GitHub-Pages/"/>
+      <category term="GitHub Pages" scheme="https://cyneliu.github.io/tags/GitHub-Pages/"/>
     
-      <category term="Blog" scheme="https://cyne.tk/tags/Blog/"/>
+      <category term="Blog" scheme="https://cyneliu.github.io/tags/Blog/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://cyne.tk/2018/03/03/hello-world/"/>
-    <id>https://cyne.tk/2018/03/03/hello-world/</id>
+    <link href="https://cyneliu.github.io/2018/03/03/hello-world/"/>
+    <id>https://cyneliu.github.io/2018/03/03/hello-world/</id>
     <published>2018-03-03T01:44:18.605Z</published>
     <updated>2018-03-03T08:10:19.210Z</updated>
     
@@ -418,7 +418,7 @@
     </summary>
     
     
-      <category term="Hexo" scheme="https://cyne.tk/tags/Hexo/"/>
+      <category term="Hexo" scheme="https://cyneliu.github.io/tags/Hexo/"/>
     
   </entry>
   
