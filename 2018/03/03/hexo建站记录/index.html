@@ -97,11 +97,12 @@
 <meta property="og:image" content="https://i.loli.net/2018/09/04/5b8e8d300f176.png">
 <meta property="og:image" content="https://i.loli.net/2018/09/04/5b8e8d2fd6d3c.png">
 <meta property="og:image" content="https://i.loli.net/2018/09/04/5b8e915b185bb.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/04/5b8e93265c828.png">
 <meta property="og:image" content="https://i.loli.net/2018/03/25/5ab780018abe1.png">
 <meta property="og:image" content="https://i.loli.net/2018/03/25/5ab780018a55d.png">
 <meta property="og:image" content="https://i.loli.net/2018/03/25/5ab786e34f254.png">
 <meta property="og:image" content="https://i.loli.net/2018/09/03/5b8d3def88e87.png">
-<meta property="og:updated_time" content="2018-09-04T14:06:46.359Z">
+<meta property="og:updated_time" content="2018-09-04T14:14:06.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo建站记录">
 <meta name="twitter:description" content="建站过程在遇到各种各样问题之后，终于搭建完成了这个博客。  其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T git@github.com“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。 还有">
@@ -317,7 +318,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cyne Liu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -499,6 +500,7 @@ length: 150 #默认摘要为150字，可根据需要更改
 <pre><code>&lt;!-- 页面点击小红心 --&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;/js/src/love.js&quot;&gt;&lt;/script&gt;
 </code></pre><p>如图：<br><img src="https://i.loli.net/2018/09/04/5b8e915b185bb.png" alt="snipaste_20180904_220551.png"></p>
+<h2 id="修改文章底部标签符号"><a href="#修改文章底部标签符号" class="headerlink" title="修改文章底部标签符号"></a>修改文章底部标签符号</h2><p>默认的标签符号是一个“#”，个人觉得并不是很好看，所以决定修改一下。<br>修改模板<strong>/themes/next/layout/_macro/post.swig</strong>，搜索rel=”tag”&gt;#，将 # 换成<i class="fa fa-tag"></i>，注意是只替换“#”。<br><img src="https://i.loli.net/2018/09/04/5b8e93265c828.png" alt="snipaste_20180904_221216.png"></p>
 <h1 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h1><blockquote>
 <p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">文档|Hexo</a><br><br><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a></p>
 </blockquote>
@@ -672,6 +674,10 @@ length: 150 #默认摘要为150字，可根据需要更改
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Cyne Liu" />
+            
               <p class="site-author-name" itemprop="name">Cyne Liu</p>
               <p class="site-description motion-element" itemprop="description">Talk is cheap. Show me the code.</p>
           </div>
@@ -755,7 +761,7 @@ length: 150 #默认摘要为150字，可根据需要更改
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建站过程"><span class="nav-number">1.</span> <span class="nav-text">建站过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后期添加："><span class="nav-number">2.</span> <span class="nav-text">后期添加：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加网易云音乐插件"><span class="nav-number">2.1.</span> <span class="nav-text">添加网易云音乐插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加particles-js背景动画"><span class="nav-number">2.2.</span> <span class="nav-text">添加particles.js背景动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置文章摘要"><span class="nav-number">2.3.</span> <span class="nav-text">设置文章摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#needmoreshare2分享按钮"><span class="nav-number">2.4.</span> <span class="nav-text">needmoreshare2分享按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标点击特效"><span class="nav-number">2.5.</span> <span class="nav-text">鼠标点击特效</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官方文档："><span class="nav-number">3.</span> <span class="nav-text">官方文档：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误汇总"><span class="nav-number">4.</span> <span class="nav-text">错误汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#123-125-引起的报错"><span class="nav-number">4.1.</span> <span class="nav-text">{ }引起的报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标题无法正常解析"><span class="nav-number">4.2.</span> <span class="nav-text">标题无法正常解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#换行"><span class="nav-number">4.3.</span> <span class="nav-text">换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FATAL-Cannot-read-property-‘replace’-of-null"><span class="nav-number">4.4.</span> <span class="nav-text">FATAL Cannot read property ‘replace’ of null</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建站过程"><span class="nav-number">1.</span> <span class="nav-text">建站过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后期添加："><span class="nav-number">2.</span> <span class="nav-text">后期添加：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加网易云音乐插件"><span class="nav-number">2.1.</span> <span class="nav-text">添加网易云音乐插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加particles-js背景动画"><span class="nav-number">2.2.</span> <span class="nav-text">添加particles.js背景动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置文章摘要"><span class="nav-number">2.3.</span> <span class="nav-text">设置文章摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#needmoreshare2分享按钮"><span class="nav-number">2.4.</span> <span class="nav-text">needmoreshare2分享按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标点击特效"><span class="nav-number">2.5.</span> <span class="nav-text">鼠标点击特效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章底部标签符号"><span class="nav-number">2.6.</span> <span class="nav-text">修改文章底部标签符号</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官方文档："><span class="nav-number">3.</span> <span class="nav-text">官方文档：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误汇总"><span class="nav-number">4.</span> <span class="nav-text">错误汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#123-125-引起的报错"><span class="nav-number">4.1.</span> <span class="nav-text">{ }引起的报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标题无法正常解析"><span class="nav-number">4.2.</span> <span class="nav-text">标题无法正常解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#换行"><span class="nav-number">4.3.</span> <span class="nav-text">换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FATAL-Cannot-read-property-‘replace’-of-null"><span class="nav-number">4.4.</span> <span class="nav-text">FATAL Cannot read property ‘replace’ of null</span></a></li></ol></li></ol></div>
             
 
           </div>
