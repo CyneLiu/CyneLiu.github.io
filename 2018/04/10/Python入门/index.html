@@ -15,6 +15,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -342,16 +349,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/10/Python入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/10/Python入门/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -364,6 +361,37 @@
             </span>
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  0
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -492,9 +520,7 @@
 
   
     <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTU0Ni8xNjA3Mw=="></div>
     </div>
 
   
@@ -583,9 +609,9 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
-                    <a href="https://plus.google.com/yourname" target="_blank" title="Google">
+                    <a href="mailto:max.lxw@qq.com" target="_blank" title="E-Mail">
                       
-                        <i class="fa fa-fw fa-google"></i>Google</a>
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   </span>
                 
             </div>
@@ -638,6 +664,11 @@
 
 
 
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共15.3k字</span>
+</div>
 
         
 <div class="busuanzi-count">
@@ -808,53 +839,22 @@
 
 
   
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
 
 
 
 
 
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-      <style>
-        a.gitment-editor-footer-tip { display: none; }
-        .gitment-container.gitment-footer-container { display: none; }
-      </style>
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname, 
-            owner: 'CyneLiu',
-            repo: 'CyneLiu.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '6b1304551cceac866f5d96afe79c7e61e6dae3fc',
-            
-                client_id: 'd5b6c18929145810be08'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
 
 
 
