@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Anaconda开始菜单失踪]]></title>
+    <url>%2F2018%2F09%2F10%2FAnaconda%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95%E5%A4%B1%E8%B8%AA%2F</url>
+    <content type="text"><![CDATA[今天想打开Anaconda写python程序的时候，突然发现Anaconda在开始菜单中神秘失踪了。这时候只需要打开cmd，切换到Anaconda的安装目录的Lib文件夹下，执行如下命令： python _nsis.py mkmenus 重新生成一下开始菜单即可。]]></content>
+      <categories>
+        <category>疑难杂症</category>
+      </categories>
+      <tags>
+        <tag>Anaconda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[虚拟化运维笔记——服务器]]></title>
     <url>%2F2018%2F07%2F11%2F%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
     <content type="text"><![CDATA[服务器通电自启实验室有三台浪潮的服务器，默认关闭了通电自启的功能，因为不使用，也一直没去在意它，今天没事给它把通电自启动打开了，省的以后麻烦，在此记录一下，下图内容拍自浪潮服务器：1、开机时按Delete键进入BIOS2、选择Chipset-PCH3、将Restore AC Power Loss修改为Power Off这里解释一下各个选项的意思： Restore AC Power Loss:如果发生断电，恢复供电后系统如何反应Power Off:接通电源后保持关机状态Power On:接通电源后开机Last State:恢复到断电前的状态]]></content>

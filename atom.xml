@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-07-11T13:09:51.361Z</updated>
+  <updated>2018-09-10T13:30:02.556Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Anaconda开始菜单失踪</title>
+    <link href="https://cyneliu.github.io/2018/09/10/Anaconda%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95%E5%A4%B1%E8%B8%AA/"/>
+    <id>https://cyneliu.github.io/2018/09/10/Anaconda开始菜单失踪/</id>
+    <published>2018-09-10T13:23:33.000Z</published>
+    <updated>2018-09-10T13:30:02.556Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天想打开Anaconda写python程序的时候，突然发现Anaconda在开始菜单中神秘失踪了。<br>这时候只需要打开cmd，切换到Anaconda的安装目录的Lib文件夹下，执行如下命令：</p><blockquote></blockquote><pre><code>python _nsis.py mkmenus</code></pre><p>重新生成一下开始菜单即可。<br><img src="https://i.loli.net/2018/09/10/5b9670b820c45.png" alt="snipaste_20180909_124542.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天想打开Anaconda写python程序的时候，突然发现Anaconda在开始菜单中神秘失踪了。&lt;br&gt;这时候只需要打开cmd，切换到Anaconda的安装目录的Lib文件夹下，执行如下命令：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;c
+      
+    
+    </summary>
+    
+      <category term="疑难杂症" scheme="https://cyneliu.github.io/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
+    
+    
+      <category term="Anaconda" scheme="https://cyneliu.github.io/tags/Anaconda/"/>
+    
+  </entry>
   
   <entry>
     <title>虚拟化运维笔记——服务器</title>
