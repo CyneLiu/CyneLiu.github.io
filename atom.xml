@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-09-10T13:30:02.556Z</updated>
+  <updated>2018-09-13T12:39:54.874Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,110 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>秒懂MBR和GPT分区表</title>
+    <link href="https://cyneliu.github.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/"/>
+    <id>https://cyneliu.github.io/2018/09/13/秒懂MBR和GPT分区表/</id>
+    <published>2018-09-13T11:58:17.000Z</published>
+    <updated>2018-09-13T12:39:54.874Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h1><p>全新硬盘未初始化之前，必须对其进行分区，硬盘分区初始化的格式包括MBR和GPT两种，另外对于基于PowerPC的Mac电脑还有专门的Apple分区图。<br>MBR的全称是Master Boot Record（主引导记录），MBR早在1983年IBM PC DOS 2.0中就已经提出。之所以叫“主引导记录”，是因为它是存在于驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统的启动加载器和驱动器的逻辑分区信息。主引导扇区是硬盘的第一扇区。它由三个部分组成，主引导记录MBR、硬盘分区表DPT和硬盘有效标志。在总共512字节的主引导扇区里MBR占446个字节，偏移地址（0000H–0088H），它负责从活动分区中装载，并运行系统引导程序；第二部分是Partition table区（DPT分区表），占64个字节；第三部分是Magic number，占2个字节。 </p><h1 id="MBR分区表系统"><a href="#MBR分区表系统" class="headerlink" title="MBR分区表系统"></a>MBR分区表系统</h1><p>所谓启动加载器，是一小段代码，用于加载驱动器上其他分区上更大的加载器。如果你安装了Windows，Windows启动加载器的初始信息就放在这个区域里——如果MBR的信息被覆盖导致Windows不能启动，你就需要使用Windows的MBR修复功能来使其恢复正常。如果你安装了Linux，则位于MBR里的通常会是GRUB加载器。  </p><p>分区表偏移地址为01BEH–01FDH，每个分区表项长16个字节，共64字节为分区项1、分区项2、分区项3、分区项4，分别对应MBR的四个主分区。Magic number也就是结束标志字，偏移地址01FE–01FF的2个字节，固定为55AA，如果该标志错误系统就不能启动。   </p><p>MBR最大支持2.2TB磁盘，它无法处理大于2.2TB容量的磁盘。MBR还只支持最多4个主分区——如果你想要更多分区，你需要创建所谓“扩展分区”，并在其中创建逻辑分区。 </p><h1 id="GPT分区表系统"><a href="#GPT分区表系统" class="headerlink" title="GPT分区表系统"></a>GPT分区表系统</h1><p>GPT的全称是Globally Unique Identifier Partition Table，意即GUID分区表，它的推出是和UEFI BIOS相辅相成的，鉴于MBR的磁盘容量和分区数量已经不能满足硬件发展的需求，GPT首要的任务就是突破了2.2T分区的限制，最大支持18EB的分区。 </p><p>而在分区数量上，GPT会为每一个分区分配一个全局唯一的标识符，理论上GPT支持无限个磁盘分区，不过在Windows系统上由于系统的限制，最多只能支持128个磁盘分区，基本可以满足所有用户的存储需求。在每一个分区上，这个标识符是一个随机生成的字符串，可以保证为地球上的每一个GPT分区都分配完全唯一的标识符。   </p><p>而在安全性方面，GPT分区表也进行了全方位改进。在早期的MBR磁盘上，分区和启动信息是保存在一起的。如果这部分数据被覆盖或破坏，事情就麻烦了。相对的，GPT在整个磁盘上保存多个这部分信息的副本，因此它更为健壮，并可以恢复被破坏的这部分信息。GPT还为这些信息保存了循环冗余校验码（CRC）以保证其完整和正确——如果数据被破坏，GPT会发觉这些破坏，并从磁盘上的其他地方进行恢复。  </p><p>小结：所以对于新平台用户（Intel 6系以后/AMD 900系列以后和A系列）来说，都强烈推荐使用GPT分区表格式，目前包括Windows Vista、7、8、8.1、10已经都支持读取和使用GPT分区表。而对于使用Windows 8、8.1、10的用户，换用GPT后开机启动速度也可以进一步得到显著提升。 </p><h1 id="BIOS-MBR"><a href="#BIOS-MBR" class="headerlink" title="BIOS+MBR"></a>BIOS+MBR</h1><p>这种方式是目前最常见的装机方式，所有的系统都会支持，兼容较老硬件，目前新电脑大多出厂时就使用UEFI方式启动。</p><h1 id="UEFI-GPT"><a href="#UEFI-GPT" class="headerlink" title="UEFI+GPT"></a>UEFI+GPT</h1><p>GPT与UEFI是相辅相成的，如果分区表系统是GPT，那么必须使用UEFI，传统的BIOS方式无法启动，这也就是为什么现在很多人在给新机器重装系统时无法启动的原因。  </p><p>UEFI+GPT还有一个优点就是开机速度更快，原因是开机时跳过外设检测，并且可以实现启动时原生分辨率，搭载固态硬盘开机时间很短，十秒左右。  </p><p>UEFI可用鼠标操作图形界面，不再是枯燥的蓝底白字的英文。由Intel提出，用于取代BIOS。UEFI的优越特性：可操作性、安全性、兼容性、可扩展性。  </p><p>主板为了兼容MBR分区表，一般会提供Legacy BIOS和UEFI BIOS启动模式选项，可以把UEFI设置成Legacy模式（传统模式）、打开CSM兼容模块，让其支持传统MBR启动，此时效果同BIOS+MBR。如果要使用UEFI模式安装Windows，就必须开启UEFI启动模式。</p><h1 id="系统支持性"><a href="#系统支持性" class="headerlink" title="系统支持性"></a>系统支持性</h1><p>目前64bit Windows Vista、7、8、8.1、10都已经支持GPT分区表，而Windows 8、8.1、10都已经原生支持UEFI，安装这些系统的时候：只要硬盘设置为GPT分区表，主板设置为UEFI启动后，就可以直接开始安装操作系统了。 而对于Windows Vista、7系统，就需要手动添加UEFI支持：我们可以找一份Windows 8或者10安装镜像，从安装文件中提取Bootmgfw.efi文件，重命名为BOOTX64.EFI，拷贝到win7安装文件的\EFI\Boot\下，如果没有BOOT文件夹新建一个即可。 </p><h1 id="修改为传统方式启动"><a href="#修改为传统方式启动" class="headerlink" title="修改为传统方式启动"></a>修改为传统方式启动</h1><p>如果实在是搞不明白或者像之前的我一样不太懂的话，可以使用分区助手将GPT改为MBR，如图：<br><img src="https://i.loli.net/2018/09/13/5b9a589d17e85.jpg" alt="1.jpg"><br>选中磁盘，在左侧菜单中选择“转换到MBR磁盘”：<br><img src="https://i.loli.net/2018/09/13/5b9a589cddfb3.jpg" alt="2.jpg"><br>转换成功：<br><img src="https://i.loli.net/2018/09/13/5b9a589d066d8.jpg" alt="3.jpg"><br>转换完成进行分区后，不要忘了把装系统的分区转换成活动分区：<br><img src="https://i.loli.net/2018/09/13/5b9a589d099b4.jpg" alt="4.jpg"><br>最后还是建议大家花几分钟时间了解一下UEFI的方式，这必定是未来的一个趋势，并不推荐采用上图将GPT修改为MBR的方式重装系统。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;分区表&quot;&gt;&lt;a href=&quot;#分区表&quot; class=&quot;headerlink&quot; title=&quot;分区表&quot;&gt;&lt;/a&gt;分区表&lt;/h1&gt;&lt;p&gt;全新硬盘未初始化之前，必须对其进行分区，硬盘分区初始化的格式包括MBR和GPT两种，另外对于基于PowerPC的Mac电脑还有专门的
+      
+    
+    </summary>
+    
+      <category term="装机" scheme="https://cyneliu.github.io/categories/%E8%A3%85%E6%9C%BA/"/>
+    
+    
+      <category term="装机" scheme="https://cyneliu.github.io/tags/%E8%A3%85%E6%9C%BA/"/>
+    
+      <category term="硬件" scheme="https://cyneliu.github.io/tags/%E7%A1%AC%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2.OVSDB的网桥和端口管理</title>
+    <link href="https://cyneliu.github.io/2018/09/13/2-OVSDB%E7%9A%84%E7%BD%91%E6%A1%A5%E5%92%8C%E7%AB%AF%E5%8F%A3%E7%AE%A1%E7%90%86/"/>
+    <id>https://cyneliu.github.io/2018/09/13/2-OVSDB的网桥和端口管理/</id>
+    <published>2018-09-13T07:21:32.000Z</published>
+    <updated>2018-09-13T09:34:17.738Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>在虚拟交换机领域，Open vSwitch作为非官方的标准已获得产业界的高度关注。一般来讲，控制器及应用可以通过OpenFlow和OVSDB两种南向协议方式与Open vSwitch交换机进行交互，其中通过OpenFlow来引导数据包流的转发，通过OVSDB可以进行端口和隧道的增加、更新以及删除，这些隧道和端口提供流转发的管道。因此，OVSDB在Open vSwitch作为一个重要的事实标准，OpenDaylight系统如何高效地支持OVSDB也变得非常重要。OpenDaylight的OVSDB子项目实现了OVSDB管理协议，该协议允许控制器进行虚拟交换机的南向配置。OVSDB协议包含一个OVSDB库和各种插件用法，该协议使用JSON/RPC调用的方式来操作内置OVSDB的物理或虚拟交换机。<br>OVSDB子项目主要包含Northbound模块、plugin模块和OVSDB Library模块，其中北向Northbound模块可供外部APP调用，南向OVSDB Library通过OVSDB协议与外部通信，进行OVSDB的管理，具体系统架构如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a10f6d7c34.png" alt="1.png"><br>Library模块主要包含message、notation、impl、jsonrpc和schema等程序包,其中jsonrpc主要提供兼容rpc1.0的解码器，能够从TCP流解码JSON消息；notation主要包含OVSDB MAP、ResultSet等定义以及Json串行化；schema提供OVSDB数据库模式的表示。</p><p>Plugin模块主要包含api、impl、internal和error等程序包，其中api程序包主要提供OVSDB的连接、增删改查等服务，impl包中的类是其接口的实现。  </p><p>Northbound模块主要包含五大类,分别是DatabaseResource、NodeResource、OvsdbNorthboundV2、OvsdbNorthboundV3、RowResource、TableResource。以类OvsdbNorthboundV2为例进行说明，该类提供OVSDB北向 REST API接口，用于创建、读取、更新和删除任一OVSDB表中的记录。创建OVSDB Row时，body请求体中的JSON格式与OVSDB JSON-PRC消息相同。northbound及其功能描述如下表所示。<br><img src="https://i.loli.net/2018/09/13/5b9a123b86027.png" alt="2.png"><br>用户在开发或者调试网络程序或者是网页B/S模式的程序的时候是需要一些方法来跟踪网页请求的，用户可以使用一些网络的监视工具比如著名的Firebug等网页调试工具。而Postman不仅可以调试简单的css、html、脚本等简单的网页基本信息，还可以发送GET、POST、PUT、DENLETE等几乎所有类型的HTTP请求。Postman在发送网络HTTP请求方面可以说是Chrome插件类产品中的代表产品之一。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;实验原理&quot;&gt;&lt;a href=&quot;#实验原理&quot; class=&quot;headerlink&quot; title=&quot;实验原理&quot;&gt;&lt;/a&gt;实验原理&lt;/h1&gt;&lt;p&gt;在虚拟交换机领域，Open vSwitch作为非官方的标准已获得产业界的高度关注。一般来讲，控制器及应用可以通过OpenFl
+      
+    
+    </summary>
+    
+      <category term="SDN,网络" scheme="https://cyneliu.github.io/categories/SDN-%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1.OpenFlow建立连接交互流程</title>
+    <link href="https://cyneliu.github.io/2018/09/13/1-OpenFlow%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B/"/>
+    <id>https://cyneliu.github.io/2018/09/13/1-OpenFlow建立连接交互流程/</id>
+    <published>2018-09-13T05:30:58.000Z</published>
+    <updated>2018-09-13T07:12:11.837Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="OpenFlow协议简介"><a href="#OpenFlow协议简介" class="headerlink" title="OpenFlow协议简介"></a>OpenFlow协议简介</h1><p>2006年，斯坦福大学Clean Slate计划资助的Ethane项目开始部署，致力于企业网架构的创新，OpenFlow协议的雏形就诞生于这个项目。2008年，Nick McKeown教授的一篇重要论文“OpenFlow：Enabling Innovation in Campus Networks”使得OpenFlow正式进入人们的视野，继而成为了标准化组织ONF（Open Network Foundation，开放网络基金会）主推的南向接口协议。经过多年的发展，OpenFlow现已成为SDN的主流南向接口协议之一。目前，OpenFlow协议还在不断地演进中，本实验采用OpenFlow v1.3协议，并对控制器与OpenFlow交换机之间的交互过程进行深入分析。<br>OpenFlow主要有3种类型的消息，分别是Controller-to-Switch、Asynchronous和Symmetric，其中每个类型又包含多个子类型。Controller-to-Switch消息由控制器发起，用于管理、查看交换机的状态。Asynchronous消息由交换机发起，向控制器汇报交换机的事件和改变。Symmetric消息由控制器或交换机任一方发起，无需请求直接发起消息。详细信息如下表所示：<br><img src="https://i.loli.net/2018/09/13/5b99fc6a1c7b0.png" alt="1.png"></p><h1 id="OpenFlow连接建立交互流程"><a href="#OpenFlow连接建立交互流程" class="headerlink" title="OpenFlow连接建立交互流程"></a>OpenFlow连接建立交互流程</h1><p><img src="https://i.loli.net/2018/09/13/5b99fd98251f8.png" alt="2.png"><br>在OpenFlow1.3协议的情况下，控制器与OpenFlow交换机的消息完整交互流程如下：<br>1、 控制器与OpenFlow交换机通过TCP“三次握手”，建立有效的连接。其中，控制器一端的端口号为6633。<br>2、 控制器与OpenFlow交换机之间相互发送Hello消息，用于协商双方的OpenFlow版本号。在双方支持的最高版本号不一致的情况下，协商的结果将以较低的OpenFlow版本为准。如果双方协商不一致，还会产生Error消息。<br>3、 控制器向OpenFlow交换机发送Features Request消息，请求OpenFlow交换机上传自己的详细参数。OpenFlow交换机收到请求后，向控制器发送Features Reply消息，详细汇报自身参数，包括支持的buffer数目、流表数以及Actions等。<br>4、 控制器通过Set Config消息下发配置参数，然后通过Get config Request消息请求OpenFlow交换机上传修改后的配置信息。OpenFlow交换机通过Get config Reply消息向控制器发送当前的配置信息。<br>5、 控制器与OpenFlow交换机之间发送Packet_out、Packet_in消息，通过Packet_out中内置的LLDP包，进行网络拓扑的探测。<br>6、 控制器与OpenFlow交换机之间通过发送Multipart Request、Mutipart Reply消息，控制器能获取OpenFlow交换机的状态信息，包括流的信息、端口信息等。<br>7、 控制器与OpenFlow交换机之间通过发送Echo Request、Echo Reply消息，保证二者之间存在有效连接，避免失联。  </p><h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/13/5b9a0b09e2b9b.png" alt="3.png"></p><h1 id="捕获数据包"><a href="#捕获数据包" class="headerlink" title="捕获数据包"></a>捕获数据包</h1><p>步骤1 登录Floodlight控制器，启动抓包工具Wireshark，捕获控制器与交换机建立连接过程中的数据包，通过分析这些数据包了解控制器与交换机基于OpenFlow协议进行交互的流程。执行以下命令：</p><blockquote></blockquote><pre><code>sudo wireshark</code></pre><p>步骤2 双击eth0网卡，查看eth0网卡上数据包收发情况，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0ba6a9fb7.png" alt="4.png"><br>步骤3 登录Mininet虚拟机，启动Mininet。通过“—controller”参数设置Mininet连接远程控制器，并指定控制器的IP和端口号。</p><blockquote></blockquote><pre><code>sudo mn --controller=remote,ip=30.0.1.3,port=6633 --switch=ovsk,protocols=OpenFlow13</code></pre><p><img src="https://i.loli.net/2018/09/13/5b9a0bf62d0be.png" alt="5.png"><br>步骤4 登录Floodlight控制器，停止Wireshark，观察数据包列表，可以看出控制器与交换机的基本交互流程。<br><img src="https://i.loli.net/2018/09/13/5b9a0c1ddbc4e.png" alt="6.png"></p><h1 id="OpenFlow1-3交互流程分析"><a href="#OpenFlow1-3交互流程分析" class="headerlink" title="OpenFlow1.3交互流程分析"></a>OpenFlow1.3交互流程分析</h1><p>步骤1 交换机连接控制器的6633端口，经过3次握手后双方建立TCP连接。查看捕获到的数据包，分析交换机与控制器建立TCP连接的流程。分析TCP连接建立过程，需要先了解TCP的状态位，主要包括SYN、FIN、ACK、PSH、RST和URG。SYN表示建立连接，FIN表示关闭连接，ACK表示响应，PSH表示有DATA数据传输，RST表示连接重置。可以看出交换机与控制器经历一次连接重置后，成功完成三次握手，建立TCP连接，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0c63cdbf7.png" alt="7.png"><br>步骤2 当控制器与交换机建立TCP连接后，由其中某一方发起Hello消息，双方协调协OpenFlow议版本号。控制器和交换机都会向对方发送一条Hello消息，消息中附上自己支持的OpenFlow的最高版本。接收到对方Hello消息后，判断自己能否支持对方发送的版本，能支持则版本协商成功，不能支持则回复一条OFPT_ERROR消息。查看Hello消息详情，本实验中由于交换机和控制器都能支持OpenFlow1.3版本，所以版本协商为1.3，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0c8900db0.png" alt="8.png"><br>步骤3 OpenFlow版本协商完成后，控制器发送一条features_request消息获取交换机的特性信息，包括交换机的ID（DPID）、缓冲区数量、端口及端口属性等等。相应的，交换机回复features_reply消息，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0cb6bf243.png" alt="9.png"><br>查看数据包详情，ofpt_feature_request消息只有包头，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0ce6d0540.png" alt="10.png"><br>ofpt_feature_reply数据包详情如下，交换机的DPID是数据通道独一无二的标识符，低48位是一个MAC地址，高16位是自定义的。本实验中交换机缓冲区数量（n_buffers）为256，交换机支持的流表数量（n_tables）为254，交换机所支持的功能，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d1008f0a.png" alt="11.png"><br>步骤4 OpenFlow1.0协议中feature_reply消息还包含交换机端口信息，OpenFlow 1.3协议将‘stats’框架更名为‘multipart’框架，并且将端口描述移植到multipart消息中。其中OPPT_PORT_DESC类型的multipart消息就是用于获取交换机端口信息的。<br><img src="https://i.loli.net/2018/09/13/5b9a0d34705f8.png" alt="12.png"><br>查看OPPT_PORT_DESC类型multipart_reply消息，消息中列出了交换机的端口以及每个端口的详细信息，包括端口名称和mac地址等，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d5f30b72.png" alt="13.png"><br>步骤5 OFPMP_DESC类型的multipart_reply消息包含了交换机的其他信息，包括交换机厂商名称、交换机名称以及交换机版本等。本实验中使用的是Mininet仿真软件中自带的开源交换机Open vSwitch(2.0.2)，而Open vSwitch是由Nicira Networks主导开发的，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d8d31133.png" alt="14.png"><br>步骤6 在连接过程中，控制器不断的发送echo_request消息给交换机，确认交换机与控制器之间的连接状态。相应的，交换机会回复echo_reply消息，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0db731025.png" alt="15.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;OpenFlow协议简介&quot;&gt;&lt;a href=&quot;#OpenFlow协议简介&quot; class=&quot;headerlink&quot; title=&quot;OpenFlow协议简介&quot;&gt;&lt;/a&gt;OpenFlow协议简介&lt;/h1&gt;&lt;p&gt;2006年，斯坦福大学Clean Slate计划资助的Eth
+      
+    
+    </summary>
+    
+      <category term="SDN,网络" scheme="https://cyneliu.github.io/categories/SDN-%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SDN中的南向接口和北向接口</title>
+    <link href="https://cyneliu.github.io/2018/09/11/SDN%E4%B8%AD%E7%9A%84%E5%8D%97%E5%90%91%E6%8E%A5%E5%8F%A3%E5%92%8C%E5%8C%97%E5%90%91%E6%8E%A5%E5%8F%A3/"/>
+    <id>https://cyneliu.github.io/2018/09/11/SDN中的南向接口和北向接口/</id>
+    <published>2018-09-11T08:46:53.000Z</published>
+    <updated>2018-09-11T08:58:49.595Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SDN的意义"><a href="#SDN的意义" class="headerlink" title="SDN的意义"></a>SDN的意义</h1><p>SDN网络的最终目标是服务于多样化的业务应用创新。因此随着SDN技术的部署和推广，将会有越来越多的业务应用被研发，这类应用将能够便捷地通过SDN北向接口调用底层网络能力，按需使用网络资源。  </p><p>SDN推动业务创新已经是业界不争的事实，它可以被广泛地应用在云数据中心、宽带传输网络、移动网络等种种场景中，其中为云计算业务提供网络资源服 务就是一个非常典型的案例。众所周知，在当前的云计算业务中，服务器虚拟化、存储虚拟化都已经被广泛应用，它们将底层的物理资源进行池化共享，进而按需分配给用户使用。相比之下，传统的网络资源远远没有达到类似的灵活性，而SDN的引入则能够很好地解决这一问题。</p><h1 id="南向接口"><a href="#南向接口" class="headerlink" title="南向接口"></a>南向接口</h1><p>SDN通过标准的南向接口屏蔽了底层物理转发设备的差异，实现了资源的虚拟化，同时开放了灵活的北向接口供上层业务按需进行网络配置并调用网络资源。  </p><p>云计算领域中知名的OpenStack就是可以工作在SDN应用层的云管理平台，通过在其网络资源管理组件中增加SDN管理插件，管理者和使用者可利 用SDN北向接口便捷地调用SDN控制器对外开放的网络能力。当有云主机组网需求(例如建立用户专有的VLAN)被发出时，相关的网络策略和配置可以在 OpenStack管理平台的界面上集中制定并进而驱动SDN控制器统一地自动下发到相关的网络设备上。  </p><p>当前，最知名的南向接口莫过于ONF倡导的OpenFlow协议。作为一个开放的协议，OpenFlow突破了传统网络设备厂商对设备能力接口的壁垒，经过多年的发展，在业界的共同努力下，当前已经日臻完善，能够全面解决SDN网络中面临的各种问题。  </p><p>因此，网络资源可以和其他类型的虚拟化资源一样，以抽象的资源能力的面貌统一呈现给业务应用开发者，开发者无需针对底层网络设备的差异耗费大量开销从事额外的适配工作，这有助于业务应用的快速创新。</p><h1 id="控制层"><a href="#控制层" class="headerlink" title="控制层"></a>控制层</h1><p>控制层是SDN的大脑，负责对底层转发设备的集中统一控制，同时向上层业务提供网络能力调用的接口，在SDN架构中具有举足轻重的作用，SDN控制 器也是SDN关注的焦点。从技术实现上看，控制器除了南向的网络控制和北向的业务支撑外，还需要关注东西的扩展，以避免SDN集中控制导致的性能和安全瓶颈问题，SDN控制器也在南向、北向、东西向上引入了相应的核心技术，有效解决与各层通信以及控制集群横向扩展的难题。  </p><p>当前，业界有很多基于OpenFlow控制协议的开源的控制器实现，例如NOX、Onix、Floodlight等，它们都有各自的特色设计，能够实现链路发现、拓扑管理、策略制定、表项下发等支持SDN网络运行的基本操作。虽然不同的控制器在功能和性能上仍旧存在差异，但是从中已经可以总结出SDN控制器应当具备的技术特征，从这些开源系统的研发与实践中得到的经验和教训将有助于推动SDN控制器的规范化发展。  </p><p>另外，用于网络集中化控制的控制器作为SDN网络的核心，其性能和安全性非常重要，其可能存在的负载过大、单点失效等问题一直是SDN领域中亟待解决的问题。当前，业界对此也有了很多探讨，从部署架构、技术措施等多个方面提出了很多有创见的方法。  </p><p>SDN控制器对网络的控制主要是通过南向接口协议实现,包括链路发现、拓扑管理、策略制定、表项下发等，其中链路发现和拓扑管理主要是控制其利用南 向接口的上行通道对底层交换设备上报信息进行统一监控和统计;而策略制定和表项下发则是控制器利用南向接口的下行通道对网络设备进行统一控制。</p><h1 id="北向接口"><a href="#北向接口" class="headerlink" title="北向接口"></a>北向接口</h1><p>SDN北向接口是通过控制器向上层业务应用开放的接口，其目标是使得业务应用能够便利地调用底层的网络资源和能力。通过北向接口，网络业务的开发者 能以软件编程的形式调用各种网络资源;同时上层的网络资源管理系统可以通过控制器的北向接口全局把控整个网网络的资源状态，并对资源进行统一调度。因为北 向接口是直接为业务应用服务的，因此其设计需要密切联系业务应用需求，具有多样化的特征。同时，北向接口的设计是否合理、便捷，以便能被业务应用广泛调用，会直接影响到SDN控制器厂商的市场前景。  </p><p>与南向接口方面已有OpenFlow等国际标准不同，北向接口方面还缺少业界公认的标准，因此，北向接口的协议制定成为当前SDN领域竞争的焦点， 不同的参与者或者从用户角度出发，或者从运营角度出发，或者从产品能力角度出发提出了很多方案。据悉,目前至少有20种控制器,每种控制器会对外提供北向 接口用于上层应用开发和资源编排。虽然北向接口标准当前还很难达成共识，但是充分的开放性、便捷性、灵活性将是衡量接口优劣的重要标准，例如REST API就是上层业务应用的开发者比较喜欢的接口形式。部分传统的网络设备厂商在其现有设备上提供了编程接口供业务应用直接调用，也可被视作是北向接口之一，其目的是在不改变其现有设备架构的条件下提升配置管理灵活性，应对开放协议的竞争。</p><h1 id="SDN交换机"><a href="#SDN交换机" class="headerlink" title="SDN交换机"></a>SDN交换机</h1><p>SDN的核心理念之一就是将控制功能从网络设备中剥离出来，通过中央控制器实现网络可编程，从而实现资源的优化利用，提升网络管控效率。  </p><p>工作在基础设施层的SDN交换机虽然不在需要对逻辑控制进行过多考虑，但作为SDN网络中负责具体数据转发处理的设备，为了完成高速数据转发，还是 要遵循交换机工作原理。本质上看，传统设备中无论是交换机还是路由器，其工作原理都是在收到数据包时，将数据包中的某些特征域与设备自身存储的一些表项进 行比对，当发现匹配时则按照表项的要求进行相应处理。SDN交换机也是类似的原理，但是与传统设备存在差异的是，设备中的各个表项并非是由设备自身根据周 边的网络环境在本地自行生成的，而是由远程控制器统一下发的，因此各种复杂的控制逻辑(例如链路发现、地址学习、路由计算等等)都无需在SDN交换机中实现。  </p><p>SDN交换机可以忽略控制逻辑的实现，全力关注基于表项的数据处理，而数据处理的性能也就成为评价SDN交换机优劣的最关键指标，因此，很多高性能 转发技术被提出，例如基于多张表以流水线方式进行高速处理的技术。另外，考虑到SDN和传统网络的混合工作问题，支持混合模式的SDN交换机也是当前设备 层技术研发的焦点。同时，随着虚拟化技术的出现和完善，虚拟化环境将是SDN交换机的一个重要应用场景，因此SDN交换机可能会有硬件、软件等多种形态。 例如，OVS(Open vSwitch，开放虚拟交换标准)交换机就是一款基于开源软件技术实现的能够集成在服务器虚拟化Hypervisor中的交换机，具备完善的交换机功能，在虚拟化组网中起到了非常重要的作用。  </p><p>SDN交换机的出现，对传统的网络设备厂商造成了最直接的威胁，如何将新兴的网络技术与传统设备产品的优势相融合，是这些厂商正在苦苦思索的问题。 虽然SDN交换机已经对传统的网络产业链造成了巨大的冲击，但是仅凭单独的数据转发设备还不足以支撑起整个SDN的天空，未来更激烈地竞争必将会在SDN的控制层和应用层发生。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;SDN的意义&quot;&gt;&lt;a href=&quot;#SDN的意义&quot; class=&quot;headerlink&quot; title=&quot;SDN的意义&quot;&gt;&lt;/a&gt;SDN的意义&lt;/h1&gt;&lt;p&gt;SDN网络的最终目标是服务于多样化的业务应用创新。因此随着SDN技术的部署和推广，将会有越来越多的业务应用被
+      
+    
+    </summary>
+    
+      <category term="SDN,网络" scheme="https://cyneliu.github.io/categories/SDN-%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
+    
+      <category term="网络" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Anaconda开始菜单失踪</title>
@@ -167,9 +271,9 @@
       <category term="学习笔记" scheme="https://cyneliu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
-    
       <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
+    
+      <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
     
   </entry>
   
@@ -287,21 +391,23 @@
     <link href="https://cyneliu.github.io/2018/05/30/%E4%B8%93%E6%B2%BB%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     <id>https://cyneliu.github.io/2018/05/30/专治疑难杂症/</id>
     <published>2018-05-30T12:50:21.000Z</published>
-    <updated>2018-05-31T13:53:47.706Z</updated>
+    <updated>2018-09-11T08:04:18.008Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="显示器红斑"><a href="#显示器红斑" class="headerlink" title="显示器红斑"></a>显示器红斑</h1><p><img src="https://i.loli.net/2018/05/31/5b0ffadfde7b5.jpg" alt="红点.jpg"></p><blockquote><p>如图:前几天电脑出现过一小片红点，因为不太多，而且在换了一张桌面壁纸后就变好了，所以就没有在意。ps:之后百度有人说长时间显示一张照片会引起显示器出现问题，所以建议不要超长时间的用一张壁纸等。<br>当然这次的问题应该于此无关，当时是因为看了一个电影，复联3，在观看的过程中就出现了大量的红点，但是以为是视频的问题当时并没有注意，后来最小化后发现竟然到处都是。这就比较烦了，在坚持看完电影之后，我开始查找原因。<br>首先想到的是显卡的问题，因为红点的位置在每个背景下并不固定，所以初步排除显示器硬件的问题。我尝试用驱动精灵更新了驱动，并在几次重启之后依然没有好转。这就让我有点慌了，难道是显卡坏了？赶紧找来一个显示器插上，发现外接显示器显示正常。<br>这就有点奇怪了，我又联系三星的工程师远程，在他看了一些配置之后，并没有发现问题，但是他的一句话提醒了我：“硬件或者程序兼容性问题”，我就想着会不会是看电影导致的？赶紧重置了一下播放器的设置，结果红点就消失了。。。这就说明回退思想是多么的重要。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="添加开机启动项"><a href="#添加开机启动项" class="headerlink" title="添加开机启动项"></a>添加开机启动项</h1><p>因为电脑装了某管家，不知道哪天自己把我的开机启动项给关了，只能手动添加回去，之前用的计划任务并不好用，今天知道了一个简单办法。<br>Windows有专门的启动目录，只要把想要开机启动的应用的快捷方式复制进去就可以了。<br>开机启动目录：</p><blockquote></blockquote><pre><code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp</code></pre><p>当然，有可能你根本找不到这个路径，只要把以上地址复制到地址栏，回车访问即可。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;显示器红斑&quot;&gt;&lt;a href=&quot;#显示器红斑&quot; class=&quot;headerlink&quot; title=&quot;显示器红斑&quot;&gt;&lt;/a&gt;显示器红斑&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/05/31/5b0ffadfde7b5.jpg&quot;
+        &lt;h1 id=&quot;添加开机启动项&quot;&gt;&lt;a href=&quot;#添加开机启动项&quot; class=&quot;headerlink&quot; title=&quot;添加开机启动项&quot;&gt;&lt;/a&gt;添加开机启动项&lt;/h1&gt;&lt;p&gt;因为电脑装了某管家，不知道哪天自己把我的开机启动项给关了，只能手动添加回去，之前用的计划任务并不好用
       
     
     </summary>
     
+      <category term="疑难杂症" scheme="https://cyneliu.github.io/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
-      <category term="电脑维护" scheme="https://cyneliu.github.io/tags/%E7%94%B5%E8%84%91%E7%BB%B4%E6%8A%A4/"/>
+    
+      <category term="疑难杂症" scheme="https://cyneliu.github.io/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
   </entry>
   
@@ -424,29 +530,6 @@
       <category term="GitHub Pages" scheme="https://cyneliu.github.io/tags/GitHub-Pages/"/>
     
       <category term="Blog" scheme="https://cyneliu.github.io/tags/Blog/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://cyneliu.github.io/2018/03/03/hello-world/"/>
-    <id>https://cyneliu.github.io/2018/03/03/hello-world/</id>
-    <published>2018-03-03T01:44:18.605Z</published>
-    <updated>2018-03-03T08:10:19.210Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-    
-    </summary>
-    
-    
-      <category term="Hexo" scheme="https://cyneliu.github.io/tags/Hexo/"/>
     
   </entry>
   
