@@ -5,26 +5,11 @@
     
   <url>
     <loc>https://cyneliu.github.io/2018/09/14/4-%E5%9F%BA%E4%BA%8ERESTCONF%E7%9A%84%E6%B5%81%E8%A1%A8%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2018-09-14T14:36:06.589Z</lastmod>
+    <lastmod>2018-09-15T12:32:28.633Z</lastmod>
     <data>
         <display>
         <title>4.基于RESTCONF的流表管理</title>
         <pubTime>2018-09-14T14:36:06.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://cyneliu.github.io/2018/09/14/3-Open-vSwitch%E6%B5%81%E8%A1%A8%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2018-09-14T14:14:29.791Z</lastmod>
-    <data>
-        <display>
-        <title>3.Open vSwitch流表管理</title>
-        <pubTime>2018-09-14T13:10:47.000Z</pubTime>
         
         <tag>SDN</tag>
          
@@ -42,13 +27,35 @@
     
   <url>
     <loc>https://cyneliu.github.io/2018/09/13/2-OVSDB%E7%9A%84%E7%BD%91%E6%A1%A5%E5%92%8C%E7%AB%AF%E5%8F%A3%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2018-09-14T12:27:39.911Z</lastmod>
+    <lastmod>2018-09-15T11:44:15.963Z</lastmod>
     <data>
         <display>
         <title>2.OVSDB的网桥和端口管理</title>
         <pubTime>2018-09-13T07:21:32.000Z</pubTime>
         
         <tag>SDN</tag>
+         
+         
+           
+             
+              <breadCrumb title="SDN,网络" url="https://cyneliu.github.io/categories/SDN-%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://cyneliu.github.io/2018/09/14/3-Open-vSwitch%E6%B5%81%E8%A1%A8%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2018-09-14T14:14:29.791Z</lastmod>
+    <data>
+        <display>
+        <title>3.Open vSwitch流表管理</title>
+        <pubTime>2018-09-14T13:10:47.000Z</pubTime>
+        
+        <tag>SDN</tag>
+         
+        <tag>网络</tag>
          
          
            

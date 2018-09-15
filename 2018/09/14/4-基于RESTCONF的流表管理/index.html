@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Cyne, Blog" />
+  <meta name="keywords" content="SDN,网络," />
 
 
 
@@ -89,17 +89,31 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.">
+<meta name="description" content="实验原理所谓流表，其实可被视作是SDN对网络设备的数据转发功能的一种抽象。在传统网络设备中，交换机和路由器的数据转发需要依赖设备中保存的二层MAC地址转发表或者三层的IP地址路由表，SDN交换机中使用的流表也是如此，不过在它的表项中整合了网络中各个层次的网络配置信息，从而在进行数据转发时可以使用更丰富的规则。   在使用RESTCONF下发流表时，需要学习的是请求消息的BODY的结构。实例如下：">
+<meta name="keywords" content="SDN,网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4.基于RESTCONF的流表管理">
 <meta property="og:url" content="https://cyneliu.github.io/2018/09/14/4-基于RESTCONF的流表管理/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="实验原理所谓流表，其实可被视作是SDN对网络设备的数据转发功能的一种抽象。在传统网络设备中，交换机和路由器的数据转发需要依赖设备中保存的二层MAC地址转发表或者三层的IP地址路由表，SDN交换机中使用的流表也是如此，不过在它的表项中整合了网络中各个层次的网络配置信息，从而在进行数据转发时可以使用更丰富的规则。   在使用RESTCONF下发流表时，需要学习的是请求消息的BODY的结构。实例如下：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-14T14:36:06.589Z">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cf7bc7011f.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cf7bc315a1.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cf7eee833f.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cf80fce130.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cf86025757.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cfa287541e.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cfa5754286.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cfb40e9192.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cfb65ceea0.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cfb85a72bb.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cfbcf41812.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9cfbcf2cb35.png">
+<meta property="og:updated_time" content="2018-09-15T12:32:28.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4.基于RESTCONF的流表管理">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.">
+<meta name="twitter:description" content="实验原理所谓流表，其实可被视作是SDN对网络设备的数据转发功能的一种抽象。在传统网络设备中，交换机和路由器的数据转发需要依赖设备中保存的二层MAC地址转发表或者三层的IP地址路由表，SDN交换机中使用的流表也是如此，不过在它的表项中整合了网络中各个层次的网络配置信息，从而在进行数据转发时可以使用更丰富的规则。   在使用RESTCONF下发流表时，需要学习的是请求消息的BODY的结构。实例如下：">
+<meta name="twitter:image" content="https://i.loli.net/2018/09/15/5b9cf7bc7011f.png">
 
 
 
@@ -346,6 +360,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SDN-网络/" itemprop="url" rel="index">
+                    <span itemprop="name">SDN,网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -372,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  1.5k
                 </span>
               
 
@@ -388,7 +424,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -409,7 +445,85 @@
       
 
       
-        
+        <h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>所谓流表，其实可被视作是SDN对网络设备的数据转发功能的一种抽象。在传统网络设备中，交换机和路由器的数据转发需要依赖设备中保存的二层MAC地址转发表或者三层的IP地址路由表，SDN交换机中使用的流表也是如此，不过在它的表项中整合了网络中各个层次的网络配置信息，从而在进行数据转发时可以使用更丰富的规则。  </p>
+<p>在使用RESTCONF下发流表时，需要学习的是请求消息的BODY的结构。实例如下：</p>
+<blockquote>
+</blockquote>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;
+&lt;flow xmlns=&quot;urn:opendaylight:flow:inventory&quot;&gt;
+    &lt;flow-name&gt;add-flow&lt;/flow-name&gt;
+     &lt;table_id&gt;0&lt;/table_id&gt;
+    &lt;id&gt;100&lt;/id&gt;
+     &lt;strict&gt;false&lt;/strict&gt;
+   &lt;priority&gt;1&lt;/priority&gt;
+     &lt;instructions&gt;
+         &lt;instruction&gt;
+             &lt;order&gt;0&lt;/order&gt;
+             &lt;apply-actions&gt;
+                 &lt;action&gt;
+                     &lt;order&gt;0&lt;/order&gt;
+                     &lt;output-action&gt;
+&lt;output-node-connector&gt;FLOOD&lt;/output-node-connector&gt;
+                    &lt;/output-action&gt;
+                &lt;/action&gt;
+            &lt;/apply-actions&gt;
+        &lt;/instruction&gt;
+    &lt;/instructions&gt;
+    &lt;match&gt;
+    &lt;/match&gt;
+&lt;/flow&gt;
+</code></pre><p>BODY中定义了流表名称（flowname）、flow所在的table（table_id）、flow的id（id）、是否严格匹配（strict）、优先级和匹配字段（match fields）、优先级（priority）、指令（instructions）、超时（timeouts）、cookie等值。</p>
+<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/15/5b9cf7bc7011f.png" alt="拓扑.png"></p>
+<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机查看网络连通性。由于OpenDaylight组件过于庞大，所以启动比较慢，容易导致控制器与交换机连接不成功的现象，间接导致主机无法获取IP。所以使用OpenDaylight控制器时，需要先检查网络连通性，查看交换机与控制器连接情况。执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl show
+</code></pre><p>出现“is_connected: true”，表明控制器与交换机连接成功。  </p>
+<p>步骤6 登录交换机，执行如下命令连接控制器。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl set-manager tcp:20.0.1.3:6640
+</code></pre><p>原本控制器与交换机之间的连接是通过OpenFlow协议的，在此基于OVSDB协议创建一个新的连接，其中20.0.1.3是控制器IP地址，6640是OVSDB协议对应的侦听端口。</p>
+<h1 id="删除ODL自动下发的流表"><a href="#删除ODL自动下发的流表" class="headerlink" title="删除ODL自动下发的流表"></a>删除ODL自动下发的流表</h1><p>在实验过程中需要验证两个不能通信的主机，通过REST北向接口下发流表，使得两个主机能够通信，所以需要删除原先的默认通信流表。  </p>
+<p>步骤1 登录交换机，执行如下命令删除流表，如下图所示。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl del-flows -O OpenFlow13 br-sw
+</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9cf7bc315a1.png" alt="1.png"><br>步骤2 执行ovs-ofctl dump-flows -O OpenFlow13 br-sw查看是否删除成功，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cf7eee833f.png" alt="2.png"><br>步骤3 登录其中的一个主机，查看主机间网络网络连通情况，此时主机间无法进行通信，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cf80fce130.png" alt="3.png"></p>
+<h1 id="下发通信流表"><a href="#下发通信流表" class="headerlink" title="下发通信流表"></a>下发通信流表</h1><p>步骤1 登录控制器，打开浏览器，输入URL：<strong>http://[controller_ip]:8181/index.html</strong>，输入有户名：admin，密码：admin，单击登录。登录后，单击Nodes菜单，获取交换机node id，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cf86025757.png" alt="4.png"><br>步骤2 单击Applications Menu/Development/Postman打开postman应用，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfa287541e.png" alt="5.png"><br>步骤3 输入URL http://[controller-ip]:8181/restconf/config/opendaylight-inventory:nodes/node/[node-id]/table/0/flow/100。  </p>
+<p>[controller-ip]为当前控制器的数据层的ip，[node-id]即步骤1中获得的node id请求类型选择PUT。问一个页面需要输入用户名和密码，同样，用Postman发送请求也需要一定的权限。单击Authorization，type选择basic auth。输入用户名和密码，用户名和密码都是admin。选择BODY的类型raw -&gt;XML（application/xml），如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfa5754286.png" alt="6.png"><br>步骤4 输入Body内容如下：</p>
+<blockquote>
+</blockquote>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;
+&lt;flow xmlns=&quot;urn:opendaylight:flow:inventory&quot;&gt;
+    &lt;flow-name&gt;add-flow&lt;/flow-name&gt;
+    &lt;table_id&gt;0&lt;/table_id&gt;
+    &lt;id&gt;100&lt;/id&gt;
+    &lt;installHw&gt;false&lt;/installHw&gt;
+    &lt;strict&gt;false&lt;/strict&gt;
+  &lt;priority&gt;1&lt;/priority&gt;
+    &lt;instructions&gt;
+       &lt;instruction&gt;
+           &lt;order&gt;0&lt;/order&gt;
+           &lt;apply-actions&gt;
+               &lt;action&gt;
+                   &lt;order&gt;0&lt;/order&gt;
+                   &lt;output-action&gt;
+&lt;output-node-connector&gt;FLOOD&lt;/output-node-connector&gt;
+                   &lt;/output-action&gt;
+                &lt;/action&gt;
+            &lt;/apply-actions&gt;
+            &lt;/instruction&gt;
+    &lt;/instructions&gt;
+    &lt;match&gt;
+    &lt;/match&gt;
+&lt;/flow&gt;
+注意：严格区分大小写
+</code></pre><p>步骤5 点击Send按钮，输出结果如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfb40e9192.png" alt="7.png"><br>步骤6 输入URL http://[controller-ip]:8181/restconf/config/opendaylight-inventory:nodes/node/[node-id]/table/0/。[controller-ip] 为当前控制器的数据层的ip，[node-id]即【四、下发通信流表】步骤1获得的node id请求类型选择GET。问一个页面需要输入用户名和密码，同样，用Postman发送请求也需要一定的权限。单击Authorization，type选择basic auth。输入用户名和密码，用户名和密码都是admin，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfb65ceea0.png" alt="8.png"><br>步骤7 点击Send按钮，输出结果如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfb85a72bb.png" alt="9.png"><br>可以看到，此流表为之前通过REST北向接口下发的流表。  </p>
+<p>步骤8 登录其中的一个主机，查看主机间网络网络情况，此时主机间能够进行通信。</p>
+<h1 id="使用Postman删除流表"><a href="#使用Postman删除流表" class="headerlink" title="使用Postman删除流表"></a>使用Postman删除流表</h1><p>步骤1 输入URL http://[controller-ip]:8181/restconf/config/opendaylight-inventory:nodes/node/[node-id]/table/0/flow/[flow-id]。  </p>
+<p>[controller-ip]为当前控制器的数据层的ip，[node-id]即【四、下发通信流表】步骤1获得的node id，[flow-id]为之前下发流表的id，可以到【四、下发通信流表】的BODY中查看。请求类型选择DELETE.访问一个页面需要输入用户名和密码，同样，用Postman发送请求也需要一定的权限。单击Authorization，type选择basic auth。输入用户名和密码，用户名和密码都是admin。点击Send，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfbcf41812.png" alt="10.png"><br>步骤2登录交换机，切换至root用户。执行命令ovs-ofctl dump-flows -O OpenFlow13 br-sw，可验证流表已删除，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfbcf2cb35.png" alt="11.png"></p>
+
       
     </div>
     
@@ -452,6 +566,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SDN/" rel="tag"><i class="fa fa-tag"></i> SDN</a>
+          
+            <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
+          
+        </div>
       
 
       
@@ -542,8 +664,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -625,6 +756,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验原理"><span class="nav-number">1.</span> <span class="nav-text">实验原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验拓扑"><span class="nav-number">2.</span> <span class="nav-text">实验拓扑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建实验"><span class="nav-number">3.</span> <span class="nav-text">创建实验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除ODL自动下发的流表"><span class="nav-number">4.</span> <span class="nav-text">删除ODL自动下发的流表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下发通信流表"><span class="nav-number">5.</span> <span class="nav-text">下发通信流表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Postman删除流表"><span class="nav-number">6.</span> <span class="nav-text">使用Postman删除流表</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -663,7 +810,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.5k字</span>
+  <span class="post-count">博客全站共25k字</span>
 </div>
 
         

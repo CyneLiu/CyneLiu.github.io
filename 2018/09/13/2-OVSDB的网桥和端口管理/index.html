@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/09/14/5b9ba8ddef7ab.png">
 <meta property="og:image" content="https://i.loli.net/2018/09/14/5b9ba9024cca5.png">
 <meta property="og:image" content="https://i.loli.net/2018/09/14/5b9ba934ab15e.png">
-<meta property="og:updated_time" content="2018-09-14T12:27:39.911Z">
+<meta property="og:updated_time" content="2018-09-15T11:44:15.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2.OVSDB的网桥和端口管理">
 <meta name="twitter:description" content="实验原理在虚拟交换机领域，Open vSwitch作为非官方的标准已获得产业界的高度关注。一般来讲，控制器及应用可以通过OpenFlow和OVSDB两种南向协议方式与Open vSwitch交换机进行交互，其中通过OpenFlow来引导数据包流的转发，通过OVSDB可以进行端口和隧道的增加、更新以及删除，这些隧道和端口提供流转发的管道。因此，OVSDB在Open vSwitch作为一个重要的事实标">
@@ -467,7 +467,7 @@
 <h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录OpenDaylight控制器，确保服务已经启动成功，由于OpenDaylight组件过于庞大，所以启动比较慢，需等待一段时间，使用命令：</p>
 <blockquote>
 </blockquote>
-<pre><code>netstat -an|grep 6633
+<pre><code>netstat -an|grep 6633 #netstat -an:查看端口对应的应用
 </code></pre><p>查看端口是否处于监听状态：<br><img src="https://i.loli.net/2018/09/14/5b9b46db45a61.png" alt="3.png"><br>步骤2 在保证控制6633端口处于监听状态后，登录交换机，查看交换机与控制器连接情况。执行以下命令：</p>
 <blockquote>
 </blockquote>
@@ -813,7 +813,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.5k字</span>
+  <span class="post-count">博客全站共25k字</span>
 </div>
 
         
