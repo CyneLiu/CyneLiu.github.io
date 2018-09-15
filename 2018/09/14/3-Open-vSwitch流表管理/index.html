@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Cyne, Blog" />
+  <meta name="keywords" content="SDN,网络," />
 
 
 
@@ -89,16 +89,27 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cyne&#39;s Blog">
-<meta property="og:url" content="https://cyneliu.github.io/tags/电脑维护/index.html">
+<meta name="description" content="实验原理OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议去连接Open vSwitch，创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。   在OpenFlow的白皮书中，Flow被定义">
+<meta name="keywords" content="SDN,网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.Open vSwitch流表管理">
+<meta property="og:url" content="https://cyneliu.github.io/2018/09/14/3-Open-vSwitch流表管理/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="实验原理OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议去连接Open vSwitch，创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。   在OpenFlow的白皮书中，Flow被定义">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/09/14/5b9bb4dd40468.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/14/5b9bb4dd3a959.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/14/5b9bb4dd4cb85.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/14/5b9bb4dd4d9be.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/14/5b9bbf7b25c05.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/14/5b9bbfb869e58.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/14/5b9bbffd27c45.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/14/5b9bc08844d29.png">
+<meta property="og:updated_time" content="2018-09-14T14:14:29.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cyne&#39;s Blog">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.">
+<meta name="twitter:title" content="3.Open vSwitch流表管理">
+<meta name="twitter:description" content="实验原理OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议去连接Open vSwitch，创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。   在OpenFlow的白皮书中，Flow被定义">
+<meta name="twitter:image" content="https://i.loli.net/2018/09/14/5b9bb4dd40468.png">
 
 
 
@@ -128,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="https://cyneliu.github.io/tags/电脑维护/"/>
+  <link rel="canonical" href="https://cyneliu.github.io/2018/09/14/3-Open-vSwitch流表管理/"/>
 
 
 
 
 
-  <title>标签: 电脑维护 | Cyne's Blog</title>
+  <title>3.Open vSwitch流表管理 | Cyne's Blog</title>
   
 
 
@@ -153,7 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,54 +302,294 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>电脑维护<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/09/14/3-Open-vSwitch流表管理/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cyne Liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyne's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/05/30/专治疑难杂症/" itemprop="url">
-              
-                <span itemprop="name">专治疑难杂症</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">3.Open vSwitch流表管理</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-30T20:50:21+08:00"
-              content="2018-05-30" >
-          05-30
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T21:10:47+08:00">
+                2018-09-14
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SDN-网络/" itemprop="url" rel="index">
+                    <span itemprop="name">SDN,网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  790
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议去连接Open vSwitch，创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。  </p>
+<p>在OpenFlow的白皮书中，Flow被定义为某个特定的网络流量。例如，一个TCP连接就是一个Flow，或者从某个IP地址发出来的数据包，都可以被认为是一个Flow。支持OpenFlow协议的交换机应该包括一个或者多个流表，流表中的条目包含：数据包头的信息、匹配成功后要执行的指令和统计信息。  </p>
+<p>当数据包进入OVS后，会将数据包和流表中的流表项进行匹配，如果发现了匹配的流表项，则执行该流表项中的指令集。相反，如果数据包在流表中没有发现任何匹配，OVS会通过控制通道把数据包发到OpenFlow控制器中。<br>在OVS中，流表项作为ovs-ofctl的参数，采用如下的格式：字段=值，如果有多个字段，可以用逗号或者空格分开。一些常用的字段列举如下：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd40468.png" alt="1.png"><br>ovs-ofctl关于流表管理的常用命令：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd3a959.png" alt="2.png"><br>对于add−flow，add−flows和mod−flows这三个命令，还需要指定要执行的动作：actions=[target][,target…]，一个流规则中可能有多个动作，按照指定的先后顺序执行。<br>常见的操作有：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd4cb85.png" alt="3.png"></p>
+<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/14/5b9bb4dd4d9be.png" alt="拓扑.png"></p>
+<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机，执行以下命令，查看镜像中原有的网桥，如下图所示。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl show
+</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbf7b25c05.png" alt="4.png"><br>步骤5 执行以下命令，删除当前网桥，并进行确认，如下图所示。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl del-br br-sw
+ovs-vsctl show
+</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbfb869e58.png" alt="5.png"></p>
+<h1 id="流表管理"><a href="#流表管理" class="headerlink" title="流表管理"></a>流表管理</h1><p>步骤1 执行以下命令，添加网桥，并查看虚拟交换机的基本信息，如下图所示。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl add-br br0
+ovs-ofctl show br0
+</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbffd27c45.png" alt="6.png"><br>由上图可知，可以查看到交换机dpid、流表数量、性能参数、动作参数、MAC地址等信息。  </p>
+<p>步骤2 执行以下命令，查看虚拟交换机上各端口的状态，如下图所示。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl dump-flows br0
+</code></pre><p>由上图可知，输出的结果中包含了各端口上收到的数据包数，字节数，丢包数，错误数据包数等。  </p>
+<p>步骤3 执行以下命令，添加一条流表项，设置流表项生命周期为1000s，优先级为17，入端口为3，动作是output:2。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl add-flow br0 idle_timeout=1000,priority=17,in_port=3,actions=output:2
+说明：这条流表项的作用是将端口3接收到的数据包从端口2输出。
+</code></pre><p>步骤4 执行以下命令，查看交换机上所有流表信息，如下图所示。</p>
+<blockquote>
+<pre><code>ovs-ofctl dump-flows br0
+</code></pre></blockquote>
+<p>步骤5 执行以下命令，删除入端口为3的的流表项，删除后，再次查看流表信息，如下图所示。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl del-flows br0 in_port=3
+ovs-ofctl dump-flows br0
+</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bc08844d29.png" alt="7.png"></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://i.loli.net/2018/03/03/5a9a6f8dcc189.png" alt="Cyne Liu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://i.loli.net/2018/03/03/5a9a6f8dcc19b.jpg" alt="Cyne Liu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SDN/" rel="tag"><i class="fa fa-tag"></i> SDN</a>
+          
+            <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/13/秒懂MBR和GPT分区表/" rel="next" title="秒懂MBR和GPT分区表">
+                <i class="fa fa-chevron-left"></i> 秒懂MBR和GPT分区表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/14/4-基于RESTCONF的流表管理/" rel="prev" title="4.基于RESTCONF的流表管理">
+                4.基于RESTCONF的流表管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +597,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTU0Ni8xNjA3Mw=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -366,8 +626,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -386,7 +655,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -397,7 +666,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -408,7 +677,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -449,6 +718,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验原理"><span class="nav-number">1.</span> <span class="nav-text">实验原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验拓扑"><span class="nav-number">2.</span> <span class="nav-text">实验拓扑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建实验"><span class="nav-number">3.</span> <span class="nav-text">创建实验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流表管理"><span class="nav-number">4.</span> <span class="nav-text">流表管理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -487,7 +772,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共15.3k字</span>
+  <span class="post-count">博客全站共23.5k字</span>
 </div>
 
         
@@ -626,6 +911,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -654,6 +943,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
