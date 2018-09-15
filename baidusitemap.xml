@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2018/09/15/5-OpenFlow%E5%AE%9E%E7%8E%B0%E7%A4%BA%E4%BE%8B%E4%B9%8B%E4%B8%AD%E7%BB%A7%E5%99%A8HUB/</loc>
+    <lastmod>2018-09-15T14:42:29.254Z</lastmod>
+    <data>
+        <display>
+        <title>5.OpenFlow实现示例之中继器HUB</title>
+        <pubTime>2018-09-15T13:09:29.000Z</pubTime>
+        
+        <tag>SDN</tag>
+         
+        <tag>网络</tag>
+         
+         
+           
+             
+              <breadCrumb title="SDN,实验" url="https://cyneliu.github.io/categories/SDN-%E5%AE%9E%E9%AA%8C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2018/09/14/4-%E5%9F%BA%E4%BA%8ERESTCONF%E7%9A%84%E6%B5%81%E8%A1%A8%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2018-09-15T12:32:28.633Z</lastmod>
+    <lastmod>2018-09-15T13:10:25.069Z</lastmod>
     <data>
         <display>
         <title>4.基于RESTCONF的流表管理</title>
@@ -18,7 +40,7 @@
          
            
              
-              <breadCrumb title="SDN,网络" url="https://cyneliu.github.io/categories/SDN-%E7%BD%91%E7%BB%9C/"/>
+              <breadCrumb title="SDN,实验" url="https://cyneliu.github.io/categories/SDN-%E5%AE%9E%E9%AA%8C/"/>
           
         </display>
     </data>

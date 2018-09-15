@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Cyne, Blog" />
+  <meta name="keywords" content="SDN,网络," />
 
 
 
@@ -89,16 +89,32 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cyne&#39;s Blog">
-<meta property="og:url" content="https://cyneliu.github.io/tags/疑难杂症/index.html">
+<meta name="description" content="实验原理OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信息的计数器（Counter），还有匹配表项后需要对数据分组执行的动作表（Action）。分组头域是数据分组匹配流表项时参照的依据，作用上类似于传统交换机进行二层交换时匹配数据分组的MAC地址，路由器进行三层路由时匹配的IP地址。流表项中的计数器用来统计相关“流”的一些">
+<meta name="keywords" content="SDN,网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5.OpenFlow实现示例之中继器HUB">
+<meta property="og:url" content="https://cyneliu.github.io/2018/09/15/5-OpenFlow实现示例之中继器HUB/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="实验原理OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信息的计数器（Counter），还有匹配表项后需要对数据分组执行的动作表（Action）。分组头域是数据分组匹配流表项时参照的依据，作用上类似于传统交换机进行二层交换时匹配数据分组的MAC地址，路由器进行三层路由时匹配的IP地址。流表项中的计数器用来统计相关“流”的一些">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d05573ed46.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d0af0ac5d1.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d129607bf4.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d151e53f54.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d156896885.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d16d59439b.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d18177ec0e.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d184ac4929.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d18930750e.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d18d0ab61c.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d19734c90f.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d1a21ac061.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/15/5b9d1a4af035d.png">
+<meta property="og:updated_time" content="2018-09-15T14:42:29.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cyne&#39;s Blog">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.">
+<meta name="twitter:title" content="5.OpenFlow实现示例之中继器HUB">
+<meta name="twitter:description" content="实验原理OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信息的计数器（Counter），还有匹配表项后需要对数据分组执行的动作表（Action）。分组头域是数据分组匹配流表项时参照的依据，作用上类似于传统交换机进行二层交换时匹配数据分组的MAC地址，路由器进行三层路由时匹配的IP地址。流表项中的计数器用来统计相关“流”的一些">
+<meta name="twitter:image" content="https://i.loli.net/2018/09/15/5b9d05573ed46.png">
 
 
 
@@ -128,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="https://cyneliu.github.io/tags/疑难杂症/"/>
+  <link rel="canonical" href="https://cyneliu.github.io/2018/09/15/5-OpenFlow实现示例之中继器HUB/"/>
 
 
 
 
 
-  <title>标签: 疑难杂症 | Cyne's Blog</title>
+  <title>5.OpenFlow实现示例之中继器HUB | Cyne's Blog</title>
   
 
 
@@ -153,7 +169,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,54 +307,331 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>疑难杂症<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/09/15/5-OpenFlow实现示例之中继器HUB/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cyne Liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyne's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/05/30/专治疑难杂症/" itemprop="url">
-              
-                <span itemprop="name">专治疑难杂症</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">5.OpenFlow实现示例之中继器HUB</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-30T20:50:21+08:00"
-              content="2018-05-30" >
-          05-30
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T21:09:29+08:00">
+                2018-09-15
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SDN-实验/" itemprop="url" rel="index">
+                    <span itemprop="name">SDN,实验</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信息的计数器（Counter），还有匹配表项后需要对数据分组执行的动作表（Action）。分组头域是数据分组匹配流表项时参照的依据，作用上类似于传统交换机进行二层交换时匹配数据分组的MAC地址，路由器进行三层路由时匹配的IP地址。流表项中的计数器用来统计相关“流”的一些信息，例如查找次数、收发分组数、生存时间等。另外，OpenFlow针对每张表、每个流表项、每个端口、每个队列也都会维护它们相应的计数器。动作表指定了OpenFlow交换机处理相应“流”的行为。相比于传统网络设备对数据分组只能进行较为单一的转发操作，流表项根据指定动作字段来指导OF交换机如何处理“流”。动作表可以包含0个或多个动作，交换机会按照这些动作的先后顺序依次执行，如果其中不包含转发（Forward）动作的话，数据分组就会被丢弃掉，如果包含转发动作，数据分组会得到相应的转发处理，但是OpenFlow v1.0无法保证不同的数据分组的转发顺序。动作可以分为两种类型：必选动作（Required Action）和可选动作（Optional Action）。必选动作是默认支持的，而交换机需要通知控制器它支持的可选动作。另外，当流表项中存在OpenFlow交换机不支持的动作时将向控制器返回错误消息。在SDN网络中，控制器下发流表主要有两种模式，分别是reactive模式和proactive模式。  </p>
+<p>传统交换机参照MAC地址转发，路由器参照IP地址转发，通过定制ASIC芯片可以实现高速工作。而OpenFlow将网络协议栈扁平化，协议栈各层次对于转发设备而言不再具有明确的界限，各个网络字段都可作为流表中的匹配域，通过通配符掩码实现任意字段的组合。相比于传统网络，这种做法无疑大大提高了网络灵活性，但付出的代价是硬件设备为了适应这种通配的匹配方式，一般来说需要采用TCAM（Ternary Content Addressable Memory）来设计流表，但是TCAM的成本要高出很多，这就极大地限制了流表的规模，也就限制了SDN的规模。如果按照很多客户的要求，动辄要几十KB甚至上百KB的流表要求，至少需要20Mbit的TCAM，远远超过目前市场上容量最大的交换芯片的TCAM大小。为了克服TCAM表较小的问题，SDN先驱们提出采用reactive的方式来编写TCAM。<br><img src="https://i.loli.net/2018/09/15/5b9d05573ed46.png" alt="1.png"><br>在reactive模式下，OpenFlow交换机接收到未知数据包时，会向控制器发送一条packet_in消息询问控制器如何处理该数据包。控制器接收到packet_in消息后，计算路径并发送一条flow_mod消息指示交换机如何处理该数据包。并且，当老化定时器超时后就可以删除与该数据包相关的流表项。如此一来，OpenFlow交换机无需维护全部流表，只有当未知数据包到达交换机时才会触发reactive模式，可以有效的节省TCAM的空间。但是reactive模式缺点就是交换机无法即时地处理未知数据包，需要依赖控制器的决策，虽然在一定程度上解决了TCAM较小带来的问题，但是也让SDN控制器成为系统扩展的瓶颈，随着网络规模的不断扩大，SDN控制器无法处理大规模的网络流量，SDN控制器的性能就会限制网络规模的扩展。  </p>
+<p>OpenFlow交换机和OpenFlow控制器之间的通道建立后，由OpenFlow控制器向OpenFlow交换机预先发送流表项方式称之为proactive模式。proactive模式的设置不是必须在控制器与交换机建立连接后立刻下发流表，可以在连接建立后的任意时间下发流表。proactive模式的主要特点是“主动”，控制器主动下发流表给交换机，随后交换机可以直接根据流表进行转发。proactive模式下控制器的压力会大大减轻，不过TCAM造成的局限性也尤为明显。</p>
+<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/15/5b9d0af0ac5d1.png" alt="拓扑.png"></p>
+<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机，检查网络连通性。执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl show
+</code></pre><p>出现“is_connected: true”，表明控制器与交换机连接成功。  </p>
+<p>步骤2 登录主机，查看主机IP。  </p>
+<p>登录交换机，查看交换机mac地址。  </p>
+<blockquote>
+</blockquote>
+<pre><code>ifconfig |more
+</code></pre><p>根据实验拓扑图、交换机和主机的mac地址，可以判断出交换机eth1连接host1，eth2连接host2，eth3连接host3。</p>
+<h1 id="proactive模式"><a href="#proactive模式" class="headerlink" title="proactive模式"></a>proactive模式</h1><p>步骤1 Open Daylight控制器与交换机建立连接后，会自动下发初始流表。登录交换机使用下列命令查看初始流表。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl dump-flows br-sw
+</code></pre><p>如果没有的话重启一下交换机。<br><img src="https://i.loli.net/2018/09/15/5b9d129607bf4.png" alt="2.png"><br>步骤2 登录控制器，在下方的“Application Finder”中搜索“postman”，并打开自带的Postman工具，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d151e53f54.png" alt="3.png"><br>步骤3 获取交换机的id信息。打开Basic Auth页签，Username字段填写admin，Password字段填写admin完成认证。  </p>
+<p>提交方式为GET，URL地址栏中输入<a href="http://127.0.0.1:8080/restconf/operational/opendaylight-inventory:nodes。" target="_blank" rel="noopener">http://127.0.0.1:8080/restconf/operational/opendaylight-inventory:nodes。</a>  </p>
+<p>步骤4 单击Send按钮，获取交换机id信息，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d156896885.png" alt="4.png"><br>步骤5 下发一条流表。</p>
+<blockquote>
+<p>选择提交方式“PUT”。  </p>
+</blockquote>
+<blockquote>
+<p>URL地址栏输入如下形式的地址：http://{controller-ip}:8080/restconf/config/opendaylight-inventory:nodes/node/{node-id}/table/{table-id}/flow/{flow-id}。  </p>
+</blockquote>
+<blockquote>
+<p>其中，{controller-ip}为控制器的ip地址，node-id为上面获取到的交换机id信息，table-id这里为0，flow-id根据下发不同流表变化，可自定义。本实验URL地址栏输入如下地址：<a href="http://127.0.0.1:8080/restconf/config/opendaylight-inventory:nodes/node/openflow:143226243417414/table/0/flow/14。" target="_blank" rel="noopener">http://127.0.0.1:8080/restconf/config/opendaylight-inventory:nodes/node/openflow:143226243417414/table/0/flow/14。</a>  </p>
+</blockquote>
+<blockquote>
+<p>填写Headers信息，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d16d59439b.png" alt="5.png"><br>单击Body，Bady格式选择raw—&gt;XML(application/xml)。Body内容如下所示：  </p>
+</blockquote>
+<blockquote>
+<p>匹配条件为ANY，actions为ALL，即将交换机收到的所有数据包转发到除入端口外的所有端口，从而实现中继器HUB的功能。</p>
+</blockquote>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;
+&lt;flow xmlns=&quot;urn:opendaylight:flow:inventory&quot;&gt;
+    &lt;priority&gt;35&lt;/priority&gt;
+    &lt;flow-name&gt;SDN&lt;/flow-name&gt;
+    &lt;idle-timeout&gt;0&lt;/idle-timeout&gt;
+    &lt;hard-timeout&gt;0&lt;/hard-timeout&gt;
+    &lt;match&gt;ANY&lt;/match&gt;
+    &lt;id&gt;14&lt;/id&gt;
+    &lt;table_id&gt;0&lt;/table_id&gt;
+    &lt;instructions&gt;
+        &lt;instruction&gt;
+            &lt;order&gt;0&lt;/order&gt;
+            &lt;apply-actions&gt;
+                &lt;action&gt;
+                       &lt;output-action&gt;
+                          &lt;output-node-connector&gt;ALL&lt;/output-node-connector&gt;
+                       &lt;/output-action&gt;
+                       &lt;order&gt;0&lt;/order&gt;
+                &lt;/action&gt;
+            &lt;/apply-actions&gt;
+        &lt;/instruction&gt;
+    &lt;/instructions&gt;
+&lt;/flow&gt;
+</code></pre><p>步骤6 单击Send按钮发送请求，STATUS显示请求发送成功，流表下发成功，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d18177ec0e.png" alt="6.png"><br>步骤7 登录交换机查看下发的流表，执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl dump-flows br-sw
+</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d184ac4929.png" alt="7.png"><br>步骤8 登录主机host1，对主机host2进行ping操作，host2的IP为10.0.0.10，执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>ping 10.0.0.10
+</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d18930750e.png" alt="8.png"><br>步骤9 登录交换机用tcpdump捕获广播到host2和host3数据包。host2对应的端口是eth2，host3对应的端口是eth3，分别捕获这两个端口上的数据包。  </p>
+<p>（备注：选择不在host3、host2上抓包的原因是：由于当h1 ping h2时，数据包从交换机所有端口output出去后，openstack中的Linux-bridge会根据转发表过滤掉所有目的地址与端口不一致的数据包，因此host3上无法捕获host1与host2之间的数据包。）</p>
+<blockquote>
+</blockquote>
+<pre><code>tcpdump -i eth2
+</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d18d0ab61c.png" alt="9.png"></p>
+<blockquote>
+</blockquote>
+<pre><code>tcpdump -i eth3
+</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d19734c90f.png" alt="10.png"></p>
+<h1 id="reactive模式"><a href="#reactive模式" class="headerlink" title="reactive模式"></a>reactive模式</h1><p>reactive模式需要依赖SDN控制器的反应，实现较为复杂，在此仅进行方案介绍，不做实验操作，有兴趣的同学可自行拓展学习。  </p>
+<p>步骤1 reactive模式的触发机制就是交换机将接收到数据包转发给控制器，交换机转发数据包给控制器的情况有两种：一个是交换机接收到未知数据包；另一个就是流表action要求交换机将数据包转发给控制器。因此设置reactive模式的第一步是下发一条流表，priority设置为最高65535，匹配条件为ANY，actions是将数据包output到controller。<br><img src="https://i.loli.net/2018/09/15/5b9d1a21ac061.png" alt="11.png"><br>流表项设置好后，当host1发送数据包时，交换机接收到数据包后会发送packet_in消息给控制器。  </p>
+<p>步骤2 控制器接收到packet_in消息后对消息中的内容进行判断，计算分析后发送packet_out消息给交换机，告知交换机如何处理该数据包。本实验中控制器会要求交换机将数据包转发到除入端口外的所有端口，从而实验中继器的功能。<br><img src="https://i.loli.net/2018/09/15/5b9d1a4af035d.png" alt="12.png"></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://i.loli.net/2018/03/03/5a9a6f8dcc189.png" alt="Cyne Liu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://i.loli.net/2018/03/03/5a9a6f8dcc19b.jpg" alt="Cyne Liu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SDN/" rel="tag"><i class="fa fa-tag"></i> SDN</a>
+          
+            <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/14/4-基于RESTCONF的流表管理/" rel="next" title="4.基于RESTCONF的流表管理">
+                <i class="fa fa-chevron-left"></i> 4.基于RESTCONF的流表管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +639,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTU0Ni8xNjA3Mw=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -366,8 +668,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -448,6 +759,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验原理"><span class="nav-number">1.</span> <span class="nav-text">实验原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验拓扑"><span class="nav-number">2.</span> <span class="nav-text">实验拓扑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建实验"><span class="nav-number">3.</span> <span class="nav-text">创建实验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#proactive模式"><span class="nav-number">4.</span> <span class="nav-text">proactive模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reactive模式"><span class="nav-number">5.</span> <span class="nav-text">reactive模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -626,6 +953,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -654,6 +985,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
