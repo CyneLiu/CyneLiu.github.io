@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="聊天服务器,阿卡信," />
+  <meta name="keywords" content="SDN,网络," />
 
 
 
@@ -89,22 +89,50 @@
 
 
 
-<meta name="description" content="一、安装JAVA和MAVEN环境这两个安装很简单，网上一大把的教程，因为我手头可用的只有一个Windows Server，所以这里只演示Win版的安装配置过程。  ①首先在ORACLE官网下载jre，然后直接运行安装就可以。②同样，在maven官网下载maven的压缩包，具体的安装配置过程可以参考CSDN博主的教程。③安装成功后，在cmd命令行分别用一下两条命令测试是否正确安装配置：  java">
-<meta name="keywords" content="聊天服务器,阿卡信">
+<meta name="description" content="实验原理YANG UI是OpenDaylight中一款基于DLUX的应用，旨在简化、激励应用的开发与测试。YANG UI通过动态封装、调用YANG模型和相关REST APIs，生成并展示一个简单的UI界面。开发人员可以通过API请求获取交换机信息，并且以JSON格式展示。YANG UI主要面向上层应用开发，为应用开发人员提供了很多相关工具，有效的节约了开发人员的时间。   OpenFlow1.0协">
+<meta name="keywords" content="SDN,网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于阿卡信自建聊天服务器">
-<meta property="og:url" content="https://cyneliu.github.io/2018/06/03/基于阿卡信自建聊天服务器/index.html">
+<meta property="og:title" content="6.使用OpenDaylight界面下发流表">
+<meta property="og:url" content="https://cyneliu.github.io/2018/09/16/6-使用OpenDaylight界面下发流表/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="一、安装JAVA和MAVEN环境这两个安装很简单，网上一大把的教程，因为我手头可用的只有一个Windows Server，所以这里只演示Win版的安装配置过程。  ①首先在ORACLE官网下载jre，然后直接运行安装就可以。②同样，在maven官网下载maven的压缩包，具体的安装配置过程可以参考CSDN博主的教程。③安装成功后，在cmd命令行分别用一下两条命令测试是否正确安装配置：  java">
+<meta property="og:description" content="实验原理YANG UI是OpenDaylight中一款基于DLUX的应用，旨在简化、激励应用的开发与测试。YANG UI通过动态封装、调用YANG模型和相关REST APIs，生成并展示一个简单的UI界面。开发人员可以通过API请求获取交换机信息，并且以JSON格式展示。YANG UI主要面向上层应用开发，为应用开发人员提供了很多相关工具，有效的节约了开发人员的时间。   OpenFlow1.0协">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.loli.net/2018/06/03/5b1352a48dbf1.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/03/5b1354ced508f.jpg">
-<meta property="og:image" content="https://i.loli.net/2018/06/03/5b1355a46befb.png">
-<meta property="og:updated_time" content="2018-06-03T02:46:34.867Z">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4929f0d63.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e494803043.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4a2625fb7.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4a653f1bb.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4ac29c305.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4af0e3b80.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4b115e5c9.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4b3798ac7.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4b59027ad.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4b789668c.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4bc1b5579.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4bec99e16.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4c0f7a101.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4c2f54bc4.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4c5b47302.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4c9033d8d.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4cc42a811.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4cfe4003b.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e4d486b69c.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e592464e82.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e594c3f115.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e5979b8763.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e599fdaa67.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e59c4a3dca.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e59eb63de3.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e5a28ba934.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e5a73537cd.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e5aa888c72.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e5ad13fe66.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e5b076d691.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/16/5b9e5b4ae09ab.png">
+<meta property="og:updated_time" content="2018-09-16T13:32:12.111Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于阿卡信自建聊天服务器">
-<meta name="twitter:description" content="一、安装JAVA和MAVEN环境这两个安装很简单，网上一大把的教程，因为我手头可用的只有一个Windows Server，所以这里只演示Win版的安装配置过程。  ①首先在ORACLE官网下载jre，然后直接运行安装就可以。②同样，在maven官网下载maven的压缩包，具体的安装配置过程可以参考CSDN博主的教程。③安装成功后，在cmd命令行分别用一下两条命令测试是否正确安装配置：  java">
-<meta name="twitter:image" content="https://i.loli.net/2018/06/03/5b1352a48dbf1.png">
+<meta name="twitter:title" content="6.使用OpenDaylight界面下发流表">
+<meta name="twitter:description" content="实验原理YANG UI是OpenDaylight中一款基于DLUX的应用，旨在简化、激励应用的开发与测试。YANG UI通过动态封装、调用YANG模型和相关REST APIs，生成并展示一个简单的UI界面。开发人员可以通过API请求获取交换机信息，并且以JSON格式展示。YANG UI主要面向上层应用开发，为应用开发人员提供了很多相关工具，有效的节约了开发人员的时间。   OpenFlow1.0协">
+<meta name="twitter:image" content="https://i.loli.net/2018/09/16/5b9e4929f0d63.png">
 
 
 
@@ -134,13 +162,13 @@
 
 
 
-  <link rel="canonical" href="https://cyneliu.github.io/2018/06/03/基于阿卡信自建聊天服务器/"/>
+  <link rel="canonical" href="https://cyneliu.github.io/2018/09/16/6-使用OpenDaylight界面下发流表/"/>
 
 
 
 
 
-  <title>基于阿卡信自建聊天服务器 | Cyne's Blog</title>
+  <title>6.使用OpenDaylight界面下发流表 | Cyne's Blog</title>
   
 
 
@@ -311,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/06/03/基于阿卡信自建聊天服务器/">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/09/16/6-使用OpenDaylight界面下发流表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cyne Liu">
@@ -328,7 +356,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基于阿卡信自建聊天服务器</h1>
+          <h1 class="post-title" itemprop="name headline">6.使用OpenDaylight界面下发流表</h1>
         
 
         <div class="post-meta">
@@ -340,8 +368,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T09:55:23+08:00">
-                2018-06-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T20:11:24+08:00">
+                2018-09-16
               </time>
             
 
@@ -363,8 +391,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Server/" itemprop="url" rel="index">
-                    <span itemprop="name">Server</span>
+                  <a href="/categories/SDN-实验/" itemprop="url" rel="index">
+                    <span itemprop="name">SDN,实验</span>
                   </a>
                 </span>
 
@@ -399,7 +427,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  384
+                  2.7k
                 </span>
               
 
@@ -415,7 +443,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  10
                 </span>
               
             </div>
@@ -436,17 +464,75 @@
       
 
       
-        <h1 id="一、安装JAVA和MAVEN环境"><a href="#一、安装JAVA和MAVEN环境" class="headerlink" title="一、安装JAVA和MAVEN环境"></a>一、安装JAVA和MAVEN环境</h1><p>这两个安装很简单，网上一大把的教程，因为我手头可用的只有一个Windows Server，所以这里只演示Win版的安装配置过程。</p>
+        <h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>YANG UI是OpenDaylight中一款基于DLUX的应用，旨在简化、激励应用的开发与测试。YANG UI通过动态封装、调用YANG模型和相关REST APIs，生成并展示一个简单的UI界面。开发人员可以通过API请求获取交换机信息，并且以JSON格式展示。YANG UI主要面向上层应用开发，为应用开发人员提供了很多相关工具，有效的节约了开发人员的时间。  </p>
+<p>OpenFlow1.0协议处理数据包的流程相对简单，因为1.0版本只支持单流表。交换机接收到数据包后解析数据包，数据包解析后就开始匹配，从table 0 开始匹配，如果匹配成功则对该数据包执行相应的动作，更新相应的计数器。如果没有找到匹配项则将数据包交给控制器。  </p>
+<p>OpenFlow1.3协议支持多流表匹配，即一个交换机只会有多个流表，因此数据包处理过程相对复杂。首先解析进入设备的报文，然后从table 0开始匹配，按照优先级高低依次匹配该流表中的流表项，一个报文在一个流表中只会匹配上一条流表项。通常根据报文的类型，报文头的字段例如源MAC地址、目的MAC地址、源IP地址、目的IP地址等进行匹配，大部分匹配还支持掩码进行更精确、灵活的匹配。也可以通过报文的入端口或元数据信息来进行报文的匹配，一个流表项中可以同时存在多个匹配项，一个报文需要同时匹配流表项中所有匹配项才能匹配该流表项。报文匹配按照现有的报文字段进行，比如前一个流表通过apply actions改变了该报文的某个字段，则下一个表项按修改后的字段进行匹配。如果匹配成功，则按照指令集里的动作更新动作集，或更新报文/匹配集字段，或更新元数据和计数器。根据指令是否继续前往下一个流表，不继续则终止匹配流程执行动作集，如果指令要求继续前往下一个流表则继续匹配，下一个流表的ID需要比当前流表ID大。当报文匹配失败了，如果存在无匹配流表项（table miss）就按照该表项执行指令，一般是将报文转发给控制器、丢弃或转发给其他流表。如果没有table miss表项则默认丢弃该报文。  </p>
+<p>在Open vSwitch中，流表项作为ovs-ofctl的参数，采用“字段=值”的格式。如果有多个字段，可以用逗号分开，一些常见字段如下：<br><img src="https://i.loli.net/2018/09/16/5b9e4929f0d63.png" alt="1.png"></p>
+<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/16/5b9e494803043.png" alt="拓扑.png"></p>
+<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>登录交换机，检查网络连通性。当显示“is_connected：ture”时，表示交换机与控制器连接成功，可以正常进行实验。若不显示“is_connected：ture”时，表示交换机与控制器连接不成功，执行:</p>
 <blockquote>
-<p>①首先在<a href="http://www.oracle.com/technetwork/java/javase/downloads/jre10-downloads-4417026.html" target="_blank" rel="noopener">ORACLE官网</a>下载jre，然后直接运行安装就可以。<br>②同样，在<a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">maven官网</a>下载maven的压缩包，具体的安装配置过程可以参考CSDN博主的<a href="https://blog.csdn.net/h312387398/article/details/79136960" target="_blank" rel="noopener">教程</a>。<br>③安装成功后，在cmd命令行分别用一下两条命令测试是否正确安装配置：</p>
+</blockquote>
+<pre><code>ovs-vsctl del-controller br-sw
+ovs-vsctl set-controller br-sw tcp:30.0.1.3:6633 
+</code></pre><p>命令手动重连，稍等一会后，重新查看连接状态。</p>
+<h1 id="基于OpenFlow1-0协议下发流表"><a href="#基于OpenFlow1-0协议下发流表" class="headerlink" title="基于OpenFlow1.0协议下发流表"></a>基于OpenFlow1.0协议下发流表</h1><p>步骤1 切换到交换机，执行以下命令设置OpenFlow协议版本为1.0。  </p>
 <blockquote>
-<p>java -version<br>mvn -v</p>
 </blockquote>
+<pre><code>ovs-vsctl set bridge br-sw protocols=OpenFlow10
+</code></pre><p>步骤2 选择控制器，单击浏览器图标，打开浏览器。  </p>
+<p>步骤3 访问OpenDaylight Web页面，url是<a href="http://127.0.0.1:8080/index.html" target="_blank" rel="noopener">http://127.0.0.1:8080/index.html</a> ，用户名和密码是admin/admin，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4a2625fb7.png" alt="2.png"><br>步骤4 单击左侧的“Nodes”查看节点信息。其中尤其需要关注Node Id，下发流表的时候会用到Node Id，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4a653f1bb.png" alt="3.png"><br>步骤5 单击上图中的“Node Connectors”列的数据即“9”，可以查看具体节点连接信息，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4ac29c305.png" alt="4.png"><br>步骤6 选择左侧的“Yang UI”，单击“Expand all”展开所有目录，查看各种模块，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4af0e3b80.png" alt="5.png"><br>步骤7 展开“opendaylight-inventory rev.2013-08-19”，选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{id}”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b115e5c9.png" alt="6.png"><br>步骤8 补全node id、table id和flow id的值。  </p>
+<p>其中node id参见之前查询到的Node Id。table id和flow id可以自定义。由于OpenFlow1.0协议只支持单流表，所以这里的table id设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b3798ac7.png" alt="7.png"><br>步骤9 单击flow list后面的“+”，展开流表相关的参数。填写第一个框id，路径中的flow id也会随之同步，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b59027ad.png" alt="8.png"><br>步骤10 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为“0x0800”(说明：由于使用IP地址进行匹配，所以需要设置以太网协议类型。),如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b789668c.png" alt="9.png"><br>步骤11 填写匹配参数，在“layer-3-match”后面的下拉框中选择“ipv4-match”，使用IP匹配。  </p>
+<p>步骤12 展开“layer-3-match”，填写源IP地址和目的IP地址，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4bc1b5579.png" alt="10.png"><br>其中源地址填写主机1的IP地址，目的地址填写主机2的IP地址。  </p>
+<p>步骤13 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“apply-actions-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4bec99e16.png" alt="11.png"><br>步骤14 展开“apply-actions”，单击“action list”后面的“+”，在action后面的下拉框中选择“drop-action-case”，action order和instruction order都设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c0f7a101.png" alt="12.png"><br>步骤15 设置“priority”为27，“idle-timeout”为0，“hard-timeout”为0，“cookie”为100000000，“table_id”为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c2f54bc4.png" alt="13.png"><br>说明：priority设置的比已有流表项的高，而idle-timeout和hardtimeout都设置为0则代表该流表项永远不会过期，除非被删除。  </p>
+<p>步骤16 向右滚动Actions栏，在路径后面有动作类型GET、PUT、POST、DELETE，下发流表则选择PUT动作，然后单击“Send”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c5b47302.png" alt="14.png"><br>步骤17 如果下发成功会出现下面的提示，如果下发不成功则会弹出相应的错误信息。<br><img src="https://i.loli.net/2018/09/16/5b9e4c9033d8d.png" alt="15.png"><br>步骤18 切换到交换机，执行如下命令查看流表，确保刚刚下发的流表已经下发到交换机。如下图所示。</p>
+<blockquote>
 </blockquote>
-<h1 id="二、安装Akaxin服务端程序"><a href="#二、安装Akaxin服务端程序" class="headerlink" title="二、安装Akaxin服务端程序"></a>二、安装Akaxin服务端程序</h1><p>在<a href="https://github.com/akaxincom/openzaly/blob/master/README.md" target="_blank" rel="noopener">Github</a>下载官方提供的jar包，并移动到C盘目录下，在cmd中首先切换到本目录：cd C:\ <img src="https://i.loli.net/2018/06/03/5b1352a48dbf1.png" alt="aaa.png"><br>然后直接运行jar包：java -jar openzaly-server.jar 然后看到提示就说明启动成功了。</p>
-<h1 id="三、安装客户端程序连接使用"><a href="#三、安装客户端程序连接使用" class="headerlink" title="三、安装客户端程序连接使用"></a>三、安装客户端程序连接使用</h1><p>最后就是下载客户端程序了，在<a href="https://www.akaxin.com/" target="_blank" rel="noopener">官网</a>下载客户端程序后，输入服务器ip地址就可以正常使用了。<br><img src="https://i.loli.net/2018/06/03/5b1354ced508f.jpg" alt="QQ图片20180603103858.jpg">这里需要注意的是，首个成员需要输入邀请码：000000进入，这样就会默认成为站点的管理员并提供管理权限。</p>
-<h1 id="四、问题"><a href="#四、问题" class="headerlink" title="四、问题"></a>四、问题</h1><p>我在配置完成之后遇到一个问题就是用客户端连接服务器的时候提示：请稍后重试，解决的办法是在服务器的安全组策略中放行：2021/2021端口。<br><img src="https://i.loli.net/2018/06/03/5b1355a46befb.png" alt="snipaste_20180603_104228.png"></p>
-<h1 id="附"><a href="#附" class="headerlink" title="附"></a>附</h1><p>阿卡信官网：<a href="https://www.akaxin.com/" target="_blank" rel="noopener">https://www.akaxin.com/</a><br>Github项目：<a href="https://github.com/akaxincom/openzaly" target="_blank" rel="noopener">https://github.com/akaxincom/openzaly</a><br>码云：<a href="https://gitee.com/akaxin/openzaly" target="_blank" rel="noopener">https://gitee.com/akaxin/openzaly</a><br>QQ群：655249600</p>
+<pre><code>ovs-ofctl dump-flows br-sw
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4cc42a811.png" alt="16.png"><br>步骤19 登录主机1，执行如下命令向主机2、主机3发送数据包，测试主机间的连通性。</p>
+<blockquote>
+</blockquote>
+<pre><code># scapy
+&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())
+&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4cfe4003b.png" alt="17.png"><br>由上图可知，主机1与主机2之间不通，主机1与主机3通，新下发的流表项生效。  </p>
+<p>说明：如果主机之间通则能够收到answer，如果主机之间不通那么就无法收到answer，当主机之间不通时scapy就会一直发送数据包，如果需要停止可以使用Ctrl+c。  </p>
+<p>步骤20 切换到交换机，执行以下命令删除刚刚下发的流表项，并查看流表确保成功删除。  </p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl del-flows br-sw dl_type=0x0800,nw_src=10.0.0.3,nw_dst=10.0.0.4
+ovs-ofctl dump-flows br-sw
+</code></pre><p>步骤21 切换到主机1执行如下命令，测试主机1和主机2是否连通。</p>
+<blockquote>
+</blockquote>
+<pre><code>result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4d486b69c.png" alt="18.png"><br>由上图可知，主机1与主机2之间就通了。</p>
+<h1 id="基于OpenFlow1-3协议下发流表"><a href="#基于OpenFlow1-3协议下发流表" class="headerlink" title="基于OpenFlow1.3协议下发流表"></a>基于OpenFlow1.3协议下发流表</h1><p>步骤1 登录交换机，设置OpenFlow协议版本为1.3。执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl set bridge br-sw protocols=OpenFlow13
+</code></pre><p>步骤2 与OpenFlow1.0下发流表的过程解基本一致。展开opendaylight-inventory rev.2013-08-19，选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{id}”。  </p>
+<p>步骤3 补全Actions栏中的路径，其中node id参见之前查询到的Node Id。table id和flow id可以自定义。由于OpenFlow1.3协议支持多级流表，所以这里的table id设置为2。  </p>
+<p>步骤4 单击flow list后面的“+”，流表相关的参数就会展开。设置id为1，路径中的flow id也会随之同步，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e592464e82.png" alt="19.png"><br>步骤5 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为0x0800，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e594c3f115.png" alt="20.png"><br>步骤6 在“layer-3-match”后面的下拉框中选择“ipv4-match”。  </p>
+<p>步骤7 展开“layer-3-match”，填写源IP地址和目的IP地址。以主机1的IP为源IP，以主机3的IP为目的IP，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5979b8763.png" alt="21.png"><br>步骤8 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“apply-actions-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e599fdaa67.png" alt="22.png"><br>步骤9 展开“apply-actions”，单击“action list”后面的“+”，在“action”后面的下拉框中选择“drop-action-case”，“action order”和“instruction order”都设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e59c4a3dca.png" alt="23.png"><br>步骤10 设置“priority”为25，“idle-timeout”为0，“hard-timeout”为0，“cookie”为10000000，“table_id”为2，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e59eb63de3.png" alt="24.png"><br>步骤11 向右滚动Actions栏，选择“PUT”动作，然后单击“Send”下发流表。PUT成功就会弹出“Request sent successfully”，否则弹出错误信息。  </p>
+<p>步骤12 切换到主机1，执行如下命令，向主机3发送数据包，测试主机1和主机3的连通性。</p>
+<blockquote>
+</blockquote>
+<pre><code>&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5a28ba934.png" alt="25.png"><br>由上图可知，主机1与主机3之间是连通的，新下发的流表没有发挥作用。原因是数据包在table 0中能够匹配到相应流表就不会被转发到table2，想要table2的流表项发挥作用就需要向table0增加一条流表，将源IP为10.0.0.3，目的IP为10.0.0.2的数据包转发到table2中处理。  </p>
+<p>步骤13 选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{i}”。node id参见之前查询到的Node Id、table id设为0、flow id设为1。  </p>
+<p>步骤14 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为0x0800。  </p>
+<p>步骤15 匹配参数保持不变，以主机1的IP为源IP，以主机3的IP为目的IP。  </p>
+<p>步骤16 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“go-to-table-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5a73537cd.png" alt="26.png"><br>步骤17 展开“go-to-table”，table_id填写为2，即将符合匹配条件的数据包根据table2中的流表项处理。instruction order依旧设为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5aa888c72.png" alt="27.png"><br>步骤18 设“priority”置为23，“idle-timeout”为0，“hard-timeout”为0，“cookie”为1000000000，“table_id”为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5ad13fe66.png" alt="28.png"><br>步骤19 向右滚动Actions栏，选择“PUT”动作，然后单击“Send”下发流表。  </p>
+<p>步骤20 切换到交换机，执行以下命令查看新下发的流表项。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl -O OpenFlow13 dump-flows b
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5b076d691.png" alt="29.png"><br>步骤21 切换到主机1，执行如下命令发送数据包，测试主机之间的连通性。</p>
+<blockquote>
+</blockquote>
+<pre><code>&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())
+&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5b4ae09ab.png" alt="30.png"><br>由上图可知，主机1与主机3之间不通，而主机1与主机2之间通，流表发挥作用。</p>
 
       
     </div>
@@ -493,9 +579,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/聊天服务器/" rel="tag"><i class="fa fa-tag"></i> 聊天服务器</a>
+            <a href="/tags/SDN/" rel="tag"><i class="fa fa-tag"></i> SDN</a>
           
-            <a href="/tags/阿卡信/" rel="tag"><i class="fa fa-tag"></i> 阿卡信</a>
+            <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
           
         </div>
       
@@ -523,8 +609,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/30/专治疑难杂症/" rel="next" title="专治疑难杂症">
-                <i class="fa fa-chevron-left"></i> 专治疑难杂症
+              <a href="/2018/09/15/5-OpenFlow实现示例之中继器HUB/" rel="next" title="5.OpenFlow实现示例之中继器HUB">
+                <i class="fa fa-chevron-left"></i> 5.OpenFlow实现示例之中继器HUB
               </a>
             
           </div>
@@ -532,10 +618,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/06/OpenStack入门（一）——-虚拟化/" rel="prev" title="OpenStack入门（一）—— 虚拟化">
-                OpenStack入门（一）—— 虚拟化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -693,7 +775,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、安装JAVA和MAVEN环境"><span class="nav-number">1.</span> <span class="nav-text">一、安装JAVA和MAVEN环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、安装Akaxin服务端程序"><span class="nav-number">2.</span> <span class="nav-text">二、安装Akaxin服务端程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、安装客户端程序连接使用"><span class="nav-number">3.</span> <span class="nav-text">三、安装客户端程序连接使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、问题"><span class="nav-number">4.</span> <span class="nav-text">四、问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附"><span class="nav-number">5.</span> <span class="nav-text">附</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验原理"><span class="nav-number">1.</span> <span class="nav-text">实验原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验拓扑"><span class="nav-number">2.</span> <span class="nav-text">实验拓扑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建实验"><span class="nav-number">3.</span> <span class="nav-text">创建实验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于OpenFlow1-0协议下发流表"><span class="nav-number">4.</span> <span class="nav-text">基于OpenFlow1.0协议下发流表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于OpenFlow1-3协议下发流表"><span class="nav-number">5.</span> <span class="nav-text">基于OpenFlow1.3协议下发流表</span></a></li></ol></div>
             
 
           </div>
