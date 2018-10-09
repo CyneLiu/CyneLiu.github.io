@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-09-16T13:32:12.111Z</updated>
+  <updated>2018-10-09T10:40:12.358Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux下的命令行网盘</title>
+    <link href="https://cyneliu.github.io/2018/10/09/Linux%E4%B8%8B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BD%91%E7%9B%98/"/>
+    <id>https://cyneliu.github.io/2018/10/09/Linux下的命令行网盘/</id>
+    <published>2018-10-09T10:17:56.000Z</published>
+    <updated>2018-10-09T10:40:12.358Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。<br>这款工具的名字叫做<strong>transfer.sh</strong>，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：<br><img src="https://i.loli.net/2018/10/09/5bbc835018e45.png" alt="01.png"><br>上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.sh”。那么我们只需要执行如下命令即可：</p><blockquote></blockquote><pre><code>curl --upload-file ./bbr.sh https://transfer.sh/bbr2.sh</code></pre><p>上传完毕后就会返回一个分享链接，也就是“<a href="https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。" target="_blank" rel="noopener">https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。</a><br><img src="https://i.loli.net/2018/10/09/5bbc8491c4b3b.png" alt="02.png"><br>除此之外，transfer.sh还提供其它多种方式，比如一次性上传多个文件等，感兴趣的可以访问官网。<br><strong><em>官网：</em></strong><br><a href="https://transfer.sh/" target="_blank" rel="noopener">https://transfer.sh/</a><br><strong><em>Github:</em></strong><br><a href="https://github.com/dutchcoders/transfer.sh/" target="_blank" rel="noopener">https://github.com/dutchcoders/transfer.sh/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。&lt;br&gt;这款工具的名字叫做&lt;strong&gt;transfer.sh&lt;/strong&gt;，transfer.sh的使用也非常简单，可以使用curl的u
+      
+    
+    </summary>
+    
+      <category term="实用工具" scheme="https://cyneliu.github.io/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>6.使用OpenDaylight界面下发流表</title>
@@ -516,33 +541,6 @@
     
     
       <category term="疑难杂症" scheme="https://cyneliu.github.io/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自建ssr服务器</title>
-    <link href="https://cyneliu.github.io/2018/05/07/%E8%87%AA%E5%BB%BAssr%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://cyneliu.github.io/2018/05/07/自建ssr服务器/</id>
-    <published>2018-05-07T13:09:20.000Z</published>
-    <updated>2018-06-03T02:46:41.716Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="VPS购买"><a href="#VPS购买" class="headerlink" title="VPS购买"></a>VPS购买</h1><p><img src="https://i.loli.net/2018/05/07/5af051641868c.png" alt="vpsAO">昨天晚上看见了一个便宜的VPS没怎么想就买了，毕竟3.5刀一年，虽然平时对富强上网需求不是特别大，但是想借着这个便宜主机了解一下SSR的搭建使用，所以这点钱花的还是很值的我自己觉得。当然便宜也就意味着配置不会好了，96M内存，不过做SSR足够了。</p><h1 id="SSR安装部署"><a href="#SSR安装部署" class="headerlink" title="SSR安装部署"></a>SSR安装部署</h1><p>在这之前就有过搭建SSR的想法，所以当时找了一个比较不错的教程，写的比较详细，毕竟搭建SSR还是比较傻瓜的，没什么难度，按照提示写参数就行，教程地址：<a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">点这里</a>。<br>唯一的一个遗憾就是我买的这个VPS不支持教程里说的谷歌BBR加速，而且不知道是不是因为这个原因，我做出来的这个SSR延迟还是比较高的。如图：<br><img src="https://i.loli.net/2018/05/07/5af0549490164.png" alt="网速测试.png"><br>当然，网速还是不太稳定的，下午测试的时候是1M左右，晚上就到6.9M了，不过这也都无所谓了。</p><h1 id="SSR客户端"><a href="#SSR客户端" class="headerlink" title="SSR客户端"></a>SSR客户端</h1><p>最后附上Win和Android端的客户端  </p><blockquote><p>Windows：<a href="https://github.com/shadowsocksr-backup/shadowsocksr-csharp/releases" target="_blank" rel="noopener">下载地址</a><br>Android：<a href="https://github.com/shadowsocksr-backup/shadowsocksr-android/releases/download/3.4.0.8/shadowsocksr-release.apk" target="_blank" rel="noopener">下载地址</a></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;VPS购买&quot;&gt;&lt;a href=&quot;#VPS购买&quot; class=&quot;headerlink&quot; title=&quot;VPS购买&quot;&gt;&lt;/a&gt;VPS购买&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/05/07/5af051641868c.png&quot;
-      
-    
-    </summary>
-    
-      <category term="Server" scheme="https://cyneliu.github.io/categories/Server/"/>
-    
-    
-      <category term="Server" scheme="https://cyneliu.github.io/tags/Server/"/>
-    
-      <category term="SSR" scheme="https://cyneliu.github.io/tags/SSR/"/>
     
   </entry>
   
