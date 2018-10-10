@@ -89,20 +89,20 @@
 
 
 
-<meta name="description" content="之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。这款工具的名字叫做transfer.sh，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.s">
+<meta name="description" content="之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。   这款工具的名字叫做transfer.sh，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：    上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下的命令行网盘">
 <meta property="og:url" content="https://cyneliu.github.io/2018/10/09/Linux下的命令行网盘/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。这款工具的名字叫做transfer.sh，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.s">
+<meta property="og:description" content="之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。   这款工具的名字叫做transfer.sh，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：    上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/10/09/5bbc835018e45.png">
 <meta property="og:image" content="https://i.loli.net/2018/10/09/5bbc8491c4b3b.png">
-<meta property="og:updated_time" content="2018-10-09T10:40:12.358Z">
+<meta property="og:updated_time" content="2018-10-09T10:50:24.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下的命令行网盘">
-<meta name="twitter:description" content="之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。这款工具的名字叫做transfer.sh，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.s">
+<meta name="twitter:description" content="之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。   这款工具的名字叫做transfer.sh，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：    上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为">
 <meta name="twitter:image" content="https://i.loli.net/2018/10/09/5bbc835018e45.png">
 
 
@@ -435,11 +435,17 @@
       
 
       
-        <p>之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。<br>这款工具的名字叫做<strong>transfer.sh</strong>，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：<br><img src="https://i.loli.net/2018/10/09/5bbc835018e45.png" alt="01.png"><br>上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.sh”。那么我们只需要执行如下命令即可：</p>
+        <p>之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。  </p>
+<p>这款工具的名字叫做<strong>transfer.sh</strong>，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：  </p>
+<p><img src="https://i.loli.net/2018/10/09/5bbc835018e45.png" alt="01.png"></p>
+<p>上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.sh”。那么我们只需要执行如下命令即可：</p>
 <blockquote>
 </blockquote>
 <pre><code>curl --upload-file ./bbr.sh https://transfer.sh/bbr2.sh
-</code></pre><p>上传完毕后就会返回一个分享链接，也就是“<a href="https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。" target="_blank" rel="noopener">https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。</a><br><img src="https://i.loli.net/2018/10/09/5bbc8491c4b3b.png" alt="02.png"><br>除此之外，transfer.sh还提供其它多种方式，比如一次性上传多个文件等，感兴趣的可以访问官网。<br><strong><em>官网：</em></strong><br><a href="https://transfer.sh/" target="_blank" rel="noopener">https://transfer.sh/</a><br><strong><em>Github:</em></strong><br><a href="https://github.com/dutchcoders/transfer.sh/" target="_blank" rel="noopener">https://github.com/dutchcoders/transfer.sh/</a></p>
+</code></pre><p>上传完毕后就会返回一个分享链接，也就是“<a href="https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。" target="_blank" rel="noopener">https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。</a>  </p>
+<p><img src="https://i.loli.net/2018/10/09/5bbc8491c4b3b.png" alt="02.png"></p>
+<p>除此之外，transfer.sh还提供其它多种方式，比如一次性上传多个文件等，感兴趣的可以访问官网。  </p>
+<p><strong><em>官网：</em></strong><br><a href="https://transfer.sh/" target="_blank" rel="noopener">https://transfer.sh/</a><br><strong><em>Github:</em></strong><br><a href="https://github.com/dutchcoders/transfer.sh/" target="_blank" rel="noopener">https://github.com/dutchcoders/transfer.sh/</a></p>
 
       
     </div>
@@ -524,6 +530,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/10/10/linux系统配置检测工具——Superbench/" rel="prev" title="linux系统配置检测工具——Superbench">
+                linux系统配置检测工具——Superbench <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -599,7 +609,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -621,7 +631,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -700,7 +710,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共30.3k字</span>
+  <span class="post-count">博客全站共30.6k字</span>
 </div>
 
         

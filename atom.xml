@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-10-09T10:40:12.358Z</updated>
+  <updated>2018-10-10T09:59:44.268Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -17,19 +17,50 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Linux下的命令行网盘</title>
-    <link href="https://cyneliu.github.io/2018/10/09/Linux%E4%B8%8B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BD%91%E7%9B%98/"/>
-    <id>https://cyneliu.github.io/2018/10/09/Linux下的命令行网盘/</id>
-    <published>2018-10-09T10:17:56.000Z</published>
-    <updated>2018-10-09T10:40:12.358Z</updated>
+    <title>linux系统配置检测工具——Superbench</title>
+    <link href="https://cyneliu.github.io/2018/10/10/linux%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Superbench/"/>
+    <id>https://cyneliu.github.io/2018/10/10/linux系统配置检测工具——Superbench/</id>
+    <published>2018-10-10T09:34:56.000Z</published>
+    <updated>2018-10-10T09:59:44.268Z</updated>
     
-    <content type="html"><![CDATA[<p>之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。<br>这款工具的名字叫做<strong>transfer.sh</strong>，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：<br><img src="https://i.loli.net/2018/10/09/5bbc835018e45.png" alt="01.png"><br>上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.sh”。那么我们只需要执行如下命令即可：</p><blockquote></blockquote><pre><code>curl --upload-file ./bbr.sh https://transfer.sh/bbr2.sh</code></pre><p>上传完毕后就会返回一个分享链接，也就是“<a href="https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。" target="_blank" rel="noopener">https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。</a><br><img src="https://i.loli.net/2018/10/09/5bbc8491c4b3b.png" alt="02.png"><br>除此之外，transfer.sh还提供其它多种方式，比如一次性上传多个文件等，感兴趣的可以访问官网。<br><strong><em>官网：</em></strong><br><a href="https://transfer.sh/" target="_blank" rel="noopener">https://transfer.sh/</a><br><strong><em>Github:</em></strong><br><a href="https://github.com/dutchcoders/transfer.sh/" target="_blank" rel="noopener">https://github.com/dutchcoders/transfer.sh/</a></p>]]></content>
+    <content type="html"><![CDATA[<p>我曾经就暗暗吐槽Linux没有一条可以查看配置信息的命令，只能一项一项的查看，体验不是很好。今天无意中发现了一个叫做<strong>Superbench</strong>的脚本，试着用了一下，非常方便，在这里推荐一下。  </p><p>这个脚本主要有以下几个特点：</p><blockquote><p>采用颜色显示，便于区分查找  </p><p>磁盘I/O测试分别使用小文件、中等文件、大文件进行测试，最终计算平均值。  </p><p>网速测试通过多个节点进行测试，其中CM,CU,CT分别代表移动、联通和电信。</p><blockquote><p>ps:<br>中国移动：CMCC ，全称ChinaMobile Communication Company<br>中国联通：CUCC，全称China unicom Communications Corporation<br>中国电信：CTC，全称China Telecommunications Corporation  </p></blockquote></blockquote><h1 id="脚本使用"><a href="#脚本使用" class="headerlink" title="脚本使用"></a>脚本使用</h1><p>执行如下命令:</p><blockquote></blockquote><pre><code>wget -qO- git.io/superbench.sh | bash</code></pre><p>稍等一会就会打印出详细的配置信息：  </p><p><img src="https://i.loli.net/2018/10/10/5bbdccb7a8783.png" alt="01.png"><br><img src="https://i.loli.net/2018/10/10/5bbdccb7aa383.png" alt="02.png"><br>同时我们看到最后还附带了一个分享链接用于分享我们的配置信息，在浏览器打开是这个样子的：  </p><p><img src="https://i.loli.net/2018/10/10/5bbdccb7b6cd2.png" alt="03.png"></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。&lt;br&gt;这款工具的名字叫做&lt;strong&gt;transfer.sh&lt;/strong&gt;，transfer.sh的使用也非常简单，可以使用curl的u
+        &lt;p&gt;我曾经就暗暗吐槽Linux没有一条可以查看配置信息的命令，只能一项一项的查看，体验不是很好。今天无意中发现了一个叫做&lt;strong&gt;Superbench&lt;/strong&gt;的脚本，试着用了一下，非常方便，在这里推荐一下。  &lt;/p&gt;
+&lt;p&gt;这个脚本主要有以下几个特点：&lt;/p&gt;
+      
+    
+    </summary>
+    
+      <category term="实用工具" scheme="https://cyneliu.github.io/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
+    
+      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
+    
+      <category term="配置检测" scheme="https://cyneliu.github.io/tags/%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux下的命令行网盘</title>
+    <link href="https://cyneliu.github.io/2018/10/09/Linux%E4%B8%8B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BD%91%E7%9B%98/"/>
+    <id>https://cyneliu.github.io/2018/10/09/Linux下的命令行网盘/</id>
+    <published>2018-10-09T10:17:56.000Z</published>
+    <updated>2018-10-09T10:50:24.922Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。  </p><p>这款工具的名字叫做<strong>transfer.sh</strong>，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：  </p><p><img src="https://i.loli.net/2018/10/09/5bbc835018e45.png" alt="01.png"></p><p>上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.sh”。那么我们只需要执行如下命令即可：</p><blockquote></blockquote><pre><code>curl --upload-file ./bbr.sh https://transfer.sh/bbr2.sh</code></pre><p>上传完毕后就会返回一个分享链接，也就是“<a href="https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。" target="_blank" rel="noopener">https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。</a>  </p><p><img src="https://i.loli.net/2018/10/09/5bbc8491c4b3b.png" alt="02.png"></p><p>除此之外，transfer.sh还提供其它多种方式，比如一次性上传多个文件等，感兴趣的可以访问官网。  </p><p><strong><em>官网：</em></strong><br><a href="https://transfer.sh/" target="_blank" rel="noopener">https://transfer.sh/</a><br><strong><em>Github:</em></strong><br><a href="https://github.com/dutchcoders/transfer.sh/" target="_blank" rel="noopener">https://github.com/dutchcoders/transfer.sh/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。  &lt;/p&gt;
+&lt;p&gt;这款工具的名字叫做&lt;strong&gt;transfer.sh&lt;/strong&gt;，transfer.sh的使用也非常简单，可以使用
       
     
     </summary>
@@ -516,31 +547,6 @@
       <category term="聊天服务器" scheme="https://cyneliu.github.io/tags/%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
       <category term="阿卡信" scheme="https://cyneliu.github.io/tags/%E9%98%BF%E5%8D%A1%E4%BF%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>专治疑难杂症</title>
-    <link href="https://cyneliu.github.io/2018/05/30/%E4%B8%93%E6%B2%BB%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    <id>https://cyneliu.github.io/2018/05/30/专治疑难杂症/</id>
-    <published>2018-05-30T12:50:21.000Z</published>
-    <updated>2018-09-11T08:04:18.008Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="添加开机启动项"><a href="#添加开机启动项" class="headerlink" title="添加开机启动项"></a>添加开机启动项</h1><p>因为电脑装了某管家，不知道哪天自己把我的开机启动项给关了，只能手动添加回去，之前用的计划任务并不好用，今天知道了一个简单办法。<br>Windows有专门的启动目录，只要把想要开机启动的应用的快捷方式复制进去就可以了。<br>开机启动目录：</p><blockquote></blockquote><pre><code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp</code></pre><p>当然，有可能你根本找不到这个路径，只要把以上地址复制到地址栏，回车访问即可。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;添加开机启动项&quot;&gt;&lt;a href=&quot;#添加开机启动项&quot; class=&quot;headerlink&quot; title=&quot;添加开机启动项&quot;&gt;&lt;/a&gt;添加开机启动项&lt;/h1&gt;&lt;p&gt;因为电脑装了某管家，不知道哪天自己把我的开机启动项给关了，只能手动添加回去，之前用的计划任务并不好用
-      
-    
-    </summary>
-    
-      <category term="疑难杂症" scheme="https://cyneliu.github.io/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
-    
-      <category term="疑难杂症" scheme="https://cyneliu.github.io/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
     
   </entry>
   
