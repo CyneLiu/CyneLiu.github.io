@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2018/10/11/Cisco%E8%AE%BE%E5%A4%87%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</loc>
+    <lastmod>2018-10-11T13:57:58.295Z</lastmod>
+    <data>
+        <display>
+        <title>Cisco设备密码重置</title>
+        <pubTime>2018-10-11T13:47:03.000Z</pubTime>
+        
+        <tag>网工</tag>
+         
+        <tag>Cisco</tag>
+         
+         
+           
+             
+              <breadCrumb title="Cisco,网工" url="https://cyneliu.github.io/categories/Cisco-%E7%BD%91%E5%B7%A5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2018/10/10/linux%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Superbench/</loc>
     <lastmod>2018-10-10T09:59:44.268Z</lastmod>
     <data>
@@ -416,9 +438,9 @@
         <title>OpenStack入门（一）—— 虚拟化</title>
         <pubTime>2018-06-06T11:45:18.000Z</pubTime>
         
-        <tag>OpenStack</tag>
-         
         <tag>网工</tag>
+         
+        <tag>OpenStack</tag>
          
          
            
@@ -438,9 +460,9 @@
         <title>OpenStack入门（三）—— OpenStack架构</title>
         <pubTime>2018-06-19T11:51:37.000Z</pubTime>
         
-        <tag>OpenStack</tag>
-         
         <tag>网工</tag>
+         
+        <tag>OpenStack</tag>
          
          
            
@@ -460,9 +482,9 @@
         <title>OpenStack入门（二）—— 云计算</title>
         <pubTime>2018-06-19T11:31:46.000Z</pubTime>
         
-        <tag>OpenStack</tag>
-         
         <tag>网工</tag>
+         
+        <tag>OpenStack</tag>
          
          
            

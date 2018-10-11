@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-10-10T09:59:44.268Z</updated>
+  <updated>2018-10-11T13:57:58.295Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Cisco设备密码重置</title>
+    <link href="https://cyneliu.github.io/2018/10/11/Cisco%E8%AE%BE%E5%A4%87%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/"/>
+    <id>https://cyneliu.github.io/2018/10/11/Cisco设备密码重置/</id>
+    <published>2018-10-11T13:47:03.000Z</published>
+    <updated>2018-10-11T13:57:58.295Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h1><p>1 重启路由器，按ctrl+break/pause或ctrl+c/b,进入remmon模式  </p><blockquote><p>笔记本电脑可能没有pause键，可以运行：osk使用屏幕键盘进行操作  </p></blockquote><p>2 confreg 0x2142　修改寄存器的值  </p><p>3 reset　重启  </p><p>4 copy start run　把nvram内的文件转到内存中  </p><p>5 config-register 0x2102  </p><p>6 修改密码  </p><p>7 copy run start  </p><p>8 reload  </p><blockquote></blockquote><p><strong>0x2142:</strong>路由器启动不读取NVRAM，出厂配置启动<br><strong>0x2102:</strong>路由器启动读取NVRAM，正常配置启动<br><strong>0x2101:</strong>路由器启动不读取新指定的IOS，以出厂IOS启动，通常为base版本，支持功能有限</p><h1 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h1><p>1 重启，按面板上的mode键3-5秒  </p><p>2 进入switch：模式  </p><p>3 输入：flash_init 初始化flash文件系统  </p><p>4 dir flash:查看flash内文件，其中包含配置文件为config.text  </p><p>5 rename flash:config.text flash:config.old 把原来的文件重命名，随意起名字  </p><p>6 boot重启  </p><p>7 rename flash:config.old flash:config.text   </p><p>8 copy flash:config.text system:running-config  </p><p>9 修改密码  </p><p>10 copy run start 保存配置  </p><p>11 reload/reset/boot 重启  </p><h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>密码必须要进行修改，不能不设置，如果不需要密码可在修改密码之后进入配置模式删除密码</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;路由器&quot;&gt;&lt;a href=&quot;#路由器&quot; class=&quot;headerlink&quot; title=&quot;路由器&quot;&gt;&lt;/a&gt;路由器&lt;/h1&gt;&lt;p&gt;1 重启路由器，按ctrl+break/pause或ctrl+c/b,进入remmon模式  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;
+      
+    
+    </summary>
+    
+      <category term="Cisco,网工" scheme="https://cyneliu.github.io/categories/Cisco-%E7%BD%91%E5%B7%A5/"/>
+    
+    
+      <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
+    
+      <category term="Cisco" scheme="https://cyneliu.github.io/tags/Cisco/"/>
+    
+  </entry>
   
   <entry>
     <title>linux系统配置检测工具——Superbench</title>
@@ -463,9 +492,9 @@
       <category term="学习笔记" scheme="https://cyneliu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
-    
       <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
+    
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
     
   </entry>
   
@@ -490,9 +519,9 @@
       <category term="学习笔记" scheme="https://cyneliu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
-    
       <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
+    
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
     
   </entry>
   
@@ -517,36 +546,9 @@
       <category term="学习笔记" scheme="https://cyneliu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
-    
       <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
     
-  </entry>
-  
-  <entry>
-    <title>基于阿卡信自建聊天服务器</title>
-    <link href="https://cyneliu.github.io/2018/06/03/%E5%9F%BA%E4%BA%8E%E9%98%BF%E5%8D%A1%E4%BF%A1%E8%87%AA%E5%BB%BA%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://cyneliu.github.io/2018/06/03/基于阿卡信自建聊天服务器/</id>
-    <published>2018-06-03T01:55:23.000Z</published>
-    <updated>2018-06-03T02:46:34.867Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="一、安装JAVA和MAVEN环境"><a href="#一、安装JAVA和MAVEN环境" class="headerlink" title="一、安装JAVA和MAVEN环境"></a>一、安装JAVA和MAVEN环境</h1><p>这两个安装很简单，网上一大把的教程，因为我手头可用的只有一个Windows Server，所以这里只演示Win版的安装配置过程。</p><blockquote><p>①首先在<a href="http://www.oracle.com/technetwork/java/javase/downloads/jre10-downloads-4417026.html" target="_blank" rel="noopener">ORACLE官网</a>下载jre，然后直接运行安装就可以。<br>②同样，在<a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">maven官网</a>下载maven的压缩包，具体的安装配置过程可以参考CSDN博主的<a href="https://blog.csdn.net/h312387398/article/details/79136960" target="_blank" rel="noopener">教程</a>。<br>③安装成功后，在cmd命令行分别用一下两条命令测试是否正确安装配置：</p><blockquote><p>java -version<br>mvn -v</p></blockquote></blockquote><h1 id="二、安装Akaxin服务端程序"><a href="#二、安装Akaxin服务端程序" class="headerlink" title="二、安装Akaxin服务端程序"></a>二、安装Akaxin服务端程序</h1><p>在<a href="https://github.com/akaxincom/openzaly/blob/master/README.md" target="_blank" rel="noopener">Github</a>下载官方提供的jar包，并移动到C盘目录下，在cmd中首先切换到本目录：cd C:\ <img src="https://i.loli.net/2018/06/03/5b1352a48dbf1.png" alt="aaa.png"><br>然后直接运行jar包：java -jar openzaly-server.jar 然后看到提示就说明启动成功了。</p><h1 id="三、安装客户端程序连接使用"><a href="#三、安装客户端程序连接使用" class="headerlink" title="三、安装客户端程序连接使用"></a>三、安装客户端程序连接使用</h1><p>最后就是下载客户端程序了，在<a href="https://www.akaxin.com/" target="_blank" rel="noopener">官网</a>下载客户端程序后，输入服务器ip地址就可以正常使用了。<br><img src="https://i.loli.net/2018/06/03/5b1354ced508f.jpg" alt="QQ图片20180603103858.jpg">这里需要注意的是，首个成员需要输入邀请码：000000进入，这样就会默认成为站点的管理员并提供管理权限。</p><h1 id="四、问题"><a href="#四、问题" class="headerlink" title="四、问题"></a>四、问题</h1><p>我在配置完成之后遇到一个问题就是用客户端连接服务器的时候提示：请稍后重试，解决的办法是在服务器的安全组策略中放行：2021/2021端口。<br><img src="https://i.loli.net/2018/06/03/5b1355a46befb.png" alt="snipaste_20180603_104228.png"></p><h1 id="附"><a href="#附" class="headerlink" title="附"></a>附</h1><p>阿卡信官网：<a href="https://www.akaxin.com/" target="_blank" rel="noopener">https://www.akaxin.com/</a><br>Github项目：<a href="https://github.com/akaxincom/openzaly" target="_blank" rel="noopener">https://github.com/akaxincom/openzaly</a><br>码云：<a href="https://gitee.com/akaxin/openzaly" target="_blank" rel="noopener">https://gitee.com/akaxin/openzaly</a><br>QQ群：655249600</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;一、安装JAVA和MAVEN环境&quot;&gt;&lt;a href=&quot;#一、安装JAVA和MAVEN环境&quot; class=&quot;headerlink&quot; title=&quot;一、安装JAVA和MAVEN环境&quot;&gt;&lt;/a&gt;一、安装JAVA和MAVEN环境&lt;/h1&gt;&lt;p&gt;这两个安装很简单，网上一大把
-      
-    
-    </summary>
-    
-      <category term="Server" scheme="https://cyneliu.github.io/categories/Server/"/>
-    
-    
-      <category term="聊天服务器" scheme="https://cyneliu.github.io/tags/%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="阿卡信" scheme="https://cyneliu.github.io/tags/%E9%98%BF%E5%8D%A1%E4%BF%A1/"/>
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
     
   </entry>
   

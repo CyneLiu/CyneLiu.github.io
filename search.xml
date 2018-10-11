@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Cisco设备密码重置]]></title>
+    <url>%2F2018%2F10%2F11%2FCisco%E8%AE%BE%E5%A4%87%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[路由器1 重启路由器，按ctrl+break/pause或ctrl+c/b,进入remmon模式 笔记本电脑可能没有pause键，可以运行：osk使用屏幕键盘进行操作 2 confreg 0x2142 修改寄存器的值 3 reset 重启 4 copy start run 把nvram内的文件转到内存中 5 config-register 0x2102 6 修改密码 7 copy run start 8 reload 0x2142:路由器启动不读取NVRAM，出厂配置启动0x2102:路由器启动读取NVRAM，正常配置启动0x2101:路由器启动不读取新指定的IOS，以出厂IOS启动，通常为base版本，支持功能有限 交换机1 重启，按面板上的mode键3-5秒 2 进入switch：模式 3 输入：flash_init 初始化flash文件系统 4 dir flash:查看flash内文件，其中包含配置文件为config.text 5 rename flash:config.text flash:config.old 把原来的文件重命名，随意起名字 6 boot重启 7 rename flash:config.old flash:config.text 8 copy flash:config.text system:running-config 9 修改密码 10 copy run start 保存配置 11 reload/reset/boot 重启 注意事项密码必须要进行修改，不能不设置，如果不需要密码可在修改密码之后进入配置模式删除密码]]></content>
+      <categories>
+        <category>Cisco,网工</category>
+      </categories>
+      <tags>
+        <tag>网工</tag>
+        <tag>Cisco</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[linux系统配置检测工具——Superbench]]></title>
     <url>%2F2018%2F10%2F10%2Flinux%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Superbench%2F</url>
     <content type="text"><![CDATA[我曾经就暗暗吐槽Linux没有一条可以查看配置信息的命令，只能一项一项的查看，体验不是很好。今天无意中发现了一个叫做Superbench的脚本，试着用了一下，非常方便，在这里推荐一下。 这个脚本主要有以下几个特点： 采用颜色显示，便于区分查找 磁盘I/O测试分别使用小文件、中等文件、大文件进行测试，最终计算平均值。 网速测试通过多个节点进行测试，其中CM,CU,CT分别代表移动、联通和电信。 ps:中国移动：CMCC ，全称ChinaMobile Communication Company中国联通：CUCC，全称China unicom Communications Corporation中国电信：CTC，全称China Telecommunications Corporation 脚本使用执行如下命令: wget -qO- git.io/superbench.sh | bash 稍等一会就会打印出详细的配置信息： 同时我们看到最后还附带了一个分享链接用于分享我们的配置信息，在浏览器打开是这个样子的：]]></content>
@@ -194,8 +206,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>OpenStack</tag>
         <tag>网工</tag>
+        <tag>OpenStack</tag>
       </tags>
   </entry>
   <entry>
@@ -206,8 +218,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>OpenStack</tag>
         <tag>网工</tag>
+        <tag>OpenStack</tag>
       </tags>
   </entry>
   <entry>
@@ -218,8 +230,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>OpenStack</tag>
         <tag>网工</tag>
+        <tag>OpenStack</tag>
       </tags>
   </entry>
   <entry>
