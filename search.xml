@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[一键安装 Caddy+PHP7+Sqlite3 环境]]></title>
+    <url>%2F2018%2F10%2F13%2F%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85-Caddy-PHP7-Sqlite3-%E7%8E%AF%E5%A2%83%2F</url>
+    <content type="text"><![CDATA[相信很多人都有自己搭建网站的需求，但个人网站一般都是个人博客之类的，并不需要很高的服务器配置，这时候就可以考虑使用一个配置比较低的vps来放置自己的个人网站，那么下面这个脚本包你可能刚好会用得到。 这个脚本支持Centos 7+ Debian 8+，最小支持内存为64M，可以一键安装 typecho、wordpress、zblog、kodexplorer、laverna、一键整站备份等操作，不仅如此还可以安装v2ray、rinetdbbr来科学上网和加速。 安装配置配置过程很简单，首先将自己的域名解析到vps的ip地址上。然后执行如下命令： wget -N --no-check-certificate git.io/c.sh &amp;&amp; chmod +x c.sh &amp;&amp; bash c.sh 安装完成后可以根据需要上传自己的网站或者选择一键安装：一键安装typecho博客 bash c.sh -t 一键安装wordpress博客 bash c.sh -w 一键安装zblog博客 bash c.sh -z 一键安装 kodexplorer 可道云 bash c.sh -k 一键安装 laverna 印象笔记 bash c.sh -l 一键整站备份（一键打包/www目录 含数据库） bash c.sh -a 一键安装 v2ray 翻墙 bash c.sh -v 一键安装 rinetd bbr 端口加速 bash c.sh -b 一键卸载命令： 卸载 caddy bash c.sh -unc 卸载 php+sqlite bash c.sh -unp 卸载 v2ray bash c.sh -unv 卸载 rinetdbbr bash c.sh -unb 项目地址https://github.com/dylanbai8/Onekey_Caddy_PHP7_Sqlite3]]></content>
+      <categories>
+        <category>vps,脚本</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>vps</tag>
+        <tag>网站</tag>
+        <tag>科学上网</tag>
+        <tag>脚本</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Cisco设备密码重置]]></title>
     <url>%2F2018%2F10%2F11%2FCisco%E8%AE%BE%E5%A4%87%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[路由器1 重启路由器，按ctrl+break/pause或ctrl+c/b,进入remmon模式 笔记本电脑可能没有pause键，可以运行：osk使用屏幕键盘进行操作 2 confreg 0x2142 修改寄存器的值 3 reset 重启 4 copy start run 把nvram内的文件转到内存中 5 config-register 0x2102 6 修改密码 7 copy run start 8 reload 0x2142:路由器启动不读取NVRAM，出厂配置启动0x2102:路由器启动读取NVRAM，正常配置启动0x2101:路由器启动不读取新指定的IOS，以出厂IOS启动，通常为base版本，支持功能有限 交换机1 重启，按面板上的mode键3-5秒 2 进入switch：模式 3 输入：flash_init 初始化flash文件系统 4 dir flash:查看flash内文件，其中包含配置文件为config.text 5 rename flash:config.text flash:config.old 把原来的文件重命名，随意起名字 6 boot重启 7 rename flash:config.old flash:config.text 8 copy flash:config.text system:running-config 9 修改密码 10 copy run start 保存配置 11 reload/reset/boot 重启 注意事项密码必须要进行修改，不能不设置，如果不需要密码可在修改密码之后进入配置模式删除密码]]></content>
