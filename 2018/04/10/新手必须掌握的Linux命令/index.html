@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="SDN,网工," />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -89,32 +89,20 @@
 
 
 
-<meta name="description" content="Ubuntu安装系统选择镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。 虚拟机安装设置网卡因为要使用ssh远程登录，这里我们添加一个网卡：勾选“启用网络连接”，并选择仅主机模式。 系统安装挂载镜像之后启动虚拟机进行安装，基本的安装过程">
-<meta name="keywords" content="SDN,网工">
+<meta name="description" content="VIM保存退出 按ESC键 跳到命令模式，然后：    :w   保存文件但不退出vi:w file 将修改另外保存到file中，不退出vi:w!   强制保存，不推出vi:wq  保存文件并退出vi:wq! 强制保存文件，并退出vi_q:_  不保存文件，退出vi:q! 不保存文件，强制退出vi:e! 放弃所有修改，从上次保存文件开始再编辑     RPM:packge manager,通过将软">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SDN入门（一）—— 环境搭建">
-<meta property="og:url" content="https://cyneliu.github.io/2018/06/24/SDN入门（一）——-环境搭建/index.html">
+<meta property="og:title" content="新手必须掌握的Linux命令">
+<meta property="og:url" content="https://cyneliu.github.io/2018/04/10/新手必须掌握的Linux命令/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="Ubuntu安装系统选择镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。 虚拟机安装设置网卡因为要使用ssh远程登录，这里我们添加一个网卡：勾选“启用网络连接”，并选择仅主机模式。 系统安装挂载镜像之后启动虚拟机进行安装，基本的安装过程">
+<meta property="og:description" content="VIM保存退出 按ESC键 跳到命令模式，然后：    :w   保存文件但不退出vi:w file 将修改另外保存到file中，不退出vi:w!   强制保存，不推出vi:wq  保存文件并退出vi:wq! 强制保存文件，并退出vi_q:_  不保存文件，退出vi:q! 不保存文件，强制退出vi:e! 放弃所有修改，从上次保存文件开始再编辑     RPM:packge manager,通过将软">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2ef5cbec5f1.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2ef77a37059.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2ef9a7a101d.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2efcabda76f.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2efed26c4cc.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2efffbe249f.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2f00ad250a3.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2f22b8832fc.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2f1ff8a73bd.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2f4c772e56f.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2f4cb8a6bfc.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2f4a82c2097.png">
-<meta property="og:image" content="https://i.loli.net/2018/06/24/5b2f4cf66b46e.png">
-<meta property="og:updated_time" content="2018-06-30T06:25:22.669Z">
+<meta property="og:image" content="https://i.loli.net/2018/08/18/5b77e3c6aafc6.png">
+<meta property="og:updated_time" content="2018-10-14T09:18:07.749Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SDN入门（一）—— 环境搭建">
-<meta name="twitter:description" content="Ubuntu安装系统选择镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。 虚拟机安装设置网卡因为要使用ssh远程登录，这里我们添加一个网卡：勾选“启用网络连接”，并选择仅主机模式。 系统安装挂载镜像之后启动虚拟机进行安装，基本的安装过程">
-<meta name="twitter:image" content="https://i.loli.net/2018/06/24/5b2ef5cbec5f1.png">
+<meta name="twitter:title" content="新手必须掌握的Linux命令">
+<meta name="twitter:description" content="VIM保存退出 按ESC键 跳到命令模式，然后：    :w   保存文件但不退出vi:w file 将修改另外保存到file中，不退出vi:w!   强制保存，不推出vi:wq  保存文件并退出vi:wq! 强制保存文件，并退出vi_q:_  不保存文件，退出vi:q! 不保存文件，强制退出vi:e! 放弃所有修改，从上次保存文件开始再编辑     RPM:packge manager,通过将软">
+<meta name="twitter:image" content="https://i.loli.net/2018/08/18/5b77e3c6aafc6.png">
 
 
 
@@ -144,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://cyneliu.github.io/2018/06/24/SDN入门（一）——-环境搭建/"/>
+  <link rel="canonical" href="https://cyneliu.github.io/2018/04/10/新手必须掌握的Linux命令/"/>
 
 
 
 
 
-  <title>SDN入门（一）—— 环境搭建 | Cyne's Blog</title>
+  <title>新手必须掌握的Linux命令 | Cyne's Blog</title>
   
 
 
@@ -321,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/06/24/SDN入门（一）——-环境搭建/">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/04/10/新手必须掌握的Linux命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cyne Liu">
@@ -338,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SDN入门（一）—— 环境搭建</h1>
+          <h1 class="post-title" itemprop="name headline">新手必须掌握的Linux命令</h1>
         
 
         <div class="post-meta">
@@ -350,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-24T09:20:49+08:00">
-                2018-06-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T21:19:22+08:00">
+                2018-04-10
               </time>
             
 
@@ -373,8 +361,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -404,7 +392,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  894
+                  2.3k
                 </span>
               
 
@@ -420,7 +408,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  8
                 </span>
               
             </div>
@@ -441,74 +429,199 @@
       
 
       
-        <h1 id="Ubuntu安装"><a href="#Ubuntu安装" class="headerlink" title="Ubuntu安装"></a>Ubuntu安装</h1><h2 id="系统选择"><a href="#系统选择" class="headerlink" title="系统选择"></a>系统选择</h2><p>镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。</p>
-<h2 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h2><h3 id="设置网卡"><a href="#设置网卡" class="headerlink" title="设置网卡"></a>设置网卡</h3><p>因为要使用ssh远程登录，这里我们添加一个网卡：<br><img src="https://i.loli.net/2018/06/24/5b2ef5cbec5f1.png" alt="01.png"><br>勾选“启用网络连接”，并选择仅主机模式。</p>
-<h3 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h3><p>挂载镜像之后启动虚拟机进行安装，基本的安装过程不一一详细介绍，不会的地方可以百度。<br><img src="https://i.loli.net/2018/06/24/5b2ef77a37059.png" alt="02.png"><br>可以看到安装程序已经识别出了两块网卡，我们选择默认的nat网卡作为主网络接口。<br><img src="https://i.loli.net/2018/06/24/5b2ef9a7a101d.png" alt="03.png"><br>软件安装，我们只需要安装ssh server就可以了，记得空格选择，回车确认。  </p>
-<p>安装完成后，我们看一下系统的网卡信息，发现并没有我们添加的网卡。<br><img src="https://i.loli.net/2018/06/24/5b2efcabda76f.png" alt="04.png"><br>执行“sudo dhclient enp0s8”启用enp0s8网卡。<br>再次查看网卡信息：<br><img src="https://i.loli.net/2018/06/24/5b2efed26c4cc.png" alt="05.png"><br>可以看到已经添加进来了。我们还需要将第二块网卡的配置加入到网络配置文件中，不然重启之后第二块网卡还是看不到的：  </p>
+        <h1 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h1><h2 id="保存退出"><a href="#保存退出" class="headerlink" title="保存退出"></a>保存退出</h2><blockquote>
+<p>按ESC键 跳到命令模式，然后：</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>:w   保存文件但不退出vi<br><em>:w file</em> 将修改另外保存到file中，不退出vi<br><em>:w!</em>   强制保存，不推出vi<br><em>:wq</em>  保存文件并退出vi<br><em>:wq!</em> 强制保存文件，并退出vi<br>_q:_  不保存文件，退出vi<br><em>:q!</em> 不保存文件，强制退出vi<br><em>:e!</em> 放弃所有修改，从上次保存文件开始再编辑  </p>
+</blockquote>
+</blockquote>
+<p>RPM:packge manager,通过将软件源代码和安装规则打包，从而降低软件安装难度。<br>YUM仓库:保存有大量常用的软件程序包，当用户需要的时候自动下载并按照依赖关系进行安装。</p>
+<blockquote>
+<p>本地:file://<br>网站:http://<br>文件服务器:ftp://</p>
+</blockquote>
+<p>systemctl restart+服务名称 重启<br>systemctl stop+服务名称    停止服务<br>systemctl start+服务名称   开启<br>systemctl status+服务名称  查看状态<br>systemctl enable+服务名称  加入到启动项</p>
+<h1 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a>Linux命令</h1><h2 id="常用的系统工作命令"><a href="#常用的系统工作命令" class="headerlink" title="常用的系统工作命令"></a>常用的系统工作命令</h2><h3 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h3><p>用于在终端输出字符串或变量提取后的值，格式为“echo[字符串|$变量]”。</p>
+<h3 id="date命令"><a href="#date命令" class="headerlink" title="date命令"></a>date命令</h3><p>格式为“date[选项][+指定的格式]”。  </p>
 <blockquote>
 </blockquote>
-<pre><code>sudo vi /etc/network/interfaces
-</code></pre><p>在interfaces配置文件中加入enp0s8，同样使用dhcp方式获取ip<br><img src="https://i.loli.net/2018/06/24/5b2efffbe249f.png" alt="06.png"><br>至此，我们的系统就配置完成了，用ssh工具进行连接：<br><img src="https://i.loli.net/2018/06/24/5b2f00ad250a3.png" alt="07.png"><br>已经可以成功连接。</p>
-<h1 id="安装Ryu"><a href="#安装Ryu" class="headerlink" title="安装Ryu"></a>安装Ryu</h1><p>详细内容可参考<a href="http://linton.tw/2014/02/15/note-install-ryu-36-sdn-framework/" target="_blank" rel="noopener">linton的博客</a>。</p>
-<p>1.下载python的套件库，并更新pip（因为下载的pip并不是最新版本）</p>
+<pre><code>%Y  #年
+%m  #月
+%d  #天
+%H  #小时
+%M  #分钟
+%S  #秒
+%j  #今年中的第几天
+</code></pre><h3 id="poweroff"><a href="#poweroff" class="headerlink" title="poweroff"></a>poweroff</h3><p>poweroff命令与shutdown等命令作用相同。</p>
+<h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><p>用于在终端中下载网络文件，格式为“wget[参数]下载地址”。</p>
 <blockquote>
 </blockquote>
-<pre><code>sudo apt-get install python-pip python-dev build-essential
-sudo pip install --upgrade pip
-</code></pre><p>2.安装Ryu相依性套件</p>
+<pre><code>-P  #下载到指定目录
+-p  #下载页面所有资源，包括图片、视频等 
+-b  #后台下载模式
+-t  #最大尝试次数
+-c  #断点续传
+</code></pre><h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>用于查看系统中的进程状态，格式为“ps[参数]”。</p>
 <blockquote>
 </blockquote>
-<pre><code>sudo apt-get install python-eventlet
-sudo apt-get install python-routes
-sudo apt-get install python-webob
-sudo apt-get install python-paramiko
-</code></pre><p>3.使用pip下载并安装Ryu</p>
+<pre><code>-a  #显示所有进程（包括其他用户的进程）
+-u  #用户以及其它详细信息
+-x  #显示没有控制终端的进程
+</code></pre><p>5种常见的进程状态：</p>
 <blockquote>
 </blockquote>
-<pre><code>sudo pip install ryu
-</code></pre><p>此步骤如果出现如下错误信息说明你被挡在城内了，富强上网即可解决。<br><img src="https://i.loli.net/2018/06/24/5b2f22b8832fc.png" alt="需要富强上网.png"><br>4.如果需要使用Ryu with GUI则进行此步骤：下载Ryu source code（需要使用git套件）</p>
+<pre><code>R(运行):进程正在运行或在运行队列中等待。
+S(中断):进程处于休眠中，当某个条件形成后或者接收到信号时，则脱离该状态。
+D(不可中端):不响应系统异步信号，即便用kill命令也无法中断。
+Z(僵死):进程已经终止，但描述符依然存在，依然占用系统资源。
+T(停止):收到停止信号后停止运行。
+</code></pre><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>用于动态地监视进程活动与系统负载等信息，类似Windows中的任务管理器。<br><img src="https://i.loli.net/2018/08/18/5b77e3c6aafc6.png" alt="top.png"><br>第一行：系统时间、运行时间、登录终端数、系统负载（三个数值分别表示1、5、15分钟内的平均值）<br>第二行：进程总数、运行中的进程数、睡眠中的进程数、停止的进程数、僵死的进程数。<br>第三行：用户占用资源百分比、系统内核占用资源百分比、改变过优先级的进程资源百分比、空闲的资源百分比。<br>第四行：物理内存总量、内存空闲量、内存使用量、作为内存缓存的内存量。<br>第五行：虚拟内存总量、虚拟内存空闲量、虚拟内存使用量、已被提前加载的内存量。</p>
+<h3 id="pidof"><a href="#pidof" class="headerlink" title="pidof"></a>pidof</h3><p>查询某个指定服务进程的PID值。</p>
+<h3 id="kill-amp-killall"><a href="#kill-amp-killall" class="headerlink" title="kill &amp; killall"></a>kill &amp; killall</h3><p>kill：终止某个指定PID的服务进程。<br>killall：终止某个指定名称的服务做对应的全部进程。<br>在命令后加上一个&amp;符号，命令将进入后天执行。</p>
+<h2 id="系统状态检测命令"><a href="#系统状态检测命令" class="headerlink" title="系统状态检测命令"></a>系统状态检测命令</h2><h3 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h3><p>用于查看系统内核和系统版本等信息，通常使用<em>uname -a</em>。</p>
+<h3 id="uptime"><a href="#uptime" class="headerlink" title="uptime"></a>uptime</h3><p>用于查看系统的负载信息，显示系统时间、已运行时间、启用终端数以及平均负载等信息。</p>
+<blockquote>
+<p>平均负载指的是最近1、5、15分钟内的压力情况；<br>负载值越低越好，尽量不要长期超过1，在生产环境中不要超过5。</p>
+</blockquote>
+<h3 id="free"><a href="#free" class="headerlink" title="free"></a>free</h3><p>显示当前系统中内存使用量信息，常用参数为“free -h”。</p>
+<h3 id="who"><a href="#who" class="headerlink" title="who"></a>who</h3><p>查看登入主机的用户终端信息。</p>
+<h3 id="last"><a href="#last" class="headerlink" title="last"></a>last</h3><p>查看所有本机的登录记录。</p>
+<h3 id="history"><a href="#history" class="headerlink" title="history"></a>history</h3><p>显示执行过的命令，默认能显示出当前用户执行过的最近1000条命令，自定义记录数量可修改/etc/profile中的HISTSIZE的值，记录保存在家目录(~)中的“.bash_history”文件中。<br>清空当前用户的历史记录：</p>
 <blockquote>
 </blockquote>
-<pre><code>sudo apt-get install git
-git clone https://github.com/osrg/ryu.git
-</code></pre><p>5.完成安装，执行ryu-manager验证有没有出现错误，没问题的话会出现如下信息：<br><img src="https://i.loli.net/2018/06/24/5b2f1ff8a73bd.png" alt="chenggong.png"></p>
-<h1 id="安装mininet"><a href="#安装mininet" class="headerlink" title="安装mininet"></a>安装mininet</h1><h2 id="使用源码安装mininet"><a href="#使用源码安装mininet" class="headerlink" title="使用源码安装mininet"></a>使用源码安装mininet</h2><p>为了减少之后不必要的麻烦，建议在安装开始前执行：sudo su切换到root用户下并在富强网络下进行安装。<br>1.升级系统</p>
+<pre><code>history -c
+</code></pre><h3 id="sosreport"><a href="#sosreport" class="headerlink" title="sosreport"></a>sosreport</h3><p>手机系统配置及架构信息并输出诊断文档。</p>
+<h2 id="工作目录切换命令"><a href="#工作目录切换命令" class="headerlink" title="工作目录切换命令"></a>工作目录切换命令</h2><h3 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h3><p>显示用户当先所处的工作目录。</p>
+<h3 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h3><blockquote>
+</blockquote>
+<pre><code>cd -  #返回上一次所处的目录
+cd ..  #进入上级目录
+cd ~username  #切换到其他用户的家目录
+</code></pre><h3 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h3><blockquote>
+</blockquote>
+<pre><code>ls -l  #查看文件的属性、大小等详细信息
+ls -ld  #查看目录属性信息
+</code></pre><h2 id="文本文件编辑命令"><a href="#文本文件编辑命令" class="headerlink" title="文本文件编辑命令"></a>文本文件编辑命令</h2><h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><blockquote>
+</blockquote>
+<pre><code>cat -n  #显示行号
+</code></pre><h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><p>查看内容较多的纯文本文件，可使用空格或回车键翻页。</p>
+<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>查看纯文本文档的前N行，例如：</p>
 <blockquote>
 </blockquote>
-<pre><code>apt-get update
-apt-get upgrade
-</code></pre><p>2.安装git（如果你像我一样在之前安装Ryu时我们已经安装过git了，那么请直接跳过此步骤）</p>
+<pre><code>head -n  6 .bash_profile #查看前6行
+</code></pre><h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>查看纯文本文档的后N行或持续刷新内容。例如：</p>
 <blockquote>
 </blockquote>
-<pre><code>apt install git
-</code></pre><p>3.从github上获取源码</p>
+<pre><code>tail -n  6 .bash_profile
+</code></pre><p>还有一种情况是持续刷新一个文件的内容，比如日志文件:</p>
 <blockquote>
 </blockquote>
-<pre><code>git clone git://github.com/mininet/mininet
-</code></pre><p>获取之后可以使用如下命令查看mininet的版本</p>
+<pre><code>tail -f /var/log/message
+</code></pre><h3 id="tr"><a href="#tr" class="headerlink" title="tr"></a>tr</h3><p>用于替换文本文件中的字符。</p>
 <blockquote>
 </blockquote>
-<pre><code>cd mininet
-cat INSTALL
-</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4c772e56f.png" alt="cat.png"><br>4.确认无误后，安装mininet</p>
+<pre><code>cat anaconda-ks.cfg | tr [a-z] [A-Z]  #将文件中的小写替换为大写。
+</code></pre><h3 id="wc"><a href="#wc" class="headerlink" title="wc"></a>wc</h3><p>统计指定文本的行数、字数、字节数。</p>
 <blockquote>
 </blockquote>
-<pre><code>util/install.sh -a
-</code></pre><p>当你看到Enjoy Mininet！时，恭喜你已经安装成功了。<br><img src="https://i.loli.net/2018/06/24/5b2f4cb8a6bfc.png" alt="enjoy.png"><br>执行以下命令查看安装版本：</p>
+<pre><code>-l  #只显示行数
+-w  #只显示单词数
+-c  #只显示字节数
+</code></pre><h3 id="stat"><a href="#stat" class="headerlink" title="stat"></a>stat</h3><p>查看文件的具体存储信息和时间等信息。</p>
+<h3 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h3><p>按列提取文本字符，用-f参数设置需要看的列数，用-d参数设置间隔符号。例如：</p>
 <blockquote>
 </blockquote>
-<pre><code>mn --version
-</code></pre><h2 id="mininet可视化操作"><a href="#mininet可视化操作" class="headerlink" title="mininet可视化操作"></a>mininet可视化操作</h2><p>1.要进行mininet可视化操作，需要安装Xmanager套件，然后在通过Xshell远程连接主机时，在属性中做如下设置：<br><img src="https://i.loli.net/2018/06/24/5b2f4a82c2097.png" alt="suidao.png"><br>2.然后进入examples目录，执行miniedit.py即可启动可视化界面</p>
+<pre><code>[root@localhost etc]# head -n 3 passwd #查看前三行
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+[root@localhost etc]# cut -d: -f1 passwd #查看以“：”为间隔符的第一列内容
+root
+bin
+daemon
+adm
+......
+</code></pre><h3 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h3><p>用于比较多个文件的差异。</p>
 <blockquote>
 </blockquote>
-<pre><code>cd mininet/mininet/examples
-./miniedit.py
-</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4cf66b46e.png" alt="可视化.png"><br>至此，整个环境就搭建完成了。<br>如果是桌面版系统并且用apt-get install mininet安装的mininet,目录在/usr / share /doc/mininet/examples,但是其可视化脚本是py.gz格式的，貌似无法使用。</p>
-<p>如果对环境的安装有疑问，欢迎与我联系，一起沟通交流。  </p>
+<pre><code>diff diff a1.txt a2.txt  #找出文件内容中的具体不同
+diff --brief a1.txt a2.txt #直接输出结果判断结果
+diff  -c a1.txt a2.txt  #描述文件具体的不同
+</code></pre><h2 id="文件目录管理命令"><a href="#文件目录管理命令" class="headerlink" title="文件目录管理命令"></a>文件目录管理命令</h2><h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><p>用于创建空白文件或设置文件的时间。</p>
 <blockquote>
-<p>email: <a href="mailto:666@cyne.cf" target="_blank" rel="noopener">666@cyne.cf</a></p>
 </blockquote>
-
+<pre><code>-a  #仅修改“读取时间”（atime）
+-m  #仅修改“修改时间”（mtime）
+-d  #同时修改atime和mtime
+</code></pre><h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><p>创建空白目录。<br>mkdir还可以结合-p参数递归创建出具有嵌套关系的文件目录:</p>
+<blockquote>
+</blockquote>
+<pre><code>mkdir -p a/b/c/d/e
+</code></pre><h3 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h3><p>用于复制文件或目录，格式为“cp[选项] 源文件 目标文件”。</p>
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h3><p>用于剪切文件或将文件重命名。<br>剪切操作不同于复制操作，因为它默认会把源文件删除掉，只保留剪切后的文件。</p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><p>删除文件或目录。  </p>
+<blockquote>
+</blockquote>
+<pre><code>-f #强制删除
+-r #删除目录
+</code></pre><h3 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h3><p>用于按照指定大小和个数的数据块来复制文件或转换文件。<br>Linux系统中有一个名为/dev/zero的设备文件，这个文件不会占用系统存储空间，但却可以提供无穷无尽的数据，因此可以用作dd的输入文件，用来生成一个指定大小的文件。</p>
+<blockquote>
+</blockquote>
+<pre><code>if    输入的文件名称
+of    输出的文件名称
+bs    设置每个“块”的大小
+count 设置要复制“块”的个数
+</code></pre><blockquote>
+</blockquote>
+<pre><code>[root@localhost Desktop]# dd if=/dev/zero of=56file count=1 bs=56M
+1+0 records in
+1+0 records out
+58720256 bytes (59 MB) copied, 9.14974 s, 6.4 MB/s
+</code></pre><h3 id="file"><a href="#file" class="headerlink" title="file"></a>file</h3><p>查看文件的类型，格式为“file 文件名”。</p>
+<h2 id="打包压缩与搜索命令"><a href="#打包压缩与搜索命令" class="headerlink" title="打包压缩与搜索命令"></a>打包压缩与搜索命令</h2><h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>对文件进行压缩或解压。</p>
+<blockquote>
+</blockquote>
+<pre><code>-c  创建压缩文件
+-x  解压缩文件
+-t  查看压缩包内有哪些文件
+-z  用Gzip压缩或解压
+-j  用bzip2压缩或解压
+-v  显示压缩或解压的过程
+-f  目标文件夹（必须放在最后一位）
+-p  保留原始的权限和属性
+-P  使用绝对路径压缩
+-C  指定解压到的目录
+</code></pre><p>例如：</p>
+<blockquote>
+</blockquote>
+<pre><code>tar -czvf 压缩包名.tar.gz 要打包的目录
+tar -xzvf 压缩包名.tar.gz
+</code></pre><h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>用于在文本中执行关键词搜索，并显示匹配的结果。</p>
+<blockquote>
+</blockquote>
+<pre><code>-b  将可执行文件当作文本文件来搜索
+-c  仅显示找到的行数
+-i  忽略大小写
+-n  显示行号
+-v  反向选择——仅列出没有关键字的行
+</code></pre><h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>按照指定条件来查找文件，格式为“find[查找路径] 寻找条件 操作”。</p>
+<blockquote>
+</blockquote>
+<pre><code>-name   匹配名称
+-perm   匹配权限（mode为完全匹配，-mode为包含即可）
+-user   匹配所有者
+-nouser 匹配无所有者的文件
+-group  匹配所有组
+-nogroup匹配无所有组的文件
+-mtime -n +n  匹配修改内容的时间（-n指n天以内，+n指n天以前）
+-atime -n +n  匹配访问文件的时间（-n指n天以内，+n指n天以前）
+-ctime -n +n  匹配修改文件权限的时间（-n指n天以内，+n指n天以前）
+-newer f1 !f2 匹配比文件f1新但比f2旧的文件
+--type  匹配文件类型
+-size   匹配文件大小
+-prune  忽略某个目录
+</code></pre>
       
     </div>
     
@@ -554,9 +667,7 @@ cat INSTALL
       
         <div class="post-tags">
           
-            <a href="/tags/SDN/" rel="tag"><i class="fa fa-tag"></i> SDN</a>
-          
-            <a href="/tags/网工/" rel="tag"><i class="fa fa-tag"></i> 网工</a>
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
           
         </div>
       
@@ -584,8 +695,8 @@ cat INSTALL
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/19/OpenStack入门（三）——-OpenStack架构/" rel="next" title="OpenStack入门（三）—— OpenStack架构">
-                <i class="fa fa-chevron-left"></i> OpenStack入门（三）—— OpenStack架构
+              <a href="/2018/03/25/Python中的str-format/" rel="next" title="Python中的str.format">
+                <i class="fa fa-chevron-left"></i> Python中的str.format
               </a>
             
           </div>
@@ -594,8 +705,8 @@ cat INSTALL
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/25/虚拟化运维笔记——Linux/" rel="prev" title="虚拟化运维笔记 —— Linux">
-                虚拟化运维笔记 —— Linux <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/10/Python入门/" rel="prev" title="Python入门">
+                Python入门 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -754,7 +865,7 @@ cat INSTALL
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu安装"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统选择"><span class="nav-number">1.1.</span> <span class="nav-text">系统选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机安装"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置网卡"><span class="nav-number">1.2.1.</span> <span class="nav-text">设置网卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统安装"><span class="nav-number">1.2.2.</span> <span class="nav-text">系统安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Ryu"><span class="nav-number">2.</span> <span class="nav-text">安装Ryu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装mininet"><span class="nav-number">3.</span> <span class="nav-text">安装mininet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用源码安装mininet"><span class="nav-number">3.1.</span> <span class="nav-text">使用源码安装mininet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mininet可视化操作"><span class="nav-number">3.2.</span> <span class="nav-text">mininet可视化操作</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VIM"><span class="nav-number">1.</span> <span class="nav-text">VIM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#保存退出"><span class="nav-number">1.1.</span> <span class="nav-text">保存退出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux命令"><span class="nav-number">2.</span> <span class="nav-text">Linux命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的系统工作命令"><span class="nav-number">2.1.</span> <span class="nav-text">常用的系统工作命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo命令"><span class="nav-number">2.1.1.</span> <span class="nav-text">echo命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#date命令"><span class="nav-number">2.1.2.</span> <span class="nav-text">date命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#poweroff"><span class="nav-number">2.1.3.</span> <span class="nav-text">poweroff</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wget"><span class="nav-number">2.1.4.</span> <span class="nav-text">wget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ps"><span class="nav-number">2.1.5.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top"><span class="nav-number">2.1.6.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pidof"><span class="nav-number">2.1.7.</span> <span class="nav-text">pidof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kill-amp-killall"><span class="nav-number">2.1.8.</span> <span class="nav-text">kill &amp; killall</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统状态检测命令"><span class="nav-number">2.2.</span> <span class="nav-text">系统状态检测命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#uname"><span class="nav-number">2.2.1.</span> <span class="nav-text">uname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uptime"><span class="nav-number">2.2.2.</span> <span class="nav-text">uptime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#free"><span class="nav-number">2.2.3.</span> <span class="nav-text">free</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#who"><span class="nav-number">2.2.4.</span> <span class="nav-text">who</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last"><span class="nav-number">2.2.5.</span> <span class="nav-text">last</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#history"><span class="nav-number">2.2.6.</span> <span class="nav-text">history</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sosreport"><span class="nav-number">2.2.7.</span> <span class="nav-text">sosreport</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作目录切换命令"><span class="nav-number">2.3.</span> <span class="nav-text">工作目录切换命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pwd"><span class="nav-number">2.3.1.</span> <span class="nav-text">pwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd"><span class="nav-number">2.3.2.</span> <span class="nav-text">cd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls"><span class="nav-number">2.3.3.</span> <span class="nav-text">ls</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本文件编辑命令"><span class="nav-number">2.4.</span> <span class="nav-text">文本文件编辑命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-number">2.4.1.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#more"><span class="nav-number">2.4.2.</span> <span class="nav-text">more</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head"><span class="nav-number">2.4.3.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail"><span class="nav-number">2.4.4.</span> <span class="nav-text">tail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tr"><span class="nav-number">2.4.5.</span> <span class="nav-text">tr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wc"><span class="nav-number">2.4.6.</span> <span class="nav-text">wc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stat"><span class="nav-number">2.4.7.</span> <span class="nav-text">stat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cut"><span class="nav-number">2.4.8.</span> <span class="nav-text">cut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diff"><span class="nav-number">2.4.9.</span> <span class="nav-text">diff</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件目录管理命令"><span class="nav-number">2.5.</span> <span class="nav-text">文件目录管理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#touch"><span class="nav-number">2.5.1.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir"><span class="nav-number">2.5.2.</span> <span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cp"><span class="nav-number">2.5.3.</span> <span class="nav-text">cp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mv"><span class="nav-number">2.5.4.</span> <span class="nav-text">mv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm"><span class="nav-number">2.5.5.</span> <span class="nav-text">rm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dd"><span class="nav-number">2.5.6.</span> <span class="nav-text">dd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file"><span class="nav-number">2.5.7.</span> <span class="nav-text">file</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包压缩与搜索命令"><span class="nav-number">2.6.</span> <span class="nav-text">打包压缩与搜索命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tar"><span class="nav-number">2.6.1.</span> <span class="nav-text">tar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">2.6.2.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">2.6.3.</span> <span class="nav-text">find</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

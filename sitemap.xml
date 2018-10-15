@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cyneliu.github.io/2018/10/15/SDN%E5%AE%9E%E9%AA%8C%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%B8%B8%E7%94%A8%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/</loc>
+    
+    <lastmod>2018-10-15T11:01:00.828Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cyneliu.github.io/2018/04/10/%E6%96%B0%E6%89%8B%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%E7%9A%84Linux%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2018-10-14T09:18:07.749Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://cyneliu.github.io/2018/10/13/%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85-Caddy-PHP7-Sqlite3-%E7%8E%AF%E5%A2%83/</loc>
     
     <lastmod>2018-10-13T11:08:39.011Z</lastmod>
@@ -103,13 +117,6 @@
     <loc>https://cyneliu.github.io/2018/03/03/hexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2018-09-06T12:40:03.507Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cyneliu.github.io/2018/04/10/Linux%E5%85%A5%E9%97%A8/</loc>
-    
-    <lastmod>2018-08-18T09:20:39.593Z</lastmod>
     
   </url>
   

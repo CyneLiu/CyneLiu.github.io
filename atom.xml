@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-10-13T11:08:39.011Z</updated>
+  <updated>2018-10-15T11:01:00.828Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SDN实验（一）——常用开源工具</title>
+    <link href="https://cyneliu.github.io/2018/10/15/SDN%E5%AE%9E%E9%AA%8C%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%B8%B8%E7%94%A8%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/"/>
+    <id>https://cyneliu.github.io/2018/10/15/SDN实验（一）——常用开源工具/</id>
+    <published>2018-10-15T08:38:43.000Z</published>
+    <updated>2018-10-15T11:01:00.828Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Wireshark"><a href="#Wireshark" class="headerlink" title="Wireshark"></a>Wireshark</h1><p>Wireshark这款网络数据包分析工具，在传统网络中就有很广泛的应用，这里就不再多说了，主要记录一下笔者之前没有发现的功能或使用方法。  </p><h2 id="OpenFlow数据包"><a href="#OpenFlow数据包" class="headerlink" title="OpenFlow数据包"></a>OpenFlow数据包</h2><p>OpenFlow数据包主要包含五层，依次是：  </p><blockquote><p><strong>Frame：</strong>物理层数据帧概况。<br><strong>Ethernet II：</strong>数据链路层以太网帧头部信息。<br><strong>Internet Protocol Version 4：</strong>互联网IP包头信息。<br><strong>transmission control protocol：</strong>传输层数据段头部信息，此处是TCP。<br><strong>OpenFlow：</strong>位于TCP协议之上，负责解析应用层。  </p></blockquote><h2 id="保存捕获的数据"><a href="#保存捕获的数据" class="headerlink" title="保存捕获的数据"></a>保存捕获的数据</h2><p>wireshark除了有“save”和“save as”的保存方式外，还提供特殊保存的方法（Export Specified）：</p><blockquote><p><strong>All packets:</strong>保存所有已抓取的数据包。<br><strong>Selected packets only:</strong>保存当前鼠标选中的数据包。<br><strong>Marked packets only:</strong>保存当前标记的数据包。标记数据包的方法是在数据包列表中选中目标数据包，然后右击选择“mark packet toggle”。<br><strong>First to last marked:</strong>则将两个标记数据包之间所有的数据包导出。<br><strong>Range:</strong>并输入数据包的编号范围，则将编号连续的数据包导出。<br><strong>Remove ignored packets:</strong>则放弃部分数据包并导出其他所有数据包。放弃数据包的方法是，在数据包列表中选中数据包，右击，选择“ignore packet toggle”。</p></blockquote><h1 id="性能测试工具iPerf和Netperf"><a href="#性能测试工具iPerf和Netperf" class="headerlink" title="性能测试工具iPerf和Netperf"></a>性能测试工具iPerf和Netperf</h1><h2 id="网络性能指标"><a href="#网络性能指标" class="headerlink" title="网络性能指标"></a>网络性能指标</h2><p>1、网络吞吐量：单位时间内通过某个网络（信道或接口）的数据量，吞吐量受网络的带宽或者网络的额定速率限制，单位通常表示为bit/s或bps。  </p><p>2、网络延时：一个数据包从用户的计算机发送到网站服务器，然后再立即从网站服务器返回用户计算机的来回时间。影响网络延时的主要因素是路由的跳数和网络的流量。交换机延时（Latency）是指从交换机接收到数据包到开始向目的端口复制数据包之间的时间间隔。有许多因素会影响交换机延时大小，比如转发技术等等。  </p><p>3、抖动：用于描述包在网络中的传输延时的变化，抖动越小，说明网络质量越稳定越好。抖动是评价一个网络性能的最重要的因素。  </p><p>4、丢包率：理想状态下是发送了多少数据包就能接收到多少数据包，但是由于信号衰减、网络质量等诸多因素的影响并不能达到理想状态，而丢包率就是指测试中所丢失的数据包数量占所发送的数据包的比率。</p><h2 id="iPerf"><a href="#iPerf" class="headerlink" title="iPerf"></a>iPerf</h2><p>iPerf 是一种网络性能测试工具，可以运行于Linux、BSD、Unix及Windows等操作系统。 iPerf具有多种参数和特性，支持协议、定时、缓冲区等参数的配置调整，能够测试TCP/UDP最大带宽、延迟抖动、数据包丢失等统计信息，可以根据需求采用不同的参数从而达到不同的测试目的。iPerf基于Server/Client的工作模式，如下图所示：  </p><p><img src="https://i.loli.net/2018/10/15/5bc45614c9c99.png" alt="01.png"><br>客户端向服务端发送一定数量的数据，服务端统计并记录带宽、延时抖动等信息。客户端将数据全部发送后，服务端会回复一个数据包给客户端，将测试数据反馈给客户端。不过，如果网络较为拥塞或者误码率较高，客户端无法收到服务端回复的数据包，则只能显示本地记录的部分测试结果，所以服务端和客户端的测试结果可能有所不同。</p><h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><blockquote></blockquote><pre><code>iperf [-s|-c host] [options]</code></pre><h4 id="客户端-服务端通用参数"><a href="#客户端-服务端通用参数" class="headerlink" title="客户端/服务端通用参数"></a>客户端/服务端通用参数</h4><blockquote></blockquote><pre><code>-f/—format  [kmKM]分别表示以Kbits, Mbits, KBytes, MBytes显示报告，默认以Mbits为单位-i/—interval  以秒为单位显示报告间隔-l/—len  读写的缓冲区大小，默认8KB-m/—print_mss  打印最大的TCP数据段大小 (MTU - TCP/IP header)-o/—output    将报告和错误信息输出到指定文件-p/—port    指定服务器端使用的端口或客户端所连接的端口-u/—udp    使用udp协议-w/—window    指定TCP窗口（socket缓冲区）大小，默认是8KB-B/—bind    绑定一个主机地址或接口-C/—compatibility    兼容旧版本（当server端和client端版本不一样时使用）-M/—mss    设置TCP最大数据段大小（MTU - 40 bytes）-N/—nodelay    设置无延迟TCP，禁用 Nagle’s Algorithm-V/—IPv6Version    设置传输Ipv6数据包</code></pre><h4 id="服务端参数"><a href="#服务端参数" class="headerlink" title="服务端参数"></a>服务端参数</h4><blockquote></blockquote><pre><code>-s/—server    服务器模式下运行-U/— single_udp    单线程UDP模式下运行-D/— daemon    以守护进程模式运行服务器</code></pre><h4 id="客户端参数"><a href="#客户端参数" class="headerlink" title="客户端参数"></a>客户端参数</h4><blockquote></blockquote><pre><code>-b/— bandwidth    对于UDP，使用bits/sec （默认 1 Mbit/sec, 亦即 -u）传送带宽-c/— client    运行为客户端，连接到“主机”-d/— dualtest    同步进行双向测试-n/— num    传输的字节量-r/— tradeoff    分别进行双向测试-t/— time    传输持续时间 （默认10 secs）-F/— fileinput    从文件中读取要传输的数据-I/— stdin    从标准输入（stdin）中读取要传输的数据-L/— listenport    双向测试接受端口-P/— parallel    并行客户线程数量-T/— ttl    多点传送的生存时间（默认1）</code></pre><h2 id="Netperf"><a href="#Netperf" class="headerlink" title="Netperf"></a>Netperf</h2><p>Netperf是一种网络性能测量工具，主要用于测试TCP或UDP和Berkeley套接字接口的批量数据传输（bulk data transfer）和请求/应答（request/reponse）性能。Netperf工具以Client/Server方式工作，如下图所示：  </p><p><img src="https://i.loli.net/2018/10/15/5bc458630db61.png" alt="02.png"><br>服务端是netServer，用来侦听来自客户端的连接，客户端是netperf，用来向服务发起网络测试。在客户端与服务端之间，首先建立一个控制连接，传递有关测试配置的信息，以及测试的结果。在控制连接建立并传递了测试配置信息以后，客户端与服务端之间会再建立一个测试连接，用于来回传递特殊的流量，以测试网络的性能。当netServer在服务端启动后，就可在客户端运行netperf来测试网络的性能。netperf通过命令行参数来控制测试的类型和具体的测试选项，根据作用范围的不同，netperf的命令行参数可以分为两大类：全局命令行参数和测试相关的局部参数，两者之间使用—分隔。</p><h3 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h3><blockquote></blockquote><pre><code>netperf [global options] —[test-specific options]</code></pre><h4 id="global-options"><a href="#global-options" class="headerlink" title="global options"></a>global options</h4><blockquote></blockquote><pre><code>-H host    指定远端运行netserver的server IP地址-l testlen    指定测试的时间长度（秒）-t testname    指定进行的测试类型（TCP_STREAM，UDP_STREAM，TCP_RR，TCP_CRR，UDP_RR）</code></pre><h4 id="test-specific-options"><a href="#test-specific-options" class="headerlink" title="test-specific options"></a>test-specific options</h4><blockquote></blockquote><pre><code>-s size    设置本地系统的socket发送与接收缓冲大小-S size    设置远端系统的socket发送与接收缓冲大小-m size    设置本地系统发送测试分组的大小-M size    设置远端系统接收测试分组的大小-D    对本地与远端系统的socket设置TCP_NODELAY选项-r req,resp    设置request和reponse分组的大小</code></pre><h1 id="Scapy"><a href="#Scapy" class="headerlink" title="Scapy"></a>Scapy</h1><p>Scapy是一个基于Python编写的交互式数据包处理程序，使用Python解释器作为命令面板。可以用来发送、嗅探、解析和伪造网络数据包，常常被用于网络攻击和测试。Scapy可以实现扫描、路由跟踪、探测、单元测试、攻击和发现网络等传统功能，也可以代替hping、arpspoof、arp-sk、arping、p0f，实现了部分Namp、Tcpdump和tshark的功能。它能够伪造或者解码大量的网络协议数据包，能够发送、捕捉、匹配请求和回复包等等。它可以很容易地处理一些典型操作，比如端口扫描，tracerouting，探测，单元测试，攻击或网络发现（可替代hping，NMAP，arpspoof，ARP-SK，arping，tcpdump，tethereal，P0F等）。最重要的他还有很多更优秀的特性——发送无效数据帧、注入修改的802.11数据帧、在WEP上解码加密通道（VOIP）、ARP缓存攻击（VLAN）等，这也是其他工具无法处理完成的。  </p><p>Scapy有其他网络工具无法匹敌的优势，在大多数工具无法完成的任务中也有出色表现，比如发送无效帧、添加自定义的802.11帧、多技术结合等。其实，Scapy的理念非常简单，主要负责定义、发送和接收报文。用户利用Scapy定义一系列报文，接着发送这些报文，然后会收到回应，Scapy将收到的回应与请求匹配，返回到存放报文对（请求，回应）的列表和没有匹配报文的列表。  </p><p>Scapy不仅可以进行交互式数据包处理，还可以作为Python模块在Python程序中使用。需要注意的是，无论是交互式数据处理还是在Python代码中使用，都需要基于root权限。  </p><p>Scapy既然是第三方库，系统上默认是没有安装的。在Ubuntu下，我们可以直接使用命令：</p><blockquote></blockquote><pre><code>sudo apt-get install scapy</code></pre><p>进行安装，安装完成以后，只需要在终端下执行sudo scapy就可以进入Scapy的命令行模式。  </p><p>Scapy常用功能:</p><blockquote><p>1、conf：查看配置信息<br>2、lsc()：查看支持的指令集<br>3、ls()：查看实现的网络协议。ls()中携带的参数可以是任何的一个具体的包，常用的有ARP、Ether、ICMP、IP、UDP、TCP，也支持SNMP、DHCP、STP等。<br>4、IP模块的使用:</p><blockquote><p>我们可以像在Python中一样实例化一个IP对象:</p><blockquote><p>data = IP()<br>data<br>    <ip><br>也可以传入需要自定义的参数:</ip></p></blockquote><blockquote><p>data = IP(dst=”172.16.2.79”)<br>data<br>    <ip dst="172.16.2.79"><br>查看 IP 模块对象的所有信息:</ip></p></blockquote><blockquote><p>data = IP()<br>data.show() </p></blockquote></blockquote></blockquote><pre><code>###[ IP ]### version= 4 ihl= None tos= 0x0 len= None id= 1 flags= frag= 0 ttl= 64 proto= ip chksum= None src= 127.0.0.1 dst= 127.0.0.1 \options\</code></pre><blockquote><p>5、发送和接收报文：<br>可以将上面的 IP 对象封装成一个数据包发送出去。</p><blockquote><p>send：在第三层发送数据包，但没有接收功能。</p><blockquote><p>send(data, iface=”eth0”)<br>    .<br>    Sent 1 packets.<br>sendp：在第二层发送数据包，同样没有接收功能。<br>sr：在第三层发送数据包，有接收功能。<br>sr1：在第三层发送数据包，有接收功能，但只接收第一个包。<br>srp：在第二层发送数据包，有接收功能。<br>srp1：在第二层发送数据包，有接收功能，但只接收第一个包。</p></blockquote></blockquote></blockquote><h1 id="HTTP请求测试工具Postman"><a href="#HTTP请求测试工具Postman" class="headerlink" title="HTTP请求测试工具Postman"></a>HTTP请求测试工具Postman</h1><p>Postman是Google开发的一款功能强大的网页调试与发送网页HTTP请求，并能运行测试用例的的Chrome插件。其主要功能包括：<br>模拟各种HTTP requests：</p><blockquote><p>从常用的GET、POST到RESTful的PUT、DELETE等等。甚至还可以发送文件、送出额外的header。</p></blockquote><p>Collection功能（测试集合）:</p><blockquote><p>Collection是requests的集合，在做完一个测试的时候，你可以把这次的 request 存到特定的 Collection 里面，如此一来，下次要做同样的测试时，就不需要重新输入。而且一个collection可以包含多条request，如果我们把一个request当成一个test case，那collection就可以看成是一个test suite。通过collection的归类，我们可以良好的分类测试软件所提供的API。而且 Collection还可以Import或是Share出来，让团队里面的所有人共享你建立起来的Collection。</p></blockquote><p>人性化的Response整理:</p><blockquote><p>一般在用其他工具来测试的时候，response的内容通常都是纯文字的raw，但如果是JSON，就是塞成一整行的JSON。这会造成阅读的障碍，而Postman可以针对response内容的格式自动美化。JSON、XML或是HTML都会整理成我们可以阅读的格式。</p></blockquote><p>内置测试脚本语言:</p><blockquote><p>Postman支持编写测试脚本，可以快速的检查request的结果，并返回测试结果。</p></blockquote><p>设定变量与环境</p><blockquote><p>Postman可以自由设定变量与环境，一般我们在编辑request，校验response的时候，总会需要重复输入某些字符，比如url，postman允许我们设定变量来保存这些值。并且把变量保存在不同的环境中。比如，我们可能会有多种环境，development、staging或local，而这几种环境中的request URL也各不相同，但我们可以在不同的环境中设定同样的变量，只是变量的值不一样，这样我们就不用修改我们的测试脚本，而测试不同的环境。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Wireshark&quot;&gt;&lt;a href=&quot;#Wireshark&quot; class=&quot;headerlink&quot; title=&quot;Wireshark&quot;&gt;&lt;/a&gt;Wireshark&lt;/h1&gt;&lt;p&gt;Wireshark这款网络数据包分析工具，在传统网络中就有很广泛的应用，这里就不再多
+      
+    
+    </summary>
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
+    
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
+    
+      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>一键安装 Caddy+PHP7+Sqlite3 环境</title>
@@ -40,13 +67,13 @@
     
       <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
     
+      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
+    
       <category term="vps" scheme="https://cyneliu.github.io/tags/vps/"/>
     
       <category term="网站" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E7%AB%99/"/>
     
       <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
     
   </entry>
   
@@ -519,33 +546,6 @@
       
         &lt;p&gt;&lt;img src=&quot;http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160331-1459396287488044421.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;OpenStack架构&quot;&gt;&lt;
-      
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://cyneliu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
-    
-      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OpenStack入门（二）—— 云计算</title>
-    <link href="https://cyneliu.github.io/2018/06/19/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
-    <id>https://cyneliu.github.io/2018/06/19/OpenStack入门（二）——-云计算/</id>
-    <published>2018-06-19T11:31:46.000Z</published>
-    <updated>2018-06-19T11:47:01.137Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>这张图很形象的描述了云计算的基本概念：<br><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160329-1459256505303011231.png" alt="云计算"><br>云平台是一个面向服务的架构，按照提供服务的不同分为 IaaS、PaaS 和 SaaS。<br><img src="http://img.blog.csdn.net/20160329205344575" alt="分类"><br><em>IaaS</em>（Infrastructure as a Service）提供的服务是虚拟机。</p><blockquote><p>IaaS 负责管理虚机的生命周期，包括创建、修改、备份、启停、销毁等。<br>使用者从云平台得到的是一个已经安装好镜像（操作系统+其他预装软件）的虚拟机。<br>使用者需要关心虚机的类型（OS）和配置（CPU、内存、磁盘），并且自己负责部署上层的中间件和应用。<br>IaaS 的使用者通常是数据中心的系统管理员。<br>典型的 IaaS 例子有 AWS、Rackspace、阿里云等。  </p></blockquote><p><em>PaaS</em>（Platform as a Service）提供的服务是应用的运行环境和一系列中间件服务（比如数据库、消息队列等）。</p><blockquote><p>使用者只需专注应用的开发，并将自己的应用和数据部署到PaaS环境中。<br>PaaS负责保证这些服务的可用性和性能。<br>PaaS的使用者通常是应用的开发人员。<br>典型的 PaaS 有 Google App Engine、IBM BlueMix 等  </p></blockquote><p><em>SaaS</em>（Software as a Service）提供的是应用服务。</p><blockquote><p>使用者只需要登录并使用应用，无需关心应用使用什么技术实现，也不需要关系应用部署在哪里。<br>SaaS的使用者通常是应用的最终用户。<br>典型的 SaaS 有 Google Gmail、Salesforce 等</p></blockquote><h1 id="云计算和OpenStack"><a href="#云计算和OpenStack" class="headerlink" title="云计算和OpenStack"></a>云计算和OpenStack</h1><p>OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter, all managed through a dashboard that gives administrators control while empowering their users to provision resources through a web interface.  </p><p>以上是官网对 OpenStack 的定义，OpenStack 对数据中心的计算、存储和网络资源进行统一管理。<br>由此可见，OpenStack 针对的是 IT 基础设施，是 IaaS 这个层次的云操作系统。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;p&gt;这张图很形象的描述了云计算的基本概念：&lt;br&gt;&lt;img src=&quot;http://7xo6kd.com1.z0.glb.clo
       
     
     </summary>
