@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Cyne, Blog" />
+  <meta name="keywords" content="frp,内网穿透,反向代理,Windows," />
 
 
 
@@ -89,17 +89,23 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.">
+<meta name="description" content="几个概念frpFRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。   项目地址：https://github.com/fatedier/frp/releases 正向代理正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服">
+<meta name="keywords" content="frp,内网穿透,反向代理,Windows">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python入门">
-<meta property="og:url" content="https://cyneliu.github.io/2018/04/10/Python入门/index.html">
+<meta property="og:title" content="Windows环境利用FRP实现内网穿透">
+<meta property="og:url" content="https://cyneliu.github.io/2018/10/20/Windows环境利用FRP实现内网穿透/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="几个概念frpFRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。   项目地址：https://github.com/fatedier/frp/releases 正向代理正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T13:24:18.190Z">
+<meta property="og:image" content="https://i.loli.net/2018/10/20/5bcaf373cd030.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/20/5bcaf373ef44d.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/20/5bcaf78e8b887.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/20/5bcb0775422ac.png">
+<meta property="og:updated_time" content="2018-10-20T10:49:34.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python入门">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.">
+<meta name="twitter:title" content="Windows环境利用FRP实现内网穿透">
+<meta name="twitter:description" content="几个概念frpFRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。   项目地址：https://github.com/fatedier/frp/releases 正向代理正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服">
+<meta name="twitter:image" content="https://i.loli.net/2018/10/20/5bcaf373cd030.png">
 
 
 
@@ -129,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="https://cyneliu.github.io/2018/04/10/Python入门/"/>
+  <link rel="canonical" href="https://cyneliu.github.io/2018/10/20/Windows环境利用FRP实现内网穿透/"/>
 
 
 
 
 
-  <title>Python入门 | Cyne's Blog</title>
+  <title>Windows环境利用FRP实现内网穿透 | Cyne's Blog</title>
   
 
 
@@ -306,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/04/10/Python入门/">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/10/20/Windows环境利用FRP实现内网穿透/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cyne Liu">
@@ -323,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python入门</h1>
+          <h1 class="post-title" itemprop="name headline">Windows环境利用FRP实现内网穿透</h1>
         
 
         <div class="post-meta">
@@ -335,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T21:24:18+08:00">
-                2018-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-20T16:56:19+08:00">
+                2018-10-20
               </time>
             
 
@@ -345,6 +351,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工具/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -367,7 +395,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  1.1k
                 </span>
               
 
@@ -383,7 +411,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -404,7 +432,68 @@
       
 
       
-        
+        <h1 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h1><h2 id="frp"><a href="#frp" class="headerlink" title="frp"></a>frp</h2><p>FRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。  </p>
+<p>项目地址：<br><a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">https://github.com/fatedier/frp/releases</a></p>
+<h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><p>正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服务器，之后代理向目标服务器转交并且将获得的内容返回给客户端。正向代理的情况下客户端必须要进行一些特别的设置才能使用。  </p>
+<p>比如我们平时用的翻墙工具就属于正向代理的一种应用。<br><img src="https://i.loli.net/2018/10/20/5bcaf373cd030.png" alt="01.png"></p>
+<h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>反向代理正好相反。对于客户端来说，反向代理就好像目标服务器。并且客户端不需要进行任何设置。客户端向反向代理发送请求，接着反向代理判断请求走向何处，并将请求转交给客户端，使得这些内容就好似他自己一样，一次客户端并不会感知到反向代理后面的服务，也因此不需要客户端做任何设置，只需要把反向代理服务器当成真正的服务器就好了。<br><img src="https://i.loli.net/2018/10/20/5bcaf373ef44d.png" alt="02.png"></p>
+<h1 id="安装部署frp"><a href="#安装部署frp" class="headerlink" title="安装部署frp"></a>安装部署frp</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.拥有公网ip的设备</p>
+<blockquote>
+<p>作为反向代理服务器，外网访问内网设备时通过此设备进行访问。</p>
+</blockquote>
+<p>2.域名（非必须）</p>
+<blockquote>
+<p>域名的作用仅仅是为了方便记忆，有了域名在访问时就不需要输入那些难以记忆的数字进行访问了。</p>
+</blockquote>
+<h2 id="下载安装程序"><a href="#下载安装程序" class="headerlink" title="下载安装程序"></a>下载安装程序</h2><p>到<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">GitHub</a>下载frp程序，如果是64位系统下载“amd64”结尾的zip包，如果是32位系统就下载“386”结尾的zip包。  </p>
+<p>下载完成后分别在客户端和服务端选择一个合适的位置直接解压出来就可以了。</p>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><h3 id="放行端口"><a href="#放行端口" class="headerlink" title="放行端口"></a>放行端口</h3><p>因为博主使用的是阿里云的学生机，默认是没有放行其它端口的，所以在配置frp之前需要配置一下入方向的安全组规则：<br><img src="https://i.loli.net/2018/10/20/5bcaf78e8b887.png" alt="03.png"></p>
+<h3 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h3><p>在上面过程中解压出来的文件包含有frps.ini和frps_full.ini两个配置文件，frps_full.ini是全配置，里面所有的配置都有，玩法很多，感兴趣的可以研究一下。将下面配置代码复制到frps.ini后保存：</p>
+<blockquote>
+</blockquote>
+<pre><code>[common]
+bind_port = 7000 ;要绑定的端口
+
+dashboard_user = admin ;控制台的用户名
+dashboard_pwd = password ;控制台的密码
+dashboard_port = 7500 ;控制台的端口
+</code></pre><p>在配置文件所在位置按住shift右键打开cmd或power shell，执行命令：<br>cmd:</p>
+<blockquote>
+</blockquote>
+<pre><code>frps -c frps.ini
+</code></pre><p>power shell:</p>
+<blockquote>
+</blockquote>
+<pre><code>.\frps.exe -c frps.ini
+</code></pre><h2 id="客户端-内网设备"><a href="#客户端-内网设备" class="headerlink" title="客户端(内网设备)"></a>客户端(内网设备)</h2><h3 id="编辑配置文件-1"><a href="#编辑配置文件-1" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h3><p>将如下代码复制到frpc.ini中：</p>
+<blockquote>
+</blockquote>
+<pre><code>[common]
+server_addr = 1.2.3.4 ;服务器的 IP
+server_port = 7000 ;服务器上设置的服务绑定端口
+
+[RDP] ;这个是反向代理的名称，可以随意设置
+type = tcp ;RDP 是 TCP 协议的
+local_ip = 127.0.0.1 ;本机IP,可以直接使用127.0.0.1
+local_port = 3389 ;远程桌面的默认端口
+remote_port = 7001 ;外网访问的端口
+</code></pre><p>在配置文件所在位置按住shift右键打开cmd或power shell，执行命令：<br>cmd:</p>
+<blockquote>
+</blockquote>
+<pre><code>frpc -c frpc.ini
+</code></pre><p>power shell:</p>
+<blockquote>
+</blockquote>
+<pre><code>.\frpc.exe -c frpc.ini
+</code></pre><h3 id="开启远程桌面（非必须）"><a href="#开启远程桌面（非必须）" class="headerlink" title="开启远程桌面（非必须）"></a>开启远程桌面（非必须）</h3><p>如果你配置frp是为了使用远程桌面，而恰巧你的内网设备又是win7或win10等桌面版系统，那么你还需要右击“此电脑”，选择“系统”——“远程设置”——“允许远程连接至此电脑”。而如果是server版本直接忽略此步骤即可。  </p>
+<p>至此，你已经可以使用你的ip加端口号的形式访问你的相应服务了。</p>
+<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><h3 id="设置域名解析"><a href="#设置域名解析" class="headerlink" title="设置域名解析"></a>设置域名解析</h3><p>设置自己的域名解析，添加一条A类记录指向你的公网ip。<br><img src="https://i.loli.net/2018/10/20/5bcb0775422ac.png" alt="04.png"></p>
+<h3 id="配置frpc-ini"><a href="#配置frpc-ini" class="headerlink" title="配置frpc.ini"></a>配置frpc.ini</h3><p>在刚才复制的配置之后添加如下内容即可：</p>
+<blockquote>
+</blockquote>
+<pre><code>custom_domains = xxx.yourdomain.xxx
+</code></pre><p>这样，你就可以使用域名+端口的形式访问你的服务了。</p>
+
       
     </div>
     
@@ -448,6 +537,18 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/frp/" rel="tag"><i class="fa fa-tag"></i> frp</a>
+          
+            <a href="/tags/内网穿透/" rel="tag"><i class="fa fa-tag"></i> 内网穿透</a>
+          
+            <a href="/tags/反向代理/" rel="tag"><i class="fa fa-tag"></i> 反向代理</a>
+          
+            <a href="/tags/Windows/" rel="tag"><i class="fa fa-tag"></i> Windows</a>
+          
+        </div>
+      
 
       
       
@@ -472,8 +573,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/10/新手必须掌握的Linux命令/" rel="next" title="新手必须掌握的Linux命令">
-                <i class="fa fa-chevron-left"></i> 新手必须掌握的Linux命令
+              <a href="/2018/10/16/SDN实验（二）——Open-vSwitch/" rel="next" title="SDN实验（二）——Open vSwitch">
+                <i class="fa fa-chevron-left"></i> SDN实验（二）——Open vSwitch
               </a>
             
           </div>
@@ -481,10 +582,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/07/自建ssr服务器/" rel="prev" title="自建ssr服务器">
-                自建ssr服务器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -541,8 +638,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -561,7 +667,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -572,7 +678,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -583,7 +689,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -624,6 +730,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#几个概念"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#frp"><span class="nav-number">1.1.</span> <span class="nav-text">frp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正向代理"><span class="nav-number">1.2.</span> <span class="nav-text">正向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理"><span class="nav-number">1.3.</span> <span class="nav-text">反向代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装部署frp"><span class="nav-number">2.</span> <span class="nav-text">安装部署frp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装程序"><span class="nav-number">2.2.</span> <span class="nav-text">下载安装程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">2.3.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#放行端口"><span class="nav-number">2.3.1.</span> <span class="nav-text">放行端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件"><span class="nav-number">2.3.2.</span> <span class="nav-text">编辑配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-内网设备"><span class="nav-number">2.4.</span> <span class="nav-text">客户端(内网设备)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">编辑配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启远程桌面（非必须）"><span class="nav-number">2.4.2.</span> <span class="nav-text">开启远程桌面（非必须）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">2.5.</span> <span class="nav-text">绑定域名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置域名解析"><span class="nav-number">2.5.1.</span> <span class="nav-text">设置域名解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置frpc-ini"><span class="nav-number">2.5.2.</span> <span class="nav-text">配置frpc.ini</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -662,7 +784,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共35.2k字</span>
+  <span class="post-count">博客全站共37.7k字</span>
 </div>
 
         

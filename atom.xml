@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-10-16T10:02:06.691Z</updated>
+  <updated>2018-10-20T10:49:34.182Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows环境利用FRP实现内网穿透</title>
+    <link href="https://cyneliu.github.io/2018/10/20/Windows%E7%8E%AF%E5%A2%83%E5%88%A9%E7%94%A8FRP%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
+    <id>https://cyneliu.github.io/2018/10/20/Windows环境利用FRP实现内网穿透/</id>
+    <published>2018-10-20T08:56:19.000Z</published>
+    <updated>2018-10-20T10:49:34.182Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h1><h2 id="frp"><a href="#frp" class="headerlink" title="frp"></a>frp</h2><p>FRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。  </p><p>项目地址：<br><a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">https://github.com/fatedier/frp/releases</a></p><h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><p>正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服务器，之后代理向目标服务器转交并且将获得的内容返回给客户端。正向代理的情况下客户端必须要进行一些特别的设置才能使用。  </p><p>比如我们平时用的翻墙工具就属于正向代理的一种应用。<br><img src="https://i.loli.net/2018/10/20/5bcaf373cd030.png" alt="01.png"></p><h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>反向代理正好相反。对于客户端来说，反向代理就好像目标服务器。并且客户端不需要进行任何设置。客户端向反向代理发送请求，接着反向代理判断请求走向何处，并将请求转交给客户端，使得这些内容就好似他自己一样，一次客户端并不会感知到反向代理后面的服务，也因此不需要客户端做任何设置，只需要把反向代理服务器当成真正的服务器就好了。<br><img src="https://i.loli.net/2018/10/20/5bcaf373ef44d.png" alt="02.png"></p><h1 id="安装部署frp"><a href="#安装部署frp" class="headerlink" title="安装部署frp"></a>安装部署frp</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.拥有公网ip的设备</p><blockquote><p>作为反向代理服务器，外网访问内网设备时通过此设备进行访问。</p></blockquote><p>2.域名（非必须）</p><blockquote><p>域名的作用仅仅是为了方便记忆，有了域名在访问时就不需要输入那些难以记忆的数字进行访问了。</p></blockquote><h2 id="下载安装程序"><a href="#下载安装程序" class="headerlink" title="下载安装程序"></a>下载安装程序</h2><p>到<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">GitHub</a>下载frp程序，如果是64位系统下载“amd64”结尾的zip包，如果是32位系统就下载“386”结尾的zip包。  </p><p>下载完成后分别在客户端和服务端选择一个合适的位置直接解压出来就可以了。</p><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><h3 id="放行端口"><a href="#放行端口" class="headerlink" title="放行端口"></a>放行端口</h3><p>因为博主使用的是阿里云的学生机，默认是没有放行其它端口的，所以在配置frp之前需要配置一下入方向的安全组规则：<br><img src="https://i.loli.net/2018/10/20/5bcaf78e8b887.png" alt="03.png"></p><h3 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h3><p>在上面过程中解压出来的文件包含有frps.ini和frps_full.ini两个配置文件，frps_full.ini是全配置，里面所有的配置都有，玩法很多，感兴趣的可以研究一下。将下面配置代码复制到frps.ini后保存：</p><blockquote></blockquote><pre><code>[common]bind_port = 7000 ;要绑定的端口dashboard_user = admin ;控制台的用户名dashboard_pwd = password ;控制台的密码dashboard_port = 7500 ;控制台的端口</code></pre><p>在配置文件所在位置按住shift右键打开cmd或power shell，执行命令：<br>cmd:</p><blockquote></blockquote><pre><code>frps -c frps.ini</code></pre><p>power shell:</p><blockquote></blockquote><pre><code>.\frps.exe -c frps.ini</code></pre><h2 id="客户端-内网设备"><a href="#客户端-内网设备" class="headerlink" title="客户端(内网设备)"></a>客户端(内网设备)</h2><h3 id="编辑配置文件-1"><a href="#编辑配置文件-1" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h3><p>将如下代码复制到frpc.ini中：</p><blockquote></blockquote><pre><code>[common]server_addr = 1.2.3.4 ;服务器的 IPserver_port = 7000 ;服务器上设置的服务绑定端口[RDP] ;这个是反向代理的名称，可以随意设置type = tcp ;RDP 是 TCP 协议的local_ip = 127.0.0.1 ;本机IP,可以直接使用127.0.0.1local_port = 3389 ;远程桌面的默认端口remote_port = 7001 ;外网访问的端口</code></pre><p>在配置文件所在位置按住shift右键打开cmd或power shell，执行命令：<br>cmd:</p><blockquote></blockquote><pre><code>frpc -c frpc.ini</code></pre><p>power shell:</p><blockquote></blockquote><pre><code>.\frpc.exe -c frpc.ini</code></pre><h3 id="开启远程桌面（非必须）"><a href="#开启远程桌面（非必须）" class="headerlink" title="开启远程桌面（非必须）"></a>开启远程桌面（非必须）</h3><p>如果你配置frp是为了使用远程桌面，而恰巧你的内网设备又是win7或win10等桌面版系统，那么你还需要右击“此电脑”，选择“系统”——“远程设置”——“允许远程连接至此电脑”。而如果是server版本直接忽略此步骤即可。  </p><p>至此，你已经可以使用你的ip加端口号的形式访问你的相应服务了。</p><h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><h3 id="设置域名解析"><a href="#设置域名解析" class="headerlink" title="设置域名解析"></a>设置域名解析</h3><p>设置自己的域名解析，添加一条A类记录指向你的公网ip。<br><img src="https://i.loli.net/2018/10/20/5bcb0775422ac.png" alt="04.png"></p><h3 id="配置frpc-ini"><a href="#配置frpc-ini" class="headerlink" title="配置frpc.ini"></a>配置frpc.ini</h3><p>在刚才复制的配置之后添加如下内容即可：</p><blockquote></blockquote><pre><code>custom_domains = xxx.yourdomain.xxx</code></pre><p>这样，你就可以使用域名+端口的形式访问你的服务了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;几个概念&quot;&gt;&lt;a href=&quot;#几个概念&quot; class=&quot;headerlink&quot; title=&quot;几个概念&quot;&gt;&lt;/a&gt;几个概念&lt;/h1&gt;&lt;h2 id=&quot;frp&quot;&gt;&lt;a href=&quot;#frp&quot; class=&quot;headerlink&quot; title=&quot;frp&quot;&gt;&lt;/a&gt;fr
+      
+    
+    </summary>
+    
+      <category term="软件工具" scheme="https://cyneliu.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="frp" scheme="https://cyneliu.github.io/tags/frp/"/>
+    
+      <category term="内网穿透" scheme="https://cyneliu.github.io/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
+    
+      <category term="反向代理" scheme="https://cyneliu.github.io/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+    
+      <category term="Windows" scheme="https://cyneliu.github.io/tags/Windows/"/>
+    
+  </entry>
   
   <entry>
     <title>SDN实验（二）——Open vSwitch</title>
@@ -548,35 +579,6 @@
       <category term="笔记" scheme="https://cyneliu.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
       <category term="虚拟化" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mininet的安装配置</title>
-    <link href="https://cyneliu.github.io/2018/06/24/Mininet%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"/>
-    <id>https://cyneliu.github.io/2018/06/24/Mininet的安装配置/</id>
-    <published>2018-06-24T01:20:49.000Z</published>
-    <updated>2018-10-16T14:15:49.157Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Ubuntu安装"><a href="#Ubuntu安装" class="headerlink" title="Ubuntu安装"></a>Ubuntu安装</h1><h2 id="系统选择"><a href="#系统选择" class="headerlink" title="系统选择"></a>系统选择</h2><p>镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。</p><h2 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h2><h3 id="设置网卡"><a href="#设置网卡" class="headerlink" title="设置网卡"></a>设置网卡</h3><p>因为要使用ssh远程登录，这里我们添加一个网卡：<br><img src="https://i.loli.net/2018/06/24/5b2ef5cbec5f1.png" alt="01.png"><br>勾选“启用网络连接”，并选择仅主机模式。</p><h3 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h3><p>挂载镜像之后启动虚拟机进行安装，基本的安装过程不一一详细介绍，不会的地方可以百度。<br><img src="https://i.loli.net/2018/06/24/5b2ef77a37059.png" alt="02.png"><br>可以看到安装程序已经识别出了两块网卡，我们选择默认的nat网卡作为主网络接口。<br><img src="https://i.loli.net/2018/06/24/5b2ef9a7a101d.png" alt="03.png"><br>软件安装，我们只需要安装ssh server就可以了，记得空格选择，回车确认。  </p><p>安装完成后，我们看一下系统的网卡信息，发现并没有我们添加的网卡。<br><img src="https://i.loli.net/2018/06/24/5b2efcabda76f.png" alt="04.png"><br>执行“sudo dhclient enp0s8”启用enp0s8网卡。<br>再次查看网卡信息：<br><img src="https://i.loli.net/2018/06/24/5b2efed26c4cc.png" alt="05.png"><br>可以看到已经添加进来了。我们还需要将第二块网卡的配置加入到网络配置文件中，不然重启之后第二块网卡还是看不到的：  </p><blockquote></blockquote><pre><code>sudo vi /etc/network/interfaces</code></pre><p>在interfaces配置文件中加入enp0s8，同样使用dhcp方式获取ip<br><img src="https://i.loli.net/2018/06/24/5b2efffbe249f.png" alt="06.png"><br>至此，我们的系统就配置完成了，用ssh工具进行连接：<br><img src="https://i.loli.net/2018/06/24/5b2f00ad250a3.png" alt="07.png"><br>已经可以成功连接。</p><h1 id="安装Ryu"><a href="#安装Ryu" class="headerlink" title="安装Ryu"></a>安装Ryu</h1><p>详细内容可参考<a href="http://linton.tw/2014/02/15/note-install-ryu-36-sdn-framework/" target="_blank" rel="noopener">linton的博客</a>。</p><p>1.下载python的套件库，并更新pip（因为下载的pip并不是最新版本）</p><blockquote></blockquote><pre><code>sudo apt-get install python-pip python-dev build-essentialsudo pip install --upgrade pip</code></pre><p>2.安装Ryu相依性套件</p><blockquote></blockquote><pre><code>sudo apt-get install python-eventletsudo apt-get install python-routessudo apt-get install python-webobsudo apt-get install python-paramiko</code></pre><p>3.使用pip下载并安装Ryu</p><blockquote></blockquote><pre><code>sudo pip install ryu</code></pre><p>此步骤如果出现如下错误信息说明你被挡在城内了，富强上网即可解决。<br><img src="https://i.loli.net/2018/06/24/5b2f22b8832fc.png" alt="需要富强上网.png"><br>4.如果需要使用Ryu with GUI则进行此步骤：下载Ryu source code（需要使用git套件）</p><blockquote></blockquote><pre><code>sudo apt-get install gitgit clone https://github.com/osrg/ryu.git</code></pre><p>5.完成安装，执行ryu-manager验证有没有出现错误，没问题的话会出现如下信息：<br><img src="https://i.loli.net/2018/06/24/5b2f1ff8a73bd.png" alt="chenggong.png"></p><h1 id="安装mininet"><a href="#安装mininet" class="headerlink" title="安装mininet"></a>安装mininet</h1><h2 id="使用源码安装mininet"><a href="#使用源码安装mininet" class="headerlink" title="使用源码安装mininet"></a>使用源码安装mininet</h2><p>为了减少之后不必要的麻烦，建议在安装开始前执行：sudo su切换到root用户下并在富强网络下进行安装。<br>1.升级系统</p><blockquote></blockquote><pre><code>apt-get updateapt-get upgrade</code></pre><p>2.安装git（如果你像我一样在之前安装Ryu时我们已经安装过git了，那么请直接跳过此步骤）</p><blockquote></blockquote><pre><code>apt install git</code></pre><p>3.从github上获取源码</p><blockquote></blockquote><pre><code>git clone git://github.com/mininet/mininet</code></pre><p>获取之后可以使用如下命令查看mininet的版本</p><blockquote></blockquote><pre><code>cd mininetcat INSTALL</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4c772e56f.png" alt="cat.png"><br>4.确认无误后，安装mininet</p><blockquote></blockquote><pre><code>util/install.sh -a</code></pre><p>当你看到Enjoy Mininet！时，恭喜你已经安装成功了。<br><img src="https://i.loli.net/2018/06/24/5b2f4cb8a6bfc.png" alt="enjoy.png"><br>执行以下命令查看安装版本：</p><blockquote></blockquote><pre><code>mn --version</code></pre><h2 id="mininet可视化操作"><a href="#mininet可视化操作" class="headerlink" title="mininet可视化操作"></a>mininet可视化操作</h2><p>1.要进行mininet可视化操作，需要安装Xmanager套件，然后在通过Xshell远程连接主机时，在属性中做如下设置：<br><img src="https://i.loli.net/2018/06/24/5b2f4a82c2097.png" alt="suidao.png"><br>2.然后进入examples目录，执行miniedit.py即可启动可视化界面</p><blockquote></blockquote><pre><code>cd mininet/mininet/examples./miniedit.py</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4cf66b46e.png" alt="可视化.png"><br>至此，整个环境就搭建完成了。<br>如果是桌面版系统并且用apt-get install mininet安装的mininet,目录在/usr / share /doc/mininet/examples,但是其可视化脚本是py.gz格式的，貌似无法使用。</p><p>如果对环境的安装有疑问，欢迎与我联系，一起沟通交流。  </p><blockquote><p>email: <a href="mailto:max.lxw@qq.com" target="_blank" rel="noopener">max.lxw@qq.com</a></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Ubuntu安装&quot;&gt;&lt;a href=&quot;#Ubuntu安装&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu安装&quot;&gt;&lt;/a&gt;Ubuntu安装&lt;/h1&gt;&lt;h2 id=&quot;系统选择&quot;&gt;&lt;a href=&quot;#系统选择&quot; class=&quot;headerlink&quot; 
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
-    
-      <category term="Mininet" scheme="https://cyneliu.github.io/tags/Mininet/"/>
     
   </entry>
   
