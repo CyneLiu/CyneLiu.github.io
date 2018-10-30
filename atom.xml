@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-10-20T10:49:34.182Z</updated>
+  <updated>2018-10-30T09:26:47.960Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Apache Web服务器的安装与配置</title>
+    <link href="https://cyneliu.github.io/2018/10/30/Apache-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>https://cyneliu.github.io/2018/10/30/Apache-Web服务器的安装与配置/</id>
+    <published>2018-10-30T09:10:05.000Z</published>
+    <updated>2018-10-30T09:26:47.960Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="安装Apache2"><a href="#安装Apache2" class="headerlink" title="安装Apache2"></a>安装Apache2</h1><p>执行：</p><blockquote></blockquote><pre><code>sudo apt-get install apache2</code></pre><p>Apache默认会在“/var”下建立一个名为“www”的目录，即Web目录，所有能通过浏览器访问的Web文件都放到这个目录。</p><h1 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h1><p>安装PHP：</p><blockquote></blockquote><pre><code>sudo apt-get install libapache2-mod-php5 php5</code></pre><p>安装扩展包：</p><blockquote></blockquote><pre><code>sudo apt-get install php5-gd php5-mysql</code></pre><p>重新启动Apache，加载PHP模块:</p><blockquote></blockquote><pre><code>sudo /etc/init.d/apache2 restart</code></pre><h1 id="安装MySQL数据库"><a href="#安装MySQL数据库" class="headerlink" title="安装MySQL数据库"></a>安装MySQL数据库</h1><p>执行：</p><blockquote></blockquote><pre><code>sudo apt-get install mysql-server</code></pre><p>根据提示信息设置密码。</p><h1 id="安装配置phpMyAdmin"><a href="#安装配置phpMyAdmin" class="headerlink" title="安装配置phpMyAdmin"></a>安装配置phpMyAdmin</h1><p>安装Mysql数据库管理软件：</p><blockquote></blockquote><pre><code>sudo apt-get install phpmyadmin</code></pre><p>选择Web server：apache2或lighttpd：<br><img src="http://112.80.35.35:40010/site_media/media/course/45822350-0767-4686-b15a-74a093b03768/network/%E5%9B%BE%E7%89%87_nvEIrXy.png" alt="01.png"><br>之后还需要根据提示输入Mysql的root账户连接密码并设置phpMyAdmin的登录密码。  </p><p>将phpMyAdmin与Apache2建立连接。例如：www目录在“/var/www”下，phpMyAdmin在“/usr/share/phpmyadmin”目录下，则用如下命令建立连接：</p><blockquote></blockquote><pre><code>sudo ln -s /usr/share/phpmyadmin /var/www/html</code></pre><p>在浏览器地址栏中输入<a href="http://localhost/phpmyadmin即可访问phpMyAdmin的登录页面。" target="_blank" rel="noopener">http://localhost/phpmyadmin即可访问phpMyAdmin的登录页面。</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;安装Apache2&quot;&gt;&lt;a href=&quot;#安装Apache2&quot; class=&quot;headerlink&quot; title=&quot;安装Apache2&quot;&gt;&lt;/a&gt;安装Apache2&lt;/h1&gt;&lt;p&gt;执行：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;c
+      
+    
+    </summary>
+    
+      <category term="服务器应用" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BA%94%E7%94%A8/"/>
+    
+    
+      <category term="Apache" scheme="https://cyneliu.github.io/tags/Apache/"/>
+    
+      <category term="Web服务器" scheme="https://cyneliu.github.io/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx的简单安装</title>
+    <link href="https://cyneliu.github.io/2018/10/30/Nginx%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%89%E8%A3%85/"/>
+    <id>https://cyneliu.github.io/2018/10/30/Nginx的简单安装/</id>
+    <published>2018-10-30T07:49:45.000Z</published>
+    <updated>2018-10-30T08:48:16.638Z</updated>
+    
+    <content type="html"><![CDATA[<p>过几天参加比赛要用到nginx的安装部署，写一个简单的安装方式，方便赛前温习。</p><h1 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h1><p>更新apt源：</p><blockquote></blockquote><pre><code>sudo apt-get update</code></pre><p>安装nginx：</p><blockquote></blockquote><pre><code>sudo apt-get install nginx</code></pre><p>使用这种方法，apt-get会自动安装好nginx和依赖组件。  </p><p>执行如下命令查看nginx进程是否启动：</p><blockquote></blockquote><pre><code>ps -ef | grep nginx</code></pre><p>打开浏览器，在地址栏输入localhost，就会出现如下的欢迎页面，表示nginx安装成功。<br><img src="http://112.80.35.35:40010/site_media/media/course/096bc012-db2f-4c2b-a983-bbf7056af08e/network/%E5%9B%BE%E7%89%87_MVR9Prv.png" alt="01.png"></p><h1 id="Nginx安装路径"><a href="#Nginx安装路径" class="headerlink" title="Nginx安装路径"></a>Nginx安装路径</h1><blockquote></blockquote><pre><code>whereis nginx</code></pre><h1 id="搭建简单静态服务器"><a href="#搭建简单静态服务器" class="headerlink" title="搭建简单静态服务器"></a>搭建简单静态服务器</h1><p>在nginx安装目录下找到nginx.conf文件，打开并编辑，在http节点下增加如下内容：<br><img src="http://112.80.35.35:40010/site_media/media/course/096bc012-db2f-4c2b-a983-bbf7056af08e/network/%E5%9B%BE%E7%89%87_DEfprYK.png" alt="02.png"><br>root /home/openlab这里填写你的静态文件存储根目录。  </p><p>找到nginx程序所在的目录，执行nginx -s reload命令，重新加载Nginx配置文件。  </p><p>root /home/openlab这里填写你的静态文件存储根目录。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;过几天参加比赛要用到nginx的安装部署，写一个简单的安装方式，方便赛前温习。&lt;/p&gt;
+&lt;h1 id=&quot;安装Nginx&quot;&gt;&lt;a href=&quot;#安装Nginx&quot; class=&quot;headerlink&quot; title=&quot;安装Nginx&quot;&gt;&lt;/a&gt;安装Nginx&lt;/h1&gt;&lt;p&gt;更新a
+      
+    
+    </summary>
+    
+      <category term="服务器应用" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BA%94%E7%94%A8/"/>
+    
+    
+      <category term="Web服务器" scheme="https://cyneliu.github.io/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="Nginx" scheme="https://cyneliu.github.io/tags/Nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows环境利用FRP实现内网穿透</title>
@@ -509,64 +567,6 @@
       
       
         &lt;h1 id=&quot;设置虚拟机随主机自动启动&quot;&gt;&lt;a href=&quot;#设置虚拟机随主机自动启动&quot; class=&quot;headerlink&quot; title=&quot;设置虚拟机随主机自动启动&quot;&gt;&lt;/a&gt;设置虚拟机随主机自动启动&lt;/h1&gt;&lt;h2 id=&quot;0、选择虚拟机所在主机&quot;&gt;&lt;a href=&quot;#0、
-      
-    
-    </summary>
-    
-      <category term="运维" scheme="https://cyneliu.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-      <category term="运维" scheme="https://cyneliu.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
-      <category term="笔记" scheme="https://cyneliu.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="虚拟化" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WinSCP——基于SSH的安全文件传输软件</title>
-    <link href="https://cyneliu.github.io/2018/07/03/WinSCP%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8ESSH%E7%9A%84%E5%AE%89%E5%85%A8%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BD%AF%E4%BB%B6/"/>
-    <id>https://cyneliu.github.io/2018/07/03/WinSCP——基于SSH的安全文件传输软件/</id>
-    <published>2018-07-03T02:10:14.000Z</published>
-    <updated>2018-10-16T14:19:39.035Z</updated>
-    
-    <content type="html"><![CDATA[<p>我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。  </p><h1 id="sftp"><a href="#sftp" class="headerlink" title="sftp"></a>sftp</h1><p>sftp(Secure File Transfer Protocol)，安全文件传送协议，可以为传输文件提供一种安全的网络的加密方法。sftp与ftp有着几乎一样的语法和功能。SFTP是SSH的一部分，其实在SSH软件包中，已经包含了一个叫作SFTP的安全文件信息传输子系统，SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接和答复操作，所以从某种意义上来说，SFTP并不像一个服务器程序，而更像是一个客户端程序。<br>SFTP同样是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，所以在对网络安全性要求更高时，可以使用SFTP代替FTP。</p><h1 id="sftp于ftp的区别"><a href="#sftp于ftp的区别" class="headerlink" title="sftp于ftp的区别"></a>sftp于ftp的区别</h1><p>FTP是一种文件传输协议，一般是为了方便数据共享的，包括一个FTP服务器和多个FTP客户端，FTP客户端通过FTP协议在服务器上下载资源。而SFTP协议是基于SSH，并在FTP的基础上对数据进行加密，使得传输的数据相对来说更安全。但是这种安全是以牺牲效率为代价的，也就是说SFTP的传输效率比FTP要略低。<br>而且在我的使用过程中，并没有感觉sftp的效率较于ftp有太大的差异，而且使用sftp最大的一个好处就是不需要安装而且安全性更高。<br>更详细的区别可以移步这里：<a href="https://www.cnblogs.com/mfryf/archive/2013/05/29/3107286.html" target="_blank" rel="noopener">Sftp和ftp 区别、工作原理等（汇总ing）</a></p><h1 id="WinSCP"><a href="#WinSCP" class="headerlink" title="WinSCP"></a>WinSCP</h1><p>官网地址：<a href="https://winscp.net/eng/docs/lang:chs" target="_blank" rel="noopener">https://winscp.net/eng/docs/lang:chs</a><br>除了WinSCP，Windows环境下还可以使用Core FTP，FileZilla, WinSCP，Xftp来连接SFTP进行上传，下载文件，建立，删除目录等操作。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的
-      
-    
-    </summary>
-    
-      <category term="软件工具" scheme="https://cyneliu.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="文件传输" scheme="https://cyneliu.github.io/tags/%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/"/>
-    
-      <category term="工具" scheme="https://cyneliu.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="SSH" scheme="https://cyneliu.github.io/tags/SSH/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>虚拟化运维笔记 —— Linux</title>
-    <link href="https://cyneliu.github.io/2018/06/25/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Linux/"/>
-    <id>https://cyneliu.github.io/2018/06/25/虚拟化运维笔记——Linux/</id>
-    <published>2018-06-25T13:50:33.000Z</published>
-    <updated>2018-10-16T14:22:20.393Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="Linux下使用Rinetd来实现端口转发"><a href="#Linux下使用Rinetd来实现端口转发" class="headerlink" title="Linux下使用Rinetd来实现端口转发"></a>Linux下使用Rinetd来实现端口转发</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><strong>centos</strong><br>0、对于centos，由于官方的源中并没有Rinetd，所以首先需要第三方源<br>32位系统：</p><blockquote></blockquote><pre><code>$ vim /etc/yum.repos.d/nux-misc.repo[nux-misc]name=Nux Miscbaseurl=http://li.nux.ro/download/nux/misc/el6/i386/enabled=0gpgcheck=1gpgkey=http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</code></pre><p>64位系统：</p><blockquote></blockquote><pre><code>$ vim  /etc/yum.repos.d/nux-misc.repo:[nux-misc]name=Nux Miscbaseurl=http://li.nux.ro/download/nux/misc/el6/x86_64/enabled=0gpgcheck=1gpgkey=http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro</code></pre><p>1、安装Rinetd</p><blockquote></blockquote><pre><code>$ yum --enablerepo=nux-misc install rinetd</code></pre><p><strong>Ubuntu</strong></p><blockquote></blockquote><pre><code>apt-get install rinetd</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>端口转发的配置文件在<em>/etc/rinetd.conf</em><br>配置文件的格式：</p><blockquote></blockquote><pre><code>[bindaddress] [bindport] [connectaddress] [connectport]绑定的地址    绑定的端口  连接的地址      连接的端口[Source Address] [Source Port] [Destination Address] [Destination Port]源地址            源端口         目的地址               目的端口</code></pre><p>例如：</p><blockquote></blockquote><pre><code>0.0.0.0 8080 172.19.94.3 80800.0.0.0 2222 192.168.0.103 33891.2.3.4 80 192.168.0.10 80allow *.*.*.*logfile /var/log/rinetd.log</code></pre><p>说明  </p><blockquote><p>0.0.0.0表示本机绑定所有可用地址<br>将所有发往本机8080端口的请求转发到172.19.94.3的8080端口<br>将所有发往本机2222端口的请求转发到192.168.0.103的3389端口<br>将所有发往1.2.3.4的80端口请求转发到192.168.0.10的80端口<br>allow设置允许访问的ip地址信息,<em>.</em>.<em>.</em>表示所有IP地址<br>logfil设置打印的log的位置  </p></blockquote><h3 id="启动程序"><a href="#启动程序" class="headerlink" title="启动程序"></a>启动程序</h3><blockquote></blockquote><pre><code>pkill rinetd  ##关闭进程rinetd -c /etc/rinetd.conf  ##启动转发</code></pre><p>把命令加到/etc/rc.local里面就可以开机自动运行</p><h1 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h1><h2 id="默认编辑器nano"><a href="#默认编辑器nano" class="headerlink" title="默认编辑器nano"></a>默认编辑器nano</h2><p>用习惯了vim编辑器，有时候想修改配置文件，可设备又没网，Ubuntu默认使用的是nano编辑器，真心不如vim好用。</p><blockquote></blockquote><pre><code>ctrl+X  #退出ctrl+O  #保存</code></pre><h2 id="Ubuntu设置静态ip"><a href="#Ubuntu设置静态ip" class="headerlink" title="Ubuntu设置静态ip"></a>Ubuntu设置静态ip</h2><p>通过修改“/etc/network/interfaces”进行修改，<br><img src="https://i.loli.net/2018/06/25/5b30f4ef9991f.png" alt="QQ图片20180625214835.png"><br>注：在设置多个DNS服务器的时候要加“s”,如：</p><blockquote></blockquote><pre><code>dns-nameservers 114.114.114.114 8.8.8.8</code></pre><p>修改之后需要执行：  </p><blockquote></blockquote><pre><code>sudo /etc/init.d/networking restart</code></pre><p>使用这个方式修改ip地址，修改完interfaces文档中的内容后，需要修改/etc/NetworkManager/NetworkManager.conf文档中的managed参数，使之为true，并重启。否则，会提示说“有线网络设备未托管”。<br>重启网络或系统之后就修改完成了。  </p><h2 id="安装TeamViewer"><a href="#安装TeamViewer" class="headerlink" title="安装TeamViewer"></a>安装TeamViewer</h2><p>teamviewer远程登录的方式不建议使用！<br>1、到TeamViewer官网下载对应版本的安装包。<br>2、下载完成之后切换到下载目录，执行：</p><blockquote></blockquote><pre><code>sudo dpkg -i teamviewer_13.0.9865_amd64.deb</code></pre><p>版本号要根据下载的包进行更改。<br>这时候可能会报出如下错误：</p><blockquote></blockquote><pre><code>正在选中未选择的软件包 teamviewer。 (正在读取数据库 … 系统当前共安装有 253291 个文件和目录。) 正准备解包 teamviewer_13.0.6634_amd64.deb … 正在解包 teamviewer (13.0.6634) … dpkg：警告：无法删除原有的目录 /var/log/teamviewer12 ：目录非空 dpkg: 依赖关系问题使得 teamviewer 的配置工作不能继续： teamviewer 依赖于 qtdeclarative5-dialogs-plugin (&gt;= 5.2) | qml-module-qtquick-dialogs (&gt;= 5.2)；然而： 未安装软件包 qtdeclarative5-dialogs-plugin。 未安装软件包 qml-module-qtquick-dialogs。 dpkg: 处理软件包 teamviewer (–install)时出错： 依赖关系问题 - 仍未被配置 正在处理用于 desktop-file-utils (0.22-1ubuntu5.1) 的触发器 … 正在处理用于 gnome-menus (3.13.3-6ubuntu3.1) 的触发器 … 正在处理用于 bamfdaemon (0.5.3~bzr0+16.04.20160824-0ubuntu1) 的触发器 … Rebuilding /usr/share/applications/bamf-2.index… 正在处理用于 mime-support (3.59ubuntu1) 的触发器 … 正在处理用于 hicolor-icon-theme (0.15-0ubuntu1) 的触发器 … 在处理时有错误发生： teamviewer</code></pre><p>目前我遇到的有两种解决方式：<br>一、修复依赖关系</p><blockquote><p>一种解决方法是执行如下命令修复依赖关系：   </p></blockquote><pre><code>sudo apt install f</code></pre><p>执行完后再安装看看能否成功，如果还是不成功就要采用第二种方式了。<br>二、更新源地址</p><blockquote><p>①删除安装到一半的teamviewer：</p></blockquote><pre><code>sudo apt-get remove teamviewer</code></pre><p>②在Ubuntu的<a href="http://wiki.ubuntu.org.cn/%E6%BA%90%E5%88%97%E8%A1%A8" target="_blank" rel="noopener">源列表</a>中找到对应系统的源，复制到/etc/apt/sources.list 里面，并把原来的链接注释掉。<br>③更新系统软件：</p><blockquote></blockquote><pre><code>sudo apt-get update #更新软件列表sudo apt-get upgrade #更新软件</code></pre><p>④运行安装命令：</p><blockquote></blockquote><pre><code>sudo dpkg -i teamviewer_13.0.9865_amd64.deb</code></pre><p>3、在TeamViewer的使用中发现经常在系统重启后连接就出现“未知原因”的问题，原因还在摸索中，目前能解决的方法就是卸载重新安装：</p><blockquote></blockquote><pre><code>apt purge teamviewersudo dpkg -i teamviewer_13.0.9865_amd64.deb</code></pre><h2 id="16-04出现“The-system-is-running-in-low-graphics-mode”"><a href="#16-04出现“The-system-is-running-in-low-graphics-mode”" class="headerlink" title="16.04出现“The system is running in low-graphics mode”"></a>16.04出现“The system is running in low-graphics mode”</h2><p>在虚拟机中安装的Ubuntu16.04无法显示完全，尝试修改分辨率后会卡死，然后重启就会出现如题所示的错误。<br>解决方法为：<br>1、重启虚拟机，按ctrl + alt + F1 进入纯字符界面，输入账号和密码<br>2、执行如下命令：</p><blockquote></blockquote><pre><code>cd /etc/X11sudo cp xorg.conf.failsafe xorg.conf #刷新配置文件sudo reboot</code></pre><p>重启之后就可以正常显示了。</p><h2 id="启用root用户"><a href="#启用root用户" class="headerlink" title="启用root用户"></a>启用root用户</h2><p>执行：</p><blockquote></blockquote><pre><code>sudo passwd root</code></pre><p>设置密码后即可使用su直接切换为root用户。<br><img src="https://img-blog.csdn.net/20160722112307840" alt=""></p><h2 id="安装GNOME-Shell桌面"><a href="#安装GNOME-Shell桌面" class="headerlink" title="安装GNOME Shell桌面"></a>安装GNOME Shell桌面</h2><p>1、安装GNOME Shell</p><blockquote></blockquote><pre><code>sudo apt-get install gnome-shell</code></pre><p>安装过程中出现如下界面，选择lightdm：<br><img src="https://4bds6hergc-flywheel.netdna-ssl.com/wp-content/uploads/2014/06/Switch_between_gdm_and_lightgdm_Ubuntu.jpeg" alt=""><br>2、退出当前账户，选择GNOME桌面系统<br>3、重新登陆，安装gnome-tweak</p><blockquote></blockquote><pre><code>sudo apt-get install gnome-tweak-tool</code></pre><p>tweak是主题管理工具，具体使用方法参见：<br><a href="https://itsfoss.com/install-switch-themes-gnome-shell/" target="_blank" rel="noopener">https://itsfoss.com/install-switch-themes-gnome-shell/ </a><br>4、使用tweak更换主题<br>方法参考：<br><a href="https://itsfoss.com/gnome-shell-themes-ubuntu-1404/" target="_blank" rel="noopener">https://itsfoss.com/gnome-shell-themes-ubuntu-1404/</a>  </p><h2 id="执行sudo-apt-get-update出错"><a href="#执行sudo-apt-get-update出错" class="headerlink" title="执行sudo apt-get update出错"></a>执行sudo apt-get update出错</h2><p>在运行sudo apt-get update时出现如下信息：</p><blockquote></blockquote><pre><code>Reading package lists... DoneE: Problem executing scripts APT::Update::Post-Invoke-Success&apos;if /usr/bin/test -w /var/cache/app-info -a -e /usr/bin/appstreamcli;then appstreamcli refresh &gt; /dev/null;fi&apos;E: Sub-process returned an error code</code></pre><p>解决方法如下：</p><blockquote></blockquote><pre><code>sudo pkill -KILL appstreamcliwget -P /tmp https://launchpad.net/ubuntu/+archive/primary/+files/appstream_0.9.4-1ubuntu1_amd64.deb https://launchpad.net/ubuntu/+archive/primary/+files/libappstream3_0.9.4-1ubuntu1_amd64.debsudo dpkg -i /tmp/appstream_0.9.4-1ubuntu1_amd64.deb /tmp/libappstream3_0.9.4-1ubuntu1_amd64.deb</code></pre><p>或者：</p><blockquote></blockquote><pre><code>apt show appstreamsudo apt remove appstream</code></pre><h2 id="Ubuntu在虚拟机中显示不全的问题"><a href="#Ubuntu在虚拟机中显示不全的问题" class="headerlink" title="Ubuntu在虚拟机中显示不全的问题"></a>Ubuntu在虚拟机中显示不全的问题</h2><p>关于这个问题之前也是尝试了无数的方法，今天无意间明白了原因并解决了问题。<br>1、首先要明白的是不是随便一个分辨率都可以更改，首先执行以下命令查询当前的显示状态：</p><blockquote></blockquote><pre><code>xrandr</code></pre><p><img src="https://img-blog.csdn.net/20150602205903147?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaXRhczEwOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>其中第一个带*的就是当前的分辨率，其下的数值是我们可以更改的分辨率，每个虚拟机可能略有不同。<br>2、执行：</p><blockquote></blockquote><pre><code>xrandr -s 1440x900_59.9</code></pre><p>即可将分辨率设置为1440x900。<br>3、上述命令只能临时修改，永久修改需要执行：</p><blockquote></blockquote><pre><code>xrandr --output Virtual1 --mode 1440x900</code></pre><p>其中“Virtual1”是显示器的名称，要根据执行xrandr返回的信息进行相应的替换。<br>4、错误<br>这些也是我自己遇到的一点问题。</p><blockquote><p>①有时候执行步骤3中所说的命令并不能永久更改，重启后会失效。目前一个方法就是在系统设置→显示中应用一下更改过来的分辨率，这样在重启之后就不会出现问题了。<br>②“xrandr: Configure crtc 0 failed”  </p><blockquote><p>这是一个系统bug，在设置,关于这台计算机,检查更新。更新完重启后就没问题了。</p></blockquote></blockquote><h2 id="Ubuntu16-04安装VNC"><a href="#Ubuntu16-04安装VNC" class="headerlink" title="Ubuntu16.04安装VNC"></a>Ubuntu16.04安装VNC</h2><p>“VNC有很多选择，VNC4server，tigervncserver等等，都不推荐，难装又难用。经过多次实验和测试，最后只采用x11vnc作为VNC服务器端。” <a href="https://blog.csdn.net/longhr/article/details/51657610" target="_blank" rel="noopener">查看原文</a><br>1、安装X11VNC</p><blockquote></blockquote><pre><code>sudo apt install x11vnc -y</code></pre><p>2、配置访问密码</p><blockquote></blockquote><pre><code>sudo x11vnc -storepasswd /etc/x11vnc.pass </code></pre><p>3、创建服务</p><blockquote></blockquote><pre><code>vi  /lib/systemd/system/x11vnc.service</code></pre><blockquote><p>粘贴如下代码：</p></blockquote><pre><code>[Unit]Description=Start x11vnc at startup.After=multi-user.target[Service]Type=simpleExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared[Install]WantedBy=multi-user.target</code></pre><p>4、配置防火墙，配置并启动服务</p><blockquote></blockquote><pre><code>sudo ufw allow 5900sudo systemctl enable x11vnc.servicesudo systemctl daemon-reload</code></pre><p>如果出现如下图所示的错误，就说明第三步中你的配置信息粘贴错误了，修改正确即可解决。<img src="https://i.loli.net/2018/06/30/5b37243cc1a2e.jpg" alt="QQ图片20180630142539.jpg"><br>5、重启系统</p><blockquote></blockquote><pre><code>reboot</code></pre><h2 id="nat123配置"><a href="#nat123配置" class="headerlink" title="nat123配置"></a>nat123配置</h2><p>nat123端口映射是专业的内网端口映射软件，在内网启动映射后，可在外网轻松访问连接内网网站等应用，不需要设置路由器，不需要公网ip,不需要固定ip,不需要动态域名。  </p><p>Ubuntu配置过程：（其它linux直接参考<a href="http://www.nat123.com/pages_17_600.jsp" target="_blank" rel="noopener">官网说明</a>）<br>0、注册账号<br>没有注册过账号的先到官网注册：<a href="http://www.nat123.com/" target="_blank" rel="noopener">http://www.nat123.com/</a><br>1、安装mono运行环境</p><blockquote></blockquote><pre><code>apt-get  install  mono-complete</code></pre><p>安装完成后执行“mono -V”可查看安装的版本信息。<br>2、客户端安装</p><blockquote></blockquote><pre><code>cd  /optmkdir  nat123cd  /nat123wget  http://www.nat123.com/down/nat123linux.tar.gztar  -zxvf  nat123linux.tar.gz</code></pre><p>3、启动客户端</p><blockquote></blockquote><pre><code>cd  /opt/nat123mono  nat123linux.sh</code></pre><p>输入用户名和密码登录成功后，直接结束当前进程，然后执行如下命令改为后台运行：</p><blockquote></blockquote><pre><code>cd  /opt/nat123mono  nat123linux.sh service &amp;ps  -ef|grep  nat123 #查看nat123状态</code></pre><p>4、登录网页添加端口映射或动态域名解析</p><h1 id="RHEL"><a href="#RHEL" class="headerlink" title="RHEL"></a>RHEL</h1><h2 id="系统意外重启后VNC连接失败"><a href="#系统意外重启后VNC连接失败" class="headerlink" title="系统意外重启后VNC连接失败"></a>系统意外重启后VNC连接失败</h2><p>在服务器中运行着几个RHEL实例，VNC是之前老师配置的，这几个实例在服务器断电重启之后会出现VNC连接出错的问题。解决方法如下：</p><blockquote></blockquote><pre><code>cd /tmprm -rvf .X11-unix #手动删除因为VNC非正常退出未删除的文件vncserver :3 #重启服务</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Linux&quot;&gt;&lt;a href=&quot;#Linux&quot; class=&quot;headerlink&quot; title=&quot;Linux&quot;&gt;&lt;/a&gt;Linux&lt;/h1&gt;&lt;h2 id=&quot;Linux下使用Rinetd来实现端口转发&quot;&gt;&lt;a href=&quot;#Linux下使用Rinetd来实现端口转
       
     
     </summary>
