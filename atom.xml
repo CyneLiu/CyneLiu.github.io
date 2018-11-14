@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-10-30T09:26:47.960Z</updated>
+  <updated>2018-11-14T12:57:37.777Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>科学上网工具 - WireGuard</title>
+    <link href="https://cyneliu.github.io/2018/11/14/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%B7%A5%E5%85%B7-WireGuard/"/>
+    <id>https://cyneliu.github.io/2018/11/14/科学上网工具-WireGuard/</id>
+    <published>2018-11-14T12:22:33.000Z</published>
+    <updated>2018-11-14T12:57:37.777Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="WireGuard是什么？"><a href="#WireGuard是什么？" class="headerlink" title="WireGuard是什么？"></a>WireGuard是什么？</h1><p>WireGuard是一个构建快速、现代、安全的VPN的协议和工具套件，它具有以下优点：</p><blockquote></blockquote><p>使用最先进的加密技术，防范攻击（RSA，SHA广被诟病都将被淘汰）<br>性能远超OpenVPN<br>效率极高，WireGuard协议作为Linux内核模块运行<br>通用用途，支持嵌入式和非嵌入式设备<br>跨平台，初期只在Linux平台发布，现已支持所有平台<br>易用，用过OpenVPN等工具集的人都明白这其中的痛苦<br>工作在3层（链路层），支持漫游，地址变更对用户无感知，使用更简单，切换更平滑<br>使用UDP传输数据，轻量、高效、节能、节省带宽（适用于 IOT 领域）<br>基于GPLv2Linux Kernel 基于 GPLv2）免费开源  </p><p>Linus Torvalds对WireGuard的评价：</p><blockquote><p>Can I just once again state my love for it and hope it gets merged soon? Maybe the code isn’t perfect, but I’ve skimmed it, and compared to the horrors that are OpenVPN and IPSec, it’s a work of art.</p></blockquote><h1 id="脚本安装"><a href="#脚本安装" class="headerlink" title="脚本安装"></a>脚本安装</h1><h2 id="脚本要求"><a href="#脚本要求" class="headerlink" title="脚本要求"></a>脚本要求</h2><blockquote><p>仅适用于centos7<br>vps架构必须为KVM<br>centos7的内核大部分为3.10，不能正确安装，必须升级（已经集成在脚本中）</p></blockquote><h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>1、下载并执行脚本：</p><blockquote></blockquote><pre><code>wget https://raw.githubusercontent.com/yobabyshark/wireguard/master/wireguard_install.sh &amp;&amp; chmod +x wireguard_install.sh &amp;&amp; ./wireguard_install.sh</code></pre><p><img src="https://i.loli.net/2018/11/14/5bec1723904fd.png" alt="01.png"></p><p>2、输入“1”升级内核，按照提示重启。  </p><p>3、重启完成后，再次执行脚本：</p><blockquote></blockquote><pre><code>./wireguard_install.sh</code></pre><p>4、输入“2”安装WireGuard。  </p><p>5、使用ftp工具连接vps，将<strong>/etc/wireguard</strong>目录下的client.conf下载到本地。</p><p>6、下载安装TunSafe，这是一个windows端的第三方客户端，因为官方windows版本的还没开发完成，先用这个软件代替，TunSafe已经开源，可以放心使用。<br>官网下载：<a href="https://tunsafe.com/download" target="_blank" rel="noopener">TunSafe</a></p><p>7、打开TunSafe，单击file，选择import file，将下载的client.conf导入到软件中。  </p><p>8、导入后会自动进行连接，进入全局代理模式，也就是所有流量都会被代理。</p><h1 id="其它平台客户端"><a href="#其它平台客户端" class="headerlink" title="其它平台客户端"></a>其它平台客户端</h1><h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>1、下载WireGuard安卓客户端：  </p><blockquote><p>Android客户端：<a href="https://f-droid.org/repo/com.wireguard.android_439.apk" target="_blank" rel="noopener">点此下载</a></p></blockquote><p>2、打开app，点击加号导入client.conf文件。</p><blockquote><p>这里可能会提示错误，原因是没有文件操作权限，去权限管理里给软件勾上存储权限即可。</p></blockquote><h1 id="速度测试"><a href="#速度测试" class="headerlink" title="速度测试"></a>速度测试</h1><p>Youtube视频地址：<a href="https://youtu.be/A1tdPsdBATw" target="_blank" rel="noopener">点击观看</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;WireGuard是什么？&quot;&gt;&lt;a href=&quot;#WireGuard是什么？&quot; class=&quot;headerlink&quot; title=&quot;WireGuard是什么？&quot;&gt;&lt;/a&gt;WireGuard是什么？&lt;/h1&gt;&lt;p&gt;WireGuard是一个构建快速、现代、安全的VPN
+      
+    
+    </summary>
+    
+      <category term="VPS" scheme="https://cyneliu.github.io/categories/VPS/"/>
+    
+    
+      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    
+      <category term="VPS" scheme="https://cyneliu.github.io/tags/VPS/"/>
+    
+      <category term="WireGuard" scheme="https://cyneliu.github.io/tags/WireGuard/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简单识别Linux vps架构(xen,openvz,kvm)</title>
+    <link href="https://cyneliu.github.io/2018/11/14/%E7%AE%80%E5%8D%95%E8%AF%86%E5%88%ABLinux-vps%E6%9E%B6%E6%9E%84-xen-openvz-kvm/"/>
+    <id>https://cyneliu.github.io/2018/11/14/简单识别Linux-vps架构-xen-openvz-kvm/</id>
+    <published>2018-11-14T12:10:11.000Z</published>
+    <updated>2018-11-14T12:16:49.278Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="安装virt-what"><a href="#安装virt-what" class="headerlink" title="安装virt-what"></a>安装virt-what</h1><blockquote></blockquote><pre><code>yum -y install virt-what</code></pre><h1 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h1><blockquote></blockquote><pre><code>virt-what</code></pre><p>如图，这台vps是基于xen架构。<br><img src="https://i.loli.net/2018/11/14/5bec12288d430.png" alt="01.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;安装virt-what&quot;&gt;&lt;a href=&quot;#安装virt-what&quot; class=&quot;headerlink&quot; title=&quot;安装virt-what&quot;&gt;&lt;/a&gt;安装virt-what&lt;/h1&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code
+      
+    
+    </summary>
+    
+      <category term="VPS" scheme="https://cyneliu.github.io/categories/VPS/"/>
+    
+    
+      <category term="VPS" scheme="https://cyneliu.github.io/tags/VPS/"/>
+    
+      <category term="linux" scheme="https://cyneliu.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅谈几种快充技术</title>
+    <link href="https://cyneliu.github.io/2018/11/07/%E6%B5%85%E8%B0%88%E5%87%A0%E7%A7%8D%E5%BF%AB%E5%85%85%E6%8A%80%E6%9C%AF/"/>
+    <id>https://cyneliu.github.io/2018/11/07/浅谈几种快充技术/</id>
+    <published>2018-11-07T11:00:56.000Z</published>
+    <updated>2018-11-07T11:50:05.314Z</updated>
+    
+    <content type="html"><![CDATA[<p>原来的充电宝丢了，今天又在某宝上溜达买了一个，溜达的时候发现了好多的新名词，就索性查了一下，整理一下写在这里了。</p><h1 id="PD快充协议"><a href="#PD快充协议" class="headerlink" title="PD快充协议"></a>PD快充协议</h1><p>PD充电协议是USB-IF组织公布的功率传输协议，它可以使目前默认最大功率5V/2A的type-c接口提高到100W，同时谷歌宣布Android7.0以上的手机搭载的快充协议必须支持PD协议，意在统一快充市场。  </p><p>USB-PowerDelivery（USBPD）是目前主流的快充协议之一。是由USB-IF组织制定的一种快速充电规范。USBPD透过USB电缆和连接器增加电力输送，扩展USB应用中的电缆总线供电能力。该规范可实现更高的电压和电流，输送的功率最高可达100瓦，并可以自由的改变电力的输送方向。  </p><p>USBPD和Type-C的关系。经常会有人把USBPD和Type-C放在一起谈，甚至就把Type-C充电器叫做PD充电器。USBPD和Type-C其实是两码事，USBPD是一种快速充电协议，而Type-C则是一种新的接口规范。Type-C接口默认最大支持5V/3A，但在实现了USBPD协议以后，能够使输出功率最大支持到前文提到的100W。所以现在许多实用Type-C接口的设备都会支持USBPD协议。</p><p>USBPD的发展前景。USBPD现在已经发展到了USBPD3.0版本。在谷歌的推动下目USBPD已经收编了高通的QC快充协议，并获得了中国工信部的支持。</p><h1 id="QC-1-0-2-0-3-0"><a href="#QC-1-0-2-0-3-0" class="headerlink" title="QC 1.0/2.0/3.0"></a>QC 1.0/2.0/3.0</h1><p>Qualcomm Quick Charge 3.0（下文简称QC 3.0）快充技术不知不觉已经是Qualcomm第三代快充技术，前几年快充技术还没百家齐放的时候，QC门派的关注度还是蛮高的。前几年QC 1.0和QC 2.0仍然比较受手机厂商和消费者欢迎。尤其是QC 2.0技术，如今很多手机厂商的快充技术其实都是基于QC 2.0基础上延伸出来的，例如下文将会提到的Moto涡轮快充和vivo双引擎闪充。  </p><blockquote></blockquote><p><strong>QC 1.0</strong>：最高支持5V/2A充电功率。</p><blockquote><p><strong>QC 2.0</strong>：兼容5V/9V/12V/20V四档充电电压。  </p></blockquote><p><strong>QC 3.0</strong>：以200mV增量为一档，提供从3.6V到20V电压的灵活选择，让手机厂商能够根据自身需求调整最佳电压，达到预期电流，提供充电效率同时降低功耗和发热。目前市面上标配QC 3.0快充头并支持该协议手机有LG G5、小米手机5等。</p><h1 id="MTK：PumpExpress-Plus"><a href="#MTK：PumpExpress-Plus" class="headerlink" title="MTK：PumpExpress Plus"></a>MTK：PumpExpress Plus</h1><p>说完高通的，再来看看联发科的快充技术。  </p><p>联发科MTP Pump Express Plus快充技术，原理与高通QC快充基本相同，都是在恒定电流的同时，通过提升充电电压来获得更大的充电功率。最新的Pump Express 3.0宣称能够在20分钟内为智能手机充满70%电量，同时相比PumpExpress Plus功耗减少50%，间接降低发热。  </p><p>PumpExpress允许充电器根据电流决定充电所需的初始电压，通过内置的PMIC电源管理集成电路发出脉冲电流指令给充电器，调整输出电压，逐渐增加到最大充电电流。相比QC 3.0的200mV为一档增量的做法，PumpExpress 3.0电压微调幅度仅为10mV，理论最高可提供5A充电电流。  </p><h1 id="手机厂商快充协议"><a href="#手机厂商快充协议" class="headerlink" title="手机厂商快充协议"></a>手机厂商快充协议</h1><blockquote></blockquote><p>华为：FCP（Fast Charger Protocol）<br>三星：AFC<br>一加：DASH极速闪充<br>vivo:双引擎闪充<br>OPPO：VOOC闪充技术<br>Moto：涡轮快充技术<br>魅族：mCharge 3.0  </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;原来的充电宝丢了，今天又在某宝上溜达买了一个，溜达的时候发现了好多的新名词，就索性查了一下，整理一下写在这里了。&lt;/p&gt;
+&lt;h1 id=&quot;PD快充协议&quot;&gt;&lt;a href=&quot;#PD快充协议&quot; class=&quot;headerlink&quot; title=&quot;PD快充协议&quot;&gt;&lt;/a&gt;PD快充
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="快充" scheme="https://cyneliu.github.io/tags/%E5%BF%AB%E5%85%85/"/>
+    
+  </entry>
   
   <entry>
     <title>Apache Web服务器的安装与配置</title>
@@ -185,13 +269,13 @@
     
       <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
     
-      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
-    
       <category term="vps" scheme="https://cyneliu.github.io/tags/vps/"/>
     
       <category term="网站" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E7%AB%99/"/>
     
       <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    
+      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
     
   </entry>
   
@@ -493,92 +577,6 @@
       <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
     
       <category term="概念" scheme="https://cyneliu.github.io/tags/%E6%A6%82%E5%BF%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Anaconda开始菜单失踪</title>
-    <link href="https://cyneliu.github.io/2018/09/10/Anaconda%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95%E5%A4%B1%E8%B8%AA/"/>
-    <id>https://cyneliu.github.io/2018/09/10/Anaconda开始菜单失踪/</id>
-    <published>2018-09-10T13:23:33.000Z</published>
-    <updated>2018-09-10T13:30:02.556Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天想打开Anaconda写python程序的时候，突然发现Anaconda在开始菜单中神秘失踪了。<br>这时候只需要打开cmd，切换到Anaconda的安装目录的Lib文件夹下，执行如下命令：</p><blockquote></blockquote><pre><code>python _nsis.py mkmenus</code></pre><p>重新生成一下开始菜单即可。<br><img src="https://i.loli.net/2018/09/10/5b9670b820c45.png" alt="snipaste_20180909_124542.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今天想打开Anaconda写python程序的时候，突然发现Anaconda在开始菜单中神秘失踪了。&lt;br&gt;这时候只需要打开cmd，切换到Anaconda的安装目录的Lib文件夹下，执行如下命令：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;c
-      
-    
-    </summary>
-    
-      <category term="疑难杂症" scheme="https://cyneliu.github.io/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
-    
-    
-      <category term="Anaconda" scheme="https://cyneliu.github.io/tags/Anaconda/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>虚拟化运维笔记——服务器</title>
-    <link href="https://cyneliu.github.io/2018/07/11/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://cyneliu.github.io/2018/07/11/虚拟化运维笔记——服务器/</id>
-    <published>2018-07-11T12:28:09.000Z</published>
-    <updated>2018-10-16T14:22:24.707Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="服务器通电自启"><a href="#服务器通电自启" class="headerlink" title="服务器通电自启"></a>服务器通电自启</h1><p>实验室有三台浪潮的服务器，默认关闭了通电自启的功能，因为不使用，也一直没去在意它，今天没事给它把通电自启动打开了，省的以后麻烦，在此记录一下，下图内容拍自浪潮服务器：<br>1、开机时按Delete键进入BIOS<br><img src="https://i.loli.net/2018/07/11/5b45ff414107c.jpg" alt="001.jpg"><br>2、选择Chipset-PCH<br><img src="https://i.loli.net/2018/07/11/5b45ff4151548.jpg" alt="002.jpg"><br>3、将Restore AC Power Loss修改为Power Off<br><img src="https://i.loli.net/2018/07/11/5b45ff414cd73.jpg" alt="003.jpg"><br>这里解释一下各个选项的意思：</p><blockquote><p><em>Restore AC Power Loss</em>:如果发生断电，恢复供电后系统如何反应<br><em>Power Off</em>:接通电源后保持关机状态<br><em>Power On</em>:接通电源后开机<br><em>Last State</em>:恢复到断电前的状态</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;服务器通电自启&quot;&gt;&lt;a href=&quot;#服务器通电自启&quot; class=&quot;headerlink&quot; title=&quot;服务器通电自启&quot;&gt;&lt;/a&gt;服务器通电自启&lt;/h1&gt;&lt;p&gt;实验室有三台浪潮的服务器，默认关闭了通电自启的功能，因为不使用，也一直没去在意它，今天没事给它把通电
-      
-    
-    </summary>
-    
-      <category term="运维" scheme="https://cyneliu.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-      <category term="运维" scheme="https://cyneliu.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
-      <category term="笔记" scheme="https://cyneliu.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="虚拟化" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>虚拟化运维笔记——vsphere</title>
-    <link href="https://cyneliu.github.io/2018/07/11/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94vsphere/"/>
-    <id>https://cyneliu.github.io/2018/07/11/虚拟化运维笔记——vsphere/</id>
-    <published>2018-07-11T10:58:49.000Z</published>
-    <updated>2018-10-16T14:22:11.719Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="设置虚拟机随主机自动启动"><a href="#设置虚拟机随主机自动启动" class="headerlink" title="设置虚拟机随主机自动启动"></a>设置虚拟机随主机自动启动</h1><h2 id="0、选择虚拟机所在主机"><a href="#0、选择虚拟机所在主机" class="headerlink" title="0、选择虚拟机所在主机"></a>0、选择虚拟机所在主机</h2><p>单击选择虚拟机所在的主机，在后侧选项卡中选择“配置”<br><img src="https://i.loli.net/2018/07/11/5b45e78a91f56.png" alt="snipaste_20180711_190241.png"></p><h2 id="1、设置属性"><a href="#1、设置属性" class="headerlink" title="1、设置属性"></a>1、设置属性</h2><p>单击右上角的属性<br><img src="https://i.loli.net/2018/07/11/5b45e78a8af69.png" alt="snipaste_20180711_184912.png"></p><h2 id="2、设置虚拟机自动启动"><a href="#2、设置虚拟机自动启动" class="headerlink" title="2、设置虚拟机自动启动"></a>2、设置虚拟机自动启动</h2><p>勾选“允许虚拟机与系统一起自动启动和停止”，然后在“启动顺序”中将需要设置自动启动的虚拟机上移到自动启动一栏下，如果有需要，可根据情况设置启动延迟，最后点击确定即可。<br><img src="https://i.loli.net/2018/07/11/5b45e78a90520.png" alt="snipaste_20180711_185154.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;设置虚拟机随主机自动启动&quot;&gt;&lt;a href=&quot;#设置虚拟机随主机自动启动&quot; class=&quot;headerlink&quot; title=&quot;设置虚拟机随主机自动启动&quot;&gt;&lt;/a&gt;设置虚拟机随主机自动启动&lt;/h1&gt;&lt;h2 id=&quot;0、选择虚拟机所在主机&quot;&gt;&lt;a href=&quot;#0、
-      
-    
-    </summary>
-    
-      <category term="运维" scheme="https://cyneliu.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
-    
-    
-      <category term="运维" scheme="https://cyneliu.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
-      <category term="笔记" scheme="https://cyneliu.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="虚拟化" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
     
   </entry>
   
