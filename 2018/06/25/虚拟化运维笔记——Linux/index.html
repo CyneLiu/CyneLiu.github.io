@@ -104,7 +104,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/06/30/5b37243cc1a2e.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/11/18/5bf14690c4c96.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/18/5bf146b60bc36.png">
-<meta property="og:updated_time" content="2018-11-18T11:03:49.731Z">
+<meta property="og:updated_time" content="2018-11-18T11:17:57.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟化运维笔记 —— Linux">
 <meta name="twitter:description" content="LinuxLinux下使用Rinetd来实现端口转发安装centos0、对于centos，由于官方的源中并没有Rinetd，所以首先需要第三方源32位系统：   $ vim /etc/yum.repos.d/nux-misc.repo  [nux-misc] name=Nux Misc baseurl=http://li.nux.ro/download/nux/misc/el6/i386/ ena">
@@ -679,7 +679,9 @@ ps  -ef|grep  nat123 #查看nat123状态
 rm -rvf .X11-unix #手动删除因为VNC非正常退出未删除的文件
 vncserver :3 #重启服务
 </code></pre><h2 id="RHEL7设置开机自动连接网络"><a href="#RHEL7设置开机自动连接网络" class="headerlink" title="RHEL7设置开机自动连接网络"></a>RHEL7设置开机自动连接网络</h2><p>前几天在服务器上新装了一个RHEL7的虚拟机，不知道是不是镜像的原因，虚拟机默认设置是开机后网络连接处于断开状态，查了一下只需要修改一个配置参数即可。  </p>
-<p>进入“/etc/sysconfig/network-scripts”目录，编辑“ifcfg-en”开头的文件：<br><img src="https://i.loli.net/2018/11/18/5bf14690c4c96.png" alt="01.png"><br>在文件中找到“ONBOOT”选项，将原来的“no”改为“yes”即可。<br><img src="https://i.loli.net/2018/11/18/5bf146b60bc36.png" alt="02.png"></p>
+<p>进入“/etc/sysconfig/network-scripts”目录，编辑“ifcfg-en”开头的文件：  </p>
+<p><img src="https://i.loli.net/2018/11/18/5bf14690c4c96.png" alt="01.png"><br>在文件中找到“ONBOOT”选项，将原来的“no”改为“yes”即可。  </p>
+<p><img src="https://i.loli.net/2018/11/18/5bf146b60bc36.png" alt="02.png"></p>
 
       
     </div>
