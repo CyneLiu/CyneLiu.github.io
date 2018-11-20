@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-11-14T12:57:37.777Z</updated>
+  <updated>2018-11-20T08:51:36.361Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于Win2012在VMware环境下部署DHCP服务器的问题</title>
+    <link href="https://cyneliu.github.io/2018/11/20/%E5%85%B3%E4%BA%8EWin2012%E5%9C%A8VMware%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>https://cyneliu.github.io/2018/11/20/关于Win2012在VMware环境下部署DHCP服务器的问题/</id>
+    <published>2018-11-20T08:35:46.000Z</published>
+    <updated>2018-11-20T08:51:36.361Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="客户端无法获取来自DHCP地址池的正确ip"><a href="#客户端无法获取来自DHCP地址池的正确ip" class="headerlink" title="客户端无法获取来自DHCP地址池的正确ip"></a>客户端无法获取来自DHCP地址池的正确ip</h1><p>昨天在VMware WorkStation的Server 2012安装完DHCP服务之后，使用另一台虚拟机测试时怎么都获取不到正确的ip，给到的是一个不同于DHCP地址池的其它子网的ip地址，两个小时愣是没找出原因。  </p><p>今天早上终于找到了原因，在这里记录一下。</p><h1 id="原因简述"><a href="#原因简述" class="headerlink" title="原因简述"></a>原因简述</h1><p>VMware中的VMnet虚拟网卡默认开启了本地DHCP服务，虚拟机在使用dhcp自动获取ip时是从VMnet的本地dhcp拿到的ip地址，因为每个人的VMnet网卡设置的网段不一样，获取的ip地址就是VMnet设置的网段，比如我的VMnet子网地址是192.168.138.0，我拿到的ip地址就是这个网段内的地址。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p><img src="https://i.loli.net/2018/11/20/5bf3caebf40da.png" alt="01.png"><br>打开虚拟网络编辑器，选择你正在使用的虚拟网卡，比如我使用的是仅主机模式，对应的就是我的VMnet1网卡。更改设置，将“使用本地DHCP服务将IP分配给虚拟机”取消勾选就可以了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;客户端无法获取来自DHCP地址池的正确ip&quot;&gt;&lt;a href=&quot;#客户端无法获取来自DHCP地址池的正确ip&quot; class=&quot;headerlink&quot; title=&quot;客户端无法获取来自DHCP地址池的正确ip&quot;&gt;&lt;/a&gt;客户端无法获取来自DHCP地址池的正确ip&lt;/
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="Windows Server" scheme="https://cyneliu.github.io/tags/Windows-Server/"/>
+    
+      <category term="DHCP" scheme="https://cyneliu.github.io/tags/DHCP/"/>
+    
+      <category term="VMware" scheme="https://cyneliu.github.io/tags/VMware/"/>
+    
+  </entry>
   
   <entry>
     <title>科学上网工具 - WireGuard</title>
@@ -550,33 +579,6 @@
       <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
     
       <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SDN中的南向接口和北向接口</title>
-    <link href="https://cyneliu.github.io/2018/09/11/SDN%E4%B8%AD%E7%9A%84%E5%8D%97%E5%90%91%E6%8E%A5%E5%8F%A3%E5%92%8C%E5%8C%97%E5%90%91%E6%8E%A5%E5%8F%A3/"/>
-    <id>https://cyneliu.github.io/2018/09/11/SDN中的南向接口和北向接口/</id>
-    <published>2018-09-11T08:46:53.000Z</published>
-    <updated>2018-10-16T14:13:33.268Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="SDN的意义"><a href="#SDN的意义" class="headerlink" title="SDN的意义"></a>SDN的意义</h1><p>SDN网络的最终目标是服务于多样化的业务应用创新。因此随着SDN技术的部署和推广，将会有越来越多的业务应用被研发，这类应用将能够便捷地通过SDN北向接口调用底层网络能力，按需使用网络资源。  </p><p>SDN推动业务创新已经是业界不争的事实，它可以被广泛地应用在云数据中心、宽带传输网络、移动网络等种种场景中，其中为云计算业务提供网络资源服 务就是一个非常典型的案例。众所周知，在当前的云计算业务中，服务器虚拟化、存储虚拟化都已经被广泛应用，它们将底层的物理资源进行池化共享，进而按需分配给用户使用。相比之下，传统的网络资源远远没有达到类似的灵活性，而SDN的引入则能够很好地解决这一问题。</p><h1 id="南向接口"><a href="#南向接口" class="headerlink" title="南向接口"></a>南向接口</h1><p>SDN通过标准的南向接口屏蔽了底层物理转发设备的差异，实现了资源的虚拟化，同时开放了灵活的北向接口供上层业务按需进行网络配置并调用网络资源。  </p><p>云计算领域中知名的OpenStack就是可以工作在SDN应用层的云管理平台，通过在其网络资源管理组件中增加SDN管理插件，管理者和使用者可利 用SDN北向接口便捷地调用SDN控制器对外开放的网络能力。当有云主机组网需求(例如建立用户专有的VLAN)被发出时，相关的网络策略和配置可以在 OpenStack管理平台的界面上集中制定并进而驱动SDN控制器统一地自动下发到相关的网络设备上。  </p><p>当前，最知名的南向接口莫过于ONF倡导的OpenFlow协议。作为一个开放的协议，OpenFlow突破了传统网络设备厂商对设备能力接口的壁垒，经过多年的发展，在业界的共同努力下，当前已经日臻完善，能够全面解决SDN网络中面临的各种问题。  </p><p>因此，网络资源可以和其他类型的虚拟化资源一样，以抽象的资源能力的面貌统一呈现给业务应用开发者，开发者无需针对底层网络设备的差异耗费大量开销从事额外的适配工作，这有助于业务应用的快速创新。</p><h1 id="控制层"><a href="#控制层" class="headerlink" title="控制层"></a>控制层</h1><p>控制层是SDN的大脑，负责对底层转发设备的集中统一控制，同时向上层业务提供网络能力调用的接口，在SDN架构中具有举足轻重的作用，SDN控制 器也是SDN关注的焦点。从技术实现上看，控制器除了南向的网络控制和北向的业务支撑外，还需要关注东西的扩展，以避免SDN集中控制导致的性能和安全瓶颈问题，SDN控制器也在南向、北向、东西向上引入了相应的核心技术，有效解决与各层通信以及控制集群横向扩展的难题。  </p><p>当前，业界有很多基于OpenFlow控制协议的开源的控制器实现，例如NOX、Onix、Floodlight等，它们都有各自的特色设计，能够实现链路发现、拓扑管理、策略制定、表项下发等支持SDN网络运行的基本操作。虽然不同的控制器在功能和性能上仍旧存在差异，但是从中已经可以总结出SDN控制器应当具备的技术特征，从这些开源系统的研发与实践中得到的经验和教训将有助于推动SDN控制器的规范化发展。  </p><p>另外，用于网络集中化控制的控制器作为SDN网络的核心，其性能和安全性非常重要，其可能存在的负载过大、单点失效等问题一直是SDN领域中亟待解决的问题。当前，业界对此也有了很多探讨，从部署架构、技术措施等多个方面提出了很多有创见的方法。  </p><p>SDN控制器对网络的控制主要是通过南向接口协议实现,包括链路发现、拓扑管理、策略制定、表项下发等，其中链路发现和拓扑管理主要是控制其利用南 向接口的上行通道对底层交换设备上报信息进行统一监控和统计;而策略制定和表项下发则是控制器利用南向接口的下行通道对网络设备进行统一控制。</p><h1 id="北向接口"><a href="#北向接口" class="headerlink" title="北向接口"></a>北向接口</h1><p>SDN北向接口是通过控制器向上层业务应用开放的接口，其目标是使得业务应用能够便利地调用底层的网络资源和能力。通过北向接口，网络业务的开发者 能以软件编程的形式调用各种网络资源;同时上层的网络资源管理系统可以通过控制器的北向接口全局把控整个网网络的资源状态，并对资源进行统一调度。因为北 向接口是直接为业务应用服务的，因此其设计需要密切联系业务应用需求，具有多样化的特征。同时，北向接口的设计是否合理、便捷，以便能被业务应用广泛调用，会直接影响到SDN控制器厂商的市场前景。  </p><p>与南向接口方面已有OpenFlow等国际标准不同，北向接口方面还缺少业界公认的标准，因此，北向接口的协议制定成为当前SDN领域竞争的焦点， 不同的参与者或者从用户角度出发，或者从运营角度出发，或者从产品能力角度出发提出了很多方案。据悉,目前至少有20种控制器,每种控制器会对外提供北向 接口用于上层应用开发和资源编排。虽然北向接口标准当前还很难达成共识，但是充分的开放性、便捷性、灵活性将是衡量接口优劣的重要标准，例如REST API就是上层业务应用的开发者比较喜欢的接口形式。部分传统的网络设备厂商在其现有设备上提供了编程接口供业务应用直接调用，也可被视作是北向接口之一，其目的是在不改变其现有设备架构的条件下提升配置管理灵活性，应对开放协议的竞争。</p><h1 id="SDN交换机"><a href="#SDN交换机" class="headerlink" title="SDN交换机"></a>SDN交换机</h1><p>SDN的核心理念之一就是将控制功能从网络设备中剥离出来，通过中央控制器实现网络可编程，从而实现资源的优化利用，提升网络管控效率。  </p><p>工作在基础设施层的SDN交换机虽然不在需要对逻辑控制进行过多考虑，但作为SDN网络中负责具体数据转发处理的设备，为了完成高速数据转发，还是 要遵循交换机工作原理。本质上看，传统设备中无论是交换机还是路由器，其工作原理都是在收到数据包时，将数据包中的某些特征域与设备自身存储的一些表项进 行比对，当发现匹配时则按照表项的要求进行相应处理。SDN交换机也是类似的原理，但是与传统设备存在差异的是，设备中的各个表项并非是由设备自身根据周 边的网络环境在本地自行生成的，而是由远程控制器统一下发的，因此各种复杂的控制逻辑(例如链路发现、地址学习、路由计算等等)都无需在SDN交换机中实现。  </p><p>SDN交换机可以忽略控制逻辑的实现，全力关注基于表项的数据处理，而数据处理的性能也就成为评价SDN交换机优劣的最关键指标，因此，很多高性能 转发技术被提出，例如基于多张表以流水线方式进行高速处理的技术。另外，考虑到SDN和传统网络的混合工作问题，支持混合模式的SDN交换机也是当前设备 层技术研发的焦点。同时，随着虚拟化技术的出现和完善，虚拟化环境将是SDN交换机的一个重要应用场景，因此SDN交换机可能会有硬件、软件等多种形态。 例如，OVS(Open vSwitch，开放虚拟交换标准)交换机就是一款基于开源软件技术实现的能够集成在服务器虚拟化Hypervisor中的交换机，具备完善的交换机功能，在虚拟化组网中起到了非常重要的作用。  </p><p>SDN交换机的出现，对传统的网络设备厂商造成了最直接的威胁，如何将新兴的网络技术与传统设备产品的优势相融合，是这些厂商正在苦苦思索的问题。 虽然SDN交换机已经对传统的网络产业链造成了巨大的冲击，但是仅凭单独的数据转发设备还不足以支撑起整个SDN的天空，未来更激烈地竞争必将会在SDN的控制层和应用层发生。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;SDN的意义&quot;&gt;&lt;a href=&quot;#SDN的意义&quot; class=&quot;headerlink&quot; title=&quot;SDN的意义&quot;&gt;&lt;/a&gt;SDN的意义&lt;/h1&gt;&lt;p&gt;SDN网络的最终目标是服务于多样化的业务应用创新。因此随着SDN技术的部署和推广，将会有越来越多的业务应用被
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="概念" scheme="https://cyneliu.github.io/tags/%E6%A6%82%E5%BF%B5/"/>
     
   </entry>
   

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于Win2012在VMware环境下部署DHCP服务器的问题]]></title>
+    <url>%2F2018%2F11%2F20%2F%E5%85%B3%E4%BA%8EWin2012%E5%9C%A8VMware%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[客户端无法获取来自DHCP地址池的正确ip昨天在VMware WorkStation的Server 2012安装完DHCP服务之后，使用另一台虚拟机测试时怎么都获取不到正确的ip，给到的是一个不同于DHCP地址池的其它子网的ip地址，两个小时愣是没找出原因。 今天早上终于找到了原因，在这里记录一下。 原因简述VMware中的VMnet虚拟网卡默认开启了本地DHCP服务，虚拟机在使用dhcp自动获取ip时是从VMnet的本地dhcp拿到的ip地址，因为每个人的VMnet网卡设置的网段不一样，获取的ip地址就是VMnet设置的网段，比如我的VMnet子网地址是192.168.138.0，我拿到的ip地址就是这个网段内的地址。 解决办法打开虚拟网络编辑器，选择你正在使用的虚拟网卡，比如我使用的是仅主机模式，对应的就是我的VMnet1网卡。更改设置，将“使用本地DHCP服务将IP分配给虚拟机”取消勾选就可以了。]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>Windows Server</tag>
+        <tag>DHCP</tag>
+        <tag>VMware</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[科学上网工具 - WireGuard]]></title>
     <url>%2F2018%2F11%2F14%2F%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%B7%A5%E5%85%B7-WireGuard%2F</url>
     <content type="text"><![CDATA[WireGuard是什么？WireGuard是一个构建快速、现代、安全的VPN的协议和工具套件，它具有以下优点： 使用最先进的加密技术，防范攻击（RSA，SHA广被诟病都将被淘汰）性能远超OpenVPN效率极高，WireGuard协议作为Linux内核模块运行通用用途，支持嵌入式和非嵌入式设备跨平台，初期只在Linux平台发布，现已支持所有平台易用，用过OpenVPN等工具集的人都明白这其中的痛苦工作在3层（链路层），支持漫游，地址变更对用户无感知，使用更简单，切换更平滑使用UDP传输数据，轻量、高效、节能、节省带宽（适用于 IOT 领域）基于GPLv2Linux Kernel 基于 GPLv2）免费开源 Linus Torvalds对WireGuard的评价： Can I just once again state my love for it and hope it gets merged soon? Maybe the code isn’t perfect, but I’ve skimmed it, and compared to the horrors that are OpenVPN and IPSec, it’s a work of art. 脚本安装脚本要求 仅适用于centos7vps架构必须为KVMcentos7的内核大部分为3.10，不能正确安装，必须升级（已经集成在脚本中） 安装过程1、下载并执行脚本： wget https://raw.githubusercontent.com/yobabyshark/wireguard/master/wireguard_install.sh &amp;&amp; chmod +x wireguard_install.sh &amp;&amp; ./wireguard_install.sh 2、输入“1”升级内核，按照提示重启。 3、重启完成后，再次执行脚本： ./wireguard_install.sh 4、输入“2”安装WireGuard。 5、使用ftp工具连接vps，将/etc/wireguard目录下的client.conf下载到本地。 6、下载安装TunSafe，这是一个windows端的第三方客户端，因为官方windows版本的还没开发完成，先用这个软件代替，TunSafe已经开源，可以放心使用。官网下载：TunSafe 7、打开TunSafe，单击file，选择import file，将下载的client.conf导入到软件中。 8、导入后会自动进行连接，进入全局代理模式，也就是所有流量都会被代理。 其它平台客户端Android1、下载WireGuard安卓客户端： Android客户端：点此下载 2、打开app，点击加号导入client.conf文件。 这里可能会提示错误，原因是没有文件操作权限，去权限管理里给软件勾上存储权限即可。 速度测试Youtube视频地址：点击观看]]></content>
