@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[deepin使用ssr不能和谐上网]]></title>
+    <url>%2F2018%2F11%2F25%2Fdeepin%E4%BD%BF%E7%94%A8ssr%E4%B8%8D%E8%83%BD%E5%92%8C%E8%B0%90%E4%B8%8A%E7%BD%91%2F</url>
+    <content type="text"><![CDATA[最近在笔记本上装了deepin体验一番，看到深度商店有SSR客户端毫不犹豫的就安装上了，但是添加节点后发现并不能奏效。搜索不到解决方法，自己尝试了很多方法也没能解决，最后终于在深度商店的应用评论里看到了解决办法。 首先保证客户端设置正确，在添加节点信息之后，软件默认的本地端口是0，这里需要改为1080。然后到系统设置中，选择网络，设置系统代理模式为手动，将Socks代理参数改为127.0.0.1，端口改为1080。]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>科学上网</tag>
+        <tag>deepin</tag>
+        <tag>ssr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[安装VMware后没有虚拟网卡的解决方法]]></title>
+    <url>%2F2018%2F11%2F22%2F%E5%AE%89%E8%A3%85VMware%E5%90%8E%E6%B2%A1%E6%9C%89%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[这两天好几位同学找我说在安装VMware后都出现了没有VMnet虚拟网卡的问题，经过数次尝试终于找到了比较靠谱点的解决方式。 还原虚拟网络设置因为每个人的电脑环境不同，问题的原因当然也不会完全一样，在发现没有虚拟网卡的情况下，最先应该尝试的方法应该是找到虚拟网络编辑器，还原默认设置，这样移除虚拟网卡又重新安装激活后有的时候就解决问题了。 清理注册表和历史痕迹在还原默认设置没有效果之后，就可以用下面说的这个方法，清除掉VMware的痕迹了。 为什么需要这么做呢？因为我发现出现这个问题的电脑都是之前安装过VMware的，然后保留了注册表和部分历史文件的。 卸载VMware首先将VMware卸载掉，推荐使用专门的卸载工具，在卸载的同时会清理掉残留的文件和注册表等，当然没有卸载工具的话也没有关系，按照下面的步骤继续做就ok。 清理注册表使用专门的注册表清理工具清理掉VMware留下的注册表，这里我用的是CCleaner，直接百度找一个靠谱的网站下载就行，打开CCleaner之后点击注册表，扫描问题，等待扫描完成后选择修复选定的问题。这里会弹出提示询问你是否需要备份注册表，这里根据自己的需要选择就可以，我个人感觉没有必要去备份。最后点击修复所有问题，VMware残留的注册表就被删除掉了。 清理残留文件打开系统盘，搜索“vmware”，等待搜索完成后将找到的所有文件删除，可能会有一些文件无法删除，跳过这些文件就行。 重启计算机推荐在这时候重启电脑，因为不重启的话重新安装上VMware后还是会没有网卡，给一台重装的时候就忘记了重启，安装后发现还是没有虚拟网卡，在安装之后重启之后就有了。所以最后重启应该也是可以的，但是不能没有这个操作。 重新安装VMware最后重新安装上VMware，打开网络适配器，看到你的VMnet1和VMnet8网卡，就说明成功了。]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>VMware</tag>
+        <tag>虚拟网卡</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于Win2012在VMware环境下部署DHCP服务器的问题]]></title>
     <url>%2F2018%2F11%2F20%2F%E5%85%B3%E4%BA%8EWin2012%E5%9C%A8VMware%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[客户端无法获取来自DHCP地址池的正确ip昨天在VMware WorkStation的Server 2012安装完DHCP服务之后，使用另一台虚拟机测试时怎么都获取不到正确的ip，给到的是一个不同于DHCP地址池的其它子网的ip地址，两个小时愣是没找出原因。 今天早上终于找到了原因，在这里记录一下。 原因简述VMware中的VMnet虚拟网卡默认开启了本地DHCP服务，虚拟机在使用dhcp自动获取ip时是从VMnet的本地dhcp拿到的ip地址，因为每个人的VMnet网卡设置的网段不一样，获取的ip地址就是VMnet设置的网段，比如我的VMnet子网地址是192.168.138.0，我拿到的ip地址就是这个网段内的地址。 解决办法打开虚拟网络编辑器，选择你正在使用的虚拟网卡，比如我使用的是仅主机模式，对应的就是我的VMnet1网卡。更改设置，将“使用本地DHCP服务将IP分配给虚拟机”取消勾选就可以了。]]></content>
@@ -121,10 +146,10 @@
       </categories>
       <tags>
         <tag>Linux</tag>
+        <tag>脚本</tag>
         <tag>vps</tag>
         <tag>网站</tag>
         <tag>科学上网</tag>
-        <tag>脚本</tag>
       </tags>
   </entry>
   <entry>

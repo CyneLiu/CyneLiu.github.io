@@ -3,6 +3,52 @@
 
 
     
+  <url>
+    <loc>https://cyneliu.github.io/2018/11/25/deepin%E4%BD%BF%E7%94%A8ssr%E4%B8%8D%E8%83%BD%E5%92%8C%E8%B0%90%E4%B8%8A%E7%BD%91/</loc>
+    <lastmod>2018-11-25T13:42:58.720Z</lastmod>
+    <data>
+        <display>
+        <title>deepin使用ssr不能和谐上网</title>
+        <pubTime>2018-11-25T13:19:14.000Z</pubTime>
+        
+        <tag>科学上网</tag>
+         
+        <tag>deepin</tag>
+         
+        <tag>ssr</tag>
+         
+         
+           
+             
+              <breadCrumb title="打鱼晒网" url="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://cyneliu.github.io/2018/11/22/%E5%AE%89%E8%A3%85VMware%E5%90%8E%E6%B2%A1%E6%9C%89%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2018-11-25T13:30:13.877Z</lastmod>
+    <data>
+        <display>
+        <title>安装VMware后没有虚拟网卡的解决方法</title>
+        <pubTime>2018-11-22T03:27:49.000Z</pubTime>
+        
+        <tag>VMware</tag>
+         
+        <tag>虚拟网卡</tag>
+         
+         
+           
+             
+              <breadCrumb title="打鱼晒网" url="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://cyneliu.github.io/2018/11/20/%E5%85%B3%E4%BA%8EWin2012%E5%9C%A8VMware%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
@@ -286,13 +332,13 @@
         
         <tag>Linux</tag>
          
+        <tag>脚本</tag>
+         
         <tag>vps</tag>
          
         <tag>网站</tag>
          
         <tag>科学上网</tag>
-         
-        <tag>脚本</tag>
          
          
            

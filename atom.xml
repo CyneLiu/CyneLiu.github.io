@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-11-20T08:51:36.361Z</updated>
+  <updated>2018-11-25T13:42:58.720Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>deepin使用ssr不能和谐上网</title>
+    <link href="https://cyneliu.github.io/2018/11/25/deepin%E4%BD%BF%E7%94%A8ssr%E4%B8%8D%E8%83%BD%E5%92%8C%E8%B0%90%E4%B8%8A%E7%BD%91/"/>
+    <id>https://cyneliu.github.io/2018/11/25/deepin使用ssr不能和谐上网/</id>
+    <published>2018-11-25T13:19:14.000Z</published>
+    <updated>2018-11-25T13:42:58.720Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在笔记本上装了deepin体验一番，看到深度商店有SSR客户端毫不犹豫的就安装上了，但是添加节点后发现并不能奏效。搜索不到解决方法，自己尝试了很多方法也没能解决，最后终于在深度商店的应用评论里看到了解决办法。  </p><p>首先保证客户端设置正确，在添加节点信息之后，软件默认的本地端口是0，这里需要改为1080。<br><img src="https://i.loli.net/2018/11/25/5bfaa5fc3cc94.png" alt="01.png"><br>然后到系统设置中，选择网络，设置系统代理模式为手动，将Socks代理参数改为127.0.0.1，端口改为1080。<br><img src="https://i.loli.net/2018/11/25/5bfaa6dc4926d.png" alt="02.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近在笔记本上装了deepin体验一番，看到深度商店有SSR客户端毫不犹豫的就安装上了，但是添加节点后发现并不能奏效。搜索不到解决方法，自己尝试了很多方法也没能解决，最后终于在深度商店的应用评论里看到了解决办法。  &lt;/p&gt;
+&lt;p&gt;首先保证客户端设置正确，在添加节点信息之后
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    
+      <category term="deepin" scheme="https://cyneliu.github.io/tags/deepin/"/>
+    
+      <category term="ssr" scheme="https://cyneliu.github.io/tags/ssr/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装VMware后没有虚拟网卡的解决方法</title>
+    <link href="https://cyneliu.github.io/2018/11/22/%E5%AE%89%E8%A3%85VMware%E5%90%8E%E6%B2%A1%E6%9C%89%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>https://cyneliu.github.io/2018/11/22/安装VMware后没有虚拟网卡的解决方法/</id>
+    <published>2018-11-22T03:27:49.000Z</published>
+    <updated>2018-11-25T13:30:13.877Z</updated>
+    
+    <content type="html"><![CDATA[<p>这两天好几位同学找我说在安装VMware后都出现了没有VMnet虚拟网卡的问题，经过数次尝试终于找到了比较靠谱点的解决方式。</p><h1 id="还原虚拟网络设置"><a href="#还原虚拟网络设置" class="headerlink" title="还原虚拟网络设置"></a>还原虚拟网络设置</h1><p>因为每个人的电脑环境不同，问题的原因当然也不会完全一样，在发现没有虚拟网卡的情况下，最先应该尝试的方法应该是找到虚拟网络编辑器，还原默认设置，这样移除虚拟网卡又重新安装激活后有的时候就解决问题了。</p><h1 id="清理注册表和历史痕迹"><a href="#清理注册表和历史痕迹" class="headerlink" title="清理注册表和历史痕迹"></a>清理注册表和历史痕迹</h1><p>在还原默认设置没有效果之后，就可以用下面说的这个方法，清除掉VMware的痕迹了。  </p><p>为什么需要这么做呢？因为我发现出现这个问题的电脑都是之前安装过VMware的，然后保留了注册表和部分历史文件的。  </p><h2 id="卸载VMware"><a href="#卸载VMware" class="headerlink" title="卸载VMware"></a>卸载VMware</h2><p>首先将VMware卸载掉，推荐使用专门的卸载工具，在卸载的同时会清理掉残留的文件和注册表等，当然没有卸载工具的话也没有关系，按照下面的步骤继续做就ok。</p><h2 id="清理注册表"><a href="#清理注册表" class="headerlink" title="清理注册表"></a>清理注册表</h2><p>使用专门的注册表清理工具清理掉VMware留下的注册表，这里我用的是CCleaner，直接百度找一个靠谱的网站下载就行，打开CCleaner之后点击注册表，扫描问题，等待扫描完成后选择修复选定的问题。这里会弹出提示询问你是否需要备份注册表，这里根据自己的需要选择就可以，我个人感觉没有必要去备份。最后点击修复所有问题，VMware残留的注册表就被删除掉了。  </p><h2 id="清理残留文件"><a href="#清理残留文件" class="headerlink" title="清理残留文件"></a>清理残留文件</h2><p>打开系统盘，搜索“vmware”，等待搜索完成后将找到的所有文件删除，可能会有一些文件无法删除，跳过这些文件就行。 </p><h2 id="重启计算机"><a href="#重启计算机" class="headerlink" title="重启计算机"></a>重启计算机</h2><p>推荐在这时候重启电脑，因为不重启的话重新安装上VMware后还是会没有网卡，给一台重装的时候就忘记了重启，安装后发现还是没有虚拟网卡，在安装之后重启之后就有了。所以最后重启应该也是可以的，但是不能没有这个操作。</p><h2 id="重新安装VMware"><a href="#重新安装VMware" class="headerlink" title="重新安装VMware"></a>重新安装VMware</h2><p>最后重新安装上VMware，打开网络适配器，看到你的VMnet1和VMnet8网卡，就说明成功了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这两天好几位同学找我说在安装VMware后都出现了没有VMnet虚拟网卡的问题，经过数次尝试终于找到了比较靠谱点的解决方式。&lt;/p&gt;
+&lt;h1 id=&quot;还原虚拟网络设置&quot;&gt;&lt;a href=&quot;#还原虚拟网络设置&quot; class=&quot;headerlink&quot; title=&quot;还原虚拟网络
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="VMware" scheme="https://cyneliu.github.io/tags/VMware/"/>
+    
+      <category term="虚拟网卡" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>关于Win2012在VMware环境下部署DHCP服务器的问题</title>
@@ -298,13 +356,13 @@
     
       <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
     
+      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
+    
       <category term="vps" scheme="https://cyneliu.github.io/tags/vps/"/>
     
       <category term="网站" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E7%AB%99/"/>
     
       <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
     
   </entry>
   
@@ -525,60 +583,6 @@
       <category term="装机" scheme="https://cyneliu.github.io/tags/%E8%A3%85%E6%9C%BA/"/>
     
       <category term="硬件" scheme="https://cyneliu.github.io/tags/%E7%A1%AC%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2.OVSDB的网桥和端口管理</title>
-    <link href="https://cyneliu.github.io/2018/09/13/2-OVSDB%E7%9A%84%E7%BD%91%E6%A1%A5%E5%92%8C%E7%AB%AF%E5%8F%A3%E7%AE%A1%E7%90%86/"/>
-    <id>https://cyneliu.github.io/2018/09/13/2-OVSDB的网桥和端口管理/</id>
-    <published>2018-09-13T07:21:32.000Z</published>
-    <updated>2018-10-16T14:11:22.463Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>在虚拟交换机领域，Open vSwitch作为非官方的标准已获得产业界的高度关注。一般来讲，控制器及应用可以通过OpenFlow和OVSDB两种南向协议方式与Open vSwitch交换机进行交互，其中通过OpenFlow来引导数据包流的转发，通过OVSDB可以进行端口和隧道的增加、更新以及删除，这些隧道和端口提供流转发的管道。因此，OVSDB在Open vSwitch作为一个重要的事实标准，OpenDaylight系统如何高效地支持OVSDB也变得非常重要。OpenDaylight的OVSDB子项目实现了OVSDB管理协议，该协议允许控制器进行虚拟交换机的南向配置。OVSDB协议包含一个OVSDB库和各种插件用法，该协议使用JSON/RPC调用的方式来操作内置OVSDB的物理或虚拟交换机。<br>OVSDB子项目主要包含Northbound模块、plugin模块和OVSDB Library模块，其中北向Northbound模块可供外部APP调用，南向OVSDB Library通过OVSDB协议与外部通信，进行OVSDB的管理，具体系统架构如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a10f6d7c34.png" alt="1.png"><br>Library模块主要包含message、notation、impl、jsonrpc和schema等程序包,其中jsonrpc主要提供兼容rpc1.0的解码器，能够从TCP流解码JSON消息；notation主要包含OVSDB MAP、ResultSet等定义以及Json串行化；schema提供OVSDB数据库模式的表示。</p><p>Plugin模块主要包含api、impl、internal和error等程序包，其中api程序包主要提供OVSDB的连接、增删改查等服务，impl包中的类是其接口的实现。  </p><p>Northbound模块主要包含五大类,分别是DatabaseResource、NodeResource、OvsdbNorthboundV2、OvsdbNorthboundV3、RowResource、TableResource。以类OvsdbNorthboundV2为例进行说明，该类提供OVSDB北向 REST API接口，用于创建、读取、更新和删除任一OVSDB表中的记录。创建OVSDB Row时，body请求体中的JSON格式与OVSDB JSON-PRC消息相同。northbound及其功能描述如下表所示。<br><img src="https://i.loli.net/2018/09/13/5b9a123b86027.png" alt="2.png"><br>用户在开发或者调试网络程序或者是网页B/S模式的程序的时候是需要一些方法来跟踪网页请求的，用户可以使用一些网络的监视工具比如著名的Firebug等网页调试工具。而Postman不仅可以调试简单的css、html、脚本等简单的网页基本信息，还可以发送GET、POST、PUT、DENLETE等几乎所有类型的HTTP请求。Postman在发送网络HTTP请求方面可以说是Chrome插件类产品中的代表产品之一。</p><h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/14/5b9b47e2af14d.png" alt="拓扑.png"></p><h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录OpenDaylight控制器，确保服务已经启动成功，由于OpenDaylight组件过于庞大，所以启动比较慢，需等待一段时间，使用命令：</p><blockquote></blockquote><pre><code>netstat -an|grep 6633 #netstat -an:查看端口对应的应用</code></pre><p>查看端口是否处于监听状态：<br><img src="https://i.loli.net/2018/09/14/5b9b46db45a61.png" alt="3.png"><br>步骤2 在保证控制6633端口处于监听状态后，登录交换机，查看交换机与控制器连接情况。执行以下命令：</p><blockquote></blockquote><pre><code>ovs-vsctl show</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9b4746ca6a9.png" alt="4.png"><br>上图中controller下方显示“is_connected:true”则表明连接成功。<br>步骤3 登录控制器，查看控制器IP，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9b4798e189e.png" alt="5.png"><br>步骤4 登录交换机，连接控制器。原本控制器与交换机之间的连接是通过OpenFlow协议的，在此基于OVSDB协议创建一个新的连接，其中20.0.1.3是控制器IP地址，6640是OVSDB协议对应的侦听端口。执行如下命令：</p><blockquote></blockquote><pre><code>ovs-vsctl set-manager tcp:20.0.1.3:6640</code></pre><p>连接成功后在manager下面会有“is_conneted:true”：<br><img src="https://i.loli.net/2018/09/14/5b9b47e2a28df.png" alt="6.png"></p><h1 id="创建网桥"><a href="#创建网桥" class="headerlink" title="创建网桥"></a>创建网桥</h1><p>步骤1 登录控制器，单击Applications Menu—&gt;Development—&gt;Postman打开Postman应用，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9b4e42b73f7.png" alt="7.png"><br>步骤2 在创建网桥前，需要先获取交换机节点信息，输入URL <strong>http://[controller ip]:8282/ovsdb/nb/v3/node</strong>。  </p><p>请求类型选择GET，单击Send按钮发送GET请求。访问一个页面需要输入用户名和密码，同样，用Postman发送请求也需要一定的权限。单击Authorization，type选择Basic Auth。输入用户名和密码，用户名和密码都是admin。Body中返回的就是交换机节点信息，此处获取到的节点信息在后面会用到，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9b4ebbb7028.png" alt="8.png"><br>步骤3 发送POST请求创建网桥。输入URL <a href="http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/bridge/rows，其中“20.0.1.4:59141”" target="_blank" rel="noopener">http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/bridge/rows，其中“20.0.1.4:59141”</a>  </p><p>就是前面获取到的交换机节点信息，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba28a8e540.png" alt="9.png"><br>单击Headers，输入用户名和密码生成HTTP认证头部，POST请求还需要添加头部指明Body格式，如图所示，手动输入Content-Type且值为application/json，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba3126bc5f.png" alt="10.png"><br>步骤4 单击Body，Body格式选择raw—&gt;JSON(application/json)。Body内容如下所示，创建一个名为br0的网桥，并且与控制器通过OpenFlow13进行连接。  </p><p>Body内容如下所示，创建一个名为br0的网桥，并且与控制器通过OpenFlow13进行连接。单击Send按钮发送请求。</p><blockquote></blockquote><pre><code>{   &quot;row&quot;: {    &quot;Bridge&quot;: {      &quot;name&quot;: &quot;br0&quot;,        &quot;datapath_type&quot;: &quot;OpenFlow13&quot;        }    }}</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9ba36f496f1.png" alt="11.png"><br>步骤5 登录交换机，确认网桥创建成功。执行以下命令：</p><blockquote></blockquote><pre><code>ovs-vsctl show</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9ba3d7290b1.png" alt="12.png"></p><h1 id="获取网桥uuid"><a href="#获取网桥uuid" class="headerlink" title="获取网桥uuid"></a>获取网桥uuid</h1><p>步骤1 URL保持不变，依旧是<a href="http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/bridge/rows" target="_blank" rel="noopener">http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/bridge/rows</a> ，将请求类型改为GET。输入用户名和密码生成HTTP认证头部，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba676a461c.png" alt="13.png"><br>步骤2 单击Send按钮发送GET请求，STATUS显示请求发送成功，并返回网桥信息，下图中两个uuid分别是br0和br-sw的。单击uuid所在行左侧的数字可以展开/收起网桥的详细信息，方便查看，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba6a5aefc1.png" alt="14.png"></p><h1 id="创建端口"><a href="#创建端口" class="headerlink" title="创建端口"></a>创建端口</h1><p>步骤1 发送POST请求创建端口，输入URL <a href="http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/port/rows。" target="_blank" rel="noopener">http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/port/rows。</a><br>单击Basic Auth，输入用户名和密码生成HTTP认证头部，并且添加Content-Type为application/json，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba6e473f28.png" alt="15.png"><br>步骤2 将请求类型改为POST，输入Body内容如下所示，其中parent_uuid是网桥的uuid，这里所用的是br0的uuid，那么端口就会添加到br0网桥上。</p><blockquote></blockquote><pre><code>{   &quot;parent_uuid&quot;: &quot;2dd82e5e-922d-43c8-80d9-7917161acfd2&quot;,    &quot;row&quot;: {      &quot;Port&quot;: {        &quot;name&quot;: &quot;port0&quot;          }    }}</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9ba72ac6722.png" alt="16.png"><br>单击Send按钮发送请求，STATUS显示请求发送成功，端口已经创建，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba762e1b34.png" alt="17.png"><br>步骤3 登录交换机，确认交换机端口是否创建成功。执行以下命令：</p><blockquote></blockquote><pre><code>ovs-vsctl show</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9ba79b19c6c.png" alt="18.png"></p><h1 id="获取端口uuid"><a href="#获取端口uuid" class="headerlink" title="获取端口uuid"></a>获取端口uuid</h1><p>步骤1 发送GET请求获取端口的uuid。输入URL <a href="http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/port/rows" target="_blank" rel="noopener">http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/port/rows</a> 。在Basic Auth页面输入用户名和密码生成HTTP认证头部，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba7d5c4665.png" alt="19.png"><br>步骤2 单击Send按钮发送GET请求，STATUS显示请求发送成功，并且展示出获取到的端口信息。因为获取的是所有网桥的端口所以比较多，如下图所示，标注出来的是port0的uuid。获取到的信息完全展开比较多，可以直接在页面中搜索端口名称“port0”，然后往上翻找该端口的uuid，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba7feaebe3.png" alt="20.png"></p><h1 id="删除端口"><a href="#删除端口" class="headerlink" title="删除端口"></a>删除端口</h1><p>步骤1 发送DELETE请求删除端口。输入URL <a href="http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/port/rows/2d47e410-fe0d-4f63-a1c4-8121152235f8。其中“2d47e410-fe0d-4f63-a1c4-8121152235f8" target="_blank" rel="noopener">http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/port/rows/2d47e410-fe0d-4f63-a1c4-8121152235f8。其中“2d47e410-fe0d-4f63-a1c4-8121152235f8</a> ”就是port0端口的uuid，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba8431f4b2.png" alt="21.png"><br>步骤2 单击Send按钮发送DELETE请求，STATUS显示请求发送成功但是没有返回信息，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba8655ebe0.png" alt="22.png"><br>步骤3 登录交换机，确认port0端口删除成功。</p><blockquote></blockquote><pre><code>ovs-vsctl show</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9ba89fe7601.png" alt="23.png"></p><h1 id="删除网桥"><a href="#删除网桥" class="headerlink" title="删除网桥"></a>删除网桥</h1><p>步骤1 发送DELETE请求删除网桥。输入URL <a href="http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/bridge/rows/2dd82e5e-922d-43c8-80d9-7917161acfd2。其中“2dd82e5e-922d-43c8-80d9-7917161acfd2”" target="_blank" rel="noopener">http://20.0.1.3:8282/ovsdb/nb/v2/node/OVS/20.0.1.4:59141/tables/bridge/rows/2dd82e5e-922d-43c8-80d9-7917161acfd2。其中“2dd82e5e-922d-43c8-80d9-7917161acfd2”</a> 就是br0网桥的uuid，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba8ddef7ab.png" alt="24.png"><br>步骤2 单击Send按钮发送DELETE请求，STATUS显示请求发送成功但是没有返回信息，如下图所示。<br><img src="https://i.loli.net/2018/09/14/5b9ba9024cca5.png" alt="25.png"><br>步骤3 登录交换机，确认网桥br0删除成功。执行以下命令：</p><blockquote></blockquote><pre><code>ovs-vsctl show</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9ba934ab15e.png" alt="26.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;实验原理&quot;&gt;&lt;a href=&quot;#实验原理&quot; class=&quot;headerlink&quot; title=&quot;实验原理&quot;&gt;&lt;/a&gt;实验原理&lt;/h1&gt;&lt;p&gt;在虚拟交换机领域，Open vSwitch作为非官方的标准已获得产业界的高度关注。一般来讲，控制器及应用可以通过OpenFl
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1.OpenFlow建立连接交互流程</title>
-    <link href="https://cyneliu.github.io/2018/09/13/1-OpenFlow%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B/"/>
-    <id>https://cyneliu.github.io/2018/09/13/1-OpenFlow建立连接交互流程/</id>
-    <published>2018-09-13T05:30:58.000Z</published>
-    <updated>2018-10-16T14:11:20.876Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="OpenFlow协议简介"><a href="#OpenFlow协议简介" class="headerlink" title="OpenFlow协议简介"></a>OpenFlow协议简介</h1><p>2006年，斯坦福大学Clean Slate计划资助的Ethane项目开始部署，致力于企业网架构的创新，OpenFlow协议的雏形就诞生于这个项目。2008年，Nick McKeown教授的一篇重要论文“OpenFlow：Enabling Innovation in Campus Networks”使得OpenFlow正式进入人们的视野，继而成为了标准化组织ONF（Open Network Foundation，开放网络基金会）主推的南向接口协议。经过多年的发展，OpenFlow现已成为SDN的主流南向接口协议之一。目前，OpenFlow协议还在不断地演进中，本实验采用OpenFlow v1.3协议，并对控制器与OpenFlow交换机之间的交互过程进行深入分析。<br>OpenFlow主要有3种类型的消息，分别是Controller-to-Switch、Asynchronous和Symmetric，其中每个类型又包含多个子类型。Controller-to-Switch消息由控制器发起，用于管理、查看交换机的状态。Asynchronous消息由交换机发起，向控制器汇报交换机的事件和改变。Symmetric消息由控制器或交换机任一方发起，无需请求直接发起消息。详细信息如下表所示：<br><img src="https://i.loli.net/2018/09/13/5b99fc6a1c7b0.png" alt="1.png"></p><h1 id="OpenFlow连接建立交互流程"><a href="#OpenFlow连接建立交互流程" class="headerlink" title="OpenFlow连接建立交互流程"></a>OpenFlow连接建立交互流程</h1><p><img src="https://i.loli.net/2018/09/13/5b99fd98251f8.png" alt="2.png"><br>在OpenFlow1.3协议的情况下，控制器与OpenFlow交换机的消息完整交互流程如下：<br>1、 控制器与OpenFlow交换机通过TCP“三次握手”，建立有效的连接。其中，控制器一端的端口号为6633。<br>2、 控制器与OpenFlow交换机之间相互发送Hello消息，用于协商双方的OpenFlow版本号。在双方支持的最高版本号不一致的情况下，协商的结果将以较低的OpenFlow版本为准。如果双方协商不一致，还会产生Error消息。<br>3、 控制器向OpenFlow交换机发送Features Request消息，请求OpenFlow交换机上传自己的详细参数。OpenFlow交换机收到请求后，向控制器发送Features Reply消息，详细汇报自身参数，包括支持的buffer数目、流表数以及Actions等。<br>4、 控制器通过Set Config消息下发配置参数，然后通过Get config Request消息请求OpenFlow交换机上传修改后的配置信息。OpenFlow交换机通过Get config Reply消息向控制器发送当前的配置信息。<br>5、 控制器与OpenFlow交换机之间发送Packet_out、Packet_in消息，通过Packet_out中内置的LLDP包，进行网络拓扑的探测。<br>6、 控制器与OpenFlow交换机之间通过发送Multipart Request、Mutipart Reply消息，控制器能获取OpenFlow交换机的状态信息，包括流的信息、端口信息等。<br>7、 控制器与OpenFlow交换机之间通过发送Echo Request、Echo Reply消息，保证二者之间存在有效连接，避免失联。  </p><h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/13/5b9a0b09e2b9b.png" alt="3.png"></p><h1 id="捕获数据包"><a href="#捕获数据包" class="headerlink" title="捕获数据包"></a>捕获数据包</h1><p>步骤1 登录Floodlight控制器，启动抓包工具Wireshark，捕获控制器与交换机建立连接过程中的数据包，通过分析这些数据包了解控制器与交换机基于OpenFlow协议进行交互的流程。执行以下命令：</p><blockquote></blockquote><pre><code>sudo wireshark</code></pre><p>步骤2 双击eth0网卡，查看eth0网卡上数据包收发情况，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0ba6a9fb7.png" alt="4.png"><br>步骤3 登录Mininet虚拟机，启动Mininet。通过“—controller”参数设置Mininet连接远程控制器，并指定控制器的IP和端口号。</p><blockquote></blockquote><pre><code>sudo mn --controller=remote,ip=30.0.1.3,port=6633 --switch=ovsk,protocols=OpenFlow13</code></pre><p><img src="https://i.loli.net/2018/09/13/5b9a0bf62d0be.png" alt="5.png"><br>步骤4 登录Floodlight控制器，停止Wireshark，观察数据包列表，可以看出控制器与交换机的基本交互流程。<br><img src="https://i.loli.net/2018/09/13/5b9a0c1ddbc4e.png" alt="6.png"></p><h1 id="OpenFlow1-3交互流程分析"><a href="#OpenFlow1-3交互流程分析" class="headerlink" title="OpenFlow1.3交互流程分析"></a>OpenFlow1.3交互流程分析</h1><p>步骤1 交换机连接控制器的6633端口，经过3次握手后双方建立TCP连接。查看捕获到的数据包，分析交换机与控制器建立TCP连接的流程。分析TCP连接建立过程，需要先了解TCP的状态位，主要包括SYN、FIN、ACK、PSH、RST和URG。SYN表示建立连接，FIN表示关闭连接，ACK表示响应，PSH表示有DATA数据传输，RST表示连接重置。可以看出交换机与控制器经历一次连接重置后，成功完成三次握手，建立TCP连接，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0c63cdbf7.png" alt="7.png"><br>步骤2 当控制器与交换机建立TCP连接后，由其中某一方发起Hello消息，双方协调协OpenFlow议版本号。控制器和交换机都会向对方发送一条Hello消息，消息中附上自己支持的OpenFlow的最高版本。接收到对方Hello消息后，判断自己能否支持对方发送的版本，能支持则版本协商成功，不能支持则回复一条OFPT_ERROR消息。查看Hello消息详情，本实验中由于交换机和控制器都能支持OpenFlow1.3版本，所以版本协商为1.3，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0c8900db0.png" alt="8.png"><br>步骤3 OpenFlow版本协商完成后，控制器发送一条features_request消息获取交换机的特性信息，包括交换机的ID（DPID）、缓冲区数量、端口及端口属性等等。相应的，交换机回复features_reply消息，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0cb6bf243.png" alt="9.png"><br>查看数据包详情，ofpt_feature_request消息只有包头，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0ce6d0540.png" alt="10.png"><br>ofpt_feature_reply数据包详情如下，交换机的DPID是数据通道独一无二的标识符，低48位是一个MAC地址，高16位是自定义的。本实验中交换机缓冲区数量（n_buffers）为256，交换机支持的流表数量（n_tables）为254，交换机所支持的功能，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d1008f0a.png" alt="11.png"><br>步骤4 OpenFlow1.0协议中feature_reply消息还包含交换机端口信息，OpenFlow 1.3协议将‘stats’框架更名为‘multipart’框架，并且将端口描述移植到multipart消息中。其中OPPT_PORT_DESC类型的multipart消息就是用于获取交换机端口信息的。<br><img src="https://i.loli.net/2018/09/13/5b9a0d34705f8.png" alt="12.png"><br>查看OPPT_PORT_DESC类型multipart_reply消息，消息中列出了交换机的端口以及每个端口的详细信息，包括端口名称和mac地址等，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d5f30b72.png" alt="13.png"><br>步骤5 OFPMP_DESC类型的multipart_reply消息包含了交换机的其他信息，包括交换机厂商名称、交换机名称以及交换机版本等。本实验中使用的是Mininet仿真软件中自带的开源交换机Open vSwitch(2.0.2)，而Open vSwitch是由Nicira Networks主导开发的，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d8d31133.png" alt="14.png"><br>步骤6 在连接过程中，控制器不断的发送echo_request消息给交换机，确认交换机与控制器之间的连接状态。相应的，交换机会回复echo_reply消息，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0db731025.png" alt="15.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;OpenFlow协议简介&quot;&gt;&lt;a href=&quot;#OpenFlow协议简介&quot; class=&quot;headerlink&quot; title=&quot;OpenFlow协议简介&quot;&gt;&lt;/a&gt;OpenFlow协议简介&lt;/h1&gt;&lt;p&gt;2006年，斯坦福大学Clean Slate计划资助的Eth
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
     
   </entry>
   
