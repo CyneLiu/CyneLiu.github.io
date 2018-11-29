@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于mysql8.0服务无法启动的问题]]></title>
+    <url>%2F2018%2F11%2F29%2F%E5%85%B3%E4%BA%8Emysql8-0%E6%9C%8D%E5%8A%A1%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[问题描述如图：我下载的是mysql-8.0.13-winx64解压版本，但安装后出现如上图所示服务无法启动的问题。 解决办法首先简单说明一下我的安装过程，将压缩包解压后在mysql的根目录创建“my.ini”，内容如下： [mysqld] #basedir代表自己MySQL的安装根目录 basedir = E:\\mysql-8.0.13-winx64 #datadir代表自己MySQL的数据库保存的目录 datadir = E:\\mysql-8.0.13-winx64\\data #port代表端口号 port = 3306 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 删除根目录下自带的data文件夹，原因下面会有说明。 然后以管理员身份运行cmd，进入mysql根目录下的bin目录中。 移除之前安装的服务： mysqld -remove 初始化： mysqld --initialize-insecure #这里我使用的是无密的方式 这个步骤会重新生成data文件夹，需要等待一会。 重新安装mysql服务： mysqld -install 启动mysql服务： net start mysql 最后说明一下删除data文件夹的原因，网上很多教程里写的是直接在配置文件中写上data文件夹的路径就可以甚至没有data文件夹自己新建的一个。 不能说那些教程里的做法就是错的，因为版本不同的原因，情况也不尽相同，新版本在初始化时会自动生成data文件夹，如果直接使用自带的data文件夹而不删除让它自动创建的话，很容易出错。]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[deepin使用ssr不能和谐上网]]></title>
     <url>%2F2018%2F11%2F25%2Fdeepin%E4%BD%BF%E7%94%A8ssr%E4%B8%8D%E8%83%BD%E5%92%8C%E8%B0%90%E4%B8%8A%E7%BD%91%2F</url>
     <content type="text"><![CDATA[最近在笔记本上装了deepin体验一番，看到深度商店有SSR客户端毫不犹豫的就安装上了，但是添加节点后发现并不能奏效。搜索不到解决方法，自己尝试了很多方法也没能解决，最后终于在深度商店的应用评论里看到了解决办法。 首先保证客户端设置正确，在添加节点信息之后，软件默认的本地端口是0，这里需要改为1080。然后到系统设置中，选择网络，设置系统代理模式为手动，将Socks代理参数改为127.0.0.1，端口改为1080。]]></content>
@@ -46,8 +57,8 @@
         <category>VPS</category>
       </categories>
       <tags>
-        <tag>科学上网</tag>
         <tag>VPS</tag>
+        <tag>科学上网</tag>
         <tag>WireGuard</tag>
       </tags>
   </entry>

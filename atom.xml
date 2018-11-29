@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-11-25T13:42:58.720Z</updated>
+  <updated>2018-11-29T03:07:43.274Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于mysql8.0服务无法启动的问题</title>
+    <link href="https://cyneliu.github.io/2018/11/29/%E5%85%B3%E4%BA%8Emysql8-0%E6%9C%8D%E5%8A%A1%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>https://cyneliu.github.io/2018/11/29/关于mysql8-0服务无法启动的问题/</id>
+    <published>2018-11-29T02:41:37.000Z</published>
+    <updated>2018-11-29T03:07:43.274Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>如图：<br><img src="https://i.loli.net/2018/11/29/5bff526bca5e0.png" alt="02.png"><br>我下载的是mysql-8.0.13-winx64解压版本，但安装后出现如上图所示服务无法启动的问题。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>首先简单说明一下我的安装过程，将压缩包解压后在mysql的根目录创建“my.ini”，内容如下：</p><blockquote></blockquote><pre><code>[mysqld]  #basedir代表自己MySQL的安装根目录  basedir = E:\\mysql-8.0.13-winx64  #datadir代表自己MySQL的数据库保存的目录  datadir = E:\\mysql-8.0.13-winx64\\data  #port代表端口号  port = 3306  sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES  </code></pre><p><img src="https://i.loli.net/2018/11/29/5bff564b8580d.png" alt="03.png"></p><p>删除根目录下自带的data文件夹，原因下面会有说明。  </p><p>然后以管理员身份运行cmd，进入mysql根目录下的bin目录中。  </p><p>移除之前安装的服务：</p><blockquote></blockquote><pre><code>mysqld -remove</code></pre><p>初始化：</p><blockquote></blockquote><pre><code>mysqld --initialize-insecure  #这里我使用的是无密的方式</code></pre><p>这个步骤会重新生成data文件夹，需要等待一会。</p><p>重新安装mysql服务：</p><blockquote></blockquote><pre><code>mysqld -install</code></pre><p>启动mysql服务：</p><blockquote></blockquote><pre><code>net start mysql</code></pre><p><img src="https://i.loli.net/2018/11/29/5bff526bc3777.png" alt="01.png"></p><p>最后说明一下删除data文件夹的原因，网上很多教程里写的是直接在配置文件中写上data文件夹的路径就可以甚至没有data文件夹自己新建的一个。  </p><p>不能说那些教程里的做法就是错的，因为版本不同的原因，情况也不尽相同，新版本在初始化时会自动生成data文件夹，如果直接使用自带的data文件夹而不删除让它自动创建的话，很容易出错。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h1&gt;&lt;p&gt;如图：&lt;br&gt;&lt;img src=&quot;https://i.loli.net/2018/11/29/5bff526bca5e0.p
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="mysql" scheme="https://cyneliu.github.io/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>deepin使用ssr不能和谐上网</title>
@@ -124,9 +149,9 @@
       <category term="VPS" scheme="https://cyneliu.github.io/categories/VPS/"/>
     
     
-      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
       <category term="VPS" scheme="https://cyneliu.github.io/tags/VPS/"/>
+    
+      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
       <category term="WireGuard" scheme="https://cyneliu.github.io/tags/WireGuard/"/>
     
@@ -556,33 +581,6 @@
       <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
     
       <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>秒懂MBR和GPT分区表</title>
-    <link href="https://cyneliu.github.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/"/>
-    <id>https://cyneliu.github.io/2018/09/13/秒懂MBR和GPT分区表/</id>
-    <published>2018-09-13T11:58:17.000Z</published>
-    <updated>2018-09-13T12:39:54.874Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h1><p>全新硬盘未初始化之前，必须对其进行分区，硬盘分区初始化的格式包括MBR和GPT两种，另外对于基于PowerPC的Mac电脑还有专门的Apple分区图。<br>MBR的全称是Master Boot Record（主引导记录），MBR早在1983年IBM PC DOS 2.0中就已经提出。之所以叫“主引导记录”，是因为它是存在于驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统的启动加载器和驱动器的逻辑分区信息。主引导扇区是硬盘的第一扇区。它由三个部分组成，主引导记录MBR、硬盘分区表DPT和硬盘有效标志。在总共512字节的主引导扇区里MBR占446个字节，偏移地址（0000H–0088H），它负责从活动分区中装载，并运行系统引导程序；第二部分是Partition table区（DPT分区表），占64个字节；第三部分是Magic number，占2个字节。 </p><h1 id="MBR分区表系统"><a href="#MBR分区表系统" class="headerlink" title="MBR分区表系统"></a>MBR分区表系统</h1><p>所谓启动加载器，是一小段代码，用于加载驱动器上其他分区上更大的加载器。如果你安装了Windows，Windows启动加载器的初始信息就放在这个区域里——如果MBR的信息被覆盖导致Windows不能启动，你就需要使用Windows的MBR修复功能来使其恢复正常。如果你安装了Linux，则位于MBR里的通常会是GRUB加载器。  </p><p>分区表偏移地址为01BEH–01FDH，每个分区表项长16个字节，共64字节为分区项1、分区项2、分区项3、分区项4，分别对应MBR的四个主分区。Magic number也就是结束标志字，偏移地址01FE–01FF的2个字节，固定为55AA，如果该标志错误系统就不能启动。   </p><p>MBR最大支持2.2TB磁盘，它无法处理大于2.2TB容量的磁盘。MBR还只支持最多4个主分区——如果你想要更多分区，你需要创建所谓“扩展分区”，并在其中创建逻辑分区。 </p><h1 id="GPT分区表系统"><a href="#GPT分区表系统" class="headerlink" title="GPT分区表系统"></a>GPT分区表系统</h1><p>GPT的全称是Globally Unique Identifier Partition Table，意即GUID分区表，它的推出是和UEFI BIOS相辅相成的，鉴于MBR的磁盘容量和分区数量已经不能满足硬件发展的需求，GPT首要的任务就是突破了2.2T分区的限制，最大支持18EB的分区。 </p><p>而在分区数量上，GPT会为每一个分区分配一个全局唯一的标识符，理论上GPT支持无限个磁盘分区，不过在Windows系统上由于系统的限制，最多只能支持128个磁盘分区，基本可以满足所有用户的存储需求。在每一个分区上，这个标识符是一个随机生成的字符串，可以保证为地球上的每一个GPT分区都分配完全唯一的标识符。   </p><p>而在安全性方面，GPT分区表也进行了全方位改进。在早期的MBR磁盘上，分区和启动信息是保存在一起的。如果这部分数据被覆盖或破坏，事情就麻烦了。相对的，GPT在整个磁盘上保存多个这部分信息的副本，因此它更为健壮，并可以恢复被破坏的这部分信息。GPT还为这些信息保存了循环冗余校验码（CRC）以保证其完整和正确——如果数据被破坏，GPT会发觉这些破坏，并从磁盘上的其他地方进行恢复。  </p><p>小结：所以对于新平台用户（Intel 6系以后/AMD 900系列以后和A系列）来说，都强烈推荐使用GPT分区表格式，目前包括Windows Vista、7、8、8.1、10已经都支持读取和使用GPT分区表。而对于使用Windows 8、8.1、10的用户，换用GPT后开机启动速度也可以进一步得到显著提升。 </p><h1 id="BIOS-MBR"><a href="#BIOS-MBR" class="headerlink" title="BIOS+MBR"></a>BIOS+MBR</h1><p>这种方式是目前最常见的装机方式，所有的系统都会支持，兼容较老硬件，目前新电脑大多出厂时就使用UEFI方式启动。</p><h1 id="UEFI-GPT"><a href="#UEFI-GPT" class="headerlink" title="UEFI+GPT"></a>UEFI+GPT</h1><p>GPT与UEFI是相辅相成的，如果分区表系统是GPT，那么必须使用UEFI，传统的BIOS方式无法启动，这也就是为什么现在很多人在给新机器重装系统时无法启动的原因。  </p><p>UEFI+GPT还有一个优点就是开机速度更快，原因是开机时跳过外设检测，并且可以实现启动时原生分辨率，搭载固态硬盘开机时间很短，十秒左右。  </p><p>UEFI可用鼠标操作图形界面，不再是枯燥的蓝底白字的英文。由Intel提出，用于取代BIOS。UEFI的优越特性：可操作性、安全性、兼容性、可扩展性。  </p><p>主板为了兼容MBR分区表，一般会提供Legacy BIOS和UEFI BIOS启动模式选项，可以把UEFI设置成Legacy模式（传统模式）、打开CSM兼容模块，让其支持传统MBR启动，此时效果同BIOS+MBR。如果要使用UEFI模式安装Windows，就必须开启UEFI启动模式。</p><h1 id="系统支持性"><a href="#系统支持性" class="headerlink" title="系统支持性"></a>系统支持性</h1><p>目前64bit Windows Vista、7、8、8.1、10都已经支持GPT分区表，而Windows 8、8.1、10都已经原生支持UEFI，安装这些系统的时候：只要硬盘设置为GPT分区表，主板设置为UEFI启动后，就可以直接开始安装操作系统了。 而对于Windows Vista、7系统，就需要手动添加UEFI支持：我们可以找一份Windows 8或者10安装镜像，从安装文件中提取Bootmgfw.efi文件，重命名为BOOTX64.EFI，拷贝到win7安装文件的\EFI\Boot\下，如果没有BOOT文件夹新建一个即可。 </p><h1 id="修改为传统方式启动"><a href="#修改为传统方式启动" class="headerlink" title="修改为传统方式启动"></a>修改为传统方式启动</h1><p>如果实在是搞不明白或者像之前的我一样不太懂的话，可以使用分区助手将GPT改为MBR，如图：<br><img src="https://i.loli.net/2018/09/13/5b9a589d17e85.jpg" alt="1.jpg"><br>选中磁盘，在左侧菜单中选择“转换到MBR磁盘”：<br><img src="https://i.loli.net/2018/09/13/5b9a589cddfb3.jpg" alt="2.jpg"><br>转换成功：<br><img src="https://i.loli.net/2018/09/13/5b9a589d066d8.jpg" alt="3.jpg"><br>转换完成进行分区后，不要忘了把装系统的分区转换成活动分区：<br><img src="https://i.loli.net/2018/09/13/5b9a589d099b4.jpg" alt="4.jpg"><br>最后还是建议大家花几分钟时间了解一下UEFI的方式，这必定是未来的一个趋势，并不推荐采用上图将GPT修改为MBR的方式重装系统。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;分区表&quot;&gt;&lt;a href=&quot;#分区表&quot; class=&quot;headerlink&quot; title=&quot;分区表&quot;&gt;&lt;/a&gt;分区表&lt;/h1&gt;&lt;p&gt;全新硬盘未初始化之前，必须对其进行分区，硬盘分区初始化的格式包括MBR和GPT两种，另外对于基于PowerPC的Mac电脑还有专门的
-      
-    
-    </summary>
-    
-      <category term="装机" scheme="https://cyneliu.github.io/categories/%E8%A3%85%E6%9C%BA/"/>
-    
-    
-      <category term="装机" scheme="https://cyneliu.github.io/tags/%E8%A3%85%E6%9C%BA/"/>
-    
-      <category term="硬件" scheme="https://cyneliu.github.io/tags/%E7%A1%AC%E4%BB%B6/"/>
     
   </entry>
   

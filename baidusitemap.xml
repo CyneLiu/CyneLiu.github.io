@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2018/11/29/%E5%85%B3%E4%BA%8Emysql8-0%E6%9C%8D%E5%8A%A1%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-11-29T03:07:43.274Z</lastmod>
+    <data>
+        <display>
+        <title>关于mysql8.0服务无法启动的问题</title>
+        <pubTime>2018-11-29T02:41:37.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+             
+              <breadCrumb title="打鱼晒网" url="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2018/11/25/deepin%E4%BD%BF%E7%94%A8ssr%E4%B8%8D%E8%83%BD%E5%92%8C%E8%B0%90%E4%B8%8A%E7%BD%91/</loc>
     <lastmod>2018-11-25T13:42:58.720Z</lastmod>
     <data>
@@ -106,9 +126,9 @@
         <title>科学上网工具 - WireGuard</title>
         <pubTime>2018-11-14T12:22:33.000Z</pubTime>
         
-        <tag>科学上网</tag>
-         
         <tag>VPS</tag>
+         
+        <tag>科学上网</tag>
          
         <tag>WireGuard</tag>
          
