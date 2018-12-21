@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2018/12/21/CentOS7%E5%AE%89%E8%A3%85VNC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2018-12-21T12:11:22.103Z</lastmod>
+    <data>
+        <display>
+        <title>CentOS7安装VNC服务端程序</title>
+        <pubTime>2018-12-21T11:28:27.000Z</pubTime>
+        
+        <tag>CentOS</tag>
+         
+        <tag>VNC</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="https://cyneliu.github.io/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2018/11/29/%E5%85%B3%E4%BA%8Emysql8-0%E6%9C%8D%E5%8A%A1%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2018-11-29T03:07:43.274Z</lastmod>
     <data>
@@ -31,11 +53,11 @@
         <title>deepin使用ssr不能和谐上网</title>
         <pubTime>2018-11-25T13:19:14.000Z</pubTime>
         
+        <tag>科学上网</tag>
+         
         <tag>deepin</tag>
          
         <tag>ssr</tag>
-         
-        <tag>科学上网</tag>
          
          
            
@@ -352,13 +374,13 @@
         
         <tag>Linux</tag>
          
-        <tag>科学上网</tag>
-         
         <tag>脚本</tag>
          
         <tag>vps</tag>
          
         <tag>网站</tag>
+         
+        <tag>科学上网</tag>
          
          
            

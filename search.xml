@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CentOS7安装VNC服务端程序]]></title>
+    <url>%2F2018%2F12%2F21%2FCentOS7%E5%AE%89%E8%A3%85VNC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A8%8B%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[检查是否已安装VNC rpm -q tigervnc tigervnc-server 安装X-Window yum check-update yum groupinstall &quot;X Window System&quot; #这里可能会有警告提示，忽略即可 yum install gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts unlink /etc/systemd/system/default.target ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target reboot #重启机器 安装VNC服务端 yum install tigervnc-server -y 从VNC备份库中复制service文件到系统service服务管理目录下 cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service #复制并重命名为vncserver@:1.service 修改vncserver@:1.service文件使用如下信息覆盖原信息： [Unit] Description=Remote desktop service (VNC) After=syslog.target network.target [Service] Type=forking User=root ExecStartPre=-/usr/bin/vncserver -kill %i ExecStart=/sbin/runuser -l root -c &quot;/usr/bin/vncserver %i&quot; PIDFile=/root/.vnc/%H%i.pid ExecStop=-/usr/bin/vncserver -kill %i [Install] WantedBy=multi-user.target 修改文件使配置生效 systemctl daemon-reload 为vncserver@:1.service设置密码 vncpasswd 启动VNC systemctl enable vncserver@:1.service #设置开机启动 systemctl start vncserver@:1.service #启动vnc会话服务 systemctl status vncserver@:1.service #查看nvc会话服务状态 systemctl stop vncserver@:1.service #关闭nvc会话服务 netstat -lnt | grep 590* 5901端口已经处于监听状态： 开启防火墙端口在安装后防火墙默认关掉了相应的端口，需要手动开启一下。查看zone名称： firewall-cmd --get-active-zones 允许相关端口： firewall-cmd --zone=public --add-port=5901/tcp --permanent #5901即为要开启的端口 最后重启防火墙： firewall-cmd --reload 确认端口号是否开启： firewall-cmd --query-port=5901/tcp 下载客户端进行连接使用“ip::port”的方式进行连接，下图表明已经可以成功连接：]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>VNC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于mysql8.0服务无法启动的问题]]></title>
     <url>%2F2018%2F11%2F29%2F%E5%85%B3%E4%BA%8Emysql8-0%E6%9C%8D%E5%8A%A1%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[问题描述如图：我下载的是mysql-8.0.13-winx64解压版本，但安装后出现如上图所示服务无法启动的问题。 解决办法首先简单说明一下我的安装过程，将压缩包解压后在mysql的根目录创建“my.ini”，内容如下： [mysqld] #basedir代表自己MySQL的安装根目录 basedir = E:\\mysql-8.0.13-winx64 #datadir代表自己MySQL的数据库保存的目录 datadir = E:\\mysql-8.0.13-winx64\\data #port代表端口号 port = 3306 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 删除根目录下自带的data文件夹，原因下面会有说明。 然后以管理员身份运行cmd，进入mysql根目录下的bin目录中。 移除之前安装的服务： mysqld -remove 初始化： mysqld --initialize-insecure #这里我使用的是无密的方式 这个步骤会重新生成data文件夹，需要等待一会。 重新安装mysql服务： mysqld -install 启动mysql服务： net start mysql 最后说明一下删除data文件夹的原因，网上很多教程里写的是直接在配置文件中写上data文件夹的路径就可以甚至没有data文件夹自己新建的一个。 不能说那些教程里的做法就是错的，因为版本不同的原因，情况也不尽相同，新版本在初始化时会自动生成data文件夹，如果直接使用自带的data文件夹而不删除让它自动创建的话，很容易出错。]]></content>
@@ -19,9 +31,9 @@
         <category>打鱼晒网</category>
       </categories>
       <tags>
+        <tag>科学上网</tag>
         <tag>deepin</tag>
         <tag>ssr</tag>
-        <tag>科学上网</tag>
       </tags>
   </entry>
   <entry>
@@ -157,10 +169,10 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>科学上网</tag>
         <tag>脚本</tag>
         <tag>vps</tag>
         <tag>网站</tag>
+        <tag>科学上网</tag>
       </tags>
   </entry>
   <entry>

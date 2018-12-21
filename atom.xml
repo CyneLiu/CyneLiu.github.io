@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-11-29T03:07:43.274Z</updated>
+  <updated>2018-12-21T12:11:22.103Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS7安装VNC服务端程序</title>
+    <link href="https://cyneliu.github.io/2018/12/21/CentOS7%E5%AE%89%E8%A3%85VNC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A8%8B%E5%BA%8F/"/>
+    <id>https://cyneliu.github.io/2018/12/21/CentOS7安装VNC服务端程序/</id>
+    <published>2018-12-21T11:28:27.000Z</published>
+    <updated>2018-12-21T12:11:22.103Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="检查是否已安装VNC"><a href="#检查是否已安装VNC" class="headerlink" title="检查是否已安装VNC"></a>检查是否已安装VNC</h1><blockquote></blockquote><pre><code>rpm -q tigervnc tigervnc-server</code></pre><h1 id="安装X-Window"><a href="#安装X-Window" class="headerlink" title="安装X-Window"></a>安装X-Window</h1><blockquote></blockquote><pre><code>yum check-updateyum groupinstall &quot;X Window System&quot; #这里可能会有警告提示，忽略即可yum install gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fontsunlink /etc/systemd/system/default.targetln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.targetreboot #重启机器</code></pre><h1 id="安装VNC服务端"><a href="#安装VNC服务端" class="headerlink" title="安装VNC服务端"></a>安装VNC服务端</h1><blockquote></blockquote><pre><code>yum install tigervnc-server -y</code></pre><h1 id="从VNC备份库中复制service文件到系统service服务管理目录下"><a href="#从VNC备份库中复制service文件到系统service服务管理目录下" class="headerlink" title="从VNC备份库中复制service文件到系统service服务管理目录下"></a>从VNC备份库中复制service文件到系统service服务管理目录下</h1><blockquote></blockquote><pre><code>cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service  #复制并重命名为vncserver@:1.service</code></pre><h1 id="修改vncserver-1-service文件"><a href="#修改vncserver-1-service文件" class="headerlink" title="修改vncserver@:1.service文件"></a>修改vncserver@:1.service文件</h1><p>使用如下信息覆盖原信息：</p><blockquote></blockquote><pre><code>[Unit]Description=Remote desktop service (VNC)After=syslog.target network.target[Service]Type=forkingUser=rootExecStartPre=-/usr/bin/vncserver -kill %iExecStart=/sbin/runuser -l root -c &quot;/usr/bin/vncserver %i&quot; PIDFile=/root/.vnc/%H%i.pidExecStop=-/usr/bin/vncserver -kill %i[Install]WantedBy=multi-user.target</code></pre><h1 id="修改文件使配置生效"><a href="#修改文件使配置生效" class="headerlink" title="修改文件使配置生效"></a>修改文件使配置生效</h1><blockquote></blockquote><pre><code>systemctl daemon-reload</code></pre><h1 id="为vncserver-1-service设置密码"><a href="#为vncserver-1-service设置密码" class="headerlink" title="为vncserver@:1.service设置密码"></a>为vncserver@:1.service设置密码</h1><blockquote></blockquote><pre><code>vncpasswd</code></pre><h1 id="启动VNC"><a href="#启动VNC" class="headerlink" title="启动VNC"></a>启动VNC</h1><blockquote></blockquote><pre><code>systemctl enable vncserver@:1.service #设置开机启动systemctl start vncserver@:1.service #启动vnc会话服务systemctl status vncserver@:1.service #查看nvc会话服务状态systemctl stop vncserver@:1.service #关闭nvc会话服务netstat -lnt | grep 590*  </code></pre><p>5901端口已经处于监听状态：<br><img src="https://i.loli.net/2018/12/21/5c1cd3d638c69.png" alt="01.png"></p><h1 id="开启防火墙端口"><a href="#开启防火墙端口" class="headerlink" title="开启防火墙端口"></a>开启防火墙端口</h1><p>在安装后防火墙默认关掉了相应的端口，需要手动开启一下。<br>查看zone名称：</p><blockquote></blockquote><pre><code>firewall-cmd --get-active-zones</code></pre><p>允许相关端口：</p><blockquote></blockquote><pre><code>firewall-cmd --zone=public --add-port=5901/tcp --permanent #5901即为要开启的端口</code></pre><p>最后重启防火墙：</p><blockquote></blockquote><pre><code>firewall-cmd --reload</code></pre><p>确认端口号是否开启：</p><blockquote></blockquote><pre><code>firewall-cmd --query-port=5901/tcp</code></pre><h1 id="下载客户端进行连接"><a href="#下载客户端进行连接" class="headerlink" title="下载客户端进行连接"></a>下载客户端进行连接</h1><p>使用“ip::port”的方式进行连接，下图表明已经可以成功连接：<br><img src="https://i.loli.net/2018/12/21/5c1cd858e4d38.png" alt="2.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;检查是否已安装VNC&quot;&gt;&lt;a href=&quot;#检查是否已安装VNC&quot; class=&quot;headerlink&quot; title=&quot;检查是否已安装VNC&quot;&gt;&lt;/a&gt;检查是否已安装VNC&lt;/h1&gt;&lt;blockquote&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;rpm
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/categories/Linux/"/>
+    
+    
+      <category term="CentOS" scheme="https://cyneliu.github.io/tags/CentOS/"/>
+    
+      <category term="VNC" scheme="https://cyneliu.github.io/tags/VNC/"/>
+    
+  </entry>
   
   <entry>
     <title>关于mysql8.0服务无法启动的问题</title>
@@ -63,11 +92,11 @@
       <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
     
     
+      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    
       <category term="deepin" scheme="https://cyneliu.github.io/tags/deepin/"/>
     
       <category term="ssr" scheme="https://cyneliu.github.io/tags/ssr/"/>
-    
-      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
   </entry>
   
@@ -381,13 +410,13 @@
     
       <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
     
-      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
       <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
     
       <category term="vps" scheme="https://cyneliu.github.io/tags/vps/"/>
     
       <category term="网站" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E7%AB%99/"/>
+    
+      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
   </entry>
   
@@ -544,33 +573,6 @@
       
       
         &lt;h1 id=&quot;实验原理&quot;&gt;&lt;a href=&quot;#实验原理&quot; class=&quot;headerlink&quot; title=&quot;实验原理&quot;&gt;&lt;/a&gt;实验原理&lt;/h1&gt;&lt;p&gt;所谓流表，其实可被视作是SDN对网络设备的数据转发功能的一种抽象。在传统网络设备中，交换机和路由器的数据转发需要依赖设备中保
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3.Open vSwitch流表管理</title>
-    <link href="https://cyneliu.github.io/2018/09/14/3-Open-vSwitch%E6%B5%81%E8%A1%A8%E7%AE%A1%E7%90%86/"/>
-    <id>https://cyneliu.github.io/2018/09/14/3-Open-vSwitch流表管理/</id>
-    <published>2018-09-14T13:10:47.000Z</published>
-    <updated>2018-10-16T14:11:42.924Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议去连接Open vSwitch，创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。  </p><p>在OpenFlow的白皮书中，Flow被定义为某个特定的网络流量。例如，一个TCP连接就是一个Flow，或者从某个IP地址发出来的数据包，都可以被认为是一个Flow。支持OpenFlow协议的交换机应该包括一个或者多个流表，流表中的条目包含：数据包头的信息、匹配成功后要执行的指令和统计信息。  </p><p>当数据包进入OVS后，会将数据包和流表中的流表项进行匹配，如果发现了匹配的流表项，则执行该流表项中的指令集。相反，如果数据包在流表中没有发现任何匹配，OVS会通过控制通道把数据包发到OpenFlow控制器中。<br>在OVS中，流表项作为ovs-ofctl的参数，采用如下的格式：字段=值，如果有多个字段，可以用逗号或者空格分开。一些常用的字段列举如下：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd40468.png" alt="1.png"><br>ovs-ofctl关于流表管理的常用命令：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd3a959.png" alt="2.png"><br>对于add−flow，add−flows和mod−flows这三个命令，还需要指定要执行的动作：actions=[target][,target…]，一个流规则中可能有多个动作，按照指定的先后顺序执行。<br>常见的操作有：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd4cb85.png" alt="3.png"></p><h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/14/5b9bb4dd4d9be.png" alt="拓扑.png"></p><h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机，执行以下命令，查看镜像中原有的网桥，如下图所示。</p><blockquote></blockquote><pre><code>ovs-vsctl show</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbf7b25c05.png" alt="4.png"><br>步骤5 执行以下命令，删除当前网桥，并进行确认，如下图所示。</p><blockquote></blockquote><pre><code>ovs-vsctl del-br br-swovs-vsctl show</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbfb869e58.png" alt="5.png"></p><h1 id="流表管理"><a href="#流表管理" class="headerlink" title="流表管理"></a>流表管理</h1><p>步骤1 执行以下命令，添加网桥，并查看虚拟交换机的基本信息，如下图所示。</p><blockquote></blockquote><pre><code>ovs-vsctl add-br br0ovs-ofctl show br0</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbffd27c45.png" alt="6.png"><br>由上图可知，可以查看到交换机dpid、流表数量、性能参数、动作参数、MAC地址等信息。  </p><p>步骤2 执行以下命令，查看虚拟交换机上各端口的状态，如下图所示。</p><blockquote></blockquote><pre><code>ovs-ofctl dump-flows br0</code></pre><p>由上图可知，输出的结果中包含了各端口上收到的数据包数，字节数，丢包数，错误数据包数等。  </p><p>步骤3 执行以下命令，添加一条流表项，设置流表项生命周期为1000s，优先级为17，入端口为3，动作是output:2。</p><blockquote></blockquote><pre><code>ovs-ofctl add-flow br0 idle_timeout=1000,priority=17,in_port=3,actions=output:2说明：这条流表项的作用是将端口3接收到的数据包从端口2输出。</code></pre><p>步骤4 执行以下命令，查看交换机上所有流表信息，如下图所示。</p><blockquote><pre><code>ovs-ofctl dump-flows br0</code></pre></blockquote><p>步骤5 执行以下命令，删除入端口为3的的流表项，删除后，再次查看流表信息，如下图所示。</p><blockquote></blockquote><pre><code>ovs-ofctl del-flows br0 in_port=3ovs-ofctl dump-flows br0</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bc08844d29.png" alt="7.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;实验原理&quot;&gt;&lt;a href=&quot;#实验原理&quot; class=&quot;headerlink&quot; title=&quot;实验原理&quot;&gt;&lt;/a&gt;实验原理&lt;/h1&gt;&lt;p&gt;OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置Open
       
     
     </summary>
