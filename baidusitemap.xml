@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2018/12/23/ESXI%E5%AE%89%E8%A3%85OpenWrt-LEDE%E5%AE%9E%E7%8E%B0%E8%BD%AF%E8%B7%AF%E7%94%B1%E5%8A%9F%E8%83%BD/</loc>
+    <lastmod>2018-12-23T12:04:24.631Z</lastmod>
+    <data>
+        <display>
+        <title>ESXI安装OpenWrt/LEDE实现软路由功能</title>
+        <pubTime>2018-12-23T10:23:17.000Z</pubTime>
+        
+        <tag>ESXI</tag>
+         
+        <tag>OpenWrt</tag>
+         
+        <tag>软路由</tag>
+         
+        <tag>虚拟化</tag>
+         
+         
+           
+             
+              <breadCrumb title="打鱼晒网" url="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2018/12/21/CentOS7%E5%AE%89%E8%A3%85VNC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A8%8B%E5%BA%8F/</loc>
     <lastmod>2018-12-21T12:11:22.103Z</lastmod>
     <data>
@@ -53,11 +79,11 @@
         <title>deepin使用ssr不能和谐上网</title>
         <pubTime>2018-11-25T13:19:14.000Z</pubTime>
         
-        <tag>科学上网</tag>
-         
         <tag>deepin</tag>
          
         <tag>ssr</tag>
+         
+        <tag>科学上网</tag>
          
          
            
@@ -124,11 +150,11 @@
         <title>虚拟化运维笔记 —— Linux</title>
         <pubTime>2018-06-25T13:50:33.000Z</pubTime>
         
+        <tag>虚拟化</tag>
+         
         <tag>运维</tag>
          
         <tag>笔记</tag>
-         
-        <tag>虚拟化</tag>
          
          
            
@@ -376,11 +402,11 @@
          
         <tag>脚本</tag>
          
+        <tag>科学上网</tag>
+         
         <tag>vps</tag>
          
         <tag>网站</tag>
-         
-        <tag>科学上网</tag>
          
          
            
@@ -400,11 +426,11 @@
         <title>虚拟化运维笔记——服务器</title>
         <pubTime>2018-07-11T12:28:09.000Z</pubTime>
         
+        <tag>虚拟化</tag>
+         
         <tag>运维</tag>
          
         <tag>笔记</tag>
-         
-        <tag>虚拟化</tag>
          
          
            
@@ -424,11 +450,11 @@
         <title>虚拟化运维笔记——vsphere</title>
         <pubTime>2018-07-11T10:58:49.000Z</pubTime>
         
+        <tag>虚拟化</tag>
+         
         <tag>运维</tag>
          
         <tag>笔记</tag>
-         
-        <tag>虚拟化</tag>
          
          
            

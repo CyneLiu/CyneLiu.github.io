@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ESXI安装OpenWrt/LEDE实现软路由功能]]></title>
+    <url>%2F2018%2F12%2F23%2FESXI%E5%AE%89%E8%A3%85OpenWrt-LEDE%E5%AE%9E%E7%8E%B0%E8%BD%AF%E8%B7%AF%E7%94%B1%E5%8A%9F%E8%83%BD%2F</url>
+    <content type="text"><![CDATA[最近部署一套环境需要从国外的服务器下载文件，因为众所周知的原因，速度慢到几kb不说，还经常传输失败，但一台一台的设置科学上网又比较麻烦，所以就有了设置一个可以使用酸酸乳的软路由作为网关的想法。 实验室硬件不支持肯定首先想到的就是软路由了，常用的比较有名的当属RouterOS了，再就是海蜘蛛和爱快等等了，但是貌似都不能用酸酸乳，最后找到的就是OpenWrt/LEDE这个方案了，下面简单整理一下过程。 下载*.vmdk文件感谢koolshare论坛的大佬给出的硬盘文件，原帖地址：http://koolshare.cn/thread-67584-1-8.html 下载地址：百度网盘（4kqa） 新建虚拟机打开vSphere客户端，新建虚拟机，因为之后需要换硬盘文件，所以这里配置什么的就无所谓了，直接选择典型就可以了。客户机操作系统我这里选择的是“其他Linux(64位)”：然后网卡根据需要设置成两个或两个以上，我这里没有特殊需要，两个网卡一个WAN口一个LAN口就可以了：之后默认即可，完成虚拟机创建。 修改硬盘文件在服务器存储中找到刚刚创建的虚拟机的虚拟磁盘文件（.vmdk）并删除：在当前目录上传之前下载的两个.vmdk文件，上传之后会被合并为一个文件：编辑虚拟机设置，添加现有虚拟磁盘，在存储中找到刚刚上传的文件完成添加并删除原来的硬盘：打开电源即可开始安装。 安装后的配置安装完成后按回车进入：网络的配置文件在“/etc/config/network”下，可以根据需要进行修改：这里我没有做任何更改，因为上接网络中有DHCP服务器，所以自动获取了一个WAN口ip，如果没有DHCP需要手工设置ip地址，LAN口ip使用默认的192.168.1.1。 登录WEB页面我们需要使用LAN口的ip地址进入WEB页面，所以我把一台Windows设备的ip地址设置为192.168.1.2/24，网关192.168.1.1。 打开浏览器访问192.168.1.1，用户名：admin，密码：koolshare。 开启SS服务并将需要和谐上网的虚拟机修改网关为LAN口地址，大功告成！]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>ESXI</tag>
+        <tag>OpenWrt</tag>
+        <tag>软路由</tag>
+        <tag>虚拟化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CentOS7安装VNC服务端程序]]></title>
     <url>%2F2018%2F12%2F21%2FCentOS7%E5%AE%89%E8%A3%85VNC%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A8%8B%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[检查是否已安装VNC rpm -q tigervnc tigervnc-server 安装X-Window yum check-update yum groupinstall &quot;X Window System&quot; #这里可能会有警告提示，忽略即可 yum install gnome-classic-session gnome-terminal nautilus-open-terminal control-center liberation-mono-fonts unlink /etc/systemd/system/default.target ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target reboot #重启机器 安装VNC服务端 yum install tigervnc-server -y 从VNC备份库中复制service文件到系统service服务管理目录下 cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service #复制并重命名为vncserver@:1.service 修改vncserver@:1.service文件使用如下信息覆盖原信息： [Unit] Description=Remote desktop service (VNC) After=syslog.target network.target [Service] Type=forking User=root ExecStartPre=-/usr/bin/vncserver -kill %i ExecStart=/sbin/runuser -l root -c &quot;/usr/bin/vncserver %i&quot; PIDFile=/root/.vnc/%H%i.pid ExecStop=-/usr/bin/vncserver -kill %i [Install] WantedBy=multi-user.target 修改文件使配置生效 systemctl daemon-reload 为vncserver@:1.service设置密码 vncpasswd 启动VNC systemctl enable vncserver@:1.service #设置开机启动 systemctl start vncserver@:1.service #启动vnc会话服务 systemctl status vncserver@:1.service #查看nvc会话服务状态 systemctl stop vncserver@:1.service #关闭nvc会话服务 netstat -lnt | grep 590* 5901端口已经处于监听状态： 开启防火墙端口在安装后防火墙默认关掉了相应的端口，需要手动开启一下。查看zone名称： firewall-cmd --get-active-zones 允许相关端口： firewall-cmd --zone=public --add-port=5901/tcp --permanent #5901即为要开启的端口 最后重启防火墙： firewall-cmd --reload 确认端口号是否开启： firewall-cmd --query-port=5901/tcp 下载客户端进行连接使用“ip::port”的方式进行连接，下图表明已经可以成功连接：]]></content>
@@ -31,9 +45,9 @@
         <category>打鱼晒网</category>
       </categories>
       <tags>
-        <tag>科学上网</tag>
         <tag>deepin</tag>
         <tag>ssr</tag>
+        <tag>科学上网</tag>
       </tags>
   </entry>
   <entry>
@@ -170,9 +184,9 @@
       <tags>
         <tag>Linux</tag>
         <tag>脚本</tag>
+        <tag>科学上网</tag>
         <tag>vps</tag>
         <tag>网站</tag>
-        <tag>科学上网</tag>
       </tags>
   </entry>
   <entry>
@@ -326,9 +340,9 @@
         <category>运维</category>
       </categories>
       <tags>
+        <tag>虚拟化</tag>
         <tag>运维</tag>
         <tag>笔记</tag>
-        <tag>虚拟化</tag>
       </tags>
   </entry>
   <entry>
@@ -339,9 +353,9 @@
         <category>运维</category>
       </categories>
       <tags>
+        <tag>虚拟化</tag>
         <tag>运维</tag>
         <tag>笔记</tag>
-        <tag>虚拟化</tag>
       </tags>
   </entry>
   <entry>
@@ -365,9 +379,9 @@
         <category>运维</category>
       </categories>
       <tags>
+        <tag>虚拟化</tag>
         <tag>运维</tag>
         <tag>笔记</tag>
-        <tag>虚拟化</tag>
       </tags>
   </entry>
   <entry>

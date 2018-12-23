@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-12-21T12:11:22.103Z</updated>
+  <updated>2018-12-23T12:04:24.631Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ESXI安装OpenWrt/LEDE实现软路由功能</title>
+    <link href="https://cyneliu.github.io/2018/12/23/ESXI%E5%AE%89%E8%A3%85OpenWrt-LEDE%E5%AE%9E%E7%8E%B0%E8%BD%AF%E8%B7%AF%E7%94%B1%E5%8A%9F%E8%83%BD/"/>
+    <id>https://cyneliu.github.io/2018/12/23/ESXI安装OpenWrt-LEDE实现软路由功能/</id>
+    <published>2018-12-23T10:23:17.000Z</published>
+    <updated>2018-12-23T12:04:24.631Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近部署一套环境需要从国外的服务器下载文件，因为众所周知的原因，速度慢到几kb不说，还经常传输失败，但一台一台的设置科学上网又比较麻烦，所以就有了设置一个可以使用酸酸乳的软路由作为网关的想法。  </p><p>实验室硬件不支持肯定首先想到的就是软路由了，常用的比较有名的当属RouterOS了，再就是<a href="http://www.hi-spider.com/zh" target="_blank" rel="noopener">海蜘蛛</a>和<a href="http://www.ikuai8.com/" target="_blank" rel="noopener">爱快</a>等等了，但是貌似都不能用酸酸乳，最后找到的就是OpenWrt/LEDE这个方案了，下面简单整理一下过程。  </p><h1 id="下载-vmdk文件"><a href="#下载-vmdk文件" class="headerlink" title="下载*.vmdk文件"></a>下载*.vmdk文件</h1><p>感谢koolshare论坛的大佬给出的硬盘文件，原帖地址：<a href="http://koolshare.cn/thread-67584-1-8.html" target="_blank" rel="noopener">http://koolshare.cn/thread-67584-1-8.html</a>  </p><p>下载地址：<a href="https://pan.baidu.com/s/1kVHJ3gj#list/path=%2F" target="_blank" rel="noopener">百度网盘</a>（4kqa）</p><h1 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h1><p>打开vSphere客户端，新建虚拟机，因为之后需要换硬盘文件，所以这里配置什么的就无所谓了，直接选择典型就可以了。客户机操作系统我这里选择的是“其他Linux(64位)”：<br><img src="https://i.loli.net/2018/12/23/5c1f721de8dfe.png" alt="01.png"><br>然后网卡根据需要设置成两个或两个以上，我这里没有特殊需要，两个网卡一个WAN口一个LAN口就可以了：<br><img src="https://i.loli.net/2018/12/23/5c1f721df2c97.png" alt="02.png"><br>之后默认即可，完成虚拟机创建。</p><h1 id="修改硬盘文件"><a href="#修改硬盘文件" class="headerlink" title="修改硬盘文件"></a>修改硬盘文件</h1><p>在服务器存储中找到刚刚创建的虚拟机的虚拟磁盘文件（.vmdk）并删除：<br><img src="https://i.loli.net/2018/12/23/5c1f732863c64.png" alt="03.png"><br>在当前目录上传之前下载的两个.vmdk文件，上传之后会被合并为一个文件：<br><img src="https://i.loli.net/2018/12/23/5c1f741fb2876.png" alt="04.png"><br>编辑虚拟机设置，添加现有虚拟磁盘，在存储中找到刚刚上传的文件完成添加并删除原来的硬盘：<br><img src="https://i.loli.net/2018/12/23/5c1f7516ded5b.png" alt="05.png"><br>打开电源即可开始安装。</p><h1 id="安装后的配置"><a href="#安装后的配置" class="headerlink" title="安装后的配置"></a>安装后的配置</h1><p>安装完成后按回车进入：<br><img src="https://i.loli.net/2018/12/23/5c1f76226f85a.png" alt="06.png"><br>网络的配置文件在“/etc/config/network”下，可以根据需要进行修改：<br><img src="https://i.loli.net/2018/12/23/5c1f76f5e44c4.png" alt="07.png"><br>这里我没有做任何更改，因为上接网络中有DHCP服务器，所以自动获取了一个WAN口ip，如果没有DHCP需要手工设置ip地址，LAN口ip使用默认的192.168.1.1。</p><h1 id="登录WEB页面"><a href="#登录WEB页面" class="headerlink" title="登录WEB页面"></a>登录WEB页面</h1><p>我们需要使用LAN口的ip地址进入WEB页面，所以我把一台Windows设备的ip地址设置为192.168.1.2/24，网关192.168.1.1。  </p><p>打开浏览器访问192.168.1.1，用户名：admin，密码：koolshare。<br><img src="https://i.loli.net/2018/12/23/5c1f78cab38bd.png" alt="08.png"></p><p>开启SS服务并将需要和谐上网的虚拟机修改网关为LAN口地址，大功告成！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近部署一套环境需要从国外的服务器下载文件，因为众所周知的原因，速度慢到几kb不说，还经常传输失败，但一台一台的设置科学上网又比较麻烦，所以就有了设置一个可以使用酸酸乳的软路由作为网关的想法。  &lt;/p&gt;
+&lt;p&gt;实验室硬件不支持肯定首先想到的就是软路由了，常用的比较有名的当
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="ESXI" scheme="https://cyneliu.github.io/tags/ESXI/"/>
+    
+      <category term="OpenWrt" scheme="https://cyneliu.github.io/tags/OpenWrt/"/>
+    
+      <category term="软路由" scheme="https://cyneliu.github.io/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"/>
+    
+      <category term="虚拟化" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>CentOS7安装VNC服务端程序</title>
@@ -92,11 +124,11 @@
       <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
     
     
-      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
       <category term="deepin" scheme="https://cyneliu.github.io/tags/deepin/"/>
     
       <category term="ssr" scheme="https://cyneliu.github.io/tags/ssr/"/>
+    
+      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
   </entry>
   
@@ -412,11 +444,11 @@
     
       <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
     
+      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    
       <category term="vps" scheme="https://cyneliu.github.io/tags/vps/"/>
     
       <category term="网站" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
   </entry>
   
@@ -546,33 +578,6 @@
       
       
         &lt;h1 id=&quot;实验原理&quot;&gt;&lt;a href=&quot;#实验原理&quot; class=&quot;headerlink&quot; title=&quot;实验原理&quot;&gt;&lt;/a&gt;实验原理&lt;/h1&gt;&lt;p&gt;OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>4.基于RESTCONF的流表管理</title>
-    <link href="https://cyneliu.github.io/2018/09/14/4-%E5%9F%BA%E4%BA%8ERESTCONF%E7%9A%84%E6%B5%81%E8%A1%A8%E7%AE%A1%E7%90%86/"/>
-    <id>https://cyneliu.github.io/2018/09/14/4-基于RESTCONF的流表管理/</id>
-    <published>2018-09-14T14:36:06.000Z</published>
-    <updated>2018-10-16T14:12:17.386Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>所谓流表，其实可被视作是SDN对网络设备的数据转发功能的一种抽象。在传统网络设备中，交换机和路由器的数据转发需要依赖设备中保存的二层MAC地址转发表或者三层的IP地址路由表，SDN交换机中使用的流表也是如此，不过在它的表项中整合了网络中各个层次的网络配置信息，从而在进行数据转发时可以使用更丰富的规则。  </p><p>在使用RESTCONF下发流表时，需要学习的是请求消息的BODY的结构。实例如下：</p><blockquote></blockquote><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&lt;flow xmlns=&quot;urn:opendaylight:flow:inventory&quot;&gt;    &lt;flow-name&gt;add-flow&lt;/flow-name&gt;     &lt;table_id&gt;0&lt;/table_id&gt;    &lt;id&gt;100&lt;/id&gt;     &lt;strict&gt;false&lt;/strict&gt;   &lt;priority&gt;1&lt;/priority&gt;     &lt;instructions&gt;         &lt;instruction&gt;             &lt;order&gt;0&lt;/order&gt;             &lt;apply-actions&gt;                 &lt;action&gt;                     &lt;order&gt;0&lt;/order&gt;                     &lt;output-action&gt;&lt;output-node-connector&gt;FLOOD&lt;/output-node-connector&gt;                    &lt;/output-action&gt;                &lt;/action&gt;            &lt;/apply-actions&gt;        &lt;/instruction&gt;    &lt;/instructions&gt;    &lt;match&gt;    &lt;/match&gt;&lt;/flow&gt;</code></pre><p>BODY中定义了流表名称（flowname）、flow所在的table（table_id）、flow的id（id）、是否严格匹配（strict）、优先级和匹配字段（match fields）、优先级（priority）、指令（instructions）、超时（timeouts）、cookie等值。</p><h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/15/5b9cf7bc7011f.png" alt="拓扑.png"></p><h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机查看网络连通性。由于OpenDaylight组件过于庞大，所以启动比较慢，容易导致控制器与交换机连接不成功的现象，间接导致主机无法获取IP。所以使用OpenDaylight控制器时，需要先检查网络连通性，查看交换机与控制器连接情况。执行以下命令：</p><blockquote></blockquote><pre><code>ovs-vsctl show</code></pre><p>出现“is_connected: true”，表明控制器与交换机连接成功。  </p><p>步骤6 登录交换机，执行如下命令连接控制器。</p><blockquote></blockquote><pre><code>ovs-vsctl set-manager tcp:20.0.1.3:6640</code></pre><p>原本控制器与交换机之间的连接是通过OpenFlow协议的，在此基于OVSDB协议创建一个新的连接，其中20.0.1.3是控制器IP地址，6640是OVSDB协议对应的侦听端口。</p><h1 id="删除ODL自动下发的流表"><a href="#删除ODL自动下发的流表" class="headerlink" title="删除ODL自动下发的流表"></a>删除ODL自动下发的流表</h1><p>在实验过程中需要验证两个不能通信的主机，通过REST北向接口下发流表，使得两个主机能够通信，所以需要删除原先的默认通信流表。  </p><p>步骤1 登录交换机，执行如下命令删除流表，如下图所示。</p><blockquote></blockquote><pre><code>ovs-ofctl del-flows -O OpenFlow13 br-sw</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9cf7bc315a1.png" alt="1.png"><br>步骤2 执行ovs-ofctl dump-flows -O OpenFlow13 br-sw查看是否删除成功，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cf7eee833f.png" alt="2.png"><br>步骤3 登录其中的一个主机，查看主机间网络网络连通情况，此时主机间无法进行通信，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cf80fce130.png" alt="3.png"></p><h1 id="下发通信流表"><a href="#下发通信流表" class="headerlink" title="下发通信流表"></a>下发通信流表</h1><p>步骤1 登录控制器，打开浏览器，输入URL：<strong>http://[controller_ip]:8181/index.html</strong>，输入有户名：admin，密码：admin，单击登录。登录后，单击Nodes菜单，获取交换机node id，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cf86025757.png" alt="4.png"><br>步骤2 单击Applications Menu/Development/Postman打开postman应用，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfa287541e.png" alt="5.png"><br>步骤3 输入URL http://[controller-ip]:8181/restconf/config/opendaylight-inventory:nodes/node/[node-id]/table/0/flow/100。  </p><p>[controller-ip]为当前控制器的数据层的ip，[node-id]即步骤1中获得的node id请求类型选择PUT。问一个页面需要输入用户名和密码，同样，用Postman发送请求也需要一定的权限。单击Authorization，type选择basic auth。输入用户名和密码，用户名和密码都是admin。选择BODY的类型raw -&gt;XML（application/xml），如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfa5754286.png" alt="6.png"><br>步骤4 输入Body内容如下：</p><blockquote></blockquote><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&lt;flow xmlns=&quot;urn:opendaylight:flow:inventory&quot;&gt;    &lt;flow-name&gt;add-flow&lt;/flow-name&gt;    &lt;table_id&gt;0&lt;/table_id&gt;    &lt;id&gt;100&lt;/id&gt;    &lt;installHw&gt;false&lt;/installHw&gt;    &lt;strict&gt;false&lt;/strict&gt;  &lt;priority&gt;1&lt;/priority&gt;    &lt;instructions&gt;       &lt;instruction&gt;           &lt;order&gt;0&lt;/order&gt;           &lt;apply-actions&gt;               &lt;action&gt;                   &lt;order&gt;0&lt;/order&gt;                   &lt;output-action&gt;&lt;output-node-connector&gt;FLOOD&lt;/output-node-connector&gt;                   &lt;/output-action&gt;                &lt;/action&gt;            &lt;/apply-actions&gt;            &lt;/instruction&gt;    &lt;/instructions&gt;    &lt;match&gt;    &lt;/match&gt;&lt;/flow&gt;注意：严格区分大小写</code></pre><p>步骤5 点击Send按钮，输出结果如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfb40e9192.png" alt="7.png"><br>步骤6 输入URL http://[controller-ip]:8181/restconf/config/opendaylight-inventory:nodes/node/[node-id]/table/0/。[controller-ip] 为当前控制器的数据层的ip，[node-id]即【四、下发通信流表】步骤1获得的node id请求类型选择GET。问一个页面需要输入用户名和密码，同样，用Postman发送请求也需要一定的权限。单击Authorization，type选择basic auth。输入用户名和密码，用户名和密码都是admin，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfb65ceea0.png" alt="8.png"><br>步骤7 点击Send按钮，输出结果如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfb85a72bb.png" alt="9.png"><br>可以看到，此流表为之前通过REST北向接口下发的流表。  </p><p>步骤8 登录其中的一个主机，查看主机间网络网络情况，此时主机间能够进行通信。</p><h1 id="使用Postman删除流表"><a href="#使用Postman删除流表" class="headerlink" title="使用Postman删除流表"></a>使用Postman删除流表</h1><p>步骤1 输入URL http://[controller-ip]:8181/restconf/config/opendaylight-inventory:nodes/node/[node-id]/table/0/flow/[flow-id]。  </p><p>[controller-ip]为当前控制器的数据层的ip，[node-id]即【四、下发通信流表】步骤1获得的node id，[flow-id]为之前下发流表的id，可以到【四、下发通信流表】的BODY中查看。请求类型选择DELETE.访问一个页面需要输入用户名和密码，同样，用Postman发送请求也需要一定的权限。单击Authorization，type选择basic auth。输入用户名和密码，用户名和密码都是admin。点击Send，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfbcf41812.png" alt="10.png"><br>步骤2登录交换机，切换至root用户。执行命令ovs-ofctl dump-flows -O OpenFlow13 br-sw，可验证流表已删除，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9cfbcf2cb35.png" alt="11.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;实验原理&quot;&gt;&lt;a href=&quot;#实验原理&quot; class=&quot;headerlink&quot; title=&quot;实验原理&quot;&gt;&lt;/a&gt;实验原理&lt;/h1&gt;&lt;p&gt;所谓流表，其实可被视作是SDN对网络设备的数据转发功能的一种抽象。在传统网络设备中，交换机和路由器的数据转发需要依赖设备中保
       
     
     </summary>
