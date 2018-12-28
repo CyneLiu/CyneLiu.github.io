@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2018-12-23T12:04:24.631Z</updated>
+  <updated>2018-12-28T13:13:06.965Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://cyneliu.github.io/2018/12/28/CentOS7%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E5%90%8E%E6%89%BE%E6%89%BE%E4%B8%8D%E5%88%B0%E2%80%98%E2%80%98ifconfig-%E5%91%BD%E4%BB%A4/"/>
+    <id>https://cyneliu.github.io/2018/12/28/CentOS7最小化安装后找找不到‘‘ifconfig-命令/</id>
+    <published>2018-12-28T11:03:17.739Z</published>
+    <updated>2018-12-28T13:13:06.965Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: CentOS7最小化安装后找找不到‘ifconfig’命令<br>date: 2018-12-28 19:03:17<br>tags: [CentOS,ifconfig]</p><h2 id="categories-Linux"><a href="#categories-Linux" class="headerlink" title="categories: Linux"></a>categories: Linux</h2><p>“ifconfig”命令用于配置GNU/Linux系统的网络接口。它显示网络接口卡的详细信息，包括IP地址，MAC地址，以及网络接口卡状态之类。但是，该命令已经过时了，而且在最小化版本的RHEL 7以及它的克隆版本CentOS 7，Oracle Linux 7和Scientific Linux 7中也找不到该命令。</p><h1 id="使用ip-addr和ip-link查看网卡信息"><a href="#使用ip-addr和ip-link查看网卡信息" class="headerlink" title="使用ip addr和ip link查看网卡信息"></a>使用ip addr和ip link查看网卡信息</h1><blockquote></blockquote><pre><code>ip addr # 查看网卡细节ip linkip -s link # 查看网络接口统计数据</code></pre><h1 id="依然使用ifconfig"><a href="#依然使用ifconfig" class="headerlink" title="依然使用ifconfig"></a>依然使用ifconfig</h1><p>如果说我们还是想使用ifconfig命令，我们就需要安装相应的包来使用。首先查看哪些包提供ifconfig命令：</p><blockquote></blockquote><pre><code>yum provides ifconfig</code></pre><p>或者：</p><blockquote></blockquote><pre><code>yum whatprovides ifconfig</code></pre><p>根据输出信息安装相应的包即可使用ifconfig命令。  </p><p>参考自：<a href="https://linux.cn/article-3631-1.html" target="_blank" rel="noopener">Linux中国</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;p&gt;title: CentOS7最小化安装后找找不到‘ifconfig’命令&lt;br&gt;date: 2018-12-28 19:03:17&lt;br&gt;tags: [CentOS,ifconfig]&lt;/p&gt;
+&lt;h2 id=&quot;categories-Linux&quot;&gt;&lt;a href=&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu16.04安装包方式安装Open vSwitch</title>
+    <link href="https://cyneliu.github.io/2018/12/28/Ubuntu16-04%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Open-vSwitch/"/>
+    <id>https://cyneliu.github.io/2018/12/28/Ubuntu16-04压缩包方式安装Open-vSwitch/</id>
+    <published>2018-12-28T09:15:02.000Z</published>
+    <updated>2018-12-28T09:47:43.709Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="下载安装Open-vSwitch"><a href="#下载安装Open-vSwitch" class="headerlink" title="下载安装Open vSwitch"></a>下载安装Open vSwitch</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote></blockquote><pre><code>apt-get updateapt-get install build-essential</code></pre><h2 id="下载解压安装包"><a href="#下载解压安装包" class="headerlink" title="下载解压安装包"></a>下载解压安装包</h2><p>下载Open vSwitch安装包：<a href="http://www.openvswitch.org/download/" target="_blank" rel="noopener">Open vSwitch官网下载地址</a><br>这里我下载的是最新的2.10.1版本：</p><blockquote></blockquote><pre><code>wget https://www.openvswitch.org/releases/openvswitch-2.10.1.tar.gztar -xzvf openvswitch-2.10.1.tar.gz</code></pre><h2 id="构建基于Linux内核的交换机"><a href="#构建基于Linux内核的交换机" class="headerlink" title="构建基于Linux内核的交换机"></a>构建基于Linux内核的交换机</h2><blockquote></blockquote><pre><code>cd openvswitch-2.10.1./configure --with-linux=/lib/modules/&quot;uname -r&quot;/build# 注意这条命令中的&quot;uname -r&quot;是输出当前系统的版本号# 比如我执行&quot;uname -r&quot;后的结果为4.4.0-21-generic，那么我应该执行的命令即为：# ./configure --with-linux=/lib/modules/4.4.0-21-generic/build</code></pre><h2 id="编译安装Open-vSwitch"><a href="#编译安装Open-vSwitch" class="headerlink" title="编译安装Open vSwitch"></a>编译安装Open vSwitch</h2><blockquote></blockquote><pre><code>makemake install</code></pre><h2 id="加载openvswitch-ko模块-遇到错误"><a href="#加载openvswitch-ko模块-遇到错误" class="headerlink" title="加载openvswitch.ko模块(遇到错误)"></a>加载openvswitch.ko模块(遇到错误)</h2><p>如果需要OVS支持VLAN功能，还需要加载openvswitch.ko模块，如果不需要，此步可以忽略。  </p><blockquote></blockquote><pre><code>modprobe greinsmod datapath/linux/openvswitch.ko</code></pre><p>我在执行第二条命令时遇到了如下错误：</p><blockquote></blockquote><pre><code>insmod: ERROR: could not insert module openvswitch.ko: Unkown symbol in module</code></pre><p>google了几个方法都没能成功解决问题，有人说是bug，也有说是因为兼容性问题，因为我暂时用不到VLAN功能，就暂时跳过此步骤了。</p><h2 id="安装并加载构建的内核模块"><a href="#安装并加载构建的内核模块" class="headerlink" title="安装并加载构建的内核模块"></a>安装并加载构建的内核模块</h2><blockquote></blockquote><pre><code>make modules_install/sbin/modprobe openvswitch</code></pre><h2 id="使用ovsdb工具初始化配置数据库"><a href="#使用ovsdb工具初始化配置数据库" class="headerlink" title="使用ovsdb工具初始化配置数据库"></a>使用ovsdb工具初始化配置数据库</h2><blockquote></blockquote><pre><code>ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema# 在执行此命令时报错没有此文件夹，我直接手动创建了对应的文件夹：# mkdir -p /usr/local/etc/openvswitch</code></pre><h1 id="启动Open-vSwitch"><a href="#启动Open-vSwitch" class="headerlink" title="启动Open vSwitch"></a>启动Open vSwitch</h1><h2 id="启动ovsdb-server配置数据库"><a href="#启动ovsdb-server配置数据库" class="headerlink" title="启动ovsdb-server配置数据库:"></a>启动ovsdb-server配置数据库:</h2><blockquote></blockquote><pre><code>ovsdb-server -v --remote=punix:/usr/local/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --private-key=db:Open_vSwitch,SSL,private_key --certificate=db:Open_vSwitch,SSL,certificate --bootstrap-ca-cert=db:Open_vSwitch,SSL,ca_cert --pidfile --detach --log-file# 这里同样报错没有此文件夹，同样手动创建了相应的文件夹</code></pre><p>首次用ovsdb-tool创建数据库时需用ovs-vsctl命令初始化下数据库:</p><blockquote></blockquote><pre><code>ovs-vsctl --no-wait init</code></pre><h2 id="启动OVS主进程"><a href="#启动OVS主进程" class="headerlink" title="启动OVS主进程:"></a>启动OVS主进程:</h2><blockquote></blockquote><pre><code>ovs-vswitchd --pidfile --detach --log-file</code></pre><h2 id="查看OVS进程是否启动"><a href="#查看OVS进程是否启动" class="headerlink" title="查看OVS进程是否启动:"></a>查看OVS进程是否启动:</h2><blockquote></blockquote><pre><code>ps aux|grep ovs</code></pre><h2 id="查看所安装OVS的版本号"><a href="#查看所安装OVS的版本号" class="headerlink" title="查看所安装OVS的版本号:"></a>查看所安装OVS的版本号:</h2><blockquote></blockquote><pre><code>ovs-vsctl --version</code></pre><p>至此，Open vSwitch就安装完成了，安装过程中的几个小问题本次没有解决，希望之后能找到解决办法。最后再补充一个更简单的方式——使用apt install的方式直接安装：</p><blockquote></blockquote><pre><code>apt-get install openvswitch-switch</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;下载安装Open-vSwitch&quot;&gt;&lt;a href=&quot;#下载安装Open-vSwitch&quot; class=&quot;headerlink&quot; title=&quot;下载安装Open vSwitch&quot;&gt;&lt;/a&gt;下载安装Open vSwitch&lt;/h1&gt;&lt;h2 id=&quot;准备工作&quot;&gt;&lt;a 
+      
+    
+    </summary>
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
+    
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
+    
+      <category term="Open vSwitch" scheme="https://cyneliu.github.io/tags/Open-vSwitch/"/>
+    
+  </entry>
   
   <entry>
     <title>ESXI安装OpenWrt/LEDE实现软路由功能</title>
@@ -534,60 +584,6 @@
     
     
       <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>6.使用OpenDaylight界面下发流表</title>
-    <link href="https://cyneliu.github.io/2018/09/16/6-%E4%BD%BF%E7%94%A8OpenDaylight%E7%95%8C%E9%9D%A2%E4%B8%8B%E5%8F%91%E6%B5%81%E8%A1%A8/"/>
-    <id>https://cyneliu.github.io/2018/09/16/6-使用OpenDaylight界面下发流表/</id>
-    <published>2018-09-16T12:11:24.000Z</published>
-    <updated>2018-10-16T14:12:41.460Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>YANG UI是OpenDaylight中一款基于DLUX的应用，旨在简化、激励应用的开发与测试。YANG UI通过动态封装、调用YANG模型和相关REST APIs，生成并展示一个简单的UI界面。开发人员可以通过API请求获取交换机信息，并且以JSON格式展示。YANG UI主要面向上层应用开发，为应用开发人员提供了很多相关工具，有效的节约了开发人员的时间。  </p><p>OpenFlow1.0协议处理数据包的流程相对简单，因为1.0版本只支持单流表。交换机接收到数据包后解析数据包，数据包解析后就开始匹配，从table 0 开始匹配，如果匹配成功则对该数据包执行相应的动作，更新相应的计数器。如果没有找到匹配项则将数据包交给控制器。  </p><p>OpenFlow1.3协议支持多流表匹配，即一个交换机只会有多个流表，因此数据包处理过程相对复杂。首先解析进入设备的报文，然后从table 0开始匹配，按照优先级高低依次匹配该流表中的流表项，一个报文在一个流表中只会匹配上一条流表项。通常根据报文的类型，报文头的字段例如源MAC地址、目的MAC地址、源IP地址、目的IP地址等进行匹配，大部分匹配还支持掩码进行更精确、灵活的匹配。也可以通过报文的入端口或元数据信息来进行报文的匹配，一个流表项中可以同时存在多个匹配项，一个报文需要同时匹配流表项中所有匹配项才能匹配该流表项。报文匹配按照现有的报文字段进行，比如前一个流表通过apply actions改变了该报文的某个字段，则下一个表项按修改后的字段进行匹配。如果匹配成功，则按照指令集里的动作更新动作集，或更新报文/匹配集字段，或更新元数据和计数器。根据指令是否继续前往下一个流表，不继续则终止匹配流程执行动作集，如果指令要求继续前往下一个流表则继续匹配，下一个流表的ID需要比当前流表ID大。当报文匹配失败了，如果存在无匹配流表项（table miss）就按照该表项执行指令，一般是将报文转发给控制器、丢弃或转发给其他流表。如果没有table miss表项则默认丢弃该报文。  </p><p>在Open vSwitch中，流表项作为ovs-ofctl的参数，采用“字段=值”的格式。如果有多个字段，可以用逗号分开，一些常见字段如下：<br><img src="https://i.loli.net/2018/09/16/5b9e4929f0d63.png" alt="1.png"></p><h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/16/5b9e494803043.png" alt="拓扑.png"></p><h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>登录交换机，检查网络连通性。当显示“is_connected：ture”时，表示交换机与控制器连接成功，可以正常进行实验。若不显示“is_connected：ture”时，表示交换机与控制器连接不成功，执行:</p><blockquote></blockquote><pre><code>ovs-vsctl del-controller br-swovs-vsctl set-controller br-sw tcp:30.0.1.3:6633 </code></pre><p>命令手动重连，稍等一会后，重新查看连接状态。</p><h1 id="基于OpenFlow1-0协议下发流表"><a href="#基于OpenFlow1-0协议下发流表" class="headerlink" title="基于OpenFlow1.0协议下发流表"></a>基于OpenFlow1.0协议下发流表</h1><p>步骤1 切换到交换机，执行以下命令设置OpenFlow协议版本为1.0。  </p><blockquote></blockquote><pre><code>ovs-vsctl set bridge br-sw protocols=OpenFlow10</code></pre><p>步骤2 选择控制器，单击浏览器图标，打开浏览器。  </p><p>步骤3 访问OpenDaylight Web页面，url是<a href="http://127.0.0.1:8080/index.html" target="_blank" rel="noopener">http://127.0.0.1:8080/index.html</a> ，用户名和密码是admin/admin，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4a2625fb7.png" alt="2.png"><br>步骤4 单击左侧的“Nodes”查看节点信息。其中尤其需要关注Node Id，下发流表的时候会用到Node Id，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4a653f1bb.png" alt="3.png"><br>步骤5 单击上图中的“Node Connectors”列的数据即“9”，可以查看具体节点连接信息，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4ac29c305.png" alt="4.png"><br>步骤6 选择左侧的“Yang UI”，单击“Expand all”展开所有目录，查看各种模块，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4af0e3b80.png" alt="5.png"><br>步骤7 展开“opendaylight-inventory rev.2013-08-19”，选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{id}”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b115e5c9.png" alt="6.png"><br>步骤8 补全node id、table id和flow id的值。  </p><p>其中node id参见之前查询到的Node Id。table id和flow id可以自定义。由于OpenFlow1.0协议只支持单流表，所以这里的table id设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b3798ac7.png" alt="7.png"><br>步骤9 单击flow list后面的“+”，展开流表相关的参数。填写第一个框id，路径中的flow id也会随之同步，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b59027ad.png" alt="8.png"><br>步骤10 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为“0x0800”(说明：由于使用IP地址进行匹配，所以需要设置以太网协议类型。),如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b789668c.png" alt="9.png"><br>步骤11 填写匹配参数，在“layer-3-match”后面的下拉框中选择“ipv4-match”，使用IP匹配。  </p><p>步骤12 展开“layer-3-match”，填写源IP地址和目的IP地址，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4bc1b5579.png" alt="10.png"><br>其中源地址填写主机1的IP地址，目的地址填写主机2的IP地址。  </p><p>步骤13 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“apply-actions-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4bec99e16.png" alt="11.png"><br>步骤14 展开“apply-actions”，单击“action list”后面的“+”，在action后面的下拉框中选择“drop-action-case”，action order和instruction order都设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c0f7a101.png" alt="12.png"><br>步骤15 设置“priority”为27，“idle-timeout”为0，“hard-timeout”为0，“cookie”为100000000，“table_id”为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c2f54bc4.png" alt="13.png"><br>说明：priority设置的比已有流表项的高，而idle-timeout和hardtimeout都设置为0则代表该流表项永远不会过期，除非被删除。  </p><p>步骤16 向右滚动Actions栏，在路径后面有动作类型GET、PUT、POST、DELETE，下发流表则选择PUT动作，然后单击“Send”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c5b47302.png" alt="14.png"><br>步骤17 如果下发成功会出现下面的提示，如果下发不成功则会弹出相应的错误信息。<br><img src="https://i.loli.net/2018/09/16/5b9e4c9033d8d.png" alt="15.png"><br>步骤18 切换到交换机，执行如下命令查看流表，确保刚刚下发的流表已经下发到交换机。如下图所示。</p><blockquote></blockquote><pre><code>ovs-ofctl dump-flows br-sw</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4cc42a811.png" alt="16.png"><br>步骤19 登录主机1，执行如下命令向主机2、主机3发送数据包，测试主机间的连通性。</p><blockquote></blockquote><pre><code># scapy&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4cfe4003b.png" alt="17.png"><br>由上图可知，主机1与主机2之间不通，主机1与主机3通，新下发的流表项生效。  </p><p>说明：如果主机之间通则能够收到answer，如果主机之间不通那么就无法收到answer，当主机之间不通时scapy就会一直发送数据包，如果需要停止可以使用Ctrl+c。  </p><p>步骤20 切换到交换机，执行以下命令删除刚刚下发的流表项，并查看流表确保成功删除。  </p><blockquote></blockquote><pre><code>ovs-ofctl del-flows br-sw dl_type=0x0800,nw_src=10.0.0.3,nw_dst=10.0.0.4ovs-ofctl dump-flows br-sw</code></pre><p>步骤21 切换到主机1执行如下命令，测试主机1和主机2是否连通。</p><blockquote></blockquote><pre><code>result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4d486b69c.png" alt="18.png"><br>由上图可知，主机1与主机2之间就通了。</p><h1 id="基于OpenFlow1-3协议下发流表"><a href="#基于OpenFlow1-3协议下发流表" class="headerlink" title="基于OpenFlow1.3协议下发流表"></a>基于OpenFlow1.3协议下发流表</h1><p>步骤1 登录交换机，设置OpenFlow协议版本为1.3。执行以下命令：</p><blockquote></blockquote><pre><code>ovs-vsctl set bridge br-sw protocols=OpenFlow13</code></pre><p>步骤2 与OpenFlow1.0下发流表的过程解基本一致。展开opendaylight-inventory rev.2013-08-19，选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{id}”。  </p><p>步骤3 补全Actions栏中的路径，其中node id参见之前查询到的Node Id。table id和flow id可以自定义。由于OpenFlow1.3协议支持多级流表，所以这里的table id设置为2。  </p><p>步骤4 单击flow list后面的“+”，流表相关的参数就会展开。设置id为1，路径中的flow id也会随之同步，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e592464e82.png" alt="19.png"><br>步骤5 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为0x0800，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e594c3f115.png" alt="20.png"><br>步骤6 在“layer-3-match”后面的下拉框中选择“ipv4-match”。  </p><p>步骤7 展开“layer-3-match”，填写源IP地址和目的IP地址。以主机1的IP为源IP，以主机3的IP为目的IP，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5979b8763.png" alt="21.png"><br>步骤8 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“apply-actions-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e599fdaa67.png" alt="22.png"><br>步骤9 展开“apply-actions”，单击“action list”后面的“+”，在“action”后面的下拉框中选择“drop-action-case”，“action order”和“instruction order”都设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e59c4a3dca.png" alt="23.png"><br>步骤10 设置“priority”为25，“idle-timeout”为0，“hard-timeout”为0，“cookie”为10000000，“table_id”为2，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e59eb63de3.png" alt="24.png"><br>步骤11 向右滚动Actions栏，选择“PUT”动作，然后单击“Send”下发流表。PUT成功就会弹出“Request sent successfully”，否则弹出错误信息。  </p><p>步骤12 切换到主机1，执行如下命令，向主机3发送数据包，测试主机1和主机3的连通性。</p><blockquote></blockquote><pre><code>&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5a28ba934.png" alt="25.png"><br>由上图可知，主机1与主机3之间是连通的，新下发的流表没有发挥作用。原因是数据包在table 0中能够匹配到相应流表就不会被转发到table2，想要table2的流表项发挥作用就需要向table0增加一条流表，将源IP为10.0.0.3，目的IP为10.0.0.2的数据包转发到table2中处理。  </p><p>步骤13 选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{i}”。node id参见之前查询到的Node Id、table id设为0、flow id设为1。  </p><p>步骤14 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为0x0800。  </p><p>步骤15 匹配参数保持不变，以主机1的IP为源IP，以主机3的IP为目的IP。  </p><p>步骤16 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“go-to-table-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5a73537cd.png" alt="26.png"><br>步骤17 展开“go-to-table”，table_id填写为2，即将符合匹配条件的数据包根据table2中的流表项处理。instruction order依旧设为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5aa888c72.png" alt="27.png"><br>步骤18 设“priority”置为23，“idle-timeout”为0，“hard-timeout”为0，“cookie”为1000000000，“table_id”为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5ad13fe66.png" alt="28.png"><br>步骤19 向右滚动Actions栏，选择“PUT”动作，然后单击“Send”下发流表。  </p><p>步骤20 切换到交换机，执行以下命令查看新下发的流表项。</p><blockquote></blockquote><pre><code>ovs-ofctl -O OpenFlow13 dump-flows b</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5b076d691.png" alt="29.png"><br>步骤21 切换到主机1，执行如下命令发送数据包，测试主机之间的连通性。</p><blockquote></blockquote><pre><code>&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5b4ae09ab.png" alt="30.png"><br>由上图可知，主机1与主机3之间不通，而主机1与主机2之间通，流表发挥作用。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;实验原理&quot;&gt;&lt;a href=&quot;#实验原理&quot; class=&quot;headerlink&quot; title=&quot;实验原理&quot;&gt;&lt;/a&gt;实验原理&lt;/h1&gt;&lt;p&gt;YANG UI是OpenDaylight中一款基于DLUX的应用，旨在简化、激励应用的开发与测试。YANG UI通过动态封装
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>5.OpenFlow实现示例之中继器HUB</title>
-    <link href="https://cyneliu.github.io/2018/09/15/5-OpenFlow%E5%AE%9E%E7%8E%B0%E7%A4%BA%E4%BE%8B%E4%B9%8B%E4%B8%AD%E7%BB%A7%E5%99%A8HUB/"/>
-    <id>https://cyneliu.github.io/2018/09/15/5-OpenFlow实现示例之中继器HUB/</id>
-    <published>2018-09-15T13:09:29.000Z</published>
-    <updated>2018-10-16T14:12:07.057Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信息的计数器（Counter），还有匹配表项后需要对数据分组执行的动作表（Action）。分组头域是数据分组匹配流表项时参照的依据，作用上类似于传统交换机进行二层交换时匹配数据分组的MAC地址，路由器进行三层路由时匹配的IP地址。流表项中的计数器用来统计相关“流”的一些信息，例如查找次数、收发分组数、生存时间等。另外，OpenFlow针对每张表、每个流表项、每个端口、每个队列也都会维护它们相应的计数器。动作表指定了OpenFlow交换机处理相应“流”的行为。相比于传统网络设备对数据分组只能进行较为单一的转发操作，流表项根据指定动作字段来指导OF交换机如何处理“流”。动作表可以包含0个或多个动作，交换机会按照这些动作的先后顺序依次执行，如果其中不包含转发（Forward）动作的话，数据分组就会被丢弃掉，如果包含转发动作，数据分组会得到相应的转发处理，但是OpenFlow v1.0无法保证不同的数据分组的转发顺序。动作可以分为两种类型：必选动作（Required Action）和可选动作（Optional Action）。必选动作是默认支持的，而交换机需要通知控制器它支持的可选动作。另外，当流表项中存在OpenFlow交换机不支持的动作时将向控制器返回错误消息。在SDN网络中，控制器下发流表主要有两种模式，分别是reactive模式和proactive模式。  </p><p>传统交换机参照MAC地址转发，路由器参照IP地址转发，通过定制ASIC芯片可以实现高速工作。而OpenFlow将网络协议栈扁平化，协议栈各层次对于转发设备而言不再具有明确的界限，各个网络字段都可作为流表中的匹配域，通过通配符掩码实现任意字段的组合。相比于传统网络，这种做法无疑大大提高了网络灵活性，但付出的代价是硬件设备为了适应这种通配的匹配方式，一般来说需要采用TCAM（Ternary Content Addressable Memory）来设计流表，但是TCAM的成本要高出很多，这就极大地限制了流表的规模，也就限制了SDN的规模。如果按照很多客户的要求，动辄要几十KB甚至上百KB的流表要求，至少需要20Mbit的TCAM，远远超过目前市场上容量最大的交换芯片的TCAM大小。为了克服TCAM表较小的问题，SDN先驱们提出采用reactive的方式来编写TCAM。<br><img src="https://i.loli.net/2018/09/15/5b9d05573ed46.png" alt="1.png"><br>在reactive模式下，OpenFlow交换机接收到未知数据包时，会向控制器发送一条packet_in消息询问控制器如何处理该数据包。控制器接收到packet_in消息后，计算路径并发送一条flow_mod消息指示交换机如何处理该数据包。并且，当老化定时器超时后就可以删除与该数据包相关的流表项。如此一来，OpenFlow交换机无需维护全部流表，只有当未知数据包到达交换机时才会触发reactive模式，可以有效的节省TCAM的空间。但是reactive模式缺点就是交换机无法即时地处理未知数据包，需要依赖控制器的决策，虽然在一定程度上解决了TCAM较小带来的问题，但是也让SDN控制器成为系统扩展的瓶颈，随着网络规模的不断扩大，SDN控制器无法处理大规模的网络流量，SDN控制器的性能就会限制网络规模的扩展。  </p><p>OpenFlow交换机和OpenFlow控制器之间的通道建立后，由OpenFlow控制器向OpenFlow交换机预先发送流表项方式称之为proactive模式。proactive模式的设置不是必须在控制器与交换机建立连接后立刻下发流表，可以在连接建立后的任意时间下发流表。proactive模式的主要特点是“主动”，控制器主动下发流表给交换机，随后交换机可以直接根据流表进行转发。proactive模式下控制器的压力会大大减轻，不过TCAM造成的局限性也尤为明显。</p><h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/15/5b9d0af0ac5d1.png" alt="拓扑.png"></p><h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机，检查网络连通性。执行以下命令：</p><blockquote></blockquote><pre><code>ovs-vsctl show</code></pre><p>出现“is_connected: true”，表明控制器与交换机连接成功。  </p><p>步骤2 登录主机，查看主机IP。  </p><p>登录交换机，查看交换机mac地址。  </p><blockquote></blockquote><pre><code>ifconfig |more</code></pre><p>根据实验拓扑图、交换机和主机的mac地址，可以判断出交换机eth1连接host1，eth2连接host2，eth3连接host3。</p><h1 id="proactive模式"><a href="#proactive模式" class="headerlink" title="proactive模式"></a>proactive模式</h1><p>步骤1 Open Daylight控制器与交换机建立连接后，会自动下发初始流表。登录交换机使用下列命令查看初始流表。</p><blockquote></blockquote><pre><code>ovs-ofctl dump-flows br-sw</code></pre><p>如果没有的话重启一下交换机。<br><img src="https://i.loli.net/2018/09/15/5b9d129607bf4.png" alt="2.png"><br>步骤2 登录控制器，在下方的“Application Finder”中搜索“postman”，并打开自带的Postman工具，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d151e53f54.png" alt="3.png"><br>步骤3 获取交换机的id信息。打开Basic Auth页签，Username字段填写admin，Password字段填写admin完成认证。  </p><p>提交方式为GET，URL地址栏中输入<a href="http://127.0.0.1:8080/restconf/operational/opendaylight-inventory:nodes。" target="_blank" rel="noopener">http://127.0.0.1:8080/restconf/operational/opendaylight-inventory:nodes。</a>  </p><p>步骤4 单击Send按钮，获取交换机id信息，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d156896885.png" alt="4.png"><br>步骤5 下发一条流表。</p><blockquote><p>选择提交方式“PUT”。  </p></blockquote><blockquote><p>URL地址栏输入如下形式的地址：http://{controller-ip}:8080/restconf/config/opendaylight-inventory:nodes/node/{node-id}/table/{table-id}/flow/{flow-id}。  </p></blockquote><blockquote><p>其中，{controller-ip}为控制器的ip地址，node-id为上面获取到的交换机id信息，table-id这里为0，flow-id根据下发不同流表变化，可自定义。本实验URL地址栏输入如下地址：<a href="http://127.0.0.1:8080/restconf/config/opendaylight-inventory:nodes/node/openflow:143226243417414/table/0/flow/14。" target="_blank" rel="noopener">http://127.0.0.1:8080/restconf/config/opendaylight-inventory:nodes/node/openflow:143226243417414/table/0/flow/14。</a>  </p></blockquote><blockquote><p>填写Headers信息，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d16d59439b.png" alt="5.png"><br>单击Body，Bady格式选择raw—&gt;XML(application/xml)。Body内容如下所示：  </p></blockquote><blockquote><p>匹配条件为ANY，actions为ALL，即将交换机收到的所有数据包转发到除入端口外的所有端口，从而实现中继器HUB的功能。</p></blockquote><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&lt;flow xmlns=&quot;urn:opendaylight:flow:inventory&quot;&gt;    &lt;priority&gt;35&lt;/priority&gt;    &lt;flow-name&gt;SDN&lt;/flow-name&gt;    &lt;idle-timeout&gt;0&lt;/idle-timeout&gt;    &lt;hard-timeout&gt;0&lt;/hard-timeout&gt;    &lt;match&gt;ANY&lt;/match&gt;    &lt;id&gt;14&lt;/id&gt;    &lt;table_id&gt;0&lt;/table_id&gt;    &lt;instructions&gt;        &lt;instruction&gt;            &lt;order&gt;0&lt;/order&gt;            &lt;apply-actions&gt;                &lt;action&gt;                       &lt;output-action&gt;                          &lt;output-node-connector&gt;ALL&lt;/output-node-connector&gt;                       &lt;/output-action&gt;                       &lt;order&gt;0&lt;/order&gt;                &lt;/action&gt;            &lt;/apply-actions&gt;        &lt;/instruction&gt;    &lt;/instructions&gt;&lt;/flow&gt;</code></pre><p>步骤6 单击Send按钮发送请求，STATUS显示请求发送成功，流表下发成功，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d18177ec0e.png" alt="6.png"><br>步骤7 登录交换机查看下发的流表，执行以下命令：</p><blockquote></blockquote><pre><code>ovs-ofctl dump-flows br-sw</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d184ac4929.png" alt="7.png"><br>步骤8 登录主机host1，对主机host2进行ping操作，host2的IP为10.0.0.10，执行以下命令：</p><blockquote></blockquote><pre><code>ping 10.0.0.10</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d18930750e.png" alt="8.png"><br>步骤9 登录交换机用tcpdump捕获广播到host2和host3数据包。host2对应的端口是eth2，host3对应的端口是eth3，分别捕获这两个端口上的数据包。  </p><p>（备注：选择不在host3、host2上抓包的原因是：由于当h1 ping h2时，数据包从交换机所有端口output出去后，openstack中的Linux-bridge会根据转发表过滤掉所有目的地址与端口不一致的数据包，因此host3上无法捕获host1与host2之间的数据包。）</p><blockquote></blockquote><pre><code>tcpdump -i eth2</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d18d0ab61c.png" alt="9.png"></p><blockquote></blockquote><pre><code>tcpdump -i eth3</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d19734c90f.png" alt="10.png"></p><h1 id="reactive模式"><a href="#reactive模式" class="headerlink" title="reactive模式"></a>reactive模式</h1><p>reactive模式需要依赖SDN控制器的反应，实现较为复杂，在此仅进行方案介绍，不做实验操作，有兴趣的同学可自行拓展学习。  </p><p>步骤1 reactive模式的触发机制就是交换机将接收到数据包转发给控制器，交换机转发数据包给控制器的情况有两种：一个是交换机接收到未知数据包；另一个就是流表action要求交换机将数据包转发给控制器。因此设置reactive模式的第一步是下发一条流表，priority设置为最高65535，匹配条件为ANY，actions是将数据包output到controller。<br><img src="https://i.loli.net/2018/09/15/5b9d1a21ac061.png" alt="11.png"><br>流表项设置好后，当host1发送数据包时，交换机接收到数据包后会发送packet_in消息给控制器。  </p><p>步骤2 控制器接收到packet_in消息后对消息中的内容进行判断，计算分析后发送packet_out消息给交换机，告知交换机如何处理该数据包。本实验中控制器会要求交换机将数据包转发到除入端口外的所有端口，从而实验中继器的功能。<br><img src="https://i.loli.net/2018/09/15/5b9d1a4af035d.png" alt="12.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;实验原理&quot;&gt;&lt;a href=&quot;#实验原理&quot; class=&quot;headerlink&quot; title=&quot;实验原理&quot;&gt;&lt;/a&gt;实验原理&lt;/h1&gt;&lt;p&gt;OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
     
   </entry>
   
