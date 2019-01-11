@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-01-11T11:15:45.598Z</updated>
+  <updated>2019-01-11T11:44:50.941Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -17,25 +17,29 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="https://cyneliu.github.io/2018/12/28/CentOS7%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E5%90%8E%E6%89%BE%E4%B8%8D%E5%88%B0%E2%80%98%E2%80%98ifconfig-%E5%91%BD%E4%BB%A4/"/>
-    <id>https://cyneliu.github.io/2018/12/28/CentOS7最小化安装后找不到‘‘ifconfig-命令/</id>
-    <published>2018-12-28T11:03:17.739Z</published>
-    <updated>2019-01-11T11:15:45.598Z</updated>
+    <title>CentOS7最小化安装后找不到ifconfig命令</title>
+    <link href="https://cyneliu.github.io/2019/01/11/CentOS7%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E5%90%8E%E6%89%BE%E4%B8%8D%E5%88%B0ifconfig%E5%91%BD%E4%BB%A4/"/>
+    <id>https://cyneliu.github.io/2019/01/11/CentOS7最小化安装后找不到ifconfig命令/</id>
+    <published>2019-01-11T11:43:09.000Z</published>
+    <updated>2019-01-11T11:44:50.941Z</updated>
     
-    <content type="html"><![CDATA[<hr><p>title: CentOS7最小化安装后找不到ifconfig命令<br>date: 2018-12-28 19:03:17<br>tags: [CentOS,ifconfig]</p><h2 id="categories-Linux"><a href="#categories-Linux" class="headerlink" title="categories: Linux"></a>categories: Linux</h2><p>“ifconfig”命令用于配置GNU/Linux系统的网络接口。它显示网络接口卡的详细信息，包括IP地址，MAC地址，以及网络接口卡状态之类。但是，该命令已经过时了，而且在最小化版本的RHEL 7以及它的克隆版本CentOS 7，Oracle Linux 7和Scientific Linux 7中也找不到该命令。</p><h1 id="使用ip-addr和ip-link查看网卡信息"><a href="#使用ip-addr和ip-link查看网卡信息" class="headerlink" title="使用ip addr和ip link查看网卡信息"></a>使用ip addr和ip link查看网卡信息</h1><blockquote></blockquote><pre><code>ip addr # 查看网卡细节ip linkip -s link # 查看网络接口统计数据</code></pre><h1 id="依然使用ifconfig"><a href="#依然使用ifconfig" class="headerlink" title="依然使用ifconfig"></a>依然使用ifconfig</h1><p>如果说我们还是想使用ifconfig命令，我们就需要安装相应的包来使用。首先查看哪些包提供ifconfig命令：</p><blockquote></blockquote><pre><code>yum provides ifconfig</code></pre><p>或者：</p><blockquote></blockquote><pre><code>yum whatprovides ifconfig</code></pre><p>根据输出信息安装相应的包即可使用ifconfig命令。  </p><p>参考自：<a href="https://linux.cn/article-3631-1.html" target="_blank" rel="noopener">Linux中国</a></p>]]></content>
+    <content type="html"><![CDATA[<p>“ifconfig”命令用于配置GNU/Linux系统的网络接口。它显示网络接口卡的详细信息，包括IP地址，MAC地址，以及网络接口卡状态之类。但是，该命令已经过时了，而且在最小化版本的RHEL 7以及它的克隆版本CentOS 7，Oracle Linux 7和Scientific Linux 7中也找不到该命令。</p><h1 id="使用ip-addr和ip-link查看网卡信息"><a href="#使用ip-addr和ip-link查看网卡信息" class="headerlink" title="使用ip addr和ip link查看网卡信息"></a>使用ip addr和ip link查看网卡信息</h1><blockquote></blockquote><pre><code>ip addr # 查看网卡细节ip linkip -s link # 查看网络接口统计数据</code></pre><h1 id="依然使用ifconfig"><a href="#依然使用ifconfig" class="headerlink" title="依然使用ifconfig"></a>依然使用ifconfig</h1><p>如果说我们还是想使用ifconfig命令，我们就需要安装相应的包来使用。首先查看哪些包提供ifconfig命令：</p><blockquote></blockquote><pre><code>yum provides ifconfig</code></pre><p>或者：</p><blockquote></blockquote><pre><code>yum whatprovides ifconfig</code></pre><p>根据输出信息安装相应的包即可使用ifconfig命令。  </p><p>参考自：<a href="https://linux.cn/article-3631-1.html" target="_blank" rel="noopener">Linux中国</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;hr&gt;
-&lt;p&gt;title: CentOS7最小化安装后找不到ifconfig命令&lt;br&gt;date: 2018-12-28 19:03:17&lt;br&gt;tags: [CentOS,ifconfig]&lt;/p&gt;
-&lt;h2 id=&quot;categories-Linux&quot;&gt;&lt;a href=&quot;#ca
+        &lt;p&gt;“ifconfig”命令用于配置GNU/Linux系统的网络接口。它显示网络接口卡的详细信息，包括IP地址，MAC地址，以及网络接口卡状态之类。但是，该命令已经过时了，而且在最小化版本的RHEL 7以及它的克隆版本CentOS 7，Oracle Linux 7和Scient
       
     
     </summary>
     
+      <category term="Linux" scheme="https://cyneliu.github.io/categories/Linux/"/>
+    
+    
+      <category term="CentOS" scheme="https://cyneliu.github.io/tags/CentOS/"/>
+    
+      <category term="ifconfig" scheme="https://cyneliu.github.io/tags/ifconfig/"/>
     
   </entry>
   
@@ -174,11 +178,11 @@
       <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
     
     
-      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
       <category term="deepin" scheme="https://cyneliu.github.io/tags/deepin/"/>
     
       <category term="ssr" scheme="https://cyneliu.github.io/tags/ssr/"/>
+    
+      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
   </entry>
   
@@ -492,13 +496,13 @@
     
       <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
     
-      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
+      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
       <category term="vps" scheme="https://cyneliu.github.io/tags/vps/"/>
     
       <category term="网站" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E7%AB%99/"/>
     
-      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
     
   </entry>
   
