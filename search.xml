@@ -3,7 +3,7 @@
   <entry>
     <title></title>
     <url>%2F2018%2F12%2F28%2FCentOS7%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E5%90%8E%E6%89%BE%E4%B8%8D%E5%88%B0%E2%80%98%E2%80%98ifconfig-%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[title: CentOS7最小化安装后找不到‘ifconfig’命令date: 2018-12-28 19:03:17tags: [CentOS,ifconfig] categories: Linux“ifconfig”命令用于配置GNU/Linux系统的网络接口。它显示网络接口卡的详细信息，包括IP地址，MAC地址，以及网络接口卡状态之类。但是，该命令已经过时了，而且在最小化版本的RHEL 7以及它的克隆版本CentOS 7，Oracle Linux 7和Scientific Linux 7中也找不到该命令。 使用ip addr和ip link查看网卡信息 ip addr # 查看网卡细节 ip link ip -s link # 查看网络接口统计数据 依然使用ifconfig如果说我们还是想使用ifconfig命令，我们就需要安装相应的包来使用。首先查看哪些包提供ifconfig命令： yum provides ifconfig 或者： yum whatprovides ifconfig 根据输出信息安装相应的包即可使用ifconfig命令。 参考自：Linux中国]]></content>
+    <content type="text"><![CDATA[title: CentOS7最小化安装后找不到ifconfig命令date: 2018-12-28 19:03:17tags: [CentOS,ifconfig] categories: Linux“ifconfig”命令用于配置GNU/Linux系统的网络接口。它显示网络接口卡的详细信息，包括IP地址，MAC地址，以及网络接口卡状态之类。但是，该命令已经过时了，而且在最小化版本的RHEL 7以及它的克隆版本CentOS 7，Oracle Linux 7和Scientific Linux 7中也找不到该命令。 使用ip addr和ip link查看网卡信息 ip addr # 查看网卡细节 ip link ip -s link # 查看网络接口统计数据 依然使用ifconfig如果说我们还是想使用ifconfig命令，我们就需要安装相应的包来使用。首先查看哪些包提供ifconfig命令： yum provides ifconfig 或者： yum whatprovides ifconfig 根据输出信息安装相应的包即可使用ifconfig命令。 参考自：Linux中国]]></content>
   </entry>
   <entry>
     <title><![CDATA[Ubuntu16.04安装包方式安装Open vSwitch]]></title>
@@ -62,9 +62,9 @@
         <category>打鱼晒网</category>
       </categories>
       <tags>
+        <tag>科学上网</tag>
         <tag>deepin</tag>
         <tag>ssr</tag>
-        <tag>科学上网</tag>
       </tags>
   </entry>
   <entry>
@@ -200,10 +200,10 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>科学上网</tag>
         <tag>脚本</tag>
         <tag>vps</tag>
         <tag>网站</tag>
+        <tag>科学上网</tag>
       </tags>
   </entry>
   <entry>
