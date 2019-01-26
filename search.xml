@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Nginx反向代理]]></title>
+    <url>%2F2019%2F01%2F26%2FNginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%2F</url>
+    <content type="text"><![CDATA[最近我用国内阿里云的服务器搭建了几个站点，但是由于没有备案所以只能采用域名+端口的方式访问，这样访问起来很别扭，于是就想到了使用Nginx反向代理。 环境简介做了一个简陋的拓扑图说明一下，图中的两台服务器都是处于公网的vps，都具有公网的ip地址，其中WEB服务器就是我在阿里云的未备案的vps，另一台是一台位于境外的vps，这里用来做Nginx反向代理。 在代理服务器安装nginx安装所需环境，详细的安装步骤可以参考这里： yum install gcc zlib zlib-devel openssl openssl-devel -y 下载nginx安装包： wget -c https://nginx.org/download/nginx-1.10.1.tar.gz 解压： tar -zxvf nginx-1.10.1.tar.gz cd nginx-1.10.1 使用默认配置： ./configure 编译安装： make make install 查找安装路径： whereis nginx 根据回显的信息进入安装路径，在nginx目录下有以下文件，我们主要用到的是sbin(执行程序)和conf(配置文件)两个文件夹：nginx常用命令： ./nginx #启动nginx ./nginx -s stop #此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程 ./nginx -s quit #此方式停止步骤是待nginx进程处理任务完毕进行停止 ./nginx -s reload #重载配置文件 ./nginx -v #查看版本信息 执行在sbin目录下执行./nginx启动Nginx，访问此vps的ip地址出现如下页面说明安装成功：设置开机启动： vi /etc/rc.local 增加一行：/usr/local/nginx/sbin/nginx设置执行权限： chmod 755 rc.local 配置代理服务器这里有两种配置方法，一种是反向代理单个域名，通过这一个域名访问WEB服务器的单一服务；另一种则是代理多个域名，访问相应的域名时将请求代理到响应ip的响应端口。 代理单个域名编辑默认配置文件： vim /usr/local/nginx/conf/nginx.conf 将以下内容添加到如下图所示的部分： proxy_pass http://172.18.78.14:6080; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection &quot;Upgrade&quot;; 重载配置： ./nginx -s reload 最后将域名解析到代理服务器的ip地址即可。 代理多个域名因为代理多个域名配置较多，我们新建一个配置文件方便查看： vim /usr/local/nginx/conf/reverse-proxy.conf 粘贴如下内容： server { listen 80; server_name a.test.com; location /{ proxy_redirect off; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_pass http://127.0.0.1:8081; #proxy_pass http://tomcat; } access_log logs/tomcat1_access.log; } server { listen 80; server_name b.test.com; location /{ proxy_redirect off; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_pass http://127.0.0.1:8082; #proxy_pass http://tomcat; } access_log logs/tomcat2_access.log; } 需要注意的是，我在一开始的配置时同时代理了主域名即子域名，即test.com和a.test.com，这样配置的结果就是主域名无法进行代理，这种情况下如果还想使用主域名，可以使用www域名，即同时代理www.test.com和a.test.com等。 修改nginx.conf,导入刚才写的配置,在http{}中加入如下内容： include reverse-proxy.conf; 最后重载配置即可： ./nginx -s reload]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+        <tag>反向代理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CentOS7最小化安装后找不到ifconfig命令]]></title>
     <url>%2F2019%2F01%2F11%2FCentOS7%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E5%90%8E%E6%89%BE%E4%B8%8D%E5%88%B0ifconfig%E5%91%BD%E4%BB%A4%2F</url>
     <content type="text"><![CDATA[“ifconfig”命令用于配置GNU/Linux系统的网络接口。它显示网络接口卡的详细信息，包括IP地址，MAC地址，以及网络接口卡状态之类。但是，该命令已经过时了，而且在最小化版本的RHEL 7以及它的克隆版本CentOS 7，Oracle Linux 7和Scientific Linux 7中也找不到该命令。 使用ip addr和ip link查看网卡信息 ip addr # 查看网卡细节 ip link ip -s link # 查看网络接口统计数据 依然使用ifconfig如果说我们还是想使用ifconfig命令，我们就需要安装相应的包来使用。首先查看哪些包提供ifconfig命令： yum provides ifconfig 或者： yum whatprovides ifconfig 根据输出信息安装相应的包即可使用ifconfig命令。 参考自：Linux中国]]></content>
@@ -143,8 +155,8 @@
         <category>服务器应用</category>
       </categories>
       <tags>
-        <tag>Apache</tag>
         <tag>Web服务器</tag>
+        <tag>Apache</tag>
       </tags>
   </entry>
   <entry>
@@ -155,8 +167,8 @@
         <category>服务器应用</category>
       </categories>
       <tags>
-        <tag>Web服务器</tag>
         <tag>Nginx</tag>
+        <tag>Web服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -167,9 +179,9 @@
         <category>软件工具</category>
       </categories>
       <tags>
+        <tag>反向代理</tag>
         <tag>frp</tag>
         <tag>内网穿透</tag>
-        <tag>反向代理</tag>
         <tag>Windows</tag>
       </tags>
   </entry>
@@ -208,9 +220,9 @@
       <tags>
         <tag>Linux</tag>
         <tag>科学上网</tag>
+        <tag>脚本</tag>
         <tag>vps</tag>
         <tag>网站</tag>
-        <tag>脚本</tag>
       </tags>
   </entry>
   <entry>

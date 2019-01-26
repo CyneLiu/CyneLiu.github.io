@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="文件传输,工具,SSH," />
+  <meta name="keywords" content="Nginx,反向代理," />
 
 
 
@@ -89,18 +89,25 @@
 
 
 
-<meta name="description" content="我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。   sftpsftp(Secure File Transfer Pro">
-<meta name="keywords" content="文件传输,工具,SSH">
+<meta name="description" content="最近我用国内阿里云的服务器搭建了几个站点，但是由于没有备案所以只能采用域名+端口的方式访问，这样访问起来很别扭，于是就想到了使用Nginx反向代理。 环境简介做了一个简陋的拓扑图说明一下，图中的两台服务器都是处于公网的vps，都具有公网的ip地址，其中WEB服务器就是我在阿里云的未备案的vps，另一台是一台位于境外的vps，这里用来做Nginx反向代理。 在代理服务器安装nginx安装所需环境，详">
+<meta name="keywords" content="Nginx,反向代理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WinSCP——基于SSH的安全文件传输软件">
-<meta property="og:url" content="https://cyneliu.github.io/2018/07/03/WinSCP——基于SSH的安全文件传输软件/index.html">
+<meta property="og:title" content="Nginx反向代理">
+<meta property="og:url" content="https://cyneliu.github.io/2019/01/26/Nginx反向代理/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。   sftpsftp(Secure File Transfer Pro">
+<meta property="og:description" content="最近我用国内阿里云的服务器搭建了几个站点，但是由于没有备案所以只能采用域名+端口的方式访问，这样访问起来很别扭，于是就想到了使用Nginx反向代理。 环境简介做了一个简陋的拓扑图说明一下，图中的两台服务器都是处于公网的vps，都具有公网的ip地址，其中WEB服务器就是我在阿里云的未备案的vps，另一台是一台位于境外的vps，这里用来做Nginx反向代理。 在代理服务器安装nginx安装所需环境，详">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-16T14:19:39.035Z">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c0e2cc5892.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c1167725ea.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c1276be783.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c1514634dd.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c1914b6b3b.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c1d8b15629.png">
+<meta property="og:updated_time" content="2019-01-26T08:44:59.684Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WinSCP——基于SSH的安全文件传输软件">
-<meta name="twitter:description" content="我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。   sftpsftp(Secure File Transfer Pro">
+<meta name="twitter:title" content="Nginx反向代理">
+<meta name="twitter:description" content="最近我用国内阿里云的服务器搭建了几个站点，但是由于没有备案所以只能采用域名+端口的方式访问，这样访问起来很别扭，于是就想到了使用Nginx反向代理。 环境简介做了一个简陋的拓扑图说明一下，图中的两台服务器都是处于公网的vps，都具有公网的ip地址，其中WEB服务器就是我在阿里云的未备案的vps，另一台是一台位于境外的vps，这里用来做Nginx反向代理。 在代理服务器安装nginx安装所需环境，详">
+<meta name="twitter:image" content="https://i.loli.net/2019/01/26/5c4c0e2cc5892.png">
 
 
 
@@ -130,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://cyneliu.github.io/2018/07/03/WinSCP——基于SSH的安全文件传输软件/"/>
+  <link rel="canonical" href="https://cyneliu.github.io/2019/01/26/Nginx反向代理/"/>
 
 
 
 
 
-  <title>WinSCP——基于SSH的安全文件传输软件 | Cyne's Blog</title>
+  <title>Nginx反向代理 | Cyne's Blog</title>
   
 
 
@@ -307,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/07/03/WinSCP——基于SSH的安全文件传输软件/">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2019/01/26/Nginx反向代理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cyne Liu">
@@ -324,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">WinSCP——基于SSH的安全文件传输软件</h1>
+          <h1 class="post-title" itemprop="name headline">Nginx反向代理</h1>
         
 
         <div class="post-meta">
@@ -336,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-03T10:10:14+08:00">
-                2018-07-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-26T15:19:40+08:00">
+                2019-01-26
               </time>
             
 
@@ -359,8 +366,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件工具/" itemprop="url" rel="index">
-                    <span itemprop="name">软件工具</span>
+                  <a href="/categories/打鱼晒网/" itemprop="url" rel="index">
+                    <span itemprop="name">打鱼晒网</span>
                   </a>
                 </span>
 
@@ -390,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  621
+                  824
                 </span>
               
 
@@ -406,7 +413,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -427,11 +434,113 @@
       
 
       
-        <p>我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。  </p>
-<h1 id="sftp"><a href="#sftp" class="headerlink" title="sftp"></a>sftp</h1><p>sftp(Secure File Transfer Protocol)，安全文件传送协议，可以为传输文件提供一种安全的网络的加密方法。sftp与ftp有着几乎一样的语法和功能。SFTP是SSH的一部分，其实在SSH软件包中，已经包含了一个叫作SFTP的安全文件信息传输子系统，SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接和答复操作，所以从某种意义上来说，SFTP并不像一个服务器程序，而更像是一个客户端程序。<br>SFTP同样是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，所以在对网络安全性要求更高时，可以使用SFTP代替FTP。</p>
-<h1 id="sftp于ftp的区别"><a href="#sftp于ftp的区别" class="headerlink" title="sftp于ftp的区别"></a>sftp于ftp的区别</h1><p>FTP是一种文件传输协议，一般是为了方便数据共享的，包括一个FTP服务器和多个FTP客户端，FTP客户端通过FTP协议在服务器上下载资源。而SFTP协议是基于SSH，并在FTP的基础上对数据进行加密，使得传输的数据相对来说更安全。但是这种安全是以牺牲效率为代价的，也就是说SFTP的传输效率比FTP要略低。<br>而且在我的使用过程中，并没有感觉sftp的效率较于ftp有太大的差异，而且使用sftp最大的一个好处就是不需要安装而且安全性更高。<br>更详细的区别可以移步这里：<a href="https://www.cnblogs.com/mfryf/archive/2013/05/29/3107286.html" target="_blank" rel="noopener">Sftp和ftp 区别、工作原理等（汇总ing）</a></p>
-<h1 id="WinSCP"><a href="#WinSCP" class="headerlink" title="WinSCP"></a>WinSCP</h1><p>官网地址：<a href="https://winscp.net/eng/docs/lang:chs" target="_blank" rel="noopener">https://winscp.net/eng/docs/lang:chs</a><br>除了WinSCP，Windows环境下还可以使用Core FTP，FileZilla, WinSCP，Xftp来连接SFTP进行上传，下载文件，建立，删除目录等操作。</p>
-
+        <p>最近我用国内阿里云的服务器搭建了几个站点，但是由于没有备案所以只能采用域名+端口的方式访问，这样访问起来很别扭，于是就想到了使用Nginx反向代理。</p>
+<h1 id="环境简介"><a href="#环境简介" class="headerlink" title="环境简介"></a>环境简介</h1><p><img src="https://i.loli.net/2019/01/26/5c4c0e2cc5892.png" alt="00.png"><br>做了一个简陋的拓扑图说明一下，图中的两台服务器都是处于公网的vps，都具有公网的ip地址，其中WEB服务器就是我在阿里云的未备案的vps，另一台是一台位于境外的vps，这里用来做Nginx反向代理。</p>
+<h1 id="在代理服务器安装nginx"><a href="#在代理服务器安装nginx" class="headerlink" title="在代理服务器安装nginx"></a>在代理服务器安装nginx</h1><p>安装所需环境，详细的安装步骤可以参考<a href="https://www.cnblogs.com/kaid/p/7640723.html" target="_blank" rel="noopener">这里</a>：</p>
+<blockquote>
+</blockquote>
+<pre><code>yum install gcc zlib zlib-devel openssl openssl-devel -y
+</code></pre><p>下载nginx安装包：</p>
+<blockquote>
+</blockquote>
+<pre><code>wget -c https://nginx.org/download/nginx-1.10.1.tar.gz
+</code></pre><p>解压：</p>
+<blockquote>
+</blockquote>
+<pre><code>tar -zxvf nginx-1.10.1.tar.gz
+cd nginx-1.10.1
+</code></pre><p>使用默认配置：</p>
+<blockquote>
+</blockquote>
+<pre><code>./configure
+</code></pre><p>编译安装：</p>
+<blockquote>
+</blockquote>
+<pre><code>make
+make install
+</code></pre><p>查找安装路径：</p>
+<blockquote>
+</blockquote>
+<pre><code>whereis nginx
+</code></pre><p><img src="https://i.loli.net/2019/01/26/5c4c1167725ea.png" alt="01.png"></p>
+<p>根据回显的信息进入安装路径，在nginx目录下有以下文件，我们主要用到的是sbin(执行程序)和conf(配置文件)两个文件夹：<br><img src="https://i.loli.net/2019/01/26/5c4c1276be783.png" alt="02.png"><br>nginx常用命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>./nginx #启动nginx
+./nginx -s stop #此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程
+./nginx -s quit #此方式停止步骤是待nginx进程处理任务完毕进行停止
+./nginx -s reload #重载配置文件
+./nginx -v #查看版本信息
+</code></pre><p>执行在sbin目录下执行./nginx启动Nginx，访问此vps的ip地址出现如下页面说明安装成功：<br><img src="https://i.loli.net/2019/01/26/5c4c1514634dd.png" alt="03.png"><br>设置开机启动：</p>
+<blockquote>
+</blockquote>
+<pre><code>vi /etc/rc.local
+</code></pre><p>增加一行：/usr/local/nginx/sbin/nginx<br>设置执行权限：</p>
+<blockquote>
+</blockquote>
+<pre><code>chmod 755 rc.local
+</code></pre><h1 id="配置代理服务器"><a href="#配置代理服务器" class="headerlink" title="配置代理服务器"></a>配置代理服务器</h1><p>这里有两种配置方法，一种是反向代理单个域名，通过这一个域名访问WEB服务器的单一服务；另一种则是代理多个域名，访问相应的域名时将请求代理到响应ip的响应端口。</p>
+<h2 id="代理单个域名"><a href="#代理单个域名" class="headerlink" title="代理单个域名"></a>代理单个域名</h2><p>编辑默认配置文件：</p>
+<blockquote>
+</blockquote>
+<pre><code>vim /usr/local/nginx/conf/nginx.conf
+</code></pre><p>将以下内容添加到如下图所示的部分：</p>
+<blockquote>
+</blockquote>
+<pre><code>proxy_pass http://172.18.78.14:6080;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection &quot;Upgrade&quot;;
+</code></pre><p><img src="https://i.loli.net/2019/01/26/5c4c1914b6b3b.png" alt="04.png"></p>
+<p>重载配置：</p>
+<blockquote>
+</blockquote>
+<pre><code>./nginx -s reload
+</code></pre><p>最后将域名解析到代理服务器的ip地址即可。</p>
+<h1 id="代理多个域名"><a href="#代理多个域名" class="headerlink" title="代理多个域名"></a>代理多个域名</h1><p>因为代理多个域名配置较多，我们新建一个配置文件方便查看：</p>
+<blockquote>
+</blockquote>
+<pre><code>vim /usr/local/nginx/conf/reverse-proxy.conf
+</code></pre><p>粘贴如下内容：</p>
+<blockquote>
+</blockquote>
+<pre><code>server {
+    listen 80;
+    server_name a.test.com;
+    location /{
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8081;
+        #proxy_pass http://tomcat;
+    }
+    access_log logs/tomcat1_access.log;
+}
+server {
+    listen 80;
+    server_name b.test.com;
+    location /{
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8082;
+        #proxy_pass http://tomcat;
+    }
+    access_log logs/tomcat2_access.log;
+}
+</code></pre><p>需要注意的是，我在一开始的配置时同时代理了主域名即子域名，即test.com和a.test.com，这样配置的结果就是主域名无法进行代理，这种情况下如果还想使用主域名，可以使用www域名，即同时代理<a href="http://www.test.com和a.test.com等。" target="_blank" rel="noopener">www.test.com和a.test.com等。</a>  </p>
+<p>修改nginx.conf,导入刚才写的配置,在http{}中加入如下内容：</p>
+<blockquote>
+</blockquote>
+<pre><code>include reverse-proxy.conf;
+</code></pre><p><img src="https://i.loli.net/2019/01/26/5c4c1d8b15629.png" alt="05.png"></p>
+<p>最后重载配置即可：</p>
+<blockquote>
+</blockquote>
+<pre><code>./nginx -s reload
+</code></pre>
       
     </div>
     
@@ -477,11 +586,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/文件传输/" rel="tag"><i class="fa fa-tag"></i> 文件传输</a>
+            <a href="/tags/Nginx/" rel="tag"><i class="fa fa-tag"></i> Nginx</a>
           
-            <a href="/tags/工具/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
-          
-            <a href="/tags/SSH/" rel="tag"><i class="fa fa-tag"></i> SSH</a>
+            <a href="/tags/反向代理/" rel="tag"><i class="fa fa-tag"></i> 反向代理</a>
           
         </div>
       
@@ -509,8 +616,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/25/虚拟化运维笔记——Linux/" rel="next" title="虚拟化运维笔记 —— Linux">
-                <i class="fa fa-chevron-left"></i> 虚拟化运维笔记 —— Linux
+              <a href="/2019/01/11/CentOS7最小化安装后找不到ifconfig命令/" rel="next" title="CentOS7最小化安装后找不到ifconfig命令">
+                <i class="fa fa-chevron-left"></i> CentOS7最小化安装后找不到ifconfig命令
               </a>
             
           </div>
@@ -518,10 +625,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/11/虚拟化运维笔记——vsphere/" rel="prev" title="虚拟化运维笔记——vsphere">
-                虚拟化运维笔记——vsphere <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -679,7 +782,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sftp"><span class="nav-number">1.</span> <span class="nav-text">sftp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sftp于ftp的区别"><span class="nav-number">2.</span> <span class="nav-text">sftp于ftp的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WinSCP"><span class="nav-number">3.</span> <span class="nav-text">WinSCP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境简介"><span class="nav-number">1.</span> <span class="nav-text">环境简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在代理服务器安装nginx"><span class="nav-number">2.</span> <span class="nav-text">在代理服务器安装nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置代理服务器"><span class="nav-number">3.</span> <span class="nav-text">配置代理服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代理单个域名"><span class="nav-number">3.1.</span> <span class="nav-text">代理单个域名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代理多个域名"><span class="nav-number">4.</span> <span class="nav-text">代理多个域名</span></a></li></ol></div>
             
 
           </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-01-11T11:44:50.941Z</updated>
+  <updated>2019-01-26T08:44:59.684Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx反向代理</title>
+    <link href="https://cyneliu.github.io/2019/01/26/Nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+    <id>https://cyneliu.github.io/2019/01/26/Nginx反向代理/</id>
+    <published>2019-01-26T07:19:40.000Z</published>
+    <updated>2019-01-26T08:44:59.684Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近我用国内阿里云的服务器搭建了几个站点，但是由于没有备案所以只能采用域名+端口的方式访问，这样访问起来很别扭，于是就想到了使用Nginx反向代理。</p><h1 id="环境简介"><a href="#环境简介" class="headerlink" title="环境简介"></a>环境简介</h1><p><img src="https://i.loli.net/2019/01/26/5c4c0e2cc5892.png" alt="00.png"><br>做了一个简陋的拓扑图说明一下，图中的两台服务器都是处于公网的vps，都具有公网的ip地址，其中WEB服务器就是我在阿里云的未备案的vps，另一台是一台位于境外的vps，这里用来做Nginx反向代理。</p><h1 id="在代理服务器安装nginx"><a href="#在代理服务器安装nginx" class="headerlink" title="在代理服务器安装nginx"></a>在代理服务器安装nginx</h1><p>安装所需环境，详细的安装步骤可以参考<a href="https://www.cnblogs.com/kaid/p/7640723.html" target="_blank" rel="noopener">这里</a>：</p><blockquote></blockquote><pre><code>yum install gcc zlib zlib-devel openssl openssl-devel -y</code></pre><p>下载nginx安装包：</p><blockquote></blockquote><pre><code>wget -c https://nginx.org/download/nginx-1.10.1.tar.gz</code></pre><p>解压：</p><blockquote></blockquote><pre><code>tar -zxvf nginx-1.10.1.tar.gzcd nginx-1.10.1</code></pre><p>使用默认配置：</p><blockquote></blockquote><pre><code>./configure</code></pre><p>编译安装：</p><blockquote></blockquote><pre><code>makemake install</code></pre><p>查找安装路径：</p><blockquote></blockquote><pre><code>whereis nginx</code></pre><p><img src="https://i.loli.net/2019/01/26/5c4c1167725ea.png" alt="01.png"></p><p>根据回显的信息进入安装路径，在nginx目录下有以下文件，我们主要用到的是sbin(执行程序)和conf(配置文件)两个文件夹：<br><img src="https://i.loli.net/2019/01/26/5c4c1276be783.png" alt="02.png"><br>nginx常用命令：</p><blockquote></blockquote><pre><code>./nginx #启动nginx./nginx -s stop #此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程./nginx -s quit #此方式停止步骤是待nginx进程处理任务完毕进行停止./nginx -s reload #重载配置文件./nginx -v #查看版本信息</code></pre><p>执行在sbin目录下执行./nginx启动Nginx，访问此vps的ip地址出现如下页面说明安装成功：<br><img src="https://i.loli.net/2019/01/26/5c4c1514634dd.png" alt="03.png"><br>设置开机启动：</p><blockquote></blockquote><pre><code>vi /etc/rc.local</code></pre><p>增加一行：/usr/local/nginx/sbin/nginx<br>设置执行权限：</p><blockquote></blockquote><pre><code>chmod 755 rc.local</code></pre><h1 id="配置代理服务器"><a href="#配置代理服务器" class="headerlink" title="配置代理服务器"></a>配置代理服务器</h1><p>这里有两种配置方法，一种是反向代理单个域名，通过这一个域名访问WEB服务器的单一服务；另一种则是代理多个域名，访问相应的域名时将请求代理到响应ip的响应端口。</p><h2 id="代理单个域名"><a href="#代理单个域名" class="headerlink" title="代理单个域名"></a>代理单个域名</h2><p>编辑默认配置文件：</p><blockquote></blockquote><pre><code>vim /usr/local/nginx/conf/nginx.conf</code></pre><p>将以下内容添加到如下图所示的部分：</p><blockquote></blockquote><pre><code>proxy_pass http://172.18.78.14:6080;proxy_http_version 1.1;proxy_set_header Upgrade $http_upgrade;proxy_set_header Connection &quot;Upgrade&quot;;</code></pre><p><img src="https://i.loli.net/2019/01/26/5c4c1914b6b3b.png" alt="04.png"></p><p>重载配置：</p><blockquote></blockquote><pre><code>./nginx -s reload</code></pre><p>最后将域名解析到代理服务器的ip地址即可。</p><h1 id="代理多个域名"><a href="#代理多个域名" class="headerlink" title="代理多个域名"></a>代理多个域名</h1><p>因为代理多个域名配置较多，我们新建一个配置文件方便查看：</p><blockquote></blockquote><pre><code>vim /usr/local/nginx/conf/reverse-proxy.conf</code></pre><p>粘贴如下内容：</p><blockquote></blockquote><pre><code>server {    listen 80;    server_name a.test.com;    location /{        proxy_redirect off;        proxy_set_header Host $host;        proxy_set_header X-Real-IP $remote_addr;        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;        proxy_pass http://127.0.0.1:8081;        #proxy_pass http://tomcat;    }    access_log logs/tomcat1_access.log;}server {    listen 80;    server_name b.test.com;    location /{        proxy_redirect off;        proxy_set_header Host $host;        proxy_set_header X-Real-IP $remote_addr;        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;        proxy_pass http://127.0.0.1:8082;        #proxy_pass http://tomcat;    }    access_log logs/tomcat2_access.log;}</code></pre><p>需要注意的是，我在一开始的配置时同时代理了主域名即子域名，即test.com和a.test.com，这样配置的结果就是主域名无法进行代理，这种情况下如果还想使用主域名，可以使用www域名，即同时代理<a href="http://www.test.com和a.test.com等。" target="_blank" rel="noopener">www.test.com和a.test.com等。</a>  </p><p>修改nginx.conf,导入刚才写的配置,在http{}中加入如下内容：</p><blockquote></blockquote><pre><code>include reverse-proxy.conf;</code></pre><p><img src="https://i.loli.net/2019/01/26/5c4c1d8b15629.png" alt="05.png"></p><p>最后重载配置即可：</p><blockquote></blockquote><pre><code>./nginx -s reload</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近我用国内阿里云的服务器搭建了几个站点，但是由于没有备案所以只能采用域名+端口的方式访问，这样访问起来很别扭，于是就想到了使用Nginx反向代理。&lt;/p&gt;
+&lt;h1 id=&quot;环境简介&quot;&gt;&lt;a href=&quot;#环境简介&quot; class=&quot;headerlink&quot; title=&quot;环境
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="Nginx" scheme="https://cyneliu.github.io/tags/Nginx/"/>
+    
+      <category term="反向代理" scheme="https://cyneliu.github.io/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>CentOS7最小化安装后找不到ifconfig命令</title>
@@ -351,9 +379,9 @@
       <category term="服务器应用" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BA%94%E7%94%A8/"/>
     
     
-      <category term="Apache" scheme="https://cyneliu.github.io/tags/Apache/"/>
-    
       <category term="Web服务器" scheme="https://cyneliu.github.io/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="Apache" scheme="https://cyneliu.github.io/tags/Apache/"/>
     
   </entry>
   
@@ -379,9 +407,9 @@
       <category term="服务器应用" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BA%94%E7%94%A8/"/>
     
     
-      <category term="Web服务器" scheme="https://cyneliu.github.io/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
       <category term="Nginx" scheme="https://cyneliu.github.io/tags/Nginx/"/>
+    
+      <category term="Web服务器" scheme="https://cyneliu.github.io/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   
@@ -406,11 +434,11 @@
       <category term="软件工具" scheme="https://cyneliu.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/"/>
     
     
+      <category term="反向代理" scheme="https://cyneliu.github.io/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+    
       <category term="frp" scheme="https://cyneliu.github.io/tags/frp/"/>
     
       <category term="内网穿透" scheme="https://cyneliu.github.io/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
-    
-      <category term="反向代理" scheme="https://cyneliu.github.io/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
     
       <category term="Windows" scheme="https://cyneliu.github.io/tags/Windows/"/>
     
@@ -498,11 +526,11 @@
     
       <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
+      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
+    
       <category term="vps" scheme="https://cyneliu.github.io/tags/vps/"/>
     
       <category term="网站" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
     
   </entry>
   
@@ -562,32 +590,6 @@
       <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
     
       <category term="配置检测" scheme="https://cyneliu.github.io/tags/%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux下的命令行网盘</title>
-    <link href="https://cyneliu.github.io/2018/10/09/Linux%E4%B8%8B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BD%91%E7%9B%98/"/>
-    <id>https://cyneliu.github.io/2018/10/09/Linux下的命令行网盘/</id>
-    <published>2018-10-09T10:17:56.000Z</published>
-    <updated>2018-10-16T14:15:21.523Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。  </p><p>这款工具的名字叫做<strong>transfer.sh</strong>，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：  </p><p><img src="https://i.loli.net/2018/10/09/5bbc835018e45.png" alt="01.png"></p><p>上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.sh”。那么我们只需要执行如下命令即可：</p><blockquote></blockquote><pre><code>curl --upload-file ./bbr.sh https://transfer.sh/bbr2.sh</code></pre><p>上传完毕后就会返回一个分享链接，也就是“<a href="https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。" target="_blank" rel="noopener">https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。</a>  </p><p><img src="https://i.loli.net/2018/10/09/5bbc8491c4b3b.png" alt="02.png"></p><p>除此之外，transfer.sh还提供其它多种方式，比如一次性上传多个文件等，感兴趣的可以访问官网。  </p><p><strong><em>官网：</em></strong><br><a href="https://transfer.sh/" target="_blank" rel="noopener">https://transfer.sh/</a><br><strong><em>Github:</em></strong><br><a href="https://github.com/dutchcoders/transfer.sh/" target="_blank" rel="noopener">https://github.com/dutchcoders/transfer.sh/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。  &lt;/p&gt;
-&lt;p&gt;这款工具的名字叫做&lt;strong&gt;transfer.sh&lt;/strong&gt;，transfer.sh的使用也非常简单，可以使用
-      
-    
-    </summary>
-    
-      <category term="脚本" scheme="https://cyneliu.github.io/categories/%E8%84%9A%E6%9C%AC/"/>
-    
-    
-      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
     
   </entry>
   
