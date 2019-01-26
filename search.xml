@@ -155,8 +155,8 @@
         <category>服务器应用</category>
       </categories>
       <tags>
-        <tag>Web服务器</tag>
         <tag>Apache</tag>
+        <tag>Web服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -167,8 +167,8 @@
         <category>服务器应用</category>
       </categories>
       <tags>
-        <tag>Nginx</tag>
         <tag>Web服务器</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>

@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c1514634dd.png">
 <meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c1914b6b3b.png">
 <meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c1d8b15629.png">
-<meta property="og:updated_time" content="2019-01-26T08:44:59.684Z">
+<meta property="og:updated_time" content="2019-01-26T09:06:58.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx反向代理">
 <meta name="twitter:description" content="最近我用国内阿里云的服务器搭建了几个站点，但是由于没有备案所以只能采用域名+端口的方式访问，这样访问起来很别扭，于是就想到了使用Nginx反向代理。 环境简介做了一个简陋的拓扑图说明一下，图中的两台服务器都是处于公网的vps，都具有公网的ip地址，其中WEB服务器就是我在阿里云的未备案的vps，另一台是一台位于境外的vps，这里用来做Nginx反向代理。 在代理服务器安装nginx安装所需环境，详">
@@ -497,7 +497,7 @@ proxy_set_header Connection &quot;Upgrade&quot;;
 </blockquote>
 <pre><code>./nginx -s reload
 </code></pre><p>最后将域名解析到代理服务器的ip地址即可。</p>
-<h1 id="代理多个域名"><a href="#代理多个域名" class="headerlink" title="代理多个域名"></a>代理多个域名</h1><p>因为代理多个域名配置较多，我们新建一个配置文件方便查看：</p>
+<h2 id="代理多个域名"><a href="#代理多个域名" class="headerlink" title="代理多个域名"></a>代理多个域名</h2><p>因为代理多个域名配置较多，我们新建一个配置文件方便查看：</p>
 <blockquote>
 </blockquote>
 <pre><code>vim /usr/local/nginx/conf/reverse-proxy.conf
@@ -782,7 +782,7 @@ server {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境简介"><span class="nav-number">1.</span> <span class="nav-text">环境简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在代理服务器安装nginx"><span class="nav-number">2.</span> <span class="nav-text">在代理服务器安装nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置代理服务器"><span class="nav-number">3.</span> <span class="nav-text">配置代理服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代理单个域名"><span class="nav-number">3.1.</span> <span class="nav-text">代理单个域名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代理多个域名"><span class="nav-number">4.</span> <span class="nav-text">代理多个域名</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境简介"><span class="nav-number">1.</span> <span class="nav-text">环境简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在代理服务器安装nginx"><span class="nav-number">2.</span> <span class="nav-text">在代理服务器安装nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置代理服务器"><span class="nav-number">3.</span> <span class="nav-text">配置代理服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代理单个域名"><span class="nav-number">3.1.</span> <span class="nav-text">代理单个域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理多个域名"><span class="nav-number">3.2.</span> <span class="nav-text">代理多个域名</span></a></li></ol></li></ol></div>
             
 
           </div>

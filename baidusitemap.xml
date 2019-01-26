@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://cyneliu.github.io/2019/01/26/Nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</loc>
-    <lastmod>2019-01-26T08:44:59.684Z</lastmod>
+    <lastmod>2019-01-26T09:06:58.125Z</lastmod>
     <data>
         <display>
         <title>Nginx反向代理</title>
@@ -350,9 +350,9 @@
         <title>Apache Web服务器的安装与配置</title>
         <pubTime>2018-10-30T09:10:05.000Z</pubTime>
         
-        <tag>Web服务器</tag>
-         
         <tag>Apache</tag>
+         
+        <tag>Web服务器</tag>
          
          
            
@@ -372,9 +372,9 @@
         <title>Nginx的简单安装</title>
         <pubTime>2018-10-30T07:49:45.000Z</pubTime>
         
-        <tag>Nginx</tag>
-         
         <tag>Web服务器</tag>
+         
+        <tag>Nginx</tag>
          
          
            
