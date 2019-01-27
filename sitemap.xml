@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cyneliu.github.io/2019/01/27/%E7%AB%AF%E5%8F%A3%E6%A3%80%E6%B5%8B%E5%B0%8F%E5%B7%A5%E5%85%B7-tcping/</loc>
+    
+    <lastmod>2019-01-27T02:16:39.202Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cyneliu.github.io/2018/03/03/hexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/</loc>
+    
+    <lastmod>2019-01-26T11:03:29.152Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://cyneliu.github.io/2019/01/26/Nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</loc>
     
     <lastmod>2019-01-26T09:06:58.125Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>https://cyneliu.github.io/2018/12/28/Ubuntu16-04%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Open-vSwitch/</loc>
     
     <lastmod>2018-12-28T09:47:43.709Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cyneliu.github.io/2018/03/03/hexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/</loc>
-    
-    <lastmod>2018-12-24T03:28:32.013Z</lastmod>
     
   </url>
   

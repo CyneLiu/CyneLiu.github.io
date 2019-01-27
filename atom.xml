@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-01-26T09:06:58.125Z</updated>
+  <updated>2019-01-27T02:16:39.202Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>端口检测小工具:tcping</title>
+    <link href="https://cyneliu.github.io/2019/01/27/%E7%AB%AF%E5%8F%A3%E6%A3%80%E6%B5%8B%E5%B0%8F%E5%B7%A5%E5%85%B7-tcping/"/>
+    <id>https://cyneliu.github.io/2019/01/27/端口检测小工具-tcping/</id>
+    <published>2019-01-27T01:27:19.000Z</published>
+    <updated>2019-01-27T02:16:39.202Z</updated>
+    
+    <content type="html"><![CDATA[<p>tcping是一个可以用来检测端口是否开启的小工具，从名字就可以看出这个跟我们经常使用的ping命令比较相似，不同之处在于，ping是基于ICMP协议，而tcping顾名思义使用的是tcp协议，且不支持udp，所以不能检测udp端口。  </p><h1 id="下载使用"><a href="#下载使用" class="headerlink" title="下载使用"></a>下载使用</h1><p>工具下载：<a href="https://pan.baidu.com/s/1bjyXW2w8Z18FUofMrdf_Ng" target="_blank" rel="noopener">提取码 cyne</a>   </p><p>将下载文件解压后粘贴到 <em>C:\WINDOWS\system32</em> 目录下后就可以直接在cmd中使用了，查看命令帮助：</p><blockquote></blockquote><pre><code>tcping /?</code></pre><p><img src="https://i.loli.net/2019/01/27/5c4d123c40c13.png" alt="02.png"></p><p>比如我们检测本机的端口：<br>首先查看我们开放了哪些端口：</p><blockquote></blockquote><pre><code>netstat -a</code></pre><p><img src="https://i.loli.net/2019/01/27/5c4d12f9320e5.png" alt="01.png"></p><p>可以看到我的135端口是处于监听状态，我们用tcping测试一下：</p><blockquote></blockquote><pre><code>tcping -f 127.0.0.1 135</code></pre><p><img src="https://i.loli.net/2019/01/27/5c4d14489478c.png" alt="03.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;tcping是一个可以用来检测端口是否开启的小工具，从名字就可以看出这个跟我们经常使用的ping命令比较相似，不同之处在于，ping是基于ICMP协议，而tcping顾名思义使用的是tcp协议，且不支持udp，所以不能检测udp端口。  &lt;/p&gt;
+&lt;h1 id=&quot;下载使用&quot;
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="tcping" scheme="https://cyneliu.github.io/tags/tcping/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx反向代理</title>
@@ -526,11 +552,11 @@
     
       <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
-      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
-    
       <category term="vps" scheme="https://cyneliu.github.io/tags/vps/"/>
     
       <category term="网站" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E7%AB%99/"/>
+    
+      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
     
   </entry>
   
@@ -560,36 +586,6 @@
       <category term="网工" scheme="https://cyneliu.github.io/tags/%E7%BD%91%E5%B7%A5/"/>
     
       <category term="Cisco" scheme="https://cyneliu.github.io/tags/Cisco/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux系统配置检测工具——Superbench</title>
-    <link href="https://cyneliu.github.io/2018/10/10/linux%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Superbench/"/>
-    <id>https://cyneliu.github.io/2018/10/10/linux系统配置检测工具——Superbench/</id>
-    <published>2018-10-10T09:34:56.000Z</published>
-    <updated>2018-10-16T14:14:50.507Z</updated>
-    
-    <content type="html"><![CDATA[<p>我曾经就暗暗吐槽Linux没有一条可以查看配置信息的命令，只能一项一项的查看，体验不是很好。今天无意中发现了一个叫做<strong>Superbench</strong>的脚本，试着用了一下，非常方便，在这里推荐一下。  </p><p>这个脚本主要有以下几个特点：</p><blockquote><p>采用颜色显示，便于区分查找  </p><p>磁盘I/O测试分别使用小文件、中等文件、大文件进行测试，最终计算平均值。  </p><p>网速测试通过多个节点进行测试，其中CM,CU,CT分别代表移动、联通和电信。</p><blockquote><p>ps:<br>中国移动：CMCC ，全称ChinaMobile Communication Company<br>中国联通：CUCC，全称China unicom Communications Corporation<br>中国电信：CTC，全称China Telecommunications Corporation  </p></blockquote></blockquote><h1 id="脚本使用"><a href="#脚本使用" class="headerlink" title="脚本使用"></a>脚本使用</h1><p>执行如下命令:</p><blockquote></blockquote><pre><code>wget -qO- git.io/superbench.sh | bash</code></pre><p>稍等一会就会打印出详细的配置信息：  </p><p><img src="https://i.loli.net/2018/10/10/5bbdccb7a8783.png" alt="01.png"><br><img src="https://i.loli.net/2018/10/10/5bbdccb7aa383.png" alt="02.png"><br>同时我们看到最后还附带了一个分享链接用于分享我们的配置信息，在浏览器打开是这个样子的：  </p><p><img src="https://i.loli.net/2018/10/10/5bbdccb7b6cd2.png" alt="03.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;我曾经就暗暗吐槽Linux没有一条可以查看配置信息的命令，只能一项一项的查看，体验不是很好。今天无意中发现了一个叫做&lt;strong&gt;Superbench&lt;/strong&gt;的脚本，试着用了一下，非常方便，在这里推荐一下。  &lt;/p&gt;
-&lt;p&gt;这个脚本主要有以下几个特点：&lt;/p&gt;
-      
-    
-    </summary>
-    
-      <category term="脚本" scheme="https://cyneliu.github.io/categories/%E8%84%9A%E6%9C%AC/"/>
-    
-    
-      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
-    
-      <category term="脚本" scheme="https://cyneliu.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
-    
-      <category term="配置检测" scheme="https://cyneliu.github.io/tags/%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B/"/>
     
   </entry>
   

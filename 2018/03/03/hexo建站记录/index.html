@@ -116,7 +116,10 @@
 <meta property="og:image" content="https://i.loli.net/2018/03/25/5ab780018a55d.png">
 <meta property="og:image" content="https://i.loli.net/2018/03/25/5ab786e34f254.png">
 <meta property="og:image" content="https://i.loli.net/2018/09/03/5b8d3def88e87.png">
-<meta property="og:updated_time" content="2018-12-24T03:28:32.013Z">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c3d323f6f8.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c3e692aa7e.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c3e68e3c40.png">
+<meta property="og:updated_time" content="2019-01-26T11:03:29.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo建站记录">
 <meta name="twitter:description" content="建站过程在遇到各种各样问题之后，终于搭建完成了这个博客。  其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T git@github.com“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。 还有">
@@ -410,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.4k
+                  2.5k
                 </span>
               
 
@@ -619,6 +622,10 @@ transform: rotateZ(-360deg);
 b2t: true
 # Scroll percent label in b2t button.
 scrollpercent: true
+</code></pre><h2 id="添加视频"><a href="#添加视频" class="headerlink" title="添加视频"></a>添加视频</h2><blockquote>
+</blockquote>
+<pre><code>Idina Menze和Caleb Hyles激情对唱Let It Go：
+&lt;iframe height=498 width=510 src=&quot;http://player.youku.com/embed/XNjcyMDU4Njg0&quot; frameborder=0 allowfullscreen&gt;&lt;/iframe&gt;
 </code></pre><h1 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h1><blockquote>
 <p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">文档|Hexo</a><br><br><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a></p>
 </blockquote>
@@ -629,11 +636,8 @@ scrollpercent: true
 <h2 id="标题无法正常解析"><a href="#标题无法正常解析" class="headerlink" title="标题无法正常解析"></a>标题无法正常解析</h2><p>在浏览别人的博客的时候发现Hexo有自动解析目录的功能，是依靠markdown的标题实现的，在加了一个<strong>“#标题”</strong>这样时却发现博客无法解析到这是一个标题，查了一下原因是正规的标题写法是在”#”和标题之间加一个空格。</p>
 <h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><p>一开始刚刚接触markdown的时候一直用html的&#60;br/&#62;换行，这种换行方式貌似在换行的同时增加了行间距，无意间发现一个更好也更简单的换行方式，就是在要换行的位置敲两个空格，就可以换行。</p>
 <h2 id="FATAL-Cannot-read-property-‘replace’-of-null"><a href="#FATAL-Cannot-read-property-‘replace’-of-null" class="headerlink" title="FATAL Cannot read property ‘replace’ of null"></a>FATAL Cannot read property ‘replace’ of null</h2><p>今天在修改站点配置文件进行操作时报出“FATAL Cannot read property ‘replace’ of null”的错误：<br><img src="https://i.loli.net/2018/09/03/5b8d3def88e87.png" alt="snipaste_20180903_214210.png"><br>上网查了一下原因是url地址不能为空，按照注释要求改为相应地址即可。</p>
-<h2 id="添加视频"><a href="#添加视频" class="headerlink" title="添加视频"></a>添加视频</h2><blockquote>
-</blockquote>
-<pre><code>Idina Menze和Caleb Hyles激情对唱Let It Go：
-&lt;iframe height=498 width=510 src=&quot;http://player.youku.com/embed/XNjcyMDU4Njg0&quot; frameborder=0 allowfullscreen&gt;&lt;/iframe&gt;
-</code></pre>
+<h2 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h2><p>之前每次使用<strong>hexo d</strong>上传一次文章都需要重新设置自定义域名，也是很苦恼，今天终于找到了原因。<br>在GitHub代码库中有一个CNAME文件，存放着我们修改的自定义域名：<br><img src="https://i.loli.net/2019/01/26/5c4c3d323f6f8.png" alt="02.png"><br>而我在本地并没有这个文件，所以每次在执行hexo d上传了本地的文件后，GitHub中的CNAME就被覆盖掉了，所以需要在设置中设置自定义域名，其实也就是创建这个CNAME文件的过程。<br>问题找到了，解决就简单了，在<strong>source</strong>文件夹中创建CNAME文件即可：<br><img src="https://i.loli.net/2019/01/26/5c4c3e692aa7e.png" alt="01.png"><br><img src="https://i.loli.net/2019/01/26/5c4c3e68e3c40.png" alt="03.png"></p>
+
       
     </div>
     
@@ -805,7 +809,7 @@ scrollpercent: true
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -827,7 +831,7 @@ scrollpercent: true
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -877,7 +881,7 @@ scrollpercent: true
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建站过程"><span class="nav-number">1.</span> <span class="nav-text">建站过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后期添加："><span class="nav-number">2.</span> <span class="nav-text">后期添加：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加网易云音乐插件"><span class="nav-number">2.1.</span> <span class="nav-text">添加网易云音乐插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加particles-js背景动画"><span class="nav-number">2.2.</span> <span class="nav-text">添加particles.js背景动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置文章摘要"><span class="nav-number">2.3.</span> <span class="nav-text">设置文章摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#needmoreshare2分享按钮"><span class="nav-number">2.4.</span> <span class="nav-text">needmoreshare2分享按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标点击特效"><span class="nav-number">2.5.</span> <span class="nav-text">鼠标点击特效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章底部标签符号"><span class="nav-number">2.6.</span> <span class="nav-text">修改文章底部标签符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏旋转头像"><span class="nav-number">2.7.</span> <span class="nav-text">侧边栏旋转头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#底部全站字数统计"><span class="nav-number">2.8.</span> <span class="nav-text">底部全站字数统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章字数统计"><span class="nav-number">2.9.</span> <span class="nav-text">文章字数统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站顶部加载进度条"><span class="nav-number">2.10.</span> <span class="nav-text">网站顶部加载进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加来必力评论系统"><span class="nav-number">2.11.</span> <span class="nav-text">添加来必力评论系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏返回顶部按钮"><span class="nav-number">2.12.</span> <span class="nav-text">侧边栏返回顶部按钮</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官方文档："><span class="nav-number">3.</span> <span class="nav-text">官方文档：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误汇总"><span class="nav-number">4.</span> <span class="nav-text">错误汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#123-125-引起的报错"><span class="nav-number">4.1.</span> <span class="nav-text">{ }引起的报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标题无法正常解析"><span class="nav-number">4.2.</span> <span class="nav-text">标题无法正常解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#换行"><span class="nav-number">4.3.</span> <span class="nav-text">换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FATAL-Cannot-read-property-‘replace’-of-null"><span class="nav-number">4.4.</span> <span class="nav-text">FATAL Cannot read property ‘replace’ of null</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加视频"><span class="nav-number">4.5.</span> <span class="nav-text">添加视频</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建站过程"><span class="nav-number">1.</span> <span class="nav-text">建站过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后期添加："><span class="nav-number">2.</span> <span class="nav-text">后期添加：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加网易云音乐插件"><span class="nav-number">2.1.</span> <span class="nav-text">添加网易云音乐插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加particles-js背景动画"><span class="nav-number">2.2.</span> <span class="nav-text">添加particles.js背景动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置文章摘要"><span class="nav-number">2.3.</span> <span class="nav-text">设置文章摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#needmoreshare2分享按钮"><span class="nav-number">2.4.</span> <span class="nav-text">needmoreshare2分享按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标点击特效"><span class="nav-number">2.5.</span> <span class="nav-text">鼠标点击特效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章底部标签符号"><span class="nav-number">2.6.</span> <span class="nav-text">修改文章底部标签符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏旋转头像"><span class="nav-number">2.7.</span> <span class="nav-text">侧边栏旋转头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#底部全站字数统计"><span class="nav-number">2.8.</span> <span class="nav-text">底部全站字数统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章字数统计"><span class="nav-number">2.9.</span> <span class="nav-text">文章字数统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站顶部加载进度条"><span class="nav-number">2.10.</span> <span class="nav-text">网站顶部加载进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加来必力评论系统"><span class="nav-number">2.11.</span> <span class="nav-text">添加来必力评论系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏返回顶部按钮"><span class="nav-number">2.12.</span> <span class="nav-text">侧边栏返回顶部按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加视频"><span class="nav-number">2.13.</span> <span class="nav-text">添加视频</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官方文档："><span class="nav-number">3.</span> <span class="nav-text">官方文档：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误汇总"><span class="nav-number">4.</span> <span class="nav-text">错误汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#123-125-引起的报错"><span class="nav-number">4.1.</span> <span class="nav-text">{ }引起的报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标题无法正常解析"><span class="nav-number">4.2.</span> <span class="nav-text">标题无法正常解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#换行"><span class="nav-number">4.3.</span> <span class="nav-text">换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FATAL-Cannot-read-property-‘replace’-of-null"><span class="nav-number">4.4.</span> <span class="nav-text">FATAL Cannot read property ‘replace’ of null</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义域名"><span class="nav-number">4.5.</span> <span class="nav-text">自定义域名</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -929,7 +933,7 @@ scrollpercent: true
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共44.1k字</span>
+  <span class="post-count">博客全站共44.5k字</span>
 </div>
 
         
