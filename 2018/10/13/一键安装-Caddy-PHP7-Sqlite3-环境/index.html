@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="Linux,科学上网,vps,网站,脚本," />
+  <meta name="keywords" content="Linux,科学上网,脚本,vps,网站," />
 
 
 
@@ -90,7 +90,7 @@
 
 
 <meta name="description" content="相信很多人都有自己搭建网站的需求，但个人网站一般都是个人博客之类的，并不需要很高的服务器配置，这时候就可以考虑使用一个配置比较低的vps来放置自己的个人网站，那么下面这个脚本包你可能刚好会用得到。   这个脚本支持Centos 7+ Debian 8+，最小支持内存为64M，可以一键安装 typecho、wordpress、zblog、kodexplorer、laverna、一键整站备份等操作，不">
-<meta name="keywords" content="Linux,科学上网,vps,网站,脚本">
+<meta name="keywords" content="Linux,科学上网,脚本,vps,网站">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一键安装 Caddy+PHP7+Sqlite3 环境">
 <meta property="og:url" content="https://cyneliu.github.io/2018/10/13/一键安装-Caddy-PHP7-Sqlite3-环境/index.html">
@@ -372,6 +372,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/13/一键安装-Caddy-PHP7-Sqlite3-环境/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/13/一键安装-Caddy-PHP7-Sqlite3-环境/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -533,11 +543,11 @@
           
             <a href="/tags/科学上网/" rel="tag"><i class="fa fa-tag"></i> 科学上网</a>
           
+            <a href="/tags/脚本/" rel="tag"><i class="fa fa-tag"></i> 脚本</a>
+          
             <a href="/tags/vps/" rel="tag"><i class="fa fa-tag"></i> vps</a>
           
             <a href="/tags/网站/" rel="tag"><i class="fa fa-tag"></i> 网站</a>
-          
-            <a href="/tags/脚本/" rel="tag"><i class="fa fa-tag"></i> 脚本</a>
           
         </div>
       
@@ -608,9 +618,7 @@
 
   
     <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTU0Ni8xNjA3Mw=="></div>
     </div>
-
   
 
 
@@ -787,7 +795,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共44.5k字</span>
+  <span class="post-count">博客全站共44.6k字</span>
 </div>
 
         
@@ -934,26 +942,37 @@
 
 
   
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
-
-
-
-
-
-
-
-
-
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'rdhEUS7vxXOUb71VRL8Lw1qO-gzGzoHsz',
+        appKey: 'GrnjdE7SsscW5qUERVHtI4Ha',
+        placeholder: '看了这么多，说点什么吧😉',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
