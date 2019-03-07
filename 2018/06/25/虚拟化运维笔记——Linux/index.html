@@ -104,7 +104,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/06/30/5b37243cc1a2e.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/11/18/5bf14690c4c96.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/18/5bf146b60bc36.png">
-<meta property="og:updated_time" content="2018-11-18T11:17:57.569Z">
+<meta property="og:updated_time" content="2019-03-02T11:18:47.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟化运维笔记 —— Linux">
 <meta name="twitter:description" content="LinuxLinux下使用Rinetd来实现端口转发安装centos0、对于centos，由于官方的源中并没有Rinetd，所以首先需要第三方源32位系统：   $ vim /etc/yum.repos.d/nux-misc.repo  [nux-misc] name=Nux Misc baseurl=http://li.nux.ro/download/nux/misc/el6/i386/ ena">
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.5k
+                  2.6k
                 </span>
               
 
@@ -657,6 +657,35 @@ sudo systemctl daemon-reload
 <blockquote>
 </blockquote>
 <pre><code>reboot
+</code></pre><h2 id="Ubuntu14-04安装VNC"><a href="#Ubuntu14-04安装VNC" class="headerlink" title="Ubuntu14.04安装VNC"></a>Ubuntu14.04安装VNC</h2><p>1、安装X11VNC</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo apt install x11vnc -y
+</code></pre><p>2、配置访问密码</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo x11vnc -storepasswd /etc/x11vnc.pass 
+</code></pre><p>3、创建配置文件</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo touch /etc/init/x11vnc.conf
+</code></pre><p>4、赋予权限</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo chmod a+w /etc/init/x11vnc.conf
+</code></pre><p>5、在配置文件中加入以下内容：</p>
+<blockquote>
+</blockquote>
+<pre><code>start on login-session-start
+</code></pre><blockquote>
+<pre><code>script 
+x11vnc -display :0 -auth /var/run/lightdm/root/:0 -forever -bg -o /var/log/x11vnc.log -rfbauth /etc/x11vnc.pass -rfbport 5900 
+end script 
+</code></pre></blockquote>
+<p>6、重启</p>
+<blockquote>
+</blockquote>
+<pre><code>reboot
 </code></pre><h2 id="nat123配置"><a href="#nat123配置" class="headerlink" title="nat123配置"></a>nat123配置</h2><p>nat123端口映射是专业的内网端口映射软件，在内网启动映射后，可在外网轻松访问连接内网网站等应用，不需要设置路由器，不需要公网ip,不需要固定ip,不需要动态域名。  </p>
 <p>Ubuntu配置过程：（其它linux直接参考<a href="http://www.nat123.com/pages_17_600.jsp" target="_blank" rel="noopener">官网说明</a>）<br>0、注册账号<br>没有注册过账号的先到官网注册：<a href="http://www.nat123.com/" target="_blank" rel="noopener">http://www.nat123.com/</a><br>1、安装mono运行环境</p>
 <blockquote>
@@ -866,7 +895,7 @@ vncserver :3 #重启服务
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -888,7 +917,7 @@ vncserver :3 #重启服务
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -938,7 +967,7 @@ vncserver :3 #重启服务
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux"><span class="nav-number">1.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux下使用Rinetd来实现端口转发"><span class="nav-number">1.1.</span> <span class="nav-text">Linux下使用Rinetd来实现端口转发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动程序"><span class="nav-number">1.1.3.</span> <span class="nav-text">启动程序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认编辑器nano"><span class="nav-number">2.1.</span> <span class="nav-text">默认编辑器nano</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu设置静态ip"><span class="nav-number">2.2.</span> <span class="nav-text">Ubuntu设置静态ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装TeamViewer"><span class="nav-number">2.3.</span> <span class="nav-text">安装TeamViewer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-04出现“The-system-is-running-in-low-graphics-mode”"><span class="nav-number">2.4.</span> <span class="nav-text">16.04出现“The system is running in low-graphics mode”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用root用户"><span class="nav-number">2.5.</span> <span class="nav-text">启用root用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装GNOME-Shell桌面"><span class="nav-number">2.6.</span> <span class="nav-text">安装GNOME Shell桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行sudo-apt-get-update出错"><span class="nav-number">2.7.</span> <span class="nav-text">执行sudo apt-get update出错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu在虚拟机中显示不全的问题"><span class="nav-number">2.8.</span> <span class="nav-text">Ubuntu在虚拟机中显示不全的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu16-04安装VNC"><span class="nav-number">2.9.</span> <span class="nav-text">Ubuntu16.04安装VNC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nat123配置"><span class="nav-number">2.10.</span> <span class="nav-text">nat123配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RHEL"><span class="nav-number">3.</span> <span class="nav-text">RHEL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统意外重启后VNC连接失败"><span class="nav-number">3.1.</span> <span class="nav-text">系统意外重启后VNC连接失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RHEL7设置开机自动连接网络"><span class="nav-number">3.2.</span> <span class="nav-text">RHEL7设置开机自动连接网络</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux"><span class="nav-number">1.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux下使用Rinetd来实现端口转发"><span class="nav-number">1.1.</span> <span class="nav-text">Linux下使用Rinetd来实现端口转发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动程序"><span class="nav-number">1.1.3.</span> <span class="nav-text">启动程序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认编辑器nano"><span class="nav-number">2.1.</span> <span class="nav-text">默认编辑器nano</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu设置静态ip"><span class="nav-number">2.2.</span> <span class="nav-text">Ubuntu设置静态ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装TeamViewer"><span class="nav-number">2.3.</span> <span class="nav-text">安装TeamViewer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-04出现“The-system-is-running-in-low-graphics-mode”"><span class="nav-number">2.4.</span> <span class="nav-text">16.04出现“The system is running in low-graphics mode”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用root用户"><span class="nav-number">2.5.</span> <span class="nav-text">启用root用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装GNOME-Shell桌面"><span class="nav-number">2.6.</span> <span class="nav-text">安装GNOME Shell桌面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行sudo-apt-get-update出错"><span class="nav-number">2.7.</span> <span class="nav-text">执行sudo apt-get update出错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu在虚拟机中显示不全的问题"><span class="nav-number">2.8.</span> <span class="nav-text">Ubuntu在虚拟机中显示不全的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu16-04安装VNC"><span class="nav-number">2.9.</span> <span class="nav-text">Ubuntu16.04安装VNC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu14-04安装VNC"><span class="nav-number">2.10.</span> <span class="nav-text">Ubuntu14.04安装VNC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nat123配置"><span class="nav-number">2.11.</span> <span class="nav-text">nat123配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RHEL"><span class="nav-number">3.</span> <span class="nav-text">RHEL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统意外重启后VNC连接失败"><span class="nav-number">3.1.</span> <span class="nav-text">系统意外重启后VNC连接失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RHEL7设置开机自动连接网络"><span class="nav-number">3.2.</span> <span class="nav-text">RHEL7设置开机自动连接网络</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -990,7 +1019,7 @@ vncserver :3 #重启服务
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共44.6k字</span>
+  <span class="post-count">博客全站共45.5k字</span>
 </div>
 
         

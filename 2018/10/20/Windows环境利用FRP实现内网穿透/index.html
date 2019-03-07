@@ -92,7 +92,7 @@
 <meta name="description" content="几个概念frpFRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。   项目地址：https://github.com/fatedier/frp/releases 正向代理正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服">
 <meta name="keywords" content="反向代理,frp,内网穿透,Windows">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows环境利用FRP实现内网穿透">
+<meta property="og:title" content="利用FRP实现内网穿透">
 <meta property="og:url" content="https://cyneliu.github.io/2018/10/20/Windows环境利用FRP实现内网穿透/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
 <meta property="og:description" content="几个概念frpFRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。   项目地址：https://github.com/fatedier/frp/releases 正向代理正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服">
@@ -101,9 +101,9 @@
 <meta property="og:image" content="https://i.loli.net/2018/10/20/5bcaf373ef44d.png">
 <meta property="og:image" content="https://i.loli.net/2018/10/20/5bcaf78e8b887.png">
 <meta property="og:image" content="https://i.loli.net/2018/10/20/5bcb0775422ac.png">
-<meta property="og:updated_time" content="2018-10-20T10:49:34.182Z">
+<meta property="og:updated_time" content="2019-02-26T10:59:24.726Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows环境利用FRP实现内网穿透">
+<meta name="twitter:title" content="利用FRP实现内网穿透">
 <meta name="twitter:description" content="几个概念frpFRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。   项目地址：https://github.com/fatedier/frp/releases 正向代理正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服">
 <meta name="twitter:image" content="https://i.loli.net/2018/10/20/5bcaf373cd030.png">
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>Windows环境利用FRP实现内网穿透 | Cyne's Blog</title>
+  <title>利用FRP实现内网穿透 | Cyne's Blog</title>
   
 
 
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Windows环境利用FRP实现内网穿透</h1>
+          <h1 class="post-title" itemprop="name headline">利用FRP实现内网穿透</h1>
         
 
         <div class="post-meta">
@@ -405,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.2k
                 </span>
               
 
@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -503,7 +503,26 @@ remote_port = 7001 ;外网访问的端口
 </blockquote>
 <pre><code>custom_domains = xxx.yourdomain.xxx
 </code></pre><p>这样，你就可以使用域名+端口的形式访问你的服务了。</p>
-
+<h1 id="Linux环境后台运行frp"><a href="#Linux环境后台运行frp" class="headerlink" title="Linux环境后台运行frp"></a>Linux环境后台运行frp</h1><p>在Linux环境下使用frp与Linux并没有太大的区别，配置文件的写法都一样，主要是frp的后台运行，因为如果我们使用ssh方式登录服务器的方式，启动了frp服务，当断开ssh连接的时候frp服务也就随之关闭。这里有两种后台运行frp服务的方式：</p>
+<h2 id="使用nohup"><a href="#使用nohup" class="headerlink" title="使用nohup"></a>使用nohup</h2><p>首先进入frp的解压目录！<br>服务端：</p>
+<blockquote>
+</blockquote>
+<pre><code>nohup ./frps -c ./frps.ini &amp;
+</code></pre><p>客户端：</p>
+<blockquote>
+</blockquote>
+<pre><code>nohup ./frpc -c ./frpc.ini &amp;
+</code></pre><h2 id="使用screen"><a href="#使用screen" class="headerlink" title="使用screen"></a>使用screen</h2><p>首先进入frp的解压目录！<br>服务端：</p>
+<blockquote>
+</blockquote>
+<pre><code>screen -S frp  # 创建一个screen
+./frps -c ./frps.ini
+</code></pre><p>客户端：</p>
+<blockquote>
+</blockquote>
+<pre><code>screen -S frp  # 创建一个screen
+./frpc -c ./frpc.ini
+</code></pre>
       
     </div>
     
@@ -679,7 +698,7 @@ remote_port = 7001 ;外网访问的端口
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -701,7 +720,7 @@ remote_port = 7001 ;外网访问的端口
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -751,7 +770,7 @@ remote_port = 7001 ;外网访问的端口
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#几个概念"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#frp"><span class="nav-number">1.1.</span> <span class="nav-text">frp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正向代理"><span class="nav-number">1.2.</span> <span class="nav-text">正向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理"><span class="nav-number">1.3.</span> <span class="nav-text">反向代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装部署frp"><span class="nav-number">2.</span> <span class="nav-text">安装部署frp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装程序"><span class="nav-number">2.2.</span> <span class="nav-text">下载安装程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">2.3.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#放行端口"><span class="nav-number">2.3.1.</span> <span class="nav-text">放行端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件"><span class="nav-number">2.3.2.</span> <span class="nav-text">编辑配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-内网设备"><span class="nav-number">2.4.</span> <span class="nav-text">客户端(内网设备)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">编辑配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启远程桌面（非必须）"><span class="nav-number">2.4.2.</span> <span class="nav-text">开启远程桌面（非必须）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">2.5.</span> <span class="nav-text">绑定域名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置域名解析"><span class="nav-number">2.5.1.</span> <span class="nav-text">设置域名解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置frpc-ini"><span class="nav-number">2.5.2.</span> <span class="nav-text">配置frpc.ini</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#几个概念"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#frp"><span class="nav-number">1.1.</span> <span class="nav-text">frp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正向代理"><span class="nav-number">1.2.</span> <span class="nav-text">正向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理"><span class="nav-number">1.3.</span> <span class="nav-text">反向代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装部署frp"><span class="nav-number">2.</span> <span class="nav-text">安装部署frp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装程序"><span class="nav-number">2.2.</span> <span class="nav-text">下载安装程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">2.3.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#放行端口"><span class="nav-number">2.3.1.</span> <span class="nav-text">放行端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件"><span class="nav-number">2.3.2.</span> <span class="nav-text">编辑配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-内网设备"><span class="nav-number">2.4.</span> <span class="nav-text">客户端(内网设备)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">编辑配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启远程桌面（非必须）"><span class="nav-number">2.4.2.</span> <span class="nav-text">开启远程桌面（非必须）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">2.5.</span> <span class="nav-text">绑定域名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置域名解析"><span class="nav-number">2.5.1.</span> <span class="nav-text">设置域名解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置frpc-ini"><span class="nav-number">2.5.2.</span> <span class="nav-text">配置frpc.ini</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux环境后台运行frp"><span class="nav-number">3.</span> <span class="nav-text">Linux环境后台运行frp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用nohup"><span class="nav-number">3.1.</span> <span class="nav-text">使用nohup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用screen"><span class="nav-number">3.2.</span> <span class="nav-text">使用screen</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -803,7 +822,7 @@ remote_port = 7001 ;外网访问的端口
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共44.6k字</span>
+  <span class="post-count">博客全站共45.5k字</span>
 </div>
 
         
