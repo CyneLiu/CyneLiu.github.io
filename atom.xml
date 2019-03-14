@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-03-05T11:48:53.369Z</updated>
+  <updated>2019-03-14T01:26:38.375Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu16.04安装OpenDaylight Carbon</title>
+    <link href="https://cyneliu.github.io/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/"/>
+    <id>https://cyneliu.github.io/2019/03/14/Ubuntu16-04安装OpenDaylight-Carbon/</id>
+    <published>2019-03-14T00:57:44.000Z</published>
+    <updated>2019-03-14T01:26:38.375Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="JRE安装配置"><a href="#JRE安装配置" class="headerlink" title="JRE安装配置"></a>JRE安装配置</h2><p><a href="https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html</a><br>我这里下载的是目前的最新版本：</p><blockquote></blockquote><pre><code>wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/server-jre-8u201-linux-x64.tar.gz</code></pre><p>解压到自定义目录中：</p><blockquote></blockquote><pre><code>mkdir -p /opt/java #将下载下来的安装包移动到此目录（自己定义）tar -xzvf server-jre-8u201-linux-x64.tar.gz</code></pre><p>配置环境变量：</p><blockquote></blockquote><pre><code>vim /etc/profile</code></pre><p>在文件末尾添加如下配置：</p><blockquote></blockquote><pre><code>export JAVA_HOME=/opt/java/jdk1.8.0_201export JRE_HOME=/opt/java/jdk1.8.0_201export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/extexport PATH=$PATH:$JRE_HOME/bin</code></pre><p>使配置生效：</p><blockquote></blockquote><pre><code>source /etc/profile</code></pre><p>验证配置成功：</p><blockquote></blockquote><pre><code>java -version #显示java版本信息</code></pre><h1 id="OpenDaylight-Carbon-安装配置"><a href="#OpenDaylight-Carbon-安装配置" class="headerlink" title="OpenDaylight(Carbon)安装配置"></a>OpenDaylight(Carbon)安装配置</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>我这里下载的是0.6.4版本：</p><blockquote></blockquote><pre><code>wget https://nexus.opendaylight.org/content/repositories/public/org/opendaylight/integration/distribution-karaf/0.6.4-Carbon/distribution-karaf-0.6.4-Carbon.zip</code></pre><h2 id="解压安装"><a href="#解压安装" class="headerlink" title="解压安装"></a>解压安装</h2><blockquote></blockquote><pre><code>uzip distribution-karaf-0.6.4-Carbon.zip</code></pre><h2 id="启动karaf"><a href="#启动karaf" class="headerlink" title="启动karaf"></a>启动karaf</h2><blockquote></blockquote><pre><code>cd distribution-karaf-0.6.4-Carbon./bin/karaf</code></pre><h2 id="安装组件"><a href="#安装组件" class="headerlink" title="安装组件"></a>安装组件</h2><p>安装REST API组件</p><blockquote></blockquote><pre><code>feature:install odl-restconf</code></pre><p>安装L2 switch组件：</p><blockquote></blockquote><pre><code>feature:install odl-l2switch-switch-ui</code></pre><p>安装API查看器：</p><blockquote></blockquote><pre><code>feature:install odl-mdsal-apidocs</code></pre><p>安装 dlux 展示页面:</p><blockquote></blockquote><pre><code>feature:install odl-dluxapps-applications</code></pre><h2 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h2><h3 id="登录管理页面"><a href="#登录管理页面" class="headerlink" title="登录管理页面"></a>登录管理页面</h3><p>用浏览器访问：<a href="http://localhost:8080/index.html" target="_blank" rel="noopener">http://localhost:8080/index.html</a><br>用户名/密码：admin/admin</p><h3 id="使用OpenvSwitch连接ODL控制器"><a href="#使用OpenvSwitch连接ODL控制器" class="headerlink" title="使用OpenvSwitch连接ODL控制器"></a>使用OpenvSwitch连接ODL控制器</h3><p>用下面的命令将br0网桥连接至指定的控制器:</p><blockquote></blockquote><pre><code>ovs-vsctl set-controller br0 tcp:&lt;controller IP&gt;:&lt;port&gt;</code></pre><p>执行：ovs-vsctl show,出现is_connected:true字样表示连接成功：<br><img src="https://i.loli.net/2019/03/14/5c89ad571b951.png" alt="01.png"><br>登录管理页面查看拓扑发现已经连接的OVS交换机：<br><img src="https://i.loli.net/2019/03/14/5c89ad5730b6b.png" alt="02.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;环境准备&quot;&gt;&lt;a href=&quot;#环境准备&quot; class=&quot;headerlink&quot; title=&quot;环境准备&quot;&gt;&lt;/a&gt;环境准备&lt;/h1&gt;&lt;h2 id=&quot;JRE安装配置&quot;&gt;&lt;a href=&quot;#JRE安装配置&quot; class=&quot;headerlink&quot; title=&quot;JRE
+      
+    
+    </summary>
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
+    
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
+    
+      <category term="OpenDaylight" scheme="https://cyneliu.github.io/tags/OpenDaylight/"/>
+    
+      <category term="Ubuntu16.04" scheme="https://cyneliu.github.io/tags/Ubuntu16-04/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ovs-vsctl: unix:/usr/local/var/run/openvswitch/db.sock: database connection failed</title>
+    <link href="https://cyneliu.github.io/2019/03/13/ovs-vsctl-unix-usr-local-var-run-openvswitch-db-sock-database-connection-failed/"/>
+    <id>https://cyneliu.github.io/2019/03/13/ovs-vsctl-unix-usr-local-var-run-openvswitch-db-sock-database-connection-failed/</id>
+    <published>2019-03-13T14:08:46.000Z</published>
+    <updated>2019-03-13T14:13:29.782Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在OpenvSwitch中执行ovs-vsctl show命令时，出现如下错误提示：</p><blockquote></blockquote><pre><code>ovs-vsctl: unix:/usr/local/var/run/openvswitch/db.sock: database connection failed</code></pre><h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>在每次重启开机之后执行如下命令：</p><blockquote></blockquote><pre><code>ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock \                 --remote=db:Open_vSwitch,Open_vSwitch,manager_options \                 --private-key=db:Open_vSwitch,SSL,private_key \                 --certificate=db:Open_vSwitch,SSL,certificate \                 --bootstrap-ca-cert=db:Open_vSwitch,SSL,ca_cert \                 --pidfile --detachovs-vsctl --no-wait initovs-vswitchd --pidfile --detach</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h1&gt;&lt;p&gt;在OpenvSwitch中执行ovs-vsctl show命令时，出现如下错误提示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;/
+      
+    
+    </summary>
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
+    
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
+    
+      <category term="OpenvSwitch" scheme="https://cyneliu.github.io/tags/OpenvSwitch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu执行apt-get-update出现Error in &#39;appstreamcli&#39;错误</title>
+    <link href="https://cyneliu.github.io/2019/03/13/ubuntu%E6%89%A7%E8%A1%8Capt-get-update%E5%87%BA%E7%8E%B0Error%20in%20&#39;appstreamcli&#39;%E9%94%99%E8%AF%AF/"/>
+    <id>https://cyneliu.github.io/2019/03/13/ubuntu执行apt-get-update出现Error in &#39;appstreamcli&#39;错误/</id>
+    <published>2019-03-13T13:54:13.000Z</published>
+    <updated>2019-03-13T14:06:07.301Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>新装Ubuntu16.04桌面版后执行apt-get update时出现了如下图所示的错误：<br><img src="https://i.loli.net/2019/03/13/5c890d5cd7212.png" alt="11.png"></p><h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>执行如下命令：</p><blockquote></blockquote><pre><code>sudo apt install appstream/xenial-backports sudo appstreamcli refresh –-force sudo apt-get update</code></pre><p>然后再次执行：</p><blockquote></blockquote><pre><code>apt-get update</code></pre><p>这时已经可以成功执行。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h1&gt;&lt;p&gt;新装Ubuntu16.04桌面版后执行apt-get update时出现了如下图所示的错误：&lt;br&gt;&lt;img src=&quot;ht
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/categories/Linux/"/>
+    
+    
+      <category term="Ubuntu" scheme="https://cyneliu.github.io/tags/Ubuntu/"/>
+    
+      <category term="apt-get" scheme="https://cyneliu.github.io/tags/apt-get/"/>
+    
+  </entry>
   
   <entry>
     <title>mininet gave up after 3 retries问题</title>
@@ -51,9 +136,9 @@
     <link href="https://cyneliu.github.io/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/"/>
     <id>https://cyneliu.github.io/2019/02/27/Ubuntu14-04安装OpenDaylight/</id>
     <published>2019-02-27T13:33:58.000Z</published>
-    <updated>2019-03-05T13:39:48.081Z</updated>
+    <updated>2019-03-14T00:11:08.287Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="下载OpenDaylight"><a href="#下载OpenDaylight" class="headerlink" title="下载OpenDaylight"></a>下载OpenDaylight</h2><p>下载OpenDaylight Lithium压缩包：<a href="https://pan.baidu.com/s/16rLxNFvz-XhGuSz62a5eQQ" target="_blank" rel="noopener">提取码：y4ae </a>  </p><h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><blockquote></blockquote><pre><code>sudo apt-get install openjdk-7-jdk</code></pre><h2 id="安装Maven"><a href="#安装Maven" class="headerlink" title="安装Maven"></a>安装Maven</h2><blockquote></blockquote><pre><code>sudo mkdir -p /usr/local/apache-mavenwget http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/sudo mv apache-maven-3.3.3-bin.tar.gz /usr/local/apache-mavensudo tar -xzvf /usr/local/apache-maven/apache-maven-3.3.3-bin.tar.gz -C /usr/local/apache-maven/sudo update-alternatives --install /usr/bin/mvn mvn /usr/local/apache-maven/apache-maven-3.3.3/bin/mvn 1sudo update-alternatives --config mvnsudo apt-get install vim</code></pre><p>编辑 ~/.bashrc文件：</p><blockquote></blockquote><pre><code>vim ~/.bashrc</code></pre><p>将以下内容添加至文件末尾：</p><blockquote></blockquote><pre><code>export M2_HOME=/usr/local/apache-maven/apache-maven-3.3.3export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot; # Very important to put the &quot;m&quot; on the endexport JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 # This matches sudo update-alternatives --config java</code></pre><p>应用 ~/.bashrc文件：</p><blockquote></blockquote><pre><code>source ~/.bashrc</code></pre><h1 id="安装OpenDaylight"><a href="#安装OpenDaylight" class="headerlink" title="安装OpenDaylight"></a>安装OpenDaylight</h1><p>将之前准备的安装包文件解压，并进入目录：</p><blockquote></blockquote><pre><code>unzip lithium.zipcd distribution-karaf-0.3.0-Lithium</code></pre><p>启动控制器，并进入karaf控制台：</p><blockquote></blockquote><pre><code>./bin/karaf</code></pre><p>这样启动后关闭命令终端，控制器进程也会随之关闭，我们采用如下方式后台启动：</p><blockquote></blockquote><pre><code>./bin/start./bin/client -u karaf</code></pre><h1 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h1><p>最后使用mininet创建拓扑连接OpenDaylight控制器进行验证：</p><blockquote></blockquote><pre><code>mn --controller=remote,ip=192.168.1.3,port=6633&gt; pingall</code></pre><p><img src="https://i.loli.net/2019/03/05/5c7e7ae09ba8e.png" alt="01.png"><br>可以看到两台设备通过控制器自动下发的流表已经可以互通了。<br>打开浏览器访问：http://[controller ip]:8080/index.html,用户名密码为admin/admin，登录控制器就可以看到刚刚创建的拓扑了：<br><img src="https://i.loli.net/2019/03/05/5c7e7ae093d62.png" alt="02.png"></p><h1 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h1><p>maven下载地址（bin.tar.gz）：</p><blockquote><p><a href="http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/" target="_blank" rel="noopener">http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/</a></p></blockquote><p><a href="https://wiki.opendaylight.org/view/Install_On_Ubuntu_14.04" target="_blank" rel="noopener">https://wiki.opendaylight.org/view/Install_On_Ubuntu_14.04</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="下载OpenDaylight"><a href="#下载OpenDaylight" class="headerlink" title="下载OpenDaylight"></a>下载OpenDaylight</h2><p>下载OpenDaylight Lithium压缩包：<a href="https://pan.baidu.com/s/16rLxNFvz-XhGuSz62a5eQQ" target="_blank" rel="noopener">提取码：y4ae </a>  </p><h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><blockquote></blockquote><pre><code>sudo apt-get install openjdk-7-jdk</code></pre><h2 id="安装Maven"><a href="#安装Maven" class="headerlink" title="安装Maven"></a>安装Maven</h2><blockquote></blockquote><pre><code>sudo mkdir -p /usr/local/apache-mavenwget http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gzsudo mv apache-maven-3.3.3-bin.tar.gz /usr/local/apache-mavensudo tar -xzvf /usr/local/apache-maven/apache-maven-3.3.3-bin.tar.gz -C /usr/local/apache-maven/sudo update-alternatives --install /usr/bin/mvn mvn /usr/local/apache-maven/apache-maven-3.3.3/bin/mvn 1sudo update-alternatives --config mvnsudo apt-get install vim</code></pre><p>编辑 ~/.bashrc文件：</p><blockquote></blockquote><pre><code>vim ~/.bashrc</code></pre><p>将以下内容添加至文件末尾：</p><blockquote></blockquote><pre><code>export M2_HOME=/usr/local/apache-maven/apache-maven-3.3.3export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot; # Very important to put the &quot;m&quot; on the endexport JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 # This matches sudo update-alternatives --config java</code></pre><p>应用 ~/.bashrc文件：</p><blockquote></blockquote><pre><code>source ~/.bashrc</code></pre><h1 id="安装OpenDaylight"><a href="#安装OpenDaylight" class="headerlink" title="安装OpenDaylight"></a>安装OpenDaylight</h1><p>将之前准备的安装包文件解压，并进入目录：</p><blockquote></blockquote><pre><code>unzip lithium.zipcd distribution-karaf-0.3.0-Lithium</code></pre><p>启动控制器，并进入karaf控制台：</p><blockquote></blockquote><pre><code>./bin/karaf</code></pre><p>这样启动后关闭命令终端，控制器进程也会随之关闭，我们采用如下方式后台启动：</p><blockquote></blockquote><pre><code>./bin/start./bin/client -u karaf</code></pre><p>加载组件：</p><blockquote></blockquote><pre><code>feature:install odl-restconffeature:install odl-l2switch-switchfeature:install odl-openflowplugin-allfeature:install odl-dlux-allfeature:install odl-mdsal-allfeature:install odl-adsal-northbound</code></pre><h1 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h1><p>最后使用mininet创建拓扑连接OpenDaylight控制器进行验证：</p><blockquote></blockquote><pre><code>mn --controller=remote,ip=192.168.1.3,port=6633&gt; pingall</code></pre><p><img src="https://i.loli.net/2019/03/05/5c7e7ae09ba8e.png" alt="01.png"><br>可以看到两台设备通过控制器自动下发的流表已经可以互通了。<br>打开浏览器访问：http://[controller ip]:8080/index.html,用户名密码为admin/admin，登录控制器就可以看到刚刚创建的拓扑了：<br><img src="https://i.loli.net/2019/03/05/5c7e7ae093d62.png" alt="02.png"></p><h1 id="关闭后重新启动失败"><a href="#关闭后重新启动失败" class="headerlink" title="关闭后重新启动失败"></a>关闭后重新启动失败</h1><p>进入ODL主目录，(删除data目录，我在尝试时没删除也不影响效果),执行：</p><blockquote></blockquote><pre><code>./karaf clean</code></pre><p>然后重新启动：</p><blockquote></blockquote><pre><code>./karaf</code></pre><p>重新加载组件：</p><blockquote></blockquote><pre><code>feature:install odl-restconffeature:install odl-l2switch-switchfeature:install odl-openflowplugin-allfeature:install odl-dlux-allfeature:install odl-mdsal-allfeature:install odl-adsal-northbound</code></pre><h1 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h1><p>maven下载地址（bin.tar.gz）：</p><blockquote><p><a href="http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/" target="_blank" rel="noopener">http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/</a></p></blockquote><p><a href="https://wiki.opendaylight.org/view/Install_On_Ubuntu_14.04" target="_blank" rel="noopener">https://wiki.opendaylight.org/view/Install_On_Ubuntu_14.04</a></p>]]></content>
     
     <summary type="html">
     
@@ -495,93 +580,6 @@
       <category term="Web服务器" scheme="https://cyneliu.github.io/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
       <category term="Nginx" scheme="https://cyneliu.github.io/tags/Nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>利用FRP实现内网穿透</title>
-    <link href="https://cyneliu.github.io/2018/10/20/Windows%E7%8E%AF%E5%A2%83%E5%88%A9%E7%94%A8FRP%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
-    <id>https://cyneliu.github.io/2018/10/20/Windows环境利用FRP实现内网穿透/</id>
-    <published>2018-10-20T08:56:19.000Z</published>
-    <updated>2019-02-26T10:59:24.726Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h1><h2 id="frp"><a href="#frp" class="headerlink" title="frp"></a>frp</h2><p>FRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。  </p><p>项目地址：<br><a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">https://github.com/fatedier/frp/releases</a></p><h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><p>正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服务器，之后代理向目标服务器转交并且将获得的内容返回给客户端。正向代理的情况下客户端必须要进行一些特别的设置才能使用。  </p><p>比如我们平时用的翻墙工具就属于正向代理的一种应用。<br><img src="https://i.loli.net/2018/10/20/5bcaf373cd030.png" alt="01.png"></p><h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>反向代理正好相反。对于客户端来说，反向代理就好像目标服务器。并且客户端不需要进行任何设置。客户端向反向代理发送请求，接着反向代理判断请求走向何处，并将请求转交给客户端，使得这些内容就好似他自己一样，一次客户端并不会感知到反向代理后面的服务，也因此不需要客户端做任何设置，只需要把反向代理服务器当成真正的服务器就好了。<br><img src="https://i.loli.net/2018/10/20/5bcaf373ef44d.png" alt="02.png"></p><h1 id="安装部署frp"><a href="#安装部署frp" class="headerlink" title="安装部署frp"></a>安装部署frp</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.拥有公网ip的设备</p><blockquote><p>作为反向代理服务器，外网访问内网设备时通过此设备进行访问。</p></blockquote><p>2.域名（非必须）</p><blockquote><p>域名的作用仅仅是为了方便记忆，有了域名在访问时就不需要输入那些难以记忆的数字进行访问了。</p></blockquote><h2 id="下载安装程序"><a href="#下载安装程序" class="headerlink" title="下载安装程序"></a>下载安装程序</h2><p>到<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">GitHub</a>下载frp程序，如果是64位系统下载“amd64”结尾的zip包，如果是32位系统就下载“386”结尾的zip包。  </p><p>下载完成后分别在客户端和服务端选择一个合适的位置直接解压出来就可以了。</p><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><h3 id="放行端口"><a href="#放行端口" class="headerlink" title="放行端口"></a>放行端口</h3><p>因为博主使用的是阿里云的学生机，默认是没有放行其它端口的，所以在配置frp之前需要配置一下入方向的安全组规则：<br><img src="https://i.loli.net/2018/10/20/5bcaf78e8b887.png" alt="03.png"></p><h3 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h3><p>在上面过程中解压出来的文件包含有frps.ini和frps_full.ini两个配置文件，frps_full.ini是全配置，里面所有的配置都有，玩法很多，感兴趣的可以研究一下。将下面配置代码复制到frps.ini后保存：</p><blockquote></blockquote><pre><code>[common]bind_port = 7000 ;要绑定的端口dashboard_user = admin ;控制台的用户名dashboard_pwd = password ;控制台的密码dashboard_port = 7500 ;控制台的端口</code></pre><p>在配置文件所在位置按住shift右键打开cmd或power shell，执行命令：<br>cmd:</p><blockquote></blockquote><pre><code>frps -c frps.ini</code></pre><p>power shell:</p><blockquote></blockquote><pre><code>.\frps.exe -c frps.ini</code></pre><h2 id="客户端-内网设备"><a href="#客户端-内网设备" class="headerlink" title="客户端(内网设备)"></a>客户端(内网设备)</h2><h3 id="编辑配置文件-1"><a href="#编辑配置文件-1" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h3><p>将如下代码复制到frpc.ini中：</p><blockquote></blockquote><pre><code>[common]server_addr = 1.2.3.4 ;服务器的 IPserver_port = 7000 ;服务器上设置的服务绑定端口[RDP] ;这个是反向代理的名称，可以随意设置type = tcp ;RDP 是 TCP 协议的local_ip = 127.0.0.1 ;本机IP,可以直接使用127.0.0.1local_port = 3389 ;远程桌面的默认端口remote_port = 7001 ;外网访问的端口</code></pre><p>在配置文件所在位置按住shift右键打开cmd或power shell，执行命令：<br>cmd:</p><blockquote></blockquote><pre><code>frpc -c frpc.ini</code></pre><p>power shell:</p><blockquote></blockquote><pre><code>.\frpc.exe -c frpc.ini</code></pre><h3 id="开启远程桌面（非必须）"><a href="#开启远程桌面（非必须）" class="headerlink" title="开启远程桌面（非必须）"></a>开启远程桌面（非必须）</h3><p>如果你配置frp是为了使用远程桌面，而恰巧你的内网设备又是win7或win10等桌面版系统，那么你还需要右击“此电脑”，选择“系统”——“远程设置”——“允许远程连接至此电脑”。而如果是server版本直接忽略此步骤即可。  </p><p>至此，你已经可以使用你的ip加端口号的形式访问你的相应服务了。</p><h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><h3 id="设置域名解析"><a href="#设置域名解析" class="headerlink" title="设置域名解析"></a>设置域名解析</h3><p>设置自己的域名解析，添加一条A类记录指向你的公网ip。<br><img src="https://i.loli.net/2018/10/20/5bcb0775422ac.png" alt="04.png"></p><h3 id="配置frpc-ini"><a href="#配置frpc-ini" class="headerlink" title="配置frpc.ini"></a>配置frpc.ini</h3><p>在刚才复制的配置之后添加如下内容即可：</p><blockquote></blockquote><pre><code>custom_domains = xxx.yourdomain.xxx</code></pre><p>这样，你就可以使用域名+端口的形式访问你的服务了。</p><h1 id="Linux环境后台运行frp"><a href="#Linux环境后台运行frp" class="headerlink" title="Linux环境后台运行frp"></a>Linux环境后台运行frp</h1><p>在Linux环境下使用frp与Linux并没有太大的区别，配置文件的写法都一样，主要是frp的后台运行，因为如果我们使用ssh方式登录服务器的方式，启动了frp服务，当断开ssh连接的时候frp服务也就随之关闭。这里有两种后台运行frp服务的方式：</p><h2 id="使用nohup"><a href="#使用nohup" class="headerlink" title="使用nohup"></a>使用nohup</h2><p>首先进入frp的解压目录！<br>服务端：</p><blockquote></blockquote><pre><code>nohup ./frps -c ./frps.ini &amp;</code></pre><p>客户端：</p><blockquote></blockquote><pre><code>nohup ./frpc -c ./frpc.ini &amp;</code></pre><h2 id="使用screen"><a href="#使用screen" class="headerlink" title="使用screen"></a>使用screen</h2><p>首先进入frp的解压目录！<br>服务端：</p><blockquote></blockquote><pre><code>screen -S frp  # 创建一个screen./frps -c ./frps.ini</code></pre><p>客户端：</p><blockquote></blockquote><pre><code>screen -S frp  # 创建一个screen./frpc -c ./frpc.ini</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;几个概念&quot;&gt;&lt;a href=&quot;#几个概念&quot; class=&quot;headerlink&quot; title=&quot;几个概念&quot;&gt;&lt;/a&gt;几个概念&lt;/h1&gt;&lt;h2 id=&quot;frp&quot;&gt;&lt;a href=&quot;#frp&quot; class=&quot;headerlink&quot; title=&quot;frp&quot;&gt;&lt;/a&gt;fr
-      
-    
-    </summary>
-    
-      <category term="软件工具" scheme="https://cyneliu.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="反向代理" scheme="https://cyneliu.github.io/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
-    
-      <category term="frp" scheme="https://cyneliu.github.io/tags/frp/"/>
-    
-      <category term="内网穿透" scheme="https://cyneliu.github.io/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
-    
-      <category term="Windows" scheme="https://cyneliu.github.io/tags/Windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SDN实验（二）——Open vSwitch</title>
-    <link href="https://cyneliu.github.io/2018/10/16/SDN%E5%AE%9E%E9%AA%8C%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94Open-vSwitch/"/>
-    <id>https://cyneliu.github.io/2018/10/16/SDN实验（二）——Open-vSwitch/</id>
-    <published>2018-10-16T07:20:10.000Z</published>
-    <updated>2018-10-16T10:02:06.691Z</updated>
-    
-    <content type="html"><![CDATA[<p>Open vSwitch是由Nicira Networks主导，运行在虚拟化平台（例如KVM，Xen）上的虚拟交换机。Open vSwitch基于C语言开发，遵循Apache 2.0许可证，能同时支持多种标准的管理接口和协议（比如NetFlow、sFlow、SPAN、RSPAN、CLI、LACP、802.1ag等）。Open vSwitch通过OpenFlow协议由统一的控制器管理，从而实现对接入的虚拟机（或设备）的网络联通。  </p><p>整体组网结构如下图：<br><img src="https://i.loli.net/2018/10/16/5bc592232631f.png" alt="01.png"><br>Open vSwitch内部架构图：<br><img src="https://i.loli.net/2018/10/16/5bc592a15b2de.png" alt="02.png"></p><blockquote><p><strong>ovs-vswtichd：</strong>主要模块，实现vswitch的守候进程daemon，包括一个支持流交换的Linux内核模块。<br><strong>ovsdb-server：</strong>轻量级数据库服务器，保存配置信息，ovs-vswitchd通过这个数据库获取配置信息。<br><strong>ovs-dpctl：</strong>用来配置vswitch内核模块的一个工具。<br><strong>ovs-vsctl：</strong>主要是获取或者更改ovs-vswitchd的配置信息，此工具操作的时候会更新ovsdb-server中的数据库。<br><strong>ovs-appctl：</strong>一个向ovs-vswtichd的守护进程发送命令的的程序。<br><strong>datapath：</strong>内核模块，根据流表匹配结果做相应处理。<br><strong>ovs-ofctl：</strong>查询和控制OpenFlow虚拟交换机的流表。</p></blockquote><h1 id="Open-vSwitch的安装"><a href="#Open-vSwitch的安装" class="headerlink" title="Open vSwitch的安装"></a>Open vSwitch的安装</h1><h1 id="Open-vSwitch网桥管理"><a href="#Open-vSwitch网桥管理" class="headerlink" title="Open vSwitch网桥管理"></a>Open vSwitch网桥管理</h1><p>在网络中，交换机和桥概念类似，Open vSwitch是一个虚拟交换软件，也就是说，Open vSwitch实现了网桥的功能。学习Open vSwitch的第一步要弄清楚网桥的概念。网桥是连接两个局域网的设备，工作在数据链路层，根据MAC地址来转发帧。在Open vSwitch中创建一个网桥后，此时网络功能不受影响，但是会产生一个虚拟网卡，之所以会产生一个虚拟网卡，是为了实现接下来的网桥（交换机）功能。有了这个网桥以后，还需要为这个网桥增加端口（port），一个端口就是一个物理网卡，当网卡加入到这个网桥之后，其工作方式就和普通交换机的一个端口的工作方式类似了。以下是一个网桥的具体信息：</p><blockquote></blockquote><pre><code>root@localhost:~# ovs-vsctl showbc12c8d2-6900-42dd-9c1c-30e8ecb99a1bBridge &quot;br0&quot;    Port &quot;eth0&quot;        Interface &quot;eth0&quot;    Port &quot;br0&quot;        Interface &quot;br0&quot;            type: internalovs_version: &quot;1.4.0+build0&quot;</code></pre><p>上述信息显示了一个名为br0的桥（交换机），这个交换机有两个接口，一个是eth0，一个是br0。  </p><p>上面说到，创建桥的时候会创建一个和桥名字一样的接口，并自动作为该桥的一个端口，那么这个虚拟接口的作用，一方面是可以作为交换机的管理端口，另一方面也是基于这个虚拟接口实现了桥的功能。Open vSwitch的内核模块实现了多个“数据路径”，每个都可以有多个vports。每个数据路径也通过关联流表（flow table）来设置操作，而这些流表中的流都是用户空间在报文头和元数据的基础上映射的关键信息，一般的操作都是将数据包转发到另一个vport。当一个数据包到达一个vport，内核模块所做的处理是提取其流的关键信息并在流表中查找这些关键信息，当有一个匹配的流时它执行对应的操作，如果没有匹配，它会将数据包送到用户空间的处理队列中，作为处理的一部分，用户空间可能会设置一个流用于以后碰到相同类型的数据包可以在内核中执行操作。</p><h2 id="ovs-vsctl关于网桥管理的常用命令"><a href="#ovs-vsctl关于网桥管理的常用命令" class="headerlink" title="ovs-vsctl关于网桥管理的常用命令"></a>ovs-vsctl关于网桥管理的常用命令</h2><blockquote></blockquote><p><strong>init</strong>    初始化数据库（前提数据分组为空）<br><strong>show</strong>    打印数据库信息摘要<br><strong>add-br BRIDGE</strong>    添加新的网桥<br><strong>del-br BRIDGE</strong>    删除网桥<br><strong>list-br</strong>    打印网桥摘要信息<br><strong>list-ports BRIDGE</strong>    打印网桥中所有port摘要信息<br><strong>add-port BRIDGE PORT</strong>    向网桥中添加端口<br><strong>del-port [BRIDGE] PORT</strong>    删除网桥上的端口<br><strong>get-controller BRIDGE</strong>    获取网桥的控制器信息<br><strong>del-controller BRIDGE</strong>    删除网桥的控制器信息<br><strong>set-controller BRIDGE TARGET</strong>    向网桥添加控制器</p><h1 id="Open-vSwitch流表管理"><a href="#Open-vSwitch流表管理" class="headerlink" title="Open vSwitch流表管理"></a>Open vSwitch流表管理</h1><p>OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议连接Open vSwitch来创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。ovs-ofctl关于流表管理的常用命令如下表所示。<br><img src="https://i.loli.net/2018/10/16/5bc5b553dc0a6.png" alt="03.png"><br>对于add-flow、add-flows和mod-flows这3个命令，还需要指定要执行的动作actions=[target],[target]…，一个流规则中可能有多个动作，按照指定的先后顺序执行。<br><img src="https://i.loli.net/2018/10/16/5bc5b5bebfed1.png" alt="04.png"><br>在OpenFlow白皮书中，Flow被定义为某个特定的网络流量。例如，一个TCP连接就是一个Flow，或者从某个IP地址发出来的数据包，都可以被认为是一个Flow。支持OpenFlow协议的交换机应该包括一个或多个流表，流表中的条目包含：数据包头的信息、匹配成功后要执行的指令和统计信息。当数据包进入OVS后，会将数据包和流表中的流表项进行匹配，如果发现了匹配的流表项，则执行该流表项中的指令集。相反，如果数据包在流表中没有发现任何匹配，OVS会通过控制通道把数据包发到OpenFlow控制器中。在OVS中，流表项作为ovs-ofctl的参数，采用如下的格式：字段=值，如果有多个字段，可以用逗号或空格分开，一些常用的字段列举如下表所示。<br><img src="https://i.loli.net/2018/10/16/5bc5b664441f1.png" alt="05.png"></p><h1 id="Open-vSwitchQoS设置"><a href="#Open-vSwitchQoS设置" class="headerlink" title="Open vSwitchQoS设置"></a>Open vSwitchQoS设置</h1><h1 id="Open-vSwitch端口映射"><a href="#Open-vSwitch端口映射" class="headerlink" title="Open vSwitch端口映射"></a>Open vSwitch端口映射</h1><h1 id="Open-vSwitch流量监控"><a href="#Open-vSwitch流量监控" class="headerlink" title="Open vSwitch流量监控"></a>Open vSwitch流量监控</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Open vSwitch是由Nicira Networks主导，运行在虚拟化平台（例如KVM，Xen）上的虚拟交换机。Open vSwitch基于C语言开发，遵循Apache 2.0许可证，能同时支持多种标准的管理接口和协议（比如NetFlow、sFlow、SPAN、RSP
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
-    
-      <category term="Open vSwitch" scheme="https://cyneliu.github.io/tags/Open-vSwitch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SDN实验（一）——常用开源工具</title>
-    <link href="https://cyneliu.github.io/2018/10/15/SDN%E5%AE%9E%E9%AA%8C%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%B8%B8%E7%94%A8%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/"/>
-    <id>https://cyneliu.github.io/2018/10/15/SDN实验（一）——常用开源工具/</id>
-    <published>2018-10-15T08:38:43.000Z</published>
-    <updated>2018-10-15T11:01:00.828Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Wireshark"><a href="#Wireshark" class="headerlink" title="Wireshark"></a>Wireshark</h1><p>Wireshark这款网络数据包分析工具，在传统网络中就有很广泛的应用，这里就不再多说了，主要记录一下笔者之前没有发现的功能或使用方法。  </p><h2 id="OpenFlow数据包"><a href="#OpenFlow数据包" class="headerlink" title="OpenFlow数据包"></a>OpenFlow数据包</h2><p>OpenFlow数据包主要包含五层，依次是：  </p><blockquote><p><strong>Frame：</strong>物理层数据帧概况。<br><strong>Ethernet II：</strong>数据链路层以太网帧头部信息。<br><strong>Internet Protocol Version 4：</strong>互联网IP包头信息。<br><strong>transmission control protocol：</strong>传输层数据段头部信息，此处是TCP。<br><strong>OpenFlow：</strong>位于TCP协议之上，负责解析应用层。  </p></blockquote><h2 id="保存捕获的数据"><a href="#保存捕获的数据" class="headerlink" title="保存捕获的数据"></a>保存捕获的数据</h2><p>wireshark除了有“save”和“save as”的保存方式外，还提供特殊保存的方法（Export Specified）：</p><blockquote><p><strong>All packets:</strong>保存所有已抓取的数据包。<br><strong>Selected packets only:</strong>保存当前鼠标选中的数据包。<br><strong>Marked packets only:</strong>保存当前标记的数据包。标记数据包的方法是在数据包列表中选中目标数据包，然后右击选择“mark packet toggle”。<br><strong>First to last marked:</strong>则将两个标记数据包之间所有的数据包导出。<br><strong>Range:</strong>并输入数据包的编号范围，则将编号连续的数据包导出。<br><strong>Remove ignored packets:</strong>则放弃部分数据包并导出其他所有数据包。放弃数据包的方法是，在数据包列表中选中数据包，右击，选择“ignore packet toggle”。</p></blockquote><h1 id="性能测试工具iPerf和Netperf"><a href="#性能测试工具iPerf和Netperf" class="headerlink" title="性能测试工具iPerf和Netperf"></a>性能测试工具iPerf和Netperf</h1><h2 id="网络性能指标"><a href="#网络性能指标" class="headerlink" title="网络性能指标"></a>网络性能指标</h2><p>1、网络吞吐量：单位时间内通过某个网络（信道或接口）的数据量，吞吐量受网络的带宽或者网络的额定速率限制，单位通常表示为bit/s或bps。  </p><p>2、网络延时：一个数据包从用户的计算机发送到网站服务器，然后再立即从网站服务器返回用户计算机的来回时间。影响网络延时的主要因素是路由的跳数和网络的流量。交换机延时（Latency）是指从交换机接收到数据包到开始向目的端口复制数据包之间的时间间隔。有许多因素会影响交换机延时大小，比如转发技术等等。  </p><p>3、抖动：用于描述包在网络中的传输延时的变化，抖动越小，说明网络质量越稳定越好。抖动是评价一个网络性能的最重要的因素。  </p><p>4、丢包率：理想状态下是发送了多少数据包就能接收到多少数据包，但是由于信号衰减、网络质量等诸多因素的影响并不能达到理想状态，而丢包率就是指测试中所丢失的数据包数量占所发送的数据包的比率。</p><h2 id="iPerf"><a href="#iPerf" class="headerlink" title="iPerf"></a>iPerf</h2><p>iPerf 是一种网络性能测试工具，可以运行于Linux、BSD、Unix及Windows等操作系统。 iPerf具有多种参数和特性，支持协议、定时、缓冲区等参数的配置调整，能够测试TCP/UDP最大带宽、延迟抖动、数据包丢失等统计信息，可以根据需求采用不同的参数从而达到不同的测试目的。iPerf基于Server/Client的工作模式，如下图所示：  </p><p><img src="https://i.loli.net/2018/10/15/5bc45614c9c99.png" alt="01.png"><br>客户端向服务端发送一定数量的数据，服务端统计并记录带宽、延时抖动等信息。客户端将数据全部发送后，服务端会回复一个数据包给客户端，将测试数据反馈给客户端。不过，如果网络较为拥塞或者误码率较高，客户端无法收到服务端回复的数据包，则只能显示本地记录的部分测试结果，所以服务端和客户端的测试结果可能有所不同。</p><h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><blockquote></blockquote><pre><code>iperf [-s|-c host] [options]</code></pre><h4 id="客户端-服务端通用参数"><a href="#客户端-服务端通用参数" class="headerlink" title="客户端/服务端通用参数"></a>客户端/服务端通用参数</h4><blockquote></blockquote><pre><code>-f/—format  [kmKM]分别表示以Kbits, Mbits, KBytes, MBytes显示报告，默认以Mbits为单位-i/—interval  以秒为单位显示报告间隔-l/—len  读写的缓冲区大小，默认8KB-m/—print_mss  打印最大的TCP数据段大小 (MTU - TCP/IP header)-o/—output    将报告和错误信息输出到指定文件-p/—port    指定服务器端使用的端口或客户端所连接的端口-u/—udp    使用udp协议-w/—window    指定TCP窗口（socket缓冲区）大小，默认是8KB-B/—bind    绑定一个主机地址或接口-C/—compatibility    兼容旧版本（当server端和client端版本不一样时使用）-M/—mss    设置TCP最大数据段大小（MTU - 40 bytes）-N/—nodelay    设置无延迟TCP，禁用 Nagle’s Algorithm-V/—IPv6Version    设置传输Ipv6数据包</code></pre><h4 id="服务端参数"><a href="#服务端参数" class="headerlink" title="服务端参数"></a>服务端参数</h4><blockquote></blockquote><pre><code>-s/—server    服务器模式下运行-U/— single_udp    单线程UDP模式下运行-D/— daemon    以守护进程模式运行服务器</code></pre><h4 id="客户端参数"><a href="#客户端参数" class="headerlink" title="客户端参数"></a>客户端参数</h4><blockquote></blockquote><pre><code>-b/— bandwidth    对于UDP，使用bits/sec （默认 1 Mbit/sec, 亦即 -u）传送带宽-c/— client    运行为客户端，连接到“主机”-d/— dualtest    同步进行双向测试-n/— num    传输的字节量-r/— tradeoff    分别进行双向测试-t/— time    传输持续时间 （默认10 secs）-F/— fileinput    从文件中读取要传输的数据-I/— stdin    从标准输入（stdin）中读取要传输的数据-L/— listenport    双向测试接受端口-P/— parallel    并行客户线程数量-T/— ttl    多点传送的生存时间（默认1）</code></pre><h2 id="Netperf"><a href="#Netperf" class="headerlink" title="Netperf"></a>Netperf</h2><p>Netperf是一种网络性能测量工具，主要用于测试TCP或UDP和Berkeley套接字接口的批量数据传输（bulk data transfer）和请求/应答（request/reponse）性能。Netperf工具以Client/Server方式工作，如下图所示：  </p><p><img src="https://i.loli.net/2018/10/15/5bc458630db61.png" alt="02.png"><br>服务端是netServer，用来侦听来自客户端的连接，客户端是netperf，用来向服务发起网络测试。在客户端与服务端之间，首先建立一个控制连接，传递有关测试配置的信息，以及测试的结果。在控制连接建立并传递了测试配置信息以后，客户端与服务端之间会再建立一个测试连接，用于来回传递特殊的流量，以测试网络的性能。当netServer在服务端启动后，就可在客户端运行netperf来测试网络的性能。netperf通过命令行参数来控制测试的类型和具体的测试选项，根据作用范围的不同，netperf的命令行参数可以分为两大类：全局命令行参数和测试相关的局部参数，两者之间使用—分隔。</p><h3 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h3><blockquote></blockquote><pre><code>netperf [global options] —[test-specific options]</code></pre><h4 id="global-options"><a href="#global-options" class="headerlink" title="global options"></a>global options</h4><blockquote></blockquote><pre><code>-H host    指定远端运行netserver的server IP地址-l testlen    指定测试的时间长度（秒）-t testname    指定进行的测试类型（TCP_STREAM，UDP_STREAM，TCP_RR，TCP_CRR，UDP_RR）</code></pre><h4 id="test-specific-options"><a href="#test-specific-options" class="headerlink" title="test-specific options"></a>test-specific options</h4><blockquote></blockquote><pre><code>-s size    设置本地系统的socket发送与接收缓冲大小-S size    设置远端系统的socket发送与接收缓冲大小-m size    设置本地系统发送测试分组的大小-M size    设置远端系统接收测试分组的大小-D    对本地与远端系统的socket设置TCP_NODELAY选项-r req,resp    设置request和reponse分组的大小</code></pre><h1 id="Scapy"><a href="#Scapy" class="headerlink" title="Scapy"></a>Scapy</h1><p>Scapy是一个基于Python编写的交互式数据包处理程序，使用Python解释器作为命令面板。可以用来发送、嗅探、解析和伪造网络数据包，常常被用于网络攻击和测试。Scapy可以实现扫描、路由跟踪、探测、单元测试、攻击和发现网络等传统功能，也可以代替hping、arpspoof、arp-sk、arping、p0f，实现了部分Namp、Tcpdump和tshark的功能。它能够伪造或者解码大量的网络协议数据包，能够发送、捕捉、匹配请求和回复包等等。它可以很容易地处理一些典型操作，比如端口扫描，tracerouting，探测，单元测试，攻击或网络发现（可替代hping，NMAP，arpspoof，ARP-SK，arping，tcpdump，tethereal，P0F等）。最重要的他还有很多更优秀的特性——发送无效数据帧、注入修改的802.11数据帧、在WEP上解码加密通道（VOIP）、ARP缓存攻击（VLAN）等，这也是其他工具无法处理完成的。  </p><p>Scapy有其他网络工具无法匹敌的优势，在大多数工具无法完成的任务中也有出色表现，比如发送无效帧、添加自定义的802.11帧、多技术结合等。其实，Scapy的理念非常简单，主要负责定义、发送和接收报文。用户利用Scapy定义一系列报文，接着发送这些报文，然后会收到回应，Scapy将收到的回应与请求匹配，返回到存放报文对（请求，回应）的列表和没有匹配报文的列表。  </p><p>Scapy不仅可以进行交互式数据包处理，还可以作为Python模块在Python程序中使用。需要注意的是，无论是交互式数据处理还是在Python代码中使用，都需要基于root权限。  </p><p>Scapy既然是第三方库，系统上默认是没有安装的。在Ubuntu下，我们可以直接使用命令：</p><blockquote></blockquote><pre><code>sudo apt-get install scapy</code></pre><p>进行安装，安装完成以后，只需要在终端下执行sudo scapy就可以进入Scapy的命令行模式。  </p><p>Scapy常用功能:</p><blockquote><p>1、conf：查看配置信息<br>2、lsc()：查看支持的指令集<br>3、ls()：查看实现的网络协议。ls()中携带的参数可以是任何的一个具体的包，常用的有ARP、Ether、ICMP、IP、UDP、TCP，也支持SNMP、DHCP、STP等。<br>4、IP模块的使用:</p><blockquote><p>我们可以像在Python中一样实例化一个IP对象:</p><blockquote><p>data = IP()<br>data<br>    <ip><br>也可以传入需要自定义的参数:</ip></p></blockquote><blockquote><p>data = IP(dst=”172.16.2.79”)<br>data<br>    <ip dst="172.16.2.79"><br>查看 IP 模块对象的所有信息:</ip></p></blockquote><blockquote><p>data = IP()<br>data.show() </p></blockquote></blockquote></blockquote><pre><code>###[ IP ]### version= 4 ihl= None tos= 0x0 len= None id= 1 flags= frag= 0 ttl= 64 proto= ip chksum= None src= 127.0.0.1 dst= 127.0.0.1 \options\</code></pre><blockquote><p>5、发送和接收报文：<br>可以将上面的 IP 对象封装成一个数据包发送出去。</p><blockquote><p>send：在第三层发送数据包，但没有接收功能。</p><blockquote><p>send(data, iface=”eth0”)<br>    .<br>    Sent 1 packets.<br>sendp：在第二层发送数据包，同样没有接收功能。<br>sr：在第三层发送数据包，有接收功能。<br>sr1：在第三层发送数据包，有接收功能，但只接收第一个包。<br>srp：在第二层发送数据包，有接收功能。<br>srp1：在第二层发送数据包，有接收功能，但只接收第一个包。</p></blockquote></blockquote></blockquote><h1 id="HTTP请求测试工具Postman"><a href="#HTTP请求测试工具Postman" class="headerlink" title="HTTP请求测试工具Postman"></a>HTTP请求测试工具Postman</h1><p>Postman是Google开发的一款功能强大的网页调试与发送网页HTTP请求，并能运行测试用例的的Chrome插件。其主要功能包括：<br>模拟各种HTTP requests：</p><blockquote><p>从常用的GET、POST到RESTful的PUT、DELETE等等。甚至还可以发送文件、送出额外的header。</p></blockquote><p>Collection功能（测试集合）:</p><blockquote><p>Collection是requests的集合，在做完一个测试的时候，你可以把这次的 request 存到特定的 Collection 里面，如此一来，下次要做同样的测试时，就不需要重新输入。而且一个collection可以包含多条request，如果我们把一个request当成一个test case，那collection就可以看成是一个test suite。通过collection的归类，我们可以良好的分类测试软件所提供的API。而且 Collection还可以Import或是Share出来，让团队里面的所有人共享你建立起来的Collection。</p></blockquote><p>人性化的Response整理:</p><blockquote><p>一般在用其他工具来测试的时候，response的内容通常都是纯文字的raw，但如果是JSON，就是塞成一整行的JSON。这会造成阅读的障碍，而Postman可以针对response内容的格式自动美化。JSON、XML或是HTML都会整理成我们可以阅读的格式。</p></blockquote><p>内置测试脚本语言:</p><blockquote><p>Postman支持编写测试脚本，可以快速的检查request的结果，并返回测试结果。</p></blockquote><p>设定变量与环境</p><blockquote><p>Postman可以自由设定变量与环境，一般我们在编辑request，校验response的时候，总会需要重复输入某些字符，比如url，postman允许我们设定变量来保存这些值。并且把变量保存在不同的环境中。比如，我们可能会有多种环境，development、staging或local，而这几种环境中的request URL也各不相同，但我们可以在不同的环境中设定同样的变量，只是变量的值不一样，这样我们就不用修改我们的测试脚本，而测试不同的环境。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Wireshark&quot;&gt;&lt;a href=&quot;#Wireshark&quot; class=&quot;headerlink&quot; title=&quot;Wireshark&quot;&gt;&lt;/a&gt;Wireshark&lt;/h1&gt;&lt;p&gt;Wireshark这款网络数据包分析工具，在传统网络中就有很广泛的应用，这里就不再多
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="实验" scheme="https://cyneliu.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
     
   </entry>
   

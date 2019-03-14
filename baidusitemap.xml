@@ -4,8 +4,32 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/</loc>
+    <lastmod>2019-03-14T01:26:38.375Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu16.04安装OpenDaylight Carbon</title>
+        <pubTime>2019-03-14T00:57:44.000Z</pubTime>
+        
+        <tag>SDN</tag>
+         
+        <tag>OpenDaylight</tag>
+         
+        <tag>Ubuntu16.04</tag>
+         
+         
+           
+             
+              <breadCrumb title="SDN" url="https://cyneliu.github.io/categories/SDN/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/</loc>
-    <lastmod>2019-03-05T13:39:48.081Z</lastmod>
+    <lastmod>2019-03-14T00:11:08.287Z</lastmod>
     <data>
         <display>
         <title>Ubuntu14.04安装OpenDaylight(锂版本)</title>
@@ -21,6 +45,50 @@
            
              
               <breadCrumb title="SDN" url="https://cyneliu.github.io/categories/SDN/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://cyneliu.github.io/2019/03/13/ovs-vsctl-unix-usr-local-var-run-openvswitch-db-sock-database-connection-failed/</loc>
+    <lastmod>2019-03-13T14:13:29.782Z</lastmod>
+    <data>
+        <display>
+        <title>ovs-vsctl: unix:/usr/local/var/run/openvswitch/db.sock: database connection failed</title>
+        <pubTime>2019-03-13T14:08:46.000Z</pubTime>
+        
+        <tag>SDN</tag>
+         
+        <tag>OpenvSwitch</tag>
+         
+         
+           
+             
+              <breadCrumb title="SDN" url="https://cyneliu.github.io/categories/SDN/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://cyneliu.github.io/2019/03/13/ubuntu%E6%89%A7%E8%A1%8Capt-get-update%E5%87%BA%E7%8E%B0Error%20in%20'appstreamcli'%E9%94%99%E8%AF%AF/</loc>
+    <lastmod>2019-03-13T14:06:07.301Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu执行apt-get-update出现Error in 'appstreamcli'错误</title>
+        <pubTime>2019-03-13T13:54:13.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>apt-get</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="https://cyneliu.github.io/categories/Linux/"/>
           
         </display>
     </data>
@@ -534,11 +602,11 @@
          
         <tag>科学上网</tag>
          
-        <tag>脚本</tag>
-         
         <tag>vps</tag>
          
         <tag>网站</tag>
+         
+        <tag>脚本</tag>
          
          
            

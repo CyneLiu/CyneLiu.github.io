@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Ubuntu16.04安装OpenDaylight Carbon]]></title>
+    <url>%2F2019%2F03%2F14%2FUbuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon%2F</url>
+    <content type="text"><![CDATA[环境准备JRE安装配置https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html我这里下载的是目前的最新版本： wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/server-jre-8u201-linux-x64.tar.gz 解压到自定义目录中： mkdir -p /opt/java #将下载下来的安装包移动到此目录（自己定义） tar -xzvf server-jre-8u201-linux-x64.tar.gz 配置环境变量： vim /etc/profile 在文件末尾添加如下配置： export JAVA_HOME=/opt/java/jdk1.8.0_201 export JRE_HOME=/opt/java/jdk1.8.0_201 export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/ext export PATH=$PATH:$JRE_HOME/bin 使配置生效： source /etc/profile 验证配置成功： java -version #显示java版本信息 OpenDaylight(Carbon)安装配置下载我这里下载的是0.6.4版本： wget https://nexus.opendaylight.org/content/repositories/public/org/opendaylight/integration/distribution-karaf/0.6.4-Carbon/distribution-karaf-0.6.4-Carbon.zip 解压安装 uzip distribution-karaf-0.6.4-Carbon.zip 启动karaf cd distribution-karaf-0.6.4-Carbon ./bin/karaf 安装组件安装REST API组件 feature:install odl-restconf 安装L2 switch组件： feature:install odl-l2switch-switch-ui 安装API查看器： feature:install odl-mdsal-apidocs 安装 dlux 展示页面: feature:install odl-dluxapps-applications 验证安装登录管理页面用浏览器访问：http://localhost:8080/index.html用户名/密码：admin/admin 使用OpenvSwitch连接ODL控制器用下面的命令将br0网桥连接至指定的控制器: ovs-vsctl set-controller br0 tcp:&lt;controller IP&gt;:&lt;port&gt; 执行：ovs-vsctl show,出现is_connected:true字样表示连接成功：登录管理页面查看拓扑发现已经连接的OVS交换机：]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>SDN</tag>
+        <tag>OpenDaylight</tag>
+        <tag>Ubuntu16.04</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ovs-vsctl: unix:/usr/local/var/run/openvswitch/db.sock: database connection failed]]></title>
+    <url>%2F2019%2F03%2F13%2Fovs-vsctl-unix-usr-local-var-run-openvswitch-db-sock-database-connection-failed%2F</url>
+    <content type="text"><![CDATA[问题描述在OpenvSwitch中执行ovs-vsctl show命令时，出现如下错误提示： ovs-vsctl: unix:/usr/local/var/run/openvswitch/db.sock: database connection failed 解决方法在每次重启开机之后执行如下命令： ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock \ --remote=db:Open_vSwitch,Open_vSwitch,manager_options \ --private-key=db:Open_vSwitch,SSL,private_key \ --certificate=db:Open_vSwitch,SSL,certificate \ --bootstrap-ca-cert=db:Open_vSwitch,SSL,ca_cert \ --pidfile --detach ovs-vsctl --no-wait init ovs-vswitchd --pidfile --detach]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>SDN</tag>
+        <tag>OpenvSwitch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu执行apt-get-update出现Error in 'appstreamcli'错误]]></title>
+    <url>%2F2019%2F03%2F13%2Fubuntu%E6%89%A7%E8%A1%8Capt-get-update%E5%87%BA%E7%8E%B0Error%20in%20'appstreamcli'%E9%94%99%E8%AF%AF%2F</url>
+    <content type="text"><![CDATA[问题描述新装Ubuntu16.04桌面版后执行apt-get update时出现了如下图所示的错误： 解决方法执行如下命令： sudo apt install appstream/xenial-backports sudo appstreamcli refresh –-force sudo apt-get update 然后再次执行： apt-get update 这时已经可以成功执行。]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>apt-get</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mininet gave up after 3 retries问题]]></title>
     <url>%2F2019%2F03%2F02%2Fmininet-gave-up-after-3-retries%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[问题描述在使用mn创建拓扑时，出现以下错误： *** Creating network *** Adding controller *** Adding hosts: h1 h2 *** Adding switches: s1 *** Adding links: *** gave up after 3 retries 解决办法出现如上错误是因为kernel版本的问题，在安装mininet时使用的是apt-get install mininet的方式安装的，这种方式安装的mininet并不是最新版本，安装最新版本以解决问题：1、卸载之前的安装 sudo apt-get remove mininet sudo apt-get remove --auto-remove mininet sudo apt-get purge mininet 2、安装最新版本(详细步骤) git clone git://github.com/mininet/mininet cd mininet util/install.sh -a 补充后来使用Ubuntu16.04，同样使用apt-get install直接安装openvswitch和mininet时，没有出现上述问题，推荐使用16.04版本安装环境。]]></content>
@@ -15,7 +52,7 @@
   <entry>
     <title><![CDATA[Ubuntu14.04安装OpenDaylight(锂版本)]]></title>
     <url>%2F2019%2F02%2F27%2FUbuntu14-04%E5%AE%89%E8%A3%85OpenDaylight%2F</url>
-    <content type="text"><![CDATA[准备工作下载OpenDaylight下载OpenDaylight Lithium压缩包：提取码：y4ae 安装jdk sudo apt-get install openjdk-7-jdk 安装Maven sudo mkdir -p /usr/local/apache-maven wget http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/ sudo mv apache-maven-3.3.3-bin.tar.gz /usr/local/apache-maven sudo tar -xzvf /usr/local/apache-maven/apache-maven-3.3.3-bin.tar.gz -C /usr/local/apache-maven/ sudo update-alternatives --install /usr/bin/mvn mvn /usr/local/apache-maven/apache-maven-3.3.3/bin/mvn 1 sudo update-alternatives --config mvn sudo apt-get install vim 编辑 ~/.bashrc文件： vim ~/.bashrc 将以下内容添加至文件末尾： export M2_HOME=/usr/local/apache-maven/apache-maven-3.3.3 export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot; # Very important to put the &quot;m&quot; on the end export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 # This matches sudo update-alternatives --config java 应用 ~/.bashrc文件： source ~/.bashrc 安装OpenDaylight将之前准备的安装包文件解压，并进入目录： unzip lithium.zip cd distribution-karaf-0.3.0-Lithium 启动控制器，并进入karaf控制台： ./bin/karaf 这样启动后关闭命令终端，控制器进程也会随之关闭，我们采用如下方式后台启动： ./bin/start ./bin/client -u karaf 验证安装最后使用mininet创建拓扑连接OpenDaylight控制器进行验证： mn --controller=remote,ip=192.168.1.3,port=6633 &gt; pingall 可以看到两台设备通过控制器自动下发的流表已经可以互通了。打开浏览器访问：http://[controller ip]:8080/index.html,用户名密码为admin/admin，登录控制器就可以看到刚刚创建的拓扑了： 参考链接：maven下载地址（bin.tar.gz）： http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/ https://wiki.opendaylight.org/view/Install_On_Ubuntu_14.04]]></content>
+    <content type="text"><![CDATA[准备工作下载OpenDaylight下载OpenDaylight Lithium压缩包：提取码：y4ae 安装jdk sudo apt-get install openjdk-7-jdk 安装Maven sudo mkdir -p /usr/local/apache-maven wget http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz sudo mv apache-maven-3.3.3-bin.tar.gz /usr/local/apache-maven sudo tar -xzvf /usr/local/apache-maven/apache-maven-3.3.3-bin.tar.gz -C /usr/local/apache-maven/ sudo update-alternatives --install /usr/bin/mvn mvn /usr/local/apache-maven/apache-maven-3.3.3/bin/mvn 1 sudo update-alternatives --config mvn sudo apt-get install vim 编辑 ~/.bashrc文件： vim ~/.bashrc 将以下内容添加至文件末尾： export M2_HOME=/usr/local/apache-maven/apache-maven-3.3.3 export MAVEN_OPTS=&quot;-Xms256m -Xmx512m&quot; # Very important to put the &quot;m&quot; on the end export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 # This matches sudo update-alternatives --config java 应用 ~/.bashrc文件： source ~/.bashrc 安装OpenDaylight将之前准备的安装包文件解压，并进入目录： unzip lithium.zip cd distribution-karaf-0.3.0-Lithium 启动控制器，并进入karaf控制台： ./bin/karaf 这样启动后关闭命令终端，控制器进程也会随之关闭，我们采用如下方式后台启动： ./bin/start ./bin/client -u karaf 加载组件： feature:install odl-restconf feature:install odl-l2switch-switch feature:install odl-openflowplugin-all feature:install odl-dlux-all feature:install odl-mdsal-all feature:install odl-adsal-northbound 验证安装最后使用mininet创建拓扑连接OpenDaylight控制器进行验证： mn --controller=remote,ip=192.168.1.3,port=6633 &gt; pingall 可以看到两台设备通过控制器自动下发的流表已经可以互通了。打开浏览器访问：http://[controller ip]:8080/index.html,用户名密码为admin/admin，登录控制器就可以看到刚刚创建的拓扑了： 关闭后重新启动失败进入ODL主目录，(删除data目录，我在尝试时没删除也不影响效果),执行： ./karaf clean 然后重新启动： ./karaf 重新加载组件： feature:install odl-restconf feature:install odl-l2switch-switch feature:install odl-openflowplugin-all feature:install odl-dlux-all feature:install odl-mdsal-all feature:install odl-adsal-northbound 参考链接：maven下载地址（bin.tar.gz）： http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/ https://wiki.opendaylight.org/view/Install_On_Ubuntu_14.04]]></content>
       <categories>
         <category>SDN</category>
       </categories>
@@ -256,9 +293,9 @@
       <tags>
         <tag>Linux</tag>
         <tag>科学上网</tag>
-        <tag>脚本</tag>
         <tag>vps</tag>
         <tag>网站</tag>
+        <tag>脚本</tag>
       </tags>
   </entry>
   <entry>
