@@ -1199,7 +1199,7 @@ sudo apt-get remove
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  521
+                  412
                 </span>
               
 
@@ -1215,7 +1215,7 @@ sudo apt-get remove
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  1
                 </span>
               
             </div>
@@ -1242,11 +1242,25 @@ sudo apt-get remove
 安装jdk
 
 sudo apt-get install openjdk-7-jdk
-安装Maven
+配置环境变量编辑 ~/.bashrc文件：
 
-sudo mkdir -p /usr/local/apache-maven
-wget http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz
-sudo mv apache-maven-3.3.3-bin.tar.gz /usr/local/apache-mave
+
+vim ~/.bashrc
+将以下内容添加至文件末尾：
+
+
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 
+应用 ~/.bashrc文件：
+
+
+source ~/.bashrc
+验证安装
+
+java -version
+安装OpenDaylight将之前准备的安装包文件解压，并进入目录：
+
+
+unzi
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1654,7 +1668,7 @@ tcping -f 1
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共46.2k字</span>
+  <span class="post-count">博客全站共46.1k字</span>
 </div>
 
         

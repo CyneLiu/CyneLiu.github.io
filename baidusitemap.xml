@@ -4,18 +4,18 @@
 
     
   <url>
-    <loc>https://cyneliu.github.io/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/</loc>
-    <lastmod>2019-03-14T01:26:38.375Z</lastmod>
+    <loc>https://cyneliu.github.io/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/</loc>
+    <lastmod>2019-03-15T00:32:17.474Z</lastmod>
     <data>
         <display>
-        <title>Ubuntu16.04安装OpenDaylight Carbon</title>
-        <pubTime>2019-03-14T00:57:44.000Z</pubTime>
+        <title>Ubuntu14.04安装OpenDaylight(锂版本)</title>
+        <pubTime>2019-02-27T13:33:58.000Z</pubTime>
         
         <tag>SDN</tag>
          
         <tag>OpenDaylight</tag>
          
-        <tag>Ubuntu16.04</tag>
+        <tag>Lithium</tag>
          
          
            
@@ -28,18 +28,18 @@
 
     
   <url>
-    <loc>https://cyneliu.github.io/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/</loc>
-    <lastmod>2019-03-14T00:11:08.287Z</lastmod>
+    <loc>https://cyneliu.github.io/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/</loc>
+    <lastmod>2019-03-14T01:26:38.375Z</lastmod>
     <data>
         <display>
-        <title>Ubuntu14.04安装OpenDaylight(锂版本)</title>
-        <pubTime>2019-02-27T13:33:58.000Z</pubTime>
+        <title>Ubuntu16.04安装OpenDaylight Carbon</title>
+        <pubTime>2019-03-14T00:57:44.000Z</pubTime>
         
         <tag>SDN</tag>
          
         <tag>OpenDaylight</tag>
          
-        <tag>Lithium</tag>
+        <tag>Ubuntu16.04</tag>
          
          
            
