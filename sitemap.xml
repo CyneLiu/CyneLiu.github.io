@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cyneliu.github.io/2019/03/20/%E5%9C%A8ESXI%E7%8E%AF%E5%A2%83%E4%B8%AD%E9%83%A8%E7%BD%B2fuel-openstack%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</loc>
+    
+    <lastmod>2019-03-26T01:10:14.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cyneliu.github.io/2018/04/10/%E6%96%B0%E6%89%8B%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%E7%9A%84Linux%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2019-03-21T01:22:31.751Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://cyneliu.github.io/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/</loc>
     
     <lastmod>2019-03-15T00:32:17.474Z</lastmod>
@@ -152,13 +166,6 @@
     <loc>https://cyneliu.github.io/2018/11/07/%E6%B5%85%E8%B0%88%E5%87%A0%E7%A7%8D%E5%BF%AB%E5%85%85%E6%8A%80%E6%9C%AF/</loc>
     
     <lastmod>2018-11-07T11:50:05.314Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cyneliu.github.io/2018/04/10/%E6%96%B0%E6%89%8B%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%E7%9A%84Linux%E5%91%BD%E4%BB%A4/</loc>
-    
-    <lastmod>2018-11-01T11:06:04.371Z</lastmod>
     
   </url>
   

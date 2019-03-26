@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2019/03/20/%E5%9C%A8ESXI%E7%8E%AF%E5%A2%83%E4%B8%AD%E9%83%A8%E7%BD%B2fuel-openstack%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2019-03-26T01:10:14.866Z</lastmod>
+    <data>
+        <display>
+        <title>在ESXI环境中部署fuel openstack虚拟环境</title>
+        <pubTime>2019-03-20T12:02:15.000Z</pubTime>
+        
+        <tag>OpenStack</tag>
+         
+        <tag>Esxi</tag>
+         
+        <tag>fuel</tag>
+         
+         
+           
+             
+              <breadCrumb title="OpenStack" url="https://cyneliu.github.io/categories/OpenStack/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://cyneliu.github.io/2018/04/10/%E6%96%B0%E6%89%8B%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%E7%9A%84Linux%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2019-03-21T01:22:31.751Z</lastmod>
+    <data>
+        <display>
+        <title>新手必须掌握的Linux命令</title>
+        <pubTime>2018-04-10T13:19:22.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="https://cyneliu.github.io/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/</loc>
     <lastmod>2019-03-15T00:32:17.474Z</lastmod>
     <data>
@@ -483,26 +527,6 @@
 
     
   <url>
-    <loc>https://cyneliu.github.io/2018/04/10/%E6%96%B0%E6%89%8B%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%E7%9A%84Linux%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2018-11-01T11:06:04.371Z</lastmod>
-    <data>
-        <display>
-        <title>新手必须掌握的Linux命令</title>
-        <pubTime>2018-04-10T13:19:22.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="https://cyneliu.github.io/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://cyneliu.github.io/2018/10/30/Apache-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2018-10-30T09:26:47.960Z</lastmod>
     <data>
@@ -600,13 +624,13 @@
         
         <tag>Linux</tag>
          
+        <tag>脚本</tag>
+         
         <tag>科学上网</tag>
          
         <tag>vps</tag>
          
         <tag>网站</tag>
-         
-        <tag>脚本</tag>
          
          
            
