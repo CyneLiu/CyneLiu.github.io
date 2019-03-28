@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-03-26T01:10:14.866Z</updated>
+  <updated>2019-03-28T03:35:17.934Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Cisco配置VPN IPSec</title>
+    <link href="https://cyneliu.github.io/2019/03/28/Cisco%E9%85%8D%E7%BD%AEVPN-IPSec/"/>
+    <id>https://cyneliu.github.io/2019/03/28/Cisco配置VPN-IPSec/</id>
+    <published>2019-03-28T02:09:29.000Z</published>
+    <updated>2019-03-28T03:35:17.934Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2019/03/28/5c9c3006a1ccd.png" alt="00.png"></p><h1 id="配置运营商网络"><a href="#配置运营商网络" class="headerlink" title="配置运营商网络"></a>配置运营商网络</h1><p>在配置VPN之前，首先要保证模拟的运营商网络是可以正常通信的，这里我配置的是OSPF，需要注意的是两边的路由器不要把内网网段也给宣告出去了，如果是这样那VPN也就没有存在的意义了。<br>首先是左边的R1：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 202.1.1.1 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 202.1.1.0 0.0.0.255 area 0</code></pre><p>中间的R0：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 202.1.1.254 255.255.255.0Router(config-if)#no shutRouter(config)#int f0/1Router(config-if)#ip add 210.1.1.254 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 202.1.1.0 0.0.0.255 area 0Router(config-router)#net 210.1.1.0 0.0.0.255 area 0</code></pre><p>右边的R2：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 210.1.1.1 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 210.1.1.0 0.0.0.255 area 0</code></pre><p>等待收敛完成验证网络是否可以正常通信。</p><h1 id="配置内网"><a href="#配置内网" class="headerlink" title="配置内网"></a>配置内网</h1><p>内网过于简单这里不再赘述，我的左边的区域1的网段是10.0.1.0/24，右边的区域2是10.0.2.0/24，网关则分别为1.1和2.1。</p><h1 id="配置IPSec-site-to-site"><a href="#配置IPSec-site-to-site" class="headerlink" title="配置IPSec(site to site)"></a>配置IPSec(site to site)</h1><p>R1:</p><blockquote></blockquote><pre><code>Router(config)#crypto isakmp enable #启用IKE,默认即为启动Router(config)#crypto isakmp policy 1 #定义IKE安全策略集1Router(config-isakmp)#authentication pre-share #IKE验证方式胃预共享密钥Router(config-isakmp)#encryption 3des #IKE加密方式为3desRouter(config-isakmp)#group 1 #IKE使用Diffie-Hellman组1Router(config-isakmp)#hash md5 #IKE的Hash验证为MD5Router(config-isakmp)#exitRouter(config)#crypto isakmp key cyne address 210.1.1.1 #两端的KEY必须一致，210.1.1.1是对端的公网地址Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3des #定义VPN使用IPSec策略集，lab为策略集名称Router(config)#access-list 100 permit ip 10.0.1.0 0.0.0.255 10.0.2.0 0.0.0.255 #定义在R1上需要加密的流量Router(config)#crypto map test 110 ipsec-isakmp #定义加密图Router(config-crypto-map)#match address 100 #在加密图中声明加密流量列表Router(config-crypto-map)#set peer 210.1.1.1 #对端公网ipRouter(config-crypto-map)#set transform-set lab #在加密图中调用IPSec的策略集labRouter(config-crypto-map)#exitRouter(config)#int f1/0Router(config-if)#crypto map test #将加密图应用到此端口Router(config-if)#exit Router(config)#ip route 10.0.2.0 255.255.255.0 f0/0 #指定VPN的静态路由</code></pre><p>R2:</p><blockquote></blockquote><pre><code>Router(config)#crypto isakmp enableRouter(config)#crypto isakmp policy 1Router(config-isakmp)#authentication pre-share Router(config-isakmp)#encryption 3desRouter(config-isakmp)#group 1Router(config-isakmp)#hash md5Router(config-isakmp)#exitRouter(config)#crypto isakmp key cyne address 202.1.1.1 #两端的KEY必须一致，202.1.1.1是对端的公网地址Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3desRouter(config)#access-list 100 permit ip 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255Router(config)#crypto map test 110 ipsec-isakmp Router(config-crypto-map)#match address 100 Router(config-crypto-map)#set peer 202.1.1.1 #对端公网ipRouter(config-crypto-map)#set transform-set labRouter(config-crypto-map)#exitRouter(config)#int f0/0Router(config-if)#crypto map testRouter(config-if)#exit Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0</code></pre><h1 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h1><p>使用区域1内的PC ping 区域2中的PC，发现已经可以通信：<br><img src="https://i.loli.net/2019/03/28/5c9c3cfee86a3.png" alt="01.png"></p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb" target="_blank" rel="noopener">https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb</a><br><a href="http://www.solves.com.cn/doc-view-2025.html" target="_blank" rel="noopener">http://www.solves.com.cn/doc-view-2025.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;实验拓扑&quot;&gt;&lt;a href=&quot;#实验拓扑&quot; class=&quot;headerlink&quot; title=&quot;实验拓扑&quot;&gt;&lt;/a&gt;实验拓扑&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2019/03/28/5c9c3006a1ccd.png&quot; alt
+      
+    
+    </summary>
+    
+      <category term="网络" scheme="https://cyneliu.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="Cisco" scheme="https://cyneliu.github.io/tags/Cisco/"/>
+    
+      <category term="VPN" scheme="https://cyneliu.github.io/tags/VPN/"/>
+    
+      <category term="IPSec" scheme="https://cyneliu.github.io/tags/IPSec/"/>
+    
+  </entry>
   
   <entry>
     <title>在ESXI环境中部署fuel openstack虚拟环境</title>
@@ -551,36 +580,6 @@
     
     
       <category term="快充" scheme="https://cyneliu.github.io/tags/%E5%BF%AB%E5%85%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Apache Web服务器的安装与配置</title>
-    <link href="https://cyneliu.github.io/2018/10/30/Apache-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
-    <id>https://cyneliu.github.io/2018/10/30/Apache-Web服务器的安装与配置/</id>
-    <published>2018-10-30T09:10:05.000Z</published>
-    <updated>2018-10-30T09:26:47.960Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="安装Apache2"><a href="#安装Apache2" class="headerlink" title="安装Apache2"></a>安装Apache2</h1><p>执行：</p><blockquote></blockquote><pre><code>sudo apt-get install apache2</code></pre><p>Apache默认会在“/var”下建立一个名为“www”的目录，即Web目录，所有能通过浏览器访问的Web文件都放到这个目录。</p><h1 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h1><p>安装PHP：</p><blockquote></blockquote><pre><code>sudo apt-get install libapache2-mod-php5 php5</code></pre><p>安装扩展包：</p><blockquote></blockquote><pre><code>sudo apt-get install php5-gd php5-mysql</code></pre><p>重新启动Apache，加载PHP模块:</p><blockquote></blockquote><pre><code>sudo /etc/init.d/apache2 restart</code></pre><h1 id="安装MySQL数据库"><a href="#安装MySQL数据库" class="headerlink" title="安装MySQL数据库"></a>安装MySQL数据库</h1><p>执行：</p><blockquote></blockquote><pre><code>sudo apt-get install mysql-server</code></pre><p>根据提示信息设置密码。</p><h1 id="安装配置phpMyAdmin"><a href="#安装配置phpMyAdmin" class="headerlink" title="安装配置phpMyAdmin"></a>安装配置phpMyAdmin</h1><p>安装Mysql数据库管理软件：</p><blockquote></blockquote><pre><code>sudo apt-get install phpmyadmin</code></pre><p>选择Web server：apache2或lighttpd：<br><img src="http://112.80.35.35:40010/site_media/media/course/45822350-0767-4686-b15a-74a093b03768/network/%E5%9B%BE%E7%89%87_nvEIrXy.png" alt="01.png"><br>之后还需要根据提示输入Mysql的root账户连接密码并设置phpMyAdmin的登录密码。  </p><p>将phpMyAdmin与Apache2建立连接。例如：www目录在“/var/www”下，phpMyAdmin在“/usr/share/phpmyadmin”目录下，则用如下命令建立连接：</p><blockquote></blockquote><pre><code>sudo ln -s /usr/share/phpmyadmin /var/www/html</code></pre><p>在浏览器地址栏中输入<a href="http://localhost/phpmyadmin即可访问phpMyAdmin的登录页面。" target="_blank" rel="noopener">http://localhost/phpmyadmin即可访问phpMyAdmin的登录页面。</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;安装Apache2&quot;&gt;&lt;a href=&quot;#安装Apache2&quot; class=&quot;headerlink&quot; title=&quot;安装Apache2&quot;&gt;&lt;/a&gt;安装Apache2&lt;/h1&gt;&lt;p&gt;执行：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;c
-      
-    
-    </summary>
-    
-      <category term="服务器应用" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BA%94%E7%94%A8/"/>
-    
-    
-      <category term="Apache" scheme="https://cyneliu.github.io/tags/Apache/"/>
-    
-      <category term="Web服务器" scheme="https://cyneliu.github.io/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   
