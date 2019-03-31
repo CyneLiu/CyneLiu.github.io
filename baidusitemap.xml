@@ -35,11 +35,11 @@
         <title>在ESXI环境中部署fuel openstack虚拟环境</title>
         <pubTime>2019-03-20T12:02:15.000Z</pubTime>
         
-        <tag>OpenStack</tag>
-         
         <tag>Esxi</tag>
          
         <tag>fuel</tag>
+         
+        <tag>OpenStack</tag>
          
          
            
@@ -761,78 +761,6 @@
 
     
   <url>
-    <loc>https://cyneliu.github.io/2018/06/19/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94-%E4%BA%91%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2018-10-16T14:17:48.157Z</lastmod>
-    <data>
-        <display>
-        <title>OpenStack入门（二）—— 云计算</title>
-        <pubTime>2018-06-19T11:31:46.000Z</pubTime>
-        
-        <tag>OpenStack</tag>
-         
-        <tag>入门</tag>
-         
-        <tag>学习笔记</tag>
-         
-         
-           
-             
-              <breadCrumb title="OpenStack" url="https://cyneliu.github.io/categories/OpenStack/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://cyneliu.github.io/2018/06/06/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94-%E8%99%9A%E6%8B%9F%E5%8C%96/</loc>
-    <lastmod>2018-10-16T14:17:30.934Z</lastmod>
-    <data>
-        <display>
-        <title>OpenStack入门（一）—— 虚拟化</title>
-        <pubTime>2018-06-06T11:45:18.000Z</pubTime>
-        
-        <tag>OpenStack</tag>
-         
-        <tag>入门</tag>
-         
-        <tag>学习笔记</tag>
-         
-         
-           
-             
-              <breadCrumb title="OpenStack" url="https://cyneliu.github.io/categories/OpenStack/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://cyneliu.github.io/2018/06/19/OpenStack%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94-OpenStack%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2018-10-16T14:16:57.748Z</lastmod>
-    <data>
-        <display>
-        <title>OpenStack入门（三）—— OpenStack架构</title>
-        <pubTime>2018-06-19T11:51:37.000Z</pubTime>
-        
-        <tag>OpenStack</tag>
-         
-        <tag>入门</tag>
-         
-        <tag>学习笔记</tag>
-         
-         
-           
-             
-              <breadCrumb title="OpenStack" url="https://cyneliu.github.io/categories/OpenStack/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://cyneliu.github.io/2018/06/24/Mininet%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2018-10-16T14:15:49.157Z</lastmod>
     <data>
@@ -908,9 +836,9 @@
         <title>Cisco设备密码重置</title>
         <pubTime>2018-10-11T13:47:03.000Z</pubTime>
         
-        <tag>Cisco</tag>
-         
         <tag>网工</tag>
+         
+        <tag>Cisco</tag>
          
          
            
