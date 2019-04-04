@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Linux中的几个查找命令]]></title>
+    <url>%2F2019%2F04%2F04%2FLinux%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[find可以查找任何类型的文件。语法格式： find path -option [-print] [-exec -ok command] {} \; path:搜索的目录及其子目录，缺省为当前目录-name:按文件名称查找-user:按文件的属主查找-group:按文件的属组查找-perm:按文件权限查找-prune:不在当前指定目录查找(除了此目录外进行查找) locatelocate命令与“find -name”的作用类似，但原理完全不同。它比find快得多，因为它不搜索具体目录，而是在一个数据库(/var/lib/locatedb)中搜索指定的文件。此数据库含有本地文件的所有信息，这个数据库是linux系统自动创建的，数据库由updatedb程序来更新，updatedb是由cron daemon周期性建立的，默认情况下为每天更新一次，所以用locate命令你搜索不到最新更新的文件，除非你在用locate命令查找文件之前手动的用updatedb命令更新数据库。也就是说在没有手动更新的前提下，如果删除掉之前存在文件，locate依然可以搜索到它。 whereis只能查找二进制文件(-b)，源代码文件(-s)和说明文件(-m)。如果省略参数则返回所有的信息。 which在PATH变量指定的路径中搜索指定的系统命令的位置。 which find /bin/find typetype命令主要用于区分一个命令到底是shell自带的还是外部独立的二进制文件提供的。如果是shell自带的则会提示此命令为shell buildin,否则会列出命令的位置。 type cd cd is a shell builtin type ssh ssh is /usr/bin/ssh 原文链接：https://www.cnblogs.com/ginvip/p/6357352.html]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Nova的16种操作]]></title>
+    <url>%2F2019%2F04%2F03%2FNova%E7%9A%8416%E7%A7%8D%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[常规操作Resize通过更改flavor调整分配给instance的资源。 Lock/UnLock防止对instance的误操作。 Pause/Suspend/Resume暂停当前的instance，并在以后恢复。Pause 和 Suspend 的区别在于 Pause 将 instance 的运行状态保存在计算节点的内存中，而 Suspend 保存在磁盘上。 Snapshot备份 instance 到 Glance。产生的 image 可用于故障恢复，或者以此为模板部署新的 instance。 故障处理计划内Migrate将 instance 迁移到其他计算节点。迁移之前，instance 会被 Shut Off，支持共享存储和非共享存储。 Live Migrate与 Migrate 不同，Live Migrate 能不停机在线地迁移 instance，保证了业务的连续性。也支持共享存储和非共享存储（Block Migration） Shelve/UnshelveShelve 将 instance 保存到 Glance 上，之后可通过 Unshelve 重新部署。Shelve 操作成功后，instance 会从原来的计算节点上删除。Unshelve 会重新选择节点部署，可能不是原节点。 计划外Rescue/Unrescue用指定的启动盘启动，进入 Rescue 模式，修复受损的系统盘。成功修复后，通过 Unrescue 正常启动 instance。 Rebuild如果 Rescue 无法修复，则只能通过 Rebuild 从已有的备份恢复。 Instance 的备份是通过 snapshot 创建的，所以需要有备份策略定期备份。 Evacuate利用共享存储上 Instance 的镜像文件在其他计算节点上重建 Instance。所以提前规划共享存储是关键。]]></content>
+      <categories>
+        <category>OpenStack</category>
+      </categories>
+      <tags>
+        <tag>OpenStack</tag>
+        <tag>Nova</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Cisco配置VPN IPSec]]></title>
     <url>%2F2019%2F03%2F28%2FCisco%E9%85%8D%E7%BD%AEVPN-IPSec%2F</url>
-    <content type="text"><![CDATA[实验拓扑 配置运营商网络在配置VPN之前，首先要保证模拟的运营商网络是可以正常通信的，这里我配置的是OSPF，需要注意的是两边的路由器不要把内网网段也给宣告出去了，如果是这样那VPN也就没有存在的意义了。首先是左边的R1： Router(config)#int f0/0 Router(config-if)#ip add 202.1.1.1 255.255.255.0 Router(config-if)#no shut Router(config-if)#exit Router(config)#router ospf 1 Router(config-router)#net 202.1.1.0 0.0.0.255 area 0 中间的R0： Router(config)#int f0/0 Router(config-if)#ip add 202.1.1.254 255.255.255.0 Router(config-if)#no shut Router(config)#int f0/1 Router(config-if)#ip add 210.1.1.254 255.255.255.0 Router(config-if)#no shut Router(config-if)#exit Router(config)#router ospf 1 Router(config-router)#net 202.1.1.0 0.0.0.255 area 0 Router(config-router)#net 210.1.1.0 0.0.0.255 area 0 右边的R2： Router(config)#int f0/0 Router(config-if)#ip add 210.1.1.1 255.255.255.0 Router(config-if)#no shut Router(config-if)#exit Router(config)#router ospf 1 Router(config-router)#net 210.1.1.0 0.0.0.255 area 0 等待收敛完成验证网络是否可以正常通信。 配置内网内网过于简单这里不再赘述，我的左边的区域1的网段是10.0.1.0/24，右边的区域2是10.0.2.0/24，网关则分别为1.1和2.1。 配置IPSec(site to site)R1: Router(config)#crypto isakmp enable #启用IKE,默认即为启动 Router(config)#crypto isakmp policy 1 #定义IKE安全策略集1 Router(config-isakmp)#authentication pre-share #IKE验证方式胃预共享密钥 Router(config-isakmp)#encryption 3des #IKE加密方式为3des Router(config-isakmp)#group 1 #IKE使用Diffie-Hellman组1 Router(config-isakmp)#hash md5 #IKE的Hash验证为MD5 Router(config-isakmp)#exit Router(config)#crypto isakmp key cyne address 210.1.1.1 #两端的KEY必须一致，210.1.1.1是对端的公网地址 Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3des #定义VPN使用IPSec策略集，lab为策略集名称 Router(config)#access-list 100 permit ip 10.0.1.0 0.0.0.255 10.0.2.0 0.0.0.255 #定义在R1上需要加密的流量 Router(config)#crypto map test 110 ipsec-isakmp #定义加密图 Router(config-crypto-map)#match address 100 #在加密图中声明加密流量列表 Router(config-crypto-map)#set peer 210.1.1.1 #对端公网ip Router(config-crypto-map)#set transform-set lab #在加密图中调用IPSec的策略集lab Router(config-crypto-map)#exit Router(config)#int f1/0 Router(config-if)#crypto map test #将加密图应用到此端口 Router(config-if)#exit Router(config)#ip route 10.0.2.0 255.255.255.0 f0/0 #指定VPN的静态路由 R2: Router(config)#crypto isakmp enable Router(config)#crypto isakmp policy 1 Router(config-isakmp)#authentication pre-share Router(config-isakmp)#encryption 3des Router(config-isakmp)#group 1 Router(config-isakmp)#hash md5 Router(config-isakmp)#exit Router(config)#crypto isakmp key cyne address 202.1.1.1 #两端的KEY必须一致，202.1.1.1是对端的公网地址 Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3des Router(config)#access-list 100 permit ip 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 Router(config)#crypto map test 110 ipsec-isakmp Router(config-crypto-map)#match address 100 Router(config-crypto-map)#set peer 202.1.1.1 #对端公网ip Router(config-crypto-map)#set transform-set lab Router(config-crypto-map)#exit Router(config)#int f0/0 Router(config-if)#crypto map test Router(config-if)#exit Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0 验证结果使用区域1内的PC ping 区域2中的PC，发现已经可以通信： 参考链接https://wenku.baidu.com/view/aec4df5a5727a5e9856a61ebhttp://www.solves.com.cn/doc-view-2025.html]]></content>
+    <content type="text"><![CDATA[实验拓扑 配置运营商网络在配置VPN之前，首先要保证模拟的运营商网络是可以正常通信的，这里我配置的是OSPF，需要注意的是两边的路由器不要把内网网段也给宣告出去了，如果是这样那VPN也就没有存在的意义了。首先是左边的R1： Router(config)#int f0/0 Router(config-if)#ip add 202.1.1.1 255.255.255.0 Router(config-if)#no shut Router(config-if)#exit Router(config)#router ospf 1 Router(config-router)#net 202.1.1.0 0.0.0.255 area 0 中间的R0： Router(config)#int f0/0 Router(config-if)#ip add 202.1.1.254 255.255.255.0 Router(config-if)#no shut Router(config)#int f0/1 Router(config-if)#ip add 210.1.1.254 255.255.255.0 Router(config-if)#no shut Router(config-if)#exit Router(config)#router ospf 1 Router(config-router)#net 202.1.1.0 0.0.0.255 area 0 Router(config-router)#net 210.1.1.0 0.0.0.255 area 0 右边的R2： Router(config)#int f0/0 Router(config-if)#ip add 210.1.1.1 255.255.255.0 Router(config-if)#no shut Router(config-if)#exit Router(config)#router ospf 1 Router(config-router)#net 210.1.1.0 0.0.0.255 area 0 等待收敛完成验证网络是否可以正常通信。 配置内网内网过于简单这里不再赘述，我的左边的区域1的网段是10.0.1.0/24，右边的区域2是10.0.2.0/24，网关则分别为1.1和2.1。 配置IPSec(site to site)R1: Router(config)#crypto isakmp enable #启用IKE,默认即为启动 Router(config)#crypto isakmp policy 1 #定义IKE安全策略集1 Router(config-isakmp)#authentication pre-share #IKE验证方式胃预共享密钥 Router(config-isakmp)#encryption 3des #IKE加密方式为3des Router(config-isakmp)#group 1 #IKE使用Diffie-Hellman组1 Router(config-isakmp)#hash md5 #IKE的Hash验证为MD5 Router(config-isakmp)#exit Router(config)#crypto isakmp key cyne address 210.1.1.1 #两端的KEY必须一致，210.1.1.1是对端的公网地址 Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3des #定义VPN使用IPSec策略集，lab为策略集名称 Router(config)#access-list 100 permit ip 10.0.1.0 0.0.0.255 10.0.2.0 0.0.0.255 #定义在R1上需要加密的流量 Router(config)#crypto map test 110 ipsec-isakmp #定义加密图 Router(config-crypto-map)#match address 100 #在加密图中声明加密流量列表 Router(config-crypto-map)#set peer 210.1.1.1 #对端公网ip Router(config-crypto-map)#set transform-set lab #在加密图中调用IPSec的策略集lab Router(config-crypto-map)#exit Router(config)#int f0/0 Router(config-if)#crypto map test #将加密图应用到此端口 Router(config-if)#exit Router(config)#ip route 10.0.2.0 255.255.255.0 f0/0 #指定VPN的静态路由 R2: Router(config)#crypto isakmp enable Router(config)#crypto isakmp policy 1 Router(config-isakmp)#authentication pre-share Router(config-isakmp)#encryption 3des Router(config-isakmp)#group 1 Router(config-isakmp)#hash md5 Router(config-isakmp)#exit Router(config)#crypto isakmp key cyne address 202.1.1.1 #两端的KEY必须一致，202.1.1.1是对端的公网地址 Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3des Router(config)#access-list 100 permit ip 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 Router(config)#crypto map test 110 ipsec-isakmp Router(config-crypto-map)#match address 100 Router(config-crypto-map)#set peer 202.1.1.1 #对端公网ip Router(config-crypto-map)#set transform-set lab Router(config-crypto-map)#exit Router(config)#int f0/0 Router(config-if)#crypto map test Router(config-if)#exit Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0 验证结果使用区域1内的PC ping 区域2中的PC，发现已经可以通信： 参考链接https://wenku.baidu.com/view/aec4df5a5727a5e9856a61ebhttp://www.solves.com.cn/doc-view-2025.html]]></content>
       <categories>
         <category>网络</category>
       </categories>
@@ -21,9 +44,9 @@
         <category>OpenStack</category>
       </categories>
       <tags>
+        <tag>OpenStack</tag>
         <tag>Esxi</tag>
         <tag>fuel</tag>
-        <tag>OpenStack</tag>
       </tags>
   </entry>
   <entry>
@@ -318,8 +341,8 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>脚本</tag>
         <tag>科学上网</tag>
+        <tag>脚本</tag>
         <tag>vps</tag>
         <tag>网站</tag>
       </tags>

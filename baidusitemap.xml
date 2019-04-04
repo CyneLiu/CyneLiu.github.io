@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2019/04/04/Linux%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2019-04-04T02:08:39.470Z</lastmod>
+    <data>
+        <display>
+        <title>Linux中的几个查找命令</title>
+        <pubTime>2019-04-04T01:07:27.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="https://cyneliu.github.io/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2019/03/28/Cisco%E9%85%8D%E7%BD%AEVPN-IPSec/</loc>
-    <lastmod>2019-03-28T03:35:17.934Z</lastmod>
+    <lastmod>2019-04-04T00:50:55.672Z</lastmod>
     <data>
         <display>
         <title>Cisco配置VPN IPSec</title>
@@ -28,6 +48,28 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2019/04/03/Nova%E7%9A%8416%E7%A7%8D%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2019-04-03T13:17:29.358Z</lastmod>
+    <data>
+        <display>
+        <title>Nova的16种操作</title>
+        <pubTime>2019-04-03T13:03:57.000Z</pubTime>
+        
+        <tag>OpenStack</tag>
+         
+        <tag>Nova</tag>
+         
+         
+           
+             
+              <breadCrumb title="OpenStack" url="https://cyneliu.github.io/categories/OpenStack/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2019/03/20/%E5%9C%A8ESXI%E7%8E%AF%E5%A2%83%E4%B8%AD%E9%83%A8%E7%BD%B2fuel-openstack%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2019-03-26T01:10:14.866Z</lastmod>
     <data>
@@ -35,11 +77,11 @@
         <title>在ESXI环境中部署fuel openstack虚拟环境</title>
         <pubTime>2019-03-20T12:02:15.000Z</pubTime>
         
+        <tag>OpenStack</tag>
+         
         <tag>Esxi</tag>
          
         <tag>fuel</tag>
-         
-        <tag>OpenStack</tag>
          
          
            
@@ -648,9 +690,9 @@
         
         <tag>Linux</tag>
          
-        <tag>脚本</tag>
-         
         <tag>科学上网</tag>
+         
+        <tag>脚本</tag>
          
         <tag>vps</tag>
          

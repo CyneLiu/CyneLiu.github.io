@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-03-28T03:35:17.934Z</updated>
+  <updated>2019-04-04T02:08:39.470Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -17,13 +17,69 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Linux中的几个查找命令</title>
+    <link href="https://cyneliu.github.io/2019/04/04/Linux%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/"/>
+    <id>https://cyneliu.github.io/2019/04/04/Linux中的几个查找命令/</id>
+    <published>2019-04-04T01:07:27.000Z</published>
+    <updated>2019-04-04T02:08:39.470Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><p>可以查找任何类型的文件。<br>语法格式：</p><blockquote></blockquote><pre><code>find path -option [-print] [-exec -ok command] {} \;</code></pre><p>path:搜索的目录及其子目录，缺省为当前目录<br>-name:按文件名称查找<br>-user:按文件的属主查找<br>-group:按文件的属组查找<br>-perm:按文件权限查找<br>-prune:不在当前指定目录查找(除了此目录外进行查找)</p><h1 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h1><p>locate命令与“find -name”的作用类似，但原理完全不同。<br>它比find快得多，因为它不搜索具体目录，而是在一个数据库(/var/lib/locatedb)中搜索指定的文件。此数据库含有本地文件的所有信息，这个数据库是linux系统自动创建的，数据库由updatedb程序来更新，updatedb是由cron daemon周期性建立的，默认情况下为每天更新一次，所以用locate命令你搜索不到最新更新的文件，除非你在用locate命令查找文件之前手动的用updatedb命令更新数据库。<br>也就是说在没有手动更新的前提下，如果删除掉之前存在文件，locate依然可以搜索到它。</p><h1 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h1><p>只能查找二进制文件(-b)，源代码文件(-s)和说明文件(-m)。<br>如果省略参数则返回所有的信息。</p><h1 id="which"><a href="#which" class="headerlink" title="which"></a>which</h1><p>在PATH变量指定的路径中搜索指定的系统命令的位置。</p><blockquote></blockquote><pre><code>which find/bin/find</code></pre><h1 id="type"><a href="#type" class="headerlink" title="type"></a>type</h1><p>type命令主要用于区分一个命令到底是shell自带的还是外部独立的二进制文件提供的。如果是shell自带的则会提示此命令为shell buildin,否则会列出命令的位置。</p><blockquote></blockquote><pre><code>type cdcd is a shell builtintype sshssh is /usr/bin/ssh</code></pre><p>原文链接：<a href="https://www.cnblogs.com/ginvip/p/6357352.html" target="_blank" rel="noopener">https://www.cnblogs.com/ginvip/p/6357352.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;find&quot;&gt;&lt;a href=&quot;#find&quot; class=&quot;headerlink&quot; title=&quot;find&quot;&gt;&lt;/a&gt;find&lt;/h1&gt;&lt;p&gt;可以查找任何类型的文件。&lt;br&gt;语法格式：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;cod
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nova的16种操作</title>
+    <link href="https://cyneliu.github.io/2019/04/03/Nova%E7%9A%8416%E7%A7%8D%E6%93%8D%E4%BD%9C/"/>
+    <id>https://cyneliu.github.io/2019/04/03/Nova的16种操作/</id>
+    <published>2019-04-03T13:03:57.000Z</published>
+    <updated>2019-04-03T13:17:29.358Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160607-1465256704490062241.png" alt="00.png"></p><h1 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h1><h2 id="Resize"><a href="#Resize" class="headerlink" title="Resize"></a>Resize</h2><p>通过更改flavor调整分配给instance的资源。</p><h2 id="Lock-UnLock"><a href="#Lock-UnLock" class="headerlink" title="Lock/UnLock"></a>Lock/UnLock</h2><p>防止对instance的误操作。</p><h2 id="Pause-Suspend-Resume"><a href="#Pause-Suspend-Resume" class="headerlink" title="Pause/Suspend/Resume"></a>Pause/Suspend/Resume</h2><p>暂停当前的instance，并在以后恢复。<br>Pause 和 Suspend 的区别在于 Pause 将 instance 的运行状态保存在计算节点的内存中，而 Suspend 保存在磁盘上。</p><h2 id="Snapshot"><a href="#Snapshot" class="headerlink" title="Snapshot"></a>Snapshot</h2><p>备份 instance 到 Glance。产生的 image 可用于故障恢复，或者以此为模板部署新的 instance。</p><h1 id="故障处理"><a href="#故障处理" class="headerlink" title="故障处理"></a>故障处理</h1><h2 id="计划内"><a href="#计划内" class="headerlink" title="计划内"></a>计划内</h2><h3 id="Migrate"><a href="#Migrate" class="headerlink" title="Migrate"></a>Migrate</h3><p>将 instance 迁移到其他计算节点。<br>迁移之前，instance 会被 Shut Off，支持共享存储和非共享存储。</p><h3 id="Live-Migrate"><a href="#Live-Migrate" class="headerlink" title="Live Migrate"></a>Live Migrate</h3><p>与 Migrate 不同，Live Migrate 能不停机在线地迁移 instance，保证了业务的连续性。也支持共享存储和非共享存储（Block Migration）</p><h3 id="Shelve-Unshelve"><a href="#Shelve-Unshelve" class="headerlink" title="Shelve/Unshelve"></a>Shelve/Unshelve</h3><p>Shelve 将 instance 保存到 Glance 上，之后可通过 Unshelve 重新部署。<br>Shelve 操作成功后，instance 会从原来的计算节点上删除。<br>Unshelve 会重新选择节点部署，可能不是原节点。</p><h2 id="计划外"><a href="#计划外" class="headerlink" title="计划外"></a>计划外</h2><h3 id="Rescue-Unrescue"><a href="#Rescue-Unrescue" class="headerlink" title="Rescue/Unrescue"></a>Rescue/Unrescue</h3><p>用指定的启动盘启动，进入 Rescue 模式，修复受损的系统盘。成功修复后，通过 Unrescue 正常启动 instance。</p><h3 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a>Rebuild</h3><p>如果 Rescue 无法修复，则只能通过 Rebuild 从已有的备份恢复。 Instance 的备份是通过 snapshot 创建的，所以需要有备份策略定期备份。</p><h3 id="Evacuate"><a href="#Evacuate" class="headerlink" title="Evacuate"></a>Evacuate</h3><p>利用共享存储上 Instance 的镜像文件在其他计算节点上重建 Instance。<br>所以提前规划共享存储是关键。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160607-1465256704490062241.png&quot; alt=&quot;00.png&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;常规操作&quot;&gt;&lt;a
+      
+    
+    </summary>
+    
+      <category term="OpenStack" scheme="https://cyneliu.github.io/categories/OpenStack/"/>
+    
+    
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
+    
+      <category term="Nova" scheme="https://cyneliu.github.io/tags/Nova/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Cisco配置VPN IPSec</title>
     <link href="https://cyneliu.github.io/2019/03/28/Cisco%E9%85%8D%E7%BD%AEVPN-IPSec/"/>
     <id>https://cyneliu.github.io/2019/03/28/Cisco配置VPN-IPSec/</id>
     <published>2019-03-28T02:09:29.000Z</published>
-    <updated>2019-03-28T03:35:17.934Z</updated>
+    <updated>2019-04-04T00:50:55.672Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2019/03/28/5c9c3006a1ccd.png" alt="00.png"></p><h1 id="配置运营商网络"><a href="#配置运营商网络" class="headerlink" title="配置运营商网络"></a>配置运营商网络</h1><p>在配置VPN之前，首先要保证模拟的运营商网络是可以正常通信的，这里我配置的是OSPF，需要注意的是两边的路由器不要把内网网段也给宣告出去了，如果是这样那VPN也就没有存在的意义了。<br>首先是左边的R1：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 202.1.1.1 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 202.1.1.0 0.0.0.255 area 0</code></pre><p>中间的R0：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 202.1.1.254 255.255.255.0Router(config-if)#no shutRouter(config)#int f0/1Router(config-if)#ip add 210.1.1.254 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 202.1.1.0 0.0.0.255 area 0Router(config-router)#net 210.1.1.0 0.0.0.255 area 0</code></pre><p>右边的R2：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 210.1.1.1 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 210.1.1.0 0.0.0.255 area 0</code></pre><p>等待收敛完成验证网络是否可以正常通信。</p><h1 id="配置内网"><a href="#配置内网" class="headerlink" title="配置内网"></a>配置内网</h1><p>内网过于简单这里不再赘述，我的左边的区域1的网段是10.0.1.0/24，右边的区域2是10.0.2.0/24，网关则分别为1.1和2.1。</p><h1 id="配置IPSec-site-to-site"><a href="#配置IPSec-site-to-site" class="headerlink" title="配置IPSec(site to site)"></a>配置IPSec(site to site)</h1><p>R1:</p><blockquote></blockquote><pre><code>Router(config)#crypto isakmp enable #启用IKE,默认即为启动Router(config)#crypto isakmp policy 1 #定义IKE安全策略集1Router(config-isakmp)#authentication pre-share #IKE验证方式胃预共享密钥Router(config-isakmp)#encryption 3des #IKE加密方式为3desRouter(config-isakmp)#group 1 #IKE使用Diffie-Hellman组1Router(config-isakmp)#hash md5 #IKE的Hash验证为MD5Router(config-isakmp)#exitRouter(config)#crypto isakmp key cyne address 210.1.1.1 #两端的KEY必须一致，210.1.1.1是对端的公网地址Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3des #定义VPN使用IPSec策略集，lab为策略集名称Router(config)#access-list 100 permit ip 10.0.1.0 0.0.0.255 10.0.2.0 0.0.0.255 #定义在R1上需要加密的流量Router(config)#crypto map test 110 ipsec-isakmp #定义加密图Router(config-crypto-map)#match address 100 #在加密图中声明加密流量列表Router(config-crypto-map)#set peer 210.1.1.1 #对端公网ipRouter(config-crypto-map)#set transform-set lab #在加密图中调用IPSec的策略集labRouter(config-crypto-map)#exitRouter(config)#int f1/0Router(config-if)#crypto map test #将加密图应用到此端口Router(config-if)#exit Router(config)#ip route 10.0.2.0 255.255.255.0 f0/0 #指定VPN的静态路由</code></pre><p>R2:</p><blockquote></blockquote><pre><code>Router(config)#crypto isakmp enableRouter(config)#crypto isakmp policy 1Router(config-isakmp)#authentication pre-share Router(config-isakmp)#encryption 3desRouter(config-isakmp)#group 1Router(config-isakmp)#hash md5Router(config-isakmp)#exitRouter(config)#crypto isakmp key cyne address 202.1.1.1 #两端的KEY必须一致，202.1.1.1是对端的公网地址Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3desRouter(config)#access-list 100 permit ip 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255Router(config)#crypto map test 110 ipsec-isakmp Router(config-crypto-map)#match address 100 Router(config-crypto-map)#set peer 202.1.1.1 #对端公网ipRouter(config-crypto-map)#set transform-set labRouter(config-crypto-map)#exitRouter(config)#int f0/0Router(config-if)#crypto map testRouter(config-if)#exit Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0</code></pre><h1 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h1><p>使用区域1内的PC ping 区域2中的PC，发现已经可以通信：<br><img src="https://i.loli.net/2019/03/28/5c9c3cfee86a3.png" alt="01.png"></p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb" target="_blank" rel="noopener">https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb</a><br><a href="http://www.solves.com.cn/doc-view-2025.html" target="_blank" rel="noopener">http://www.solves.com.cn/doc-view-2025.html</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2019/03/28/5c9c3006a1ccd.png" alt="00.png"></p><h1 id="配置运营商网络"><a href="#配置运营商网络" class="headerlink" title="配置运营商网络"></a>配置运营商网络</h1><p>在配置VPN之前，首先要保证模拟的运营商网络是可以正常通信的，这里我配置的是OSPF，需要注意的是两边的路由器不要把内网网段也给宣告出去了，如果是这样那VPN也就没有存在的意义了。<br>首先是左边的R1：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 202.1.1.1 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 202.1.1.0 0.0.0.255 area 0</code></pre><p>中间的R0：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 202.1.1.254 255.255.255.0Router(config-if)#no shutRouter(config)#int f0/1Router(config-if)#ip add 210.1.1.254 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 202.1.1.0 0.0.0.255 area 0Router(config-router)#net 210.1.1.0 0.0.0.255 area 0</code></pre><p>右边的R2：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 210.1.1.1 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 210.1.1.0 0.0.0.255 area 0</code></pre><p>等待收敛完成验证网络是否可以正常通信。</p><h1 id="配置内网"><a href="#配置内网" class="headerlink" title="配置内网"></a>配置内网</h1><p>内网过于简单这里不再赘述，我的左边的区域1的网段是10.0.1.0/24，右边的区域2是10.0.2.0/24，网关则分别为1.1和2.1。</p><h1 id="配置IPSec-site-to-site"><a href="#配置IPSec-site-to-site" class="headerlink" title="配置IPSec(site to site)"></a>配置IPSec(site to site)</h1><p>R1:</p><blockquote></blockquote><pre><code>Router(config)#crypto isakmp enable #启用IKE,默认即为启动Router(config)#crypto isakmp policy 1 #定义IKE安全策略集1Router(config-isakmp)#authentication pre-share #IKE验证方式胃预共享密钥Router(config-isakmp)#encryption 3des #IKE加密方式为3desRouter(config-isakmp)#group 1 #IKE使用Diffie-Hellman组1Router(config-isakmp)#hash md5 #IKE的Hash验证为MD5Router(config-isakmp)#exitRouter(config)#crypto isakmp key cyne address 210.1.1.1 #两端的KEY必须一致，210.1.1.1是对端的公网地址Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3des #定义VPN使用IPSec策略集，lab为策略集名称Router(config)#access-list 100 permit ip 10.0.1.0 0.0.0.255 10.0.2.0 0.0.0.255 #定义在R1上需要加密的流量Router(config)#crypto map test 110 ipsec-isakmp #定义加密图Router(config-crypto-map)#match address 100 #在加密图中声明加密流量列表Router(config-crypto-map)#set peer 210.1.1.1 #对端公网ipRouter(config-crypto-map)#set transform-set lab #在加密图中调用IPSec的策略集labRouter(config-crypto-map)#exitRouter(config)#int f0/0Router(config-if)#crypto map test #将加密图应用到此端口Router(config-if)#exit Router(config)#ip route 10.0.2.0 255.255.255.0 f0/0 #指定VPN的静态路由</code></pre><p>R2:</p><blockquote></blockquote><pre><code>Router(config)#crypto isakmp enableRouter(config)#crypto isakmp policy 1Router(config-isakmp)#authentication pre-share Router(config-isakmp)#encryption 3desRouter(config-isakmp)#group 1Router(config-isakmp)#hash md5Router(config-isakmp)#exitRouter(config)#crypto isakmp key cyne address 202.1.1.1 #两端的KEY必须一致，202.1.1.1是对端的公网地址Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3desRouter(config)#access-list 100 permit ip 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255Router(config)#crypto map test 110 ipsec-isakmp Router(config-crypto-map)#match address 100 Router(config-crypto-map)#set peer 202.1.1.1 #对端公网ipRouter(config-crypto-map)#set transform-set labRouter(config-crypto-map)#exitRouter(config)#int f0/0Router(config-if)#crypto map testRouter(config-if)#exit Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0</code></pre><h1 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h1><p>使用区域1内的PC ping 区域2中的PC，发现已经可以通信：<br><img src="https://i.loli.net/2019/03/28/5c9c3cfee86a3.png" alt="01.png"></p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb" target="_blank" rel="noopener">https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb</a><br><a href="http://www.solves.com.cn/doc-view-2025.html" target="_blank" rel="noopener">http://www.solves.com.cn/doc-view-2025.html</a></p>]]></content>
     
     <summary type="html">
     
@@ -66,11 +122,11 @@
       <category term="OpenStack" scheme="https://cyneliu.github.io/categories/OpenStack/"/>
     
     
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
+    
       <category term="Esxi" scheme="https://cyneliu.github.io/tags/Esxi/"/>
     
       <category term="fuel" scheme="https://cyneliu.github.io/tags/fuel/"/>
-    
-      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
     
   </entry>
   
@@ -525,61 +581,6 @@
       <category term="VPS" scheme="https://cyneliu.github.io/tags/VPS/"/>
     
       <category term="WireGuard" scheme="https://cyneliu.github.io/tags/WireGuard/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单识别Linux vps架构(xen,openvz,kvm)</title>
-    <link href="https://cyneliu.github.io/2018/11/14/%E7%AE%80%E5%8D%95%E8%AF%86%E5%88%ABLinux-vps%E6%9E%B6%E6%9E%84-xen-openvz-kvm/"/>
-    <id>https://cyneliu.github.io/2018/11/14/简单识别Linux-vps架构-xen-openvz-kvm/</id>
-    <published>2018-11-14T12:10:11.000Z</published>
-    <updated>2018-11-14T12:16:49.278Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="安装virt-what"><a href="#安装virt-what" class="headerlink" title="安装virt-what"></a>安装virt-what</h1><blockquote></blockquote><pre><code>yum -y install virt-what</code></pre><h1 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h1><blockquote></blockquote><pre><code>virt-what</code></pre><p>如图，这台vps是基于xen架构。<br><img src="https://i.loli.net/2018/11/14/5bec12288d430.png" alt="01.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;安装virt-what&quot;&gt;&lt;a href=&quot;#安装virt-what&quot; class=&quot;headerlink&quot; title=&quot;安装virt-what&quot;&gt;&lt;/a&gt;安装virt-what&lt;/h1&gt;&lt;blockquote&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code
-      
-    
-    </summary>
-    
-      <category term="VPS" scheme="https://cyneliu.github.io/categories/VPS/"/>
-    
-    
-      <category term="VPS" scheme="https://cyneliu.github.io/tags/VPS/"/>
-    
-      <category term="linux" scheme="https://cyneliu.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浅谈几种快充技术</title>
-    <link href="https://cyneliu.github.io/2018/11/07/%E6%B5%85%E8%B0%88%E5%87%A0%E7%A7%8D%E5%BF%AB%E5%85%85%E6%8A%80%E6%9C%AF/"/>
-    <id>https://cyneliu.github.io/2018/11/07/浅谈几种快充技术/</id>
-    <published>2018-11-07T11:00:56.000Z</published>
-    <updated>2018-11-07T11:50:05.314Z</updated>
-    
-    <content type="html"><![CDATA[<p>原来的充电宝丢了，今天又在某宝上溜达买了一个，溜达的时候发现了好多的新名词，就索性查了一下，整理一下写在这里了。</p><h1 id="PD快充协议"><a href="#PD快充协议" class="headerlink" title="PD快充协议"></a>PD快充协议</h1><p>PD充电协议是USB-IF组织公布的功率传输协议，它可以使目前默认最大功率5V/2A的type-c接口提高到100W，同时谷歌宣布Android7.0以上的手机搭载的快充协议必须支持PD协议，意在统一快充市场。  </p><p>USB-PowerDelivery（USBPD）是目前主流的快充协议之一。是由USB-IF组织制定的一种快速充电规范。USBPD透过USB电缆和连接器增加电力输送，扩展USB应用中的电缆总线供电能力。该规范可实现更高的电压和电流，输送的功率最高可达100瓦，并可以自由的改变电力的输送方向。  </p><p>USBPD和Type-C的关系。经常会有人把USBPD和Type-C放在一起谈，甚至就把Type-C充电器叫做PD充电器。USBPD和Type-C其实是两码事，USBPD是一种快速充电协议，而Type-C则是一种新的接口规范。Type-C接口默认最大支持5V/3A，但在实现了USBPD协议以后，能够使输出功率最大支持到前文提到的100W。所以现在许多实用Type-C接口的设备都会支持USBPD协议。</p><p>USBPD的发展前景。USBPD现在已经发展到了USBPD3.0版本。在谷歌的推动下目USBPD已经收编了高通的QC快充协议，并获得了中国工信部的支持。</p><h1 id="QC-1-0-2-0-3-0"><a href="#QC-1-0-2-0-3-0" class="headerlink" title="QC 1.0/2.0/3.0"></a>QC 1.0/2.0/3.0</h1><p>Qualcomm Quick Charge 3.0（下文简称QC 3.0）快充技术不知不觉已经是Qualcomm第三代快充技术，前几年快充技术还没百家齐放的时候，QC门派的关注度还是蛮高的。前几年QC 1.0和QC 2.0仍然比较受手机厂商和消费者欢迎。尤其是QC 2.0技术，如今很多手机厂商的快充技术其实都是基于QC 2.0基础上延伸出来的，例如下文将会提到的Moto涡轮快充和vivo双引擎闪充。  </p><blockquote></blockquote><p><strong>QC 1.0</strong>：最高支持5V/2A充电功率。</p><blockquote><p><strong>QC 2.0</strong>：兼容5V/9V/12V/20V四档充电电压。  </p></blockquote><p><strong>QC 3.0</strong>：以200mV增量为一档，提供从3.6V到20V电压的灵活选择，让手机厂商能够根据自身需求调整最佳电压，达到预期电流，提供充电效率同时降低功耗和发热。目前市面上标配QC 3.0快充头并支持该协议手机有LG G5、小米手机5等。</p><h1 id="MTK：PumpExpress-Plus"><a href="#MTK：PumpExpress-Plus" class="headerlink" title="MTK：PumpExpress Plus"></a>MTK：PumpExpress Plus</h1><p>说完高通的，再来看看联发科的快充技术。  </p><p>联发科MTP Pump Express Plus快充技术，原理与高通QC快充基本相同，都是在恒定电流的同时，通过提升充电电压来获得更大的充电功率。最新的Pump Express 3.0宣称能够在20分钟内为智能手机充满70%电量，同时相比PumpExpress Plus功耗减少50%，间接降低发热。  </p><p>PumpExpress允许充电器根据电流决定充电所需的初始电压，通过内置的PMIC电源管理集成电路发出脉冲电流指令给充电器，调整输出电压，逐渐增加到最大充电电流。相比QC 3.0的200mV为一档增量的做法，PumpExpress 3.0电压微调幅度仅为10mV，理论最高可提供5A充电电流。  </p><h1 id="手机厂商快充协议"><a href="#手机厂商快充协议" class="headerlink" title="手机厂商快充协议"></a>手机厂商快充协议</h1><blockquote></blockquote><p>华为：FCP（Fast Charger Protocol）<br>三星：AFC<br>一加：DASH极速闪充<br>vivo:双引擎闪充<br>OPPO：VOOC闪充技术<br>Moto：涡轮快充技术<br>魅族：mCharge 3.0  </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;原来的充电宝丢了，今天又在某宝上溜达买了一个，溜达的时候发现了好多的新名词，就索性查了一下，整理一下写在这里了。&lt;/p&gt;
-&lt;h1 id=&quot;PD快充协议&quot;&gt;&lt;a href=&quot;#PD快充协议&quot; class=&quot;headerlink&quot; title=&quot;PD快充协议&quot;&gt;&lt;/a&gt;PD快充
-      
-    
-    </summary>
-    
-      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
-    
-    
-      <category term="快充" scheme="https://cyneliu.github.io/tags/%E5%BF%AB%E5%85%85/"/>
     
   </entry>
   

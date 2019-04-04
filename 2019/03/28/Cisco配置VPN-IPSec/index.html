@@ -99,7 +99,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/03/28/5c9c3006a1ccd.png">
 <meta property="og:image" content="https://i.loli.net/2019/03/28/5c9c3cfee86a3.png">
-<meta property="og:updated_time" content="2019-03-28T03:35:17.934Z">
+<meta property="og:updated_time" content="2019-04-04T00:50:55.672Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cisco配置VPN IPSec">
 <meta name="twitter:description" content="实验拓扑 配置运营商网络在配置VPN之前，首先要保证模拟的运营商网络是可以正常通信的，这里我配置的是OSPF，需要注意的是两边的路由器不要把内网网段也给宣告出去了，如果是这样那VPN也就没有存在的意义了。首先是左边的R1：   Router(config)#int f0/0 Router(config-if)#ip add 202.1.1.1 255.255.255.0 Router(config">
@@ -492,7 +492,7 @@ Router(config-crypto-map)#match address 100 #在加密图中声明加密流量�
 Router(config-crypto-map)#set peer 210.1.1.1 #对端公网ip
 Router(config-crypto-map)#set transform-set lab #在加密图中调用IPSec的策略集lab
 Router(config-crypto-map)#exit
-Router(config)#int f1/0
+Router(config)#int f0/0
 Router(config-if)#crypto map test #将加密图应用到此端口
 Router(config-if)#exit 
 Router(config)#ip route 10.0.2.0 255.255.255.0 f0/0 #指定VPN的静态路由
@@ -608,6 +608,10 @@ Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/04/03/Nova的16种操作/" rel="prev" title="Nova的16种操作">
+                Nova的16种操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -690,7 +694,7 @@ Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -712,7 +716,7 @@ Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -814,7 +818,7 @@ Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共44.5k字</span>
+  <span class="post-count">博客全站共45.3k字</span>
 </div>
 
         
