@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cyneliu.github.io/2019/05/10/IBM-System-x3650-M2%E7%A1%AC%E7%9B%98%E4%BA%AE%E9%BB%84%E7%81%AF/</loc>
+    
+    <lastmod>2019-05-10T12:24:26.696Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cyneliu.github.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/</loc>
+    
+    <lastmod>2019-05-08T09:56:40.374Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cyneliu.github.io/2018/06/24/Mininet%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2019-04-04T03:19:58.344Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://cyneliu.github.io/2019/04/04/Linux%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2019-04-04T02:08:39.470Z</lastmod>
@@ -254,13 +275,6 @@
   </url>
   
   <url>
-    <loc>https://cyneliu.github.io/2018/06/24/Mininet%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2018-10-16T14:15:49.157Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://cyneliu.github.io/2018/10/09/Linux%E4%B8%8B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BD%91%E7%9B%98/</loc>
     
     <lastmod>2018-10-16T14:15:21.523Z</lastmod>
@@ -341,13 +355,6 @@
     <loc>https://cyneliu.github.io/2018/10/15/SDN%E5%AE%9E%E9%AA%8C%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%B8%B8%E7%94%A8%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/</loc>
     
     <lastmod>2018-10-15T11:01:00.828Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cyneliu.github.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/</loc>
-    
-    <lastmod>2018-09-13T12:39:54.874Z</lastmod>
     
   </url>
   

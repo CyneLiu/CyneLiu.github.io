@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-04-04T02:08:39.470Z</updated>
+  <updated>2019-05-10T12:24:26.696Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IBM System x3650 M2硬盘亮黄灯</title>
+    <link href="https://cyneliu.github.io/2019/05/10/IBM-System-x3650-M2%E7%A1%AC%E7%9B%98%E4%BA%AE%E9%BB%84%E7%81%AF/"/>
+    <id>https://cyneliu.github.io/2019/05/10/IBM-System-x3650-M2硬盘亮黄灯/</id>
+    <published>2019-05-10T09:25:49.000Z</published>
+    <updated>2019-05-10T12:24:26.696Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>服务器之前做了RAID1并且装了ESXI，在开机状态下拔掉一块硬盘后，硬盘黄灯亮起并发出连续的滴滴警报声，硬件故障检测板DASD亮起，百度尝试了很多方式，比如拔掉电源后重启等均无效。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>因为服务器并没有跑虚拟机和存数据，所以最后直接重做了RAID，过程如下：  </p><h2 id="进入WebBIOS"><a href="#进入WebBIOS" class="headerlink" title="进入WebBIOS"></a>进入WebBIOS</h2><p>服务器重启按F1进入BIOS，找到<strong>Sytem Settings → Adapters and UEFI Drivers → Please press ENTER to compile the list of drivers</strong>，然后选择“LSI EFI SAS Driver”下面那一行，然后回车，根据提示输入 1 并再次回车进入WebBIOS。</p><h2 id="更改硬盘状态"><a href="#更改硬盘状态" class="headerlink" title="更改硬盘状态"></a>更改硬盘状态</h2><p>进入BIOS之后，点击<strong>Physical View</strong>,可以看到亮黄灯的那块硬盘出啊先“Unconfigured Bad”的提示信息：<br><img src="https://i.loli.net/2019/05/10/5cd56a133ea99.jpg" alt="02.jpg"><br>点击进入那块出错的硬盘，勾选”Make Unconf Good”，然后点击”Go”,不再做其它设置<br><img src="https://i.loli.net/2019/05/10/5cd569dc9c984.jpg" alt="01.jpg"><br>这样在之后配置RAID的时候就可以发现这块硬盘并做相应的添加等操作了。</p><h2 id="配置RAID"><a href="#配置RAID" class="headerlink" title="配置RAID"></a>配置RAID</h2><p>进入WebBIOS后选择Configuration Wizard配置向导：<br><img src="https://i.loli.net/2019/05/10/5cd5498c4f727.png" alt="01.png"><br>选择New Configuration，代表清除原有阵列信息并重新配置：<br><img src="https://i.loli.net/2019/05/10/5cd54a72d2279.png" alt="02.png"><br>选择Yes确定：<br><img src="https://i.loli.net/2019/05/10/5cd54ac271c11.png" alt="03.png"><br>然后选择手动配置：Manual Configuration<br><img src="https://i.loli.net/2019/05/10/5cd54b7a74da1.png" alt="04.png"><br>选择要配置在RAID中的硬盘，按Add to Array从左边的Drivers中选到右边的Driver Groups中。<br><img src="https://i.loli.net/2019/05/10/5cd54dce6fec6.png" alt="05.png"><br>选好硬盘后，选择Accept DG后点击Next<br><img src="https://i.loli.net/2019/05/10/5cd54dfd61eb8.png" alt="06.png"><br>在左侧的ArrayWithFreeSpace中选中刚刚做好的Disk Groups按Add to SPAN添加到右侧的span中，然后选择Next<br><img src="https://i.loli.net/2019/05/10/5cd54ef819426.png" alt="07.png"><br>最后会进入Virtual Disk配置界面，RAID级别选择RAID1，需要注意的是Select size的设置，在右侧会有提示，根据提示填入相应的大小即可，点选Accept接受配置，最后选择Next。  </p><p>最后还会重新出现一次之前的配置界面，直接无视就可以，Accept和Next即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h1&gt;&lt;p&gt;服务器之前做了RAID1并且装了ESXI，在开机状态下拔掉一块硬盘后，硬盘黄灯亮起并发出连续的滴滴警报声，硬件故障检测板DA
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
+    
+      <category term="服务器" scheme="https://cyneliu.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux中的几个查找命令</title>
@@ -552,35 +579,6 @@
       <category term="DHCP" scheme="https://cyneliu.github.io/tags/DHCP/"/>
     
       <category term="VMware" scheme="https://cyneliu.github.io/tags/VMware/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>科学上网工具 - WireGuard</title>
-    <link href="https://cyneliu.github.io/2018/11/14/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%B7%A5%E5%85%B7-WireGuard/"/>
-    <id>https://cyneliu.github.io/2018/11/14/科学上网工具-WireGuard/</id>
-    <published>2018-11-14T12:22:33.000Z</published>
-    <updated>2018-11-14T12:57:37.777Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="WireGuard是什么？"><a href="#WireGuard是什么？" class="headerlink" title="WireGuard是什么？"></a>WireGuard是什么？</h1><p>WireGuard是一个构建快速、现代、安全的VPN的协议和工具套件，它具有以下优点：</p><blockquote></blockquote><p>使用最先进的加密技术，防范攻击（RSA，SHA广被诟病都将被淘汰）<br>性能远超OpenVPN<br>效率极高，WireGuard协议作为Linux内核模块运行<br>通用用途，支持嵌入式和非嵌入式设备<br>跨平台，初期只在Linux平台发布，现已支持所有平台<br>易用，用过OpenVPN等工具集的人都明白这其中的痛苦<br>工作在3层（链路层），支持漫游，地址变更对用户无感知，使用更简单，切换更平滑<br>使用UDP传输数据，轻量、高效、节能、节省带宽（适用于 IOT 领域）<br>基于GPLv2Linux Kernel 基于 GPLv2）免费开源  </p><p>Linus Torvalds对WireGuard的评价：</p><blockquote><p>Can I just once again state my love for it and hope it gets merged soon? Maybe the code isn’t perfect, but I’ve skimmed it, and compared to the horrors that are OpenVPN and IPSec, it’s a work of art.</p></blockquote><h1 id="脚本安装"><a href="#脚本安装" class="headerlink" title="脚本安装"></a>脚本安装</h1><h2 id="脚本要求"><a href="#脚本要求" class="headerlink" title="脚本要求"></a>脚本要求</h2><blockquote><p>仅适用于centos7<br>vps架构必须为KVM<br>centos7的内核大部分为3.10，不能正确安装，必须升级（已经集成在脚本中）</p></blockquote><h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>1、下载并执行脚本：</p><blockquote></blockquote><pre><code>wget https://raw.githubusercontent.com/yobabyshark/wireguard/master/wireguard_install.sh &amp;&amp; chmod +x wireguard_install.sh &amp;&amp; ./wireguard_install.sh</code></pre><p><img src="https://i.loli.net/2018/11/14/5bec1723904fd.png" alt="01.png"></p><p>2、输入“1”升级内核，按照提示重启。  </p><p>3、重启完成后，再次执行脚本：</p><blockquote></blockquote><pre><code>./wireguard_install.sh</code></pre><p>4、输入“2”安装WireGuard。  </p><p>5、使用ftp工具连接vps，将<strong>/etc/wireguard</strong>目录下的client.conf下载到本地。</p><p>6、下载安装TunSafe，这是一个windows端的第三方客户端，因为官方windows版本的还没开发完成，先用这个软件代替，TunSafe已经开源，可以放心使用。<br>官网下载：<a href="https://tunsafe.com/download" target="_blank" rel="noopener">TunSafe</a></p><p>7、打开TunSafe，单击file，选择import file，将下载的client.conf导入到软件中。  </p><p>8、导入后会自动进行连接，进入全局代理模式，也就是所有流量都会被代理。</p><h1 id="其它平台客户端"><a href="#其它平台客户端" class="headerlink" title="其它平台客户端"></a>其它平台客户端</h1><h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>1、下载WireGuard安卓客户端：  </p><blockquote><p>Android客户端：<a href="https://f-droid.org/repo/com.wireguard.android_439.apk" target="_blank" rel="noopener">点此下载</a></p></blockquote><p>2、打开app，点击加号导入client.conf文件。</p><blockquote><p>这里可能会提示错误，原因是没有文件操作权限，去权限管理里给软件勾上存储权限即可。</p></blockquote><h1 id="速度测试"><a href="#速度测试" class="headerlink" title="速度测试"></a>速度测试</h1><p>Youtube视频地址：<a href="https://youtu.be/A1tdPsdBATw" target="_blank" rel="noopener">点击观看</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;WireGuard是什么？&quot;&gt;&lt;a href=&quot;#WireGuard是什么？&quot; class=&quot;headerlink&quot; title=&quot;WireGuard是什么？&quot;&gt;&lt;/a&gt;WireGuard是什么？&lt;/h1&gt;&lt;p&gt;WireGuard是一个构建快速、现代、安全的VPN
-      
-    
-    </summary>
-    
-      <category term="VPS" scheme="https://cyneliu.github.io/categories/VPS/"/>
-    
-    
-      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-      <category term="VPS" scheme="https://cyneliu.github.io/tags/VPS/"/>
-    
-      <category term="WireGuard" scheme="https://cyneliu.github.io/tags/WireGuard/"/>
     
   </entry>
   
