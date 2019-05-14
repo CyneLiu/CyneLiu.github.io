@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-05-10T12:24:26.696Z</updated>
+  <updated>2019-05-14T01:45:09.380Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu16.04安装ONOS Hummingbird(1.7.1)</title>
+    <link href="https://cyneliu.github.io/2019/05/14/Ubuntu16-04%E5%AE%89%E8%A3%85ONOS-Hummingbird-1-7-1/"/>
+    <id>https://cyneliu.github.io/2019/05/14/Ubuntu16-04安装ONOS-Hummingbird-1-7-1/</id>
+    <published>2019-05-14T01:11:09.000Z</published>
+    <updated>2019-05-14T01:45:09.380Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>Ubuntu 16.04 Desktop (内存推荐4G)<br><a href="https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html" target="_blank" rel="noopener">server-jre</a><br><a href="https://wiki.onosproject.org/display/ONOS/Downloads" target="_blank" rel="noopener">onos-1.7.1</a>  </p><p>*目前Oracle网站需要登录账户才能下载</p><h1 id="配置JRE"><a href="#配置JRE" class="headerlink" title="配置JRE"></a>配置JRE</h1><p>将下载下来的JRE文件解压到自定义目录中：</p><blockquote></blockquote><pre><code>mkdir -p /opt/java #将下载下来的安装包移动到此目录（目录可自己定义）tar -xzvf server-jre-8u211-linux-x64.tar.gz</code></pre><p>配置环境变量：</p><blockquote></blockquote><pre><code>vim /etc/profile</code></pre><p>在文件末尾添加如下配置：</p><blockquote></blockquote><pre><code>export JAVA_HOME=/opt/java/jdk1.8.0_211export JRE_HOME=/opt/java/jdk1.8.0_211export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/extexport PATH=$PATH:$JRE_HOME/bin</code></pre><p>使配置生效：</p><blockquote></blockquote><pre><code>source /etc/profile</code></pre><p>验证配置成功：</p><blockquote></blockquote><pre><code>java -version #显示java版本信息</code></pre><h1 id="配置ONOS"><a href="#配置ONOS" class="headerlink" title="配置ONOS"></a>配置ONOS</h1><p>解压ONOS压缩包：</p><blockquote></blockquote><pre><code>tar -xzvf onos-1.7.1.tar.gz</code></pre><p>设置ONOS_ROOT和KARAF_ROOT的路径：</p><blockquote></blockquote><pre><code>vim /etc/profile</code></pre><p>在文件末尾添加以下内容,注意修改为自己对应的目录：</p><blockquote></blockquote><pre><code>export ONOS_ROOT=/home/sdn/vmlab/onos-1.7.1export KARAF_ROOT=/home/sdn/vmlab/onos-1.7.1/apache-karaf-3.0.5export PATH=$PATH:$KARAF_ROOT/bin:$ONOS_ROOT/bin</code></pre><p>使配置生效：</p><blockquote></blockquote><pre><code>source /etc/profile</code></pre><p>运行onos(第一次启动可能时间较长)：</p><blockquote></blockquote><pre><code>karaf clean</code></pre><p>安装应用：</p><blockquote></blockquote><pre><code>&gt; app activate org.onosproject.openflow&gt; app activate org.onosproject.fwd&gt; app activate org.onosproject.mobility</code></pre><p><img src="https://i.loli.net/2019/05/14/5cda1aee3aa5210524.png" alt="01.png"></p><h1 id="环境测试"><a href="#环境测试" class="headerlink" title="环境测试"></a>环境测试</h1><p>查看端口监听状态：</p><blockquote></blockquote><pre><code>netstat -an | grep 8181 #onos Web监听端口netstat -an | grep 6633 #onos OF监听端口</code></pre><p><img src="https://i.loli.net/2019/05/14/5cda1c09acf8f39168.png" alt="02.png"></p><p>访问Web界面，地址为：http://[ip]:8181/onos/ui/index.html,账户/密码：onos/rocks ：<br><img src="https://i.loli.net/2019/05/14/5cda1d7ed2e3e92022.png" alt="03.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;环境准备&quot;&gt;&lt;a href=&quot;#环境准备&quot; class=&quot;headerlink&quot; title=&quot;环境准备&quot;&gt;&lt;/a&gt;环境准备&lt;/h1&gt;&lt;p&gt;Ubuntu 16.04 Desktop (内存推荐4G)&lt;br&gt;&lt;a href=&quot;https://www.oracle.c
+      
+    
+    </summary>
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
+    
+    
+      <category term="ONOS" scheme="https://cyneliu.github.io/tags/ONOS/"/>
+    
+  </entry>
   
   <entry>
     <title>IBM System x3650 M2硬盘亮黄灯</title>
@@ -162,9 +187,9 @@
     <link href="https://cyneliu.github.io/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/"/>
     <id>https://cyneliu.github.io/2019/03/14/Ubuntu16-04安装OpenDaylight-Carbon/</id>
     <published>2019-03-14T00:57:44.000Z</published>
-    <updated>2019-03-14T01:26:38.375Z</updated>
+    <updated>2019-05-14T01:45:38.357Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="JRE安装配置"><a href="#JRE安装配置" class="headerlink" title="JRE安装配置"></a>JRE安装配置</h2><p><a href="https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html</a><br>我这里下载的是目前的最新版本：</p><blockquote></blockquote><pre><code>wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/server-jre-8u201-linux-x64.tar.gz</code></pre><p>解压到自定义目录中：</p><blockquote></blockquote><pre><code>mkdir -p /opt/java #将下载下来的安装包移动到此目录（自己定义）tar -xzvf server-jre-8u201-linux-x64.tar.gz</code></pre><p>配置环境变量：</p><blockquote></blockquote><pre><code>vim /etc/profile</code></pre><p>在文件末尾添加如下配置：</p><blockquote></blockquote><pre><code>export JAVA_HOME=/opt/java/jdk1.8.0_201export JRE_HOME=/opt/java/jdk1.8.0_201export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/extexport PATH=$PATH:$JRE_HOME/bin</code></pre><p>使配置生效：</p><blockquote></blockquote><pre><code>source /etc/profile</code></pre><p>验证配置成功：</p><blockquote></blockquote><pre><code>java -version #显示java版本信息</code></pre><h1 id="OpenDaylight-Carbon-安装配置"><a href="#OpenDaylight-Carbon-安装配置" class="headerlink" title="OpenDaylight(Carbon)安装配置"></a>OpenDaylight(Carbon)安装配置</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>我这里下载的是0.6.4版本：</p><blockquote></blockquote><pre><code>wget https://nexus.opendaylight.org/content/repositories/public/org/opendaylight/integration/distribution-karaf/0.6.4-Carbon/distribution-karaf-0.6.4-Carbon.zip</code></pre><h2 id="解压安装"><a href="#解压安装" class="headerlink" title="解压安装"></a>解压安装</h2><blockquote></blockquote><pre><code>uzip distribution-karaf-0.6.4-Carbon.zip</code></pre><h2 id="启动karaf"><a href="#启动karaf" class="headerlink" title="启动karaf"></a>启动karaf</h2><blockquote></blockquote><pre><code>cd distribution-karaf-0.6.4-Carbon./bin/karaf</code></pre><h2 id="安装组件"><a href="#安装组件" class="headerlink" title="安装组件"></a>安装组件</h2><p>安装REST API组件</p><blockquote></blockquote><pre><code>feature:install odl-restconf</code></pre><p>安装L2 switch组件：</p><blockquote></blockquote><pre><code>feature:install odl-l2switch-switch-ui</code></pre><p>安装API查看器：</p><blockquote></blockquote><pre><code>feature:install odl-mdsal-apidocs</code></pre><p>安装 dlux 展示页面:</p><blockquote></blockquote><pre><code>feature:install odl-dluxapps-applications</code></pre><h2 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h2><h3 id="登录管理页面"><a href="#登录管理页面" class="headerlink" title="登录管理页面"></a>登录管理页面</h3><p>用浏览器访问：<a href="http://localhost:8080/index.html" target="_blank" rel="noopener">http://localhost:8080/index.html</a><br>用户名/密码：admin/admin</p><h3 id="使用OpenvSwitch连接ODL控制器"><a href="#使用OpenvSwitch连接ODL控制器" class="headerlink" title="使用OpenvSwitch连接ODL控制器"></a>使用OpenvSwitch连接ODL控制器</h3><p>用下面的命令将br0网桥连接至指定的控制器:</p><blockquote></blockquote><pre><code>ovs-vsctl set-controller br0 tcp:&lt;controller IP&gt;:&lt;port&gt;</code></pre><p>执行：ovs-vsctl show,出现is_connected:true字样表示连接成功：<br><img src="https://i.loli.net/2019/03/14/5c89ad571b951.png" alt="01.png"><br>登录管理页面查看拓扑发现已经连接的OVS交换机：<br><img src="https://i.loli.net/2019/03/14/5c89ad5730b6b.png" alt="02.png"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="JRE安装配置"><a href="#JRE安装配置" class="headerlink" title="JRE安装配置"></a>JRE安装配置</h2><p><a href="https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html</a><br>我这里下载的是目前的最新版本：</p><blockquote></blockquote><pre><code>wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/server-jre-8u201-linux-x64.tar.gz</code></pre><p>解压到自定义目录中：</p><blockquote></blockquote><pre><code>mkdir -p /opt/java #将下载下来的安装包移动到此目录（目录可自己定义）tar -xzvf server-jre-8u201-linux-x64.tar.gz</code></pre><p>配置环境变量：</p><blockquote></blockquote><pre><code>vim /etc/profile</code></pre><p>在文件末尾添加如下配置：</p><blockquote></blockquote><pre><code>export JAVA_HOME=/opt/java/jdk1.8.0_201export JRE_HOME=/opt/java/jdk1.8.0_201export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/extexport PATH=$PATH:$JRE_HOME/bin</code></pre><p>使配置生效：</p><blockquote></blockquote><pre><code>source /etc/profile</code></pre><p>验证配置成功：</p><blockquote></blockquote><pre><code>java -version #显示java版本信息</code></pre><h1 id="OpenDaylight-Carbon-安装配置"><a href="#OpenDaylight-Carbon-安装配置" class="headerlink" title="OpenDaylight(Carbon)安装配置"></a>OpenDaylight(Carbon)安装配置</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>我这里下载的是0.6.4版本：</p><blockquote></blockquote><pre><code>wget https://nexus.opendaylight.org/content/repositories/public/org/opendaylight/integration/distribution-karaf/0.6.4-Carbon/distribution-karaf-0.6.4-Carbon.zip</code></pre><h2 id="解压安装"><a href="#解压安装" class="headerlink" title="解压安装"></a>解压安装</h2><blockquote></blockquote><pre><code>uzip distribution-karaf-0.6.4-Carbon.zip</code></pre><h2 id="启动karaf"><a href="#启动karaf" class="headerlink" title="启动karaf"></a>启动karaf</h2><blockquote></blockquote><pre><code>cd distribution-karaf-0.6.4-Carbon./bin/karaf</code></pre><h2 id="安装组件"><a href="#安装组件" class="headerlink" title="安装组件"></a>安装组件</h2><p>安装REST API组件</p><blockquote></blockquote><pre><code>feature:install odl-restconf</code></pre><p>安装L2 switch组件：</p><blockquote></blockquote><pre><code>feature:install odl-l2switch-switch-ui</code></pre><p>安装API查看器：</p><blockquote></blockquote><pre><code>feature:install odl-mdsal-apidocs</code></pre><p>安装 dlux 展示页面:</p><blockquote></blockquote><pre><code>feature:install odl-dluxapps-applications</code></pre><h2 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h2><h3 id="登录管理页面"><a href="#登录管理页面" class="headerlink" title="登录管理页面"></a>登录管理页面</h3><p>用浏览器访问：<a href="http://localhost:8080/index.html" target="_blank" rel="noopener">http://localhost:8080/index.html</a><br>用户名/密码：admin/admin</p><h3 id="使用OpenvSwitch连接ODL控制器"><a href="#使用OpenvSwitch连接ODL控制器" class="headerlink" title="使用OpenvSwitch连接ODL控制器"></a>使用OpenvSwitch连接ODL控制器</h3><p>用下面的命令将br0网桥连接至指定的控制器:</p><blockquote></blockquote><pre><code>ovs-vsctl set-controller br0 tcp:&lt;controller IP&gt;:&lt;port&gt;</code></pre><p>执行：ovs-vsctl show,出现is_connected:true字样表示连接成功：<br><img src="https://i.loli.net/2019/03/14/5c89ad571b951.png" alt="01.png"><br>登录管理页面查看拓扑发现已经连接的OVS交换机：<br><img src="https://i.loli.net/2019/03/14/5c89ad5730b6b.png" alt="02.png"></p>]]></content>
     
     <summary type="html">
     
@@ -550,35 +575,6 @@
       <category term="VMware" scheme="https://cyneliu.github.io/tags/VMware/"/>
     
       <category term="虚拟网卡" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于Win2012在VMware环境下部署DHCP服务器的问题</title>
-    <link href="https://cyneliu.github.io/2018/11/20/%E5%85%B3%E4%BA%8EWin2012%E5%9C%A8VMware%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>https://cyneliu.github.io/2018/11/20/关于Win2012在VMware环境下部署DHCP服务器的问题/</id>
-    <published>2018-11-20T08:35:46.000Z</published>
-    <updated>2018-11-20T08:51:36.361Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="客户端无法获取来自DHCP地址池的正确ip"><a href="#客户端无法获取来自DHCP地址池的正确ip" class="headerlink" title="客户端无法获取来自DHCP地址池的正确ip"></a>客户端无法获取来自DHCP地址池的正确ip</h1><p>昨天在VMware WorkStation的Server 2012安装完DHCP服务之后，使用另一台虚拟机测试时怎么都获取不到正确的ip，给到的是一个不同于DHCP地址池的其它子网的ip地址，两个小时愣是没找出原因。  </p><p>今天早上终于找到了原因，在这里记录一下。</p><h1 id="原因简述"><a href="#原因简述" class="headerlink" title="原因简述"></a>原因简述</h1><p>VMware中的VMnet虚拟网卡默认开启了本地DHCP服务，虚拟机在使用dhcp自动获取ip时是从VMnet的本地dhcp拿到的ip地址，因为每个人的VMnet网卡设置的网段不一样，获取的ip地址就是VMnet设置的网段，比如我的VMnet子网地址是192.168.138.0，我拿到的ip地址就是这个网段内的地址。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p><img src="https://i.loli.net/2018/11/20/5bf3caebf40da.png" alt="01.png"><br>打开虚拟网络编辑器，选择你正在使用的虚拟网卡，比如我使用的是仅主机模式，对应的就是我的VMnet1网卡。更改设置，将“使用本地DHCP服务将IP分配给虚拟机”取消勾选就可以了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;客户端无法获取来自DHCP地址池的正确ip&quot;&gt;&lt;a href=&quot;#客户端无法获取来自DHCP地址池的正确ip&quot; class=&quot;headerlink&quot; title=&quot;客户端无法获取来自DHCP地址池的正确ip&quot;&gt;&lt;/a&gt;客户端无法获取来自DHCP地址池的正确ip&lt;/
-      
-    
-    </summary>
-    
-      <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-    
-      <category term="Windows Server" scheme="https://cyneliu.github.io/tags/Windows-Server/"/>
-    
-      <category term="DHCP" scheme="https://cyneliu.github.io/tags/DHCP/"/>
-    
-      <category term="VMware" scheme="https://cyneliu.github.io/tags/VMware/"/>
     
   </entry>
   

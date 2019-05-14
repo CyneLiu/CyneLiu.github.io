@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/</loc>
+    <lastmod>2019-05-14T01:45:38.357Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu16.04安装OpenDaylight Carbon</title>
+        <pubTime>2019-03-14T00:57:44.000Z</pubTime>
+        
+        <tag>SDN</tag>
+         
+        <tag>OpenDaylight</tag>
+         
+        <tag>Ubuntu16.04</tag>
+         
+         
+           
+             
+              <breadCrumb title="SDN" url="https://cyneliu.github.io/categories/SDN/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://cyneliu.github.io/2019/05/14/Ubuntu16-04%E5%AE%89%E8%A3%85ONOS-Hummingbird-1-7-1/</loc>
+    <lastmod>2019-05-14T01:45:09.380Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu16.04安装ONOS Hummingbird(1.7.1)</title>
+        <pubTime>2019-05-14T01:11:09.000Z</pubTime>
+        
+        <tag>ONOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="SDN" url="https://cyneliu.github.io/categories/SDN/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2019/05/10/IBM-System-x3650-M2%E7%A1%AC%E7%9B%98%E4%BA%AE%E9%BB%84%E7%81%AF/</loc>
     <lastmod>2019-05-10T12:24:26.696Z</lastmod>
     <data>
@@ -194,30 +238,6 @@
         <tag>OpenDaylight</tag>
          
         <tag>Lithium</tag>
-         
-         
-           
-             
-              <breadCrumb title="SDN" url="https://cyneliu.github.io/categories/SDN/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://cyneliu.github.io/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/</loc>
-    <lastmod>2019-03-14T01:26:38.375Z</lastmod>
-    <data>
-        <display>
-        <title>Ubuntu16.04安装OpenDaylight Carbon</title>
-        <pubTime>2019-03-14T00:57:44.000Z</pubTime>
-        
-        <tag>SDN</tag>
-         
-        <tag>OpenDaylight</tag>
-         
-        <tag>Ubuntu16.04</tag>
          
          
            
@@ -758,9 +778,9 @@
         
         <tag>Linux</tag>
          
-        <tag>科学上网</tag>
-         
         <tag>脚本</tag>
+         
+        <tag>科学上网</tag>
          
         <tag>vps</tag>
          

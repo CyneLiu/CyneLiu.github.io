@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Ubuntu16.04安装ONOS Hummingbird(1.7.1)]]></title>
+    <url>%2F2019%2F05%2F14%2FUbuntu16-04%E5%AE%89%E8%A3%85ONOS-Hummingbird-1-7-1%2F</url>
+    <content type="text"><![CDATA[环境准备Ubuntu 16.04 Desktop (内存推荐4G)server-jreonos-1.7.1 *目前Oracle网站需要登录账户才能下载 配置JRE将下载下来的JRE文件解压到自定义目录中： mkdir -p /opt/java #将下载下来的安装包移动到此目录（目录可自己定义） tar -xzvf server-jre-8u211-linux-x64.tar.gz 配置环境变量： vim /etc/profile 在文件末尾添加如下配置： export JAVA_HOME=/opt/java/jdk1.8.0_211 export JRE_HOME=/opt/java/jdk1.8.0_211 export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/ext export PATH=$PATH:$JRE_HOME/bin 使配置生效： source /etc/profile 验证配置成功： java -version #显示java版本信息 配置ONOS解压ONOS压缩包： tar -xzvf onos-1.7.1.tar.gz 设置ONOS_ROOT和KARAF_ROOT的路径： vim /etc/profile 在文件末尾添加以下内容,注意修改为自己对应的目录： export ONOS_ROOT=/home/sdn/vmlab/onos-1.7.1 export KARAF_ROOT=/home/sdn/vmlab/onos-1.7.1/apache-karaf-3.0.5 export PATH=$PATH:$KARAF_ROOT/bin:$ONOS_ROOT/bin 使配置生效： source /etc/profile 运行onos(第一次启动可能时间较长)： karaf clean 安装应用： &gt; app activate org.onosproject.openflow &gt; app activate org.onosproject.fwd &gt; app activate org.onosproject.mobility 环境测试查看端口监听状态： netstat -an | grep 8181 #onos Web监听端口 netstat -an | grep 6633 #onos OF监听端口 访问Web界面，地址为：http://[ip]:8181/onos/ui/index.html,账户/密码：onos/rocks ：]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>ONOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IBM System x3650 M2硬盘亮黄灯]]></title>
     <url>%2F2019%2F05%2F10%2FIBM-System-x3650-M2%E7%A1%AC%E7%9B%98%E4%BA%AE%E9%BB%84%E7%81%AF%2F</url>
     <content type="text"><![CDATA[问题描述服务器之前做了RAID1并且装了ESXI，在开机状态下拔掉一块硬盘后，硬盘黄灯亮起并发出连续的滴滴警报声，硬件故障检测板DASD亮起，百度尝试了很多方式，比如拔掉电源后重启等均无效。 解决办法因为服务器并没有跑虚拟机和存数据，所以最后直接重做了RAID，过程如下： 进入WebBIOS服务器重启按F1进入BIOS，找到Sytem Settings → Adapters and UEFI Drivers → Please press ENTER to compile the list of drivers，然后选择“LSI EFI SAS Driver”下面那一行，然后回车，根据提示输入 1 并再次回车进入WebBIOS。 更改硬盘状态进入BIOS之后，点击Physical View,可以看到亮黄灯的那块硬盘出啊先“Unconfigured Bad”的提示信息：点击进入那块出错的硬盘，勾选”Make Unconf Good”，然后点击”Go”,不再做其它设置这样在之后配置RAID的时候就可以发现这块硬盘并做相应的添加等操作了。 配置RAID进入WebBIOS后选择Configuration Wizard配置向导：选择New Configuration，代表清除原有阵列信息并重新配置：选择Yes确定：然后选择手动配置：Manual Configuration选择要配置在RAID中的硬盘，按Add to Array从左边的Drivers中选到右边的Driver Groups中。选好硬盘后，选择Accept DG后点击Next在左侧的ArrayWithFreeSpace中选中刚刚做好的Disk Groups按Add to SPAN添加到右侧的span中，然后选择Next最后会进入Virtual Disk配置界面，RAID级别选择RAID1，需要注意的是Select size的设置，在右侧会有提示，根据提示填入相应的大小即可，点选Accept接受配置，最后选择Next。 最后还会重新出现一次之前的配置界面，直接无视就可以，Accept和Next即可。]]></content>
@@ -64,7 +75,7 @@
   <entry>
     <title><![CDATA[Ubuntu16.04安装OpenDaylight Carbon]]></title>
     <url>%2F2019%2F03%2F14%2FUbuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon%2F</url>
-    <content type="text"><![CDATA[环境准备JRE安装配置https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html我这里下载的是目前的最新版本： wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/server-jre-8u201-linux-x64.tar.gz 解压到自定义目录中： mkdir -p /opt/java #将下载下来的安装包移动到此目录（自己定义） tar -xzvf server-jre-8u201-linux-x64.tar.gz 配置环境变量： vim /etc/profile 在文件末尾添加如下配置： export JAVA_HOME=/opt/java/jdk1.8.0_201 export JRE_HOME=/opt/java/jdk1.8.0_201 export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/ext export PATH=$PATH:$JRE_HOME/bin 使配置生效： source /etc/profile 验证配置成功： java -version #显示java版本信息 OpenDaylight(Carbon)安装配置下载我这里下载的是0.6.4版本： wget https://nexus.opendaylight.org/content/repositories/public/org/opendaylight/integration/distribution-karaf/0.6.4-Carbon/distribution-karaf-0.6.4-Carbon.zip 解压安装 uzip distribution-karaf-0.6.4-Carbon.zip 启动karaf cd distribution-karaf-0.6.4-Carbon ./bin/karaf 安装组件安装REST API组件 feature:install odl-restconf 安装L2 switch组件： feature:install odl-l2switch-switch-ui 安装API查看器： feature:install odl-mdsal-apidocs 安装 dlux 展示页面: feature:install odl-dluxapps-applications 验证安装登录管理页面用浏览器访问：http://localhost:8080/index.html用户名/密码：admin/admin 使用OpenvSwitch连接ODL控制器用下面的命令将br0网桥连接至指定的控制器: ovs-vsctl set-controller br0 tcp:&lt;controller IP&gt;:&lt;port&gt; 执行：ovs-vsctl show,出现is_connected:true字样表示连接成功：登录管理页面查看拓扑发现已经连接的OVS交换机：]]></content>
+    <content type="text"><![CDATA[环境准备JRE安装配置https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html我这里下载的是目前的最新版本： wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/server-jre-8u201-linux-x64.tar.gz 解压到自定义目录中： mkdir -p /opt/java #将下载下来的安装包移动到此目录（目录可自己定义） tar -xzvf server-jre-8u201-linux-x64.tar.gz 配置环境变量： vim /etc/profile 在文件末尾添加如下配置： export JAVA_HOME=/opt/java/jdk1.8.0_201 export JRE_HOME=/opt/java/jdk1.8.0_201 export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/ext export PATH=$PATH:$JRE_HOME/bin 使配置生效： source /etc/profile 验证配置成功： java -version #显示java版本信息 OpenDaylight(Carbon)安装配置下载我这里下载的是0.6.4版本： wget https://nexus.opendaylight.org/content/repositories/public/org/opendaylight/integration/distribution-karaf/0.6.4-Carbon/distribution-karaf-0.6.4-Carbon.zip 解压安装 uzip distribution-karaf-0.6.4-Carbon.zip 启动karaf cd distribution-karaf-0.6.4-Carbon ./bin/karaf 安装组件安装REST API组件 feature:install odl-restconf 安装L2 switch组件： feature:install odl-l2switch-switch-ui 安装API查看器： feature:install odl-mdsal-apidocs 安装 dlux 展示页面: feature:install odl-dluxapps-applications 验证安装登录管理页面用浏览器访问：http://localhost:8080/index.html用户名/密码：admin/admin 使用OpenvSwitch连接ODL控制器用下面的命令将br0网桥连接至指定的控制器: ovs-vsctl set-controller br0 tcp:&lt;controller IP&gt;:&lt;port&gt; 执行：ovs-vsctl show,出现is_connected:true字样表示连接成功：登录管理页面查看拓扑发现已经连接的OVS交换机：]]></content>
       <categories>
         <category>SDN</category>
       </categories>
@@ -353,8 +364,8 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>科学上网</tag>
         <tag>脚本</tag>
+        <tag>科学上网</tag>
         <tag>vps</tag>
         <tag>网站</tag>
       </tags>
