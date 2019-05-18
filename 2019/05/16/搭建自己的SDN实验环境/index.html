@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, Cyne, Blog" />
+  <meta name="keywords" content="SDN实验环境," />
 
 
 
@@ -89,16 +89,28 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cyne&#39;s Blog">
-<meta property="og:url" content="https://cyneliu.github.io/tags/mysql/index.html">
+<meta name="description" content="这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。 SDN实验环境简介课程中使用的实验环境主要包括三个SDN控制器，分别是OpenDaylight、Floodlight以及ONOS，另外还有">
+<meta name="keywords" content="SDN实验环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建自己的SDN实验环境">
+<meta property="og:url" content="https://cyneliu.github.io/2019/05/16/搭建自己的SDN实验环境/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。 SDN实验环境简介课程中使用的实验环境主要包括三个SDN控制器，分别是OpenDaylight、Floodlight以及ONOS，另外还有">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2019/05/16/5cdd6274c5d6910580.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/16/5cdd64d9c971f55579.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/16/5cdd6a388293924243.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/16/5cdd6d7731e4f41000.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/16/5cdd6e639d2ea35783.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/18/5cdf9b917dcd823093.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/18/5cdf9dc09eb8159715.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/18/5cdf9fb66b75983582.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/18/5cdfa1bec4c2618876.png">
+<meta property="og:updated_time" content="2019-05-18T06:16:40.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cyne&#39;s Blog">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.">
+<meta name="twitter:title" content="搭建自己的SDN实验环境">
+<meta name="twitter:description" content="这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。 SDN实验环境简介课程中使用的实验环境主要包括三个SDN控制器，分别是OpenDaylight、Floodlight以及ONOS，另外还有">
+<meta name="twitter:image" content="https://i.loli.net/2019/05/16/5cdd6274c5d6910580.png">
 
 
 
@@ -128,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://cyneliu.github.io/tags/mysql/"/>
+  <link rel="canonical" href="https://cyneliu.github.io/2019/05/16/搭建自己的SDN实验环境/"/>
 
 
 
 
 
-  <title>标签: mysql | Cyne's Blog</title>
+  <title>搭建自己的SDN实验环境 | Cyne's Blog</title>
   
 
 
@@ -153,7 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,54 +303,327 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>mysql<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2019/05/16/搭建自己的SDN实验环境/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cyne Liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyne's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/11/29/关于mysql8-0服务无法启动的问题/" itemprop="url">
-              
-                <span itemprop="name">关于mysql8.0服务无法启动的问题</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">搭建自己的SDN实验环境</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-29T10:41:37+08:00"
-              content="2018-11-29" >
-          11-29
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T20:46:59+08:00">
+                2019-05-16
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SDN/" itemprop="url" rel="index">
+                    <span itemprop="name">SDN</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/16/搭建自己的SDN实验环境/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/16/搭建自己的SDN实验环境/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <p>这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。</p>
+<h1 id="SDN实验环境简介"><a href="#SDN实验环境简介" class="headerlink" title="SDN实验环境简介"></a>SDN实验环境简介</h1><p>课程中使用的实验环境主要包括三个SDN控制器，分别是OpenDaylight、Floodlight以及ONOS，另外还有OpenvSwitch和mininet，其中有很多官方已经给出了虚拟机文件，我们只需要下载然后导入到VMware或者VirtualBox就可以了。</p>
+<h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h2 id="OpenDaylight"><a href="#OpenDaylight" class="headerlink" title="OpenDaylight"></a>OpenDaylight</h2><p><strong>官网地址：</strong><a href="https://www.opendaylight.org" target="_blank" rel="noopener">www.opendaylight.org</a>  </p>
+<p><img src="https://i.loli.net/2019/05/16/5cdd6274c5d6910580.png" alt="01.png"></p>
+<p>ODL控制器的版本以元素周期表命名，截止到目前ODL已经发布了最新的氖(Neon)版本，可以在官网下载到各个版本的安装包以及安装教程等。  </p>
+<p>具体的安装过程也可以参考我之前的两篇文章：</p>
+<blockquote>
+<p><a href="https://cyne.tk/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/" target="_blank" rel="noopener">Ubuntu16.04安装OpenDaylight Carbon</a><br><a href="https://cyne.tk/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/" target="_blank" rel="noopener">Ubuntu14.04安装OpenDaylight(锂版本)</a></p>
+</blockquote>
+<h2 id="Floodlight"><a href="#Floodlight" class="headerlink" title="Floodlight"></a>Floodlight</h2><p><strong>官网地址：</strong><a href="http://www.projectfloodlight.org/" target="_blank" rel="noopener">www.projectfloodlight.org</a></p>
+<p><img src="https://i.loli.net/2019/05/16/5cdd64d9c971f55579.png" alt="02.png"></p>
+<p>同样，Floodlight的官网也提供了各个版本的下载地址以及相关文档等。另外，官方也给出了一个部署好的虚拟机文件，但是国内的下载速度不是很理想，需要扶墙下载。当然，我这里也有下载好的文件：</p>
+<blockquote>
+</blockquote>
+<p>百度网盘：<a href="https://pan.baidu.com/s/1WrNJEqKtUkl9MnYPcjQ92w" target="_blank" rel="noopener">提取码：no1y</a></p>
+<p>需要注意的是这并不是一个ovf或者ova文件，而是一个磁盘文件，所以不能直接导入使用，需要手动创建一台空虚拟机，并将此虚拟磁盘文件挂载到虚拟机上，这里我用VMware进行演示：</p>
+<blockquote>
+</blockquote>
+<p>打开VMware，点击“创建新的虚拟机”，选择“自定义”，因为不需要安装操作系统，所以选择“稍后安装操作系统”，操作系统类型选择“Ubuntu 64位”，其它参数默认。  </p>
+<blockquote>
+<p>在选择磁盘时，选择“使用现有虚拟磁盘”，选择下载下来的vmdk文件，完成虚拟机创建，然后启动虚拟机就可以使用官方已经配置好的Floodlight虚拟机了。</p>
+</blockquote>
+<h2 id="ONOS"><a href="#ONOS" class="headerlink" title="ONOS"></a>ONOS</h2><p><strong>官网地址：</strong><a href="https://onosproject.org/" target="_blank" rel="noopener">onosproject.org</a><br>推荐到ONOS的wiki中下载安装包或者封装好的虚拟机文件：<br><strong>Wiki</strong>：<a href="https://wiki.onosproject.org/display/onos15/download+packages+and+tutorial+vms" target="_blank" rel="noopener">wiki.onosproject.org</a>  </p>
+<p><img src="https://i.loli.net/2019/05/16/5cdd6a388293924243.png" alt="03.png"></p>
+<p>当然，也可以选择自己安装ONOS控制器，一些基础的功能还是自己装的用起来好用一点，而一些特殊的项目如SDN-IP等则推荐在wiki中下载相应的虚拟机文件，具体的安装步骤可以参考我之前的文章：</p>
+<blockquote>
+</blockquote>
+<p><a href="https://cyne.tk/2019/05/14/Ubuntu16-04%E5%AE%89%E8%A3%85ONOS-Hummingbird-1-7-1/" target="_blank" rel="noopener">Ubuntu16.04安装ONOS Hummingbird(1.7.1)</a></p>
+<h2 id="Mininet"><a href="#Mininet" class="headerlink" title="Mininet"></a>Mininet</h2><p><strong>官网地址:</strong><a href="http://mininet.org/" target="_blank" rel="noopener">mininet.org</a>  </p>
+<p><img src="https://i.loli.net/2019/05/16/5cdd6d7731e4f41000.png" alt="04.png"></p>
+<p>mininet有三种安装方式，官方推荐直接下载封装好的虚拟机文件，因为这非常简单而且快捷，如果你是一个喜欢自己动手的人，那我推荐你通过安装包方式进行安装，具体的安装步骤可参考之前的文章：</p>
+<blockquote>
+</blockquote>
+<p><a href="https://cyne.tk/2018/06/24/Mininet%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">Mininet的安装配置</a>  </p>
+<p>*文章中同时安装了Ryu,如果只是单纯安装mininet可直接跳过此步骤。</p>
+<h2 id="OpenvSwitch"><a href="#OpenvSwitch" class="headerlink" title="OpenvSwitch"></a>OpenvSwitch</h2><p><strong>官网地址：</strong><a href="http://www.openvswitch.org/" target="_blank" rel="noopener">www.openvswitch.org</a></p>
+<p><img src="https://i.loli.net/2019/05/16/5cdd6e639d2ea35783.png" alt="05.png"></p>
+<p>OpenvSwitch也有多种安装方式，我之前都是采用安装包方式进行安装，具体的安装过程可参考：</p>
+<blockquote>
+</blockquote>
+<p><a href="https://cyne.tk/2018/12/28/Ubuntu16-04%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Open-vSwitch/" target="_blank" rel="noopener">Ubuntu16.04安装包方式安装Open vSwitch</a></p>
+<h1 id="一些小问题"><a href="#一些小问题" class="headerlink" title="一些小问题"></a>一些小问题</h1><h2 id="Could-not-get-lock-var-lib-apt-lists-lock"><a href="#Could-not-get-lock-var-lib-apt-lists-lock" class="headerlink" title="Could not get lock /var/lib/apt/lists/lock"></a>Could not get lock /var/lib/apt/lists/lock</h2><p>Ubuntu在使用apt-get命令时经常出现如下图所示的问题：<br><img src="https://i.loli.net/2019/05/18/5cdf9b917dcd823093.png" alt="06.png"><br>解决方法：</p>
+<blockquote>
+</blockquote>
+<pre><code>rm /var/lib/dpkg/lock
+sudo dpkg --configure -a
+apt update
+</code></pre><h2 id="ONOS启动"><a href="#ONOS启动" class="headerlink" title="ONOS启动"></a>ONOS启动</h2><p>如果是从ONOS官网下载的1.15.0的虚拟机，启动方式略有不同：先双击桌面的”Setup ONOS Cluster”,然后双击打开“ONOS GUI”即为ONOS的Web界面，双击“ONOS CLI”即为ONOS的命令行控制台。<br><img src="https://i.loli.net/2019/05/18/5cdf9dc09eb8159715.png" alt="07.png"><br>另外，这个镜像的ONOS服务监听端口可能并不是6633端口而是6653端口：<br><img src="https://i.loli.net/2019/05/18/5cdf9fb66b75983582.png" alt="08.png"><br>在进行一些基础的实验时，比如使用Mininet连接ONOS控制器等，推荐使用自己手动安装的ONOS；而对一些特殊的实验，比如SDN-IP等则推荐下载对应的ONOS虚拟机。</p>
+<h2 id="Floodlight启动"><a href="#Floodlight启动" class="headerlink" title="Floodlight启动"></a>Floodlight启动</h2><p>我在安装Floodlight时使用的是官方的虚拟机，通过如下命令启动Floodlight：</p>
+<blockquote>
+</blockquote>
+<pre><code>cd floodlight
+ant
+java -jar target/floodlight.jar
+</code></pre><h2 id="ovs-ofctl-s1-is-not-a-bridge-or-a-socket"><a href="#ovs-ofctl-s1-is-not-a-bridge-or-a-socket" class="headerlink" title="ovs-ofctl: s1 is not a bridge or a socket"></a>ovs-ofctl: s1 is not a bridge or a socket</h2><p>如图：<br><img src="https://i.loli.net/2019/05/18/5cdfa1bec4c2618876.png" alt="09.png"><br>解决方法：</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl set bridge br0 datapath_type=netdev
+</code></pre><h2 id="Mininet的一些常用命令"><a href="#Mininet的一些常用命令" class="headerlink" title="Mininet的一些常用命令"></a>Mininet的一些常用命令</h2><p>查看/修改主机IP地址：</p>
+<blockquote>
+</blockquote>
+<pre><code>h1 ip addr show
+h1 ifconfig
+h1 ifconfig h1-eth0 10.0.0.1/24 up
+</code></pre><p>查看交换机流表信息：</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl dump-flows s1
+ovs-ofctl -O OpenFlow1 dump-flows s1
+</code></pre><p>连接控制器：</p>
+<blockquote>
+</blockquote>
+<pre><code>mn --switch=ovsk --controller=remote,ip=172.16.75.117,port=6633
+mn --controller=remote,ip=192.168.1.31 --switch=ovsk,protocols=OpenFlow13 --topo=linear,2
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://i.loli.net/2018/03/03/5a9a6f8dcc189.png" alt="Cyne Liu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://i.loli.net/2018/03/03/5a9a6f8dcc19b.jpg" alt="Cyne Liu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SDN实验环境/" rel="tag"><i class="fa fa-tag"></i> SDN实验环境</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/Ubuntu16-04安装ONOS-Hummingbird-1-7-1/" rel="next" title="Ubuntu16.04安装ONOS Hummingbird(1.7.1)">
+                <i class="fa fa-chevron-left"></i> Ubuntu16.04安装ONOS Hummingbird(1.7.1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +631,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -366,8 +658,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -448,6 +749,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SDN实验环境简介"><span class="nav-number">1.</span> <span class="nav-text">SDN实验环境简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境安装"><span class="nav-number">2.</span> <span class="nav-text">环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenDaylight"><span class="nav-number">2.1.</span> <span class="nav-text">OpenDaylight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floodlight"><span class="nav-number">2.2.</span> <span class="nav-text">Floodlight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ONOS"><span class="nav-number">2.3.</span> <span class="nav-text">ONOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mininet"><span class="nav-number">2.4.</span> <span class="nav-text">Mininet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenvSwitch"><span class="nav-number">2.5.</span> <span class="nav-text">OpenvSwitch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些小问题"><span class="nav-number">3.</span> <span class="nav-text">一些小问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Could-not-get-lock-var-lib-apt-lists-lock"><span class="nav-number">3.1.</span> <span class="nav-text">Could not get lock /var/lib/apt/lists/lock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ONOS启动"><span class="nav-number">3.2.</span> <span class="nav-text">ONOS启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floodlight启动"><span class="nav-number">3.3.</span> <span class="nav-text">Floodlight启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ovs-ofctl-s1-is-not-a-bridge-or-a-socket"><span class="nav-number">3.4.</span> <span class="nav-text">ovs-ofctl: s1 is not a bridge or a socket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mininet的一些常用命令"><span class="nav-number">3.5.</span> <span class="nav-text">Mininet的一些常用命令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -608,6 +925,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

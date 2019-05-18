@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-05-14T01:45:09.380Z</updated>
+  <updated>2019-05-18T06:16:40.837Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>搭建自己的SDN实验环境</title>
+    <link href="https://cyneliu.github.io/2019/05/16/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84SDN%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/"/>
+    <id>https://cyneliu.github.io/2019/05/16/搭建自己的SDN实验环境/</id>
+    <published>2019-05-16T12:46:59.000Z</published>
+    <updated>2019-05-18T06:16:40.837Z</updated>
+    
+    <content type="html"><![CDATA[<p>这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。</p><h1 id="SDN实验环境简介"><a href="#SDN实验环境简介" class="headerlink" title="SDN实验环境简介"></a>SDN实验环境简介</h1><p>课程中使用的实验环境主要包括三个SDN控制器，分别是OpenDaylight、Floodlight以及ONOS，另外还有OpenvSwitch和mininet，其中有很多官方已经给出了虚拟机文件，我们只需要下载然后导入到VMware或者VirtualBox就可以了。</p><h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h2 id="OpenDaylight"><a href="#OpenDaylight" class="headerlink" title="OpenDaylight"></a>OpenDaylight</h2><p><strong>官网地址：</strong><a href="https://www.opendaylight.org" target="_blank" rel="noopener">www.opendaylight.org</a>  </p><p><img src="https://i.loli.net/2019/05/16/5cdd6274c5d6910580.png" alt="01.png"></p><p>ODL控制器的版本以元素周期表命名，截止到目前ODL已经发布了最新的氖(Neon)版本，可以在官网下载到各个版本的安装包以及安装教程等。  </p><p>具体的安装过程也可以参考我之前的两篇文章：</p><blockquote><p><a href="https://cyne.tk/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/" target="_blank" rel="noopener">Ubuntu16.04安装OpenDaylight Carbon</a><br><a href="https://cyne.tk/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/" target="_blank" rel="noopener">Ubuntu14.04安装OpenDaylight(锂版本)</a></p></blockquote><h2 id="Floodlight"><a href="#Floodlight" class="headerlink" title="Floodlight"></a>Floodlight</h2><p><strong>官网地址：</strong><a href="http://www.projectfloodlight.org/" target="_blank" rel="noopener">www.projectfloodlight.org</a></p><p><img src="https://i.loli.net/2019/05/16/5cdd64d9c971f55579.png" alt="02.png"></p><p>同样，Floodlight的官网也提供了各个版本的下载地址以及相关文档等。另外，官方也给出了一个部署好的虚拟机文件，但是国内的下载速度不是很理想，需要扶墙下载。当然，我这里也有下载好的文件：</p><blockquote></blockquote><p>百度网盘：<a href="https://pan.baidu.com/s/1WrNJEqKtUkl9MnYPcjQ92w" target="_blank" rel="noopener">提取码：no1y</a></p><p>需要注意的是这并不是一个ovf或者ova文件，而是一个磁盘文件，所以不能直接导入使用，需要手动创建一台空虚拟机，并将此虚拟磁盘文件挂载到虚拟机上，这里我用VMware进行演示：</p><blockquote></blockquote><p>打开VMware，点击“创建新的虚拟机”，选择“自定义”，因为不需要安装操作系统，所以选择“稍后安装操作系统”，操作系统类型选择“Ubuntu 64位”，其它参数默认。  </p><blockquote><p>在选择磁盘时，选择“使用现有虚拟磁盘”，选择下载下来的vmdk文件，完成虚拟机创建，然后启动虚拟机就可以使用官方已经配置好的Floodlight虚拟机了。</p></blockquote><h2 id="ONOS"><a href="#ONOS" class="headerlink" title="ONOS"></a>ONOS</h2><p><strong>官网地址：</strong><a href="https://onosproject.org/" target="_blank" rel="noopener">onosproject.org</a><br>推荐到ONOS的wiki中下载安装包或者封装好的虚拟机文件：<br><strong>Wiki</strong>：<a href="https://wiki.onosproject.org/display/onos15/download+packages+and+tutorial+vms" target="_blank" rel="noopener">wiki.onosproject.org</a>  </p><p><img src="https://i.loli.net/2019/05/16/5cdd6a388293924243.png" alt="03.png"></p><p>当然，也可以选择自己安装ONOS控制器，一些基础的功能还是自己装的用起来好用一点，而一些特殊的项目如SDN-IP等则推荐在wiki中下载相应的虚拟机文件，具体的安装步骤可以参考我之前的文章：</p><blockquote></blockquote><p><a href="https://cyne.tk/2019/05/14/Ubuntu16-04%E5%AE%89%E8%A3%85ONOS-Hummingbird-1-7-1/" target="_blank" rel="noopener">Ubuntu16.04安装ONOS Hummingbird(1.7.1)</a></p><h2 id="Mininet"><a href="#Mininet" class="headerlink" title="Mininet"></a>Mininet</h2><p><strong>官网地址:</strong><a href="http://mininet.org/" target="_blank" rel="noopener">mininet.org</a>  </p><p><img src="https://i.loli.net/2019/05/16/5cdd6d7731e4f41000.png" alt="04.png"></p><p>mininet有三种安装方式，官方推荐直接下载封装好的虚拟机文件，因为这非常简单而且快捷，如果你是一个喜欢自己动手的人，那我推荐你通过安装包方式进行安装，具体的安装步骤可参考之前的文章：</p><blockquote></blockquote><p><a href="https://cyne.tk/2018/06/24/Mininet%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">Mininet的安装配置</a>  </p><p>*文章中同时安装了Ryu,如果只是单纯安装mininet可直接跳过此步骤。</p><h2 id="OpenvSwitch"><a href="#OpenvSwitch" class="headerlink" title="OpenvSwitch"></a>OpenvSwitch</h2><p><strong>官网地址：</strong><a href="http://www.openvswitch.org/" target="_blank" rel="noopener">www.openvswitch.org</a></p><p><img src="https://i.loli.net/2019/05/16/5cdd6e639d2ea35783.png" alt="05.png"></p><p>OpenvSwitch也有多种安装方式，我之前都是采用安装包方式进行安装，具体的安装过程可参考：</p><blockquote></blockquote><p><a href="https://cyne.tk/2018/12/28/Ubuntu16-04%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Open-vSwitch/" target="_blank" rel="noopener">Ubuntu16.04安装包方式安装Open vSwitch</a></p><h1 id="一些小问题"><a href="#一些小问题" class="headerlink" title="一些小问题"></a>一些小问题</h1><h2 id="Could-not-get-lock-var-lib-apt-lists-lock"><a href="#Could-not-get-lock-var-lib-apt-lists-lock" class="headerlink" title="Could not get lock /var/lib/apt/lists/lock"></a>Could not get lock /var/lib/apt/lists/lock</h2><p>Ubuntu在使用apt-get命令时经常出现如下图所示的问题：<br><img src="https://i.loli.net/2019/05/18/5cdf9b917dcd823093.png" alt="06.png"><br>解决方法：</p><blockquote></blockquote><pre><code>rm /var/lib/dpkg/locksudo dpkg --configure -aapt update</code></pre><h2 id="ONOS启动"><a href="#ONOS启动" class="headerlink" title="ONOS启动"></a>ONOS启动</h2><p>如果是从ONOS官网下载的1.15.0的虚拟机，启动方式略有不同：先双击桌面的”Setup ONOS Cluster”,然后双击打开“ONOS GUI”即为ONOS的Web界面，双击“ONOS CLI”即为ONOS的命令行控制台。<br><img src="https://i.loli.net/2019/05/18/5cdf9dc09eb8159715.png" alt="07.png"><br>另外，这个镜像的ONOS服务监听端口可能并不是6633端口而是6653端口：<br><img src="https://i.loli.net/2019/05/18/5cdf9fb66b75983582.png" alt="08.png"><br>在进行一些基础的实验时，比如使用Mininet连接ONOS控制器等，推荐使用自己手动安装的ONOS；而对一些特殊的实验，比如SDN-IP等则推荐下载对应的ONOS虚拟机。</p><h2 id="Floodlight启动"><a href="#Floodlight启动" class="headerlink" title="Floodlight启动"></a>Floodlight启动</h2><p>我在安装Floodlight时使用的是官方的虚拟机，通过如下命令启动Floodlight：</p><blockquote></blockquote><pre><code>cd floodlightantjava -jar target/floodlight.jar</code></pre><h2 id="ovs-ofctl-s1-is-not-a-bridge-or-a-socket"><a href="#ovs-ofctl-s1-is-not-a-bridge-or-a-socket" class="headerlink" title="ovs-ofctl: s1 is not a bridge or a socket"></a>ovs-ofctl: s1 is not a bridge or a socket</h2><p>如图：<br><img src="https://i.loli.net/2019/05/18/5cdfa1bec4c2618876.png" alt="09.png"><br>解决方法：</p><blockquote></blockquote><pre><code>ovs-vsctl set bridge br0 datapath_type=netdev</code></pre><h2 id="Mininet的一些常用命令"><a href="#Mininet的一些常用命令" class="headerlink" title="Mininet的一些常用命令"></a>Mininet的一些常用命令</h2><p>查看/修改主机IP地址：</p><blockquote></blockquote><pre><code>h1 ip addr showh1 ifconfigh1 ifconfig h1-eth0 10.0.0.1/24 up</code></pre><p>查看交换机流表信息：</p><blockquote></blockquote><pre><code>ovs-ofctl dump-flows s1ovs-ofctl -O OpenFlow1 dump-flows s1</code></pre><p>连接控制器：</p><blockquote></blockquote><pre><code>mn --switch=ovsk --controller=remote,ip=172.16.75.117,port=6633mn --controller=remote,ip=192.168.1.31 --switch=ovsk,protocols=OpenFlow13 --topo=linear,2</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。&lt;/p&gt;
+&lt;h
+      
+    
+    </summary>
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
+    
+    
+      <category term="SDN实验环境" scheme="https://cyneliu.github.io/tags/SDN%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu16.04安装ONOS Hummingbird(1.7.1)</title>
@@ -547,34 +573,6 @@
       <category term="ssr" scheme="https://cyneliu.github.io/tags/ssr/"/>
     
       <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安装VMware后没有虚拟网卡的解决方法</title>
-    <link href="https://cyneliu.github.io/2018/11/22/%E5%AE%89%E8%A3%85VMware%E5%90%8E%E6%B2%A1%E6%9C%89%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
-    <id>https://cyneliu.github.io/2018/11/22/安装VMware后没有虚拟网卡的解决方法/</id>
-    <published>2018-11-22T03:27:49.000Z</published>
-    <updated>2018-11-25T13:30:13.877Z</updated>
-    
-    <content type="html"><![CDATA[<p>这两天好几位同学找我说在安装VMware后都出现了没有VMnet虚拟网卡的问题，经过数次尝试终于找到了比较靠谱点的解决方式。</p><h1 id="还原虚拟网络设置"><a href="#还原虚拟网络设置" class="headerlink" title="还原虚拟网络设置"></a>还原虚拟网络设置</h1><p>因为每个人的电脑环境不同，问题的原因当然也不会完全一样，在发现没有虚拟网卡的情况下，最先应该尝试的方法应该是找到虚拟网络编辑器，还原默认设置，这样移除虚拟网卡又重新安装激活后有的时候就解决问题了。</p><h1 id="清理注册表和历史痕迹"><a href="#清理注册表和历史痕迹" class="headerlink" title="清理注册表和历史痕迹"></a>清理注册表和历史痕迹</h1><p>在还原默认设置没有效果之后，就可以用下面说的这个方法，清除掉VMware的痕迹了。  </p><p>为什么需要这么做呢？因为我发现出现这个问题的电脑都是之前安装过VMware的，然后保留了注册表和部分历史文件的。  </p><h2 id="卸载VMware"><a href="#卸载VMware" class="headerlink" title="卸载VMware"></a>卸载VMware</h2><p>首先将VMware卸载掉，推荐使用专门的卸载工具，在卸载的同时会清理掉残留的文件和注册表等，当然没有卸载工具的话也没有关系，按照下面的步骤继续做就ok。</p><h2 id="清理注册表"><a href="#清理注册表" class="headerlink" title="清理注册表"></a>清理注册表</h2><p>使用专门的注册表清理工具清理掉VMware留下的注册表，这里我用的是CCleaner，直接百度找一个靠谱的网站下载就行，打开CCleaner之后点击注册表，扫描问题，等待扫描完成后选择修复选定的问题。这里会弹出提示询问你是否需要备份注册表，这里根据自己的需要选择就可以，我个人感觉没有必要去备份。最后点击修复所有问题，VMware残留的注册表就被删除掉了。  </p><h2 id="清理残留文件"><a href="#清理残留文件" class="headerlink" title="清理残留文件"></a>清理残留文件</h2><p>打开系统盘，搜索“vmware”，等待搜索完成后将找到的所有文件删除，可能会有一些文件无法删除，跳过这些文件就行。 </p><h2 id="重启计算机"><a href="#重启计算机" class="headerlink" title="重启计算机"></a>重启计算机</h2><p>推荐在这时候重启电脑，因为不重启的话重新安装上VMware后还是会没有网卡，给一台重装的时候就忘记了重启，安装后发现还是没有虚拟网卡，在安装之后重启之后就有了。所以最后重启应该也是可以的，但是不能没有这个操作。</p><h2 id="重新安装VMware"><a href="#重新安装VMware" class="headerlink" title="重新安装VMware"></a>重新安装VMware</h2><p>最后重新安装上VMware，打开网络适配器，看到你的VMnet1和VMnet8网卡，就说明成功了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;这两天好几位同学找我说在安装VMware后都出现了没有VMnet虚拟网卡的问题，经过数次尝试终于找到了比较靠谱点的解决方式。&lt;/p&gt;
-&lt;h1 id=&quot;还原虚拟网络设置&quot;&gt;&lt;a href=&quot;#还原虚拟网络设置&quot; class=&quot;headerlink&quot; title=&quot;还原虚拟网络
-      
-    
-    </summary>
-    
-      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
-    
-    
-      <category term="VMware" scheme="https://cyneliu.github.io/tags/VMware/"/>
-    
-      <category term="虚拟网卡" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1/"/>
     
   </entry>
   

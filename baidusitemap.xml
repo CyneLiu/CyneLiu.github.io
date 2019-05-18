@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2019/05/16/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84SDN%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2019-05-18T06:16:40.837Z</lastmod>
+    <data>
+        <display>
+        <title>搭建自己的SDN实验环境</title>
+        <pubTime>2019-05-16T12:46:59.000Z</pubTime>
+        
+        <tag>SDN实验环境</tag>
+         
+         
+           
+             
+              <breadCrumb title="SDN" url="https://cyneliu.github.io/categories/SDN/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/</loc>
     <lastmod>2019-05-14T01:45:38.357Z</lastmod>
     <data>
@@ -778,9 +798,9 @@
         
         <tag>Linux</tag>
          
-        <tag>脚本</tag>
-         
         <tag>科学上网</tag>
+         
+        <tag>脚本</tag>
          
         <tag>vps</tag>
          
@@ -942,9 +962,9 @@
         <title>Cisco设备密码重置</title>
         <pubTime>2018-10-11T13:47:03.000Z</pubTime>
         
-        <tag>网工</tag>
-         
         <tag>Cisco</tag>
+         
+        <tag>网工</tag>
          
          
            
