@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-05-18T06:16:40.837Z</updated>
+  <updated>2019-05-19T07:26:59.510Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Citrix XenServer 初探</title>
+    <link href="https://cyneliu.github.io/2019/05/19/Citrix-XenServer-%E5%88%9D%E6%8E%A2/"/>
+    <id>https://cyneliu.github.io/2019/05/19/Citrix-XenServer-初探/</id>
+    <published>2019-05-19T05:50:55.000Z</published>
+    <updated>2019-05-19T07:26:59.510Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="XenServer安装"><a href="#XenServer安装" class="headerlink" title="XenServer安装"></a>XenServer安装</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>安装平台：服务器或虚拟机<br>下载XenServer镜像：</p><blockquote></blockquote><p>一开始下载时是准备在官网直接下载的，但是也许是因为中美贸易战的原因，在注册账号后开始登录时出现如下提示：<br><img src="https://i.loli.net/2019/05/19/5ce0f45a95d4553874.png" alt="00.png"><br>无奈只能Google看看有没有好人分享过镜像，最后还是找到了：</p><blockquote><blockquote><p>百度网盘：<a href="http://pan.baidu.com/s/1pLrQv39" target="_blank" rel="noopener">密码：yxxl</a><br>原帖地址：<a href="http://www.xen800.com/thread-1527-1-1.html" target="_blank" rel="noopener">http://www.xen800.com/thread-1527-1-1.html</a></p></blockquote></blockquote><h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>下载XenServer的iso镜像之后，将镜像文件刻录到U盘或者光盘中，然后插入服务器选择从相应介质引导启动即可，具体安装步骤可参考下面这份安装教程：</p><blockquote></blockquote><p><a href="https://pan.baidu.com/s/1SHIYPuj7gJphCihfjqadRg" target="_blank" rel="noopener">Citrix虚拟化之旅三（XenServer 新手安装教程）.pdf</a><br>提取码：cue2 </p><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="显示器输入不支持"><a href="#显示器输入不支持" class="headerlink" title="显示器输入不支持"></a>显示器输入不支持</h3><p>因为显示器比较烂，在刚开始安装的时候显示输入不支持，参考安装教程，应该是在这一步：<br><img src="https://i.loli.net/2019/05/19/5ce0fcb5be53318989.png" alt="01.png"><br>所以直接盲敲回车就可以了，当然需要等待一段时间才能看到内容。</p><h3 id="安装后无法引导启动"><a href="#安装后无法引导启动" class="headerlink" title="安装后无法引导启动"></a>安装后无法引导启动</h3><ul><li>开机后进入BIOS，找到”Boot Manager”，选择”add Boot Option”，选择”legacy only”;  </li><li>然后在“Change Boot Order”中，把“legacy only”选项调整为第一位,然后选择”commit changes “保存;  </li><li>System Settings-&gt;Devices and I/O Ports-&gt;Console Redirection Settings-&gt;Remote Console 设置为Enable。</li></ul><p>详细可参考：<a href="https://blog.51cto.com/chenmingxin/878374" target="_blank" rel="noopener">https://blog.51cto.com/chenmingxin/878374</a></p><h1 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h1><h2 id="安装XenCenter"><a href="#安装XenCenter" class="headerlink" title="安装XenCenter"></a>安装XenCenter</h2><p>打开浏览器访问XenServer的ip地址，下载XenCenter安装程序：<br><img src="https://i.loli.net/2019/05/19/5ce1006ca1a0469993.png" alt="02.png"><br>也可以去网上下载其它版本，我这里是安装了7.0中文版。<br>然后添加服务器，输入服务器ip、用户名及密码完成添加：<br><img src="https://i.loli.net/2019/05/19/5ce1016d3388953979.png" alt="04.png"></p><h2 id="创建SR"><a href="#创建SR" class="headerlink" title="创建SR"></a>创建SR</h2><p>在创建虚拟机时我们肯定会用到操作系统的安装镜像，不同于ESXI可以直接挂载本地镜像，我们需要先创建ISO库来存放我们将要用到的安装镜像。<br>在创建ISO库之前，先创建一个共享文件夹，文件夹中存放着我们的镜像文件：<br><img src="https://i.loli.net/2019/05/19/5ce103566dcff61384.png" alt="07.png"><br>右键添加的服务器，选择“新建SR”：<br><img src="https://i.loli.net/2019/05/19/5ce1022a50b6383082.png" alt="05.png"><br>存储类型选择Windows文件共享：<br><img src="https://i.loli.net/2019/05/19/5ce1035651bb373212.png" alt="06.png"><br>输入共享地址以及用户名密码完成挂载：<br><img src="https://i.loli.net/2019/05/19/5ce103fee462934335.png" alt="08.png"><br>现在我们就可以在“ISO库”中看到我们的镜像文件了：<br><img src="https://i.loli.net/2019/05/19/5ce104a286b9769937.png" alt="09.png"></p><h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p>以上操作完成之后我们就可以点击菜单栏的“新建VM”，按照提示创建我们的虚拟机了，具体步骤可参考上面提到的安装教程。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;XenServer安装&quot;&gt;&lt;a href=&quot;#XenServer安装&quot; class=&quot;headerlink&quot; title=&quot;XenServer安装&quot;&gt;&lt;/a&gt;XenServer安装&lt;/h1&gt;&lt;h2 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;
+      
+    
+    </summary>
+    
+      <category term="虚拟化" scheme="https://cyneliu.github.io/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+    
+      <category term="Citrix" scheme="https://cyneliu.github.io/tags/Citrix/"/>
+    
+      <category term="XenServer" scheme="https://cyneliu.github.io/tags/XenServer/"/>
+    
+  </entry>
   
   <entry>
     <title>搭建自己的SDN实验环境</title>
@@ -543,36 +570,6 @@
     
     
       <category term="mysql" scheme="https://cyneliu.github.io/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>deepin使用ssr不能和谐上网</title>
-    <link href="https://cyneliu.github.io/2018/11/25/deepin%E4%BD%BF%E7%94%A8ssr%E4%B8%8D%E8%83%BD%E5%92%8C%E8%B0%90%E4%B8%8A%E7%BD%91/"/>
-    <id>https://cyneliu.github.io/2018/11/25/deepin使用ssr不能和谐上网/</id>
-    <published>2018-11-25T13:19:14.000Z</published>
-    <updated>2018-11-25T13:42:58.720Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在笔记本上装了deepin体验一番，看到深度商店有SSR客户端毫不犹豫的就安装上了，但是添加节点后发现并不能奏效。搜索不到解决方法，自己尝试了很多方法也没能解决，最后终于在深度商店的应用评论里看到了解决办法。  </p><p>首先保证客户端设置正确，在添加节点信息之后，软件默认的本地端口是0，这里需要改为1080。<br><img src="https://i.loli.net/2018/11/25/5bfaa5fc3cc94.png" alt="01.png"><br>然后到系统设置中，选择网络，设置系统代理模式为手动，将Socks代理参数改为127.0.0.1，端口改为1080。<br><img src="https://i.loli.net/2018/11/25/5bfaa6dc4926d.png" alt="02.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近在笔记本上装了deepin体验一番，看到深度商店有SSR客户端毫不犹豫的就安装上了，但是添加节点后发现并不能奏效。搜索不到解决方法，自己尝试了很多方法也没能解决，最后终于在深度商店的应用评论里看到了解决办法。  &lt;/p&gt;
-&lt;p&gt;首先保证客户端设置正确，在添加节点信息之后
-      
-    
-    </summary>
-    
-      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
-    
-    
-      <category term="deepin" scheme="https://cyneliu.github.io/tags/deepin/"/>
-    
-      <category term="ssr" scheme="https://cyneliu.github.io/tags/ssr/"/>
-    
-      <category term="科学上网" scheme="https://cyneliu.github.io/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
     
   </entry>
   

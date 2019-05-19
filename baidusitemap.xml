@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2019/05/19/Citrix-XenServer-%E5%88%9D%E6%8E%A2/</loc>
+    <lastmod>2019-05-19T07:26:59.510Z</lastmod>
+    <data>
+        <display>
+        <title>Citrix XenServer 初探</title>
+        <pubTime>2019-05-19T05:50:55.000Z</pubTime>
+        
+        <tag>Citrix</tag>
+         
+        <tag>XenServer</tag>
+         
+         
+           
+             
+              <breadCrumb title="虚拟化" url="https://cyneliu.github.io/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2019/05/16/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84SDN%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2019-05-18T06:16:40.837Z</lastmod>
     <data>
@@ -571,11 +593,11 @@
         <title>deepin使用ssr不能和谐上网</title>
         <pubTime>2018-11-25T13:19:14.000Z</pubTime>
         
+        <tag>科学上网</tag>
+         
         <tag>deepin</tag>
          
         <tag>ssr</tag>
-         
-        <tag>科学上网</tag>
          
          
            
@@ -798,13 +820,13 @@
         
         <tag>Linux</tag>
          
-        <tag>科学上网</tag>
-         
         <tag>脚本</tag>
          
         <tag>vps</tag>
          
         <tag>网站</tag>
+         
+        <tag>科学上网</tag>
          
          
            
@@ -962,9 +984,9 @@
         <title>Cisco设备密码重置</title>
         <pubTime>2018-10-11T13:47:03.000Z</pubTime>
         
-        <tag>Cisco</tag>
-         
         <tag>网工</tag>
+         
+        <tag>Cisco</tag>
          
          
            

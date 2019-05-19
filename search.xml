@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Citrix XenServer 初探]]></title>
+    <url>%2F2019%2F05%2F19%2FCitrix-XenServer-%E5%88%9D%E6%8E%A2%2F</url>
+    <content type="text"><![CDATA[XenServer安装准备工作安装平台：服务器或虚拟机下载XenServer镜像： 一开始下载时是准备在官网直接下载的，但是也许是因为中美贸易战的原因，在注册账号后开始登录时出现如下提示：无奈只能Google看看有没有好人分享过镜像，最后还是找到了： 百度网盘：密码：yxxl原帖地址：http://www.xen800.com/thread-1527-1-1.html 安装过程下载XenServer的iso镜像之后，将镜像文件刻录到U盘或者光盘中，然后插入服务器选择从相应介质引导启动即可，具体安装步骤可参考下面这份安装教程： Citrix虚拟化之旅三（XenServer 新手安装教程）.pdf提取码：cue2 遇到的问题显示器输入不支持因为显示器比较烂，在刚开始安装的时候显示输入不支持，参考安装教程，应该是在这一步：所以直接盲敲回车就可以了，当然需要等待一段时间才能看到内容。 安装后无法引导启动 开机后进入BIOS，找到”Boot Manager”，选择”add Boot Option”，选择”legacy only”; 然后在“Change Boot Order”中，把“legacy only”选项调整为第一位,然后选择”commit changes “保存; System Settings-&gt;Devices and I/O Ports-&gt;Console Redirection Settings-&gt;Remote Console 设置为Enable。 详细可参考：https://blog.51cto.com/chenmingxin/878374 创建虚拟机安装XenCenter打开浏览器访问XenServer的ip地址，下载XenCenter安装程序：也可以去网上下载其它版本，我这里是安装了7.0中文版。然后添加服务器，输入服务器ip、用户名及密码完成添加： 创建SR在创建虚拟机时我们肯定会用到操作系统的安装镜像，不同于ESXI可以直接挂载本地镜像，我们需要先创建ISO库来存放我们将要用到的安装镜像。在创建ISO库之前，先创建一个共享文件夹，文件夹中存放着我们的镜像文件：右键添加的服务器，选择“新建SR”：存储类型选择Windows文件共享：输入共享地址以及用户名密码完成挂载：现在我们就可以在“ISO库”中看到我们的镜像文件了： 新建虚拟机以上操作完成之后我们就可以点击菜单栏的“新建VM”，按照提示创建我们的虚拟机了，具体步骤可参考上面提到的安装教程。]]></content>
+      <categories>
+        <category>虚拟化</category>
+      </categories>
+      <tags>
+        <tag>Citrix</tag>
+        <tag>XenServer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[搭建自己的SDN实验环境]]></title>
     <url>%2F2019%2F05%2F16%2F%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84SDN%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%2F</url>
     <content type="text"><![CDATA[这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。 SDN实验环境简介课程中使用的实验环境主要包括三个SDN控制器，分别是OpenDaylight、Floodlight以及ONOS，另外还有OpenvSwitch和mininet，其中有很多官方已经给出了虚拟机文件，我们只需要下载然后导入到VMware或者VirtualBox就可以了。 环境安装OpenDaylight官网地址：www.opendaylight.org ODL控制器的版本以元素周期表命名，截止到目前ODL已经发布了最新的氖(Neon)版本，可以在官网下载到各个版本的安装包以及安装教程等。 具体的安装过程也可以参考我之前的两篇文章： Ubuntu16.04安装OpenDaylight CarbonUbuntu14.04安装OpenDaylight(锂版本) Floodlight官网地址：www.projectfloodlight.org 同样，Floodlight的官网也提供了各个版本的下载地址以及相关文档等。另外，官方也给出了一个部署好的虚拟机文件，但是国内的下载速度不是很理想，需要扶墙下载。当然，我这里也有下载好的文件： 百度网盘：提取码：no1y 需要注意的是这并不是一个ovf或者ova文件，而是一个磁盘文件，所以不能直接导入使用，需要手动创建一台空虚拟机，并将此虚拟磁盘文件挂载到虚拟机上，这里我用VMware进行演示： 打开VMware，点击“创建新的虚拟机”，选择“自定义”，因为不需要安装操作系统，所以选择“稍后安装操作系统”，操作系统类型选择“Ubuntu 64位”，其它参数默认。 在选择磁盘时，选择“使用现有虚拟磁盘”，选择下载下来的vmdk文件，完成虚拟机创建，然后启动虚拟机就可以使用官方已经配置好的Floodlight虚拟机了。 ONOS官网地址：onosproject.org推荐到ONOS的wiki中下载安装包或者封装好的虚拟机文件：Wiki：wiki.onosproject.org 当然，也可以选择自己安装ONOS控制器，一些基础的功能还是自己装的用起来好用一点，而一些特殊的项目如SDN-IP等则推荐在wiki中下载相应的虚拟机文件，具体的安装步骤可以参考我之前的文章： Ubuntu16.04安装ONOS Hummingbird(1.7.1) Mininet官网地址:mininet.org mininet有三种安装方式，官方推荐直接下载封装好的虚拟机文件，因为这非常简单而且快捷，如果你是一个喜欢自己动手的人，那我推荐你通过安装包方式进行安装，具体的安装步骤可参考之前的文章： Mininet的安装配置 *文章中同时安装了Ryu,如果只是单纯安装mininet可直接跳过此步骤。 OpenvSwitch官网地址：www.openvswitch.org OpenvSwitch也有多种安装方式，我之前都是采用安装包方式进行安装，具体的安装过程可参考： Ubuntu16.04安装包方式安装Open vSwitch 一些小问题Could not get lock /var/lib/apt/lists/lockUbuntu在使用apt-get命令时经常出现如下图所示的问题：解决方法： rm /var/lib/dpkg/lock sudo dpkg --configure -a apt update ONOS启动如果是从ONOS官网下载的1.15.0的虚拟机，启动方式略有不同：先双击桌面的”Setup ONOS Cluster”,然后双击打开“ONOS GUI”即为ONOS的Web界面，双击“ONOS CLI”即为ONOS的命令行控制台。另外，这个镜像的ONOS服务监听端口可能并不是6633端口而是6653端口：在进行一些基础的实验时，比如使用Mininet连接ONOS控制器等，推荐使用自己手动安装的ONOS；而对一些特殊的实验，比如SDN-IP等则推荐下载对应的ONOS虚拟机。 Floodlight启动我在安装Floodlight时使用的是官方的虚拟机，通过如下命令启动Floodlight： cd floodlight ant java -jar target/floodlight.jar ovs-ofctl: s1 is not a bridge or a socket如图：解决方法： ovs-vsctl set bridge br0 datapath_type=netdev Mininet的一些常用命令查看/修改主机IP地址： h1 ip addr show h1 ifconfig h1 ifconfig h1-eth0 10.0.0.1/24 up 查看交换机流表信息： ovs-ofctl dump-flows s1 ovs-ofctl -O OpenFlow1 dump-flows s1 连接控制器： mn --switch=ovsk --controller=remote,ip=172.16.75.117,port=6633 mn --controller=remote,ip=192.168.1.31 --switch=ovsk,protocols=OpenFlow13 --topo=linear,2]]></content>
@@ -237,9 +249,9 @@
         <category>打鱼晒网</category>
       </categories>
       <tags>
+        <tag>科学上网</tag>
         <tag>deepin</tag>
         <tag>ssr</tag>
-        <tag>科学上网</tag>
       </tags>
   </entry>
   <entry>
@@ -375,10 +387,10 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>科学上网</tag>
         <tag>脚本</tag>
         <tag>vps</tag>
         <tag>网站</tag>
+        <tag>科学上网</tag>
       </tags>
   </entry>
   <entry>
@@ -389,8 +401,8 @@
         <category>Cisco</category>
       </categories>
       <tags>
-        <tag>Cisco</tag>
         <tag>网工</tag>
+        <tag>Cisco</tag>
       </tags>
   </entry>
   <entry>
