@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/05/18/5cdf9dc09eb8159715.png">
 <meta property="og:image" content="https://i.loli.net/2019/05/18/5cdf9fb66b75983582.png">
 <meta property="og:image" content="https://i.loli.net/2019/05/18/5cdfa1bec4c2618876.png">
-<meta property="og:updated_time" content="2019-05-18T06:16:40.837Z">
+<meta property="og:updated_time" content="2019-05-19T13:07:13.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建自己的SDN实验环境">
 <meta name="twitter:description" content="这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。 SDN实验环境简介课程中使用的实验环境主要包括三个SDN控制器，分别是OpenDaylight、Floodlight以及ONOS，另外还有">
@@ -515,7 +515,7 @@ h1 ifconfig h1-eth0 10.0.0.1/24 up
 <blockquote>
 </blockquote>
 <pre><code>ovs-ofctl dump-flows s1
-ovs-ofctl -O OpenFlow1 dump-flows s1
+ovs-ofctl -O OpenFlow13 dump-flows s1
 </code></pre><p>连接控制器：</p>
 <blockquote>
 </blockquote>
@@ -691,7 +691,7 @@ mn --controller=remote,ip=192.168.1.31 --switch=ovsk,protocols=OpenFlow13 --topo
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -713,7 +713,7 @@ mn --controller=remote,ip=192.168.1.31 --switch=ovsk,protocols=OpenFlow13 --topo
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -815,7 +815,7 @@ mn --controller=remote,ip=192.168.1.31 --switch=ovsk,protocols=OpenFlow13 --topo
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共47.9k字</span>
+  <span class="post-count">博客全站共48.7k字</span>
 </div>
 
         

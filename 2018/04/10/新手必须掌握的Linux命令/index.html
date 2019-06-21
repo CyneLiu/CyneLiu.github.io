@@ -98,7 +98,7 @@
 <meta property="og:description" content="Linux命令常用的系统工作命令echo命令用于在终端输出字符串或变量提取后的值，格式为“echo[字符串|$变量]”。 date命令格式为“date[选项][+指定的格式]”。     %Y  #年 %m  #月 %d  #天 %H  #小时 %M  #分钟 %S  #秒 %j  #今年中的第几天 poweroffpoweroff命令与shutdown等命令作用相同。 wget用于在终端中下载网">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/08/18/5b77e3c6aafc6.png">
-<meta property="og:updated_time" content="2019-03-21T01:22:31.751Z">
+<meta property="og:updated_time" content="2019-06-11T01:16:31.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="新手必须掌握的Linux命令">
 <meta name="twitter:description" content="Linux命令常用的系统工作命令echo命令用于在终端输出字符串或变量提取后的值，格式为“echo[字符串|$变量]”。 date命令格式为“date[选项][+指定的格式]”。     %Y  #年 %m  #月 %d  #天 %H  #小时 %M  #分钟 %S  #秒 %j  #今年中的第几天 poweroffpoweroff命令与shutdown等命令作用相同。 wget用于在终端中下载网">
@@ -618,12 +618,13 @@ tar -xzvf 压缩包名.tar.gz
 --type  匹配文件类型
 -size   匹配文件大小
 -prune  忽略某个目录
-</code></pre><h1 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h1><h2 id="三种模式"><a href="#三种模式" class="headerlink" title="三种模式"></a>三种模式</h2><p>输入模式  命令模式  末行模式(冒号模式)<br>需要说明一点的是输入模式的三种进入方式(a,i,o):</p>
+</code></pre><h1 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h1><h2 id="三种模式"><a href="#三种模式" class="headerlink" title="三种模式"></a>三种模式</h2><p>输入模式  命令模式  末行模式(冒号模式)<br>需要说明一点的是输入模式的三种进入方式(a,i,o,s):</p>
 <blockquote>
 </blockquote>
 <pre><code>a #在光标后面一位输入
 i #在光标当前位置输入
 o #在光标的下面创建空行并输入
+s #删除光标位置字符并输入
 </code></pre><h2 id="保存退出"><a href="#保存退出" class="headerlink" title="保存退出"></a>保存退出</h2><blockquote>
 </blockquote>
 <pre><code>:w   保存文件但不退出vi  
@@ -643,6 +644,9 @@ yy  复制光标所在整行
 u   撤销上一步操作
 uu  撤销所有更改
 p   将之前剪切或复制的内容粘贴到光标之后
+0   跳转到行首
+$   跳转到行末
+/   查找字符串
 </code></pre>
       
     </div>
@@ -813,7 +817,7 @@ p   将之前剪切或复制的内容粘贴到光标之后
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -835,7 +839,7 @@ p   将之前剪切或复制的内容粘贴到光标之后
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -937,7 +941,7 @@ p   将之前剪切或复制的内容粘贴到光标之后
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共47.9k字</span>
+  <span class="post-count">博客全站共48.7k字</span>
 </div>
 
         

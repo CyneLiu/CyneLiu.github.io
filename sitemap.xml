@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://cyneliu.github.io/2019/05/19/Citrix-XenServer-%E5%88%9D%E6%8E%A2/</loc>
+    <loc>https://cyneliu.github.io/2019/06/21/IBM%E6%9C%8D%E5%8A%A1%E5%99%A8IMM%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/</loc>
     
-    <lastmod>2019-05-19T07:26:59.510Z</lastmod>
+    <lastmod>2019-06-21T12:31:45.210Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cyneliu.github.io/2018/04/10/%E6%96%B0%E6%89%8B%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%E7%9A%84Linux%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2019-06-11T01:16:31.356Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://cyneliu.github.io/2019/05/16/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84SDN%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/</loc>
     
-    <lastmod>2019-05-18T06:16:40.837Z</lastmod>
+    <lastmod>2019-05-19T13:07:13.346Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cyneliu.github.io/2019/05/19/Citrix-XenServer-%E5%88%9D%E6%8E%A2/</loc>
+    
+    <lastmod>2019-05-19T07:26:59.510Z</lastmod>
     
   </url>
   
@@ -75,13 +89,6 @@
     <loc>https://cyneliu.github.io/2019/03/20/%E5%9C%A8ESXI%E7%8E%AF%E5%A2%83%E4%B8%AD%E9%83%A8%E7%BD%B2fuel-openstack%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</loc>
     
     <lastmod>2019-03-26T01:10:14.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cyneliu.github.io/2018/04/10/%E6%96%B0%E6%89%8B%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%E7%9A%84Linux%E5%91%BD%E4%BB%A4/</loc>
-    
-    <lastmod>2019-03-21T01:22:31.751Z</lastmod>
     
   </url>
   
