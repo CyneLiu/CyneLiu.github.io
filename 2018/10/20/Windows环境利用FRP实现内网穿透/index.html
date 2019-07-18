@@ -101,7 +101,8 @@
 <meta property="og:image" content="https://i.loli.net/2018/10/20/5bcaf373ef44d.png">
 <meta property="og:image" content="https://i.loli.net/2018/10/20/5bcaf78e8b887.png">
 <meta property="og:image" content="https://i.loli.net/2018/10/20/5bcb0775422ac.png">
-<meta property="og:updated_time" content="2019-02-26T10:59:24.726Z">
+<meta property="og:image" content="https://i.loli.net/2019/07/08/5d233881631db89601.png">
+<meta property="og:updated_time" content="2019-07-08T12:37:09.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用FRP实现内网穿透">
 <meta name="twitter:description" content="几个概念frpFRP (Fast Reverse Proxy) 是一个可用于内网穿透的高性能的反向代理应用，支持TCP,UDP,HTTP,HTTPS协议。   项目地址：https://github.com/fatedier/frp/releases 正向代理正向代理是一个位于客户端和目标服务器之间的代理服务器(中间服务器)。为了从原始服务器取得内容，客户端向代理服务器发送一个请求，并且指定目标服">
@@ -176,7 +177,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">越努力，越幸运！</p>
+        <p class="site-subtitle">是记录，亦是成长</p>
       
   </div>
 
@@ -405,7 +406,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  1.4k
                 </span>
               
 
@@ -421,7 +422,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -522,7 +523,13 @@ remote_port = 7001 ;外网访问的端口
 </blockquote>
 <pre><code>screen -S frp  # 创建一个screen
 ./frpc -c ./frpc.ini
-</code></pre>
+</code></pre><h1 id="Windows开机自动连接"><a href="#Windows开机自动连接" class="headerlink" title="Windows开机自动连接"></a>Windows开机自动连接</h1><p>为了能够让Windows开机启动后能够自动连接到frp服务端，需要添加一个开机时启动的计划任务，Windows计划任务不过多介绍，没用过的可以Google/百度。  </p>
+<p>在frp程序所在目录新建一个记事本文件，内容如下：</p>
+<blockquote>
+</blockquote>
+<pre><code>CreateObject(&quot;WScript.Shell&quot;).Run &quot;cmd /c frpc -c frpc.ini&quot;,0
+</code></pre><p><img src="https://i.loli.net/2019/07/08/5d233881631db89601.png" alt="05.png"><br>也就是启动frpc程序，然后将.txt修改为.vbs格式，然后再新建一个Windows计划任务，将这个vbs脚本程序添加进去就ok了。</p>
+
       
     </div>
     
@@ -688,7 +695,7 @@ remote_port = 7001 ;外网访问的端口
                 alt="Cyne Liu" />
             
               <p class="site-author-name" itemprop="name">Cyne Liu</p>
-              <p class="site-description motion-element" itemprop="description">Talk is cheap. Show me the code.</p>
+              <p class="site-description motion-element" itemprop="description">越努力，越幸运!</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -698,7 +705,7 @@ remote_port = 7001 ;外网访问的端口
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -720,7 +727,7 @@ remote_port = 7001 ;外网访问的端口
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -770,7 +777,7 @@ remote_port = 7001 ;外网访问的端口
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#几个概念"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#frp"><span class="nav-number">1.1.</span> <span class="nav-text">frp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正向代理"><span class="nav-number">1.2.</span> <span class="nav-text">正向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理"><span class="nav-number">1.3.</span> <span class="nav-text">反向代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装部署frp"><span class="nav-number">2.</span> <span class="nav-text">安装部署frp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装程序"><span class="nav-number">2.2.</span> <span class="nav-text">下载安装程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">2.3.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#放行端口"><span class="nav-number">2.3.1.</span> <span class="nav-text">放行端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件"><span class="nav-number">2.3.2.</span> <span class="nav-text">编辑配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-内网设备"><span class="nav-number">2.4.</span> <span class="nav-text">客户端(内网设备)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">编辑配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启远程桌面（非必须）"><span class="nav-number">2.4.2.</span> <span class="nav-text">开启远程桌面（非必须）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">2.5.</span> <span class="nav-text">绑定域名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置域名解析"><span class="nav-number">2.5.1.</span> <span class="nav-text">设置域名解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置frpc-ini"><span class="nav-number">2.5.2.</span> <span class="nav-text">配置frpc.ini</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux环境后台运行frp"><span class="nav-number">3.</span> <span class="nav-text">Linux环境后台运行frp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用nohup"><span class="nav-number">3.1.</span> <span class="nav-text">使用nohup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用screen"><span class="nav-number">3.2.</span> <span class="nav-text">使用screen</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#几个概念"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#frp"><span class="nav-number">1.1.</span> <span class="nav-text">frp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正向代理"><span class="nav-number">1.2.</span> <span class="nav-text">正向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理"><span class="nav-number">1.3.</span> <span class="nav-text">反向代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装部署frp"><span class="nav-number">2.</span> <span class="nav-text">安装部署frp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装程序"><span class="nav-number">2.2.</span> <span class="nav-text">下载安装程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">2.3.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#放行端口"><span class="nav-number">2.3.1.</span> <span class="nav-text">放行端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件"><span class="nav-number">2.3.2.</span> <span class="nav-text">编辑配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-内网设备"><span class="nav-number">2.4.</span> <span class="nav-text">客户端(内网设备)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑配置文件-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">编辑配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启远程桌面（非必须）"><span class="nav-number">2.4.2.</span> <span class="nav-text">开启远程桌面（非必须）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名"><span class="nav-number">2.5.</span> <span class="nav-text">绑定域名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置域名解析"><span class="nav-number">2.5.1.</span> <span class="nav-text">设置域名解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置frpc-ini"><span class="nav-number">2.5.2.</span> <span class="nav-text">配置frpc.ini</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux环境后台运行frp"><span class="nav-number">3.</span> <span class="nav-text">Linux环境后台运行frp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用nohup"><span class="nav-number">3.1.</span> <span class="nav-text">使用nohup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用screen"><span class="nav-number">3.2.</span> <span class="nav-text">使用screen</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows开机自动连接"><span class="nav-number">4.</span> <span class="nav-text">Windows开机自动连接</span></a></li></ol></div>
             
 
           </div>
@@ -822,7 +829,7 @@ remote_port = 7001 ;外网访问的端口
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共48.7k字</span>
+  <span class="post-count">博客全站共50.2k字</span>
 </div>
 
         

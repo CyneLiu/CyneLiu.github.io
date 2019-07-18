@@ -99,7 +99,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/03/28/5c9c3006a1ccd.png">
 <meta property="og:image" content="https://i.loli.net/2019/03/28/5c9c3cfee86a3.png">
-<meta property="og:updated_time" content="2019-04-04T00:50:55.672Z">
+<meta property="og:image" content="https://i.loli.net/2019/06/25/5d121572efee411287.png">
+<meta property="og:updated_time" content="2019-06-25T12:54:16.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cisco配置VPN IPSec">
 <meta name="twitter:description" content="实验拓扑 配置运营商网络在配置VPN之前，首先要保证模拟的运营商网络是可以正常通信的，这里我配置的是OSPF，需要注意的是两边的路由器不要把内网网段也给宣告出去了，如果是这样那VPN也就没有存在的意义了。首先是左边的R1：   Router(config)#int f0/0 Router(config-if)#ip add 202.1.1.1 255.255.255.0 Router(config">
@@ -174,7 +175,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">越努力，越幸运！</p>
+        <p class="site-subtitle">是记录，亦是成长</p>
       
   </div>
 
@@ -403,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  868
+                  1.2k
                 </span>
               
 
@@ -419,7 +420,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -519,6 +520,23 @@ Router(config-if)#crypto map test
 Router(config-if)#exit 
 Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
 </code></pre><h1 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h1><p>使用区域1内的PC ping 区域2中的PC，发现已经可以通信：<br><img src="https://i.loli.net/2019/03/28/5c9c3cfee86a3.png" alt="01.png"></p>
+<h1 id="NAT-IPSec-VPN"><a href="#NAT-IPSec-VPN" class="headerlink" title="NAT + IPSec VPN"></a>NAT + IPSec VPN</h1><p>NAT和IPSec存在一些不兼容的情况，比如NAT更改了IP头部中的源地址和目的地址，校验和会被重新计算并修改，所以导致被对端IPSec丢弃等等。  </p>
+<p>那如果配置了NAT之后应该如何让IPSec正常工作呢？今天在敲实验的时候思考了很久，最后找到了通过更改ACL也就是更改IPSec的“感兴趣”流量来解决，简单拓扑如下：<br><img src="https://i.loli.net/2019/06/25/5d121572efee411287.png" alt="21.png"><br>两端公网接入路由器的ACL进行如下配置：</p>
+<blockquote>
+</blockquote>
+<pre><code>R1#sh access-lists 100
+Extended IP access list 100
+    permit ip 172.16.5.0 0.0.0.255 172.16.2.0 0.0.0.255
+    permit ip 172.16.2.0 0.0.0.255 218.18.1.0 0.0.0.3
+    permit ip 218.18.1.0 0.0.0.3 172.16.2.0 0.0.0.255
+</code></pre><blockquote>
+</blockquote>
+<pre><code>R2#sh access-lists 100
+Extended IP access list 100
+    permit ip 172.16.2.0 0.0.0.255 172.16.5.0 0.0.0.255
+    permit ip host 218.18.1.2 172.16.2.0 0.0.0.255
+    permit ip 172.16.2.0 0.0.0.255 218.18.1.0 0.0.0.3
+</code></pre><p>上述ACL的作用也就是把NAT之后的公网IP地址加入到IPSec的感兴趣流量中。当然，这也只是我在实验中自己摸索的解决方法。</p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb" target="_blank" rel="noopener">https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb</a><br><a href="http://www.solves.com.cn/doc-view-2025.html" target="_blank" rel="noopener">http://www.solves.com.cn/doc-view-2025.html</a></p>
 
       
@@ -684,7 +702,7 @@ Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
                 alt="Cyne Liu" />
             
               <p class="site-author-name" itemprop="name">Cyne Liu</p>
-              <p class="site-description motion-element" itemprop="description">Talk is cheap. Show me the code.</p>
+              <p class="site-description motion-element" itemprop="description">越努力，越幸运!</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -694,7 +712,7 @@ Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -716,7 +734,7 @@ Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -766,7 +784,7 @@ Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验拓扑"><span class="nav-number">1.</span> <span class="nav-text">实验拓扑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置运营商网络"><span class="nav-number">2.</span> <span class="nav-text">配置运营商网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置内网"><span class="nav-number">3.</span> <span class="nav-text">配置内网</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置IPSec-site-to-site"><span class="nav-number">4.</span> <span class="nav-text">配置IPSec(site to site)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#验证结果"><span class="nav-number">5.</span> <span class="nav-text">验证结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验拓扑"><span class="nav-number">1.</span> <span class="nav-text">实验拓扑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置运营商网络"><span class="nav-number">2.</span> <span class="nav-text">配置运营商网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置内网"><span class="nav-number">3.</span> <span class="nav-text">配置内网</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置IPSec-site-to-site"><span class="nav-number">4.</span> <span class="nav-text">配置IPSec(site to site)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#验证结果"><span class="nav-number">5.</span> <span class="nav-text">验证结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NAT-IPSec-VPN"><span class="nav-number">6.</span> <span class="nav-text">NAT + IPSec VPN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">7.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -818,7 +836,7 @@ Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共48.7k字</span>
+  <span class="post-count">博客全站共50.2k字</span>
 </div>
 
         
