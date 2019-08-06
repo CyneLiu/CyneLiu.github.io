@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Ubuntu开机网卡无法正常启动]]></title>
+    <url>%2F2019%2F08%2F06%2FUbuntu%E5%BC%80%E6%9C%BA%E7%BD%91%E5%8D%A1%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8%2F</url>
+    <content type="text"><![CDATA[问题描述之前在学校实训的时候用到一台Ubuntu虚拟机，一开始不知道为什么重启之后网卡无法正常启动和加载，执行ifconfig命令之后只显示有本地环回网卡，当时折腾了半天也没找到原因。 今天又打开这个虚拟机，突然发现系统这不是给出了错误提示吗？查了一下misplaced是不适宜的意思（没办法词汇量匮乏），也就是说，interfaces文件的第一行有错误了。 解决办法既然定位到了问题根源，那就追根溯源，去查看一下interfaces文件，打眼一看一点问题都没有。等等，第一行不应该是注释么？有可能是之前不小心误删了，改之。注释行颜色亮起的那一刻我就知道问题解决了，重启一下网络，问题解决。 这样一个小的错误，小到犹豫半天要不要写这篇博客，最后还是决定简单记录一下，就当给自己提个醒吧，而且也不违背当时写博客的初衷——是记录，亦是成长。]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[同时使用Gitub和码云部署博客]]></title>
+    <url>%2F2019%2F07%2F18%2F%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8Gitub%E5%92%8C%E7%A0%81%E4%BA%91%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%2F</url>
+    <content type="text"><![CDATA[Gitee PagesGitee Pages是码云推出的一个静态网站服务，与Github Pages类似，这是官方给出的简单介绍： 码云Pages是一个免费的静态网页托管服务，您可以使用码云Pages托管博客、项目官网等静态网页。目前码云Pages支持Jekyll、Hugo、Hexo编译静态资源。 之前在部署自己博客的时候使用的是Hexo + Github Pages的方式，但是这种方式有一个最大的问题就是博客的访问速度问题，根据不同的运营商不同地点的网络，访问速度还会有些差别。忍无可忍，决定把博客迁移到码云上，但是使用了码云后发现这家伙有个特别人性化的功能——从GitHub同步。 既然如此，与其迁移，还不如同时在两个仓库中同时部署。 操作步骤首先注册一个码云账号，注册之后新建一个仓库：到最下面找到导入已有仓库，点击并填写自己的GitHub仓库地址(.git结尾的链接)仓库导入之后进入仓库，点击服务→Gitee Pages，部署目录不填，点击部署即可。上图是我已经部署好之后的截图，当时忘记截图了，部署之后的网址应该是*.gitee.io/name这样的链接，我们打开这个链接会看到下面这样的网页：原因是由于路径的问题，无法正确加载样式，我们只需要将链接后的二级目录去掉就好了。点击管理**，将仓库的路径设置为与用户名一样即可。访问Gitee Pages，幸福感扑面而来。]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>Github</tag>
+        <tag>Gitee</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IBM服务器IMM基本配置及使用]]></title>
     <url>%2F2019%2F06%2F21%2FIBM%E6%9C%8D%E5%8A%A1%E5%99%A8IMM%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[IMM简介IMM，即Integrated Management Module，是IBM服务器上即集成管理模块，改模块独立于服务器系统，可以使用一个单独的IP地址，使用Web和虚拟端口方式直接启动、停止和管理远程服务器，通俗的讲就是可以远程实现服务器的开关机、BIOS设置以及安装操作系统等很多操作。 开启IMM服务在IBM服务器的背面会有一个独立于网口的一个专用的管理端口，如下图所示：我们使用IMM服务首先需要将网线接入管理口，然后下一步将服务器开机进入BIOS，依次进入System Settings→Integrated Management Module→Network Configuration。进入网络配置页面后设置IMM的访问地址，然后保存退出BIOS即可。此时打开浏览器访问我们设置的IP地址就可以看到IMM的登录页面了，输入默认用户名/密码：USERID/PASSW0RD即可（注意是数字0）。如果密码错误可能是之前设置过，再次进入BIOS然后Reset IMM重新设置IP地址即可。Web管理页面提供很多功能，这里就不一一介绍了，下面简单介绍一下如何使用IMM远程安装操作系统。进入如下页面，并启动远程控制台，两种方式可以根据特殊需要自行选择：点击链接之后会提示下载两个.jnlp文件，将这两个文件下载下来并双击运行（前提是电脑正确安装了JRE运行环境），这两个jnlp文件一个是远程控制台另一个则是一个虚拟媒体服务：点击Add Image添加镜像文件，然后勾选Map并将我们添加的镜像文件挂载到服务器。重启之后便进入了系统安装引导界面： 遇到的一些小问题浏览器提示：此网站无法提供安全连接我在第一次访问时使用的是Chrome浏览器，但却弹出“此网站无法提供安全连接”的提示信息而且不能跳过并继续访问，解决办法是使用其它浏览器（我使用的是Edge浏览器）登入，然后将HTTPS禁用掉： jnlp运行报错不想看废话直接换Java 7！ 我的电脑安装的是Java 8，在第一次运行jnlp时，出现如下错误：详细信息：经过一番搜索与尝试发现是JRE版本的问题，于是降级到Java 6，发现控制台可以正常启动了，但是另一个jnlp也就是虚拟媒体服务却依然运行报错：“The Virtual Media Program will close. Reason: The Virtual Media native library cannot be loaded”，然后又换到了Java 7解决问题。 端口映射为了能够正常访问Web页面并使用远程控制服务，需要对80以及3900两个端口进行映射。 类似服务基本上每种品牌的服务器都有类似的远程管理功能，比如DELL服务器的iDRAC(Integrated Dell Remote Access Controller)等等，使用起来基本上都是类似的。 相关链接Java多版本下载地址：https://www.oracle.com/technetwork/java/javase/archive-139210.html]]></content>
@@ -414,8 +438,8 @@
         <category>Cisco</category>
       </categories>
       <tags>
-        <tag>网工</tag>
         <tag>Cisco</tag>
+        <tag>网工</tag>
       </tags>
   </entry>
   <entry>
