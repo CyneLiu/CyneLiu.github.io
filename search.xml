@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[无vCenter的ESXI环境克隆虚拟机]]></title>
+    <url>%2F2019%2F10%2F15%2F%E6%97%A0vCenter%E7%9A%84ESXI%E7%8E%AF%E5%A2%83%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA%2F</url>
+    <content type="text"><![CDATA[最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。 两个文件.vmx:VMware虚拟机配置文件，为虚拟机系统文件，通常通过打开这个虚拟机文件以启动系统；通过编辑该文件可以实现某种配置需求。.vmdk:VMware虚拟磁盘文件，相当于真实PC的硬盘。 克隆方法首先选中要克隆虚拟机的服务器，然后选择“配置”，然后选择“存储器”，在右侧的存储器中选择你要克隆的虚拟机所在的数据存储。右键“浏览数据存储”，新建一个文件夹（用于存放克隆的虚拟机文件），在左侧选择要克隆的虚拟机所在的文件夹，复制.vmx和.vmdk两个文件到新建的文件夹中。复制完成后，右键复制后的.vmx文件，选择添加到清单即可。虚拟机启动后会有如下提示，选择“I Copied It”即可。 小细节在实际的操作中，我发现了一点需要注意的小细节，如果只是单纯的复制我在上图标出来两个文件的话，那么你克隆出来的虚拟机会是你新装的操作系统时的状态，如果想完整克隆虚拟机的当前状态，应该复制虚拟机当前引用的磁盘文件。编辑虚拟机设置，查看被克隆的虚拟机引用的磁盘文件。然后复制该文件：]]></content>
+      <categories>
+        <category>虚拟化</category>
+      </categories>
+      <tags>
+        <tag>ESXI</tag>
+        <tag>vCenter</tag>
+        <tag>虚拟机克隆</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Ubuntu开机网卡无法正常启动]]></title>
     <url>%2F2019%2F08%2F06%2FUbuntu%E5%BC%80%E6%9C%BA%E7%BD%91%E5%8D%A1%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8%2F</url>
     <content type="text"><![CDATA[问题描述之前在学校实训的时候用到一台Ubuntu虚拟机，一开始不知道为什么重启之后网卡无法正常启动和加载，执行ifconfig命令之后只显示有本地环回网卡，当时折腾了半天也没找到原因。 今天又打开这个虚拟机，突然发现系统这不是给出了错误提示吗？查了一下misplaced是不适宜的意思（没办法词汇量匮乏），也就是说，interfaces文件的第一行有错误了。 解决办法既然定位到了问题根源，那就追根溯源，去查看一下interfaces文件，打眼一看一点问题都没有。等等，第一行不应该是注释么？有可能是之前不小心误删了，改之。注释行颜色亮起的那一刻我就知道问题解决了，重启一下网络，问题解决。 这样一个小的错误，小到犹豫半天要不要写这篇博客，最后还是决定简单记录一下，就当给自己提个醒吧，而且也不违背当时写博客的初衷——是记录，亦是成长。]]></content>
@@ -32,8 +45,8 @@
         <category>服务器</category>
       </categories>
       <tags>
-        <tag>IBM</tag>
         <tag>服务器</tag>
+        <tag>IBM</tag>
         <tag>IMM</tag>
       </tags>
   </entry>
@@ -79,8 +92,8 @@
         <category>服务器</category>
       </categories>
       <tags>
-        <tag>IBM</tag>
         <tag>服务器</tag>
+        <tag>IBM</tag>
       </tags>
   </entry>
   <entry>
@@ -438,8 +451,8 @@
         <category>Cisco</category>
       </categories>
       <tags>
-        <tag>Cisco</tag>
         <tag>网工</tag>
+        <tag>Cisco</tag>
       </tags>
   </entry>
   <entry>
@@ -581,8 +594,8 @@
         <category>运维</category>
       </categories>
       <tags>
-        <tag>虚拟化</tag>
         <tag>运维</tag>
+        <tag>虚拟化</tag>
         <tag>笔记</tag>
       </tags>
   </entry>
@@ -594,8 +607,8 @@
         <category>运维</category>
       </categories>
       <tags>
-        <tag>虚拟化</tag>
         <tag>运维</tag>
+        <tag>虚拟化</tag>
         <tag>笔记</tag>
       </tags>
   </entry>
@@ -633,8 +646,8 @@
         <category>运维</category>
       </categories>
       <tags>
-        <tag>虚拟化</tag>
         <tag>运维</tag>
+        <tag>虚拟化</tag>
         <tag>笔记</tag>
       </tags>
   </entry>

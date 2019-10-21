@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://cyneliu.github.io/2019/10/15/%E6%97%A0vCenter%E7%9A%84ESXI%E7%8E%AF%E5%A2%83%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc>
+    <lastmod>2019-10-21T03:28:41.531Z</lastmod>
+    <data>
+        <display>
+        <title>无vCenter的ESXI环境克隆虚拟机</title>
+        <pubTime>2019-10-15T07:14:46.000Z</pubTime>
+        
+        <tag>ESXI</tag>
+         
+        <tag>vCenter</tag>
+         
+        <tag>虚拟机克隆</tag>
+         
+         
+           
+             
+              <breadCrumb title="虚拟化" url="https://cyneliu.github.io/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cyneliu.github.io/2019/08/06/Ubuntu%E5%BC%80%E6%9C%BA%E7%BD%91%E5%8D%A1%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8/</loc>
     <lastmod>2019-08-06T08:22:35.907Z</lastmod>
     <data>
@@ -154,9 +178,9 @@
         <title>IBM服务器IMM基本配置及使用</title>
         <pubTime>2019-06-21T11:06:38.000Z</pubTime>
         
-        <tag>IBM</tag>
-         
         <tag>服务器</tag>
+         
+        <tag>IBM</tag>
          
         <tag>IMM</tag>
          
@@ -284,9 +308,9 @@
         <title>IBM System x3650 M2硬盘亮黄灯</title>
         <pubTime>2019-05-10T09:25:49.000Z</pubTime>
         
-        <tag>IBM</tag>
-         
         <tag>服务器</tag>
+         
+        <tag>IBM</tag>
          
          
            
@@ -508,9 +532,9 @@
         <title>虚拟化运维笔记 —— Linux</title>
         <pubTime>2018-06-25T13:50:33.000Z</pubTime>
         
-        <tag>虚拟化</tag>
-         
         <tag>运维</tag>
+         
+        <tag>虚拟化</tag>
          
         <tag>笔记</tag>
          
@@ -938,9 +962,9 @@
         <title>虚拟化运维笔记——服务器</title>
         <pubTime>2018-07-11T12:28:09.000Z</pubTime>
         
-        <tag>虚拟化</tag>
-         
         <tag>运维</tag>
+         
+        <tag>虚拟化</tag>
          
         <tag>笔记</tag>
          
@@ -962,9 +986,9 @@
         <title>虚拟化运维笔记——vsphere</title>
         <pubTime>2018-07-11T10:58:49.000Z</pubTime>
         
-        <tag>虚拟化</tag>
-         
         <tag>运维</tag>
+         
+        <tag>虚拟化</tag>
          
         <tag>笔记</tag>
          
@@ -1076,9 +1100,9 @@
         <title>Cisco设备密码重置</title>
         <pubTime>2018-10-11T13:47:03.000Z</pubTime>
         
-        <tag>Cisco</tag>
-         
         <tag>网工</tag>
+         
+        <tag>Cisco</tag>
          
          
            

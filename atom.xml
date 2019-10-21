@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2019-08-06T08:22:35.907Z</updated>
+  <updated>2019-10-21T03:28:41.531Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>无vCenter的ESXI环境克隆虚拟机</title>
+    <link href="https://cyneliu.github.io/2019/10/15/%E6%97%A0vCenter%E7%9A%84ESXI%E7%8E%AF%E5%A2%83%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    <id>https://cyneliu.github.io/2019/10/15/无vCenter的ESXI环境克隆虚拟机/</id>
+    <published>2019-10-15T07:14:46.000Z</published>
+    <updated>2019-10-21T03:28:41.531Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。</p><h1 id="两个文件"><a href="#两个文件" class="headerlink" title="两个文件"></a>两个文件</h1><p><strong>.vmx:</strong>VMware虚拟机配置文件，为虚拟机系统文件，通常通过打开这个虚拟机文件以启动系统；通过编辑该文件可以实现某种配置需求。<br><strong>.vmdk:</strong>VMware虚拟磁盘文件，相当于真实PC的硬盘。</p><h1 id="克隆方法"><a href="#克隆方法" class="headerlink" title="克隆方法"></a>克隆方法</h1><p>首先选中要克隆虚拟机的服务器，然后选择“配置”，然后选择“存储器”，在右侧的存储器中选择你要克隆的虚拟机所在的数据存储。<br><img src="https://i.loli.net/2019/10/21/vL8lIVe7bBxXumf.png" alt="01.png"><br>右键“浏览数据存储”，新建一个文件夹（用于存放克隆的虚拟机文件），在左侧选择要克隆的虚拟机所在的文件夹，复制<strong>.vmx</strong>和<strong>.vmdk</strong>两个文件到新建的文件夹中。<br><img src="https://i.loli.net/2019/10/21/WSCz8nE3QBcpG7L.png" alt="02.png"><br>复制完成后，右键复制后的.vmx文件，选择添加到清单即可。<br>虚拟机启动后会有如下提示，选择“I Copied It”即可。<br><img src="https://i.loli.net/2019/10/21/3ut1DF7MfcdK2LU.png" alt="开启复制的虚拟机时.png"></p><h1 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h1><p>在实际的操作中，我发现了一点需要注意的小细节，如果只是单纯的复制我在上图标出来两个文件的话，那么你克隆出来的虚拟机会是你新装的操作系统时的状态，如果想完整克隆虚拟机的当前状态，应该复制虚拟机当前引用的磁盘文件。<br>编辑虚拟机设置，查看被克隆的虚拟机引用的磁盘文件。<br><img src="https://i.loli.net/2019/10/21/Q9CoxLidFsS4mUA.png" alt="03.png"><br>然后复制该文件：<br><img src="https://i.loli.net/2019/10/21/hGkLngAoWC9rE35.png" alt="04.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。&lt;/p&gt;
+&lt;h1 id=&quot;两个文件&quot;&gt;&lt;a href=&quot;#两个文件&quot; class=&quot;headerlink&quot; title=&quot;两个
+      
+    
+    </summary>
+    
+      <category term="虚拟化" scheme="https://cyneliu.github.io/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+    
+      <category term="ESXI" scheme="https://cyneliu.github.io/tags/ESXI/"/>
+    
+      <category term="vCenter" scheme="https://cyneliu.github.io/tags/vCenter/"/>
+    
+      <category term="虚拟机克隆" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu开机网卡无法正常启动</title>
@@ -91,9 +121,9 @@
       <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
-      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
-    
       <category term="服务器" scheme="https://cyneliu.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
     
       <category term="IMM" scheme="https://cyneliu.github.io/tags/IMM/"/>
     
@@ -198,9 +228,9 @@
       <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
-      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
-    
       <category term="服务器" scheme="https://cyneliu.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
     
   </entry>
   
@@ -540,33 +570,6 @@
       <category term="CentOS" scheme="https://cyneliu.github.io/tags/CentOS/"/>
     
       <category term="ifconfig" scheme="https://cyneliu.github.io/tags/ifconfig/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu16.04安装包方式安装Open vSwitch</title>
-    <link href="https://cyneliu.github.io/2018/12/28/Ubuntu16-04%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Open-vSwitch/"/>
-    <id>https://cyneliu.github.io/2018/12/28/Ubuntu16-04压缩包方式安装Open-vSwitch/</id>
-    <published>2018-12-28T09:15:02.000Z</published>
-    <updated>2018-12-28T09:47:43.709Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="下载安装Open-vSwitch"><a href="#下载安装Open-vSwitch" class="headerlink" title="下载安装Open vSwitch"></a>下载安装Open vSwitch</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote></blockquote><pre><code>apt-get updateapt-get install build-essential</code></pre><h2 id="下载解压安装包"><a href="#下载解压安装包" class="headerlink" title="下载解压安装包"></a>下载解压安装包</h2><p>下载Open vSwitch安装包：<a href="http://www.openvswitch.org/download/" target="_blank" rel="noopener">Open vSwitch官网下载地址</a><br>这里我下载的是最新的2.10.1版本：</p><blockquote></blockquote><pre><code>wget https://www.openvswitch.org/releases/openvswitch-2.10.1.tar.gztar -xzvf openvswitch-2.10.1.tar.gz</code></pre><h2 id="构建基于Linux内核的交换机"><a href="#构建基于Linux内核的交换机" class="headerlink" title="构建基于Linux内核的交换机"></a>构建基于Linux内核的交换机</h2><blockquote></blockquote><pre><code>cd openvswitch-2.10.1./configure --with-linux=/lib/modules/&quot;uname -r&quot;/build# 注意这条命令中的&quot;uname -r&quot;是输出当前系统的版本号# 比如我执行&quot;uname -r&quot;后的结果为4.4.0-21-generic，那么我应该执行的命令即为：# ./configure --with-linux=/lib/modules/4.4.0-21-generic/build</code></pre><h2 id="编译安装Open-vSwitch"><a href="#编译安装Open-vSwitch" class="headerlink" title="编译安装Open vSwitch"></a>编译安装Open vSwitch</h2><blockquote></blockquote><pre><code>makemake install</code></pre><h2 id="加载openvswitch-ko模块-遇到错误"><a href="#加载openvswitch-ko模块-遇到错误" class="headerlink" title="加载openvswitch.ko模块(遇到错误)"></a>加载openvswitch.ko模块(遇到错误)</h2><p>如果需要OVS支持VLAN功能，还需要加载openvswitch.ko模块，如果不需要，此步可以忽略。  </p><blockquote></blockquote><pre><code>modprobe greinsmod datapath/linux/openvswitch.ko</code></pre><p>我在执行第二条命令时遇到了如下错误：</p><blockquote></blockquote><pre><code>insmod: ERROR: could not insert module openvswitch.ko: Unkown symbol in module</code></pre><p>google了几个方法都没能成功解决问题，有人说是bug，也有说是因为兼容性问题，因为我暂时用不到VLAN功能，就暂时跳过此步骤了。</p><h2 id="安装并加载构建的内核模块"><a href="#安装并加载构建的内核模块" class="headerlink" title="安装并加载构建的内核模块"></a>安装并加载构建的内核模块</h2><blockquote></blockquote><pre><code>make modules_install/sbin/modprobe openvswitch</code></pre><h2 id="使用ovsdb工具初始化配置数据库"><a href="#使用ovsdb工具初始化配置数据库" class="headerlink" title="使用ovsdb工具初始化配置数据库"></a>使用ovsdb工具初始化配置数据库</h2><blockquote></blockquote><pre><code>ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema# 在执行此命令时报错没有此文件夹，我直接手动创建了对应的文件夹：# mkdir -p /usr/local/etc/openvswitch</code></pre><h1 id="启动Open-vSwitch"><a href="#启动Open-vSwitch" class="headerlink" title="启动Open vSwitch"></a>启动Open vSwitch</h1><h2 id="启动ovsdb-server配置数据库"><a href="#启动ovsdb-server配置数据库" class="headerlink" title="启动ovsdb-server配置数据库:"></a>启动ovsdb-server配置数据库:</h2><blockquote></blockquote><pre><code>ovsdb-server -v --remote=punix:/usr/local/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --private-key=db:Open_vSwitch,SSL,private_key --certificate=db:Open_vSwitch,SSL,certificate --bootstrap-ca-cert=db:Open_vSwitch,SSL,ca_cert --pidfile --detach --log-file# 这里同样报错没有此文件夹，同样手动创建了相应的文件夹</code></pre><p>首次用ovsdb-tool创建数据库时需用ovs-vsctl命令初始化下数据库:</p><blockquote></blockquote><pre><code>ovs-vsctl --no-wait init</code></pre><h2 id="启动OVS主进程"><a href="#启动OVS主进程" class="headerlink" title="启动OVS主进程:"></a>启动OVS主进程:</h2><blockquote></blockquote><pre><code>ovs-vswitchd --pidfile --detach --log-file</code></pre><h2 id="查看OVS进程是否启动"><a href="#查看OVS进程是否启动" class="headerlink" title="查看OVS进程是否启动:"></a>查看OVS进程是否启动:</h2><blockquote></blockquote><pre><code>ps aux|grep ovs</code></pre><h2 id="查看所安装OVS的版本号"><a href="#查看所安装OVS的版本号" class="headerlink" title="查看所安装OVS的版本号:"></a>查看所安装OVS的版本号:</h2><blockquote></blockquote><pre><code>ovs-vsctl --version</code></pre><p>至此，Open vSwitch就安装完成了，安装过程中的几个小问题本次没有解决，希望之后能找到解决办法。最后再补充一个更简单的方式——使用apt install的方式直接安装：</p><blockquote></blockquote><pre><code>apt-get install openvswitch-switch</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;下载安装Open-vSwitch&quot;&gt;&lt;a href=&quot;#下载安装Open-vSwitch&quot; class=&quot;headerlink&quot; title=&quot;下载安装Open vSwitch&quot;&gt;&lt;/a&gt;下载安装Open vSwitch&lt;/h1&gt;&lt;h2 id=&quot;准备工作&quot;&gt;&lt;a 
-      
-    
-    </summary>
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
-    
-    
-      <category term="SDN" scheme="https://cyneliu.github.io/tags/SDN/"/>
-    
-      <category term="Open vSwitch" scheme="https://cyneliu.github.io/tags/Open-vSwitch/"/>
     
   </entry>
   
