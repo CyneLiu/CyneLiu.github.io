@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/10/24/aIX8drbJMwEjSWZ.png">
 <meta property="og:image" content="https://i.loli.net/2019/10/24/rfA9lYGCHeMIaib.png">
 <meta property="og:image" content="https://i.loli.net/2019/10/24/Qv3cUwiOpxlJdoG.png">
-<meta property="og:updated_time" content="2019-10-24T09:25:12.082Z">
+<meta property="og:updated_time" content="2019-10-24T09:38:29.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="华为交换机console口密码重置">
 <meta name="twitter:description" content="设置console密码因为之前已经把console密码删掉了，为了重现一下，重新设置一下console密码：   &amp;lt;HUAWEI&amp;gt; system-view [HUAWEI] user-interface console 0 [HUAWEI-ui-console0] authentication-mode password [HUAWEI-ui-console0] set authent">
@@ -452,7 +452,7 @@
 [HUAWEI-ui-console0] set authentication password cipher Huawei@123
 [HUAWEI-ui-console0] return
 &lt;HUAWEI&gt; save
-</code></pre><h1 id="密码重置"><a href="#密码重置" class="headerlink" title="密码重置"></a>密码重置</h1><p>将console线连接到设备的console口，打开Xshell或putty等连接设备，此时出现如下界面：<br><img src="https://i.loli.net/2019/10/24/btz7nFcoEJM924A.png" alt="00.png"><br>将交换机断电，然后上电设备自动启动，此时按Ctrl+B：<br><img src="https://i.loli.net/2019/10/24/ulg9wTbEKzchmFS.png" alt="01.png"><br>输入密码：<a href="mailto:**Admin@huawei.com" target="_blank" rel="noopener">**Admin@huawei.com</a><strong> 进入BootLoad menu:<br><img src="https://i.loli.net/2019/10/24/aIX8drbJMwEjSWZ.png" alt="02.png"><br>输入数字：</strong>7<strong>，清除console用户的密码并输入：</strong>y<strong>确认清除：<br><img src="https://i.loli.net/2019/10/24/rfA9lYGCHeMIaib.png" alt="03.png"><br>弹出提示显示密码清除成功，然后再根据提示输入：</strong>1<strong>按默认模式启动，启动后就可以设置新密码了。选择：</strong>8<strong>，即可放弃此次重置并重启。<br><img src="https://i.loli.net/2019/10/24/Qv3cUwiOpxlJdoG.png" alt="04.png"><br>重启后登入设备输入：</strong>save**保存，这样console密码就被清除了。</p>
+</code></pre><h1 id="密码重置"><a href="#密码重置" class="headerlink" title="密码重置"></a>密码重置</h1><p>将console线连接到设备的console口，打开Xshell或putty等连接设备，此时出现如下界面：<br><img src="https://i.loli.net/2019/10/24/btz7nFcoEJM924A.png" alt="00.png"><br>将交换机断电，然后上电设备自动启动，此时按Ctrl+B：<br><img src="https://i.loli.net/2019/10/24/ulg9wTbEKzchmFS.png" alt="01.png"><br>输入密码：<a href="mailto:Admin@huawei.com" target="_blank" rel="noopener">Admin@huawei.com</a> 进入BootLoad menu:<br><img src="https://i.loli.net/2019/10/24/aIX8drbJMwEjSWZ.png" alt="02.png"><br>输入数字：7，清除console用户的密码并输入：y确认清除：<br><img src="https://i.loli.net/2019/10/24/rfA9lYGCHeMIaib.png" alt="03.png"><br>弹出提示显示密码清除成功，然后再根据提示输入：1按默认模式启动，启动后就可以设置新密码了。选择：8，即可放弃此次重置并重启。<br><img src="https://i.loli.net/2019/10/24/Qv3cUwiOpxlJdoG.png" alt="04.png"><br>重启后登入设备输入：save保存，这样console密码就被清除了。</p>
 
       
     </div>
