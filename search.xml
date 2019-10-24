@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[华为交换机console口密码重置]]></title>
+    <url>%2F2019%2F10%2F24%2F%E5%8D%8E%E4%B8%BA%E4%BA%A4%E6%8D%A2%E6%9C%BAconsole%E5%8F%A3%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[设置console密码因为之前已经把console密码删掉了，为了重现一下，重新设置一下console密码： &lt;HUAWEI&gt; system-view [HUAWEI] user-interface console 0 [HUAWEI-ui-console0] authentication-mode password [HUAWEI-ui-console0] set authentication password cipher Huawei@123 [HUAWEI-ui-console0] return &lt;HUAWEI&gt; save 密码重置将console线连接到设备的console口，打开Xshell或putty等连接设备，此时出现如下界面：将交换机断电，然后上电设备自动启动，此时按Ctrl+B：输入密码：**Admin@huawei.com 进入BootLoad menu:输入数字：7，清除console用户的密码并输入：y确认清除：弹出提示显示密码清除成功，然后再根据提示输入：1按默认模式启动，启动后就可以设置新密码了。选择：8，即可放弃此次重置并重启。重启后登入设备输入：save**保存，这样console密码就被清除了。]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>华为</tag>
+        <tag>console，密码重置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[无vCenter的ESXI环境克隆虚拟机]]></title>
     <url>%2F2019%2F10%2F15%2F%E6%97%A0vCenter%E7%9A%84ESXI%E7%8E%AF%E5%A2%83%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA%2F</url>
     <content type="text"><![CDATA[最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。 两个文件.vmx:VMware虚拟机配置文件，为虚拟机系统文件，通常通过打开这个虚拟机文件以启动系统；通过编辑该文件可以实现某种配置需求。.vmdk:VMware虚拟磁盘文件，相当于真实PC的硬盘。 克隆方法首先选中要克隆虚拟机的服务器，然后选择“配置”，然后选择“存储器”，在右侧的存储器中选择你要克隆的虚拟机所在的数据存储。右键“浏览数据存储”，新建一个文件夹（用于存放克隆的虚拟机文件），在左侧选择要克隆的虚拟机所在的文件夹，复制.vmx和.vmdk两个文件到新建的文件夹中。复制完成后，右键复制后的.vmx文件，选择添加到清单即可。虚拟机启动后会有如下提示，选择“I Copied It”即可。 小细节在实际的操作中，我发现了一点需要注意的小细节，如果只是单纯的复制我在上图标出来两个文件的话，那么你克隆出来的虚拟机会是你新装的操作系统时的状态，如果想完整克隆虚拟机的当前状态，应该复制虚拟机当前引用的磁盘文件。编辑虚拟机设置，查看被克隆的虚拟机引用的磁盘文件。然后复制该文件：]]></content>
@@ -594,8 +606,8 @@
         <category>运维</category>
       </categories>
       <tags>
-        <tag>运维</tag>
         <tag>虚拟化</tag>
+        <tag>运维</tag>
         <tag>笔记</tag>
       </tags>
   </entry>
@@ -607,8 +619,8 @@
         <category>运维</category>
       </categories>
       <tags>
-        <tag>运维</tag>
         <tag>虚拟化</tag>
+        <tag>运维</tag>
         <tag>笔记</tag>
       </tags>
   </entry>
@@ -646,8 +658,8 @@
         <category>运维</category>
       </categories>
       <tags>
-        <tag>运维</tag>
         <tag>虚拟化</tag>
+        <tag>运维</tag>
         <tag>笔记</tag>
       </tags>
   </entry>
