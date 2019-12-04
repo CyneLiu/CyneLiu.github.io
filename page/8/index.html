@@ -306,6 +306,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/09/15/5-OpenFlow实现示例之中继器HUB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cyne Liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyne's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/15/5-OpenFlow实现示例之中继器HUB/" itemprop="url">5.OpenFlow实现示例之中继器HUB</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T21:09:29+08:00">
+                2018-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SDN/" itemprop="url" rel="index">
+                    <span itemprop="name">SDN</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/15/5-OpenFlow实现示例之中继器HUB/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/15/5-OpenFlow实现示例之中继器HUB/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          实验原理OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信息的计数器（Counter），还有匹配表项后需要对数据分组执行的动作表（Action）。分组头域是数据分组匹配流表项时参照的依据，作用上类似于传统交换机进行二层交换时匹配数据分组的MAC地址，路由器进行三层路由时匹配的IP地址。流表项中的计数器用来统计相关“流”的一些信息，例如查找次数、收发分组数、生存时间等。另外，OpenFlow针对每张表、每个流表项、每个端口、每个队列也都会维护它们相应的计数器。动作表指定了OpenFlow交换机处理相应“流”的行为。相比于传
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/15/5-OpenFlow实现示例之中继器HUB/#espandi" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/09/14/4-基于RESTCONF的流表管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -449,7 +638,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/14/4-基于RESTCONF的流表管理/#more" rel="contents">
+            <a class="btn" href="/2018/09/14/4-基于RESTCONF的流表管理/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -639,7 +828,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/14/3-Open-vSwitch流表管理/#more" rel="contents">
+            <a class="btn" href="/2018/09/14/3-Open-vSwitch流表管理/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -828,7 +1017,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/13/秒懂MBR和GPT分区表/#more" rel="contents">
+            <a class="btn" href="/2018/09/13/秒懂MBR和GPT分区表/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1017,7 +1206,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/13/2-OVSDB的网桥和端口管理/#more" rel="contents">
+            <a class="btn" href="/2018/09/13/2-OVSDB的网桥和端口管理/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1206,198 +1395,7 @@
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/13/1-OpenFlow建立连接交互流程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/09/11/SDN中的南向接口和北向接口/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cyne Liu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cyne's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/11/SDN中的南向接口和北向接口/" itemprop="url">SDN中的南向接口和北向接口</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T16:46:53+08:00">
-                2018-09-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SDN/" itemprop="url" rel="index">
-                    <span itemprop="name">SDN</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/11/SDN中的南向接口和北向接口/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/11/SDN中的南向接口和北向接口/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          SDN的意义SDN网络的最终目标是服务于多样化的业务应用创新。因此随着SDN技术的部署和推广，将会有越来越多的业务应用被研发，这类应用将能够便捷地通过SDN北向接口调用底层网络能力，按需使用网络资源。  
-SDN推动业务创新已经是业界不争的事实，它可以被广泛地应用在云数据中心、宽带传输网络、移动网络等种种场景中，其中为云计算业务提供网络资源服 务就是一个非常典型的案例。众所周知，在当前的云计算业务中，服务器虚拟化、存储虚拟化都已经被广泛应用，它们将底层的物理资源进行池化共享，进而按需分配给用户使用。相比之下，传统的网络资源远远没有达到类似的灵活性，而SDN的引入则能够很好地解决这一问题。
-南向
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/11/SDN中的南向接口和北向接口/#more" rel="contents">
+            <a class="btn" href="/2018/09/13/1-OpenFlow建立连接交互流程/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1489,7 +1487,7 @@ SDN推动业务创新已经是业界不争的事实，它可以被广泛地应�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1511,7 +1509,7 @@ SDN推动业务创新已经是业界不争的事实，它可以被广泛地应�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1597,7 +1595,7 @@ SDN推动业务创新已经是业界不争的事实，它可以被广泛地应�
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共51.6k字</span>
+  <span class="post-count">博客全站共51.9k字</span>
 </div>
 
         
