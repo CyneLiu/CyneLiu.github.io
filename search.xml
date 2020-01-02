@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[GPT分区安装操作系统后无法引导启动]]></title>
+    <url>%2F2019%2F12%2F30%2FGPT%E5%88%86%E5%8C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%95%E5%AF%BC%E5%90%AF%E5%8A%A8%2F</url>
+    <content type="text"><![CDATA[记得之前写过一篇《秒懂MBR和GPT分区表》，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。 然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，开始又引导不起来，提示“System not found”，捣鼓了半天终于发现了问题。 EFI分区EFI系统分区（EFI system partition，简称ESP），是一个FAT16或FAT32格式的物理分区，但是其分区标识是EF (十六进制) 而非常规的0E或0C，因此，该分区在Windows操作系统下一般是不可见的。ESP分区在UEFI BIOS引导系统时使用，用来存储BIOS/EFI NAND芯片存储不下的那部分EFI扩展功能。支持EFI模式的电脑需要从ESP启动系统，EFI固件可从ESP加载EFI启动程序或应用，ESP是系统引导分区。 MSR分区MSR分区（Microsoft Reserved Partition，缩写MSR）即Microsoft 保留 (MSR) 分区。是每个 在GUID 分区表 (GPT) 上的 Windows操作系统（windows7以上）都要求的分区。系统组件可以将 MSR 分区的部分分配到新的分区以供它们使用。MSR 分区的大小会因 GPT 磁盘的大小不同而发生变化。对于小于 16 GB 的磁盘，MSR 分区为 32 MB。对于大于 16 GB 的磁盘，MSR 分区为 128 MB。MSR 分区在“磁盘管理”中不可见，在Diskpart、Diskgenius等磁盘工具里可见，但是用户无法在 MSR 分区上存储或删除数据。 操作步骤我使用的PE是WEPE 首先我们需要确认一下当前系统磁盘是GPT磁盘，如下图所示，如果之前装过操作系统的话我们打开分区助手应该是可以看到ESP和MSR这两个隐藏分区的，或者只有一个ESP分区，如果是新硬盘的话使用快速分区也可以自动生成这两个分区。 为了重现我之前遇到的问题，我们把系统分区和这两个隐藏分区都删掉，然后重建系统分区，然后按照BIOS+MBR的方式安装操作系统（这就是安装完系统无法引导的原因），其实Windows安装器在安装时也会有错误提示，EFI PART的灯是红色的，说明我们选择的引导驱动器并非EFI引导分区。 UEFI+GPT方式安装操作系统时，不能像之前BIOS方式那样将引导分区设置为系统分区，而是需要设置为ESP分区。 所以我们需要手动去创建ESP和MSR分区，打开DiskGenius,选择未分配空间，创建新分区，文件系统类型选择“EFI system partition”,大小100M就可以了。然后新建MSR分区，文件系统类型选择“Microsoft Reserved Partition”，大小128M。然后在根据自己需要进行其它分区的配置，我这里因为使用的是虚拟机，硬盘比较少，只做演示。分区完成后保存更改。再次打开Windows安装器，这时安装器就显示正常了。 参考链接MSR分区到底有什么功能]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>GPT</tag>
+        <tag>重装系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[在ESXI镜像中集成第三方驱动]]></title>
     <url>%2F2019%2F12%2F04%2F%E5%9C%A8ESXI%E9%95%9C%E5%83%8F%E4%B8%AD%E9%9B%86%E6%88%90%E7%AC%AC%E4%B8%89%E6%96%B9%E9%A9%B1%E5%8A%A8%2F</url>
     <content type="text"><![CDATA[在使用VMware官方的ESXI6.0镜像在浪潮服务器安装时，安装程序发现不了RAID，服务器的具体型号是NF5270M5，在网上搜索了一下发现是驱动的问题，折腾了一上午终于搞定了，简单记录一下过程。 工具准备 ESXi-Customizer-v2.7.2 RAID驱动 ESXI6.0镜像 1.ESXi-Customizer，是一个专门用来向ESXI封装驱动的工具，下载地址可自行百度，也可以从我的百度云下载：提取码：riel。下载之后运行.exe文件解压出来就可以了，然后有一点需要注意的是win10无法运行（亲测win7是可以的），会报如下图所示的错误：解决方法很简单，用编辑器打开ESXi-Customizer.cmd，删除下面这行： if &quot;!WinVer!&quot; LSS &quot;5.1&quot; call :earlyFatal Unsupported Windows Version: !WinVer!. At least Windows XP is required &amp; exit /b 1 再运行就正常了： 2.下载驱动程序，下载驱动我们首先需要确定硬件的型号信息，开机进入RAID控制器查看RAID卡型号，然后到浪潮官网下载对应驱动。 3.最后还需要准备一个ESXI镜像。 操作过程1.解压下载的驱动程序文件，得到.vib文件。2.运行ESXi-Customizer，第一项选择原始ESXI镜像，第二项选择驱动文件，第三项选择新镜像存放的位置，然后将“Enable…”取消勾选，点击RUN开始封装。 3.将封装好的镜像文件写入U盘，ok！]]></content>
@@ -70,8 +82,8 @@
         <category>服务器</category>
       </categories>
       <tags>
-        <tag>服务器</tag>
         <tag>IBM</tag>
+        <tag>服务器</tag>
         <tag>IMM</tag>
       </tags>
   </entry>
@@ -117,8 +129,8 @@
         <category>服务器</category>
       </categories>
       <tags>
-        <tag>服务器</tag>
         <tag>IBM</tag>
+        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
