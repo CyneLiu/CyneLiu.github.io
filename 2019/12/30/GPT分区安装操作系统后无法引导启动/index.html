@@ -89,13 +89,13 @@
 
 
 
-<meta name="description" content="记得之前写过一篇《秒懂MBR和GPT分区表》，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。   然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，开始又引导不起来，提示“System not found”，捣鼓了半天终">
+<meta name="description" content="记得之前写过一篇《秒懂MBR和GPT分区表》，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。   然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终">
 <meta name="keywords" content="GPT,重装系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GPT分区安装操作系统后无法引导启动">
 <meta property="og:url" content="https://cyneliu.github.io/2019/12/30/GPT分区安装操作系统后无法引导启动/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="记得之前写过一篇《秒懂MBR和GPT分区表》，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。   然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，开始又引导不起来，提示“System not found”，捣鼓了半天终">
+<meta property="og:description" content="记得之前写过一篇《秒懂MBR和GPT分区表》，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。   然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/12/31/Mw3tbGRjBvdr5yx.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/31/KHTAOxuNlICfm7v.png">
@@ -103,10 +103,10 @@
 <meta property="og:image" content="https://i.loli.net/2019/12/31/9XY7IAWwzbSF2Oe.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/31/zC3OpMylkdYUmqi.png">
 <meta property="og:image" content="https://i.loli.net/2019/12/31/USf9ymFMxwpgqu5.png">
-<meta property="og:updated_time" content="2020-01-02T06:11:13.957Z">
+<meta property="og:updated_time" content="2020-01-02T06:38:12.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GPT分区安装操作系统后无法引导启动">
-<meta name="twitter:description" content="记得之前写过一篇《秒懂MBR和GPT分区表》，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。   然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，开始又引导不起来，提示“System not found”，捣鼓了半天终">
+<meta name="twitter:description" content="记得之前写过一篇《秒懂MBR和GPT分区表》，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。   然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终">
 <meta name="twitter:image" content="https://i.loli.net/2019/12/31/Mw3tbGRjBvdr5yx.png">
 
 
@@ -407,7 +407,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  861
+                  871
                 </span>
               
 
@@ -445,7 +445,7 @@
 
       
         <p>记得之前写过一篇<a href="https://cyneliu.gitee.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/" target="_blank" rel="noopener">《秒懂MBR和GPT分区表》</a>，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。  </p>
-<p>然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，开始又引导不起来，提示“System not found”，捣鼓了半天终于发现了问题。  </p>
+<p>然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终于发现了问题。  </p>
 <h1 id="EFI分区"><a href="#EFI分区" class="headerlink" title="EFI分区"></a>EFI分区</h1><p>EFI系统分区（EFI system partition，简称ESP），是一个FAT16或FAT32格式的物理分区，但是其分区标识是EF (十六进制) 而非常规的0E或0C，因此，该分区在Windows操作系统下一般是不可见的。ESP分区在UEFI BIOS引导系统时使用，用来存储BIOS/EFI NAND芯片存储不下的那部分EFI扩展功能。支持EFI模式的电脑需要从ESP启动系统，EFI固件可从ESP加载EFI启动程序或应用，ESP是系统引导分区。</p>
 <h1 id="MSR分区"><a href="#MSR分区" class="headerlink" title="MSR分区"></a>MSR分区</h1><p>MSR分区（Microsoft Reserved Partition，缩写MSR）即Microsoft 保留 (MSR) 分区。是每个 在GUID 分区表 (GPT) 上的 Windows操作系统（windows7以上）都要求的分区。系统组件可以将 MSR 分区的部分分配到新的分区以供它们使用。<br>MSR 分区的大小会因 GPT 磁盘的大小不同而发生变化。对于小于 16 GB 的磁盘，MSR 分区为 32 MB。对于大于 16 GB 的磁盘，MSR 分区为 128 MB。MSR 分区在“磁盘管理”中不可见，在Diskpart、Diskgenius等磁盘工具里可见，但是用户无法在 MSR 分区上存储或删除数据。</p>
 <h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>我使用的PE是<a href="http://www.wepe.com.cn/" target="_blank" rel="noopener">WEPE</a>  </p>
@@ -455,7 +455,7 @@
 <p>UEFI+GPT方式安装操作系统时，不能像之前BIOS方式那样将引导分区设置为系统分区，而是需要设置为ESP分区。  </p>
 </blockquote>
 <p><img src="https://i.loli.net/2019/12/31/KHTAOxuNlICfm7v.png" alt="01.png"></p>
-<p>所以我们需要手动去创建ESP和MSR分区，打开DiskGenius,选择未分配空间，创建新分区，文件系统类型选择“EFI system partition”,大小100M就可以了。<br><img src="https://i.loli.net/2019/12/31/1oxUQH8umG3yeV5.png" alt="02.png"><br>然后新建MSR分区，文件系统类型选择“Microsoft Reserved Partition”，大小128M。<br><img src="https://i.loli.net/2019/12/31/9XY7IAWwzbSF2Oe.png" alt="03.png"><br>然后在根据自己需要进行其它分区的配置，我这里因为使用的是虚拟机，硬盘比较少，只做演示。<br><img src="https://i.loli.net/2019/12/31/zC3OpMylkdYUmqi.png" alt="04.png"><br>分区完成后保存更改。再次打开Windows安装器，这时安装器就显示正常了。<br><img src="https://i.loli.net/2019/12/31/USf9ymFMxwpgqu5.png" alt="05.png"></p>
+<p>所以我们需要手动去创建ESP和MSR分区，打开DiskGenius,选择未分配空间，创建新分区，文件系统类型选择“EFI system partition”,大小100M就可以了。<br><img src="https://i.loli.net/2019/12/31/1oxUQH8umG3yeV5.png" alt="02.png"><br>然后新建MSR分区，文件系统类型选择“Microsoft Reserved Partition”，大小128M。<br><img src="https://i.loli.net/2019/12/31/9XY7IAWwzbSF2Oe.png" alt="03.png"><br>然后在根据自己需要进行其它分区的配置，我这里因为使用的是虚拟机，硬盘比较少，只做演示。<br><img src="https://i.loli.net/2019/12/31/zC3OpMylkdYUmqi.png" alt="04.png"><br>分区完成后保存更改。再次打开Windows安装器，引导驱动器选择ESP分区，这时安装器就显示正常了。<br><img src="https://i.loli.net/2019/12/31/USf9ymFMxwpgqu5.png" alt="05.png"></p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://bbs.wuyou.net/forum.php?mod=viewthread&amp;tid=374959&amp;page=1" target="_blank" rel="noopener">MSR分区到底有什么功能</a></p>
 
       
