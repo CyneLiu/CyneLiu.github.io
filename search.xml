@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Dell服务器iDRAC虚拟控制台无法连接问题解决方法]]></title>
+    <url>%2F2020%2F05%2F12%2FDell%E6%9C%8D%E5%8A%A1%E5%99%A8iDRAC%E8%99%9A%E6%8B%9F%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[今天配置10台Dell R720服务器的iDRAC服务之后，远程连接的时候发现出现部分服务器虚拟控制台连接不上的问题，尝试了网上了一些解决方法之后，最后通过升级iDRAC固件的方式解决了问题，在此记录一下，供参考。 报错信息虚拟控制台连接是报错：查看器已终止。原因：网络连接中断 解决方法因为10台服务器有的可以正常连接，所以对比了一下配置，发现可以访问的服务器iDRAC固件版本是”2.52.52.52”，而出现以上报错的固件版本是”1.57.57 (Build 04)”，所以尝试升级固件版本，升级的具体操作如下。 下载固件文件我下载的固件是带Lifecycle Controller的IDRAC 2.52.52.52，iDRAC固件升级文件名称前缀通常为：iDRAC-with-Lifecycle-Controller_Firmware 如果没有特殊需要可以直接下载我更新的这个版本：iDRAC-with-Lifecycle-Controller_Firmware_1YCHC_WN64_2.52.52.52_A00.EXE 上传固件下载后登录iDRAC的web界面，在左侧菜单栏点击iDRAC设置-更新和回滚，更新文件选择本地下载的升级文件，并点击“上载”按钮上传。 安装固件上传完成后勾选上传的固件后点击“安装”安装固件点击作业队列可查看安装进度更新完成后状态会显示为compelete状态，再次打开虚拟控制台，连接成功。 参考连接https://www.dell.com/support/article/zh-cn/sln307185/%E4%BD%BF%E7%94%A8idrac-web%E7%95%8C%E9%9D%A2%E6%9B%B4%E6%96%B0idrac%E5%9B%BA%E4%BB%B6?lang=zhhttps://cyneliu.gitee.io/2019/06/21/IBM%E6%9C%8D%E5%8A%A1%E5%99%A8IMM%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>iDRAC</tag>
+        <tag>Dell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[GPT分区安装操作系统后无法引导启动]]></title>
     <url>%2F2019%2F12%2F30%2FGPT%E5%88%86%E5%8C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%95%E5%AF%BC%E5%90%AF%E5%8A%A8%2F</url>
     <content type="text"><![CDATA[记得之前写过一篇《秒懂MBR和GPT分区表》，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。 然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终于发现了问题。 EFI分区EFI系统分区（EFI system partition，简称ESP），是一个FAT16或FAT32格式的物理分区，但是其分区标识是EF (十六进制) 而非常规的0E或0C，因此，该分区在Windows操作系统下一般是不可见的。ESP分区在UEFI BIOS引导系统时使用，用来存储BIOS/EFI NAND芯片存储不下的那部分EFI扩展功能。支持EFI模式的电脑需要从ESP启动系统，EFI固件可从ESP加载EFI启动程序或应用，ESP是系统引导分区。 MSR分区MSR分区（Microsoft Reserved Partition，缩写MSR）即Microsoft 保留 (MSR) 分区。是每个 在GUID 分区表 (GPT) 上的 Windows操作系统（windows7以上）都要求的分区。系统组件可以将 MSR 分区的部分分配到新的分区以供它们使用。MSR 分区的大小会因 GPT 磁盘的大小不同而发生变化。对于小于 16 GB 的磁盘，MSR 分区为 32 MB。对于大于 16 GB 的磁盘，MSR 分区为 128 MB。MSR 分区在“磁盘管理”中不可见，在Diskpart、Diskgenius等磁盘工具里可见，但是用户无法在 MSR 分区上存储或删除数据。 操作步骤我使用的PE是WEPE 首先我们需要确认一下当前系统磁盘是GPT磁盘，如下图所示，如果之前装过操作系统的话我们打开分区助手应该是可以看到ESP和MSR这两个隐藏分区的，或者只有一个ESP分区，如果是新硬盘的话使用快速分区也可以自动生成这两个分区。 为了重现我之前遇到的问题，我们把系统分区和这两个隐藏分区都删掉，然后重建系统分区，然后按照BIOS+MBR的方式安装操作系统（这就是安装完系统无法引导的原因），其实Windows安装器在安装时也会有错误提示，EFI PART的灯是红色的，说明我们选择的引导驱动器并非EFI引导分区。 UEFI+GPT方式安装操作系统时，不能像之前BIOS方式那样将引导分区设置为系统分区，而是需要设置为ESP分区。 所以我们需要手动去创建ESP和MSR分区，打开DiskGenius,选择未分配空间，创建新分区，文件系统类型选择“EFI system partition”,大小100M就可以了。然后新建MSR分区，文件系统类型选择“Microsoft Reserved Partition”，大小128M。然后在根据自己需要进行其它分区的配置，我这里因为使用的是虚拟机，硬盘比较少，只做演示。分区完成后保存更改。再次打开Windows安装器，引导驱动器选择ESP分区，这时安装器就显示正常了。 参考链接MSR分区到底有什么功能]]></content>
@@ -62,8 +74,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[同时使用Gitub和码云部署博客]]></title>
-    <url>%2F2019%2F07%2F18%2F%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8Gitub%E5%92%8C%E7%A0%81%E4%BA%91%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%2F</url>
+    <title><![CDATA[同时使用Github和码云部署博客]]></title>
+    <url>%2F2019%2F07%2F18%2F%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8Github%E5%92%8C%E7%A0%81%E4%BA%91%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%2F</url>
     <content type="text"><![CDATA[Gitee PagesGitee Pages是码云推出的一个静态网站服务，与Github Pages类似，这是官方给出的简单介绍： 码云Pages是一个免费的静态网页托管服务，您可以使用码云Pages托管博客、项目官网等静态网页。目前码云Pages支持Jekyll、Hugo、Hexo编译静态资源。 之前在部署自己博客的时候使用的是Hexo + Github Pages的方式，但是这种方式有一个最大的问题就是博客的访问速度问题，根据不同的运营商不同地点的网络，访问速度还会有些差别。忍无可忍，决定把博客迁移到码云上，但是使用了码云后发现这家伙有个特别人性化的功能——从GitHub同步。 既然如此，与其迁移，还不如同时在两个仓库中同时部署。 操作步骤首先注册一个码云账号，注册之后新建一个仓库：到最下面找到导入已有仓库，点击并填写自己的GitHub仓库地址(.git结尾的链接)仓库导入之后进入仓库，点击服务→Gitee Pages，部署目录不填，点击部署即可。上图是我已经部署好之后的截图，当时忘记截图了，部署之后的网址应该是*.gitee.io/name这样的链接，我们打开这个链接会看到下面这样的网页：原因是由于路径的问题，无法正确加载样式，我们只需要将链接后的二级目录去掉就好了。点击管理**，将仓库的路径设置为与用户名一样即可。访问Gitee Pages，幸福感扑面而来。]]></content>
       <categories>
         <category>打鱼晒网</category>
@@ -82,8 +94,8 @@
         <category>服务器</category>
       </categories>
       <tags>
-        <tag>IBM</tag>
         <tag>服务器</tag>
+        <tag>IBM</tag>
         <tag>IMM</tag>
       </tags>
   </entry>
@@ -129,8 +141,8 @@
         <category>服务器</category>
       </categories>
       <tags>
-        <tag>IBM</tag>
         <tag>服务器</tag>
+        <tag>IBM</tag>
       </tags>
   </entry>
   <entry>
@@ -474,8 +486,8 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>科学上网</tag>
         <tag>脚本</tag>
+        <tag>科学上网</tag>
         <tag>vps</tag>
         <tag>网站</tag>
       </tags>
@@ -488,8 +500,8 @@
         <category>Cisco</category>
       </categories>
       <tags>
-        <tag>Cisco</tag>
         <tag>网工</tag>
+        <tag>Cisco</tag>
       </tags>
   </entry>
   <entry>
