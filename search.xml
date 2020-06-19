@@ -107,8 +107,8 @@
         <category>服务器</category>
       </categories>
       <tags>
-        <tag>服务器</tag>
         <tag>IBM</tag>
+        <tag>服务器</tag>
         <tag>IMM</tag>
       </tags>
   </entry>
@@ -154,8 +154,8 @@
         <category>服务器</category>
       </categories>
       <tags>
-        <tag>服务器</tag>
         <tag>IBM</tag>
+        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -386,9 +386,9 @@
         <category>服务器</category>
       </categories>
       <tags>
-        <tag>VMware</tag>
         <tag>Windows Server</tag>
         <tag>DHCP</tag>
+        <tag>VMware</tag>
       </tags>
   </entry>
   <entry>
@@ -499,8 +499,8 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>脚本</tag>
         <tag>科学上网</tag>
+        <tag>脚本</tag>
         <tag>vps</tag>
         <tag>网站</tag>
       </tags>
@@ -513,8 +513,8 @@
         <category>Cisco</category>
       </categories>
       <tags>
-        <tag>Cisco</tag>
         <tag>网工</tag>
+        <tag>Cisco</tag>
       </tags>
   </entry>
   <entry>
