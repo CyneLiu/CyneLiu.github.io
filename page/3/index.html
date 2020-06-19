@@ -306,6 +306,197 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2019/05/10/IBM-System-x3650-M2硬盘亮黄灯/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cyne Liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyne's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/10/IBM-System-x3650-M2硬盘亮黄灯/" itemprop="url">IBM System x3650 M2硬盘亮黄灯</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-10T17:25:49+08:00">
+                2019-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/10/IBM-System-x3650-M2硬盘亮黄灯/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/10/IBM-System-x3650-M2硬盘亮黄灯/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  467
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          问题描述服务器之前做了RAID1并且装了ESXI，在开机状态下拔掉一块硬盘后，硬盘黄灯亮起并发出连续的滴滴警报声，硬件故障检测板DASD亮起，百度尝试了很多方式，比如拔掉电源后重启等均无效。
+解决办法因为服务器并没有跑虚拟机和存数据，所以最后直接重做了RAID，过程如下：  
+进入WebBIOS服务器重启按F1进入BIOS，找到Sytem Settings → Adapters and UEFI Drivers → Please press ENTER to compile the list of drivers，然后选择“LSI EFI SAS Driver”下面那一行，然后回车，根据提示输
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/10/IBM-System-x3650-M2硬盘亮黄灯/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2019/04/04/Linux中的几个查找命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -449,7 +640,7 @@ locatelocate命令与“find -name”的作用类似，但原理完全不同。�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/04/Linux中的几个查找命令/#espandi" rel="contents">
+            <a class="btn" href="/2019/04/04/Linux中的几个查找命令/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -643,7 +834,7 @@ Snapshot备份 instance 到 Glance。产生的 image 可用于故障恢复，或
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/03/Nova的16种操作/#espandi" rel="contents">
+            <a class="btn" href="/2019/04/03/Nova的16种操作/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -841,7 +1032,7 @@ Router(config-router)#net 202.1.1.0
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/28/Cisco配置VPN-IPSec/#espandi" rel="contents">
+            <a class="btn" href="/2019/03/28/Cisco配置VPN-IPSec/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1031,7 +1222,7 @@ Router(config-router)#net 202.1.1.0
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/20/在ESXI环境中部署fuel-openstack虚拟环境/#espandi" rel="contents">
+            <a class="btn" href="/2019/03/20/在ESXI环境中部署fuel-openstack虚拟环境/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1227,205 +1418,7 @@ mkdir -p /opt/java #将下载下来的安装包移动到此目录（目录可自
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/14/Ubuntu16-04安装OpenDaylight-Carbon/#espandi" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2019/03/13/ovs-vsctl-unix-usr-local-var-run-openvswitch-db-sock-database-connection-failed/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cyne Liu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cyne's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/13/ovs-vsctl-unix-usr-local-var-run-openvswitch-db-sock-database-connection-failed/" itemprop="url">ovs-vsctl: unix:/usr/local/var/run/openvswitch/db.sock: database connection failed</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-13T22:08:46+08:00">
-                2019-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SDN/" itemprop="url" rel="index">
-                    <span itemprop="name">SDN</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/03/13/ovs-vsctl-unix-usr-local-var-run-openvswitch-db-sock-database-connection-failed/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/13/ovs-vsctl-unix-usr-local-var-run-openvswitch-db-sock-database-connection-failed/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  99
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          问题描述在OpenvSwitch中执行ovs-vsctl show命令时，出现如下错误提示：
-
-
-ovs-vsctl: unix:/usr/local/var/run/openvswitch/db.sock: database connection failed
-解决方法在每次重启开机之后执行如下命令：
-
-
-ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock \
-                 --remote=db:Open_vSwitch,Open_vSwitch,manager_options \
-   
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/13/ovs-vsctl-unix-usr-local-var-run-openvswitch-db-sock-database-connection-failed/#espandi" rel="contents">
+            <a class="btn" href="/2019/03/14/Ubuntu16-04安装OpenDaylight-Carbon/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1517,7 +1510,7 @@ ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock \
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1539,7 +1532,7 @@ ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock \
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1625,7 +1618,7 @@ ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock \
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共53.3k字</span>
+  <span class="post-count">博客全站共53.6k字</span>
 </div>
 
         
