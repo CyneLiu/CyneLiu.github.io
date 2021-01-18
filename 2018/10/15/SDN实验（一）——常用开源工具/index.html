@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta name="google-site-verification" content="24POE5Oa-03aWJ5xwpS6MTPUZArUMr2M6xI_-4GE0Pg">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SDN,实验,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cyne's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="WiresharkWireshark这款网络数据包分析工具，在传统网络中就有很广泛的应用，这里就不再多说了，主要记录一下笔者之前没有发现的功能或使用方法。   OpenFlow数据包OpenFlow数据包主要包含五层，依次是：    Frame：物理层数据帧概况。Ethernet II：数据链路层以太网帧头部信息。Internet Protocol Version 4：互联网IP包头信息。tran">
+<meta name="keywords" content="SDN,实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDN实验（一）——常用开源工具">
+<meta property="og:url" content="https://cyneliu.github.io/2018/10/15/SDN实验（一）——常用开源工具/index.html">
+<meta property="og:site_name" content="Cyne&#39;s Blog">
+<meta property="og:description" content="WiresharkWireshark这款网络数据包分析工具，在传统网络中就有很广泛的应用，这里就不再多说了，主要记录一下笔者之前没有发现的功能或使用方法。   OpenFlow数据包OpenFlow数据包主要包含五层，依次是：    Frame：物理层数据帧概况。Ethernet II：数据链路层以太网帧头部信息。Internet Protocol Version 4：互联网IP包头信息。tran">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/10/15/5bc45614c9c99.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/15/5bc458630db61.png">
+<meta property="og:updated_time" content="2018-10-15T11:01:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SDN实验（一）——常用开源工具">
+<meta name="twitter:description" content="WiresharkWireshark这款网络数据包分析工具，在传统网络中就有很广泛的应用，这里就不再多说了，主要记录一下笔者之前没有发现的功能或使用方法。   OpenFlow数据包OpenFlow数据包主要包含五层，依次是：    Frame：物理层数据帧概况。Ethernet II：数据链路层以太网帧头部信息。Internet Protocol Version 4：互联网IP包头信息。tran">
+<meta name="twitter:image" content="https://i.loli.net/2018/10/15/5bc45614c9c99.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://cyneliu.github.io/2018/10/15/SDN实验（一）——常用开源工具/">
+
+
+
+
+
+  <title>SDN实验（一）——常用开源工具 | Cyne's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cyne's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是记录，亦是成长</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/10/15/SDN实验（一）——常用开源工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cyne Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyne's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SDN实验（一）——常用开源工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T16:38:43+08:00">
+                2018-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SDN/" itemprop="url" rel="index">
+                    <span itemprop="name">SDN</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/15/SDN实验（一）——常用开源工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/SDN实验（一）——常用开源工具/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Wireshark"><a href="#Wireshark" class="headerlink" title="Wireshark"></a>Wireshark</h1><p>Wireshark这款网络数据包分析工具，在传统网络中就有很广泛的应用，这里就不再多说了，主要记录一下笔者之前没有发现的功能或使用方法。  </p>
+<h2 id="OpenFlow数据包"><a href="#OpenFlow数据包" class="headerlink" title="OpenFlow数据包"></a>OpenFlow数据包</h2><p>OpenFlow数据包主要包含五层，依次是：  </p>
+<blockquote>
+<p><strong>Frame：</strong>物理层数据帧概况。<br><strong>Ethernet II：</strong>数据链路层以太网帧头部信息。<br><strong>Internet Protocol Version 4：</strong>互联网IP包头信息。<br><strong>transmission control protocol：</strong>传输层数据段头部信息，此处是TCP。<br><strong>OpenFlow：</strong>位于TCP协议之上，负责解析应用层。  </p>
+</blockquote>
+<h2 id="保存捕获的数据"><a href="#保存捕获的数据" class="headerlink" title="保存捕获的数据"></a>保存捕获的数据</h2><p>wireshark除了有“save”和“save as”的保存方式外，还提供特殊保存的方法（Export Specified）：</p>
+<blockquote>
+<p><strong>All packets:</strong>保存所有已抓取的数据包。<br><strong>Selected packets only:</strong>保存当前鼠标选中的数据包。<br><strong>Marked packets only:</strong>保存当前标记的数据包。标记数据包的方法是在数据包列表中选中目标数据包，然后右击选择“mark packet toggle”。<br><strong>First to last marked:</strong>则将两个标记数据包之间所有的数据包导出。<br><strong>Range:</strong>并输入数据包的编号范围，则将编号连续的数据包导出。<br><strong>Remove ignored packets:</strong>则放弃部分数据包并导出其他所有数据包。放弃数据包的方法是，在数据包列表中选中数据包，右击，选择“ignore packet toggle”。</p>
+</blockquote>
+<h1 id="性能测试工具iPerf和Netperf"><a href="#性能测试工具iPerf和Netperf" class="headerlink" title="性能测试工具iPerf和Netperf"></a>性能测试工具iPerf和Netperf</h1><h2 id="网络性能指标"><a href="#网络性能指标" class="headerlink" title="网络性能指标"></a>网络性能指标</h2><p>1、网络吞吐量：单位时间内通过某个网络（信道或接口）的数据量，吞吐量受网络的带宽或者网络的额定速率限制，单位通常表示为bit/s或bps。  </p>
+<p>2、网络延时：一个数据包从用户的计算机发送到网站服务器，然后再立即从网站服务器返回用户计算机的来回时间。影响网络延时的主要因素是路由的跳数和网络的流量。交换机延时（Latency）是指从交换机接收到数据包到开始向目的端口复制数据包之间的时间间隔。有许多因素会影响交换机延时大小，比如转发技术等等。  </p>
+<p>3、抖动：用于描述包在网络中的传输延时的变化，抖动越小，说明网络质量越稳定越好。抖动是评价一个网络性能的最重要的因素。  </p>
+<p>4、丢包率：理想状态下是发送了多少数据包就能接收到多少数据包，但是由于信号衰减、网络质量等诸多因素的影响并不能达到理想状态，而丢包率就是指测试中所丢失的数据包数量占所发送的数据包的比率。</p>
+<h2 id="iPerf"><a href="#iPerf" class="headerlink" title="iPerf"></a>iPerf</h2><p>iPerf 是一种网络性能测试工具，可以运行于Linux、BSD、Unix及Windows等操作系统。 iPerf具有多种参数和特性，支持协议、定时、缓冲区等参数的配置调整，能够测试TCP/UDP最大带宽、延迟抖动、数据包丢失等统计信息，可以根据需求采用不同的参数从而达到不同的测试目的。iPerf基于Server/Client的工作模式，如下图所示：  </p>
+<p><img src="https://i.loli.net/2018/10/15/5bc45614c9c99.png" alt="01.png"><br>客户端向服务端发送一定数量的数据，服务端统计并记录带宽、延时抖动等信息。客户端将数据全部发送后，服务端会回复一个数据包给客户端，将测试数据反馈给客户端。不过，如果网络较为拥塞或者误码率较高，客户端无法收到服务端回复的数据包，则只能显示本地记录的部分测试结果，所以服务端和客户端的测试结果可能有所不同。</p>
+<h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><blockquote>
+</blockquote>
+<pre><code>iperf [-s|-c host] [options]
+</code></pre><h4 id="客户端-服务端通用参数"><a href="#客户端-服务端通用参数" class="headerlink" title="客户端/服务端通用参数"></a>客户端/服务端通用参数</h4><blockquote>
+</blockquote>
+<pre><code>-f/—format  [kmKM]分别表示以Kbits, Mbits, KBytes, MBytes显示报告，默认以Mbits为单位
+-i/—interval  以秒为单位显示报告间隔
+-l/—len  读写的缓冲区大小，默认8KB
+-m/—print_mss  打印最大的TCP数据段大小 (MTU - TCP/IP header)
+-o/—output    将报告和错误信息输出到指定文件
+-p/—port    指定服务器端使用的端口或客户端所连接的端口
+-u/—udp    使用udp协议
+-w/—window    指定TCP窗口（socket缓冲区）大小，默认是8KB
+-B/—bind    绑定一个主机地址或接口
+-C/—compatibility    兼容旧版本（当server端和client端版本不一样时使用）
+-M/—mss    设置TCP最大数据段大小（MTU - 40 bytes）
+-N/—nodelay    设置无延迟TCP，禁用 Nagle’s Algorithm
+-V/—IPv6Version    设置传输Ipv6数据包
+</code></pre><h4 id="服务端参数"><a href="#服务端参数" class="headerlink" title="服务端参数"></a>服务端参数</h4><blockquote>
+</blockquote>
+<pre><code>-s/—server    服务器模式下运行
+-U/— single_udp    单线程UDP模式下运行
+-D/— daemon    以守护进程模式运行服务器
+</code></pre><h4 id="客户端参数"><a href="#客户端参数" class="headerlink" title="客户端参数"></a>客户端参数</h4><blockquote>
+</blockquote>
+<pre><code>-b/— bandwidth    对于UDP，使用bits/sec （默认 1 Mbit/sec, 亦即 -u）传送带宽
+-c/— client    运行为客户端，连接到“主机”
+-d/— dualtest    同步进行双向测试
+-n/— num    传输的字节量
+-r/— tradeoff    分别进行双向测试
+-t/— time    传输持续时间 （默认10 secs）
+-F/— fileinput    从文件中读取要传输的数据
+-I/— stdin    从标准输入（stdin）中读取要传输的数据
+-L/— listenport    双向测试接受端口
+-P/— parallel    并行客户线程数量
+-T/— ttl    多点传送的生存时间（默认1）
+</code></pre><h2 id="Netperf"><a href="#Netperf" class="headerlink" title="Netperf"></a>Netperf</h2><p>Netperf是一种网络性能测量工具，主要用于测试TCP或UDP和Berkeley套接字接口的批量数据传输（bulk data transfer）和请求/应答（request/reponse）性能。Netperf工具以Client/Server方式工作，如下图所示：  </p>
+<p><img src="https://i.loli.net/2018/10/15/5bc458630db61.png" alt="02.png"><br>服务端是netServer，用来侦听来自客户端的连接，客户端是netperf，用来向服务发起网络测试。在客户端与服务端之间，首先建立一个控制连接，传递有关测试配置的信息，以及测试的结果。在控制连接建立并传递了测试配置信息以后，客户端与服务端之间会再建立一个测试连接，用于来回传递特殊的流量，以测试网络的性能。当netServer在服务端启动后，就可在客户端运行netperf来测试网络的性能。netperf通过命令行参数来控制测试的类型和具体的测试选项，根据作用范围的不同，netperf的命令行参数可以分为两大类：全局命令行参数和测试相关的局部参数，两者之间使用—分隔。</p>
+<h3 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h3><blockquote>
+</blockquote>
+<pre><code>netperf [global options] —[test-specific options]
+</code></pre><h4 id="global-options"><a href="#global-options" class="headerlink" title="global options"></a>global options</h4><blockquote>
+</blockquote>
+<pre><code>-H host    指定远端运行netserver的server IP地址
+-l testlen    指定测试的时间长度（秒）
+-t testname    指定进行的测试类型（TCP_STREAM，UDP_STREAM，TCP_RR，TCP_CRR，UDP_RR）
+</code></pre><h4 id="test-specific-options"><a href="#test-specific-options" class="headerlink" title="test-specific options"></a>test-specific options</h4><blockquote>
+</blockquote>
+<pre><code>-s size    设置本地系统的socket发送与接收缓冲大小
+-S size    设置远端系统的socket发送与接收缓冲大小
+-m size    设置本地系统发送测试分组的大小
+-M size    设置远端系统接收测试分组的大小
+-D    对本地与远端系统的socket设置TCP_NODELAY选项
+-r req,resp    设置request和reponse分组的大小
+</code></pre><h1 id="Scapy"><a href="#Scapy" class="headerlink" title="Scapy"></a>Scapy</h1><p>Scapy是一个基于Python编写的交互式数据包处理程序，使用Python解释器作为命令面板。可以用来发送、嗅探、解析和伪造网络数据包，常常被用于网络攻击和测试。Scapy可以实现扫描、路由跟踪、探测、单元测试、攻击和发现网络等传统功能，也可以代替hping、arpspoof、arp-sk、arping、p0f，实现了部分Namp、Tcpdump和tshark的功能。它能够伪造或者解码大量的网络协议数据包，能够发送、捕捉、匹配请求和回复包等等。它可以很容易地处理一些典型操作，比如端口扫描，tracerouting，探测，单元测试，攻击或网络发现（可替代hping，NMAP，arpspoof，ARP-SK，arping，tcpdump，tethereal，P0F等）。最重要的他还有很多更优秀的特性——发送无效数据帧、注入修改的802.11数据帧、在WEP上解码加密通道（VOIP）、ARP缓存攻击（VLAN）等，这也是其他工具无法处理完成的。  </p>
+<p>Scapy有其他网络工具无法匹敌的优势，在大多数工具无法完成的任务中也有出色表现，比如发送无效帧、添加自定义的802.11帧、多技术结合等。其实，Scapy的理念非常简单，主要负责定义、发送和接收报文。用户利用Scapy定义一系列报文，接着发送这些报文，然后会收到回应，Scapy将收到的回应与请求匹配，返回到存放报文对（请求，回应）的列表和没有匹配报文的列表。  </p>
+<p>Scapy不仅可以进行交互式数据包处理，还可以作为Python模块在Python程序中使用。需要注意的是，无论是交互式数据处理还是在Python代码中使用，都需要基于root权限。  </p>
+<p>Scapy既然是第三方库，系统上默认是没有安装的。在Ubuntu下，我们可以直接使用命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo apt-get install scapy
+</code></pre><p>进行安装，安装完成以后，只需要在终端下执行sudo scapy就可以进入Scapy的命令行模式。  </p>
+<p>Scapy常用功能:</p>
+<blockquote>
+<p>1、conf：查看配置信息<br>2、lsc()：查看支持的指令集<br>3、ls()：查看实现的网络协议。ls()中携带的参数可以是任何的一个具体的包，常用的有ARP、Ether、ICMP、IP、UDP、TCP，也支持SNMP、DHCP、STP等。<br>4、IP模块的使用:</p>
+<blockquote>
+<p>我们可以像在Python中一样实例化一个IP对象:</p>
+<blockquote>
+<p>data = IP()<br>data<br>    <ip><br>也可以传入需要自定义的参数:</ip></p>
+</blockquote>
+<blockquote>
+<p>data = IP(dst=”172.16.2.79”)<br>data<br>    <ip dst="172.16.2.79"><br>查看 IP 模块对象的所有信息:</ip></p>
+</blockquote>
+<blockquote>
+<p>data = IP()<br>data.show() </p>
+</blockquote>
+</blockquote>
+</blockquote>
+<pre><code>###[ IP ]### 
+version= 4 
+ihl= None 
+tos= 0x0 
+len= None 
+id= 1 
+flags= 
+frag= 0 
+ttl= 64 
+proto= ip 
+chksum= None 
+src= 127.0.0.1 
+dst= 127.0.0.1 
+\options\
+</code></pre><blockquote>
+<p>5、发送和接收报文：<br>可以将上面的 IP 对象封装成一个数据包发送出去。</p>
+<blockquote>
+<p>send：在第三层发送数据包，但没有接收功能。</p>
+<blockquote>
+<p>send(data, iface=”eth0”)<br>    .<br>    Sent 1 packets.<br>sendp：在第二层发送数据包，同样没有接收功能。<br>sr：在第三层发送数据包，有接收功能。<br>sr1：在第三层发送数据包，有接收功能，但只接收第一个包。<br>srp：在第二层发送数据包，有接收功能。<br>srp1：在第二层发送数据包，有接收功能，但只接收第一个包。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="HTTP请求测试工具Postman"><a href="#HTTP请求测试工具Postman" class="headerlink" title="HTTP请求测试工具Postman"></a>HTTP请求测试工具Postman</h1><p>Postman是Google开发的一款功能强大的网页调试与发送网页HTTP请求，并能运行测试用例的的Chrome插件。其主要功能包括：<br>模拟各种HTTP requests：</p>
+<blockquote>
+<p>从常用的GET、POST到RESTful的PUT、DELETE等等。甚至还可以发送文件、送出额外的header。</p>
+</blockquote>
+<p>Collection功能（测试集合）:</p>
+<blockquote>
+<p>Collection是requests的集合，在做完一个测试的时候，你可以把这次的 request 存到特定的 Collection 里面，如此一来，下次要做同样的测试时，就不需要重新输入。而且一个collection可以包含多条request，如果我们把一个request当成一个test case，那collection就可以看成是一个test suite。通过collection的归类，我们可以良好的分类测试软件所提供的API。而且 Collection还可以Import或是Share出来，让团队里面的所有人共享你建立起来的Collection。</p>
+</blockquote>
+<p>人性化的Response整理:</p>
+<blockquote>
+<p>一般在用其他工具来测试的时候，response的内容通常都是纯文字的raw，但如果是JSON，就是塞成一整行的JSON。这会造成阅读的障碍，而Postman可以针对response内容的格式自动美化。JSON、XML或是HTML都会整理成我们可以阅读的格式。</p>
+</blockquote>
+<p>内置测试脚本语言:</p>
+<blockquote>
+<p>Postman支持编写测试脚本，可以快速的检查request的结果，并返回测试结果。</p>
+</blockquote>
+<p>设定变量与环境</p>
+<blockquote>
+<p>Postman可以自由设定变量与环境，一般我们在编辑request，校验response的时候，总会需要重复输入某些字符，比如url，postman允许我们设定变量来保存这些值。并且把变量保存在不同的环境中。比如，我们可能会有多种环境，development、staging或local，而这几种环境中的request URL也各不相同，但我们可以在不同的环境中设定同样的变量，只是变量的值不一样，这样我们就不用修改我们的测试脚本，而测试不同的环境。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SDN/" rel="tag"><i class="fa fa-tag"></i> SDN</a>
+          
+            <a href="/tags/实验/" rel="tag"><i class="fa fa-tag"></i> 实验</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/13/一键安装-Caddy-PHP7-Sqlite3-环境/" rel="next" title="一键安装 Caddy+PHP7+Sqlite3 环境">
+                <i class="fa fa-chevron-left"></i> 一键安装 Caddy+PHP7+Sqlite3 环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/16/SDN实验（二）——Open-vSwitch/" rel="prev" title="SDN实验（二）——Open vSwitch">
+                SDN实验（二）——Open vSwitch <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Cyne Liu">
+            
+              <p class="site-author-name" itemprop="name">Cyne Liu</p>
+              <p class="site-description motion-element" itemprop="description">越努力，越幸运!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:max.lxw@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                个人站点
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://pan.cyne.workers.dev/" title="GoDrive" target="_blank">GoDrive</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Wireshark"><span class="nav-number">1.</span> <span class="nav-text">Wireshark</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenFlow数据包"><span class="nav-number">1.1.</span> <span class="nav-text">OpenFlow数据包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存捕获的数据"><span class="nav-number">1.2.</span> <span class="nav-text">保存捕获的数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能测试工具iPerf和Netperf"><span class="nav-number">2.</span> <span class="nav-text">性能测试工具iPerf和Netperf</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络性能指标"><span class="nav-number">2.1.</span> <span class="nav-text">网络性能指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iPerf"><span class="nav-number">2.2.</span> <span class="nav-text">iPerf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令格式"><span class="nav-number">2.2.1.</span> <span class="nav-text">命令格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端-服务端通用参数"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">客户端/服务端通用参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端参数"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">服务端参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端参数"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">客户端参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Netperf"><span class="nav-number">2.3.</span> <span class="nav-text">Netperf</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令格式-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">命令格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#global-options"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">global options</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#test-specific-options"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">test-specific options</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Scapy"><span class="nav-number">3.</span> <span class="nav-text">Scapy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP请求测试工具Postman"><span class="nav-number">4.</span> <span class="nav-text">HTTP请求测试工具Postman</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cyne</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共55.6k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'rdhEUS7vxXOUb71VRL8Lw1qO-gzGzoHsz',
+        appKey: 'GrnjdE7SsscW5qUERVHtI4Ha',
+        placeholder: '看了这么多，说点什么吧😉',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

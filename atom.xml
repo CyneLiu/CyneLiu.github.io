@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Cyne&#39;s Blog</title>
+  
+  <subtitle>是记录，亦是成长</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://cyneliu.github.io/"/>
+  <updated>2021-01-15T06:30:37.973Z</updated>
+  <id>https://cyneliu.github.io/</id>
+  
+  <author>
+    <name>Cyne Liu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RHEL使用CentOS的yum源</title>
+    <link href="https://cyneliu.github.io/2021/01/15/RHEL%E4%BD%BF%E7%94%A8CentOS%E7%9A%84yum%E6%BA%90/"/>
+    <id>https://cyneliu.github.io/2021/01/15/RHEL使用CentOS的yum源/</id>
+    <published>2021-01-15T02:42:08.000Z</published>
+    <updated>2021-01-15T06:30:37.973Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h1><p>RHEL 7.7</p><h1 id="删除RHEL自带yum"><a href="#删除RHEL自带yum" class="headerlink" title="删除RHEL自带yum"></a>删除RHEL自带yum</h1><blockquote></blockquote><pre><code>rpm -qa | grep yumrpm -qa | grep yum | xargs rpm -e --nodeps</code></pre><p><img src="https://i.loli.net/2021/01/15/3zTJoPNOxGujUlr.png" alt="01.png"></p><h1 id="安装CentOS的yum"><a href="#安装CentOS的yum" class="headerlink" title="安装CentOS的yum"></a>安装CentOS的yum</h1><p>访问阿里或网易等镜像源，下载对应版本的CentOS yum安装包，我使用的是阿里的：</p><blockquote><p><a href="http://mirrors.aliyun.com/centos/7/os/x86_64/Packages/" target="_blank" rel="noopener">http://mirrors.aliyun.com/centos/7/os/x86_64/Packages/</a></p></blockquote><p>下载如图所示的4个rpm包：<br><img src="https://i.loli.net/2021/01/15/PkpujiVMSY6RXdB.png" alt="03.png"></p><p>已下载的rpm包：<br><img src="https://i.loli.net/2021/01/15/LT7ZdA4Xywe9WNi.png" alt="04.png"></p><p>安装刚刚下载的rpm包，他们之间有依赖关系，推荐一起安装</p><blockquote></blockquote><pre><code>rpm -ivh yum-3.4.3-168.el7.centos.noarch.rpm yum-metadata-parser-1.1.4-10.el7.x86_64.rpm yum-rhn-plugin-2.0.1-10.el7.noarch.rpm yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch.rpm </code></pre><p><img src="https://i.loli.net/2021/01/15/67JdUeACOsvZyLo.png" alt="05.png"></p><p><img src="https://i.loli.net/2021/01/15/WJgABKOtQM5xno4.png" alt="02.png"></p><h1 id="下载repo并修改"><a href="#下载repo并修改" class="headerlink" title="下载repo并修改"></a>下载repo并修改</h1><p>yum安装后，下载对应版本CentOS的repo文件，同样在阿里镜像站下载：</p><blockquote><p><a href="http://mirrors.aliyun.com/repo/" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/</a></p></blockquote><p><img src="https://i.loli.net/2021/01/15/j4GIMhzrsvJAW1S.png" alt="06.png"></p><p>需要注意的是这时候还不能直接使用yum安装软件，安装时会有如下错误：<br><img src="https://i.loli.net/2021/01/15/vp27FLhcKj1rMJ3.png" alt="07.png"></p><p>原因是因为repo文件中CentOS是直接取的是releasever的值，这里我们手动修改为对应的CentOS版本的值就可以了，如我这里修改为7，直接在vim编辑器中进行全文替换：</p><blockquote></blockquote><pre><code>:%s/$releasever/7/</code></pre><p><img src="https://i.loli.net/2021/01/15/efwE13o8JOY7mlF.png" alt="08.png"></p><p>使用yum安装软件可正常安装：</p><p><img src="https://i.loli.net/2021/01/15/cTAK52rkMmj1HE6.png" alt="09.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;版本信息&quot;&gt;&lt;a href=&quot;#版本信息&quot; class=&quot;headerlink&quot; title=&quot;版本信息&quot;&gt;&lt;/a&gt;版本信息&lt;/h1&gt;&lt;p&gt;RHEL 7.7&lt;/p&gt;
+&lt;h1 id=&quot;删除RHEL自带yum&quot;&gt;&lt;a href=&quot;#删除RHEL自带yum&quot; class
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/categories/Linux/"/>
+    
+    
+      <category term="RHEL" scheme="https://cyneliu.github.io/tags/RHEL/"/>
+    
+      <category term="yum源" scheme="https://cyneliu.github.io/tags/yum%E6%BA%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ventoy——N合一U盘装机神器</title>
+    <link href="https://cyneliu.github.io/2020/08/30/Ventoy%E2%80%94%E2%80%94N%E5%90%88%E4%B8%80U%E7%9B%98%E8%A3%85%E6%9C%BA%E7%A5%9E%E5%99%A8/"/>
+    <id>https://cyneliu.github.io/2020/08/30/Ventoy——N合一U盘装机神器/</id>
+    <published>2020-08-30T04:10:00.000Z</published>
+    <updated>2020-08-30T09:06:11.010Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Ventoy简介"><a href="#Ventoy简介" class="headerlink" title="Ventoy简介"></a>Ventoy简介</h1><p><strong>官网介绍：</strong>Ventoy是一个制作可启动U盘的开源工具。有了Ventoy你就无需反复地格式化U盘，你只需要把ISO/WIM/IMG/EFI文件拷贝到U盘里面就可以启动了，无需其他操作。 你可以一次性拷贝很多个不同类型的ISO文件，在启动时Ventoy会显示一个菜单来选择。 无差异支持Legacy BIOS和UEFI模式。目前已经测试了各类超过470+个ISO文件。同时提出了”Ventoy Compatible”的概念，若被支持则理论上可以启动任何ISO文件。<br><img src="https://i.loli.net/2020/08/30/YydJIkWMUlaQnfA.png" alt="screen_bios2.png"><br>一句话概括就是可以用一个U盘制作成支持多种系统的启动盘，比如windows、linux以及ESXI等等等等，对于博主这种经常需要进机房装各种系统的人是很方便了。</p><h1 id="制作Ventoy启动盘"><a href="#制作Ventoy启动盘" class="headerlink" title="制作Ventoy启动盘"></a>制作Ventoy启动盘</h1><p>制作Ventoy U盘的话跟其它的PE工具类似，双击打开程序选择自己的U盘进行制作就可以了。  </p><blockquote></blockquote><p>Ventoy官方下载地址：<a href="https://www.ventoy.net/cn/download.html" target="_blank" rel="noopener">www.ventoy.net</a><br>一些相关的使用说明及插件使用等，感兴趣的朋友可以直接参考。</p><h1 id="定制自己的Ventoy"><a href="#定制自己的Ventoy" class="headerlink" title="定制自己的Ventoy"></a>定制自己的Ventoy</h1><p>因为Ventoy的启动菜单是基于grub的，所以理论上Ventoy对所有的grub主题都是可以支持的，其实主题修改在官方文档写的很清楚，但是因为我当时没有好好看上文所以折腾了一会时间，这里简单记录一下。  </p><h2 id="下载Ventoy并制作U盘"><a href="#下载Ventoy并制作U盘" class="headerlink" title="下载Ventoy并制作U盘"></a>下载Ventoy并制作U盘</h2><p>详细步骤略，大家都会。</p><h2 id="挑选下载grub主题"><a href="#挑选下载grub主题" class="headerlink" title="挑选下载grub主题"></a>挑选下载grub主题</h2><p>我们可以在官网推荐的<a href="https://www.gnome-look.org/browse/cat/109/order/latest/" target="_blank" rel="noopener">这个网站</a>,挑选一个自己喜欢的grub主题下载到本地并解压。<br>然后我们需要在制作好的U盘分区下创建一个”ventoy”目录，其实这个目录我们下载的ventoy压缩包里就已经包含了这个目录及全局配置文件等，我们可以直接拷贝到U盘并做一些简单的修改就好了。<br><img src="https://i.loli.net/2020/08/30/tQPuloOvsLaeR6K.png" alt="01.png"><br>可以看到这个ventoy目录下已经有主题目录及ventoy.json文件，也就是全局配置文件等，我们把这个目录拷贝到U盘后，用刚才下载的主题目录替换掉原本的主题。<br><img src="https://i.loli.net/2020/08/30/hjTRi75b1v2Pu9W.png" alt="02.png"></p><h2 id="修改全局配置文件"><a href="#修改全局配置文件" class="headerlink" title="修改全局配置文件"></a>修改全局配置文件</h2><p>修改U盘中主题的theme.txt的绝对目录为正确目录后，主题就应用成功了。<br><img src="https://i.loli.net/2020/08/30/TevCoaAfiDKIYHg.png" alt="03.png"><br>同时菜单栏也支持设置别名和ICON等，可以参考官方说明进行相应的修改。<br>最后附上我修改之后的Ventoy样式：<br><img src="https://i.loli.net/2020/08/30/nWBOjzRQroKPtl5.png" alt="04.png"><br>启动菜单的背景可以通过修改主题的theme.txt中的”desktop-image”参数修改。</p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.ventoy.net/cn/doc_news.html" target="_blank" rel="noopener">https://www.ventoy.net/cn/doc_news.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Ventoy简介&quot;&gt;&lt;a href=&quot;#Ventoy简介&quot; class=&quot;headerlink&quot; title=&quot;Ventoy简介&quot;&gt;&lt;/a&gt;Ventoy简介&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;官网介绍：&lt;/strong&gt;Ventoy是一个制作可启动U盘的开源工具。有了
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="Ventoy" scheme="https://cyneliu.github.io/tags/Ventoy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>交换机的堆叠配置</title>
+    <link href="https://cyneliu.github.io/2020/08/20/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%A0%86%E5%8F%A0%E9%85%8D%E7%BD%AE/"/>
+    <id>https://cyneliu.github.io/2020/08/20/交换机的堆叠配置/</id>
+    <published>2020-08-20T14:15:27.000Z</published>
+    <updated>2020-08-23T04:27:23.798Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="交换机堆叠技术"><a href="#交换机堆叠技术" class="headerlink" title="交换机堆叠技术"></a>交换机堆叠技术</h1><p>交换机堆叠，通俗讲就是将多台交换机“合体”，堆叠后的交换机从逻辑上可视作一台交换机。目前各大网络厂商分别拥有各自的交换机堆叠技术，比如华为的iStack（Intelligent Stack）和CSS、华三的IRF（Intelligent Resilient Framework，智能弹性架构）以及思科的StackWise等等。</p><h1 id="配置案例"><a href="#配置案例" class="headerlink" title="配置案例"></a>配置案例</h1><h2 id="华为iStack"><a href="#华为iStack" class="headerlink" title="华为iStack"></a>华为iStack</h2><p>推荐在配置堆叠前先不要连接堆叠线<br><strong>SW-A-MASTER</strong></p><blockquote></blockquote><p>stack  #进入堆叠管理视图<br>stack member 1 domain 1  #设置堆叠成员的成员ID和domain ID<br>stack member 1 priority 200  #设置堆叠优先级,值越大优先级越高<br>interface stack-port 1/1  #配置堆叠端口<br>port member-group interface 40GE 1/0/1<br>commit<br>save<br>reboot  </p><p><strong>SW-B-SLAVE</strong></p><blockquote></blockquote><p>stack<br>stack member 1 renumber 2 inherit-config<br>保存并重启<br>stack member 2 domain 1<br>stack member 1 priority 100 #因还未重启,所以使用当前member1配置<br>interface stack-port 2/1<br>port member-group interface 40GE 1/0/1<br>commit<br>save</p><p>连接堆叠线，堆叠线连接后优先级低的设备会自动重启，重启后查看堆叠是否成功</p><blockquote></blockquote><p>display stack</p><ul><li>因为修改堆叠成员ID时指定了inherit-config参数，所以SW-B重启后会继承member 1的堆叠配置；如果不指定inherit-config参数，那么SW-B重启后不会继承member 1的堆叠配置，需要使用member 2重新进行堆叠配置。  </li></ul><h2 id="华三IRF"><a href="#华三IRF" class="headerlink" title="华三IRF"></a>华三IRF</h2><p>推荐在配置堆叠前先不要连接堆叠线<br><strong>SW-A-MASTER</strong></p><blockquote></blockquote><p>irf member 1 priority 10<br>int range FortyGigE 1/0/53 FortyGigE 1/0/54<br>shutdown<br>irf-port 1/2<br>port group int FortyGigE 1/0/53<br>port group int FortyGigE 1/0/54<br>irf-port-configuration active<br>int range FortyGigE 1/0/53 FortyGigE 1/0/54<br>undo shutdown<br>save</p><p><strong>SW-B-SLAVE</strong></p><blockquote></blockquote><p>irf member 1 renumber 2<br>reboot<br>int range FortyGigE 2/0/53 FortyGigE 2/0/54<br>shutdown<br>irf-port 2/1  #两台交换机的索引不能相同<br>port group int FortyGigE 2/0/53<br>port group int FortyGigE 2/0/54<br>irf-port-configuration active<br>int range FortyGigE 2/0/53 FortyGigE 2/0/54<br>undo shutdown<br>save</p><p>连接堆叠线，堆叠线连接后优先级低的设备会自动重启，重启后查看堆叠是否成功</p><blockquote></blockquote><p>display irf<br><img src="https://i.loli.net/2020/08/22/hjtXGAnYZoQKiCE.png" alt="irf.png"></p><ul><li>华三交换机两台交换机的索引号不能一致，如实例中SW-A的irf-port如果是1/1,那SW-B的irf就不能是2/1。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;交换机堆叠技术&quot;&gt;&lt;a href=&quot;#交换机堆叠技术&quot; class=&quot;headerlink&quot; title=&quot;交换机堆叠技术&quot;&gt;&lt;/a&gt;交换机堆叠技术&lt;/h1&gt;&lt;p&gt;交换机堆叠，通俗讲就是将多台交换机“合体”，堆叠后的交换机从逻辑上可视作一台交换机。目前各大网络厂商
+      
+    
+    </summary>
+    
+      <category term="网络" scheme="https://cyneliu.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="交换机堆叠" scheme="https://cyneliu.github.io/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%A0%86%E5%8F%A0/"/>
+    
+      <category term="iStack" scheme="https://cyneliu.github.io/tags/iStack/"/>
+    
+      <category term="IRF" scheme="https://cyneliu.github.io/tags/IRF/"/>
+    
+      <category term="StackWise" scheme="https://cyneliu.github.io/tags/StackWise/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用kvm制作qcow2格式镜像</title>
+    <link href="https://cyneliu.github.io/2020/06/18/%E5%88%A9%E7%94%A8kvm%E5%88%B6%E4%BD%9Cqcow2%E6%A0%BC%E5%BC%8F%E9%95%9C%E5%83%8F/"/>
+    <id>https://cyneliu.github.io/2020/06/18/利用kvm制作qcow2格式镜像/</id>
+    <published>2020-06-18T11:51:08.000Z</published>
+    <updated>2020-06-19T07:58:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="准备KVM环境"><a href="#准备KVM环境" class="headerlink" title="准备KVM环境"></a>准备KVM环境</h1><p>首先需要转杯KVM的环境，本文使用的是CentOS桌面版，因为没有现成的物理机环境，所以是在ESXI上创建的虚拟机，而由于是虚拟机，所以涉及潜逃虚拟化的问题，需要开启虚拟机的cpu虚拟化支持。<br>登录ESXI的web端，首先将虚拟机关机，然后编辑虚拟机设置，在cpu设置下勾选“硬件虚拟化”支持。<br><img src="https://i.loli.net/2020/06/18/pxbu9JKwcyGrQ7i.png" alt="01.png"><br>开启后打开虚拟机，确认虚机已开启cpu虚拟化：</p><blockquote></blockquote><pre><code>egrep -o &apos;(vmx|svm)&apos; /proc/cpuinfolscpu | grep Virtualization</code></pre><p><img src="https://i.loli.net/2020/06/19/GAIFXMONC2ljpBZ.png" alt="02.png"><br><img src="https://i.loli.net/2020/06/19/wpykr8s7O9I2UgB.png" alt="03.png"></p><h1 id="使用kvm创建虚拟机"><a href="#使用kvm创建虚拟机" class="headerlink" title="使用kvm创建虚拟机"></a>使用kvm创建虚拟机</h1><p>安装virt-manager:</p><blockquote></blockquote><p>yum -y install virt-install<br>yum -y install virt-manager</p><p>安装完成后执行在终端执行virt-manager，打开虚拟机管理器：<br><img src="https://i.loli.net/2020/06/19/ycO5v7oABqgewj4.png" alt="04.png"><br>环境安装好后将下载好的操作系统镜像上传至环境种中，上传后使用虚拟机管理器创建kvm虚拟机：<br><img src="https://i.loli.net/2020/06/19/FEUBC1t4aHQ7cNe.png" alt="05.png"><br><img src="https://i.loli.net/2020/06/19/QdTmZr8qGkcIySH.png" alt="06.png"><br><img src="https://i.loli.net/2020/06/19/G9QRp3eE8rT1BAa.png" alt="07.png"></p><h1 id="压缩qcow2镜像大小"><a href="#压缩qcow2镜像大小" class="headerlink" title="压缩qcow2镜像大小"></a>压缩qcow2镜像大小</h1><p>kvm虚机安装完成后,登录虚机对虚拟机系统剩余空间进行写零操作：</p><blockquote></blockquote><p>dd if=/dev/zero of=/zero.dat<br>rm /zero.dat</p><p>关闭虚拟机，进入虚拟机存放目录下对原镜像进行转换压缩：</p><blockquote></blockquote><p>cd /var/lib/libvirt/images/<br>qemu-img convert -c -O qcow2 /path/old_image.qcow2 new_image.qcow2 #根据实际情况替换实际目录及文件名</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;准备KVM环境&quot;&gt;&lt;a href=&quot;#准备KVM环境&quot; class=&quot;headerlink&quot; title=&quot;准备KVM环境&quot;&gt;&lt;/a&gt;准备KVM环境&lt;/h1&gt;&lt;p&gt;首先需要转杯KVM的环境，本文使用的是CentOS桌面版，因为没有现成的物理机环境，所以是在ESXI
+      
+    
+    </summary>
+    
+      <category term="虚拟化" scheme="https://cyneliu.github.io/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+    
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
+    
+      <category term="kvm" scheme="https://cyneliu.github.io/tags/kvm/"/>
+    
+      <category term="qcow2" scheme="https://cyneliu.github.io/tags/qcow2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Dell服务器iDRAC虚拟控制台无法连接问题解决方法</title>
+    <link href="https://cyneliu.github.io/2020/05/12/Dell%E6%9C%8D%E5%8A%A1%E5%99%A8iDRAC%E8%99%9A%E6%8B%9F%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>https://cyneliu.github.io/2020/05/12/Dell服务器iDRAC虚拟控制台无法连接问题解决方法/</id>
+    <published>2020-05-12T05:52:00.000Z</published>
+    <updated>2020-05-12T06:42:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天配置10台Dell R720服务器的iDRAC服务之后，远程连接的时候发现出现部分服务器虚拟控制台连接不上的问题，尝试了网上了一些解决方法之后，最后通过升级iDRAC固件的方式解决了问题，在此记录一下，供参考。</p><h1 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h1><p>虚拟控制台连接是报错：查看器已终止。原因：网络连接中断<br><img src="https://i.loli.net/2020/05/12/WGVHlADTrBjzspy.png" alt="01.png"></p><h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>因为10台服务器有的可以正常连接，所以对比了一下配置，发现可以访问的服务器iDRAC固件版本是”2.52.52.52”，而出现以上报错的固件版本是”1.57.57 (Build 04)”，所以尝试升级固件版本，升级的具体操作如下。</p><h2 id="下载固件文件"><a href="#下载固件文件" class="headerlink" title="下载固件文件"></a>下载固件文件</h2><p>我下载的固件是带Lifecycle Controller的IDRAC 2.52.52.52，iDRAC固件升级文件名称前缀通常为：iDRAC-with-Lifecycle-Controller_Firmware  </p><p>如果没有特殊需要可以直接下载我更新的这个版本：<br><a href="https://dl.dell.com/FOLDER04830661M/1/iDRAC-with-Lifecycle-Controller_Firmware_1YCHC_WN64_2.52.52.52_A00.EXE" target="_blank" rel="noopener">iDRAC-with-Lifecycle-Controller_Firmware_1YCHC_WN64_2.52.52.52_A00.EXE</a></p><h2 id="上传固件"><a href="#上传固件" class="headerlink" title="上传固件"></a>上传固件</h2><p>下载后登录iDRAC的web界面，在左侧菜单栏点击iDRAC设置-更新和回滚，更新文件选择本地下载的升级文件，并点击“上载”按钮上传。<br><img src="https://i.loli.net/2020/05/12/mb5GiXqFOA3Bcp2.png" alt="02.png"></p><h2 id="安装固件"><a href="#安装固件" class="headerlink" title="安装固件"></a>安装固件</h2><p>上传完成后勾选上传的固件后点击“安装”安装固件<br><img src="https://i.loli.net/2020/05/12/Y6l9qxR2UItuTnw.png" alt="03.png"><br>点击作业队列可查看安装进度<br><img src="https://i.loli.net/2020/05/12/FawbZBtRcWA7Xhe.png" alt="04.png"><br>更新完成后状态会显示为compelete状态，再次打开虚拟控制台，连接成功。<br><img src="https://i.loli.net/2020/05/12/GVkBRn5L3bgZqie.png" alt="05.png"></p><h1 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h1><p><a href="https://www.dell.com/support/article/zh-cn/sln307185/%E4%BD%BF%E7%94%A8idrac-web%E7%95%8C%E9%9D%A2%E6%9B%B4%E6%96%B0idrac%E5%9B%BA%E4%BB%B6?lang=zh" target="_blank" rel="noopener">https://www.dell.com/support/article/zh-cn/sln307185/%E4%BD%BF%E7%94%A8idrac-web%E7%95%8C%E9%9D%A2%E6%9B%B4%E6%96%B0idrac%E5%9B%BA%E4%BB%B6?lang=zh</a><br><a href="https://cyneliu.gitee.io/2019/06/21/IBM%E6%9C%8D%E5%8A%A1%E5%99%A8IMM%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">https://cyneliu.gitee.io/2019/06/21/IBM%E6%9C%8D%E5%8A%A1%E5%99%A8IMM%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天配置10台Dell R720服务器的iDRAC服务之后，远程连接的时候发现出现部分服务器虚拟控制台连接不上的问题，尝试了网上了一些解决方法之后，最后通过升级iDRAC固件的方式解决了问题，在此记录一下，供参考。&lt;/p&gt;
+&lt;h1 id=&quot;报错信息&quot;&gt;&lt;a href=&quot;#报
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="iDRAC" scheme="https://cyneliu.github.io/tags/iDRAC/"/>
+    
+      <category term="Dell" scheme="https://cyneliu.github.io/tags/Dell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GPT分区安装操作系统后无法引导启动</title>
+    <link href="https://cyneliu.github.io/2019/12/30/GPT%E5%88%86%E5%8C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%95%E5%AF%BC%E5%90%AF%E5%8A%A8/"/>
+    <id>https://cyneliu.github.io/2019/12/30/GPT分区安装操作系统后无法引导启动/</id>
+    <published>2019-12-30T11:51:43.000Z</published>
+    <updated>2020-01-02T06:38:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记得之前写过一篇<a href="https://cyneliu.gitee.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/" target="_blank" rel="noopener">《秒懂MBR和GPT分区表》</a>，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。  </p><p>然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终于发现了问题。  </p><h1 id="EFI分区"><a href="#EFI分区" class="headerlink" title="EFI分区"></a>EFI分区</h1><p>EFI系统分区（EFI system partition，简称ESP），是一个FAT16或FAT32格式的物理分区，但是其分区标识是EF (十六进制) 而非常规的0E或0C，因此，该分区在Windows操作系统下一般是不可见的。ESP分区在UEFI BIOS引导系统时使用，用来存储BIOS/EFI NAND芯片存储不下的那部分EFI扩展功能。支持EFI模式的电脑需要从ESP启动系统，EFI固件可从ESP加载EFI启动程序或应用，ESP是系统引导分区。</p><h1 id="MSR分区"><a href="#MSR分区" class="headerlink" title="MSR分区"></a>MSR分区</h1><p>MSR分区（Microsoft Reserved Partition，缩写MSR）即Microsoft 保留 (MSR) 分区。是每个 在GUID 分区表 (GPT) 上的 Windows操作系统（windows7以上）都要求的分区。系统组件可以将 MSR 分区的部分分配到新的分区以供它们使用。<br>MSR 分区的大小会因 GPT 磁盘的大小不同而发生变化。对于小于 16 GB 的磁盘，MSR 分区为 32 MB。对于大于 16 GB 的磁盘，MSR 分区为 128 MB。MSR 分区在“磁盘管理”中不可见，在Diskpart、Diskgenius等磁盘工具里可见，但是用户无法在 MSR 分区上存储或删除数据。</p><h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>我使用的PE是<a href="http://www.wepe.com.cn/" target="_blank" rel="noopener">WEPE</a>  </p><p>首先我们需要确认一下当前系统磁盘是GPT磁盘，如下图所示，如果之前装过操作系统的话我们打开分区助手应该是可以看到ESP和MSR这两个隐藏分区的，或者只有一个ESP分区，如果是新硬盘的话使用快速分区也可以自动生成这两个分区。<br><img src="https://i.loli.net/2019/12/31/Mw3tbGRjBvdr5yx.png" alt="00.png"></p><p>为了重现我之前遇到的问题，我们把系统分区和这两个隐藏分区都删掉，然后重建系统分区，然后按照BIOS+MBR的方式安装操作系统（这就是安装完系统无法引导的原因），其实Windows安装器在安装时也会有错误提示，EFI PART的灯是红色的，说明我们选择的引导驱动器并非EFI引导分区。</p><blockquote><p>UEFI+GPT方式安装操作系统时，不能像之前BIOS方式那样将引导分区设置为系统分区，而是需要设置为ESP分区。  </p></blockquote><p><img src="https://i.loli.net/2019/12/31/KHTAOxuNlICfm7v.png" alt="01.png"></p><p>所以我们需要手动去创建ESP和MSR分区，打开DiskGenius,选择未分配空间，创建新分区，文件系统类型选择“EFI system partition”,大小100M就可以了。<br><img src="https://i.loli.net/2019/12/31/1oxUQH8umG3yeV5.png" alt="02.png"><br>然后新建MSR分区，文件系统类型选择“Microsoft Reserved Partition”，大小128M。<br><img src="https://i.loli.net/2019/12/31/9XY7IAWwzbSF2Oe.png" alt="03.png"><br>然后在根据自己需要进行其它分区的配置，我这里因为使用的是虚拟机，硬盘比较少，只做演示。<br><img src="https://i.loli.net/2019/12/31/zC3OpMylkdYUmqi.png" alt="04.png"><br>分区完成后保存更改。再次打开Windows安装器，引导驱动器选择ESP分区，这时安装器就显示正常了。<br><img src="https://i.loli.net/2019/12/31/USf9ymFMxwpgqu5.png" alt="05.png"></p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://bbs.wuyou.net/forum.php?mod=viewthread&amp;tid=374959&amp;page=1" target="_blank" rel="noopener">MSR分区到底有什么功能</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;记得之前写过一篇&lt;a href=&quot;https://cyneliu.gitee.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/&quot; target=&quot;_blank&quot; rel=&quot;
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="GPT" scheme="https://cyneliu.github.io/tags/GPT/"/>
+    
+      <category term="重装系统" scheme="https://cyneliu.github.io/tags/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在ESXI镜像中集成第三方驱动</title>
+    <link href="https://cyneliu.github.io/2019/12/04/%E5%9C%A8ESXI%E9%95%9C%E5%83%8F%E4%B8%AD%E9%9B%86%E6%88%90%E7%AC%AC%E4%B8%89%E6%96%B9%E9%A9%B1%E5%8A%A8/"/>
+    <id>https://cyneliu.github.io/2019/12/04/在ESXI镜像中集成第三方驱动/</id>
+    <published>2019-12-04T01:56:19.000Z</published>
+    <updated>2020-10-16T12:17:02.398Z</updated>
+    
+    <content type="html"><![CDATA[<p>在使用VMware官方的ESXI6.0镜像在浪潮服务器安装时，安装程序发现不了RAID，服务器的具体型号是NF5270M5，在网上搜索了一下发现是驱动的问题，折腾了一上午终于搞定了，简单记录一下过程。</p><h1 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h1><ul><li>ESXi-Customizer-v2.7.2</li><li>RAID驱动</li><li>ESXI6.0镜像</li></ul><p>1.<strong>ESXi-Customizer</strong>，是一个专门用来向ESXI封装驱动的工具，下载地址可自行百度，也可以从我的百度云下载：<a href="https://pan.baidu.com/s/18328xWRZYN--UC27NwIRhA" target="_blank" rel="noopener">提取码：riel</a>。下载之后运行.exe文件解压出来就可以了，然后有一点需要注意的是win10无法运行（亲测win7是可以的），会报如下图所示的错误：<br><img src="https://i.loli.net/2019/12/04/mZ3H6b4suJgCvcl.png" alt="04.png"><br>解决方法很简单，用编辑器打开ESXi-Customizer.cmd，删除下面这行：</p><blockquote></blockquote><pre><code>if &quot;!WinVer!&quot; LSS &quot;5.1&quot; call :earlyFatal Unsupported Windows Version: !WinVer!. At least Windows XP is required &amp; exit /b 1</code></pre><p>再运行就正常了：<br><img src="https://i.loli.net/2019/12/04/pXlmDvcGjfSwdNP.png" alt="03.png"></p><p>2.下载驱动程序，下载驱动我们首先需要确定硬件的型号信息，开机进入RAID控制器查看RAID卡型号，然后到<a href="http://www.inspur.com/eportal/ui?pageId=2317460&amp;type=0" target="_blank" rel="noopener">浪潮官网</a>下载对应驱动。  </p><p>3.最后还需要准备一个ESXI镜像。</p><h1 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h1><p>1.解压下载的驱动程序文件，得到.vib文件。<br>2.运行ESXi-Customizer，第一项选择原始ESXI镜像，第二项选择驱动文件，第三项选择新镜像存放的位置，然后将“Enable…”取消勾选，点击RUN开始封装。<br><img src="https://i.loli.net/2019/12/04/KLkoDY72IzNjf8T.png" alt="05.png"></p><p>3.将封装好的镜像文件写入U盘，ok！</p><h1 id="添加网卡驱动-20201009更"><a href="#添加网卡驱动-20201009更" class="headerlink" title="添加网卡驱动(20201009更)"></a>添加网卡驱动(20201009更)</h1><h2 id="确认网卡型号等信息"><a href="#确认网卡型号等信息" class="headerlink" title="确认网卡型号等信息"></a>确认网卡型号等信息</h2><p>添加驱动首先要知道我们的硬件设备型号或其它等定位到具体驱动的信息，硬件设备的型号，大部分服务器在服务器带外管理中就可查看到硬件的详细型号信息。<br>也可以通过我们安装的ESXI来查找，安装好ESXI后，我们可以在配置-高级设置-配置直通中查看相应设备的VID和DID：<br><img src="https://i.loli.net/2020/10/16/R68ixJcVbhqyDrG.png" alt="02.png"><br>当然肯定还会有其它方式来查看到硬件型号信息，如果有更好的方式欢迎留言分享。</p><h2 id="查找驱动"><a href="#查找驱动" class="headerlink" title="查找驱动"></a>查找驱动</h2><p>在VMware的官方网站上查找我们的硬件驱动，打开VMware兼容性列表的官方：<a href="http://www.vmware.com/resources/compatibility/search.php" target="_blank" rel="noopener">http://www.vmware.com/resources/compatibility/search.php</a>，选择IO Devices<br><img src="https://i.loli.net/2020/10/16/kMl59tgWnimoCbY.png" alt="01.png"><br>可以通过左边的ESXI版本、供应商、设备类型来找到该网卡的，但是更为便捷的方式是在右侧输入产品的VID（供应商ID）和DID(设备ID)还快速定位到该网卡。  </p><p><img src="https://i.loli.net/2020/10/16/51Y7Mce9hjOdrxK.png" alt="03.png"><br>输入ID后搜索并下载相应型号设备的相应版本驱动即可。<br><img src="https://i.loli.net/2020/10/16/ECTzjg7QYuOUtaZ.png" alt="04.png"></p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.51cto.com/huanwenli/1749298" target="_blank" rel="noopener">https://blog.51cto.com/huanwenli/1749298</a><br><a href="https://vibsdepot.v-front.de/wiki/index.php/Welcome" target="_blank" rel="noopener">https://vibsdepot.v-front.de/wiki/index.php/Welcome</a><br><a href="https://vmware.lenovo.com/content/custom_iso/" target="_blank" rel="noopener">https://vmware.lenovo.com/content/custom_iso/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在使用VMware官方的ESXI6.0镜像在浪潮服务器安装时，安装程序发现不了RAID，服务器的具体型号是NF5270M5，在网上搜索了一下发现是驱动的问题，折腾了一上午终于搞定了，简单记录一下过程。&lt;/p&gt;
+&lt;h1 id=&quot;工具准备&quot;&gt;&lt;a href=&quot;#工具准备&quot; cl
+      
+    
+    </summary>
+    
+      <category term="虚拟化" scheme="https://cyneliu.github.io/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+    
+      <category term="ESXI" scheme="https://cyneliu.github.io/tags/ESXI/"/>
+    
+      <category term="iso" scheme="https://cyneliu.github.io/tags/iso/"/>
+    
+      <category term="驱动" scheme="https://cyneliu.github.io/tags/%E9%A9%B1%E5%8A%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>华为交换机console口密码重置</title>
+    <link href="https://cyneliu.github.io/2019/10/24/%E5%8D%8E%E4%B8%BA%E4%BA%A4%E6%8D%A2%E6%9C%BAconsole%E5%8F%A3%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/"/>
+    <id>https://cyneliu.github.io/2019/10/24/华为交换机console口密码重置/</id>
+    <published>2019-10-24T08:33:31.000Z</published>
+    <updated>2019-10-24T09:38:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="设置console密码"><a href="#设置console密码" class="headerlink" title="设置console密码"></a>设置console密码</h1><p>因为之前已经把console密码删掉了，为了重现一下，重新设置一下console密码：</p><blockquote></blockquote><pre><code>&lt;HUAWEI&gt; system-view[HUAWEI] user-interface console 0[HUAWEI-ui-console0] authentication-mode password[HUAWEI-ui-console0] set authentication password cipher Huawei@123[HUAWEI-ui-console0] return&lt;HUAWEI&gt; save</code></pre><h1 id="密码重置"><a href="#密码重置" class="headerlink" title="密码重置"></a>密码重置</h1><p>将console线连接到设备的console口，打开Xshell或putty等连接设备，此时出现如下界面：<br><img src="https://i.loli.net/2019/10/24/btz7nFcoEJM924A.png" alt="00.png"><br>将交换机断电，然后上电设备自动启动，此时按Ctrl+B：<br><img src="https://i.loli.net/2019/10/24/ulg9wTbEKzchmFS.png" alt="01.png"><br>输入密码：<a href="mailto:Admin@huawei.com" target="_blank" rel="noopener">Admin@huawei.com</a> 进入BootLoad menu:<br><img src="https://i.loli.net/2019/10/24/aIX8drbJMwEjSWZ.png" alt="02.png"><br>输入数字：7，清除console用户的密码并输入：y确认清除：<br><img src="https://i.loli.net/2019/10/24/rfA9lYGCHeMIaib.png" alt="03.png"><br>弹出提示显示密码清除成功，然后再根据提示输入：1按默认模式启动，启动后就可以设置新密码了。选择：8，即可放弃此次重置并重启。<br><img src="https://i.loli.net/2019/10/24/Qv3cUwiOpxlJdoG.png" alt="04.png"><br>重启后登入设备输入：save保存，这样console密码就被清除了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;设置console密码&quot;&gt;&lt;a href=&quot;#设置console密码&quot; class=&quot;headerlink&quot; title=&quot;设置console密码&quot;&gt;&lt;/a&gt;设置console密码&lt;/h1&gt;&lt;p&gt;因为之前已经把console密码删掉了，为了重现一下，重新设置一下c
+      
+    
+    </summary>
+    
+      <category term="网络" scheme="https://cyneliu.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="华为" scheme="https://cyneliu.github.io/tags/%E5%8D%8E%E4%B8%BA/"/>
+    
+      <category term="console，密码重置" scheme="https://cyneliu.github.io/tags/console%EF%BC%8C%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>无vCenter的ESXI环境克隆虚拟机</title>
+    <link href="https://cyneliu.github.io/2019/10/15/%E6%97%A0vCenter%E7%9A%84ESXI%E7%8E%AF%E5%A2%83%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    <id>https://cyneliu.github.io/2019/10/15/无vCenter的ESXI环境克隆虚拟机/</id>
+    <published>2019-10-15T07:14:46.000Z</published>
+    <updated>2019-10-21T03:28:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。</p><h1 id="两个文件"><a href="#两个文件" class="headerlink" title="两个文件"></a>两个文件</h1><p><strong>.vmx:</strong>VMware虚拟机配置文件，为虚拟机系统文件，通常通过打开这个虚拟机文件以启动系统；通过编辑该文件可以实现某种配置需求。<br><strong>.vmdk:</strong>VMware虚拟磁盘文件，相当于真实PC的硬盘。</p><h1 id="克隆方法"><a href="#克隆方法" class="headerlink" title="克隆方法"></a>克隆方法</h1><p>首先选中要克隆虚拟机的服务器，然后选择“配置”，然后选择“存储器”，在右侧的存储器中选择你要克隆的虚拟机所在的数据存储。<br><img src="https://i.loli.net/2019/10/21/vL8lIVe7bBxXumf.png" alt="01.png"><br>右键“浏览数据存储”，新建一个文件夹（用于存放克隆的虚拟机文件），在左侧选择要克隆的虚拟机所在的文件夹，复制<strong>.vmx</strong>和<strong>.vmdk</strong>两个文件到新建的文件夹中。<br><img src="https://i.loli.net/2019/10/21/WSCz8nE3QBcpG7L.png" alt="02.png"><br>复制完成后，右键复制后的.vmx文件，选择添加到清单即可。<br>虚拟机启动后会有如下提示，选择“I Copied It”即可。<br><img src="https://i.loli.net/2019/10/21/3ut1DF7MfcdK2LU.png" alt="开启复制的虚拟机时.png"></p><h1 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h1><p>在实际的操作中，我发现了一点需要注意的小细节，如果只是单纯的复制我在上图标出来两个文件的话，那么你克隆出来的虚拟机会是你新装的操作系统时的状态，如果想完整克隆虚拟机的当前状态，应该复制虚拟机当前引用的磁盘文件。<br>编辑虚拟机设置，查看被克隆的虚拟机引用的磁盘文件。<br><img src="https://i.loli.net/2019/10/21/Q9CoxLidFsS4mUA.png" alt="03.png"><br>然后复制该文件：<br><img src="https://i.loli.net/2019/10/21/hGkLngAoWC9rE35.png" alt="04.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。&lt;/p&gt;
+&lt;h1 id=&quot;两个文件&quot;&gt;&lt;a href=&quot;#两个文件&quot; class=&quot;headerlink&quot; title=&quot;两个
+      
+    
+    </summary>
+    
+      <category term="虚拟化" scheme="https://cyneliu.github.io/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+    
+      <category term="ESXI" scheme="https://cyneliu.github.io/tags/ESXI/"/>
+    
+      <category term="vCenter" scheme="https://cyneliu.github.io/tags/vCenter/"/>
+    
+      <category term="虚拟机克隆" scheme="https://cyneliu.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu开机网卡无法正常启动</title>
+    <link href="https://cyneliu.github.io/2019/08/06/Ubuntu%E5%BC%80%E6%9C%BA%E7%BD%91%E5%8D%A1%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8/"/>
+    <id>https://cyneliu.github.io/2019/08/06/Ubuntu开机网卡无法正常启动/</id>
+    <published>2019-08-06T07:48:38.000Z</published>
+    <updated>2019-08-06T08:22:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>之前在学校实训的时候用到一台Ubuntu虚拟机，一开始不知道为什么重启之后网卡无法正常启动和加载，执行ifconfig命令之后只显示有本地环回网卡，当时折腾了半天也没找到原因。  </p><p>今天又打开这个虚拟机，突然发现系统这不是给出了错误提示吗？<br><img src="https://i.loli.net/2019/08/06/mCMdLzTGOarEYSj.png" alt="00.png"><br>查了一下misplaced是不适宜的意思（没办法词汇量匮乏），也就是说，interfaces文件的第一行有错误了。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>既然定位到了问题根源，那就追根溯源，去查看一下interfaces文件，打眼一看一点问题都没有。<br><img src="https://i.loli.net/2019/08/06/Pz3ZwEmshAKY7cH.png" alt="01.png"><br>等等，第一行不应该是注释么？有可能是之前不小心误删了，改之。<br><img src="https://i.loli.net/2019/08/06/nCihLwIHWDJ6vrx.png" alt="02.png"><br>注释行颜色亮起的那一刻我就知道问题解决了，重启一下网络，问题解决。<br><img src="https://i.loli.net/2019/08/06/7b5udhXcSPiB24R.png" alt="03.png"></p><p>这样一个小的错误，小到犹豫半天要不要写这篇博客，最后还是决定简单记录一下，就当给自己提个醒吧，而且也不违背当时写博客的初衷——是记录，亦是成长。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h1&gt;&lt;p&gt;之前在学校实训的时候用到一台Ubuntu虚拟机，一开始不知道为什么重启之后网卡无法正常启动和加载，执行ifconfig命令之
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="Ubuntu" scheme="https://cyneliu.github.io/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>同时使用Github和码云部署博客</title>
+    <link href="https://cyneliu.github.io/2019/07/18/%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8Github%E5%92%8C%E7%A0%81%E4%BA%91%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://cyneliu.github.io/2019/07/18/同时使用Github和码云部署博客/</id>
+    <published>2019-07-18T08:01:59.000Z</published>
+    <updated>2020-02-20T07:07:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Gitee-Pages"><a href="#Gitee-Pages" class="headerlink" title="Gitee Pages"></a>Gitee Pages</h1><p>Gitee Pages是码云推出的一个静态网站服务，与Github Pages类似，这是官方给出的简单介绍：</p><blockquote></blockquote><p>码云Pages是一个免费的静态网页托管服务，您可以使用码云Pages托管博客、项目官网等静态网页。目前码云Pages支持Jekyll、Hugo、Hexo编译静态资源。</p><p>之前在部署自己博客的时候使用的是Hexo + Github Pages的方式，但是这种方式有一个最大的问题就是博客的访问速度问题，根据不同的运营商不同地点的网络，访问速度还会有些差别。忍无可忍，决定把博客迁移到码云上，但是使用了码云后发现这家伙有个特别人性化的功能——从GitHub同步。  </p><p>既然如此，与其迁移，还不如同时在两个仓库中同时部署。</p><h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>首先注册一个<a href="https://gitee.com" target="_blank" rel="noopener">码云</a>账号，注册之后新建一个仓库：<br><img src="https://i.loli.net/2019/07/18/5d302cf5bed5a24580.png" alt="01.png"><br>到最下面找到导入已有仓库，点击并填写自己的GitHub仓库地址(.git结尾的链接)<br><img src="https://i.loli.net/2019/07/18/5d302db6c8dbf86321.png" alt="02.png"><br>仓库导入之后进入仓库，点击<strong>服务</strong>→<strong>Gitee Pages</strong>，部署目录不填，点击部署即可。<br><img src="https://i.loli.net/2019/07/18/5d302f3d46d7b67296.png" alt="03.png"><br>上图是我已经部署好之后的截图，当时忘记截图了，部署之后的网址应该是<strong>*.gitee.io/name这样的链接，我们打开这个链接会看到下面这样的网页：<br><img src="https://i.loli.net/2019/07/18/5d302fee7596d45273.png" alt="04.png"><br>原因是由于路径的问题，无法正确加载样式，我们只需要将链接后的二级目录去掉就好了。点击</strong>管理**，将仓库的路径设置为与用户名一样即可。<br><img src="https://i.loli.net/2019/07/18/5d3030e002a3d39741.png" alt="05.png"><br>访问Gitee Pages，幸福感扑面而来。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Gitee-Pages&quot;&gt;&lt;a href=&quot;#Gitee-Pages&quot; class=&quot;headerlink&quot; title=&quot;Gitee Pages&quot;&gt;&lt;/a&gt;Gitee Pages&lt;/h1&gt;&lt;p&gt;Gitee Pages是码云推出的一个静态网站服务，与Github 
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="hexo" scheme="https://cyneliu.github.io/tags/hexo/"/>
+    
+      <category term="Github" scheme="https://cyneliu.github.io/tags/Github/"/>
+    
+      <category term="Gitee" scheme="https://cyneliu.github.io/tags/Gitee/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IBM服务器IMM基本配置及使用</title>
+    <link href="https://cyneliu.github.io/2019/06/21/IBM%E6%9C%8D%E5%8A%A1%E5%99%A8IMM%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
+    <id>https://cyneliu.github.io/2019/06/21/IBM服务器IMM基本配置及使用/</id>
+    <published>2019-06-21T11:06:38.000Z</published>
+    <updated>2019-06-23T12:26:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="IMM简介"><a href="#IMM简介" class="headerlink" title="IMM简介"></a>IMM简介</h1><p>IMM，即Integrated Management Module，是IBM服务器上即集成管理模块，改模块独立于服务器系统，可以使用一个单独的IP地址，使用Web和虚拟端口方式直接启动、停止和管理远程服务器，通俗的讲就是可以远程实现服务器的开关机、BIOS设置以及安装操作系统等很多操作。</p><h1 id="开启IMM服务"><a href="#开启IMM服务" class="headerlink" title="开启IMM服务"></a>开启IMM服务</h1><p>在IBM服务器的背面会有一个独立于网口的一个专用的管理端口，如下图所示：<br><img src="https://i.loli.net/2019/06/21/5d0cc01f089dd92838.png" alt="0.png"><br>我们使用IMM服务首先需要将网线接入管理口，然后下一步将服务器开机进入BIOS，依次进入<strong>System Settings</strong>→<strong>Integrated Management Module</strong>→<strong>Network Configuration</strong>。<br><img src="https://i.loli.net/2019/06/21/5d0cc0ed9625a94680.png" alt="00.png"><br>进入网络配置页面后设置IMM的访问地址，然后保存退出BIOS即可。<br><img src="https://i.loli.net/2019/06/21/5d0cc0ed3573571780.png" alt="000.png"><br>此时打开浏览器访问我们设置的IP地址就可以看到IMM的登录页面了，输入默认用户名/密码：USERID/PASSW0RD即可（注意是数字0）。如果密码错误可能是之前设置过，再次进入BIOS然后<strong>Reset IMM</strong>重新设置IP地址即可。<br><img src="https://i.loli.net/2019/06/21/5d0cc24dea73e97097.png" alt="06.png"><br>Web管理页面提供很多功能，这里就不一一介绍了，下面简单介绍一下如何使用IMM远程安装操作系统。进入如下页面，并启动远程控制台，两种方式可以根据特殊需要自行选择：<br><img src="https://i.loli.net/2019/06/21/5d0cc55abaffb64451.png" alt="08.png"><br>点击链接之后会提示下载两个<strong>.jnlp</strong>文件，将这两个文件下载下来并双击运行（前提是电脑正确安装了JRE运行环境），这两个jnlp文件一个是远程控制台另一个则是一个虚拟媒体服务：<br><img src="https://i.loli.net/2019/06/21/5d0cc55aad04c62696.png" alt="01.png"><br>点击<strong>Add Image</strong>添加镜像文件，然后勾选<strong>Map</strong>并将我们添加的镜像文件挂载到服务器。<br><img src="https://i.loli.net/2019/06/21/5d0cc6c8a312b64464.png" alt="02.png"><br>重启之后便进入了系统安装引导界面：<br><img src="https://i.loli.net/2019/06/21/5d0cc733890a729814.png" alt="03.png"></p><h1 id="遇到的一些小问题"><a href="#遇到的一些小问题" class="headerlink" title="遇到的一些小问题"></a>遇到的一些小问题</h1><h2 id="浏览器提示：此网站无法提供安全连接"><a href="#浏览器提示：此网站无法提供安全连接" class="headerlink" title="浏览器提示：此网站无法提供安全连接"></a>浏览器提示：此网站无法提供安全连接</h2><p>我在第一次访问时使用的是Chrome浏览器，但却弹出“此网站无法提供安全连接”的提示信息而且不能跳过并继续访问，解决办法是使用其它浏览器（我使用的是Edge浏览器）登入，然后将HTTPS禁用掉：<br><img src="https://i.loli.net/2019/06/21/5d0cc4504a1a784446.png" alt="07.png"></p><h2 id="jnlp运行报错"><a href="#jnlp运行报错" class="headerlink" title="jnlp运行报错"></a>jnlp运行报错</h2><p>不想看废话直接换Java 7！  </p><p>我的电脑安装的是Java 8，在第一次运行jnlp时，出现如下错误：<br><img src="https://i.loli.net/2019/06/21/5d0cc81a2a94399797.png" alt="04.png"><br>详细信息：<br><img src="https://i.loli.net/2019/06/21/5d0cc8ad10ff989581.png" alt="05.png"><br>经过一番搜索与尝试发现是JRE版本的问题，于是降级到Java 6，发现控制台可以正常启动了，但是另一个jnlp也就是虚拟媒体服务却依然运行报错：“The Virtual Media Program will close. Reason: The Virtual Media native library cannot be loaded”，然后又换到了Java 7解决问题。</p><h2 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h2><p>为了能够正常访问Web页面并使用远程控制服务，需要对80以及3900两个端口进行映射。<br><img src="https://i.loli.net/2019/06/21/5d0cca3bc635047654.jpg" alt="09.jpg"></p><h1 id="类似服务"><a href="#类似服务" class="headerlink" title="类似服务"></a>类似服务</h1><p>基本上每种品牌的服务器都有类似的远程管理功能，比如DELL服务器的iDRAC(Integrated Dell Remote Access Controller)等等，使用起来基本上都是类似的。<br><img src="https://s2.ax1x.com/2019/06/23/ZFEZjS.png" alt="11.png"></p><h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><p>Java多版本下载地址：<a href="https://www.oracle.com/technetwork/java/javase/archive-139210.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/archive-139210.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;IMM简介&quot;&gt;&lt;a href=&quot;#IMM简介&quot; class=&quot;headerlink&quot; title=&quot;IMM简介&quot;&gt;&lt;/a&gt;IMM简介&lt;/h1&gt;&lt;p&gt;IMM，即Integrated Management Module，是IBM服务器上即集成管理模块，改模块独立于服务
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
+    
+      <category term="服务器" scheme="https://cyneliu.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="IMM" scheme="https://cyneliu.github.io/tags/IMM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Citrix XenServer 初探</title>
+    <link href="https://cyneliu.github.io/2019/05/19/Citrix-XenServer-%E5%88%9D%E6%8E%A2/"/>
+    <id>https://cyneliu.github.io/2019/05/19/Citrix-XenServer-初探/</id>
+    <published>2019-05-19T05:50:55.000Z</published>
+    <updated>2019-05-19T07:27:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="XenServer安装"><a href="#XenServer安装" class="headerlink" title="XenServer安装"></a>XenServer安装</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>安装平台：服务器或虚拟机<br>下载XenServer镜像：</p><blockquote></blockquote><p>一开始下载时是准备在官网直接下载的，但是也许是因为中美贸易战的原因，在注册账号后开始登录时出现如下提示：<br><img src="https://i.loli.net/2019/05/19/5ce0f45a95d4553874.png" alt="00.png"><br>无奈只能Google看看有没有好人分享过镜像，最后还是找到了：</p><blockquote><blockquote><p>百度网盘：<a href="http://pan.baidu.com/s/1pLrQv39" target="_blank" rel="noopener">密码：yxxl</a><br>原帖地址：<a href="http://www.xen800.com/thread-1527-1-1.html" target="_blank" rel="noopener">http://www.xen800.com/thread-1527-1-1.html</a></p></blockquote></blockquote><h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>下载XenServer的iso镜像之后，将镜像文件刻录到U盘或者光盘中，然后插入服务器选择从相应介质引导启动即可，具体安装步骤可参考下面这份安装教程：</p><blockquote></blockquote><p><a href="https://pan.baidu.com/s/1SHIYPuj7gJphCihfjqadRg" target="_blank" rel="noopener">Citrix虚拟化之旅三（XenServer 新手安装教程）.pdf</a><br>提取码：cue2 </p><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="显示器输入不支持"><a href="#显示器输入不支持" class="headerlink" title="显示器输入不支持"></a>显示器输入不支持</h3><p>因为显示器比较烂，在刚开始安装的时候显示输入不支持，参考安装教程，应该是在这一步：<br><img src="https://i.loli.net/2019/05/19/5ce0fcb5be53318989.png" alt="01.png"><br>所以直接盲敲回车就可以了，当然需要等待一段时间才能看到内容。</p><h3 id="安装后无法引导启动"><a href="#安装后无法引导启动" class="headerlink" title="安装后无法引导启动"></a>安装后无法引导启动</h3><ul><li>开机后进入BIOS，找到”Boot Manager”，选择”add Boot Option”，选择”legacy only”;  </li><li>然后在“Change Boot Order”中，把“legacy only”选项调整为第一位,然后选择”commit changes “保存;  </li><li>System Settings-&gt;Devices and I/O Ports-&gt;Console Redirection Settings-&gt;Remote Console 设置为Enable。</li></ul><p>详细可参考：<a href="https://blog.51cto.com/chenmingxin/878374" target="_blank" rel="noopener">https://blog.51cto.com/chenmingxin/878374</a></p><h1 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h1><h2 id="安装XenCenter"><a href="#安装XenCenter" class="headerlink" title="安装XenCenter"></a>安装XenCenter</h2><p>打开浏览器访问XenServer的ip地址，下载XenCenter安装程序：<br><img src="https://i.loli.net/2019/05/19/5ce1006ca1a0469993.png" alt="02.png"><br>也可以去网上下载其它版本，我这里是安装了7.0中文版。<br>然后添加服务器，输入服务器ip、用户名及密码完成添加：<br><img src="https://i.loli.net/2019/05/19/5ce1016d3388953979.png" alt="04.png"></p><h2 id="创建SR"><a href="#创建SR" class="headerlink" title="创建SR"></a>创建SR</h2><p>在创建虚拟机时我们肯定会用到操作系统的安装镜像，不同于ESXI可以直接挂载本地镜像，我们需要先创建ISO库来存放我们将要用到的安装镜像。<br>在创建ISO库之前，先创建一个共享文件夹，文件夹中存放着我们的镜像文件：<br><img src="https://i.loli.net/2019/05/19/5ce103566dcff61384.png" alt="07.png"><br>右键添加的服务器，选择“新建SR”：<br><img src="https://i.loli.net/2019/05/19/5ce1022a50b6383082.png" alt="05.png"><br>存储类型选择Windows文件共享：<br><img src="https://i.loli.net/2019/05/19/5ce1035651bb373212.png" alt="06.png"><br>输入共享地址以及用户名密码完成挂载：<br><img src="https://i.loli.net/2019/05/19/5ce103fee462934335.png" alt="08.png"><br>现在我们就可以在“ISO库”中看到我们的镜像文件了：<br><img src="https://i.loli.net/2019/05/19/5ce104a286b9769937.png" alt="09.png"></p><h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p>以上操作完成之后我们就可以点击菜单栏的“新建VM”，按照提示创建我们的虚拟机了，具体步骤可参考上面提到的安装教程。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;XenServer安装&quot;&gt;&lt;a href=&quot;#XenServer安装&quot; class=&quot;headerlink&quot; title=&quot;XenServer安装&quot;&gt;&lt;/a&gt;XenServer安装&lt;/h1&gt;&lt;h2 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;
+      
+    
+    </summary>
+    
+      <category term="虚拟化" scheme="https://cyneliu.github.io/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+    
+      <category term="Citrix" scheme="https://cyneliu.github.io/tags/Citrix/"/>
+    
+      <category term="XenServer" scheme="https://cyneliu.github.io/tags/XenServer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建自己的SDN实验环境</title>
+    <link href="https://cyneliu.github.io/2019/05/16/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84SDN%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/"/>
+    <id>https://cyneliu.github.io/2019/05/16/搭建自己的SDN实验环境/</id>
+    <published>2019-05-16T12:46:59.000Z</published>
+    <updated>2019-05-19T13:07:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。</p><h1 id="SDN实验环境简介"><a href="#SDN实验环境简介" class="headerlink" title="SDN实验环境简介"></a>SDN实验环境简介</h1><p>课程中使用的实验环境主要包括三个SDN控制器，分别是OpenDaylight、Floodlight以及ONOS，另外还有OpenvSwitch和mininet，其中有很多官方已经给出了虚拟机文件，我们只需要下载然后导入到VMware或者VirtualBox就可以了。</p><h1 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h1><h2 id="OpenDaylight"><a href="#OpenDaylight" class="headerlink" title="OpenDaylight"></a>OpenDaylight</h2><p><strong>官网地址：</strong><a href="https://www.opendaylight.org" target="_blank" rel="noopener">www.opendaylight.org</a>  </p><p><img src="https://i.loli.net/2019/05/16/5cdd6274c5d6910580.png" alt="01.png"></p><p>ODL控制器的版本以元素周期表命名，截止到目前ODL已经发布了最新的氖(Neon)版本，可以在官网下载到各个版本的安装包以及安装教程等。  </p><p>具体的安装过程也可以参考我之前的两篇文章：</p><blockquote><p><a href="https://cyne.tk/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/" target="_blank" rel="noopener">Ubuntu16.04安装OpenDaylight Carbon</a><br><a href="https://cyne.tk/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/" target="_blank" rel="noopener">Ubuntu14.04安装OpenDaylight(锂版本)</a></p></blockquote><h2 id="Floodlight"><a href="#Floodlight" class="headerlink" title="Floodlight"></a>Floodlight</h2><p><strong>官网地址：</strong><a href="http://www.projectfloodlight.org/" target="_blank" rel="noopener">www.projectfloodlight.org</a></p><p><img src="https://i.loli.net/2019/05/16/5cdd64d9c971f55579.png" alt="02.png"></p><p>同样，Floodlight的官网也提供了各个版本的下载地址以及相关文档等。另外，官方也给出了一个部署好的虚拟机文件，但是国内的下载速度不是很理想，需要扶墙下载。当然，我这里也有下载好的文件：</p><blockquote></blockquote><p>百度网盘：<a href="https://pan.baidu.com/s/1WrNJEqKtUkl9MnYPcjQ92w" target="_blank" rel="noopener">提取码：no1y</a></p><p>需要注意的是这并不是一个ovf或者ova文件，而是一个磁盘文件，所以不能直接导入使用，需要手动创建一台空虚拟机，并将此虚拟磁盘文件挂载到虚拟机上，这里我用VMware进行演示：</p><blockquote></blockquote><p>打开VMware，点击“创建新的虚拟机”，选择“自定义”，因为不需要安装操作系统，所以选择“稍后安装操作系统”，操作系统类型选择“Ubuntu 64位”，其它参数默认。  </p><blockquote><p>在选择磁盘时，选择“使用现有虚拟磁盘”，选择下载下来的vmdk文件，完成虚拟机创建，然后启动虚拟机就可以使用官方已经配置好的Floodlight虚拟机了。</p></blockquote><h2 id="ONOS"><a href="#ONOS" class="headerlink" title="ONOS"></a>ONOS</h2><p><strong>官网地址：</strong><a href="https://onosproject.org/" target="_blank" rel="noopener">onosproject.org</a><br>推荐到ONOS的wiki中下载安装包或者封装好的虚拟机文件：<br><strong>Wiki</strong>：<a href="https://wiki.onosproject.org/display/onos15/download+packages+and+tutorial+vms" target="_blank" rel="noopener">wiki.onosproject.org</a>  </p><p><img src="https://i.loli.net/2019/05/16/5cdd6a388293924243.png" alt="03.png"></p><p>当然，也可以选择自己安装ONOS控制器，一些基础的功能还是自己装的用起来好用一点，而一些特殊的项目如SDN-IP等则推荐在wiki中下载相应的虚拟机文件，具体的安装步骤可以参考我之前的文章：</p><blockquote></blockquote><p><a href="https://cyne.tk/2019/05/14/Ubuntu16-04%E5%AE%89%E8%A3%85ONOS-Hummingbird-1-7-1/" target="_blank" rel="noopener">Ubuntu16.04安装ONOS Hummingbird(1.7.1)</a></p><h2 id="Mininet"><a href="#Mininet" class="headerlink" title="Mininet"></a>Mininet</h2><p><strong>官网地址:</strong><a href="http://mininet.org/" target="_blank" rel="noopener">mininet.org</a>  </p><p><img src="https://i.loli.net/2019/05/16/5cdd6d7731e4f41000.png" alt="04.png"></p><p>mininet有三种安装方式，官方推荐直接下载封装好的虚拟机文件，因为这非常简单而且快捷，如果你是一个喜欢自己动手的人，那我推荐你通过安装包方式进行安装，具体的安装步骤可参考之前的文章：</p><blockquote></blockquote><p><a href="https://cyne.tk/2018/06/24/Mininet%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">Mininet的安装配置</a>  </p><p>*文章中同时安装了Ryu,如果只是单纯安装mininet可直接跳过此步骤。</p><h2 id="OpenvSwitch"><a href="#OpenvSwitch" class="headerlink" title="OpenvSwitch"></a>OpenvSwitch</h2><p><strong>官网地址：</strong><a href="http://www.openvswitch.org/" target="_blank" rel="noopener">www.openvswitch.org</a></p><p><img src="https://i.loli.net/2019/05/16/5cdd6e639d2ea35783.png" alt="05.png"></p><p>OpenvSwitch也有多种安装方式，我之前都是采用安装包方式进行安装，具体的安装过程可参考：</p><blockquote></blockquote><p><a href="https://cyne.tk/2018/12/28/Ubuntu16-04%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Open-vSwitch/" target="_blank" rel="noopener">Ubuntu16.04安装包方式安装Open vSwitch</a></p><h1 id="一些小问题"><a href="#一些小问题" class="headerlink" title="一些小问题"></a>一些小问题</h1><h2 id="Could-not-get-lock-var-lib-apt-lists-lock"><a href="#Could-not-get-lock-var-lib-apt-lists-lock" class="headerlink" title="Could not get lock /var/lib/apt/lists/lock"></a>Could not get lock /var/lib/apt/lists/lock</h2><p>Ubuntu在使用apt-get命令时经常出现如下图所示的问题：<br><img src="https://i.loli.net/2019/05/18/5cdf9b917dcd823093.png" alt="06.png"><br>解决方法：</p><blockquote></blockquote><pre><code>rm /var/lib/dpkg/locksudo dpkg --configure -aapt update</code></pre><h2 id="ONOS启动"><a href="#ONOS启动" class="headerlink" title="ONOS启动"></a>ONOS启动</h2><p>如果是从ONOS官网下载的1.15.0的虚拟机，启动方式略有不同：先双击桌面的”Setup ONOS Cluster”,然后双击打开“ONOS GUI”即为ONOS的Web界面，双击“ONOS CLI”即为ONOS的命令行控制台。<br><img src="https://i.loli.net/2019/05/18/5cdf9dc09eb8159715.png" alt="07.png"><br>另外，这个镜像的ONOS服务监听端口可能并不是6633端口而是6653端口：<br><img src="https://i.loli.net/2019/05/18/5cdf9fb66b75983582.png" alt="08.png"><br>在进行一些基础的实验时，比如使用Mininet连接ONOS控制器等，推荐使用自己手动安装的ONOS；而对一些特殊的实验，比如SDN-IP等则推荐下载对应的ONOS虚拟机。</p><h2 id="Floodlight启动"><a href="#Floodlight启动" class="headerlink" title="Floodlight启动"></a>Floodlight启动</h2><p>我在安装Floodlight时使用的是官方的虚拟机，通过如下命令启动Floodlight：</p><blockquote></blockquote><pre><code>cd floodlightantjava -jar target/floodlight.jar</code></pre><h2 id="ovs-ofctl-s1-is-not-a-bridge-or-a-socket"><a href="#ovs-ofctl-s1-is-not-a-bridge-or-a-socket" class="headerlink" title="ovs-ofctl: s1 is not a bridge or a socket"></a>ovs-ofctl: s1 is not a bridge or a socket</h2><p>如图：<br><img src="https://i.loli.net/2019/05/18/5cdfa1bec4c2618876.png" alt="09.png"><br>解决方法：</p><blockquote></blockquote><pre><code>ovs-vsctl set bridge br0 datapath_type=netdev</code></pre><h2 id="Mininet的一些常用命令"><a href="#Mininet的一些常用命令" class="headerlink" title="Mininet的一些常用命令"></a>Mininet的一些常用命令</h2><p>查看/修改主机IP地址：</p><blockquote></blockquote><pre><code>h1 ip addr showh1 ifconfigh1 ifconfig h1-eth0 10.0.0.1/24 up</code></pre><p>查看交换机流表信息：</p><blockquote></blockquote><pre><code>ovs-ofctl dump-flows s1ovs-ofctl -O OpenFlow13 dump-flows s1</code></pre><p>连接控制器：</p><blockquote></blockquote><pre><code>mn --switch=ovsk --controller=remote,ip=172.16.75.117,port=6633mn --controller=remote,ip=192.168.1.31 --switch=ovsk,protocols=OpenFlow13 --topo=linear,2</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这学期开了SDN选修课程，虽然课程内容之前大部分都接触过，但是不同于之前在实验平台上的学习，上课用到的环境都是在自己电脑上安装部署，今天课程已经结束，这里对整个实验环境的安装部署以及一些使用上的问题做一个小总结，既是为了加深自己的理解，也希望给初学者一些参考。&lt;/p&gt;
+&lt;h
+      
+    
+    </summary>
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
+    
+    
+      <category term="SDN实验环境" scheme="https://cyneliu.github.io/tags/SDN%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu16.04安装ONOS Hummingbird(1.7.1)</title>
+    <link href="https://cyneliu.github.io/2019/05/14/Ubuntu16-04%E5%AE%89%E8%A3%85ONOS-Hummingbird-1-7-1/"/>
+    <id>https://cyneliu.github.io/2019/05/14/Ubuntu16-04安装ONOS-Hummingbird-1-7-1/</id>
+    <published>2019-05-14T01:11:09.000Z</published>
+    <updated>2019-05-14T01:45:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>Ubuntu 16.04 Desktop (内存推荐4G)<br><a href="https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html" target="_blank" rel="noopener">server-jre</a><br><a href="https://wiki.onosproject.org/display/ONOS/Downloads" target="_blank" rel="noopener">onos-1.7.1</a>  </p><p>*目前Oracle网站需要登录账户才能下载</p><h1 id="配置JRE"><a href="#配置JRE" class="headerlink" title="配置JRE"></a>配置JRE</h1><p>将下载下来的JRE文件解压到自定义目录中：</p><blockquote></blockquote><pre><code>mkdir -p /opt/java #将下载下来的安装包移动到此目录（目录可自己定义）tar -xzvf server-jre-8u211-linux-x64.tar.gz</code></pre><p>配置环境变量：</p><blockquote></blockquote><pre><code>vim /etc/profile</code></pre><p>在文件末尾添加如下配置：</p><blockquote></blockquote><pre><code>export JAVA_HOME=/opt/java/jdk1.8.0_211export JRE_HOME=/opt/java/jdk1.8.0_211export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/extexport PATH=$PATH:$JRE_HOME/bin</code></pre><p>使配置生效：</p><blockquote></blockquote><pre><code>source /etc/profile</code></pre><p>验证配置成功：</p><blockquote></blockquote><pre><code>java -version #显示java版本信息</code></pre><h1 id="配置ONOS"><a href="#配置ONOS" class="headerlink" title="配置ONOS"></a>配置ONOS</h1><p>解压ONOS压缩包：</p><blockquote></blockquote><pre><code>tar -xzvf onos-1.7.1.tar.gz</code></pre><p>设置ONOS_ROOT和KARAF_ROOT的路径：</p><blockquote></blockquote><pre><code>vim /etc/profile</code></pre><p>在文件末尾添加以下内容,注意修改为自己对应的目录：</p><blockquote></blockquote><pre><code>export ONOS_ROOT=/home/sdn/vmlab/onos-1.7.1export KARAF_ROOT=/home/sdn/vmlab/onos-1.7.1/apache-karaf-3.0.5export PATH=$PATH:$KARAF_ROOT/bin:$ONOS_ROOT/bin</code></pre><p>使配置生效：</p><blockquote></blockquote><pre><code>source /etc/profile</code></pre><p>运行onos(第一次启动可能时间较长)：</p><blockquote></blockquote><pre><code>karaf clean</code></pre><p>安装应用：</p><blockquote></blockquote><pre><code>&gt; app activate org.onosproject.openflow&gt; app activate org.onosproject.fwd&gt; app activate org.onosproject.mobility</code></pre><p><img src="https://i.loli.net/2019/05/14/5cda1aee3aa5210524.png" alt="01.png"></p><h1 id="环境测试"><a href="#环境测试" class="headerlink" title="环境测试"></a>环境测试</h1><p>查看端口监听状态：</p><blockquote></blockquote><pre><code>netstat -an | grep 8181 #onos Web监听端口netstat -an | grep 6633 #onos OF监听端口</code></pre><p><img src="https://i.loli.net/2019/05/14/5cda1c09acf8f39168.png" alt="02.png"></p><p>访问Web界面，地址为：http://[ip]:8181/onos/ui/index.html,账户/密码：onos/rocks ：<br><img src="https://i.loli.net/2019/05/14/5cda1d7ed2e3e92022.png" alt="03.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;环境准备&quot;&gt;&lt;a href=&quot;#环境准备&quot; class=&quot;headerlink&quot; title=&quot;环境准备&quot;&gt;&lt;/a&gt;环境准备&lt;/h1&gt;&lt;p&gt;Ubuntu 16.04 Desktop (内存推荐4G)&lt;br&gt;&lt;a href=&quot;https://www.oracle.c
+      
+    
+    </summary>
+    
+      <category term="SDN" scheme="https://cyneliu.github.io/categories/SDN/"/>
+    
+    
+      <category term="ONOS" scheme="https://cyneliu.github.io/tags/ONOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IBM System x3650 M2硬盘亮黄灯</title>
+    <link href="https://cyneliu.github.io/2019/05/10/IBM-System-x3650-M2%E7%A1%AC%E7%9B%98%E4%BA%AE%E9%BB%84%E7%81%AF/"/>
+    <id>https://cyneliu.github.io/2019/05/10/IBM-System-x3650-M2硬盘亮黄灯/</id>
+    <published>2019-05-10T09:25:49.000Z</published>
+    <updated>2019-05-10T12:24:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>服务器之前做了RAID1并且装了ESXI，在开机状态下拔掉一块硬盘后，硬盘黄灯亮起并发出连续的滴滴警报声，硬件故障检测板DASD亮起，百度尝试了很多方式，比如拔掉电源后重启等均无效。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>因为服务器并没有跑虚拟机和存数据，所以最后直接重做了RAID，过程如下：  </p><h2 id="进入WebBIOS"><a href="#进入WebBIOS" class="headerlink" title="进入WebBIOS"></a>进入WebBIOS</h2><p>服务器重启按F1进入BIOS，找到<strong>Sytem Settings → Adapters and UEFI Drivers → Please press ENTER to compile the list of drivers</strong>，然后选择“LSI EFI SAS Driver”下面那一行，然后回车，根据提示输入 1 并再次回车进入WebBIOS。</p><h2 id="更改硬盘状态"><a href="#更改硬盘状态" class="headerlink" title="更改硬盘状态"></a>更改硬盘状态</h2><p>进入BIOS之后，点击<strong>Physical View</strong>,可以看到亮黄灯的那块硬盘出啊先“Unconfigured Bad”的提示信息：<br><img src="https://i.loli.net/2019/05/10/5cd56a133ea99.jpg" alt="02.jpg"><br>点击进入那块出错的硬盘，勾选”Make Unconf Good”，然后点击”Go”,不再做其它设置<br><img src="https://i.loli.net/2019/05/10/5cd569dc9c984.jpg" alt="01.jpg"><br>这样在之后配置RAID的时候就可以发现这块硬盘并做相应的添加等操作了。</p><h2 id="配置RAID"><a href="#配置RAID" class="headerlink" title="配置RAID"></a>配置RAID</h2><p>进入WebBIOS后选择Configuration Wizard配置向导：<br><img src="https://i.loli.net/2019/05/10/5cd5498c4f727.png" alt="01.png"><br>选择New Configuration，代表清除原有阵列信息并重新配置：<br><img src="https://i.loli.net/2019/05/10/5cd54a72d2279.png" alt="02.png"><br>选择Yes确定：<br><img src="https://i.loli.net/2019/05/10/5cd54ac271c11.png" alt="03.png"><br>然后选择手动配置：Manual Configuration<br><img src="https://i.loli.net/2019/05/10/5cd54b7a74da1.png" alt="04.png"><br>选择要配置在RAID中的硬盘，按Add to Array从左边的Drivers中选到右边的Driver Groups中。<br><img src="https://i.loli.net/2019/05/10/5cd54dce6fec6.png" alt="05.png"><br>选好硬盘后，选择Accept DG后点击Next<br><img src="https://i.loli.net/2019/05/10/5cd54dfd61eb8.png" alt="06.png"><br>在左侧的ArrayWithFreeSpace中选中刚刚做好的Disk Groups按Add to SPAN添加到右侧的span中，然后选择Next<br><img src="https://i.loli.net/2019/05/10/5cd54ef819426.png" alt="07.png"><br>最后会进入Virtual Disk配置界面，RAID级别选择RAID1，需要注意的是Select size的设置，在右侧会有提示，根据提示填入相应的大小即可，点选Accept接受配置，最后选择Next。  </p><p>最后还会重新出现一次之前的配置界面，直接无视就可以，Accept和Next即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h1&gt;&lt;p&gt;服务器之前做了RAID1并且装了ESXI，在开机状态下拔掉一块硬盘后，硬盘黄灯亮起并发出连续的滴滴警报声，硬件故障检测板DA
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
+    
+      <category term="服务器" scheme="https://cyneliu.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux中的几个查找命令</title>
+    <link href="https://cyneliu.github.io/2019/04/04/Linux%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/"/>
+    <id>https://cyneliu.github.io/2019/04/04/Linux中的几个查找命令/</id>
+    <published>2019-04-04T01:07:27.000Z</published>
+    <updated>2019-04-04T02:08:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><p>可以查找任何类型的文件。<br>语法格式：</p><blockquote></blockquote><pre><code>find path -option [-print] [-exec -ok command] {} \;</code></pre><p>path:搜索的目录及其子目录，缺省为当前目录<br>-name:按文件名称查找<br>-user:按文件的属主查找<br>-group:按文件的属组查找<br>-perm:按文件权限查找<br>-prune:不在当前指定目录查找(除了此目录外进行查找)</p><h1 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h1><p>locate命令与“find -name”的作用类似，但原理完全不同。<br>它比find快得多，因为它不搜索具体目录，而是在一个数据库(/var/lib/locatedb)中搜索指定的文件。此数据库含有本地文件的所有信息，这个数据库是linux系统自动创建的，数据库由updatedb程序来更新，updatedb是由cron daemon周期性建立的，默认情况下为每天更新一次，所以用locate命令你搜索不到最新更新的文件，除非你在用locate命令查找文件之前手动的用updatedb命令更新数据库。<br>也就是说在没有手动更新的前提下，如果删除掉之前存在文件，locate依然可以搜索到它。</p><h1 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h1><p>只能查找二进制文件(-b)，源代码文件(-s)和说明文件(-m)。<br>如果省略参数则返回所有的信息。</p><h1 id="which"><a href="#which" class="headerlink" title="which"></a>which</h1><p>在PATH变量指定的路径中搜索指定的系统命令的位置。</p><blockquote></blockquote><pre><code>which find/bin/find</code></pre><h1 id="type"><a href="#type" class="headerlink" title="type"></a>type</h1><p>type命令主要用于区分一个命令到底是shell自带的还是外部独立的二进制文件提供的。如果是shell自带的则会提示此命令为shell buildin,否则会列出命令的位置。</p><blockquote></blockquote><pre><code>type cdcd is a shell builtintype sshssh is /usr/bin/ssh</code></pre><p>原文链接：<a href="https://www.cnblogs.com/ginvip/p/6357352.html" target="_blank" rel="noopener">https://www.cnblogs.com/ginvip/p/6357352.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;find&quot;&gt;&lt;a href=&quot;#find&quot; class=&quot;headerlink&quot; title=&quot;find&quot;&gt;&lt;/a&gt;find&lt;/h1&gt;&lt;p&gt;可以查找任何类型的文件。&lt;br&gt;语法格式：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;cod
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nova的16种操作</title>
+    <link href="https://cyneliu.github.io/2019/04/03/Nova%E7%9A%8416%E7%A7%8D%E6%93%8D%E4%BD%9C/"/>
+    <id>https://cyneliu.github.io/2019/04/03/Nova的16种操作/</id>
+    <published>2019-04-03T13:03:57.000Z</published>
+    <updated>2019-04-03T13:17:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160607-1465256704490062241.png" alt="00.png"></p><h1 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h1><h2 id="Resize"><a href="#Resize" class="headerlink" title="Resize"></a>Resize</h2><p>通过更改flavor调整分配给instance的资源。</p><h2 id="Lock-UnLock"><a href="#Lock-UnLock" class="headerlink" title="Lock/UnLock"></a>Lock/UnLock</h2><p>防止对instance的误操作。</p><h2 id="Pause-Suspend-Resume"><a href="#Pause-Suspend-Resume" class="headerlink" title="Pause/Suspend/Resume"></a>Pause/Suspend/Resume</h2><p>暂停当前的instance，并在以后恢复。<br>Pause 和 Suspend 的区别在于 Pause 将 instance 的运行状态保存在计算节点的内存中，而 Suspend 保存在磁盘上。</p><h2 id="Snapshot"><a href="#Snapshot" class="headerlink" title="Snapshot"></a>Snapshot</h2><p>备份 instance 到 Glance。产生的 image 可用于故障恢复，或者以此为模板部署新的 instance。</p><h1 id="故障处理"><a href="#故障处理" class="headerlink" title="故障处理"></a>故障处理</h1><h2 id="计划内"><a href="#计划内" class="headerlink" title="计划内"></a>计划内</h2><h3 id="Migrate"><a href="#Migrate" class="headerlink" title="Migrate"></a>Migrate</h3><p>将 instance 迁移到其他计算节点。<br>迁移之前，instance 会被 Shut Off，支持共享存储和非共享存储。</p><h3 id="Live-Migrate"><a href="#Live-Migrate" class="headerlink" title="Live Migrate"></a>Live Migrate</h3><p>与 Migrate 不同，Live Migrate 能不停机在线地迁移 instance，保证了业务的连续性。也支持共享存储和非共享存储（Block Migration）</p><h3 id="Shelve-Unshelve"><a href="#Shelve-Unshelve" class="headerlink" title="Shelve/Unshelve"></a>Shelve/Unshelve</h3><p>Shelve 将 instance 保存到 Glance 上，之后可通过 Unshelve 重新部署。<br>Shelve 操作成功后，instance 会从原来的计算节点上删除。<br>Unshelve 会重新选择节点部署，可能不是原节点。</p><h2 id="计划外"><a href="#计划外" class="headerlink" title="计划外"></a>计划外</h2><h3 id="Rescue-Unrescue"><a href="#Rescue-Unrescue" class="headerlink" title="Rescue/Unrescue"></a>Rescue/Unrescue</h3><p>用指定的启动盘启动，进入 Rescue 模式，修复受损的系统盘。成功修复后，通过 Unrescue 正常启动 instance。</p><h3 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a>Rebuild</h3><p>如果 Rescue 无法修复，则只能通过 Rebuild 从已有的备份恢复。 Instance 的备份是通过 snapshot 创建的，所以需要有备份策略定期备份。</p><h3 id="Evacuate"><a href="#Evacuate" class="headerlink" title="Evacuate"></a>Evacuate</h3><p>利用共享存储上 Instance 的镜像文件在其他计算节点上重建 Instance。<br>所以提前规划共享存储是关键。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160607-1465256704490062241.png&quot; alt=&quot;00.png&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;常规操作&quot;&gt;&lt;a
+      
+    
+    </summary>
+    
+      <category term="OpenStack" scheme="https://cyneliu.github.io/categories/OpenStack/"/>
+    
+    
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
+    
+      <category term="Nova" scheme="https://cyneliu.github.io/tags/Nova/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cisco配置VPN IPSec</title>
+    <link href="https://cyneliu.github.io/2019/03/28/Cisco%E9%85%8D%E7%BD%AEVPN-IPSec/"/>
+    <id>https://cyneliu.github.io/2019/03/28/Cisco配置VPN-IPSec/</id>
+    <published>2019-03-28T02:09:29.000Z</published>
+    <updated>2019-06-25T12:54:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2019/03/28/5c9c3006a1ccd.png" alt="00.png"></p><h1 id="配置运营商网络"><a href="#配置运营商网络" class="headerlink" title="配置运营商网络"></a>配置运营商网络</h1><p>在配置VPN之前，首先要保证模拟的运营商网络是可以正常通信的，这里我配置的是OSPF，需要注意的是两边的路由器不要把内网网段也给宣告出去了，如果是这样那VPN也就没有存在的意义了。<br>首先是左边的R1：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 202.1.1.1 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 202.1.1.0 0.0.0.255 area 0</code></pre><p>中间的R0：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 202.1.1.254 255.255.255.0Router(config-if)#no shutRouter(config)#int f0/1Router(config-if)#ip add 210.1.1.254 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 202.1.1.0 0.0.0.255 area 0Router(config-router)#net 210.1.1.0 0.0.0.255 area 0</code></pre><p>右边的R2：</p><blockquote></blockquote><pre><code>Router(config)#int f0/0Router(config-if)#ip add 210.1.1.1 255.255.255.0Router(config-if)#no shutRouter(config-if)#exitRouter(config)#router ospf 1Router(config-router)#net 210.1.1.0 0.0.0.255 area 0</code></pre><p>等待收敛完成验证网络是否可以正常通信。</p><h1 id="配置内网"><a href="#配置内网" class="headerlink" title="配置内网"></a>配置内网</h1><p>内网过于简单这里不再赘述，我的左边的区域1的网段是10.0.1.0/24，右边的区域2是10.0.2.0/24，网关则分别为1.1和2.1。</p><h1 id="配置IPSec-site-to-site"><a href="#配置IPSec-site-to-site" class="headerlink" title="配置IPSec(site to site)"></a>配置IPSec(site to site)</h1><p>R1:</p><blockquote></blockquote><pre><code>Router(config)#crypto isakmp enable #启用IKE,默认即为启动Router(config)#crypto isakmp policy 1 #定义IKE安全策略集1Router(config-isakmp)#authentication pre-share #IKE验证方式胃预共享密钥Router(config-isakmp)#encryption 3des #IKE加密方式为3desRouter(config-isakmp)#group 1 #IKE使用Diffie-Hellman组1Router(config-isakmp)#hash md5 #IKE的Hash验证为MD5Router(config-isakmp)#exitRouter(config)#crypto isakmp key cyne address 210.1.1.1 #两端的KEY必须一致，210.1.1.1是对端的公网地址Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3des #定义VPN使用IPSec策略集，lab为策略集名称Router(config)#access-list 100 permit ip 10.0.1.0 0.0.0.255 10.0.2.0 0.0.0.255 #定义在R1上需要加密的流量Router(config)#crypto map test 110 ipsec-isakmp #定义加密图Router(config-crypto-map)#match address 100 #在加密图中声明加密流量列表Router(config-crypto-map)#set peer 210.1.1.1 #对端公网ipRouter(config-crypto-map)#set transform-set lab #在加密图中调用IPSec的策略集labRouter(config-crypto-map)#exitRouter(config)#int f0/0Router(config-if)#crypto map test #将加密图应用到此端口Router(config-if)#exit Router(config)#ip route 10.0.2.0 255.255.255.0 f0/0 #指定VPN的静态路由</code></pre><p>R2:</p><blockquote></blockquote><pre><code>Router(config)#crypto isakmp enableRouter(config)#crypto isakmp policy 1Router(config-isakmp)#authentication pre-share Router(config-isakmp)#encryption 3desRouter(config-isakmp)#group 1Router(config-isakmp)#hash md5Router(config-isakmp)#exitRouter(config)#crypto isakmp key cyne address 202.1.1.1 #两端的KEY必须一致，202.1.1.1是对端的公网地址Router(config)#crypto ipsec transform-set lab ah-md5-hmac esp-3desRouter(config)#access-list 100 permit ip 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255Router(config)#crypto map test 110 ipsec-isakmp Router(config-crypto-map)#match address 100 Router(config-crypto-map)#set peer 202.1.1.1 #对端公网ipRouter(config-crypto-map)#set transform-set labRouter(config-crypto-map)#exitRouter(config)#int f0/0Router(config-if)#crypto map testRouter(config-if)#exit Router(config)#ip route 10.0.1.0 255.255.255.0 f0/0</code></pre><h1 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h1><p>使用区域1内的PC ping 区域2中的PC，发现已经可以通信：<br><img src="https://i.loli.net/2019/03/28/5c9c3cfee86a3.png" alt="01.png"></p><h1 id="NAT-IPSec-VPN"><a href="#NAT-IPSec-VPN" class="headerlink" title="NAT + IPSec VPN"></a>NAT + IPSec VPN</h1><p>NAT和IPSec存在一些不兼容的情况，比如NAT更改了IP头部中的源地址和目的地址，校验和会被重新计算并修改，所以导致被对端IPSec丢弃等等。  </p><p>那如果配置了NAT之后应该如何让IPSec正常工作呢？今天在敲实验的时候思考了很久，最后找到了通过更改ACL也就是更改IPSec的“感兴趣”流量来解决，简单拓扑如下：<br><img src="https://i.loli.net/2019/06/25/5d121572efee411287.png" alt="21.png"><br>两端公网接入路由器的ACL进行如下配置：</p><blockquote></blockquote><pre><code>R1#sh access-lists 100Extended IP access list 100    permit ip 172.16.5.0 0.0.0.255 172.16.2.0 0.0.0.255    permit ip 172.16.2.0 0.0.0.255 218.18.1.0 0.0.0.3    permit ip 218.18.1.0 0.0.0.3 172.16.2.0 0.0.0.255</code></pre><blockquote></blockquote><pre><code>R2#sh access-lists 100Extended IP access list 100    permit ip 172.16.2.0 0.0.0.255 172.16.5.0 0.0.0.255    permit ip host 218.18.1.2 172.16.2.0 0.0.0.255    permit ip 172.16.2.0 0.0.0.255 218.18.1.0 0.0.0.3</code></pre><p>上述ACL的作用也就是把NAT之后的公网IP地址加入到IPSec的感兴趣流量中。当然，这也只是我在实验中自己摸索的解决方法。</p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb" target="_blank" rel="noopener">https://wenku.baidu.com/view/aec4df5a5727a5e9856a61eb</a><br><a href="http://www.solves.com.cn/doc-view-2025.html" target="_blank" rel="noopener">http://www.solves.com.cn/doc-view-2025.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;实验拓扑&quot;&gt;&lt;a href=&quot;#实验拓扑&quot; class=&quot;headerlink&quot; title=&quot;实验拓扑&quot;&gt;&lt;/a&gt;实验拓扑&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2019/03/28/5c9c3006a1ccd.png&quot; alt
+      
+    
+    </summary>
+    
+      <category term="网络" scheme="https://cyneliu.github.io/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="Cisco" scheme="https://cyneliu.github.io/tags/Cisco/"/>
+    
+      <category term="VPN" scheme="https://cyneliu.github.io/tags/VPN/"/>
+    
+      <category term="IPSec" scheme="https://cyneliu.github.io/tags/IPSec/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在ESXI环境中部署fuel openstack虚拟环境</title>
+    <link href="https://cyneliu.github.io/2019/03/20/%E5%9C%A8ESXI%E7%8E%AF%E5%A2%83%E4%B8%AD%E9%83%A8%E7%BD%B2fuel-openstack%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
+    <id>https://cyneliu.github.io/2019/03/20/在ESXI环境中部署fuel-openstack虚拟环境/</id>
+    <published>2019-03-20T12:02:15.000Z</published>
+    <updated>2019-03-26T01:10:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一年之前就开始接触OpenStack，但是还没入门就放弃了，因为实验环境实在是太难装了，尝试了很多次均以失败告终，大多教程中都是安装devstack的方式进行部署，但是作为一个刚入门的小白，个人觉得这种方式可能并不是太友好。最近看了一份教程，了解到fuel openstack的部署方式，决定再尝试一下，据说这也是企业生产环境中经常用到的方式。<br>由于自己的电脑配置比较低，在笔记本上安装虚拟环境体验不是很好，正好身边有一套ESXI环境，所以尝试在ESXI环境中进行部署，尝试了很多次之后终于成功，在此记录一下部署过程，以供参考。</p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>首先下载fuel openstack镜像文件，主要有两个途径可以获取到fuel的镜像，第一个是fuel的官网，目前可以下载到9.0的版本。第二个是OpenStack的wiki，目前提供的最新版本是11.0：</p><blockquote></blockquote><p><a href="https://www.mirantis.com/software/openstack/" target="_blank" rel="noopener">https://www.mirantis.com/software/openstack/</a><br><a href="https://wiki.openstack.org/wiki/Fuel#Where_to_get_Fuel" target="_blank" rel="noopener">https://wiki.openstack.org/wiki/Fuel#Where_to_get_Fuel</a></p><h1 id="规划网络"><a href="#规划网络" class="headerlink" title="规划网络"></a>规划网络</h1><p>我的esxi主机所在网络为192.168.100.0/24网段，此网段对OpenStack来说也就是公网（Public），此外还需要有一个PXE网段，用于fuel部署系统，此外还有management、storage、private等网段，我们使用三块网卡来连接这三个网段。</p><h2 id="在ESXI中部署网络"><a href="#在ESXI中部署网络" class="headerlink" title="在ESXI中部署网络"></a>在ESXI中部署网络</h2><p>首先是创建两个新的虚拟交换机，选中esxi主机，点击配置，网络，添加网络：<br><img src="https://i.loli.net/2019/03/21/5c9394143c777.png" alt="01.png"><br>连接类型选择虚拟机：<br><img src="https://i.loli.net/2019/03/21/5c93948b28789.png" alt="02.png"><br>选择创建vSphere标准交换机，将下面的网卡取消勾选：<br><img src="https://i.loli.net/2019/03/21/5c9394ff6c53d.png" alt="03.png"><br>网络标签可以自行修改，vlan id选择全部：<br><img src="https://i.loli.net/2019/03/21/5c93955b01f35.png" alt="04.png"><br>编辑vSwitch属性，开启混杂模式：<br><img src="https://i.loli.net/2019/03/21/5c9395965b223.png" alt="05.png"><br>要注意左边列表中的两项都要开启<br><img src="https://i.loli.net/2019/03/21/5c939596595d3.png" alt="06.png"><br>用相同的方法再创建一个vSwitch，我这里分别是fuel_pxe和fuel_private：<br><img src="https://i.loli.net/2019/03/21/5c9394143c777.png" alt="01.png"><br>最后再修改以下vSwitch0的属性，修改如下两项：<br><img src="https://i.loli.net/2019/03/26/5c99754ebeec5.png" alt="31.png"><br><img src="https://i.loli.net/2019/03/26/5c99754ed633c.png" alt="32.png"></p><h1 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h1><p>fuel的架构如下图所示：<br><img src="https://i.loli.net/2019/03/21/5c93976f857b9.png" alt="09.png"><br>这里我没有部署单独的Storage节点，只部署三个节点：master、controller和compute，三个节点的配置及网卡连接情况如下：  </p><blockquote><p>master节点：</p><blockquote><p>8核 8G内存 100G存储 fuel_pxe vmnet vmnet</p></blockquote></blockquote><blockquote><p>controller节点：</p><blockquote><p>8核 8G内存 100G存储 fuel_pxe vmnet fuel_private</p></blockquote></blockquote><blockquote><p>compute节点</p><blockquote><p>8核 16G内存 200G存储 fuel_pxe vmnet fuel_private</p></blockquote></blockquote><h2 id="master节点配置"><a href="#master节点配置" class="headerlink" title="master节点配置"></a>master节点配置</h2><p>新建名称为fuel_master的虚拟机,网卡配置如下图所示：<br><img src="https://i.loli.net/2019/03/21/5c9395966aa1c.png" alt="07.png"><br>开机并挂载fuel镜像：<br><img src="https://i.loli.net/2019/03/21/5c939597b4d7e.png" alt="08.png"><br>选择第一项直接开始安装，安装时间较长，耐心等待其安装完成。<br>安装完成后登录master节点，修改一些配置，首先是配置一个我们可以连接的ip，默认情况下eth0的ip地址已经设置为10.20.0.2，我这里选择使用eth1进行修改：</p><blockquote></blockquote><pre><code>vim /etc/sysconfig/network-scrips/eth1</code></pre><p>将配置文件中的ONBOOT=no改为yes,ip地址我这里使用的是dhcp分配的方式，当然你也可以手工指定。<br>修改完成后保存退出并重启网络:</p><blockquote></blockquote><pre><code>service network restart</code></pre><p>然后允许ssh登录，默认情况下是只允许10.20.0.0/24这个网段登录的：</p><blockquote></blockquote><pre><code>iptables -A INPUT -p tcp --dport 22 -j ACCEPTiptables -A OUTPUT -p tcp --sport 22 -j ACCEPTservice iptables saveservice iptables restart</code></pre><p>查看eth1的ip地址，这时我们就可以使用eth1的ip访问mater的web界面了(浏览器通常会阻止访问，点击继续访问或添加例外即可)：<br><img src="https://i.loli.net/2019/03/22/5c943671a130c.png" alt="11.png"><br>使用默认用户名/密码：admin/admin登录，登录进去之后会提示修改密码，暂时先不修改。此外因为安装时master节点并没有连接外网，所以这时会有如下提示信息：<br><img src="https://i.loli.net/2019/03/22/5c94373142e10.png" alt="10.png"><br>有以下两种解决方式：</p><h3 id="联网方式"><a href="#联网方式" class="headerlink" title="联网方式"></a>联网方式</h3><p>根据提示信息执行命令：</p><blockquote></blockquote><pre><code>fuel-bootstrap build --activate</code></pre><p>这种方式的前提是master节点可以连接到外网，而且根据网络环境的不同可能时间会比较长。另外这条命令在11.0的版本可以正常使用，而在9.0版本中貌似有些源已经访问不到了，所以推荐使用本地源。</p><h3 id="本地方式"><a href="#本地方式" class="headerlink" title="本地方式"></a>本地方式</h3><p>下载以下两个文件(如果失效可以自己google)：<br><em>mirrors.zip</em>：<a href="https://pan.baidu.com/s/1npQ2MBps6ypx2X_ebCJ2jg" target="_blank" rel="noopener">密码：j0yk</a><br><em>bootstraps.zip</em>：<a href="https://pan.baidu.com/s/1EeLLaenosPr2OLULw-VB_w" target="_blank" rel="noopener">密码：miwf</a></p><p>解压bootstrap.zip，上传“bootstrap”文件夹至master节点的<em>/var/www/nailgun/</em>目录下，覆盖原有bootstrap目录，然后执行如下命令：</p><blockquote></blockquote><pre><code>fuel-bootstrap activate d01c72e6-83f4-4a19-bb86-6085e40416e6  #激活bootstrapfuel-bootstrap list   #查看处于活动状态的bootstrap</code></pre><p>解压mirrors.zip，上传解压的“mirrors”文件夹至master节点的<em>/var/www/nailgun/</em>目录，</p><blockquote></blockquote><pre><code>fuel-createmirror   #在处于离线状态的master节点运行命令（会报错，直接忽略）</code></pre><p>注意以上两个解压文件不要出现同名嵌套的文件夹，比如bootstrap文件夹下还有一个bootstrap文件夹。</p><h2 id="controller和compute节点"><a href="#controller和compute节点" class="headerlink" title="controller和compute节点"></a>controller和compute节点</h2><p>新建两台虚拟机，配置可以自行设置，我这里按上面预先规划的配置进行设置，重点是两个节点的网卡配置，如下分别是我的controller节点和compute节点配置：<br><img src="https://i.loli.net/2019/03/25/5c98db1d162a3.png" alt="27.png"><br><img src="https://i.loli.net/2019/03/25/5c98db1ce03c4.png" alt="26.png"><br>启动controller和compute两个节点，两个节点会自动从pxe完成启动进入bootstrap，登录fuel的web界面，mater节点已经获取到两个节点的基本信息：<br><img src="https://i.loli.net/2019/03/22/5c943c595f95c.png" alt="14.png"></p><h1 id="创建OpenStack环境"><a href="#创建OpenStack环境" class="headerlink" title="创建OpenStack环境"></a>创建OpenStack环境</h1><p>点击“New OpenStack Enviroment”创建一个OpenStack环境：<br><img src="https://i.loli.net/2019/03/22/5c943a1e20593.png" alt="12.png"><br>相关选项根据需要自己修改，我这里全部保持默认，点击<em>create</em>完成创建。  </p><h2 id="修改网络配置"><a href="#修改网络配置" class="headerlink" title="修改网络配置"></a>修改网络配置</h2><p>点击Networks进入网络配置页面，修改Public网段，即连接外网的网段：<br><img src="https://i.loli.net/2019/03/22/5c943da406cf0.png" alt="15.png"><br>同时需要修改L3的网络配置，L3需要跟Public处在同一网段且地址块不能重叠：<br><img src="https://i.loli.net/2019/03/22/5c943dff6d1ac.png" alt="16.png"><br>修改DNS：<br><img src="https://i.loli.net/2019/03/22/5c943e66ecd60.png" alt="17.png"><br>其它配置，建议勾选此选项，并将两个server地址设置为master节点的地址：10.20.0.2<br><img src="https://i.loli.net/2019/03/25/5c98dbe04cab6.png" alt="28.png"></p><h2 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h2><p>进入<em>Nodes</em>页面，点击<em>Add Nodes</em>添加已经发现到的两个节点并选择相应的角色：<br><img src="https://i.loli.net/2019/03/22/5c948f7d7dd43.png" alt="20.png"><br>上图是我第一遍操作时截的图，没有选择cinder角色，后来重新部署的时候遵从建议选择了cinder角色（fuel建议至少有一个cinder节点），这里也推荐大家部署cinder角色。在controller节点安装了cinder角色，补一个部署之后的截图：<br><img src="https://i.loli.net/2019/03/25/5c98de4957eac.png" alt="29.png"><br>点击节点右侧的齿轮按钮，设置一下接口配置，我的两个节点接口配置：<br><img src="https://i.loli.net/2019/03/22/5c94916f9bbc6.png" alt="22.png"></p><h2 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h2><p>以上操作完成后到<em>Network</em>页面检查一下网络配置是否正确：<br><img src="https://i.loli.net/2019/03/22/5c949006bed85.png" alt="21.png"><br>检查通过就可以开始部署了，回到<em>Dashboard</em>页面，点击<em>Deploy Changes</em>开始部署：<br><img src="https://i.loli.net/2019/03/22/5c949299188fc.png" alt="24.png"><br>经过漫长的等待，最后部署成功：<br><img src="https://i.loli.net/2019/03/25/5c98df0dd505a.png" alt="30.png"><br>点击Horizon即可访问dashboard，输入用户名/密码：admin/admin登录：<br><img src="https://i.loli.net/2019/03/25/5c98df780c4df.png" alt="66.png"></p><h1 id="错误汇总"><a href="#错误汇总" class="headerlink" title="错误汇总"></a>错误汇总</h1><h2 id="sync-time-error"><a href="#sync-time-error" class="headerlink" title="sync_time error"></a>sync_time error</h2><p>时间同步错误，原因在于fuel主节点没有合适的时间同步，所以子节点无法完成时间同步，修改fuel主节点的ntp配置即可解决：</p><blockquote></blockquote><pre><code>vim /etc/ntp.conf</code></pre><p>在server段添加如下内容,并将原来的server注释掉。</p><blockquote></blockquote><pre><code>server asia.pool.ntp.org  iburst minpoll 3 maxpoll 9</code></pre><p>重启ntp服务：</p><blockquote></blockquote><pre><code>systemctl restart ntpdate.servicesystemctl restart ntpd.service</code></pre><h2 id="build-deploy-image-error"><a href="#build-deploy-image-error" class="headerlink" title="build_deploy_image error"></a>build_deploy_image error</h2><p>错误提示信息：<br>All nodes are finished. Failed tasks: Task[build_deploy_image/master] Stopping the deployment process!<br><img src="https://i.loli.net/2019/03/22/5c94aaf11fd3a.png" alt="25.png"><br>原因是master节点无法连接外网，修改相关网络配置即可，我这里是启用eth1网卡连接外网。</p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.51cto.com/goome/1916247" target="_blank" rel="noopener">https://blog.51cto.com/goome/1916247</a><br><a href="https://www.cnblogs.com/shoufengwei/p/6901173.html" target="_blank" rel="noopener">https://www.cnblogs.com/shoufengwei/p/6901173.html</a><br><a href="https://blog.csdn.net/qq_35180983/article/details/82181496" target="_blank" rel="noopener">https://blog.csdn.net/qq_35180983/article/details/82181496</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一年之前就开始接触OpenStack，但是还没入门就放弃了，因为实验环境实在是太难装了，尝试了很多次均以失败告终，大多教程中都是安装devstack的方式进行部署，但是作为一个刚入门的小白，个人觉得这种方式可能并不是太友好。最近看了一份教程，了解到fuel openstac
+      
+    
+    </summary>
+    
+      <category term="OpenStack" scheme="https://cyneliu.github.io/categories/OpenStack/"/>
+    
+    
+      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
+    
+      <category term="Esxi" scheme="https://cyneliu.github.io/tags/Esxi/"/>
+    
+      <category term="fuel" scheme="https://cyneliu.github.io/tags/fuel/"/>
+    
+  </entry>
+  
+</feed>

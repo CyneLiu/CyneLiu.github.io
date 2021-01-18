@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta name="google-site-verification" content="24POE5Oa-03aWJ5xwpS6MTPUZArUMr2M6xI_-4GE0Pg">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo,GitHub Pages,Blog,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cyne's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="建站过程在遇到各种各样问题之后，终于搭建完成了这个博客。  其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T git@github.com“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。 还有">
+<meta name="keywords" content="Hexo,GitHub Pages,Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo建站记录">
+<meta property="og:url" content="https://cyneliu.github.io/2018/03/03/hexo建站记录/index.html">
+<meta property="og:site_name" content="Cyne&#39;s Blog">
+<meta property="og:description" content="建站过程在遇到各种各样问题之后，终于搭建完成了这个博客。  其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T git@github.com“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。 还有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/03/10/5aa3e1773eb4d.png">
+<meta property="og:image" content="https://i.loli.net/2018/03/11/5aa49a5ee0df1.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/03/11/5aa4d99ca9490.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/04/5b8e8af589e63.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/04/5b8e8d300f176.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/04/5b8e8d2fd6d3c.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/04/5b8e915b185bb.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/04/5b8e93265c828.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/05/5b8fe67d02c33.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/06/5b91112daf59a.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/06/5b9113bbadca9.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/06/5b91141ef222f.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/06/5b9118d692026.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/06/5b911deff3ba5.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/06/5b91201514b13.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/28/5c4ede7c0c674.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/28/5c4ede7c9790a.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/18/5d2fcf3e065ef90509.png">
+<meta property="og:image" content="https://i.loli.net/2018/03/25/5ab780018abe1.png">
+<meta property="og:image" content="https://i.loli.net/2018/03/25/5ab780018a55d.png">
+<meta property="og:image" content="https://i.loli.net/2018/03/25/5ab786e34f254.png">
+<meta property="og:image" content="https://i.loli.net/2018/09/03/5b8d3def88e87.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c3d323f6f8.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c3e692aa7e.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/26/5c4c3e68e3c40.png">
+<meta property="og:updated_time" content="2020-08-16T06:33:26.200Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo建站记录">
+<meta name="twitter:description" content="建站过程在遇到各种各样问题之后，终于搭建完成了这个博客。  其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T git@github.com“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。 还有">
+<meta name="twitter:image" content="https://i.loli.net/2018/03/10/5aa3e1773eb4d.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://cyneliu.github.io/2018/03/03/hexo建站记录/">
+
+
+
+
+
+  <title>hexo建站记录 | Cyne's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cyne's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是记录，亦是成长</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2018/03/03/hexo建站记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cyne Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyne's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hexo建站记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T10:22:23+08:00">
+                2018-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/03/hexo建站记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/03/hexo建站记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="建站过程"><a href="#建站过程" class="headerlink" title="建站过程"></a>建站过程</h1><p>在遇到各种各样问题之后，终于搭建完成了这个博客。</p>
+<blockquote>
+<p>其实回过头看看也并不是很麻烦，只是遇到了许多问题，有些是因为设备环境的问题，比如在测试“ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>“这条命令时，一直提示”bad address“错误，让人很费解，重装环境重新来过还是报错，只好最后换了一台电脑就没有出现这个错误。当然经验证这个并不会影响整个博客的搭建，只要密钥复制的正确这些都不碍事。</p>
+<p>还有一个问题是因为教程的问题，在修改主配置文件的“deploy”部署时，教程写的是https地址，我也是多次尝试也没成功，最后百度到原因写ssh地址就可以解决。当然也不能一概而论，若没有错误还是推荐使用https地址。</p>
+</blockquote>
+<p>一个个的小地方就让我走了不少的弯路。最后终于找到一个比较详细准确的教程，在此分享给大家，在这也感谢作者<a href="http://fanzhenyu.me/categories/Hexo/" target="_blank" rel="noopener">Line</a>, 无意侵犯作者原作，只是想让像我这样的小白少走些弯路。作者博客中有五篇关于hexo使用的教程，个人觉得比较适合小白看。</p>
+<p>这就是这次建站的一些小心得，水平有限有什么说的不对的地方也感谢各位不吝赐教。</p>
+<h1 id="后期添加："><a href="#后期添加：" class="headerlink" title="后期添加："></a>后期添加：</h1><h2 id="添加网易云音乐插件"><a href="#添加网易云音乐插件" class="headerlink" title="添加网易云音乐插件"></a>添加网易云音乐插件</h2><blockquote>
+<blockquote>
+<p><img src="https://i.loli.net/2018/03/10/5aa3e1773eb4d.png"><br>在别人的博客看到了这样一个音乐插件，实现很简单，打开<a href="http://music.163.com/#/outchain/0/2134628828/" target="_blank" rel="noopener">网易云音乐网页版</a>，选择自己想要分享的歌单，然后点击生成外链播放器即可，插件分为两种形式：iframe插件和flash插件，可根据情况选择。</p>
+</blockquote>
+</blockquote>
+<h2 id="添加particles-js背景动画"><a href="#添加particles-js背景动画" class="headerlink" title="添加particles.js背景动画"></a>添加particles.js背景动画</h2><blockquote>
+<blockquote>
+<p><img src="https://i.loli.net/2018/03/11/5aa49a5ee0df1.jpg" alt="particles.js.jpg"><br>particles.js是一个粒子效果的js插件，在<a href="https://github.com/VincentGarreau/particles.js/" target="_blank" rel="noopener">Github</a>里可以找到这个项目的源码，但是百度了一下配置方法大多是在html中实现，反正我是小白，不知道怎么修改。回归正题，怎么在Hexo中实现particles.js效果呢？<br><br><strong>1.</strong>首先在<strong>\themes\next\layout\_layout.swig</strong>的<strong>&lt; /body &gt;</strong>标签上面添加</p>
+</blockquote>
+</blockquote>
+<pre><code>{% if theme.canvas_nest %}
+	 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+	{% endif %}
+</code></pre><blockquote>
+<blockquote>
+<p><strong>2.</strong>在<strong>\themes\next\_config.yml</strong>中添加以下字段开启此功能：</p>
+</blockquote>
+</blockquote>
+<pre><code># background settings
+# add canvas-nest effect
+# see detail from https://github.com/hustcc/canvas-nest.js
+canvas_nest: true
+</code></pre><blockquote>
+<blockquote>
+<p><strong>3.</strong>这样动态效果就添加成功了，你会发现博客默认的白色背景遮挡了大部分区域使得只有边缘能看见动态效果，这时候只要修改一下背景颜色即可。在<strong>\themes\next\source\css\_schemes\Pisces_layout.styl</strong>中，把<strong>.content-wrap</strong>中的<strong>background</strong>修改为<strong>none</strong>，注意我这里使用的是<strong>Pisces</strong>主题，如果你使用的是别的主题，在相应路径下修改即可。这样如果用手机打开体验会比较差，我们单独设置一下手机，把<strong>.content-wrap</strong>的<strong>+mobile()</strong>中的<strong>background</strong>修改为<strong>white</strong>，这样手机端的体验就好很多，却又不影响电脑端的炫酷动画。</p>
+</blockquote>
+</blockquote>
+<h2 id="设置文章摘要"><a href="#设置文章摘要" class="headerlink" title="设置文章摘要"></a>设置文章摘要</h2><blockquote>
+<blockquote>
+<p>写出来的文章如果直接在首页全篇显示就比较别扭了，为了提高浏览体验，这时候就需要设置一下文章摘要了，我这里主要介绍三种方式。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><strong>1.</strong>在文章中使用<font color="blue"><strong>&lt; !–more–&gt;</strong></font></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>这种方法可以根据文章的内容，自己在合适的位置添加 &lt; !–more–&gt; 标签，使用灵活，也是Hexo推荐的方法。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><strong>2.</strong>在文章中的<font color="blue"><strong>front-matter</strong></font>中添加<font color="blue"><strong>description</strong></font>，并提供文章摘录。如图：<br><img src="https://i.loli.net/2018/03/11/5aa4d99ca9490.png" alt="description.png"></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><strong>3.</strong>在主题配置文件中设置自动摘要</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<pre><code>auto_excerpt:
+enable: true
+length: 150 #默认摘要为150字，可根据需要更改
+</code></pre></blockquote>
+<h2 id="needmoreshare2分享按钮"><a href="#needmoreshare2分享按钮" class="headerlink" title="needmoreshare2分享按钮"></a>needmoreshare2分享按钮</h2><p>今天才知道jiathis已经于2018年4月30日关闭了旗下的分享业务，所以今天改成了needmoreshare2，在nest的配置文件中预先已经加入了此功能，只需要简单的启用修改一下就可以用了。<br><img src="https://i.loli.net/2018/09/04/5b8e8af589e63.png" alt="snipaste_20180904_213720.png"></p>
+<blockquote>
+<p><strong>postbottom:</strong>文章底部分享按钮<br><strong>float:</strong>浮动按钮<br><strong>iconStyle:</strong>按钮的样式</p>
+<blockquote>
+<p><em>default:</em><img src="https://i.loli.net/2018/09/04/5b8e8d300f176.png" alt="snipaste_20180904_214818.png"><br><em>box:</em><img src="https://i.loli.net/2018/09/04/5b8e8d2fd6d3c.png" alt="snipaste_20180904_214810.png"></p>
+</blockquote>
+</blockquote>
+<h2 id="鼠标点击特效"><a href="#鼠标点击特效" class="headerlink" title="鼠标点击特效"></a>鼠标点击特效</h2><p>打开网址：</p>
+<blockquote>
+</blockquote>
+<pre><code>http://7u2ss1.com1.z0.glb.clouddn.com/love.js
+</code></pre><p>复制网址中的代码，在<strong>/themes/next/source/js/src</strong>路径下，新建<strong>love.js</strong>并将刚刚复制的代码复制进去。然后编辑<strong>\themes\next\layout_layout.swig</strong>文件，在末尾加上如下代码：</p>
+<blockquote>
+</blockquote>
+<pre><code>&lt;!-- 页面点击小红心 --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/src/love.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>如图：<br><img src="https://i.loli.net/2018/09/04/5b8e915b185bb.png" alt="snipaste_20180904_220551.png"></p>
+<h2 id="修改文章底部标签符号"><a href="#修改文章底部标签符号" class="headerlink" title="修改文章底部标签符号"></a>修改文章底部标签符号</h2><p>默认的标签符号是一个“#”，个人觉得并不是很好看，所以决定修改一下。<br>修改模板<strong>/themes/next/layout/_macro/post.swig</strong>，搜索rel=”tag”&gt;#，将 # 换成<i class="fa fa-tag"></i>，注意是只替换“#”。<br><img src="https://i.loli.net/2018/09/04/5b8e93265c828.png" alt="snipaste_20180904_221216.png"></p>
+<h2 id="侧边栏旋转头像"><a href="#侧边栏旋转头像" class="headerlink" title="侧边栏旋转头像"></a>侧边栏旋转头像</h2><p>首先先把头像打开，在主题配置文件中，将如下图中的avatar前的#去掉，然后将自己的头像放到<strong>themes\next\source\images</strong>路径下，并将配置文件中默认的avatar.gif修改为头像的文件名。<br><img src="https://i.loli.net/2018/09/05/5b8fe67d02c33.png" alt="snipaste_20180905_222132.png"><br>然后就是设置头像旋转了，打开\themes\next\source\css_common\components\sidebar\sidebar-author.styl，在里面添加如下代码：</p>
+<blockquote>
+</blockquote>
+<pre><code>.site-author-image {
+display: block;
+margin: 0 auto;
+padding: $site-author-image-padding;
+max-width: $site-author-image-width;
+height: $site-author-image-height;
+border: $site-author-image-border-width solid $site-author-image-border-color;
+
+/* 头像圆形 */
+border-radius: 80px;
+-webkit-border-radius: 80px;
+-moz-border-radius: 80px;
+box-shadow: inset 0 -1px 0 #333sf;
+
+/* 设置循环动画 [animation: (play)动画名称 (2s)动画播放时长单位秒或微秒 (ase-out)动画播放的速度曲线为以低速结束 
+(1s)等待1秒然后开始动画 (1)动画播放次数(infinite为循环播放) ]*/
+
+
+/* 鼠标经过头像旋转360度 */
+-webkit-transition: -webkit-transform 1.0s ease-out;
+-moz-transition: -moz-transform 1.0s ease-out;
+transition: transform 1.0s ease-out;
+}
+
+img:hover {
+/* 鼠标经过停止头像旋转 
+-webkit-animation-play-state:paused;
+animation-play-state:paused;*/
+
+/* 鼠标经过头像旋转360度 */
+-webkit-transform: rotateZ(360deg);
+-moz-transform: rotateZ(360deg);
+transform: rotateZ(360deg);
+}
+
+/* Z 轴旋转动画 */
+@-webkit-keyframes play {
+0% {
+-webkit-transform: rotateZ(0deg);
+}
+100% {
+-webkit-transform: rotateZ(-360deg);
+}
+}
+@-moz-keyframes play {
+0% {
+-moz-transform: rotateZ(0deg);
+}
+100% {
+-moz-transform: rotateZ(-360deg);
+}
+}
+@keyframes play {
+0% {
+transform: rotateZ(0deg);
+}
+100% {
+transform: rotateZ(-360deg);
+}
+}
+</code></pre><h2 id="底部全站字数统计"><a href="#底部全站字数统计" class="headerlink" title="底部全站字数统计"></a>底部全站字数统计</h2><p>如图：<br><img src="https://i.loli.net/2018/09/06/5b91112daf59a.png" alt="snipaste_20180906_193500.png"><br>在根目录下，执行：</p>
+<blockquote>
+</blockquote>
+<pre><code>$ npm install hexo-wordcount --save
+</code></pre><p>然后在/themes/next/layout/_partials/footer.swig末尾加上：</p>
+<blockquote>
+</blockquote>
+<pre><code>&lt;div class=&quot;theme-info&quot;&gt;
+  &lt;div class=&quot;powered-by&quot;&gt;&lt;/div&gt;
+  &lt;span class=&quot;post-count&quot;&gt;博客全站共{{ totalcount(site) }}字&lt;/span&gt;
+&lt;/div&gt;
+</code></pre><h2 id="文章字数统计"><a href="#文章字数统计" class="headerlink" title="文章字数统计"></a>文章字数统计</h2><p>刚才设置了全站的总字数统计，接下来设置一下单篇文章的字数统计，如图：<br><img src="https://i.loli.net/2018/09/06/5b9113bbadca9.png" alt="snipaste_20180906_194648.png"><br>首先在根目录下安装hexo-wordcount,执行：</p>
+<blockquote>
+</blockquote>
+<pre><code>$ npm install hexo-wordcount --save
+</code></pre><p>然后在主题配置文件中，将post_wordcount的选项改为true：<br><img src="https://i.loli.net/2018/09/06/5b91141ef222f.png" alt="snipaste_20180906_194831.png"></p>
+<h2 id="网站顶部加载进度条"><a href="#网站顶部加载进度条" class="headerlink" title="网站顶部加载进度条"></a>网站顶部加载进度条</h2><p>在主题配置文件中，搜索pace，改为true启用功能：<br><img src="https://i.loli.net/2018/09/06/5b9118d692026.png" alt="snipaste_20180906_200843.png"><br>有多种表示加载进度的样式，可根据自己喜好选择。</p>
+<h2 id="添加来必力评论系统"><a href="#添加来必力评论系统" class="headerlink" title="添加来必力评论系统"></a>添加来必力评论系统</h2><p>新建这个博客的时候我用的是gitment，但是使用效果并不是很理想，今天开始使用来必力了，但愿这个能命久一点。<br>首先到<a href="https://livere.com/insight/myCode" target="_blank" rel="noopener">https://livere.com/insight/myCode</a>注册并获取安装代码，在代码里找到自己的id，也就是下图中这个位置：<br><img src="https://i.loli.net/2018/09/06/5b911deff3ba5.png" alt="snipaste_20180906_202604.png"><br>然后在主题配置中找到<strong>livere_uid</strong>，将你的id复制上就ok了：<br><img src="https://i.loli.net/2018/09/06/5b91201514b13.png" alt="snipaste_20180906_203922.png"></p>
+<h2 id="valine评论系统"><a href="#valine评论系统" class="headerlink" title="valine评论系统"></a>valine评论系统</h2><p>首先在<a href="https://leancloud.cn" target="_blank" rel="noopener">LeanCloud</a>注册账号并创建一个应用，很简单这里不做赘述，需要主要的是注册的时候填写的邮箱最好不要用私人域名邮箱，我在第一次注册时填写的是自己的域名邮箱导致接收不到验证邮件，后来使用163邮箱就ok了。  </p>
+<p>然后修改主题配置文件，找到valine字段，将在LeanCloud中创建应用的<em>appid</em>和<em>appkey</em>复制到配置文件中，并将<em>enable: false</em>修改为<em>true</em>：<br><img src="https://i.loli.net/2019/01/28/5c4ede7c0c674.png" alt="04.png"><br>配置完成后的样式：<br><img src="https://i.loli.net/2019/01/28/5c4ede7c9790a.png" alt="05.png"></p>
+<h2 id="侧边栏返回顶部按钮"><a href="#侧边栏返回顶部按钮" class="headerlink" title="侧边栏返回顶部按钮"></a>侧边栏返回顶部按钮</h2><p>之前默认使用的是右下角的返回顶部按钮，后来发现侧边栏的这个返回顶部按钮还带有阅读进度。<br>在<em>next/_config.yml</em>里找到<em>b2t</em>这个地方进行如下配置：</p>
+<blockquote>
+</blockquote>
+<pre><code># Back to top in sidebar (only for Pisces | Gemini).
+b2t: true
+# Scroll percent label in b2t button.
+scrollpercent: true
+</code></pre><h2 id="添加视频"><a href="#添加视频" class="headerlink" title="添加视频"></a>添加视频</h2><blockquote>
+</blockquote>
+<pre><code>Idina Menze和Caleb Hyles激情对唱Let It Go：
+&lt;iframe height=498 width=510 src=&quot;http://player.youku.com/embed/XNjcyMDU4Njg0&quot; frameborder=0 allowfullscreen&gt;&lt;/iframe&gt;
+</code></pre><h2 id="修改nexT主题中Pisces的宽度"><a href="#修改nexT主题中Pisces的宽度" class="headerlink" title="修改nexT主题中Pisces的宽度"></a>修改nexT主题中Pisces的宽度</h2><p>突然感觉主题默认宽度有点窄，遂改之。编辑<strong>themes\next\source\css_variables\custom.styl</strong>文件，添加如下内容：</p>
+<blockquote>
+</blockquote>
+<pre><code>$main-desktop = 1200px 
+$content-desktop = 900px
+</code></pre><p>修改后的效果：<br><img src="https://i.loli.net/2019/07/18/5d2fcf3e065ef90509.png" alt="06.png"></p>
+<h1 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h1><blockquote>
+<p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">文档|Hexo</a><br><br><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a></p>
+</blockquote>
+<h1 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h1><blockquote>
+<p><a href="https://walesexcitedmei.github.io/2018/08/30/HEXO-NexT-%E4%B8%BB%E9%A2%98%E6%8F%90%E9%AB%98%E5%8D%9A%E5%AE%A2%E9%A2%9C%E5%80%BC/" target="_blank" rel="noopener">walesexcitedmei.github.io</a></p>
+</blockquote>
+<h1 id="错误汇总"><a href="#错误汇总" class="headerlink" title="错误汇总"></a>错误汇总</h1><p>在使用hexo博客的过程中，遇到了如下一些错误：</p>
+<h2 id="123-125-引起的报错"><a href="#123-125-引起的报错" class="headerlink" title="&#123; &#125;引起的报错"></a>&#123; &#125;引起的报错</h2><p>今天写了一篇博客后按流程进行部署的时候，发现在生成静态页面的时候出现了如下的错误：<br><img src="https://i.loli.net/2018/03/25/5ab780018abe1.png" alt="snipaste_20180325_163706.png"></p>
+<p><img src="https://i.loli.net/2018/03/25/5ab780018a55d.png" alt="snipaste_20180325_163648.png"></p>
+<p>查了一下说什么的都有，每个方法也都试了一遍，最后发现是因为文章中直接引用了”&#123; &#125;”的原因，解决办法是将”&#123; &#125;”通过&amp;#123  &amp;#125后面加上分号”;”进行转换，就可以正常部署了。<br>这里也有一些常见的<a href="https://blog.csdn.net/chwshuang/article/details/52350551" target="_blank" rel="noopener">特殊字符</a>,可以根据需要转换。<br><img src="https://i.loli.net/2018/03/25/5ab786e34f254.png" alt="特殊字符.png"></p>
+<h2 id="标题无法正常解析"><a href="#标题无法正常解析" class="headerlink" title="标题无法正常解析"></a>标题无法正常解析</h2><p>在浏览别人的博客的时候发现Hexo有自动解析目录的功能，是依靠markdown的标题实现的，在加了一个<strong>“#标题”</strong>这样时却发现博客无法解析到这是一个标题，查了一下原因是正规的标题写法是在”#”和标题之间加一个空格。</p>
+<h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><p>一开始刚刚接触markdown的时候一直用html的&#60;br/&#62;换行，这种换行方式貌似在换行的同时增加了行间距，无意间发现一个更好也更简单的换行方式，就是在要换行的位置敲两个空格，就可以换行。</p>
+<h2 id="FATAL-Cannot-read-property-‘replace’-of-null"><a href="#FATAL-Cannot-read-property-‘replace’-of-null" class="headerlink" title="FATAL Cannot read property ‘replace’ of null"></a>FATAL Cannot read property ‘replace’ of null</h2><p>今天在修改站点配置文件进行操作时报出“FATAL Cannot read property ‘replace’ of null”的错误：<br><img src="https://i.loli.net/2018/09/03/5b8d3def88e87.png" alt="snipaste_20180903_214210.png"><br>上网查了一下原因是url地址不能为空，按照注释要求改为相应地址即可。</p>
+<h2 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h2><p>之前每次使用<strong>hexo d</strong>上传一次文章都需要重新设置自定义域名，也是很苦恼，今天终于找到了原因。<br>在GitHub代码库中有一个CNAME文件，存放着我们修改的自定义域名：<br><img src="https://i.loli.net/2019/01/26/5c4c3d323f6f8.png" alt="02.png"><br>而我在本地并没有这个文件，所以每次在执行hexo d上传了本地的文件后，GitHub中的CNAME就被覆盖掉了，所以需要在设置中设置自定义域名，其实也就是创建这个CNAME文件的过程。<br>问题找到了，解决就简单了，在<strong>source</strong>文件夹中创建CNAME文件即可：<br><img src="https://i.loli.net/2019/01/26/5c4c3e692aa7e.png" alt="01.png"><br><img src="https://i.loli.net/2019/01/26/5c4c3e68e3c40.png" alt="03.png"></p>
+<h2 id="hexo-generate生成index-html为0kb空白文件"><a href="#hexo-generate生成index-html为0kb空白文件" class="headerlink" title="hexo generate生成index.html为0kb空白文件"></a>hexo generate生成index.html为0kb空白文件</h2><p>最近更换了电脑，所以将本地博客文件迁移到了新电脑，使用新电脑更新博客，但是在deploy到github之后访问页面是空白页面。经过一些列折腾后突然发现generate后的html等静态文件都是0kb，上网查了一下是node的版本过高的原因，卸载本地的版本，在node.js官网下载最新版本安装后再次deploy，解决！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+          
+            <a href="/tags/GitHub-Pages/" rel="tag"><i class="fa fa-tag"></i> GitHub Pages</a>
+          
+            <a href="/tags/Blog/" rel="tag"><i class="fa fa-tag"></i> Blog</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/25/Python中的str-format/" rel="prev" title="Python中的str.format">
+                Python中的str.format <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Cyne Liu">
+            
+              <p class="site-author-name" itemprop="name">Cyne Liu</p>
+              <p class="site-description motion-element" itemprop="description">越努力，越幸运!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:max.lxw@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                个人站点
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://pan.cyne.workers.dev/" title="GoDrive" target="_blank">GoDrive</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建站过程"><span class="nav-number">1.</span> <span class="nav-text">建站过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后期添加："><span class="nav-number">2.</span> <span class="nav-text">后期添加：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加网易云音乐插件"><span class="nav-number">2.1.</span> <span class="nav-text">添加网易云音乐插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加particles-js背景动画"><span class="nav-number">2.2.</span> <span class="nav-text">添加particles.js背景动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置文章摘要"><span class="nav-number">2.3.</span> <span class="nav-text">设置文章摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#needmoreshare2分享按钮"><span class="nav-number">2.4.</span> <span class="nav-text">needmoreshare2分享按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标点击特效"><span class="nav-number">2.5.</span> <span class="nav-text">鼠标点击特效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章底部标签符号"><span class="nav-number">2.6.</span> <span class="nav-text">修改文章底部标签符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏旋转头像"><span class="nav-number">2.7.</span> <span class="nav-text">侧边栏旋转头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#底部全站字数统计"><span class="nav-number">2.8.</span> <span class="nav-text">底部全站字数统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章字数统计"><span class="nav-number">2.9.</span> <span class="nav-text">文章字数统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站顶部加载进度条"><span class="nav-number">2.10.</span> <span class="nav-text">网站顶部加载进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加来必力评论系统"><span class="nav-number">2.11.</span> <span class="nav-text">添加来必力评论系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#valine评论系统"><span class="nav-number">2.12.</span> <span class="nav-text">valine评论系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏返回顶部按钮"><span class="nav-number">2.13.</span> <span class="nav-text">侧边栏返回顶部按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加视频"><span class="nav-number">2.14.</span> <span class="nav-text">添加视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改nexT主题中Pisces的宽度"><span class="nav-number">2.15.</span> <span class="nav-text">修改nexT主题中Pisces的宽度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官方文档："><span class="nav-number">3.</span> <span class="nav-text">官方文档：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接："><span class="nav-number">4.</span> <span class="nav-text">参考链接：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误汇总"><span class="nav-number">5.</span> <span class="nav-text">错误汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#123-125-引起的报错"><span class="nav-number">5.1.</span> <span class="nav-text">{ }引起的报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标题无法正常解析"><span class="nav-number">5.2.</span> <span class="nav-text">标题无法正常解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#换行"><span class="nav-number">5.3.</span> <span class="nav-text">换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FATAL-Cannot-read-property-‘replace’-of-null"><span class="nav-number">5.4.</span> <span class="nav-text">FATAL Cannot read property ‘replace’ of null</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义域名"><span class="nav-number">5.5.</span> <span class="nav-text">自定义域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-generate生成index-html为0kb空白文件"><span class="nav-number">5.6.</span> <span class="nav-text">hexo generate生成index.html为0kb空白文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cyne</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共55.6k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'rdhEUS7vxXOUb71VRL8Lw1qO-gzGzoHsz',
+        appKey: 'GrnjdE7SsscW5qUERVHtI4Ha',
+        placeholder: '看了这么多，说点什么吧😉',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

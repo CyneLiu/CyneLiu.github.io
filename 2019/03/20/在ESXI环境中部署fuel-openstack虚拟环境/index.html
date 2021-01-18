@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta name="google-site-verification" content="24POE5Oa-03aWJ5xwpS6MTPUZArUMr2M6xI_-4GE0Pg">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="OpenStack,Esxi,fuel,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cyne's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="一年之前就开始接触OpenStack，但是还没入门就放弃了，因为实验环境实在是太难装了，尝试了很多次均以失败告终，大多教程中都是安装devstack的方式进行部署，但是作为一个刚入门的小白，个人觉得这种方式可能并不是太友好。最近看了一份教程，了解到fuel openstack的部署方式，决定再尝试一下，据说这也是企业生产环境中经常用到的方式。由于自己的电脑配置比较低，在笔记本上安装虚拟环境体验不是">
+<meta name="keywords" content="OpenStack,Esxi,fuel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在ESXI环境中部署fuel openstack虚拟环境">
+<meta property="og:url" content="https://cyneliu.github.io/2019/03/20/在ESXI环境中部署fuel-openstack虚拟环境/index.html">
+<meta property="og:site_name" content="Cyne&#39;s Blog">
+<meta property="og:description" content="一年之前就开始接触OpenStack，但是还没入门就放弃了，因为实验环境实在是太难装了，尝试了很多次均以失败告终，大多教程中都是安装devstack的方式进行部署，但是作为一个刚入门的小白，个人觉得这种方式可能并不是太友好。最近看了一份教程，了解到fuel openstack的部署方式，决定再尝试一下，据说这也是企业生产环境中经常用到的方式。由于自己的电脑配置比较低，在笔记本上安装虚拟环境体验不是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c9394143c777.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c93948b28789.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c9394ff6c53d.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c93955b01f35.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c9395965b223.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c939596595d3.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c9394143c777.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/26/5c99754ebeec5.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/26/5c99754ed633c.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c93976f857b9.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c9395966aa1c.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/21/5c939597b4d7e.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c943671a130c.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c94373142e10.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/25/5c98db1d162a3.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/25/5c98db1ce03c4.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c943c595f95c.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c943a1e20593.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c943da406cf0.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c943dff6d1ac.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c943e66ecd60.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/25/5c98dbe04cab6.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c948f7d7dd43.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/25/5c98de4957eac.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c94916f9bbc6.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c949006bed85.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c949299188fc.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/25/5c98df0dd505a.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/25/5c98df780c4df.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/22/5c94aaf11fd3a.png">
+<meta property="og:updated_time" content="2019-03-26T01:10:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在ESXI环境中部署fuel openstack虚拟环境">
+<meta name="twitter:description" content="一年之前就开始接触OpenStack，但是还没入门就放弃了，因为实验环境实在是太难装了，尝试了很多次均以失败告终，大多教程中都是安装devstack的方式进行部署，但是作为一个刚入门的小白，个人觉得这种方式可能并不是太友好。最近看了一份教程，了解到fuel openstack的部署方式，决定再尝试一下，据说这也是企业生产环境中经常用到的方式。由于自己的电脑配置比较低，在笔记本上安装虚拟环境体验不是">
+<meta name="twitter:image" content="https://i.loli.net/2019/03/21/5c9394143c777.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://cyneliu.github.io/2019/03/20/在ESXI环境中部署fuel-openstack虚拟环境/">
+
+
+
+
+
+  <title>在ESXI环境中部署fuel openstack虚拟环境 | Cyne's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cyne's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">是记录，亦是成长</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cyneliu.github.io/2019/03/20/在ESXI环境中部署fuel-openstack虚拟环境/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cyne Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cyne's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在ESXI环境中部署fuel openstack虚拟环境</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T20:02:15+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenStack/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenStack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/20/在ESXI环境中部署fuel-openstack虚拟环境/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/20/在ESXI环境中部署fuel-openstack虚拟环境/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一年之前就开始接触OpenStack，但是还没入门就放弃了，因为实验环境实在是太难装了，尝试了很多次均以失败告终，大多教程中都是安装devstack的方式进行部署，但是作为一个刚入门的小白，个人觉得这种方式可能并不是太友好。最近看了一份教程，了解到fuel openstack的部署方式，决定再尝试一下，据说这也是企业生产环境中经常用到的方式。<br>由于自己的电脑配置比较低，在笔记本上安装虚拟环境体验不是很好，正好身边有一套ESXI环境，所以尝试在ESXI环境中进行部署，尝试了很多次之后终于成功，在此记录一下部署过程，以供参考。</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>首先下载fuel openstack镜像文件，主要有两个途径可以获取到fuel的镜像，第一个是fuel的官网，目前可以下载到9.0的版本。第二个是OpenStack的wiki，目前提供的最新版本是11.0：</p>
+<blockquote>
+</blockquote>
+<p><a href="https://www.mirantis.com/software/openstack/" target="_blank" rel="noopener">https://www.mirantis.com/software/openstack/</a><br><a href="https://wiki.openstack.org/wiki/Fuel#Where_to_get_Fuel" target="_blank" rel="noopener">https://wiki.openstack.org/wiki/Fuel#Where_to_get_Fuel</a></p>
+<h1 id="规划网络"><a href="#规划网络" class="headerlink" title="规划网络"></a>规划网络</h1><p>我的esxi主机所在网络为192.168.100.0/24网段，此网段对OpenStack来说也就是公网（Public），此外还需要有一个PXE网段，用于fuel部署系统，此外还有management、storage、private等网段，我们使用三块网卡来连接这三个网段。</p>
+<h2 id="在ESXI中部署网络"><a href="#在ESXI中部署网络" class="headerlink" title="在ESXI中部署网络"></a>在ESXI中部署网络</h2><p>首先是创建两个新的虚拟交换机，选中esxi主机，点击配置，网络，添加网络：<br><img src="https://i.loli.net/2019/03/21/5c9394143c777.png" alt="01.png"><br>连接类型选择虚拟机：<br><img src="https://i.loli.net/2019/03/21/5c93948b28789.png" alt="02.png"><br>选择创建vSphere标准交换机，将下面的网卡取消勾选：<br><img src="https://i.loli.net/2019/03/21/5c9394ff6c53d.png" alt="03.png"><br>网络标签可以自行修改，vlan id选择全部：<br><img src="https://i.loli.net/2019/03/21/5c93955b01f35.png" alt="04.png"><br>编辑vSwitch属性，开启混杂模式：<br><img src="https://i.loli.net/2019/03/21/5c9395965b223.png" alt="05.png"><br>要注意左边列表中的两项都要开启<br><img src="https://i.loli.net/2019/03/21/5c939596595d3.png" alt="06.png"><br>用相同的方法再创建一个vSwitch，我这里分别是fuel_pxe和fuel_private：<br><img src="https://i.loli.net/2019/03/21/5c9394143c777.png" alt="01.png"><br>最后再修改以下vSwitch0的属性，修改如下两项：<br><img src="https://i.loli.net/2019/03/26/5c99754ebeec5.png" alt="31.png"><br><img src="https://i.loli.net/2019/03/26/5c99754ed633c.png" alt="32.png"></p>
+<h1 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h1><p>fuel的架构如下图所示：<br><img src="https://i.loli.net/2019/03/21/5c93976f857b9.png" alt="09.png"><br>这里我没有部署单独的Storage节点，只部署三个节点：master、controller和compute，三个节点的配置及网卡连接情况如下：  </p>
+<blockquote>
+<p>master节点：</p>
+<blockquote>
+<p>8核 8G内存 100G存储 fuel_pxe vmnet vmnet</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>controller节点：</p>
+<blockquote>
+<p>8核 8G内存 100G存储 fuel_pxe vmnet fuel_private</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>compute节点</p>
+<blockquote>
+<p>8核 16G内存 200G存储 fuel_pxe vmnet fuel_private</p>
+</blockquote>
+</blockquote>
+<h2 id="master节点配置"><a href="#master节点配置" class="headerlink" title="master节点配置"></a>master节点配置</h2><p>新建名称为fuel_master的虚拟机,网卡配置如下图所示：<br><img src="https://i.loli.net/2019/03/21/5c9395966aa1c.png" alt="07.png"><br>开机并挂载fuel镜像：<br><img src="https://i.loli.net/2019/03/21/5c939597b4d7e.png" alt="08.png"><br>选择第一项直接开始安装，安装时间较长，耐心等待其安装完成。<br>安装完成后登录master节点，修改一些配置，首先是配置一个我们可以连接的ip，默认情况下eth0的ip地址已经设置为10.20.0.2，我这里选择使用eth1进行修改：</p>
+<blockquote>
+</blockquote>
+<pre><code>vim /etc/sysconfig/network-scrips/eth1
+</code></pre><p>将配置文件中的ONBOOT=no改为yes,ip地址我这里使用的是dhcp分配的方式，当然你也可以手工指定。<br>修改完成后保存退出并重启网络:</p>
+<blockquote>
+</blockquote>
+<pre><code>service network restart
+</code></pre><p>然后允许ssh登录，默认情况下是只允许10.20.0.0/24这个网段登录的：</p>
+<blockquote>
+</blockquote>
+<pre><code>iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
+service iptables save
+service iptables restart
+</code></pre><p>查看eth1的ip地址，这时我们就可以使用eth1的ip访问mater的web界面了(浏览器通常会阻止访问，点击继续访问或添加例外即可)：<br><img src="https://i.loli.net/2019/03/22/5c943671a130c.png" alt="11.png"><br>使用默认用户名/密码：admin/admin登录，登录进去之后会提示修改密码，暂时先不修改。此外因为安装时master节点并没有连接外网，所以这时会有如下提示信息：<br><img src="https://i.loli.net/2019/03/22/5c94373142e10.png" alt="10.png"><br>有以下两种解决方式：</p>
+<h3 id="联网方式"><a href="#联网方式" class="headerlink" title="联网方式"></a>联网方式</h3><p>根据提示信息执行命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>fuel-bootstrap build --activate
+</code></pre><p>这种方式的前提是master节点可以连接到外网，而且根据网络环境的不同可能时间会比较长。另外这条命令在11.0的版本可以正常使用，而在9.0版本中貌似有些源已经访问不到了，所以推荐使用本地源。</p>
+<h3 id="本地方式"><a href="#本地方式" class="headerlink" title="本地方式"></a>本地方式</h3><p>下载以下两个文件(如果失效可以自己google)：<br><em>mirrors.zip</em>：<a href="https://pan.baidu.com/s/1npQ2MBps6ypx2X_ebCJ2jg" target="_blank" rel="noopener">密码：j0yk</a><br><em>bootstraps.zip</em>：<a href="https://pan.baidu.com/s/1EeLLaenosPr2OLULw-VB_w" target="_blank" rel="noopener">密码：miwf</a></p>
+<p>解压bootstrap.zip，上传“bootstrap”文件夹至master节点的<em>/var/www/nailgun/</em>目录下，覆盖原有bootstrap目录，然后执行如下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>fuel-bootstrap activate d01c72e6-83f4-4a19-bb86-6085e40416e6  #激活bootstrap
+fuel-bootstrap list   #查看处于活动状态的bootstrap
+</code></pre><p>解压mirrors.zip，上传解压的“mirrors”文件夹至master节点的<em>/var/www/nailgun/</em>目录，</p>
+<blockquote>
+</blockquote>
+<pre><code>fuel-createmirror   #在处于离线状态的master节点运行命令（会报错，直接忽略）
+</code></pre><p>注意以上两个解压文件不要出现同名嵌套的文件夹，比如bootstrap文件夹下还有一个bootstrap文件夹。</p>
+<h2 id="controller和compute节点"><a href="#controller和compute节点" class="headerlink" title="controller和compute节点"></a>controller和compute节点</h2><p>新建两台虚拟机，配置可以自行设置，我这里按上面预先规划的配置进行设置，重点是两个节点的网卡配置，如下分别是我的controller节点和compute节点配置：<br><img src="https://i.loli.net/2019/03/25/5c98db1d162a3.png" alt="27.png"><br><img src="https://i.loli.net/2019/03/25/5c98db1ce03c4.png" alt="26.png"><br>启动controller和compute两个节点，两个节点会自动从pxe完成启动进入bootstrap，登录fuel的web界面，mater节点已经获取到两个节点的基本信息：<br><img src="https://i.loli.net/2019/03/22/5c943c595f95c.png" alt="14.png"></p>
+<h1 id="创建OpenStack环境"><a href="#创建OpenStack环境" class="headerlink" title="创建OpenStack环境"></a>创建OpenStack环境</h1><p>点击“New OpenStack Enviroment”创建一个OpenStack环境：<br><img src="https://i.loli.net/2019/03/22/5c943a1e20593.png" alt="12.png"><br>相关选项根据需要自己修改，我这里全部保持默认，点击<em>create</em>完成创建。  </p>
+<h2 id="修改网络配置"><a href="#修改网络配置" class="headerlink" title="修改网络配置"></a>修改网络配置</h2><p>点击Networks进入网络配置页面，修改Public网段，即连接外网的网段：<br><img src="https://i.loli.net/2019/03/22/5c943da406cf0.png" alt="15.png"><br>同时需要修改L3的网络配置，L3需要跟Public处在同一网段且地址块不能重叠：<br><img src="https://i.loli.net/2019/03/22/5c943dff6d1ac.png" alt="16.png"><br>修改DNS：<br><img src="https://i.loli.net/2019/03/22/5c943e66ecd60.png" alt="17.png"><br>其它配置，建议勾选此选项，并将两个server地址设置为master节点的地址：10.20.0.2<br><img src="https://i.loli.net/2019/03/25/5c98dbe04cab6.png" alt="28.png"></p>
+<h2 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h2><p>进入<em>Nodes</em>页面，点击<em>Add Nodes</em>添加已经发现到的两个节点并选择相应的角色：<br><img src="https://i.loli.net/2019/03/22/5c948f7d7dd43.png" alt="20.png"><br>上图是我第一遍操作时截的图，没有选择cinder角色，后来重新部署的时候遵从建议选择了cinder角色（fuel建议至少有一个cinder节点），这里也推荐大家部署cinder角色。在controller节点安装了cinder角色，补一个部署之后的截图：<br><img src="https://i.loli.net/2019/03/25/5c98de4957eac.png" alt="29.png"><br>点击节点右侧的齿轮按钮，设置一下接口配置，我的两个节点接口配置：<br><img src="https://i.loli.net/2019/03/22/5c94916f9bbc6.png" alt="22.png"></p>
+<h2 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h2><p>以上操作完成后到<em>Network</em>页面检查一下网络配置是否正确：<br><img src="https://i.loli.net/2019/03/22/5c949006bed85.png" alt="21.png"><br>检查通过就可以开始部署了，回到<em>Dashboard</em>页面，点击<em>Deploy Changes</em>开始部署：<br><img src="https://i.loli.net/2019/03/22/5c949299188fc.png" alt="24.png"><br>经过漫长的等待，最后部署成功：<br><img src="https://i.loli.net/2019/03/25/5c98df0dd505a.png" alt="30.png"><br>点击Horizon即可访问dashboard，输入用户名/密码：admin/admin登录：<br><img src="https://i.loli.net/2019/03/25/5c98df780c4df.png" alt="66.png"></p>
+<h1 id="错误汇总"><a href="#错误汇总" class="headerlink" title="错误汇总"></a>错误汇总</h1><h2 id="sync-time-error"><a href="#sync-time-error" class="headerlink" title="sync_time error"></a>sync_time error</h2><p>时间同步错误，原因在于fuel主节点没有合适的时间同步，所以子节点无法完成时间同步，修改fuel主节点的ntp配置即可解决：</p>
+<blockquote>
+</blockquote>
+<pre><code>vim /etc/ntp.conf
+</code></pre><p>在server段添加如下内容,并将原来的server注释掉。</p>
+<blockquote>
+</blockquote>
+<pre><code>server asia.pool.ntp.org  iburst minpoll 3 maxpoll 9
+</code></pre><p>重启ntp服务：</p>
+<blockquote>
+</blockquote>
+<pre><code>systemctl restart ntpdate.service
+systemctl restart ntpd.service
+</code></pre><h2 id="build-deploy-image-error"><a href="#build-deploy-image-error" class="headerlink" title="build_deploy_image error"></a>build_deploy_image error</h2><p>错误提示信息：<br>All nodes are finished. Failed tasks: Task[build_deploy_image/master] Stopping the deployment process!<br><img src="https://i.loli.net/2019/03/22/5c94aaf11fd3a.png" alt="25.png"><br>原因是master节点无法连接外网，修改相关网络配置即可，我这里是启用eth1网卡连接外网。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.51cto.com/goome/1916247" target="_blank" rel="noopener">https://blog.51cto.com/goome/1916247</a><br><a href="https://www.cnblogs.com/shoufengwei/p/6901173.html" target="_blank" rel="noopener">https://www.cnblogs.com/shoufengwei/p/6901173.html</a><br><a href="https://blog.csdn.net/qq_35180983/article/details/82181496" target="_blank" rel="noopener">https://blog.csdn.net/qq_35180983/article/details/82181496</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OpenStack/" rel="tag"><i class="fa fa-tag"></i> OpenStack</a>
+          
+            <a href="/tags/Esxi/" rel="tag"><i class="fa fa-tag"></i> Esxi</a>
+          
+            <a href="/tags/fuel/" rel="tag"><i class="fa fa-tag"></i> fuel</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/Ubuntu16-04安装OpenDaylight-Carbon/" rel="next" title="Ubuntu16.04安装OpenDaylight Carbon">
+                <i class="fa fa-chevron-left"></i> Ubuntu16.04安装OpenDaylight Carbon
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/28/Cisco配置VPN-IPSec/" rel="prev" title="Cisco配置VPN IPSec">
+                Cisco配置VPN IPSec <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Cyne Liu">
+            
+              <p class="site-author-name" itemprop="name">Cyne Liu</p>
+              <p class="site-description motion-element" itemprop="description">越努力，越幸运!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:max.lxw@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                个人站点
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://pan.cyne.workers.dev/" title="GoDrive" target="_blank">GoDrive</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规划网络"><span class="nav-number">2.</span> <span class="nav-text">规划网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在ESXI中部署网络"><span class="nav-number">2.1.</span> <span class="nav-text">在ESXI中部署网络</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建节点"><span class="nav-number">3.</span> <span class="nav-text">创建节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#master节点配置"><span class="nav-number">3.1.</span> <span class="nav-text">master节点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#联网方式"><span class="nav-number">3.1.1.</span> <span class="nav-text">联网方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方式"><span class="nav-number">3.1.2.</span> <span class="nav-text">本地方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#controller和compute节点"><span class="nav-number">3.2.</span> <span class="nav-text">controller和compute节点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建OpenStack环境"><span class="nav-number">4.</span> <span class="nav-text">创建OpenStack环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改网络配置"><span class="nav-number">4.1.</span> <span class="nav-text">修改网络配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加节点"><span class="nav-number">4.2.</span> <span class="nav-text">添加节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始部署"><span class="nav-number">4.3.</span> <span class="nav-text">开始部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误汇总"><span class="nav-number">5.</span> <span class="nav-text">错误汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sync-time-error"><span class="nav-number">5.1.</span> <span class="nav-text">sync_time error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#build-deploy-image-error"><span class="nav-number">5.2.</span> <span class="nav-text">build_deploy_image error</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cyne</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共55.6k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'rdhEUS7vxXOUb71VRL8Lw1qO-gzGzoHsz',
+        appKey: 'GrnjdE7SsscW5qUERVHtI4Ha',
+        placeholder: '看了这么多，说点什么吧😉',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
