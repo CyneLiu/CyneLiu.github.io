@@ -26,58 +26,6 @@
       </tags>
   </entry>
   <entry>
-    <title>3.Open vSwitch流表管理</title>
-    <url>/2018/09/14/3-Open-vSwitch%E6%B5%81%E8%A1%A8%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议去连接Open vSwitch，创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。  </p>
-<p>在OpenFlow的白皮书中，Flow被定义为某个特定的网络流量。例如，一个TCP连接就是一个Flow，或者从某个IP地址发出来的数据包，都可以被认为是一个Flow。支持OpenFlow协议的交换机应该包括一个或者多个流表，流表中的条目包含：数据包头的信息、匹配成功后要执行的指令和统计信息。  </p>
-<p>当数据包进入OVS后，会将数据包和流表中的流表项进行匹配，如果发现了匹配的流表项，则执行该流表项中的指令集。相反，如果数据包在流表中没有发现任何匹配，OVS会通过控制通道把数据包发到OpenFlow控制器中。<br>在OVS中，流表项作为ovs-ofctl的参数，采用如下的格式：字段=值，如果有多个字段，可以用逗号或者空格分开。一些常用的字段列举如下：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd40468.png" alt="1.png"><br>ovs-ofctl关于流表管理的常用命令：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd3a959.png" alt="2.png"><br>对于add−flow，add−flows和mod−flows这三个命令，还需要指定要执行的动作：actions=[target][,target…]，一个流规则中可能有多个动作，按照指定的先后顺序执行。<br>常见的操作有：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd4cb85.png" alt="3.png"></p>
-<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/14/5b9bb4dd4d9be.png" alt="拓扑.png"></p>
-<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机，执行以下命令，查看镜像中原有的网桥，如下图所示。</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-vsctl show
-</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbf7b25c05.png" alt="4.png"><br>步骤5 执行以下命令，删除当前网桥，并进行确认，如下图所示。</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-vsctl del-br br-sw
-ovs-vsctl show
-</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbfb869e58.png" alt="5.png"></p>
-<h1 id="流表管理"><a href="#流表管理" class="headerlink" title="流表管理"></a>流表管理</h1><p>步骤1 执行以下命令，添加网桥，并查看虚拟交换机的基本信息，如下图所示。</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-vsctl add-br br0
-ovs-ofctl show br0
-</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbffd27c45.png" alt="6.png"><br>由上图可知，可以查看到交换机dpid、流表数量、性能参数、动作参数、MAC地址等信息。  </p>
-<p>步骤2 执行以下命令，查看虚拟交换机上各端口的状态，如下图所示。</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-ofctl dump-flows br0
-</code></pre><p>由上图可知，输出的结果中包含了各端口上收到的数据包数，字节数，丢包数，错误数据包数等。  </p>
-<p>步骤3 执行以下命令，添加一条流表项，设置流表项生命周期为1000s，优先级为17，入端口为3，动作是output:2。</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-ofctl add-flow br0 idle_timeout=1000,priority=17,in_port=3,actions=output:2
-说明：这条流表项的作用是将端口3接收到的数据包从端口2输出。
-</code></pre><p>步骤4 执行以下命令，查看交换机上所有流表信息，如下图所示。</p>
-<blockquote>
-<pre><code>ovs-ofctl dump-flows br0
-</code></pre></blockquote>
-<p>步骤5 执行以下命令，删除入端口为3的的流表项，删除后，再次查看流表信息，如下图所示。</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-ofctl del-flows br0 in_port=3
-ovs-ofctl dump-flows br0
-</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bc08844d29.png" alt="7.png"></p>
-]]></content>
-      <categories>
-        <category>SDN</category>
-      </categories>
-      <tags>
-        <tag>SDN</tag>
-        <tag>实验</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2.OVSDB的网桥和端口管理</title>
     <url>/2018/09/13/2-OVSDB%E7%9A%84%E7%BD%91%E6%A1%A5%E5%92%8C%E7%AB%AF%E5%8F%A3%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>在虚拟交换机领域，Open vSwitch作为非官方的标准已获得产业界的高度关注。一般来讲，控制器及应用可以通过OpenFlow和OVSDB两种南向协议方式与Open vSwitch交换机进行交互，其中通过OpenFlow来引导数据包流的转发，通过OVSDB可以进行端口和隧道的增加、更新以及删除，这些隧道和端口提供流转发的管道。因此，OVSDB在Open vSwitch作为一个重要的事实标准，OpenDaylight系统如何高效地支持OVSDB也变得非常重要。OpenDaylight的OVSDB子项目实现了OVSDB管理协议，该协议允许控制器进行虚拟交换机的南向配置。OVSDB协议包含一个OVSDB库和各种插件用法，该协议使用JSON/RPC调用的方式来操作内置OVSDB的物理或虚拟交换机。<br>OVSDB子项目主要包含Northbound模块、plugin模块和OVSDB Library模块，其中北向Northbound模块可供外部APP调用，南向OVSDB Library通过OVSDB协议与外部通信，进行OVSDB的管理，具体系统架构如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a10f6d7c34.png" alt="1.png"><br>Library模块主要包含message、notation、impl、jsonrpc和schema等程序包,其中jsonrpc主要提供兼容rpc1.0的解码器，能够从TCP流解码JSON消息；notation主要包含OVSDB MAP、ResultSet等定义以及Json串行化；schema提供OVSDB数据库模式的表示。</p>
@@ -144,99 +92,6 @@ ovs-ofctl dump-flows br0
 </blockquote>
 <pre><code>ovs-vsctl show
 </code></pre><p><img src="https://i.loli.net/2018/09/14/5b9ba934ab15e.png" alt="26.png"></p>
-]]></content>
-      <categories>
-        <category>SDN</category>
-      </categories>
-      <tags>
-        <tag>SDN</tag>
-        <tag>实验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>5.OpenFlow实现示例之中继器HUB</title>
-    <url>/2018/09/15/5-OpenFlow%E5%AE%9E%E7%8E%B0%E7%A4%BA%E4%BE%8B%E4%B9%8B%E4%B8%AD%E7%BB%A7%E5%99%A8HUB/</url>
-    <content><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信息的计数器（Counter），还有匹配表项后需要对数据分组执行的动作表（Action）。分组头域是数据分组匹配流表项时参照的依据，作用上类似于传统交换机进行二层交换时匹配数据分组的MAC地址，路由器进行三层路由时匹配的IP地址。流表项中的计数器用来统计相关“流”的一些信息，例如查找次数、收发分组数、生存时间等。另外，OpenFlow针对每张表、每个流表项、每个端口、每个队列也都会维护它们相应的计数器。动作表指定了OpenFlow交换机处理相应“流”的行为。相比于传统网络设备对数据分组只能进行较为单一的转发操作，流表项根据指定动作字段来指导OF交换机如何处理“流”。动作表可以包含0个或多个动作，交换机会按照这些动作的先后顺序依次执行，如果其中不包含转发（Forward）动作的话，数据分组就会被丢弃掉，如果包含转发动作，数据分组会得到相应的转发处理，但是OpenFlow v1.0无法保证不同的数据分组的转发顺序。动作可以分为两种类型：必选动作（Required Action）和可选动作（Optional Action）。必选动作是默认支持的，而交换机需要通知控制器它支持的可选动作。另外，当流表项中存在OpenFlow交换机不支持的动作时将向控制器返回错误消息。在SDN网络中，控制器下发流表主要有两种模式，分别是reactive模式和proactive模式。  </p>
-<p>传统交换机参照MAC地址转发，路由器参照IP地址转发，通过定制ASIC芯片可以实现高速工作。而OpenFlow将网络协议栈扁平化，协议栈各层次对于转发设备而言不再具有明确的界限，各个网络字段都可作为流表中的匹配域，通过通配符掩码实现任意字段的组合。相比于传统网络，这种做法无疑大大提高了网络灵活性，但付出的代价是硬件设备为了适应这种通配的匹配方式，一般来说需要采用TCAM（Ternary Content Addressable Memory）来设计流表，但是TCAM的成本要高出很多，这就极大地限制了流表的规模，也就限制了SDN的规模。如果按照很多客户的要求，动辄要几十KB甚至上百KB的流表要求，至少需要20Mbit的TCAM，远远超过目前市场上容量最大的交换芯片的TCAM大小。为了克服TCAM表较小的问题，SDN先驱们提出采用reactive的方式来编写TCAM。<br><img src="https://i.loli.net/2018/09/15/5b9d05573ed46.png" alt="1.png"><br>在reactive模式下，OpenFlow交换机接收到未知数据包时，会向控制器发送一条packet_in消息询问控制器如何处理该数据包。控制器接收到packet_in消息后，计算路径并发送一条flow_mod消息指示交换机如何处理该数据包。并且，当老化定时器超时后就可以删除与该数据包相关的流表项。如此一来，OpenFlow交换机无需维护全部流表，只有当未知数据包到达交换机时才会触发reactive模式，可以有效的节省TCAM的空间。但是reactive模式缺点就是交换机无法即时地处理未知数据包，需要依赖控制器的决策，虽然在一定程度上解决了TCAM较小带来的问题，但是也让SDN控制器成为系统扩展的瓶颈，随着网络规模的不断扩大，SDN控制器无法处理大规模的网络流量，SDN控制器的性能就会限制网络规模的扩展。  </p>
-<p>OpenFlow交换机和OpenFlow控制器之间的通道建立后，由OpenFlow控制器向OpenFlow交换机预先发送流表项方式称之为proactive模式。proactive模式的设置不是必须在控制器与交换机建立连接后立刻下发流表，可以在连接建立后的任意时间下发流表。proactive模式的主要特点是“主动”，控制器主动下发流表给交换机，随后交换机可以直接根据流表进行转发。proactive模式下控制器的压力会大大减轻，不过TCAM造成的局限性也尤为明显。</p>
-<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/15/5b9d0af0ac5d1.png" alt="拓扑.png"></p>
-<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机，检查网络连通性。执行以下命令：</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-vsctl show
-</code></pre><p>出现“is_connected: true”，表明控制器与交换机连接成功。  </p>
-<p>步骤2 登录主机，查看主机IP。  </p>
-<p>登录交换机，查看交换机mac地址。  </p>
-<blockquote>
-</blockquote>
-<pre><code>ifconfig |more
-</code></pre><p>根据实验拓扑图、交换机和主机的mac地址，可以判断出交换机eth1连接host1，eth2连接host2，eth3连接host3。</p>
-<h1 id="proactive模式"><a href="#proactive模式" class="headerlink" title="proactive模式"></a>proactive模式</h1><p>步骤1 Open Daylight控制器与交换机建立连接后，会自动下发初始流表。登录交换机使用下列命令查看初始流表。</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-ofctl dump-flows br-sw
-</code></pre><p>如果没有的话重启一下交换机。<br><img src="https://i.loli.net/2018/09/15/5b9d129607bf4.png" alt="2.png"><br>步骤2 登录控制器，在下方的“Application Finder”中搜索“postman”，并打开自带的Postman工具，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d151e53f54.png" alt="3.png"><br>步骤3 获取交换机的id信息。打开Basic Auth页签，Username字段填写admin，Password字段填写admin完成认证。  </p>
-<p>提交方式为GET，URL地址栏中输入<a href="http://127.0.0.1:8080/restconf/operational/opendaylight-inventory:nodes。" target="_blank" rel="noopener">http://127.0.0.1:8080/restconf/operational/opendaylight-inventory:nodes。</a>  </p>
-<p>步骤4 单击Send按钮，获取交换机id信息，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d156896885.png" alt="4.png"><br>步骤5 下发一条流表。</p>
-<blockquote>
-<p>选择提交方式“PUT”。  </p>
-</blockquote>
-<blockquote>
-<p>URL地址栏输入如下形式的地址：http://{controller-ip}:8080/restconf/config/opendaylight-inventory:nodes/node/{node-id}/table/{table-id}/flow/{flow-id}。  </p>
-</blockquote>
-<blockquote>
-<p>其中，{controller-ip}为控制器的ip地址，node-id为上面获取到的交换机id信息，table-id这里为0，flow-id根据下发不同流表变化，可自定义。本实验URL地址栏输入如下地址：<a href="http://127.0.0.1:8080/restconf/config/opendaylight-inventory:nodes/node/openflow:143226243417414/table/0/flow/14。" target="_blank" rel="noopener">http://127.0.0.1:8080/restconf/config/opendaylight-inventory:nodes/node/openflow:143226243417414/table/0/flow/14。</a>  </p>
-</blockquote>
-<blockquote>
-<p>填写Headers信息，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d16d59439b.png" alt="5.png"><br>单击Body，Bady格式选择raw—&gt;XML(application/xml)。Body内容如下所示：  </p>
-</blockquote>
-<blockquote>
-<p>匹配条件为ANY，actions为ALL，即将交换机收到的所有数据包转发到除入端口外的所有端口，从而实现中继器HUB的功能。</p>
-</blockquote>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;
-&lt;flow xmlns=&quot;urn:opendaylight:flow:inventory&quot;&gt;
-    &lt;priority&gt;35&lt;/priority&gt;
-    &lt;flow-name&gt;SDN&lt;/flow-name&gt;
-    &lt;idle-timeout&gt;0&lt;/idle-timeout&gt;
-    &lt;hard-timeout&gt;0&lt;/hard-timeout&gt;
-    &lt;match&gt;ANY&lt;/match&gt;
-    &lt;id&gt;14&lt;/id&gt;
-    &lt;table_id&gt;0&lt;/table_id&gt;
-    &lt;instructions&gt;
-        &lt;instruction&gt;
-            &lt;order&gt;0&lt;/order&gt;
-            &lt;apply-actions&gt;
-                &lt;action&gt;
-                       &lt;output-action&gt;
-                          &lt;output-node-connector&gt;ALL&lt;/output-node-connector&gt;
-                       &lt;/output-action&gt;
-                       &lt;order&gt;0&lt;/order&gt;
-                &lt;/action&gt;
-            &lt;/apply-actions&gt;
-        &lt;/instruction&gt;
-    &lt;/instructions&gt;
-&lt;/flow&gt;
-</code></pre><p>步骤6 单击Send按钮发送请求，STATUS显示请求发送成功，流表下发成功，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d18177ec0e.png" alt="6.png"><br>步骤7 登录交换机查看下发的流表，执行以下命令：</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-ofctl dump-flows br-sw
-</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d184ac4929.png" alt="7.png"><br>步骤8 登录主机host1，对主机host2进行ping操作，host2的IP为10.0.0.10，执行以下命令：</p>
-<blockquote>
-</blockquote>
-<pre><code>ping 10.0.0.10
-</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d18930750e.png" alt="8.png"><br>步骤9 登录交换机用tcpdump捕获广播到host2和host3数据包。host2对应的端口是eth2，host3对应的端口是eth3，分别捕获这两个端口上的数据包。  </p>
-<p>（备注：选择不在host3、host2上抓包的原因是：由于当h1 ping h2时，数据包从交换机所有端口output出去后，openstack中的Linux-bridge会根据转发表过滤掉所有目的地址与端口不一致的数据包，因此host3上无法捕获host1与host2之间的数据包。）</p>
-<blockquote>
-</blockquote>
-<pre><code>tcpdump -i eth2
-</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d18d0ab61c.png" alt="9.png"></p>
-<blockquote>
-</blockquote>
-<pre><code>tcpdump -i eth3
-</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d19734c90f.png" alt="10.png"></p>
-<h1 id="reactive模式"><a href="#reactive模式" class="headerlink" title="reactive模式"></a>reactive模式</h1><p>reactive模式需要依赖SDN控制器的反应，实现较为复杂，在此仅进行方案介绍，不做实验操作，有兴趣的同学可自行拓展学习。  </p>
-<p>步骤1 reactive模式的触发机制就是交换机将接收到数据包转发给控制器，交换机转发数据包给控制器的情况有两种：一个是交换机接收到未知数据包；另一个就是流表action要求交换机将数据包转发给控制器。因此设置reactive模式的第一步是下发一条流表，priority设置为最高65535，匹配条件为ANY，actions是将数据包output到controller。<br><img src="https://i.loli.net/2018/09/15/5b9d1a21ac061.png" alt="11.png"><br>流表项设置好后，当host1发送数据包时，交换机接收到数据包后会发送packet_in消息给控制器。  </p>
-<p>步骤2 控制器接收到packet_in消息后对消息中的内容进行判断，计算分析后发送packet_out消息给交换机，告知交换机如何处理该数据包。本实验中控制器会要求交换机将数据包转发到除入端口外的所有端口，从而实验中继器的功能。<br><img src="https://i.loli.net/2018/09/15/5b9d1a4af035d.png" alt="12.png"></p>
 ]]></content>
       <categories>
         <category>SDN</category>
@@ -337,77 +192,48 @@ ovs-ofctl dump-flows br0
       </tags>
   </entry>
   <entry>
-    <title>6.使用OpenDaylight界面下发流表</title>
-    <url>/2018/09/16/6-%E4%BD%BF%E7%94%A8OpenDaylight%E7%95%8C%E9%9D%A2%E4%B8%8B%E5%8F%91%E6%B5%81%E8%A1%A8/</url>
-    <content><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>YANG UI是OpenDaylight中一款基于DLUX的应用，旨在简化、激励应用的开发与测试。YANG UI通过动态封装、调用YANG模型和相关REST APIs，生成并展示一个简单的UI界面。开发人员可以通过API请求获取交换机信息，并且以JSON格式展示。YANG UI主要面向上层应用开发，为应用开发人员提供了很多相关工具，有效的节约了开发人员的时间。  </p>
-<p>OpenFlow1.0协议处理数据包的流程相对简单，因为1.0版本只支持单流表。交换机接收到数据包后解析数据包，数据包解析后就开始匹配，从table 0 开始匹配，如果匹配成功则对该数据包执行相应的动作，更新相应的计数器。如果没有找到匹配项则将数据包交给控制器。  </p>
-<p>OpenFlow1.3协议支持多流表匹配，即一个交换机只会有多个流表，因此数据包处理过程相对复杂。首先解析进入设备的报文，然后从table 0开始匹配，按照优先级高低依次匹配该流表中的流表项，一个报文在一个流表中只会匹配上一条流表项。通常根据报文的类型，报文头的字段例如源MAC地址、目的MAC地址、源IP地址、目的IP地址等进行匹配，大部分匹配还支持掩码进行更精确、灵活的匹配。也可以通过报文的入端口或元数据信息来进行报文的匹配，一个流表项中可以同时存在多个匹配项，一个报文需要同时匹配流表项中所有匹配项才能匹配该流表项。报文匹配按照现有的报文字段进行，比如前一个流表通过apply actions改变了该报文的某个字段，则下一个表项按修改后的字段进行匹配。如果匹配成功，则按照指令集里的动作更新动作集，或更新报文/匹配集字段，或更新元数据和计数器。根据指令是否继续前往下一个流表，不继续则终止匹配流程执行动作集，如果指令要求继续前往下一个流表则继续匹配，下一个流表的ID需要比当前流表ID大。当报文匹配失败了，如果存在无匹配流表项（table miss）就按照该表项执行指令，一般是将报文转发给控制器、丢弃或转发给其他流表。如果没有table miss表项则默认丢弃该报文。  </p>
-<p>在Open vSwitch中，流表项作为ovs-ofctl的参数，采用“字段=值”的格式。如果有多个字段，可以用逗号分开，一些常见字段如下：<br><img src="https://i.loli.net/2018/09/16/5b9e4929f0d63.png" alt="1.png"></p>
-<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/16/5b9e494803043.png" alt="拓扑.png"></p>
-<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>登录交换机，检查网络连通性。当显示“is_connected：ture”时，表示交换机与控制器连接成功，可以正常进行实验。若不显示“is_connected：ture”时，表示交换机与控制器连接不成功，执行:</p>
+    <title>3.Open vSwitch流表管理</title>
+    <url>/2018/09/14/3-Open-vSwitch%E6%B5%81%E8%A1%A8%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议去连接Open vSwitch，创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。  </p>
+<p>在OpenFlow的白皮书中，Flow被定义为某个特定的网络流量。例如，一个TCP连接就是一个Flow，或者从某个IP地址发出来的数据包，都可以被认为是一个Flow。支持OpenFlow协议的交换机应该包括一个或者多个流表，流表中的条目包含：数据包头的信息、匹配成功后要执行的指令和统计信息。  </p>
+<p>当数据包进入OVS后，会将数据包和流表中的流表项进行匹配，如果发现了匹配的流表项，则执行该流表项中的指令集。相反，如果数据包在流表中没有发现任何匹配，OVS会通过控制通道把数据包发到OpenFlow控制器中。<br>在OVS中，流表项作为ovs-ofctl的参数，采用如下的格式：字段=值，如果有多个字段，可以用逗号或者空格分开。一些常用的字段列举如下：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd40468.png" alt="1.png"><br>ovs-ofctl关于流表管理的常用命令：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd3a959.png" alt="2.png"><br>对于add−flow，add−flows和mod−flows这三个命令，还需要指定要执行的动作：actions=[target][,target…]，一个流规则中可能有多个动作，按照指定的先后顺序执行。<br>常见的操作有：<br><img src="https://i.loli.net/2018/09/14/5b9bb4dd4cb85.png" alt="3.png"></p>
+<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/14/5b9bb4dd4d9be.png" alt="拓扑.png"></p>
+<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机，执行以下命令，查看镜像中原有的网桥，如下图所示。</p>
 <blockquote>
 </blockquote>
-<pre><code>ovs-vsctl del-controller br-sw
-ovs-vsctl set-controller br-sw tcp:30.0.1.3:6633 
-</code></pre><p>命令手动重连，稍等一会后，重新查看连接状态。</p>
-<h1 id="基于OpenFlow1-0协议下发流表"><a href="#基于OpenFlow1-0协议下发流表" class="headerlink" title="基于OpenFlow1.0协议下发流表"></a>基于OpenFlow1.0协议下发流表</h1><p>步骤1 切换到交换机，执行以下命令设置OpenFlow协议版本为1.0。  </p>
+<pre><code>ovs-vsctl show
+</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbf7b25c05.png" alt="4.png"><br>步骤5 执行以下命令，删除当前网桥，并进行确认，如下图所示。</p>
 <blockquote>
 </blockquote>
-<pre><code>ovs-vsctl set bridge br-sw protocols=OpenFlow10
-</code></pre><p>步骤2 选择控制器，单击浏览器图标，打开浏览器。  </p>
-<p>步骤3 访问OpenDaylight Web页面，url是<a href="http://127.0.0.1:8080/index.html" target="_blank" rel="noopener">http://127.0.0.1:8080/index.html</a> ，用户名和密码是admin/admin，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4a2625fb7.png" alt="2.png"><br>步骤4 单击左侧的“Nodes”查看节点信息。其中尤其需要关注Node Id，下发流表的时候会用到Node Id，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4a653f1bb.png" alt="3.png"><br>步骤5 单击上图中的“Node Connectors”列的数据即“9”，可以查看具体节点连接信息，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4ac29c305.png" alt="4.png"><br>步骤6 选择左侧的“Yang UI”，单击“Expand all”展开所有目录，查看各种模块，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4af0e3b80.png" alt="5.png"><br>步骤7 展开“opendaylight-inventory rev.2013-08-19”，选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{id}”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b115e5c9.png" alt="6.png"><br>步骤8 补全node id、table id和flow id的值。  </p>
-<p>其中node id参见之前查询到的Node Id。table id和flow id可以自定义。由于OpenFlow1.0协议只支持单流表，所以这里的table id设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b3798ac7.png" alt="7.png"><br>步骤9 单击flow list后面的“+”，展开流表相关的参数。填写第一个框id，路径中的flow id也会随之同步，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b59027ad.png" alt="8.png"><br>步骤10 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为“0x0800”(说明：由于使用IP地址进行匹配，所以需要设置以太网协议类型。),如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b789668c.png" alt="9.png"><br>步骤11 填写匹配参数，在“layer-3-match”后面的下拉框中选择“ipv4-match”，使用IP匹配。  </p>
-<p>步骤12 展开“layer-3-match”，填写源IP地址和目的IP地址，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4bc1b5579.png" alt="10.png"><br>其中源地址填写主机1的IP地址，目的地址填写主机2的IP地址。  </p>
-<p>步骤13 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“apply-actions-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4bec99e16.png" alt="11.png"><br>步骤14 展开“apply-actions”，单击“action list”后面的“+”，在action后面的下拉框中选择“drop-action-case”，action order和instruction order都设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c0f7a101.png" alt="12.png"><br>步骤15 设置“priority”为27，“idle-timeout”为0，“hard-timeout”为0，“cookie”为100000000，“table_id”为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c2f54bc4.png" alt="13.png"><br>说明：priority设置的比已有流表项的高，而idle-timeout和hardtimeout都设置为0则代表该流表项永远不会过期，除非被删除。  </p>
-<p>步骤16 向右滚动Actions栏，在路径后面有动作类型GET、PUT、POST、DELETE，下发流表则选择PUT动作，然后单击“Send”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c5b47302.png" alt="14.png"><br>步骤17 如果下发成功会出现下面的提示，如果下发不成功则会弹出相应的错误信息。<br><img src="https://i.loli.net/2018/09/16/5b9e4c9033d8d.png" alt="15.png"><br>步骤18 切换到交换机，执行如下命令查看流表，确保刚刚下发的流表已经下发到交换机。如下图所示。</p>
+<pre><code>ovs-vsctl del-br br-sw
+ovs-vsctl show
+</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbfb869e58.png" alt="5.png"></p>
+<h1 id="流表管理"><a href="#流表管理" class="headerlink" title="流表管理"></a>流表管理</h1><p>步骤1 执行以下命令，添加网桥，并查看虚拟交换机的基本信息，如下图所示。</p>
 <blockquote>
 </blockquote>
-<pre><code>ovs-ofctl dump-flows br-sw
-</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4cc42a811.png" alt="16.png"><br>步骤19 登录主机1，执行如下命令向主机2、主机3发送数据包，测试主机间的连通性。</p>
+<pre><code>ovs-vsctl add-br br0
+ovs-ofctl show br0
+</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bbffd27c45.png" alt="6.png"><br>由上图可知，可以查看到交换机dpid、流表数量、性能参数、动作参数、MAC地址等信息。  </p>
+<p>步骤2 执行以下命令，查看虚拟交换机上各端口的状态，如下图所示。</p>
 <blockquote>
 </blockquote>
-<pre><code># scapy
-&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())
-&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())
-</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4cfe4003b.png" alt="17.png"><br>由上图可知，主机1与主机2之间不通，主机1与主机3通，新下发的流表项生效。  </p>
-<p>说明：如果主机之间通则能够收到answer，如果主机之间不通那么就无法收到answer，当主机之间不通时scapy就会一直发送数据包，如果需要停止可以使用Ctrl+c。  </p>
-<p>步骤20 切换到交换机，执行以下命令删除刚刚下发的流表项，并查看流表确保成功删除。  </p>
+<pre><code>ovs-ofctl dump-flows br0
+</code></pre><p>由上图可知，输出的结果中包含了各端口上收到的数据包数，字节数，丢包数，错误数据包数等。  </p>
+<p>步骤3 执行以下命令，添加一条流表项，设置流表项生命周期为1000s，优先级为17，入端口为3，动作是output:2。</p>
 <blockquote>
 </blockquote>
-<pre><code>ovs-ofctl del-flows br-sw dl_type=0x0800,nw_src=10.0.0.3,nw_dst=10.0.0.4
-ovs-ofctl dump-flows br-sw
-</code></pre><p>步骤21 切换到主机1执行如下命令，测试主机1和主机2是否连通。</p>
+<pre><code>ovs-ofctl add-flow br0 idle_timeout=1000,priority=17,in_port=3,actions=output:2
+说明：这条流表项的作用是将端口3接收到的数据包从端口2输出。
+</code></pre><p>步骤4 执行以下命令，查看交换机上所有流表信息，如下图所示。</p>
+<blockquote>
+<pre><code>ovs-ofctl dump-flows br0
+</code></pre></blockquote>
+<p>步骤5 执行以下命令，删除入端口为3的的流表项，删除后，再次查看流表信息，如下图所示。</p>
 <blockquote>
 </blockquote>
-<pre><code>result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())
-</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4d486b69c.png" alt="18.png"><br>由上图可知，主机1与主机2之间就通了。</p>
-<h1 id="基于OpenFlow1-3协议下发流表"><a href="#基于OpenFlow1-3协议下发流表" class="headerlink" title="基于OpenFlow1.3协议下发流表"></a>基于OpenFlow1.3协议下发流表</h1><p>步骤1 登录交换机，设置OpenFlow协议版本为1.3。执行以下命令：</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-vsctl set bridge br-sw protocols=OpenFlow13
-</code></pre><p>步骤2 与OpenFlow1.0下发流表的过程解基本一致。展开opendaylight-inventory rev.2013-08-19，选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{id}”。  </p>
-<p>步骤3 补全Actions栏中的路径，其中node id参见之前查询到的Node Id。table id和flow id可以自定义。由于OpenFlow1.3协议支持多级流表，所以这里的table id设置为2。  </p>
-<p>步骤4 单击flow list后面的“+”，流表相关的参数就会展开。设置id为1，路径中的flow id也会随之同步，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e592464e82.png" alt="19.png"><br>步骤5 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为0x0800，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e594c3f115.png" alt="20.png"><br>步骤6 在“layer-3-match”后面的下拉框中选择“ipv4-match”。  </p>
-<p>步骤7 展开“layer-3-match”，填写源IP地址和目的IP地址。以主机1的IP为源IP，以主机3的IP为目的IP，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5979b8763.png" alt="21.png"><br>步骤8 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“apply-actions-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e599fdaa67.png" alt="22.png"><br>步骤9 展开“apply-actions”，单击“action list”后面的“+”，在“action”后面的下拉框中选择“drop-action-case”，“action order”和“instruction order”都设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e59c4a3dca.png" alt="23.png"><br>步骤10 设置“priority”为25，“idle-timeout”为0，“hard-timeout”为0，“cookie”为10000000，“table_id”为2，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e59eb63de3.png" alt="24.png"><br>步骤11 向右滚动Actions栏，选择“PUT”动作，然后单击“Send”下发流表。PUT成功就会弹出“Request sent successfully”，否则弹出错误信息。  </p>
-<p>步骤12 切换到主机1，执行如下命令，向主机3发送数据包，测试主机1和主机3的连通性。</p>
-<blockquote>
-</blockquote>
-<pre><code>&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())
-</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5a28ba934.png" alt="25.png"><br>由上图可知，主机1与主机3之间是连通的，新下发的流表没有发挥作用。原因是数据包在table 0中能够匹配到相应流表就不会被转发到table2，想要table2的流表项发挥作用就需要向table0增加一条流表，将源IP为10.0.0.3，目的IP为10.0.0.2的数据包转发到table2中处理。  </p>
-<p>步骤13 选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{i}”。node id参见之前查询到的Node Id、table id设为0、flow id设为1。  </p>
-<p>步骤14 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为0x0800。  </p>
-<p>步骤15 匹配参数保持不变，以主机1的IP为源IP，以主机3的IP为目的IP。  </p>
-<p>步骤16 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“go-to-table-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5a73537cd.png" alt="26.png"><br>步骤17 展开“go-to-table”，table_id填写为2，即将符合匹配条件的数据包根据table2中的流表项处理。instruction order依旧设为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5aa888c72.png" alt="27.png"><br>步骤18 设“priority”置为23，“idle-timeout”为0，“hard-timeout”为0，“cookie”为1000000000，“table_id”为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5ad13fe66.png" alt="28.png"><br>步骤19 向右滚动Actions栏，选择“PUT”动作，然后单击“Send”下发流表。  </p>
-<p>步骤20 切换到交换机，执行以下命令查看新下发的流表项。</p>
-<blockquote>
-</blockquote>
-<pre><code>ovs-ofctl -O OpenFlow13 dump-flows b
-</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5b076d691.png" alt="29.png"><br>步骤21 切换到主机1，执行如下命令发送数据包，测试主机之间的连通性。</p>
-<blockquote>
-</blockquote>
-<pre><code>&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())
-&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())
-</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5b4ae09ab.png" alt="30.png"><br>由上图可知，主机1与主机3之间不通，而主机1与主机2之间通，流表发挥作用。</p>
+<pre><code>ovs-ofctl del-flows br0 in_port=3
+ovs-ofctl dump-flows br0
+</code></pre><p><img src="https://i.loli.net/2018/09/14/5b9bc08844d29.png" alt="7.png"></p>
 ]]></content>
       <categories>
         <category>SDN</category>
@@ -415,22 +241,6 @@ ovs-ofctl dump-flows br-sw
       <tags>
         <tag>SDN</tag>
         <tag>实验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Anaconda开始菜单失踪</title>
-    <url>/2018/09/10/Anaconda%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95%E5%A4%B1%E8%B8%AA/</url>
-    <content><![CDATA[<p>今天想打开Anaconda写python程序的时候，突然发现Anaconda在开始菜单中神秘失踪了。<br>这时候只需要打开cmd，切换到Anaconda的安装目录的Lib文件夹下，执行如下命令：</p>
-<blockquote>
-</blockquote>
-<pre><code>python _nsis.py mkmenus
-</code></pre><p>重新生成一下开始菜单即可。<br><img src="https://i.loli.net/2018/09/10/5b9670b820c45.png" alt="snipaste_20180909_124542.png"></p>
-]]></content>
-      <categories>
-        <category>疑难杂症</category>
-      </categories>
-      <tags>
-        <tag>Anaconda</tag>
       </tags>
   </entry>
   <entry>
@@ -475,6 +285,115 @@ ovs-ofctl dump-flows br-sw
       <tags>
         <tag>Apache</tag>
         <tag>Web服务器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>5.OpenFlow实现示例之中继器HUB</title>
+    <url>/2018/09/15/5-OpenFlow%E5%AE%9E%E7%8E%B0%E7%A4%BA%E4%BE%8B%E4%B9%8B%E4%B8%AD%E7%BB%A7%E5%99%A8HUB/</url>
+    <content><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信息的计数器（Counter），还有匹配表项后需要对数据分组执行的动作表（Action）。分组头域是数据分组匹配流表项时参照的依据，作用上类似于传统交换机进行二层交换时匹配数据分组的MAC地址，路由器进行三层路由时匹配的IP地址。流表项中的计数器用来统计相关“流”的一些信息，例如查找次数、收发分组数、生存时间等。另外，OpenFlow针对每张表、每个流表项、每个端口、每个队列也都会维护它们相应的计数器。动作表指定了OpenFlow交换机处理相应“流”的行为。相比于传统网络设备对数据分组只能进行较为单一的转发操作，流表项根据指定动作字段来指导OF交换机如何处理“流”。动作表可以包含0个或多个动作，交换机会按照这些动作的先后顺序依次执行，如果其中不包含转发（Forward）动作的话，数据分组就会被丢弃掉，如果包含转发动作，数据分组会得到相应的转发处理，但是OpenFlow v1.0无法保证不同的数据分组的转发顺序。动作可以分为两种类型：必选动作（Required Action）和可选动作（Optional Action）。必选动作是默认支持的，而交换机需要通知控制器它支持的可选动作。另外，当流表项中存在OpenFlow交换机不支持的动作时将向控制器返回错误消息。在SDN网络中，控制器下发流表主要有两种模式，分别是reactive模式和proactive模式。  </p>
+<p>传统交换机参照MAC地址转发，路由器参照IP地址转发，通过定制ASIC芯片可以实现高速工作。而OpenFlow将网络协议栈扁平化，协议栈各层次对于转发设备而言不再具有明确的界限，各个网络字段都可作为流表中的匹配域，通过通配符掩码实现任意字段的组合。相比于传统网络，这种做法无疑大大提高了网络灵活性，但付出的代价是硬件设备为了适应这种通配的匹配方式，一般来说需要采用TCAM（Ternary Content Addressable Memory）来设计流表，但是TCAM的成本要高出很多，这就极大地限制了流表的规模，也就限制了SDN的规模。如果按照很多客户的要求，动辄要几十KB甚至上百KB的流表要求，至少需要20Mbit的TCAM，远远超过目前市场上容量最大的交换芯片的TCAM大小。为了克服TCAM表较小的问题，SDN先驱们提出采用reactive的方式来编写TCAM。<br><img src="https://i.loli.net/2018/09/15/5b9d05573ed46.png" alt="1.png"><br>在reactive模式下，OpenFlow交换机接收到未知数据包时，会向控制器发送一条packet_in消息询问控制器如何处理该数据包。控制器接收到packet_in消息后，计算路径并发送一条flow_mod消息指示交换机如何处理该数据包。并且，当老化定时器超时后就可以删除与该数据包相关的流表项。如此一来，OpenFlow交换机无需维护全部流表，只有当未知数据包到达交换机时才会触发reactive模式，可以有效的节省TCAM的空间。但是reactive模式缺点就是交换机无法即时地处理未知数据包，需要依赖控制器的决策，虽然在一定程度上解决了TCAM较小带来的问题，但是也让SDN控制器成为系统扩展的瓶颈，随着网络规模的不断扩大，SDN控制器无法处理大规模的网络流量，SDN控制器的性能就会限制网络规模的扩展。  </p>
+<p>OpenFlow交换机和OpenFlow控制器之间的通道建立后，由OpenFlow控制器向OpenFlow交换机预先发送流表项方式称之为proactive模式。proactive模式的设置不是必须在控制器与交换机建立连接后立刻下发流表，可以在连接建立后的任意时间下发流表。proactive模式的主要特点是“主动”，控制器主动下发流表给交换机，随后交换机可以直接根据流表进行转发。proactive模式下控制器的压力会大大减轻，不过TCAM造成的局限性也尤为明显。</p>
+<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/15/5b9d0af0ac5d1.png" alt="拓扑.png"></p>
+<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>步骤1 登录交换机，检查网络连通性。执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl show
+</code></pre><p>出现“is_connected: true”，表明控制器与交换机连接成功。  </p>
+<p>步骤2 登录主机，查看主机IP。  </p>
+<p>登录交换机，查看交换机mac地址。  </p>
+<blockquote>
+</blockquote>
+<pre><code>ifconfig |more
+</code></pre><p>根据实验拓扑图、交换机和主机的mac地址，可以判断出交换机eth1连接host1，eth2连接host2，eth3连接host3。</p>
+<h1 id="proactive模式"><a href="#proactive模式" class="headerlink" title="proactive模式"></a>proactive模式</h1><p>步骤1 Open Daylight控制器与交换机建立连接后，会自动下发初始流表。登录交换机使用下列命令查看初始流表。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl dump-flows br-sw
+</code></pre><p>如果没有的话重启一下交换机。<br><img src="https://i.loli.net/2018/09/15/5b9d129607bf4.png" alt="2.png"><br>步骤2 登录控制器，在下方的“Application Finder”中搜索“postman”，并打开自带的Postman工具，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d151e53f54.png" alt="3.png"><br>步骤3 获取交换机的id信息。打开Basic Auth页签，Username字段填写admin，Password字段填写admin完成认证。  </p>
+<p>提交方式为GET，URL地址栏中输入<a href="http://127.0.0.1:8080/restconf/operational/opendaylight-inventory:nodes。" target="_blank" rel="noopener">http://127.0.0.1:8080/restconf/operational/opendaylight-inventory:nodes。</a>  </p>
+<p>步骤4 单击Send按钮，获取交换机id信息，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d156896885.png" alt="4.png"><br>步骤5 下发一条流表。</p>
+<blockquote>
+<p>选择提交方式“PUT”。  </p>
+</blockquote>
+<blockquote>
+<p>URL地址栏输入如下形式的地址：http://{controller-ip}:8080/restconf/config/opendaylight-inventory:nodes/node/{node-id}/table/{table-id}/flow/{flow-id}。  </p>
+</blockquote>
+<blockquote>
+<p>其中，{controller-ip}为控制器的ip地址，node-id为上面获取到的交换机id信息，table-id这里为0，flow-id根据下发不同流表变化，可自定义。本实验URL地址栏输入如下地址：<a href="http://127.0.0.1:8080/restconf/config/opendaylight-inventory:nodes/node/openflow:143226243417414/table/0/flow/14。" target="_blank" rel="noopener">http://127.0.0.1:8080/restconf/config/opendaylight-inventory:nodes/node/openflow:143226243417414/table/0/flow/14。</a>  </p>
+</blockquote>
+<blockquote>
+<p>填写Headers信息，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d16d59439b.png" alt="5.png"><br>单击Body，Bady格式选择raw—&gt;XML(application/xml)。Body内容如下所示：  </p>
+</blockquote>
+<blockquote>
+<p>匹配条件为ANY，actions为ALL，即将交换机收到的所有数据包转发到除入端口外的所有端口，从而实现中继器HUB的功能。</p>
+</blockquote>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;
+&lt;flow xmlns=&quot;urn:opendaylight:flow:inventory&quot;&gt;
+    &lt;priority&gt;35&lt;/priority&gt;
+    &lt;flow-name&gt;SDN&lt;/flow-name&gt;
+    &lt;idle-timeout&gt;0&lt;/idle-timeout&gt;
+    &lt;hard-timeout&gt;0&lt;/hard-timeout&gt;
+    &lt;match&gt;ANY&lt;/match&gt;
+    &lt;id&gt;14&lt;/id&gt;
+    &lt;table_id&gt;0&lt;/table_id&gt;
+    &lt;instructions&gt;
+        &lt;instruction&gt;
+            &lt;order&gt;0&lt;/order&gt;
+            &lt;apply-actions&gt;
+                &lt;action&gt;
+                       &lt;output-action&gt;
+                          &lt;output-node-connector&gt;ALL&lt;/output-node-connector&gt;
+                       &lt;/output-action&gt;
+                       &lt;order&gt;0&lt;/order&gt;
+                &lt;/action&gt;
+            &lt;/apply-actions&gt;
+        &lt;/instruction&gt;
+    &lt;/instructions&gt;
+&lt;/flow&gt;
+</code></pre><p>步骤6 单击Send按钮发送请求，STATUS显示请求发送成功，流表下发成功，如下图所示。<br><img src="https://i.loli.net/2018/09/15/5b9d18177ec0e.png" alt="6.png"><br>步骤7 登录交换机查看下发的流表，执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl dump-flows br-sw
+</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d184ac4929.png" alt="7.png"><br>步骤8 登录主机host1，对主机host2进行ping操作，host2的IP为10.0.0.10，执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>ping 10.0.0.10
+</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d18930750e.png" alt="8.png"><br>步骤9 登录交换机用tcpdump捕获广播到host2和host3数据包。host2对应的端口是eth2，host3对应的端口是eth3，分别捕获这两个端口上的数据包。  </p>
+<p>（备注：选择不在host3、host2上抓包的原因是：由于当h1 ping h2时，数据包从交换机所有端口output出去后，openstack中的Linux-bridge会根据转发表过滤掉所有目的地址与端口不一致的数据包，因此host3上无法捕获host1与host2之间的数据包。）</p>
+<blockquote>
+</blockquote>
+<pre><code>tcpdump -i eth2
+</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d18d0ab61c.png" alt="9.png"></p>
+<blockquote>
+</blockquote>
+<pre><code>tcpdump -i eth3
+</code></pre><p><img src="https://i.loli.net/2018/09/15/5b9d19734c90f.png" alt="10.png"></p>
+<h1 id="reactive模式"><a href="#reactive模式" class="headerlink" title="reactive模式"></a>reactive模式</h1><p>reactive模式需要依赖SDN控制器的反应，实现较为复杂，在此仅进行方案介绍，不做实验操作，有兴趣的同学可自行拓展学习。  </p>
+<p>步骤1 reactive模式的触发机制就是交换机将接收到数据包转发给控制器，交换机转发数据包给控制器的情况有两种：一个是交换机接收到未知数据包；另一个就是流表action要求交换机将数据包转发给控制器。因此设置reactive模式的第一步是下发一条流表，priority设置为最高65535，匹配条件为ANY，actions是将数据包output到controller。<br><img src="https://i.loli.net/2018/09/15/5b9d1a21ac061.png" alt="11.png"><br>流表项设置好后，当host1发送数据包时，交换机接收到数据包后会发送packet_in消息给控制器。  </p>
+<p>步骤2 控制器接收到packet_in消息后对消息中的内容进行判断，计算分析后发送packet_out消息给交换机，告知交换机如何处理该数据包。本实验中控制器会要求交换机将数据包转发到除入端口外的所有端口，从而实验中继器的功能。<br><img src="https://i.loli.net/2018/09/15/5b9d1a4af035d.png" alt="12.png"></p>
+]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>SDN</tag>
+        <tag>实验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Anaconda开始菜单失踪</title>
+    <url>/2018/09/10/Anaconda%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95%E5%A4%B1%E8%B8%AA/</url>
+    <content><![CDATA[<p>今天想打开Anaconda写python程序的时候，突然发现Anaconda在开始菜单中神秘失踪了。<br>这时候只需要打开cmd，切换到Anaconda的安装目录的Lib文件夹下，执行如下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>python _nsis.py mkmenus
+</code></pre><p>重新生成一下开始菜单即可。<br><img src="https://i.loli.net/2018/09/10/5b9670b820c45.png" alt="snipaste_20180909_124542.png"></p>
+]]></content>
+      <categories>
+        <category>疑难杂症</category>
+      </categories>
+      <tags>
+        <tag>Anaconda</tag>
       </tags>
   </entry>
   <entry>
@@ -591,69 +510,6 @@ netstat -lnt | grep 590*
       </tags>
   </entry>
   <entry>
-    <title>CentOS7最小化安装后找不到ifconfig命令</title>
-    <url>/2019/01/11/CentOS7%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E5%90%8E%E6%89%BE%E4%B8%8D%E5%88%B0ifconfig%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p>“ifconfig”命令用于配置GNU/Linux系统的网络接口。它显示网络接口卡的详细信息，包括IP地址，MAC地址，以及网络接口卡状态之类。但是，该命令已经过时了，而且在最小化版本的RHEL 7以及它的克隆版本CentOS 7，Oracle Linux 7和Scientific Linux 7中也找不到该命令。</p>
-<h1 id="使用ip-addr和ip-link查看网卡信息"><a href="#使用ip-addr和ip-link查看网卡信息" class="headerlink" title="使用ip addr和ip link查看网卡信息"></a>使用ip addr和ip link查看网卡信息</h1><blockquote>
-</blockquote>
-<pre><code>ip addr # 查看网卡细节
-ip link
-ip -s link # 查看网络接口统计数据
-</code></pre><h1 id="依然使用ifconfig"><a href="#依然使用ifconfig" class="headerlink" title="依然使用ifconfig"></a>依然使用ifconfig</h1><p>如果说我们还是想使用ifconfig命令，我们就需要安装相应的包来使用。首先查看哪些包提供ifconfig命令：</p>
-<blockquote>
-</blockquote>
-<pre><code>yum provides ifconfig
-</code></pre><p>或者：</p>
-<blockquote>
-</blockquote>
-<pre><code>yum whatprovides ifconfig
-</code></pre><p>根据输出信息安装相应的包即可使用ifconfig命令。  </p>
-<p>参考自：<a href="https://linux.cn/article-3631-1.html" target="_blank" rel="noopener">Linux中国</a></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>ifconfig</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Citrix XenServer 初探</title>
-    <url>/2019/05/19/Citrix-XenServer-%E5%88%9D%E6%8E%A2/</url>
-    <content><![CDATA[<h1 id="XenServer安装"><a href="#XenServer安装" class="headerlink" title="XenServer安装"></a>XenServer安装</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>安装平台：服务器或虚拟机<br>下载XenServer镜像：</p>
-<blockquote>
-</blockquote>
-<p>一开始下载时是准备在官网直接下载的，但是也许是因为中美贸易战的原因，在注册账号后开始登录时出现如下提示：<br><img src="https://i.loli.net/2019/05/19/5ce0f45a95d4553874.png" alt="00.png"><br>无奈只能Google看看有没有好人分享过镜像，最后还是找到了：</p>
-<blockquote>
-<blockquote>
-<p>百度网盘：<a href="http://pan.baidu.com/s/1pLrQv39" target="_blank" rel="noopener">密码：yxxl</a><br>原帖地址：<a href="http://www.xen800.com/thread-1527-1-1.html" target="_blank" rel="noopener">http://www.xen800.com/thread-1527-1-1.html</a></p>
-</blockquote>
-</blockquote>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>下载XenServer的iso镜像之后，将镜像文件刻录到U盘或者光盘中，然后插入服务器选择从相应介质引导启动即可，具体安装步骤可参考下面这份安装教程：</p>
-<blockquote>
-</blockquote>
-<p><a href="https://pan.baidu.com/s/1SHIYPuj7gJphCihfjqadRg" target="_blank" rel="noopener">Citrix虚拟化之旅三（XenServer 新手安装教程）.pdf</a><br>提取码：cue2 </p>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="显示器输入不支持"><a href="#显示器输入不支持" class="headerlink" title="显示器输入不支持"></a>显示器输入不支持</h3><p>因为显示器比较烂，在刚开始安装的时候显示输入不支持，参考安装教程，应该是在这一步：<br><img src="https://i.loli.net/2019/05/19/5ce0fcb5be53318989.png" alt="01.png"><br>所以直接盲敲回车就可以了，当然需要等待一段时间才能看到内容。</p>
-<h3 id="安装后无法引导启动"><a href="#安装后无法引导启动" class="headerlink" title="安装后无法引导启动"></a>安装后无法引导启动</h3><ul>
-<li>开机后进入BIOS，找到”Boot Manager”，选择”add Boot Option”，选择”legacy only”;  </li>
-<li>然后在“Change Boot Order”中，把“legacy only”选项调整为第一位,然后选择”commit changes “保存;  </li>
-<li>System Settings-&gt;Devices and I/O Ports-&gt;Console Redirection Settings-&gt;Remote Console 设置为Enable。</li>
-</ul>
-<p>详细可参考：<a href="https://blog.51cto.com/chenmingxin/878374" target="_blank" rel="noopener">https://blog.51cto.com/chenmingxin/878374</a></p>
-<h1 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h1><h2 id="安装XenCenter"><a href="#安装XenCenter" class="headerlink" title="安装XenCenter"></a>安装XenCenter</h2><p>打开浏览器访问XenServer的ip地址，下载XenCenter安装程序：<br><img src="https://i.loli.net/2019/05/19/5ce1006ca1a0469993.png" alt="02.png"><br>也可以去网上下载其它版本，我这里是安装了7.0中文版。<br>然后添加服务器，输入服务器ip、用户名及密码完成添加：<br><img src="https://i.loli.net/2019/05/19/5ce1016d3388953979.png" alt="04.png"></p>
-<h2 id="创建SR"><a href="#创建SR" class="headerlink" title="创建SR"></a>创建SR</h2><p>在创建虚拟机时我们肯定会用到操作系统的安装镜像，不同于ESXI可以直接挂载本地镜像，我们需要先创建ISO库来存放我们将要用到的安装镜像。<br>在创建ISO库之前，先创建一个共享文件夹，文件夹中存放着我们的镜像文件：<br><img src="https://i.loli.net/2019/05/19/5ce103566dcff61384.png" alt="07.png"><br>右键添加的服务器，选择“新建SR”：<br><img src="https://i.loli.net/2019/05/19/5ce1022a50b6383082.png" alt="05.png"><br>存储类型选择Windows文件共享：<br><img src="https://i.loli.net/2019/05/19/5ce1035651bb373212.png" alt="06.png"><br>输入共享地址以及用户名密码完成挂载：<br><img src="https://i.loli.net/2019/05/19/5ce103fee462934335.png" alt="08.png"><br>现在我们就可以在“ISO库”中看到我们的镜像文件了：<br><img src="https://i.loli.net/2019/05/19/5ce104a286b9769937.png" alt="09.png"></p>
-<h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p>以上操作完成之后我们就可以点击菜单栏的“新建VM”，按照提示创建我们的虚拟机了，具体步骤可参考上面提到的安装教程。</p>
-]]></content>
-      <categories>
-        <category>虚拟化</category>
-      </categories>
-      <tags>
-        <tag>Citrix</tag>
-        <tag>XenServer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Cisco配置VPN IPSec</title>
     <url>/2019/03/28/Cisco%E9%85%8D%E7%BD%AEVPN-IPSec/</url>
     <content><![CDATA[<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2019/03/28/5c9c3006a1ccd.png" alt="00.png"></p>
@@ -764,6 +620,69 @@ Extended IP access list 100
       </tags>
   </entry>
   <entry>
+    <title>CentOS7最小化安装后找不到ifconfig命令</title>
+    <url>/2019/01/11/CentOS7%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E5%90%8E%E6%89%BE%E4%B8%8D%E5%88%B0ifconfig%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>“ifconfig”命令用于配置GNU/Linux系统的网络接口。它显示网络接口卡的详细信息，包括IP地址，MAC地址，以及网络接口卡状态之类。但是，该命令已经过时了，而且在最小化版本的RHEL 7以及它的克隆版本CentOS 7，Oracle Linux 7和Scientific Linux 7中也找不到该命令。</p>
+<h1 id="使用ip-addr和ip-link查看网卡信息"><a href="#使用ip-addr和ip-link查看网卡信息" class="headerlink" title="使用ip addr和ip link查看网卡信息"></a>使用ip addr和ip link查看网卡信息</h1><blockquote>
+</blockquote>
+<pre><code>ip addr # 查看网卡细节
+ip link
+ip -s link # 查看网络接口统计数据
+</code></pre><h1 id="依然使用ifconfig"><a href="#依然使用ifconfig" class="headerlink" title="依然使用ifconfig"></a>依然使用ifconfig</h1><p>如果说我们还是想使用ifconfig命令，我们就需要安装相应的包来使用。首先查看哪些包提供ifconfig命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>yum provides ifconfig
+</code></pre><p>或者：</p>
+<blockquote>
+</blockquote>
+<pre><code>yum whatprovides ifconfig
+</code></pre><p>根据输出信息安装相应的包即可使用ifconfig命令。  </p>
+<p>参考自：<a href="https://linux.cn/article-3631-1.html" target="_blank" rel="noopener">Linux中国</a></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>ifconfig</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Citrix XenServer 初探</title>
+    <url>/2019/05/19/Citrix-XenServer-%E5%88%9D%E6%8E%A2/</url>
+    <content><![CDATA[<h1 id="XenServer安装"><a href="#XenServer安装" class="headerlink" title="XenServer安装"></a>XenServer安装</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>安装平台：服务器或虚拟机<br>下载XenServer镜像：</p>
+<blockquote>
+</blockquote>
+<p>一开始下载时是准备在官网直接下载的，但是也许是因为中美贸易战的原因，在注册账号后开始登录时出现如下提示：<br><img src="https://i.loli.net/2019/05/19/5ce0f45a95d4553874.png" alt="00.png"><br>无奈只能Google看看有没有好人分享过镜像，最后还是找到了：</p>
+<blockquote>
+<blockquote>
+<p>百度网盘：<a href="http://pan.baidu.com/s/1pLrQv39" target="_blank" rel="noopener">密码：yxxl</a><br>原帖地址：<a href="http://www.xen800.com/thread-1527-1-1.html" target="_blank" rel="noopener">http://www.xen800.com/thread-1527-1-1.html</a></p>
+</blockquote>
+</blockquote>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>下载XenServer的iso镜像之后，将镜像文件刻录到U盘或者光盘中，然后插入服务器选择从相应介质引导启动即可，具体安装步骤可参考下面这份安装教程：</p>
+<blockquote>
+</blockquote>
+<p><a href="https://pan.baidu.com/s/1SHIYPuj7gJphCihfjqadRg" target="_blank" rel="noopener">Citrix虚拟化之旅三（XenServer 新手安装教程）.pdf</a><br>提取码：cue2 </p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="显示器输入不支持"><a href="#显示器输入不支持" class="headerlink" title="显示器输入不支持"></a>显示器输入不支持</h3><p>因为显示器比较烂，在刚开始安装的时候显示输入不支持，参考安装教程，应该是在这一步：<br><img src="https://i.loli.net/2019/05/19/5ce0fcb5be53318989.png" alt="01.png"><br>所以直接盲敲回车就可以了，当然需要等待一段时间才能看到内容。</p>
+<h3 id="安装后无法引导启动"><a href="#安装后无法引导启动" class="headerlink" title="安装后无法引导启动"></a>安装后无法引导启动</h3><ul>
+<li>开机后进入BIOS，找到”Boot Manager”，选择”add Boot Option”，选择”legacy only”;  </li>
+<li>然后在“Change Boot Order”中，把“legacy only”选项调整为第一位,然后选择”commit changes “保存;  </li>
+<li>System Settings-&gt;Devices and I/O Ports-&gt;Console Redirection Settings-&gt;Remote Console 设置为Enable。</li>
+</ul>
+<p>详细可参考：<a href="https://blog.51cto.com/chenmingxin/878374" target="_blank" rel="noopener">https://blog.51cto.com/chenmingxin/878374</a></p>
+<h1 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h1><h2 id="安装XenCenter"><a href="#安装XenCenter" class="headerlink" title="安装XenCenter"></a>安装XenCenter</h2><p>打开浏览器访问XenServer的ip地址，下载XenCenter安装程序：<br><img src="https://i.loli.net/2019/05/19/5ce1006ca1a0469993.png" alt="02.png"><br>也可以去网上下载其它版本，我这里是安装了7.0中文版。<br>然后添加服务器，输入服务器ip、用户名及密码完成添加：<br><img src="https://i.loli.net/2019/05/19/5ce1016d3388953979.png" alt="04.png"></p>
+<h2 id="创建SR"><a href="#创建SR" class="headerlink" title="创建SR"></a>创建SR</h2><p>在创建虚拟机时我们肯定会用到操作系统的安装镜像，不同于ESXI可以直接挂载本地镜像，我们需要先创建ISO库来存放我们将要用到的安装镜像。<br>在创建ISO库之前，先创建一个共享文件夹，文件夹中存放着我们的镜像文件：<br><img src="https://i.loli.net/2019/05/19/5ce103566dcff61384.png" alt="07.png"><br>右键添加的服务器，选择“新建SR”：<br><img src="https://i.loli.net/2019/05/19/5ce1022a50b6383082.png" alt="05.png"><br>存储类型选择Windows文件共享：<br><img src="https://i.loli.net/2019/05/19/5ce1035651bb373212.png" alt="06.png"><br>输入共享地址以及用户名密码完成挂载：<br><img src="https://i.loli.net/2019/05/19/5ce103fee462934335.png" alt="08.png"><br>现在我们就可以在“ISO库”中看到我们的镜像文件了：<br><img src="https://i.loli.net/2019/05/19/5ce104a286b9769937.png" alt="09.png"></p>
+<h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p>以上操作完成之后我们就可以点击菜单栏的“新建VM”，按照提示创建我们的虚拟机了，具体步骤可参考上面提到的安装教程。</p>
+]]></content>
+      <categories>
+        <category>虚拟化</category>
+      </categories>
+      <tags>
+        <tag>Citrix</tag>
+        <tag>XenServer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Dell服务器iDRAC虚拟控制台无法连接问题解决方法</title>
     <url>/2020/05/12/Dell%E6%9C%8D%E5%8A%A1%E5%99%A8iDRAC%E8%99%9A%E6%8B%9F%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>今天配置10台Dell R720服务器的iDRAC服务之后，远程连接的时候发现出现部分服务器虚拟控制台连接不上的问题，尝试了网上了一些解决方法之后，最后通过升级iDRAC固件的方式解决了问题，在此记录一下，供参考。</p>
@@ -781,31 +700,6 @@ Extended IP access list 100
       <tags>
         <tag>iDRAC</tag>
         <tag>Dell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GPT分区安装操作系统后无法引导启动</title>
-    <url>/2019/12/30/GPT%E5%88%86%E5%8C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%95%E5%AF%BC%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<p>记得之前写过一篇<a href="https://cyneliu.gitee.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/" target="_blank" rel="noopener">《秒懂MBR和GPT分区表》</a>，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。  </p>
-<p>然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终于发现了问题。  </p>
-<h1 id="EFI分区"><a href="#EFI分区" class="headerlink" title="EFI分区"></a>EFI分区</h1><p>EFI系统分区（EFI system partition，简称ESP），是一个FAT16或FAT32格式的物理分区，但是其分区标识是EF (十六进制) 而非常规的0E或0C，因此，该分区在Windows操作系统下一般是不可见的。ESP分区在UEFI BIOS引导系统时使用，用来存储BIOS/EFI NAND芯片存储不下的那部分EFI扩展功能。支持EFI模式的电脑需要从ESP启动系统，EFI固件可从ESP加载EFI启动程序或应用，ESP是系统引导分区。</p>
-<h1 id="MSR分区"><a href="#MSR分区" class="headerlink" title="MSR分区"></a>MSR分区</h1><p>MSR分区（Microsoft Reserved Partition，缩写MSR）即Microsoft 保留 (MSR) 分区。是每个 在GUID 分区表 (GPT) 上的 Windows操作系统（windows7以上）都要求的分区。系统组件可以将 MSR 分区的部分分配到新的分区以供它们使用。<br>MSR 分区的大小会因 GPT 磁盘的大小不同而发生变化。对于小于 16 GB 的磁盘，MSR 分区为 32 MB。对于大于 16 GB 的磁盘，MSR 分区为 128 MB。MSR 分区在“磁盘管理”中不可见，在Diskpart、Diskgenius等磁盘工具里可见，但是用户无法在 MSR 分区上存储或删除数据。</p>
-<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>我使用的PE是<a href="http://www.wepe.com.cn/" target="_blank" rel="noopener">WEPE</a>  </p>
-<p>首先我们需要确认一下当前系统磁盘是GPT磁盘，如下图所示，如果之前装过操作系统的话我们打开分区助手应该是可以看到ESP和MSR这两个隐藏分区的，或者只有一个ESP分区，如果是新硬盘的话使用快速分区也可以自动生成这两个分区。<br><img src="https://i.loli.net/2019/12/31/Mw3tbGRjBvdr5yx.png" alt="00.png"></p>
-<p>为了重现我之前遇到的问题，我们把系统分区和这两个隐藏分区都删掉，然后重建系统分区，然后按照BIOS+MBR的方式安装操作系统（这就是安装完系统无法引导的原因），其实Windows安装器在安装时也会有错误提示，EFI PART的灯是红色的，说明我们选择的引导驱动器并非EFI引导分区。</p>
-<blockquote>
-<p>UEFI+GPT方式安装操作系统时，不能像之前BIOS方式那样将引导分区设置为系统分区，而是需要设置为ESP分区。  </p>
-</blockquote>
-<p><img src="https://i.loli.net/2019/12/31/KHTAOxuNlICfm7v.png" alt="01.png"></p>
-<p>所以我们需要手动去创建ESP和MSR分区，打开DiskGenius,选择未分配空间，创建新分区，文件系统类型选择“EFI system partition”,大小100M就可以了。<br><img src="https://i.loli.net/2019/12/31/1oxUQH8umG3yeV5.png" alt="02.png"><br>然后新建MSR分区，文件系统类型选择“Microsoft Reserved Partition”，大小128M。<br><img src="https://i.loli.net/2019/12/31/9XY7IAWwzbSF2Oe.png" alt="03.png"><br>然后在根据自己需要进行其它分区的配置，我这里因为使用的是虚拟机，硬盘比较少，只做演示。<br><img src="https://i.loli.net/2019/12/31/zC3OpMylkdYUmqi.png" alt="04.png"><br>分区完成后保存更改。再次打开Windows安装器，引导驱动器选择ESP分区，这时安装器就显示正常了。<br><img src="https://i.loli.net/2019/12/31/USf9ymFMxwpgqu5.png" alt="05.png"></p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://bbs.wuyou.net/forum.php?mod=viewthread&amp;tid=374959&amp;page=1" target="_blank" rel="noopener">MSR分区到底有什么功能</a></p>
-]]></content>
-      <categories>
-        <category>打鱼晒网</category>
-      </categories>
-      <tags>
-        <tag>GPT</tag>
-        <tag>重装系统</tag>
       </tags>
   </entry>
   <entry>
@@ -872,6 +766,31 @@ Extended IP access list 100
       </tags>
   </entry>
   <entry>
+    <title>GPT分区安装操作系统后无法引导启动</title>
+    <url>/2019/12/30/GPT%E5%88%86%E5%8C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%95%E5%AF%BC%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<p>记得之前写过一篇<a href="https://cyneliu.gitee.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/" target="_blank" rel="noopener">《秒懂MBR和GPT分区表》</a>，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。  </p>
+<p>然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终于发现了问题。  </p>
+<h1 id="EFI分区"><a href="#EFI分区" class="headerlink" title="EFI分区"></a>EFI分区</h1><p>EFI系统分区（EFI system partition，简称ESP），是一个FAT16或FAT32格式的物理分区，但是其分区标识是EF (十六进制) 而非常规的0E或0C，因此，该分区在Windows操作系统下一般是不可见的。ESP分区在UEFI BIOS引导系统时使用，用来存储BIOS/EFI NAND芯片存储不下的那部分EFI扩展功能。支持EFI模式的电脑需要从ESP启动系统，EFI固件可从ESP加载EFI启动程序或应用，ESP是系统引导分区。</p>
+<h1 id="MSR分区"><a href="#MSR分区" class="headerlink" title="MSR分区"></a>MSR分区</h1><p>MSR分区（Microsoft Reserved Partition，缩写MSR）即Microsoft 保留 (MSR) 分区。是每个 在GUID 分区表 (GPT) 上的 Windows操作系统（windows7以上）都要求的分区。系统组件可以将 MSR 分区的部分分配到新的分区以供它们使用。<br>MSR 分区的大小会因 GPT 磁盘的大小不同而发生变化。对于小于 16 GB 的磁盘，MSR 分区为 32 MB。对于大于 16 GB 的磁盘，MSR 分区为 128 MB。MSR 分区在“磁盘管理”中不可见，在Diskpart、Diskgenius等磁盘工具里可见，但是用户无法在 MSR 分区上存储或删除数据。</p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>我使用的PE是<a href="http://www.wepe.com.cn/" target="_blank" rel="noopener">WEPE</a>  </p>
+<p>首先我们需要确认一下当前系统磁盘是GPT磁盘，如下图所示，如果之前装过操作系统的话我们打开分区助手应该是可以看到ESP和MSR这两个隐藏分区的，或者只有一个ESP分区，如果是新硬盘的话使用快速分区也可以自动生成这两个分区。<br><img src="https://i.loli.net/2019/12/31/Mw3tbGRjBvdr5yx.png" alt="00.png"></p>
+<p>为了重现我之前遇到的问题，我们把系统分区和这两个隐藏分区都删掉，然后重建系统分区，然后按照BIOS+MBR的方式安装操作系统（这就是安装完系统无法引导的原因），其实Windows安装器在安装时也会有错误提示，EFI PART的灯是红色的，说明我们选择的引导驱动器并非EFI引导分区。</p>
+<blockquote>
+<p>UEFI+GPT方式安装操作系统时，不能像之前BIOS方式那样将引导分区设置为系统分区，而是需要设置为ESP分区。  </p>
+</blockquote>
+<p><img src="https://i.loli.net/2019/12/31/KHTAOxuNlICfm7v.png" alt="01.png"></p>
+<p>所以我们需要手动去创建ESP和MSR分区，打开DiskGenius,选择未分配空间，创建新分区，文件系统类型选择“EFI system partition”,大小100M就可以了。<br><img src="https://i.loli.net/2019/12/31/1oxUQH8umG3yeV5.png" alt="02.png"><br>然后新建MSR分区，文件系统类型选择“Microsoft Reserved Partition”，大小128M。<br><img src="https://i.loli.net/2019/12/31/9XY7IAWwzbSF2Oe.png" alt="03.png"><br>然后在根据自己需要进行其它分区的配置，我这里因为使用的是虚拟机，硬盘比较少，只做演示。<br><img src="https://i.loli.net/2019/12/31/zC3OpMylkdYUmqi.png" alt="04.png"><br>分区完成后保存更改。再次打开Windows安装器，引导驱动器选择ESP分区，这时安装器就显示正常了。<br><img src="https://i.loli.net/2019/12/31/USf9ymFMxwpgqu5.png" alt="05.png"></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://bbs.wuyou.net/forum.php?mod=viewthread&amp;tid=374959&amp;page=1" target="_blank" rel="noopener">MSR分区到底有什么功能</a></p>
+]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>GPT</tag>
+        <tag>重装系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux下的命令行网盘</title>
     <url>/2018/10/09/Linux%E4%B8%8B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BD%91%E7%9B%98/</url>
     <content><![CDATA[<p>之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。  </p>
@@ -923,88 +842,6 @@ ssh is /usr/bin/ssh
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mininet的安装配置</title>
-    <url>/2018/06/24/Mininet%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Ubuntu安装"><a href="#Ubuntu安装" class="headerlink" title="Ubuntu安装"></a>Ubuntu安装</h1><h2 id="系统选择"><a href="#系统选择" class="headerlink" title="系统选择"></a>系统选择</h2><p>镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。</p>
-<h2 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h2><h3 id="设置网卡"><a href="#设置网卡" class="headerlink" title="设置网卡"></a>设置网卡</h3><p>因为要使用ssh远程登录，这里我们添加一个网卡：<br><img src="https://i.loli.net/2018/06/24/5b2ef5cbec5f1.png" alt="01.png"><br>勾选“启用网络连接”，并选择仅主机模式。</p>
-<h3 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h3><p>挂载镜像之后启动虚拟机进行安装，基本的安装过程不一一详细介绍，不会的地方可以百度。<br><img src="https://i.loli.net/2018/06/24/5b2ef77a37059.png" alt="02.png"><br>可以看到安装程序已经识别出了两块网卡，我们选择默认的nat网卡作为主网络接口。<br><img src="https://i.loli.net/2018/06/24/5b2ef9a7a101d.png" alt="03.png"><br>软件安装，我们只需要安装ssh server就可以了，记得空格选择，回车确认。  </p>
-<p>安装完成后，我们看一下系统的网卡信息，发现并没有我们添加的网卡。<br><img src="https://i.loli.net/2018/06/24/5b2efcabda76f.png" alt="04.png"><br>执行“sudo dhclient enp0s8”启用enp0s8网卡。<br>再次查看网卡信息：<br><img src="https://i.loli.net/2018/06/24/5b2efed26c4cc.png" alt="05.png"><br>可以看到已经添加进来了。我们还需要将第二块网卡的配置加入到网络配置文件中，不然重启之后第二块网卡还是看不到的：  </p>
-<blockquote>
-</blockquote>
-<pre><code>sudo vi /etc/network/interfaces
-</code></pre><p>在interfaces配置文件中加入enp0s8，同样使用dhcp方式获取ip<br><img src="https://i.loli.net/2018/06/24/5b2efffbe249f.png" alt="06.png"><br>至此，我们的系统就配置完成了，用ssh工具进行连接：<br><img src="https://i.loli.net/2018/06/24/5b2f00ad250a3.png" alt="07.png"><br>已经可以成功连接。</p>
-<h1 id="安装Ryu"><a href="#安装Ryu" class="headerlink" title="安装Ryu"></a>安装Ryu</h1><p>详细内容可参考<a href="http://linton.tw/2014/02/15/note-install-ryu-36-sdn-framework/" target="_blank" rel="noopener">linton的博客</a>。</p>
-<p>1.下载python的套件库，并更新pip（因为下载的pip并不是最新版本）</p>
-<blockquote>
-</blockquote>
-<pre><code>sudo apt-get install python-pip python-dev build-essential
-sudo pip install --upgrade pip
-</code></pre><p>2.安装Ryu相依性套件</p>
-<blockquote>
-</blockquote>
-<pre><code>sudo apt-get install python-eventlet
-sudo apt-get install python-routes
-sudo apt-get install python-webob
-sudo apt-get install python-paramiko
-</code></pre><p>3.使用pip下载并安装Ryu</p>
-<blockquote>
-</blockquote>
-<pre><code>sudo pip install ryu
-</code></pre><p>此步骤如果出现如下错误信息说明你被挡在城内了，富强上网即可解决。<br><img src="https://i.loli.net/2018/06/24/5b2f22b8832fc.png" alt="需要富强上网.png"><br>4.如果需要使用Ryu with GUI则进行此步骤：下载Ryu source code（需要使用git套件）</p>
-<blockquote>
-</blockquote>
-<pre><code>sudo apt-get install git
-git clone https://github.com/osrg/ryu.git
-</code></pre><p>5.完成安装，执行ryu-manager验证有没有出现错误，没问题的话会出现如下信息：<br><img src="https://i.loli.net/2018/06/24/5b2f1ff8a73bd.png" alt="chenggong.png"></p>
-<h1 id="安装mininet"><a href="#安装mininet" class="headerlink" title="安装mininet"></a>安装mininet</h1><h2 id="使用源码安装mininet"><a href="#使用源码安装mininet" class="headerlink" title="使用源码安装mininet"></a>使用源码安装mininet</h2><p>为了减少之后不必要的麻烦，建议在安装开始前执行：sudo su切换到root用户下并在富强网络下进行安装。<br>1.升级系统</p>
-<blockquote>
-</blockquote>
-<pre><code>apt-get update
-apt-get upgrade
-</code></pre><p>2.安装git（如果你像我一样在之前安装Ryu时我们已经安装过git了，那么请直接跳过此步骤）</p>
-<blockquote>
-</blockquote>
-<pre><code>apt install git
-</code></pre><p>3.从github上获取源码</p>
-<blockquote>
-</blockquote>
-<pre><code>git clone git://github.com/mininet/mininet
-</code></pre><p>获取之后可以使用如下命令查看mininet的版本</p>
-<blockquote>
-</blockquote>
-<pre><code>cd mininet
-cat INSTALL
-</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4c772e56f.png" alt="cat.png"><br>4.确认无误后，安装mininet</p>
-<blockquote>
-</blockquote>
-<pre><code>util/install.sh -a
-</code></pre><p>当你看到Enjoy Mininet！时，恭喜你已经安装成功了。<br><img src="https://i.loli.net/2018/06/24/5b2f4cb8a6bfc.png" alt="enjoy.png"><br>执行以下命令查看安装版本：</p>
-<blockquote>
-</blockquote>
-<pre><code>mn --version
-</code></pre><h2 id="mininet可视化操作"><a href="#mininet可视化操作" class="headerlink" title="mininet可视化操作"></a>mininet可视化操作</h2><p>1.要进行mininet可视化操作，需要安装Xmanager套件，然后在通过Xshell远程连接主机时，在属性中做如下设置：<br><img src="https://i.loli.net/2018/06/24/5b2f4a82c2097.png" alt="suidao.png"><br>2.然后进入examples目录，执行miniedit.py即可启动可视化界面</p>
-<blockquote>
-</blockquote>
-<pre><code>cd mininet/mininet/examples
-./miniedit.py
-</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4cf66b46e.png" alt="可视化.png"><br>至此，整个环境就搭建完成了。<br>如果是桌面版系统并且用apt-get install mininet安装的mininet,目录在/usr/share/doc/mininet/examples,但是其可视化脚本是py.gz格式的，需要解压缩使用。</p>
-<blockquote>
-</blockquote>
-<pre><code>cd /usr/share/doc/mininet/examples
-gunzip miniedit.py.gz
-apt install python-tk
-python miniedit.py
-</code></pre>]]></content>
-      <categories>
-        <category>SDN</category>
-      </categories>
-      <tags>
-        <tag>SDN</tag>
-        <tag>实验</tag>
-        <tag>Mininet</tag>
       </tags>
   </entry>
   <entry>
@@ -1149,6 +986,88 @@ server {
       </tags>
   </entry>
   <entry>
+    <title>Mininet的安装配置</title>
+    <url>/2018/06/24/Mininet%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="Ubuntu安装"><a href="#Ubuntu安装" class="headerlink" title="Ubuntu安装"></a>Ubuntu安装</h1><h2 id="系统选择"><a href="#系统选择" class="headerlink" title="系统选择"></a>系统选择</h2><p>镜像建议使用16.04的版本，mininet官网有说明，是因为16.04支持新版本的openflow等协议，我这里使用的是“ubuntu-16.04-server-amd64.iso”，server版本更加稳定。</p>
+<h2 id="虚拟机安装"><a href="#虚拟机安装" class="headerlink" title="虚拟机安装"></a>虚拟机安装</h2><h3 id="设置网卡"><a href="#设置网卡" class="headerlink" title="设置网卡"></a>设置网卡</h3><p>因为要使用ssh远程登录，这里我们添加一个网卡：<br><img src="https://i.loli.net/2018/06/24/5b2ef5cbec5f1.png" alt="01.png"><br>勾选“启用网络连接”，并选择仅主机模式。</p>
+<h3 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h3><p>挂载镜像之后启动虚拟机进行安装，基本的安装过程不一一详细介绍，不会的地方可以百度。<br><img src="https://i.loli.net/2018/06/24/5b2ef77a37059.png" alt="02.png"><br>可以看到安装程序已经识别出了两块网卡，我们选择默认的nat网卡作为主网络接口。<br><img src="https://i.loli.net/2018/06/24/5b2ef9a7a101d.png" alt="03.png"><br>软件安装，我们只需要安装ssh server就可以了，记得空格选择，回车确认。  </p>
+<p>安装完成后，我们看一下系统的网卡信息，发现并没有我们添加的网卡。<br><img src="https://i.loli.net/2018/06/24/5b2efcabda76f.png" alt="04.png"><br>执行“sudo dhclient enp0s8”启用enp0s8网卡。<br>再次查看网卡信息：<br><img src="https://i.loli.net/2018/06/24/5b2efed26c4cc.png" alt="05.png"><br>可以看到已经添加进来了。我们还需要将第二块网卡的配置加入到网络配置文件中，不然重启之后第二块网卡还是看不到的：  </p>
+<blockquote>
+</blockquote>
+<pre><code>sudo vi /etc/network/interfaces
+</code></pre><p>在interfaces配置文件中加入enp0s8，同样使用dhcp方式获取ip<br><img src="https://i.loli.net/2018/06/24/5b2efffbe249f.png" alt="06.png"><br>至此，我们的系统就配置完成了，用ssh工具进行连接：<br><img src="https://i.loli.net/2018/06/24/5b2f00ad250a3.png" alt="07.png"><br>已经可以成功连接。</p>
+<h1 id="安装Ryu"><a href="#安装Ryu" class="headerlink" title="安装Ryu"></a>安装Ryu</h1><p>详细内容可参考<a href="http://linton.tw/2014/02/15/note-install-ryu-36-sdn-framework/" target="_blank" rel="noopener">linton的博客</a>。</p>
+<p>1.下载python的套件库，并更新pip（因为下载的pip并不是最新版本）</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo apt-get install python-pip python-dev build-essential
+sudo pip install --upgrade pip
+</code></pre><p>2.安装Ryu相依性套件</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo apt-get install python-eventlet
+sudo apt-get install python-routes
+sudo apt-get install python-webob
+sudo apt-get install python-paramiko
+</code></pre><p>3.使用pip下载并安装Ryu</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo pip install ryu
+</code></pre><p>此步骤如果出现如下错误信息说明你被挡在城内了，富强上网即可解决。<br><img src="https://i.loli.net/2018/06/24/5b2f22b8832fc.png" alt="需要富强上网.png"><br>4.如果需要使用Ryu with GUI则进行此步骤：下载Ryu source code（需要使用git套件）</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo apt-get install git
+git clone https://github.com/osrg/ryu.git
+</code></pre><p>5.完成安装，执行ryu-manager验证有没有出现错误，没问题的话会出现如下信息：<br><img src="https://i.loli.net/2018/06/24/5b2f1ff8a73bd.png" alt="chenggong.png"></p>
+<h1 id="安装mininet"><a href="#安装mininet" class="headerlink" title="安装mininet"></a>安装mininet</h1><h2 id="使用源码安装mininet"><a href="#使用源码安装mininet" class="headerlink" title="使用源码安装mininet"></a>使用源码安装mininet</h2><p>为了减少之后不必要的麻烦，建议在安装开始前执行：sudo su切换到root用户下并在富强网络下进行安装。<br>1.升级系统</p>
+<blockquote>
+</blockquote>
+<pre><code>apt-get update
+apt-get upgrade
+</code></pre><p>2.安装git（如果你像我一样在之前安装Ryu时我们已经安装过git了，那么请直接跳过此步骤）</p>
+<blockquote>
+</blockquote>
+<pre><code>apt install git
+</code></pre><p>3.从github上获取源码</p>
+<blockquote>
+</blockquote>
+<pre><code>git clone git://github.com/mininet/mininet
+</code></pre><p>获取之后可以使用如下命令查看mininet的版本</p>
+<blockquote>
+</blockquote>
+<pre><code>cd mininet
+cat INSTALL
+</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4c772e56f.png" alt="cat.png"><br>4.确认无误后，安装mininet</p>
+<blockquote>
+</blockquote>
+<pre><code>util/install.sh -a
+</code></pre><p>当你看到Enjoy Mininet！时，恭喜你已经安装成功了。<br><img src="https://i.loli.net/2018/06/24/5b2f4cb8a6bfc.png" alt="enjoy.png"><br>执行以下命令查看安装版本：</p>
+<blockquote>
+</blockquote>
+<pre><code>mn --version
+</code></pre><h2 id="mininet可视化操作"><a href="#mininet可视化操作" class="headerlink" title="mininet可视化操作"></a>mininet可视化操作</h2><p>1.要进行mininet可视化操作，需要安装Xmanager套件，然后在通过Xshell远程连接主机时，在属性中做如下设置：<br><img src="https://i.loli.net/2018/06/24/5b2f4a82c2097.png" alt="suidao.png"><br>2.然后进入examples目录，执行miniedit.py即可启动可视化界面</p>
+<blockquote>
+</blockquote>
+<pre><code>cd mininet/mininet/examples
+./miniedit.py
+</code></pre><p><img src="https://i.loli.net/2018/06/24/5b2f4cf66b46e.png" alt="可视化.png"><br>至此，整个环境就搭建完成了。<br>如果是桌面版系统并且用apt-get install mininet安装的mininet,目录在/usr/share/doc/mininet/examples,但是其可视化脚本是py.gz格式的，需要解压缩使用。</p>
+<blockquote>
+</blockquote>
+<pre><code>cd /usr/share/doc/mininet/examples
+gunzip miniedit.py.gz
+apt install python-tk
+python miniedit.py
+</code></pre>]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>SDN</tag>
+        <tag>实验</tag>
+        <tag>Mininet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx的简单安装</title>
     <url>/2018/10/30/Nginx%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<p>过几天参加比赛要用到nginx的安装部署，写一个简单的安装方式，方便赛前温习。</p>
@@ -1257,49 +1176,6 @@ user_name, action_name, current_time)
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RHEL使用CentOS的yum源</title>
-    <url>/2021/01/15/RHEL%E4%BD%BF%E7%94%A8CentOS%E7%9A%84yum%E6%BA%90/</url>
-    <content><![CDATA[<h1 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h1><p>RHEL 7.7</p>
-<h1 id="删除RHEL自带yum"><a href="#删除RHEL自带yum" class="headerlink" title="删除RHEL自带yum"></a>删除RHEL自带yum</h1><blockquote>
-</blockquote>
-<pre><code>rpm -qa | grep yum
-rpm -qa | grep yum | xargs rpm -e --nodeps
-</code></pre><p><img src="https://i.loli.net/2021/01/15/3zTJoPNOxGujUlr.png" alt="01.png"></p>
-<h1 id="安装CentOS的yum"><a href="#安装CentOS的yum" class="headerlink" title="安装CentOS的yum"></a>安装CentOS的yum</h1><p>访问阿里或网易等镜像源，下载对应版本的CentOS yum安装包，我使用的是阿里的：</p>
-<blockquote>
-<p><a href="http://mirrors.aliyun.com/centos/7/os/x86_64/Packages/" target="_blank" rel="noopener">http://mirrors.aliyun.com/centos/7/os/x86_64/Packages/</a></p>
-</blockquote>
-<p>下载如图所示的4个rpm包：<br><img src="https://i.loli.net/2021/01/15/PkpujiVMSY6RXdB.png" alt="03.png"></p>
-<p>已下载的rpm包：<br><img src="https://i.loli.net/2021/01/15/LT7ZdA4Xywe9WNi.png" alt="04.png"></p>
-<p>安装刚刚下载的rpm包，他们之间有依赖关系，推荐一起安装</p>
-<blockquote>
-</blockquote>
-<pre><code>rpm -ivh yum-3.4.3-168.el7.centos.noarch.rpm yum-metadata-parser-1.1.4-10.el7.x86_64.rpm yum-rhn-plugin-2.0.1-10.el7.noarch.rpm yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch.rpm 
-</code></pre><p><img src="https://i.loli.net/2021/01/15/67JdUeACOsvZyLo.png" alt="05.png"></p>
-<p><img src="https://i.loli.net/2021/01/15/WJgABKOtQM5xno4.png" alt="02.png"></p>
-<h1 id="下载repo并修改"><a href="#下载repo并修改" class="headerlink" title="下载repo并修改"></a>下载repo并修改</h1><p>yum安装后，下载对应版本CentOS的repo文件，同样在阿里镜像站下载：</p>
-<blockquote>
-<p><a href="http://mirrors.aliyun.com/repo/" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/</a></p>
-</blockquote>
-<p><img src="https://i.loli.net/2021/01/15/j4GIMhzrsvJAW1S.png" alt="06.png"></p>
-<p>需要注意的是这时候还不能直接使用yum安装软件，安装时会有如下错误：<br><img src="https://i.loli.net/2021/01/15/vp27FLhcKj1rMJ3.png" alt="07.png"></p>
-<p>原因是因为repo文件中CentOS是直接取的是releasever的值，这里我们手动修改为对应的CentOS版本的值就可以了，如我这里修改为7，直接在vim编辑器中进行全文替换：</p>
-<blockquote>
-</blockquote>
-<pre><code>:%s/$releasever/7/
-</code></pre><p><img src="https://i.loli.net/2021/01/15/efwE13o8JOY7mlF.png" alt="08.png"></p>
-<p>使用yum安装软件可正常安装：</p>
-<p><img src="https://i.loli.net/2021/01/15/cTAK52rkMmj1HE6.png" alt="09.png"></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>RHEL</tag>
-        <tag>yum源</tag>
       </tags>
   </entry>
   <entry>
@@ -1479,6 +1355,85 @@ dst= 127.0.0.1
       </tags>
   </entry>
   <entry>
+    <title>SDN实验（二）——Open vSwitch</title>
+    <url>/2018/10/16/SDN%E5%AE%9E%E9%AA%8C%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94Open-vSwitch/</url>
+    <content><![CDATA[<p>Open vSwitch是由Nicira Networks主导，运行在虚拟化平台（例如KVM，Xen）上的虚拟交换机。Open vSwitch基于C语言开发，遵循Apache 2.0许可证，能同时支持多种标准的管理接口和协议（比如NetFlow、sFlow、SPAN、RSPAN、CLI、LACP、802.1ag等）。Open vSwitch通过OpenFlow协议由统一的控制器管理，从而实现对接入的虚拟机（或设备）的网络联通。  </p>
+<p>整体组网结构如下图：<br><img src="https://i.loli.net/2018/10/16/5bc592232631f.png" alt="01.png"><br>Open vSwitch内部架构图：<br><img src="https://i.loli.net/2018/10/16/5bc592a15b2de.png" alt="02.png"></p>
+<blockquote>
+<p><strong>ovs-vswtichd：</strong>主要模块，实现vswitch的守候进程daemon，包括一个支持流交换的Linux内核模块。<br><strong>ovsdb-server：</strong>轻量级数据库服务器，保存配置信息，ovs-vswitchd通过这个数据库获取配置信息。<br><strong>ovs-dpctl：</strong>用来配置vswitch内核模块的一个工具。<br><strong>ovs-vsctl：</strong>主要是获取或者更改ovs-vswitchd的配置信息，此工具操作的时候会更新ovsdb-server中的数据库。<br><strong>ovs-appctl：</strong>一个向ovs-vswtichd的守护进程发送命令的的程序。<br><strong>datapath：</strong>内核模块，根据流表匹配结果做相应处理。<br><strong>ovs-ofctl：</strong>查询和控制OpenFlow虚拟交换机的流表。</p>
+</blockquote>
+<h1 id="Open-vSwitch的安装"><a href="#Open-vSwitch的安装" class="headerlink" title="Open vSwitch的安装"></a>Open vSwitch的安装</h1><h1 id="Open-vSwitch网桥管理"><a href="#Open-vSwitch网桥管理" class="headerlink" title="Open vSwitch网桥管理"></a>Open vSwitch网桥管理</h1><p>在网络中，交换机和桥概念类似，Open vSwitch是一个虚拟交换软件，也就是说，Open vSwitch实现了网桥的功能。学习Open vSwitch的第一步要弄清楚网桥的概念。网桥是连接两个局域网的设备，工作在数据链路层，根据MAC地址来转发帧。在Open vSwitch中创建一个网桥后，此时网络功能不受影响，但是会产生一个虚拟网卡，之所以会产生一个虚拟网卡，是为了实现接下来的网桥（交换机）功能。有了这个网桥以后，还需要为这个网桥增加端口（port），一个端口就是一个物理网卡，当网卡加入到这个网桥之后，其工作方式就和普通交换机的一个端口的工作方式类似了。以下是一个网桥的具体信息：</p>
+<blockquote>
+</blockquote>
+<pre><code>root@localhost:~# ovs-vsctl show
+bc12c8d2-6900-42dd-9c1c-30e8ecb99a1b
+Bridge &quot;br0&quot;
+    Port &quot;eth0&quot;
+        Interface &quot;eth0&quot;
+    Port &quot;br0&quot;
+        Interface &quot;br0&quot;
+            type: internal
+ovs_version: &quot;1.4.0+build0&quot;
+</code></pre><p>上述信息显示了一个名为br0的桥（交换机），这个交换机有两个接口，一个是eth0，一个是br0。  </p>
+<p>上面说到，创建桥的时候会创建一个和桥名字一样的接口，并自动作为该桥的一个端口，那么这个虚拟接口的作用，一方面是可以作为交换机的管理端口，另一方面也是基于这个虚拟接口实现了桥的功能。Open vSwitch的内核模块实现了多个“数据路径”，每个都可以有多个vports。每个数据路径也通过关联流表（flow table）来设置操作，而这些流表中的流都是用户空间在报文头和元数据的基础上映射的关键信息，一般的操作都是将数据包转发到另一个vport。当一个数据包到达一个vport，内核模块所做的处理是提取其流的关键信息并在流表中查找这些关键信息，当有一个匹配的流时它执行对应的操作，如果没有匹配，它会将数据包送到用户空间的处理队列中，作为处理的一部分，用户空间可能会设置一个流用于以后碰到相同类型的数据包可以在内核中执行操作。</p>
+<h2 id="ovs-vsctl关于网桥管理的常用命令"><a href="#ovs-vsctl关于网桥管理的常用命令" class="headerlink" title="ovs-vsctl关于网桥管理的常用命令"></a>ovs-vsctl关于网桥管理的常用命令</h2><blockquote>
+</blockquote>
+<p><strong>init</strong>    初始化数据库（前提数据分组为空）<br><strong>show</strong>    打印数据库信息摘要<br><strong>add-br BRIDGE</strong>    添加新的网桥<br><strong>del-br BRIDGE</strong>    删除网桥<br><strong>list-br</strong>    打印网桥摘要信息<br><strong>list-ports BRIDGE</strong>    打印网桥中所有port摘要信息<br><strong>add-port BRIDGE PORT</strong>    向网桥中添加端口<br><strong>del-port [BRIDGE] PORT</strong>    删除网桥上的端口<br><strong>get-controller BRIDGE</strong>    获取网桥的控制器信息<br><strong>del-controller BRIDGE</strong>    删除网桥的控制器信息<br><strong>set-controller BRIDGE TARGET</strong>    向网桥添加控制器</p>
+<h1 id="Open-vSwitch流表管理"><a href="#Open-vSwitch流表管理" class="headerlink" title="Open vSwitch流表管理"></a>Open vSwitch流表管理</h1><p>OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议连接Open vSwitch来创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。ovs-ofctl关于流表管理的常用命令如下表所示。<br><img src="https://i.loli.net/2018/10/16/5bc5b553dc0a6.png" alt="03.png"><br>对于add-flow、add-flows和mod-flows这3个命令，还需要指定要执行的动作actions=[target],[target]…，一个流规则中可能有多个动作，按照指定的先后顺序执行。<br><img src="https://i.loli.net/2018/10/16/5bc5b5bebfed1.png" alt="04.png"><br>在OpenFlow白皮书中，Flow被定义为某个特定的网络流量。例如，一个TCP连接就是一个Flow，或者从某个IP地址发出来的数据包，都可以被认为是一个Flow。支持OpenFlow协议的交换机应该包括一个或多个流表，流表中的条目包含：数据包头的信息、匹配成功后要执行的指令和统计信息。当数据包进入OVS后，会将数据包和流表中的流表项进行匹配，如果发现了匹配的流表项，则执行该流表项中的指令集。相反，如果数据包在流表中没有发现任何匹配，OVS会通过控制通道把数据包发到OpenFlow控制器中。在OVS中，流表项作为ovs-ofctl的参数，采用如下的格式：字段=值，如果有多个字段，可以用逗号或空格分开，一些常用的字段列举如下表所示。<br><img src="https://i.loli.net/2018/10/16/5bc5b664441f1.png" alt="05.png"></p>
+<h1 id="Open-vSwitchQoS设置"><a href="#Open-vSwitchQoS设置" class="headerlink" title="Open vSwitchQoS设置"></a>Open vSwitchQoS设置</h1><h1 id="Open-vSwitch端口映射"><a href="#Open-vSwitch端口映射" class="headerlink" title="Open vSwitch端口映射"></a>Open vSwitch端口映射</h1><h1 id="Open-vSwitch流量监控"><a href="#Open-vSwitch流量监控" class="headerlink" title="Open vSwitch流量监控"></a>Open vSwitch流量监控</h1>]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>SDN</tag>
+        <tag>实验</tag>
+        <tag>Open vSwitch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RHEL使用CentOS的yum源</title>
+    <url>/2021/01/15/RHEL%E4%BD%BF%E7%94%A8CentOS%E7%9A%84yum%E6%BA%90/</url>
+    <content><![CDATA[<h1 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h1><p>RHEL 7.7</p>
+<h1 id="删除RHEL自带yum"><a href="#删除RHEL自带yum" class="headerlink" title="删除RHEL自带yum"></a>删除RHEL自带yum</h1><blockquote>
+</blockquote>
+<pre><code>rpm -qa | grep yum
+rpm -qa | grep yum | xargs rpm -e --nodeps
+</code></pre><p><img src="https://i.loli.net/2021/01/15/3zTJoPNOxGujUlr.png" alt="01.png"></p>
+<h1 id="安装CentOS的yum"><a href="#安装CentOS的yum" class="headerlink" title="安装CentOS的yum"></a>安装CentOS的yum</h1><p>访问阿里或网易等镜像源，下载对应版本的CentOS yum安装包，我使用的是阿里的：</p>
+<blockquote>
+<p><a href="http://mirrors.aliyun.com/centos/7/os/x86_64/Packages/" target="_blank" rel="noopener">http://mirrors.aliyun.com/centos/7/os/x86_64/Packages/</a></p>
+</blockquote>
+<p>下载如图所示的4个rpm包：<br><img src="https://i.loli.net/2021/01/15/PkpujiVMSY6RXdB.png" alt="03.png"></p>
+<p>已下载的rpm包：<br><img src="https://i.loli.net/2021/01/15/LT7ZdA4Xywe9WNi.png" alt="04.png"></p>
+<p>安装刚刚下载的rpm包，他们之间有依赖关系，推荐一起安装</p>
+<blockquote>
+</blockquote>
+<pre><code>rpm -ivh yum-3.4.3-168.el7.centos.noarch.rpm yum-metadata-parser-1.1.4-10.el7.x86_64.rpm yum-rhn-plugin-2.0.1-10.el7.noarch.rpm yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch.rpm 
+</code></pre><p><img src="https://i.loli.net/2021/01/15/67JdUeACOsvZyLo.png" alt="05.png"></p>
+<p><img src="https://i.loli.net/2021/01/15/WJgABKOtQM5xno4.png" alt="02.png"></p>
+<h1 id="下载repo并修改"><a href="#下载repo并修改" class="headerlink" title="下载repo并修改"></a>下载repo并修改</h1><p>yum安装后，下载对应版本CentOS的repo文件，同样在阿里镜像站下载：</p>
+<blockquote>
+<p><a href="http://mirrors.aliyun.com/repo/" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/</a></p>
+</blockquote>
+<p><img src="https://i.loli.net/2021/01/15/j4GIMhzrsvJAW1S.png" alt="06.png"></p>
+<p>需要注意的是这时候还不能直接使用yum安装软件，安装时会有如下错误：<br><img src="https://i.loli.net/2021/01/15/vp27FLhcKj1rMJ3.png" alt="07.png"></p>
+<p>原因是因为repo文件中CentOS是直接取的是releasever的值，这里我们手动修改为对应的CentOS版本的值就可以了，如我这里修改为7，直接在vim编辑器中进行全文替换：</p>
+<blockquote>
+</blockquote>
+<pre><code>:%s/$releasever/7/
+</code></pre><p><img src="https://i.loli.net/2021/01/15/efwE13o8JOY7mlF.png" alt="08.png"></p>
+<p>使用yum安装软件可正常安装：</p>
+<p><img src="https://i.loli.net/2021/01/15/cTAK52rkMmj1HE6.png" alt="09.png"></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>RHEL</tag>
+        <tag>yum源</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu14.04安装OpenDaylight(锂版本)</title>
     <url>/2019/02/27/Ubuntu14-04%E5%AE%89%E8%A3%85OpenDaylight/</url>
     <content><![CDATA[<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="下载OpenDaylight"><a href="#下载OpenDaylight" class="headerlink" title="下载OpenDaylight"></a>下载OpenDaylight</h2><p>下载OpenDaylight Lithium压缩包：<a href="https://pan.baidu.com/s/16rLxNFvz-XhGuSz62a5eQQ" target="_blank" rel="noopener">提取码：y4ae </a>  </p>
@@ -1562,42 +1517,6 @@ feature:install odl-adsal-northbound
       </tags>
   </entry>
   <entry>
-    <title>SDN实验（二）——Open vSwitch</title>
-    <url>/2018/10/16/SDN%E5%AE%9E%E9%AA%8C%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94Open-vSwitch/</url>
-    <content><![CDATA[<p>Open vSwitch是由Nicira Networks主导，运行在虚拟化平台（例如KVM，Xen）上的虚拟交换机。Open vSwitch基于C语言开发，遵循Apache 2.0许可证，能同时支持多种标准的管理接口和协议（比如NetFlow、sFlow、SPAN、RSPAN、CLI、LACP、802.1ag等）。Open vSwitch通过OpenFlow协议由统一的控制器管理，从而实现对接入的虚拟机（或设备）的网络联通。  </p>
-<p>整体组网结构如下图：<br><img src="https://i.loli.net/2018/10/16/5bc592232631f.png" alt="01.png"><br>Open vSwitch内部架构图：<br><img src="https://i.loli.net/2018/10/16/5bc592a15b2de.png" alt="02.png"></p>
-<blockquote>
-<p><strong>ovs-vswtichd：</strong>主要模块，实现vswitch的守候进程daemon，包括一个支持流交换的Linux内核模块。<br><strong>ovsdb-server：</strong>轻量级数据库服务器，保存配置信息，ovs-vswitchd通过这个数据库获取配置信息。<br><strong>ovs-dpctl：</strong>用来配置vswitch内核模块的一个工具。<br><strong>ovs-vsctl：</strong>主要是获取或者更改ovs-vswitchd的配置信息，此工具操作的时候会更新ovsdb-server中的数据库。<br><strong>ovs-appctl：</strong>一个向ovs-vswtichd的守护进程发送命令的的程序。<br><strong>datapath：</strong>内核模块，根据流表匹配结果做相应处理。<br><strong>ovs-ofctl：</strong>查询和控制OpenFlow虚拟交换机的流表。</p>
-</blockquote>
-<h1 id="Open-vSwitch的安装"><a href="#Open-vSwitch的安装" class="headerlink" title="Open vSwitch的安装"></a>Open vSwitch的安装</h1><h1 id="Open-vSwitch网桥管理"><a href="#Open-vSwitch网桥管理" class="headerlink" title="Open vSwitch网桥管理"></a>Open vSwitch网桥管理</h1><p>在网络中，交换机和桥概念类似，Open vSwitch是一个虚拟交换软件，也就是说，Open vSwitch实现了网桥的功能。学习Open vSwitch的第一步要弄清楚网桥的概念。网桥是连接两个局域网的设备，工作在数据链路层，根据MAC地址来转发帧。在Open vSwitch中创建一个网桥后，此时网络功能不受影响，但是会产生一个虚拟网卡，之所以会产生一个虚拟网卡，是为了实现接下来的网桥（交换机）功能。有了这个网桥以后，还需要为这个网桥增加端口（port），一个端口就是一个物理网卡，当网卡加入到这个网桥之后，其工作方式就和普通交换机的一个端口的工作方式类似了。以下是一个网桥的具体信息：</p>
-<blockquote>
-</blockquote>
-<pre><code>root@localhost:~# ovs-vsctl show
-bc12c8d2-6900-42dd-9c1c-30e8ecb99a1b
-Bridge &quot;br0&quot;
-    Port &quot;eth0&quot;
-        Interface &quot;eth0&quot;
-    Port &quot;br0&quot;
-        Interface &quot;br0&quot;
-            type: internal
-ovs_version: &quot;1.4.0+build0&quot;
-</code></pre><p>上述信息显示了一个名为br0的桥（交换机），这个交换机有两个接口，一个是eth0，一个是br0。  </p>
-<p>上面说到，创建桥的时候会创建一个和桥名字一样的接口，并自动作为该桥的一个端口，那么这个虚拟接口的作用，一方面是可以作为交换机的管理端口，另一方面也是基于这个虚拟接口实现了桥的功能。Open vSwitch的内核模块实现了多个“数据路径”，每个都可以有多个vports。每个数据路径也通过关联流表（flow table）来设置操作，而这些流表中的流都是用户空间在报文头和元数据的基础上映射的关键信息，一般的操作都是将数据包转发到另一个vport。当一个数据包到达一个vport，内核模块所做的处理是提取其流的关键信息并在流表中查找这些关键信息，当有一个匹配的流时它执行对应的操作，如果没有匹配，它会将数据包送到用户空间的处理队列中，作为处理的一部分，用户空间可能会设置一个流用于以后碰到相同类型的数据包可以在内核中执行操作。</p>
-<h2 id="ovs-vsctl关于网桥管理的常用命令"><a href="#ovs-vsctl关于网桥管理的常用命令" class="headerlink" title="ovs-vsctl关于网桥管理的常用命令"></a>ovs-vsctl关于网桥管理的常用命令</h2><blockquote>
-</blockquote>
-<p><strong>init</strong>    初始化数据库（前提数据分组为空）<br><strong>show</strong>    打印数据库信息摘要<br><strong>add-br BRIDGE</strong>    添加新的网桥<br><strong>del-br BRIDGE</strong>    删除网桥<br><strong>list-br</strong>    打印网桥摘要信息<br><strong>list-ports BRIDGE</strong>    打印网桥中所有port摘要信息<br><strong>add-port BRIDGE PORT</strong>    向网桥中添加端口<br><strong>del-port [BRIDGE] PORT</strong>    删除网桥上的端口<br><strong>get-controller BRIDGE</strong>    获取网桥的控制器信息<br><strong>del-controller BRIDGE</strong>    删除网桥的控制器信息<br><strong>set-controller BRIDGE TARGET</strong>    向网桥添加控制器</p>
-<h1 id="Open-vSwitch流表管理"><a href="#Open-vSwitch流表管理" class="headerlink" title="Open vSwitch流表管理"></a>Open vSwitch流表管理</h1><p>OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议连接Open vSwitch来创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。ovs-ofctl关于流表管理的常用命令如下表所示。<br><img src="https://i.loli.net/2018/10/16/5bc5b553dc0a6.png" alt="03.png"><br>对于add-flow、add-flows和mod-flows这3个命令，还需要指定要执行的动作actions=[target],[target]…，一个流规则中可能有多个动作，按照指定的先后顺序执行。<br><img src="https://i.loli.net/2018/10/16/5bc5b5bebfed1.png" alt="04.png"><br>在OpenFlow白皮书中，Flow被定义为某个特定的网络流量。例如，一个TCP连接就是一个Flow，或者从某个IP地址发出来的数据包，都可以被认为是一个Flow。支持OpenFlow协议的交换机应该包括一个或多个流表，流表中的条目包含：数据包头的信息、匹配成功后要执行的指令和统计信息。当数据包进入OVS后，会将数据包和流表中的流表项进行匹配，如果发现了匹配的流表项，则执行该流表项中的指令集。相反，如果数据包在流表中没有发现任何匹配，OVS会通过控制通道把数据包发到OpenFlow控制器中。在OVS中，流表项作为ovs-ofctl的参数，采用如下的格式：字段=值，如果有多个字段，可以用逗号或空格分开，一些常用的字段列举如下表所示。<br><img src="https://i.loli.net/2018/10/16/5bc5b664441f1.png" alt="05.png"></p>
-<h1 id="Open-vSwitchQoS设置"><a href="#Open-vSwitchQoS设置" class="headerlink" title="Open vSwitchQoS设置"></a>Open vSwitchQoS设置</h1><h1 id="Open-vSwitch端口映射"><a href="#Open-vSwitch端口映射" class="headerlink" title="Open vSwitch端口映射"></a>Open vSwitch端口映射</h1><h1 id="Open-vSwitch流量监控"><a href="#Open-vSwitch流量监控" class="headerlink" title="Open vSwitch流量监控"></a>Open vSwitch流量监控</h1>]]></content>
-      <categories>
-        <category>SDN</category>
-      </categories>
-      <tags>
-        <tag>SDN</tag>
-        <tag>实验</tag>
-        <tag>Open vSwitch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu16.04安装包方式安装Open vSwitch</title>
     <url>/2018/12/28/Ubuntu16-04%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Open-vSwitch/</url>
     <content><![CDATA[<h1 id="下载安装Open-vSwitch"><a href="#下载安装Open-vSwitch" class="headerlink" title="下载安装Open vSwitch"></a>下载安装Open vSwitch</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><blockquote>
@@ -1667,94 +1586,6 @@ insmod datapath/linux/openvswitch.ko
       <tags>
         <tag>SDN</tag>
         <tag>Open vSwitch</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu16.04安装ONOS Hummingbird(1.7.1)</title>
-    <url>/2019/05/14/Ubuntu16-04%E5%AE%89%E8%A3%85ONOS-Hummingbird-1-7-1/</url>
-    <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>Ubuntu 16.04 Desktop (内存推荐4G)<br><a href="https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html" target="_blank" rel="noopener">server-jre</a><br><a href="https://wiki.onosproject.org/display/ONOS/Downloads" target="_blank" rel="noopener">onos-1.7.1</a>  </p>
-<p>*目前Oracle网站需要登录账户才能下载</p>
-<h1 id="配置JRE"><a href="#配置JRE" class="headerlink" title="配置JRE"></a>配置JRE</h1><p>将下载下来的JRE文件解压到自定义目录中：</p>
-<blockquote>
-</blockquote>
-<pre><code>mkdir -p /opt/java #将下载下来的安装包移动到此目录（目录可自己定义）
-tar -xzvf server-jre-8u211-linux-x64.tar.gz
-</code></pre><p>配置环境变量：</p>
-<blockquote>
-</blockquote>
-<pre><code>vim /etc/profile
-</code></pre><p>在文件末尾添加如下配置：</p>
-<blockquote>
-</blockquote>
-<pre><code>export JAVA_HOME=/opt/java/jdk1.8.0_211
-export JRE_HOME=/opt/java/jdk1.8.0_211
-export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/ext
-export PATH=$PATH:$JRE_HOME/bin
-</code></pre><p>使配置生效：</p>
-<blockquote>
-</blockquote>
-<pre><code>source /etc/profile
-</code></pre><p>验证配置成功：</p>
-<blockquote>
-</blockquote>
-<pre><code>java -version #显示java版本信息
-</code></pre><h1 id="配置ONOS"><a href="#配置ONOS" class="headerlink" title="配置ONOS"></a>配置ONOS</h1><p>解压ONOS压缩包：</p>
-<blockquote>
-</blockquote>
-<pre><code>tar -xzvf onos-1.7.1.tar.gz
-</code></pre><p>设置ONOS_ROOT和KARAF_ROOT的路径：</p>
-<blockquote>
-</blockquote>
-<pre><code>vim /etc/profile
-</code></pre><p>在文件末尾添加以下内容,注意修改为自己对应的目录：</p>
-<blockquote>
-</blockquote>
-<pre><code>export ONOS_ROOT=/home/sdn/vmlab/onos-1.7.1
-export KARAF_ROOT=/home/sdn/vmlab/onos-1.7.1/apache-karaf-3.0.5
-export PATH=$PATH:$KARAF_ROOT/bin:$ONOS_ROOT/bin
-</code></pre><p>使配置生效：</p>
-<blockquote>
-</blockquote>
-<pre><code>source /etc/profile
-</code></pre><p>运行onos(第一次启动可能时间较长)：</p>
-<blockquote>
-</blockquote>
-<pre><code>karaf clean
-</code></pre><p>安装应用：</p>
-<blockquote>
-</blockquote>
-<pre><code>&gt; app activate org.onosproject.openflow
-&gt; app activate org.onosproject.fwd
-&gt; app activate org.onosproject.mobility
-</code></pre><p><img src="https://i.loli.net/2019/05/14/5cda1aee3aa5210524.png" alt="01.png"></p>
-<h1 id="环境测试"><a href="#环境测试" class="headerlink" title="环境测试"></a>环境测试</h1><p>查看端口监听状态：</p>
-<blockquote>
-</blockquote>
-<pre><code>netstat -an | grep 8181 #onos Web监听端口
-netstat -an | grep 6633 #onos OF监听端口
-</code></pre><p><img src="https://i.loli.net/2019/05/14/5cda1c09acf8f39168.png" alt="02.png"></p>
-<p>访问Web界面，地址为：http://[ip]:8181/onos/ui/index.html,账户/密码：onos/rocks ：<br><img src="https://i.loli.net/2019/05/14/5cda1d7ed2e3e92022.png" alt="03.png"></p>
-]]></content>
-      <categories>
-        <category>SDN</category>
-      </categories>
-      <tags>
-        <tag>ONOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu开机网卡无法正常启动</title>
-    <url>/2019/08/06/Ubuntu%E5%BC%80%E6%9C%BA%E7%BD%91%E5%8D%A1%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>之前在学校实训的时候用到一台Ubuntu虚拟机，一开始不知道为什么重启之后网卡无法正常启动和加载，执行ifconfig命令之后只显示有本地环回网卡，当时折腾了半天也没找到原因。  </p>
-<p>今天又打开这个虚拟机，突然发现系统这不是给出了错误提示吗？<br><img src="https://i.loli.net/2019/08/06/mCMdLzTGOarEYSj.png" alt="00.png"><br>查了一下misplaced是不适宜的意思（没办法词汇量匮乏），也就是说，interfaces文件的第一行有错误了。</p>
-<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>既然定位到了问题根源，那就追根溯源，去查看一下interfaces文件，打眼一看一点问题都没有。<br><img src="https://i.loli.net/2019/08/06/Pz3ZwEmshAKY7cH.png" alt="01.png"><br>等等，第一行不应该是注释么？有可能是之前不小心误删了，改之。<br><img src="https://i.loli.net/2019/08/06/nCihLwIHWDJ6vrx.png" alt="02.png"><br>注释行颜色亮起的那一刻我就知道问题解决了，重启一下网络，问题解决。<br><img src="https://i.loli.net/2019/08/06/7b5udhXcSPiB24R.png" alt="03.png"></p>
-<p>这样一个小的错误，小到犹豫半天要不要写这篇博客，最后还是决定简单记录一下，就当给自己提个醒吧，而且也不违背当时写博客的初衷——是记录，亦是成长。</p>
-]]></content>
-      <categories>
-        <category>打鱼晒网</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1829,6 +1660,94 @@ export PATH=$PATH:$JRE_HOME/bin
         <tag>SDN</tag>
         <tag>OpenDaylight</tag>
         <tag>Ubuntu16.04</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu开机网卡无法正常启动</title>
+    <url>/2019/08/06/Ubuntu%E5%BC%80%E6%9C%BA%E7%BD%91%E5%8D%A1%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>之前在学校实训的时候用到一台Ubuntu虚拟机，一开始不知道为什么重启之后网卡无法正常启动和加载，执行ifconfig命令之后只显示有本地环回网卡，当时折腾了半天也没找到原因。  </p>
+<p>今天又打开这个虚拟机，突然发现系统这不是给出了错误提示吗？<br><img src="https://i.loli.net/2019/08/06/mCMdLzTGOarEYSj.png" alt="00.png"><br>查了一下misplaced是不适宜的意思（没办法词汇量匮乏），也就是说，interfaces文件的第一行有错误了。</p>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>既然定位到了问题根源，那就追根溯源，去查看一下interfaces文件，打眼一看一点问题都没有。<br><img src="https://i.loli.net/2019/08/06/Pz3ZwEmshAKY7cH.png" alt="01.png"><br>等等，第一行不应该是注释么？有可能是之前不小心误删了，改之。<br><img src="https://i.loli.net/2019/08/06/nCihLwIHWDJ6vrx.png" alt="02.png"><br>注释行颜色亮起的那一刻我就知道问题解决了，重启一下网络，问题解决。<br><img src="https://i.loli.net/2019/08/06/7b5udhXcSPiB24R.png" alt="03.png"></p>
+<p>这样一个小的错误，小到犹豫半天要不要写这篇博客，最后还是决定简单记录一下，就当给自己提个醒吧，而且也不违背当时写博客的初衷——是记录，亦是成长。</p>
+]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu16.04安装ONOS Hummingbird(1.7.1)</title>
+    <url>/2019/05/14/Ubuntu16-04%E5%AE%89%E8%A3%85ONOS-Hummingbird-1-7-1/</url>
+    <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>Ubuntu 16.04 Desktop (内存推荐4G)<br><a href="https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html" target="_blank" rel="noopener">server-jre</a><br><a href="https://wiki.onosproject.org/display/ONOS/Downloads" target="_blank" rel="noopener">onos-1.7.1</a>  </p>
+<p>*目前Oracle网站需要登录账户才能下载</p>
+<h1 id="配置JRE"><a href="#配置JRE" class="headerlink" title="配置JRE"></a>配置JRE</h1><p>将下载下来的JRE文件解压到自定义目录中：</p>
+<blockquote>
+</blockquote>
+<pre><code>mkdir -p /opt/java #将下载下来的安装包移动到此目录（目录可自己定义）
+tar -xzvf server-jre-8u211-linux-x64.tar.gz
+</code></pre><p>配置环境变量：</p>
+<blockquote>
+</blockquote>
+<pre><code>vim /etc/profile
+</code></pre><p>在文件末尾添加如下配置：</p>
+<blockquote>
+</blockquote>
+<pre><code>export JAVA_HOME=/opt/java/jdk1.8.0_211
+export JRE_HOME=/opt/java/jdk1.8.0_211
+export CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/ext
+export PATH=$PATH:$JRE_HOME/bin
+</code></pre><p>使配置生效：</p>
+<blockquote>
+</blockquote>
+<pre><code>source /etc/profile
+</code></pre><p>验证配置成功：</p>
+<blockquote>
+</blockquote>
+<pre><code>java -version #显示java版本信息
+</code></pre><h1 id="配置ONOS"><a href="#配置ONOS" class="headerlink" title="配置ONOS"></a>配置ONOS</h1><p>解压ONOS压缩包：</p>
+<blockquote>
+</blockquote>
+<pre><code>tar -xzvf onos-1.7.1.tar.gz
+</code></pre><p>设置ONOS_ROOT和KARAF_ROOT的路径：</p>
+<blockquote>
+</blockquote>
+<pre><code>vim /etc/profile
+</code></pre><p>在文件末尾添加以下内容,注意修改为自己对应的目录：</p>
+<blockquote>
+</blockquote>
+<pre><code>export ONOS_ROOT=/home/sdn/vmlab/onos-1.7.1
+export KARAF_ROOT=/home/sdn/vmlab/onos-1.7.1/apache-karaf-3.0.5
+export PATH=$PATH:$KARAF_ROOT/bin:$ONOS_ROOT/bin
+</code></pre><p>使配置生效：</p>
+<blockquote>
+</blockquote>
+<pre><code>source /etc/profile
+</code></pre><p>运行onos(第一次启动可能时间较长)：</p>
+<blockquote>
+</blockquote>
+<pre><code>karaf clean
+</code></pre><p>安装应用：</p>
+<blockquote>
+</blockquote>
+<pre><code>&gt; app activate org.onosproject.openflow
+&gt; app activate org.onosproject.fwd
+&gt; app activate org.onosproject.mobility
+</code></pre><p><img src="https://i.loli.net/2019/05/14/5cda1aee3aa5210524.png" alt="01.png"></p>
+<h1 id="环境测试"><a href="#环境测试" class="headerlink" title="环境测试"></a>环境测试</h1><p>查看端口监听状态：</p>
+<blockquote>
+</blockquote>
+<pre><code>netstat -an | grep 8181 #onos Web监听端口
+netstat -an | grep 6633 #onos OF监听端口
+</code></pre><p><img src="https://i.loli.net/2019/05/14/5cda1c09acf8f39168.png" alt="02.png"></p>
+<p>访问Web界面，地址为：http://[ip]:8181/onos/ui/index.html,账户/密码：onos/rocks ：<br><img src="https://i.loli.net/2019/05/14/5cda1d7ed2e3e92022.png" alt="03.png"></p>
+]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>ONOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1953,23 +1872,6 @@ remote_port = 7001 ;外网访问的端口
       </tags>
   </entry>
   <entry>
-    <title>WinSCP——基于SSH的安全文件传输软件</title>
-    <url>/2018/07/03/WinSCP%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8ESSH%E7%9A%84%E5%AE%89%E5%85%A8%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<p>我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。  </p>
-<h1 id="sftp"><a href="#sftp" class="headerlink" title="sftp"></a>sftp</h1><p>sftp(Secure File Transfer Protocol)，安全文件传送协议，可以为传输文件提供一种安全的网络的加密方法。sftp与ftp有着几乎一样的语法和功能。SFTP是SSH的一部分，其实在SSH软件包中，已经包含了一个叫作SFTP的安全文件信息传输子系统，SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接和答复操作，所以从某种意义上来说，SFTP并不像一个服务器程序，而更像是一个客户端程序。<br>SFTP同样是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，所以在对网络安全性要求更高时，可以使用SFTP代替FTP。</p>
-<h1 id="sftp于ftp的区别"><a href="#sftp于ftp的区别" class="headerlink" title="sftp于ftp的区别"></a>sftp于ftp的区别</h1><p>FTP是一种文件传输协议，一般是为了方便数据共享的，包括一个FTP服务器和多个FTP客户端，FTP客户端通过FTP协议在服务器上下载资源。而SFTP协议是基于SSH，并在FTP的基础上对数据进行加密，使得传输的数据相对来说更安全。但是这种安全是以牺牲效率为代价的，也就是说SFTP的传输效率比FTP要略低。<br>而且在我的使用过程中，并没有感觉sftp的效率较于ftp有太大的差异，而且使用sftp最大的一个好处就是不需要安装而且安全性更高。<br>更详细的区别可以移步这里：<a href="https://www.cnblogs.com/mfryf/archive/2013/05/29/3107286.html" target="_blank" rel="noopener">Sftp和ftp 区别、工作原理等（汇总ing）</a></p>
-<h1 id="WinSCP"><a href="#WinSCP" class="headerlink" title="WinSCP"></a>WinSCP</h1><p>官网地址：<a href="https://winscp.net/eng/docs/lang:chs" target="_blank" rel="noopener">https://winscp.net/eng/docs/lang:chs</a><br>除了WinSCP，Windows环境下还可以使用Core FTP，FileZilla, WinSCP，Xftp来连接SFTP进行上传，下载文件，建立，删除目录等操作。</p>
-]]></content>
-      <categories>
-        <category>软件工具</category>
-      </categories>
-      <tags>
-        <tag>文件传输</tag>
-        <tag>工具</tag>
-        <tag>SSH</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows计划任务+sendEmail实现系统启动邮件提醒</title>
     <url>/2018/07/01/Windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1-sendemail%E5%AE%9E%E7%8E%B0%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92/</url>
     <content><![CDATA[<p>由于实验室线路的问题，经常跳闸断电，通电后虽然服务器可以自动开机，但是包括vcenter在内的所有虚拟机都会down掉，为了能够及时的知晓服务器断电，昨天想了个一个办法。就是从从控制机pc入手，首先设置bios将电脑设置为通电自启，然后启动后给我的邮箱发送邮件，这样就能够在服务器重启之后及时的恢复服务。  </p>
@@ -2022,36 +1924,6 @@ ws.Run &quot;d:\sendEmail-156\sendemail.bat&quot;,0
         <tag>Windows</tag>
         <tag>监控</tag>
         <tag>运维</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux系统配置检测工具——Superbench</title>
-    <url>/2018/10/10/linux%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Superbench/</url>
-    <content><![CDATA[<p>我曾经就暗暗吐槽Linux没有一条可以查看配置信息的命令，只能一项一项的查看，体验不是很好。今天无意中发现了一个叫做<strong>Superbench</strong>的脚本，试着用了一下，非常方便，在这里推荐一下。  </p>
-<p>这个脚本主要有以下几个特点：</p>
-<blockquote>
-<p>采用颜色显示，便于区分查找  </p>
-<p>磁盘I/O测试分别使用小文件、中等文件、大文件进行测试，最终计算平均值。  </p>
-<p>网速测试通过多个节点进行测试，其中CM,CU,CT分别代表移动、联通和电信。</p>
-<blockquote>
-<p>ps:<br>中国移动：CMCC ，全称ChinaMobile Communication Company<br>中国联通：CUCC，全称China unicom Communications Corporation<br>中国电信：CTC，全称China Telecommunications Corporation  </p>
-</blockquote>
-</blockquote>
-<h1 id="脚本使用"><a href="#脚本使用" class="headerlink" title="脚本使用"></a>脚本使用</h1><p>执行如下命令:</p>
-<blockquote>
-</blockquote>
-<pre><code>wget -qO- git.io/superbench.sh | bash
-</code></pre><p>稍等一会就会打印出详细的配置信息：  </p>
-<p><img src="https://i.loli.net/2018/10/10/5bbdccb7a8783.png" alt="01.png"><br><img src="https://i.loli.net/2018/10/10/5bbdccb7aa383.png" alt="02.png"><br>同时我们看到最后还附带了一个分享链接用于分享我们的配置信息，在浏览器打开是这个样子的：  </p>
-<p><img src="https://i.loli.net/2018/10/10/5bbdccb7b6cd2.png" alt="03.png"></p>
-]]></content>
-      <categories>
-        <category>脚本</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>脚本</tag>
-        <tag>配置检测</tag>
       </tags>
   </entry>
   <entry>
@@ -2282,6 +2154,53 @@ $content-desktop = 900px
       </tags>
   </entry>
   <entry>
+    <title>linux系统配置检测工具——Superbench</title>
+    <url>/2018/10/10/linux%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Superbench/</url>
+    <content><![CDATA[<p>我曾经就暗暗吐槽Linux没有一条可以查看配置信息的命令，只能一项一项的查看，体验不是很好。今天无意中发现了一个叫做<strong>Superbench</strong>的脚本，试着用了一下，非常方便，在这里推荐一下。  </p>
+<p>这个脚本主要有以下几个特点：</p>
+<blockquote>
+<p>采用颜色显示，便于区分查找  </p>
+<p>磁盘I/O测试分别使用小文件、中等文件、大文件进行测试，最终计算平均值。  </p>
+<p>网速测试通过多个节点进行测试，其中CM,CU,CT分别代表移动、联通和电信。</p>
+<blockquote>
+<p>ps:<br>中国移动：CMCC ，全称ChinaMobile Communication Company<br>中国联通：CUCC，全称China unicom Communications Corporation<br>中国电信：CTC，全称China Telecommunications Corporation  </p>
+</blockquote>
+</blockquote>
+<h1 id="脚本使用"><a href="#脚本使用" class="headerlink" title="脚本使用"></a>脚本使用</h1><p>执行如下命令:</p>
+<blockquote>
+</blockquote>
+<pre><code>wget -qO- git.io/superbench.sh | bash
+</code></pre><p>稍等一会就会打印出详细的配置信息：  </p>
+<p><img src="https://i.loli.net/2018/10/10/5bbdccb7a8783.png" alt="01.png"><br><img src="https://i.loli.net/2018/10/10/5bbdccb7aa383.png" alt="02.png"><br>同时我们看到最后还附带了一个分享链接用于分享我们的配置信息，在浏览器打开是这个样子的：  </p>
+<p><img src="https://i.loli.net/2018/10/10/5bbdccb7b6cd2.png" alt="03.png"></p>
+]]></content>
+      <categories>
+        <category>脚本</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>脚本</tag>
+        <tag>配置检测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WinSCP——基于SSH的安全文件传输软件</title>
+    <url>/2018/07/03/WinSCP%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8ESSH%E7%9A%84%E5%AE%89%E5%85%A8%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<p>我的一个影视网站因为之前买的虚拟主机到期了，就想着把它放到我那台ssr主机上，结果配置vstp的时候不知道什么原因，配置完用客户端登录的时候总是提示说密码验证失败。然后看到一个博主推荐，就是WinSCP了，它的好处在于他是基于SSH协议的sftp文件传输，也就是说，只要你的linux主机可以使用ssh，就可以用它进行文件传输。  </p>
+<h1 id="sftp"><a href="#sftp" class="headerlink" title="sftp"></a>sftp</h1><p>sftp(Secure File Transfer Protocol)，安全文件传送协议，可以为传输文件提供一种安全的网络的加密方法。sftp与ftp有着几乎一样的语法和功能。SFTP是SSH的一部分，其实在SSH软件包中，已经包含了一个叫作SFTP的安全文件信息传输子系统，SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接和答复操作，所以从某种意义上来说，SFTP并不像一个服务器程序，而更像是一个客户端程序。<br>SFTP同样是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，所以在对网络安全性要求更高时，可以使用SFTP代替FTP。</p>
+<h1 id="sftp于ftp的区别"><a href="#sftp于ftp的区别" class="headerlink" title="sftp于ftp的区别"></a>sftp于ftp的区别</h1><p>FTP是一种文件传输协议，一般是为了方便数据共享的，包括一个FTP服务器和多个FTP客户端，FTP客户端通过FTP协议在服务器上下载资源。而SFTP协议是基于SSH，并在FTP的基础上对数据进行加密，使得传输的数据相对来说更安全。但是这种安全是以牺牲效率为代价的，也就是说SFTP的传输效率比FTP要略低。<br>而且在我的使用过程中，并没有感觉sftp的效率较于ftp有太大的差异，而且使用sftp最大的一个好处就是不需要安装而且安全性更高。<br>更详细的区别可以移步这里：<a href="https://www.cnblogs.com/mfryf/archive/2013/05/29/3107286.html" target="_blank" rel="noopener">Sftp和ftp 区别、工作原理等（汇总ing）</a></p>
+<h1 id="WinSCP"><a href="#WinSCP" class="headerlink" title="WinSCP"></a>WinSCP</h1><p>官网地址：<a href="https://winscp.net/eng/docs/lang:chs" target="_blank" rel="noopener">https://winscp.net/eng/docs/lang:chs</a><br>除了WinSCP，Windows环境下还可以使用Core FTP，FileZilla, WinSCP，Xftp来连接SFTP进行上传，下载文件，建立，删除目录等操作。</p>
+]]></content>
+      <categories>
+        <category>软件工具</category>
+      </categories>
+      <tags>
+        <tag>文件传输</tag>
+        <tag>工具</tag>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mininet gave up after 3 retries问题</title>
     <url>/2019/03/02/mininet-gave-up-after-3-retries%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在使用mn创建拓扑时，出现以下错误：</p>
@@ -2316,6 +2235,92 @@ util/install.sh -a
         <tag>SDN</tag>
         <tag>mininet</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>6.使用OpenDaylight界面下发流表</title>
+    <url>/2018/09/16/6-%E4%BD%BF%E7%94%A8OpenDaylight%E7%95%8C%E9%9D%A2%E4%B8%8B%E5%8F%91%E6%B5%81%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>YANG UI是OpenDaylight中一款基于DLUX的应用，旨在简化、激励应用的开发与测试。YANG UI通过动态封装、调用YANG模型和相关REST APIs，生成并展示一个简单的UI界面。开发人员可以通过API请求获取交换机信息，并且以JSON格式展示。YANG UI主要面向上层应用开发，为应用开发人员提供了很多相关工具，有效的节约了开发人员的时间。  </p>
+<p>OpenFlow1.0协议处理数据包的流程相对简单，因为1.0版本只支持单流表。交换机接收到数据包后解析数据包，数据包解析后就开始匹配，从table 0 开始匹配，如果匹配成功则对该数据包执行相应的动作，更新相应的计数器。如果没有找到匹配项则将数据包交给控制器。  </p>
+<p>OpenFlow1.3协议支持多流表匹配，即一个交换机只会有多个流表，因此数据包处理过程相对复杂。首先解析进入设备的报文，然后从table 0开始匹配，按照优先级高低依次匹配该流表中的流表项，一个报文在一个流表中只会匹配上一条流表项。通常根据报文的类型，报文头的字段例如源MAC地址、目的MAC地址、源IP地址、目的IP地址等进行匹配，大部分匹配还支持掩码进行更精确、灵活的匹配。也可以通过报文的入端口或元数据信息来进行报文的匹配，一个流表项中可以同时存在多个匹配项，一个报文需要同时匹配流表项中所有匹配项才能匹配该流表项。报文匹配按照现有的报文字段进行，比如前一个流表通过apply actions改变了该报文的某个字段，则下一个表项按修改后的字段进行匹配。如果匹配成功，则按照指令集里的动作更新动作集，或更新报文/匹配集字段，或更新元数据和计数器。根据指令是否继续前往下一个流表，不继续则终止匹配流程执行动作集，如果指令要求继续前往下一个流表则继续匹配，下一个流表的ID需要比当前流表ID大。当报文匹配失败了，如果存在无匹配流表项（table miss）就按照该表项执行指令，一般是将报文转发给控制器、丢弃或转发给其他流表。如果没有table miss表项则默认丢弃该报文。  </p>
+<p>在Open vSwitch中，流表项作为ovs-ofctl的参数，采用“字段=值”的格式。如果有多个字段，可以用逗号分开，一些常见字段如下：<br><img src="https://i.loli.net/2018/09/16/5b9e4929f0d63.png" alt="1.png"></p>
+<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/16/5b9e494803043.png" alt="拓扑.png"></p>
+<h1 id="创建实验"><a href="#创建实验" class="headerlink" title="创建实验"></a>创建实验</h1><p>登录交换机，检查网络连通性。当显示“is_connected：ture”时，表示交换机与控制器连接成功，可以正常进行实验。若不显示“is_connected：ture”时，表示交换机与控制器连接不成功，执行:</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl del-controller br-sw
+ovs-vsctl set-controller br-sw tcp:30.0.1.3:6633 
+</code></pre><p>命令手动重连，稍等一会后，重新查看连接状态。</p>
+<h1 id="基于OpenFlow1-0协议下发流表"><a href="#基于OpenFlow1-0协议下发流表" class="headerlink" title="基于OpenFlow1.0协议下发流表"></a>基于OpenFlow1.0协议下发流表</h1><p>步骤1 切换到交换机，执行以下命令设置OpenFlow协议版本为1.0。  </p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl set bridge br-sw protocols=OpenFlow10
+</code></pre><p>步骤2 选择控制器，单击浏览器图标，打开浏览器。  </p>
+<p>步骤3 访问OpenDaylight Web页面，url是<a href="http://127.0.0.1:8080/index.html" target="_blank" rel="noopener">http://127.0.0.1:8080/index.html</a> ，用户名和密码是admin/admin，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4a2625fb7.png" alt="2.png"><br>步骤4 单击左侧的“Nodes”查看节点信息。其中尤其需要关注Node Id，下发流表的时候会用到Node Id，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4a653f1bb.png" alt="3.png"><br>步骤5 单击上图中的“Node Connectors”列的数据即“9”，可以查看具体节点连接信息，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4ac29c305.png" alt="4.png"><br>步骤6 选择左侧的“Yang UI”，单击“Expand all”展开所有目录，查看各种模块，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4af0e3b80.png" alt="5.png"><br>步骤7 展开“opendaylight-inventory rev.2013-08-19”，选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{id}”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b115e5c9.png" alt="6.png"><br>步骤8 补全node id、table id和flow id的值。  </p>
+<p>其中node id参见之前查询到的Node Id。table id和flow id可以自定义。由于OpenFlow1.0协议只支持单流表，所以这里的table id设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b3798ac7.png" alt="7.png"><br>步骤9 单击flow list后面的“+”，展开流表相关的参数。填写第一个框id，路径中的flow id也会随之同步，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b59027ad.png" alt="8.png"><br>步骤10 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为“0x0800”(说明：由于使用IP地址进行匹配，所以需要设置以太网协议类型。),如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4b789668c.png" alt="9.png"><br>步骤11 填写匹配参数，在“layer-3-match”后面的下拉框中选择“ipv4-match”，使用IP匹配。  </p>
+<p>步骤12 展开“layer-3-match”，填写源IP地址和目的IP地址，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4bc1b5579.png" alt="10.png"><br>其中源地址填写主机1的IP地址，目的地址填写主机2的IP地址。  </p>
+<p>步骤13 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“apply-actions-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4bec99e16.png" alt="11.png"><br>步骤14 展开“apply-actions”，单击“action list”后面的“+”，在action后面的下拉框中选择“drop-action-case”，action order和instruction order都设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c0f7a101.png" alt="12.png"><br>步骤15 设置“priority”为27，“idle-timeout”为0，“hard-timeout”为0，“cookie”为100000000，“table_id”为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c2f54bc4.png" alt="13.png"><br>说明：priority设置的比已有流表项的高，而idle-timeout和hardtimeout都设置为0则代表该流表项永远不会过期，除非被删除。  </p>
+<p>步骤16 向右滚动Actions栏，在路径后面有动作类型GET、PUT、POST、DELETE，下发流表则选择PUT动作，然后单击“Send”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e4c5b47302.png" alt="14.png"><br>步骤17 如果下发成功会出现下面的提示，如果下发不成功则会弹出相应的错误信息。<br><img src="https://i.loli.net/2018/09/16/5b9e4c9033d8d.png" alt="15.png"><br>步骤18 切换到交换机，执行如下命令查看流表，确保刚刚下发的流表已经下发到交换机。如下图所示。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl dump-flows br-sw
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4cc42a811.png" alt="16.png"><br>步骤19 登录主机1，执行如下命令向主机2、主机3发送数据包，测试主机间的连通性。</p>
+<blockquote>
+</blockquote>
+<pre><code># scapy
+&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())
+&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4cfe4003b.png" alt="17.png"><br>由上图可知，主机1与主机2之间不通，主机1与主机3通，新下发的流表项生效。  </p>
+<p>说明：如果主机之间通则能够收到answer，如果主机之间不通那么就无法收到answer，当主机之间不通时scapy就会一直发送数据包，如果需要停止可以使用Ctrl+c。  </p>
+<p>步骤20 切换到交换机，执行以下命令删除刚刚下发的流表项，并查看流表确保成功删除。  </p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl del-flows br-sw dl_type=0x0800,nw_src=10.0.0.3,nw_dst=10.0.0.4
+ovs-ofctl dump-flows br-sw
+</code></pre><p>步骤21 切换到主机1执行如下命令，测试主机1和主机2是否连通。</p>
+<blockquote>
+</blockquote>
+<pre><code>result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e4d486b69c.png" alt="18.png"><br>由上图可知，主机1与主机2之间就通了。</p>
+<h1 id="基于OpenFlow1-3协议下发流表"><a href="#基于OpenFlow1-3协议下发流表" class="headerlink" title="基于OpenFlow1.3协议下发流表"></a>基于OpenFlow1.3协议下发流表</h1><p>步骤1 登录交换机，设置OpenFlow协议版本为1.3。执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-vsctl set bridge br-sw protocols=OpenFlow13
+</code></pre><p>步骤2 与OpenFlow1.0下发流表的过程解基本一致。展开opendaylight-inventory rev.2013-08-19，选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{id}”。  </p>
+<p>步骤3 补全Actions栏中的路径，其中node id参见之前查询到的Node Id。table id和flow id可以自定义。由于OpenFlow1.3协议支持多级流表，所以这里的table id设置为2。  </p>
+<p>步骤4 单击flow list后面的“+”，流表相关的参数就会展开。设置id为1，路径中的flow id也会随之同步，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e592464e82.png" alt="19.png"><br>步骤5 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为0x0800，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e594c3f115.png" alt="20.png"><br>步骤6 在“layer-3-match”后面的下拉框中选择“ipv4-match”。  </p>
+<p>步骤7 展开“layer-3-match”，填写源IP地址和目的IP地址。以主机1的IP为源IP，以主机3的IP为目的IP，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5979b8763.png" alt="21.png"><br>步骤8 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“apply-actions-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e599fdaa67.png" alt="22.png"><br>步骤9 展开“apply-actions”，单击“action list”后面的“+”，在“action”后面的下拉框中选择“drop-action-case”，“action order”和“instruction order”都设置为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e59c4a3dca.png" alt="23.png"><br>步骤10 设置“priority”为25，“idle-timeout”为0，“hard-timeout”为0，“cookie”为10000000，“table_id”为2，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e59eb63de3.png" alt="24.png"><br>步骤11 向右滚动Actions栏，选择“PUT”动作，然后单击“Send”下发流表。PUT成功就会弹出“Request sent successfully”，否则弹出错误信息。  </p>
+<p>步骤12 切换到主机1，执行如下命令，向主机3发送数据包，测试主机1和主机3的连通性。</p>
+<blockquote>
+</blockquote>
+<pre><code>&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5a28ba934.png" alt="25.png"><br>由上图可知，主机1与主机3之间是连通的，新下发的流表没有发挥作用。原因是数据包在table 0中能够匹配到相应流表就不会被转发到table2，想要table2的流表项发挥作用就需要向table0增加一条流表，将源IP为10.0.0.3，目的IP为10.0.0.2的数据包转发到table2中处理。  </p>
+<p>步骤13 选择“config ——&gt; nodes ——&gt; node{id} ——&gt; table{id} ——&gt; flow{i}”。node id参见之前查询到的Node Id、table id设为0、flow id设为1。  </p>
+<p>步骤14 展开“match ——&gt; ethernet-match ——&gt; ethernet -type”，填写“type”为0x0800。  </p>
+<p>步骤15 匹配参数保持不变，以主机1的IP为源IP，以主机3的IP为目的IP。  </p>
+<p>步骤16 展开“instructions”，并单击“instruction list”后面的“+”，在“instruction”后面下拉框中选择“go-to-table-case”，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5a73537cd.png" alt="26.png"><br>步骤17 展开“go-to-table”，table_id填写为2，即将符合匹配条件的数据包根据table2中的流表项处理。instruction order依旧设为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5aa888c72.png" alt="27.png"><br>步骤18 设“priority”置为23，“idle-timeout”为0，“hard-timeout”为0，“cookie”为1000000000，“table_id”为0，如下图所示。<br><img src="https://i.loli.net/2018/09/16/5b9e5ad13fe66.png" alt="28.png"><br>步骤19 向右滚动Actions栏，选择“PUT”动作，然后单击“Send”下发流表。  </p>
+<p>步骤20 切换到交换机，执行以下命令查看新下发的流表项。</p>
+<blockquote>
+</blockquote>
+<pre><code>ovs-ofctl -O OpenFlow13 dump-flows b
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5b076d691.png" alt="29.png"><br>步骤21 切换到主机1，执行如下命令发送数据包，测试主机之间的连通性。</p>
+<blockquote>
+</blockquote>
+<pre><code>&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.10”,ttl=(3,10))/ICMP())
+&gt;&gt;&gt; result,unanswered=sr(IP(dst=”10.0.0.14”,ttl=(3,10))/ICMP())
+</code></pre><p><img src="https://i.loli.net/2018/09/16/5b9e5b4ae09ab.png" alt="30.png"><br>由上图可知，主机1与主机3之间不通，而主机1与主机2之间通，流表发挥作用。</p>
+]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>SDN</tag>
+        <tag>实验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2021/01/18/test/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>ovs-vsctl: unix:/usr/local/var/run/openvswitch/db.sock: database connection failed</title>
@@ -2433,8 +2438,8 @@ sudo apt-get update
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>脚本</tag>
         <tag>科学上网</tag>
+        <tag>脚本</tag>
         <tag>vps</tag>
         <tag>网站</tag>
       </tags>
@@ -3111,23 +3116,6 @@ $   跳转到行末
       </tags>
   </entry>
   <entry>
-    <title>无vCenter的ESXI环境克隆虚拟机</title>
-    <url>/2019/10/15/%E6%97%A0vCenter%E7%9A%84ESXI%E7%8E%AF%E5%A2%83%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
-    <content><![CDATA[<p>最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。</p>
-<h1 id="两个文件"><a href="#两个文件" class="headerlink" title="两个文件"></a>两个文件</h1><p><strong>.vmx:</strong>VMware虚拟机配置文件，为虚拟机系统文件，通常通过打开这个虚拟机文件以启动系统；通过编辑该文件可以实现某种配置需求。<br><strong>.vmdk:</strong>VMware虚拟磁盘文件，相当于真实PC的硬盘。</p>
-<h1 id="克隆方法"><a href="#克隆方法" class="headerlink" title="克隆方法"></a>克隆方法</h1><p>首先选中要克隆虚拟机的服务器，然后选择“配置”，然后选择“存储器”，在右侧的存储器中选择你要克隆的虚拟机所在的数据存储。<br><img src="https://i.loli.net/2019/10/21/vL8lIVe7bBxXumf.png" alt="01.png"><br>右键“浏览数据存储”，新建一个文件夹（用于存放克隆的虚拟机文件），在左侧选择要克隆的虚拟机所在的文件夹，复制<strong>.vmx</strong>和<strong>.vmdk</strong>两个文件到新建的文件夹中。<br><img src="https://i.loli.net/2019/10/21/WSCz8nE3QBcpG7L.png" alt="02.png"><br>复制完成后，右键复制后的.vmx文件，选择添加到清单即可。<br>虚拟机启动后会有如下提示，选择“I Copied It”即可。<br><img src="https://i.loli.net/2019/10/21/3ut1DF7MfcdK2LU.png" alt="开启复制的虚拟机时.png"></p>
-<h1 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h1><p>在实际的操作中，我发现了一点需要注意的小细节，如果只是单纯的复制我在上图标出来两个文件的话，那么你克隆出来的虚拟机会是你新装的操作系统时的状态，如果想完整克隆虚拟机的当前状态，应该复制虚拟机当前引用的磁盘文件。<br>编辑虚拟机设置，查看被克隆的虚拟机引用的磁盘文件。<br><img src="https://i.loli.net/2019/10/21/Q9CoxLidFsS4mUA.png" alt="03.png"><br>然后复制该文件：<br><img src="https://i.loli.net/2019/10/21/hGkLngAoWC9rE35.png" alt="04.png"></p>
-]]></content>
-      <categories>
-        <category>虚拟化</category>
-      </categories>
-      <tags>
-        <tag>ESXI</tag>
-        <tag>vCenter</tag>
-        <tag>虚拟机克隆</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>浅谈几种快充技术</title>
     <url>/2018/11/07/%E6%B5%85%E8%B0%88%E5%87%A0%E7%A7%8D%E5%BF%AB%E5%85%85%E6%8A%80%E6%9C%AF/</url>
     <content><![CDATA[<p>原来的充电宝丢了，今天又在某宝上溜达买了一个，溜达的时候发现了好多的新名词，就索性查了一下，整理一下写在这里了。</p>
@@ -3158,6 +3146,23 @@ $   跳转到行末
       </tags>
   </entry>
   <entry>
+    <title>无vCenter的ESXI环境克隆虚拟机</title>
+    <url>/2019/10/15/%E6%97%A0vCenter%E7%9A%84ESXI%E7%8E%AF%E5%A2%83%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
+    <content><![CDATA[<p>最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。</p>
+<h1 id="两个文件"><a href="#两个文件" class="headerlink" title="两个文件"></a>两个文件</h1><p><strong>.vmx:</strong>VMware虚拟机配置文件，为虚拟机系统文件，通常通过打开这个虚拟机文件以启动系统；通过编辑该文件可以实现某种配置需求。<br><strong>.vmdk:</strong>VMware虚拟磁盘文件，相当于真实PC的硬盘。</p>
+<h1 id="克隆方法"><a href="#克隆方法" class="headerlink" title="克隆方法"></a>克隆方法</h1><p>首先选中要克隆虚拟机的服务器，然后选择“配置”，然后选择“存储器”，在右侧的存储器中选择你要克隆的虚拟机所在的数据存储。<br><img src="https://i.loli.net/2019/10/21/vL8lIVe7bBxXumf.png" alt="01.png"><br>右键“浏览数据存储”，新建一个文件夹（用于存放克隆的虚拟机文件），在左侧选择要克隆的虚拟机所在的文件夹，复制<strong>.vmx</strong>和<strong>.vmdk</strong>两个文件到新建的文件夹中。<br><img src="https://i.loli.net/2019/10/21/WSCz8nE3QBcpG7L.png" alt="02.png"><br>复制完成后，右键复制后的.vmx文件，选择添加到清单即可。<br>虚拟机启动后会有如下提示，选择“I Copied It”即可。<br><img src="https://i.loli.net/2019/10/21/3ut1DF7MfcdK2LU.png" alt="开启复制的虚拟机时.png"></p>
+<h1 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h1><p>在实际的操作中，我发现了一点需要注意的小细节，如果只是单纯的复制我在上图标出来两个文件的话，那么你克隆出来的虚拟机会是你新装的操作系统时的状态，如果想完整克隆虚拟机的当前状态，应该复制虚拟机当前引用的磁盘文件。<br>编辑虚拟机设置，查看被克隆的虚拟机引用的磁盘文件。<br><img src="https://i.loli.net/2019/10/21/Q9CoxLidFsS4mUA.png" alt="03.png"><br>然后复制该文件：<br><img src="https://i.loli.net/2019/10/21/hGkLngAoWC9rE35.png" alt="04.png"></p>
+]]></content>
+      <categories>
+        <category>虚拟化</category>
+      </categories>
+      <tags>
+        <tag>ESXI</tag>
+        <tag>vCenter</tag>
+        <tag>虚拟机克隆</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>秒懂MBR和GPT分区表</title>
     <url>/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/</url>
     <content><![CDATA[<h1 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h1><p>全新硬盘未初始化之前，必须对其进行分区，硬盘分区初始化的格式包括MBR和GPT两种，另外对于基于PowerPC的Mac电脑还有专门的Apple分区图。<br>MBR的全称是Master Boot Record（主引导记录），MBR早在1983年IBM PC DOS 2.0中就已经提出。之所以叫“主引导记录”，是因为它是存在于驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统的启动加载器和驱动器的逻辑分区信息。主引导扇区是硬盘的第一扇区。它由三个部分组成，主引导记录MBR、硬盘分区表DPT和硬盘有效标志。在总共512字节的主引导扇区里MBR占446个字节，偏移地址（0000H–0088H），它负责从活动分区中装载，并运行系统引导程序；第二部分是Partition table区（DPT分区表），占64个字节；第三部分是Magic number，占2个字节。 </p>
@@ -3182,6 +3187,54 @@ $   跳转到行末
       <tags>
         <tag>装机</tag>
         <tag>硬件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>科学上网工具 - WireGuard</title>
+    <url>/2018/11/14/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%B7%A5%E5%85%B7-WireGuard/</url>
+    <content><![CDATA[<h1 id="WireGuard是什么？"><a href="#WireGuard是什么？" class="headerlink" title="WireGuard是什么？"></a>WireGuard是什么？</h1><p>WireGuard是一个构建快速、现代、安全的VPN的协议和工具套件，它具有以下优点：</p>
+<blockquote>
+</blockquote>
+<p>使用最先进的加密技术，防范攻击（RSA，SHA广被诟病都将被淘汰）<br>性能远超OpenVPN<br>效率极高，WireGuard协议作为Linux内核模块运行<br>通用用途，支持嵌入式和非嵌入式设备<br>跨平台，初期只在Linux平台发布，现已支持所有平台<br>易用，用过OpenVPN等工具集的人都明白这其中的痛苦<br>工作在3层（链路层），支持漫游，地址变更对用户无感知，使用更简单，切换更平滑<br>使用UDP传输数据，轻量、高效、节能、节省带宽（适用于 IOT 领域）<br>基于GPLv2Linux Kernel 基于 GPLv2）免费开源  </p>
+<p>Linus Torvalds对WireGuard的评价：</p>
+<blockquote>
+<p>Can I just once again state my love for it and hope it gets merged soon? Maybe the code isn’t perfect, but I’ve skimmed it, and compared to the horrors that are OpenVPN and IPSec, it’s a work of art.</p>
+</blockquote>
+<h1 id="脚本安装"><a href="#脚本安装" class="headerlink" title="脚本安装"></a>脚本安装</h1><h2 id="脚本要求"><a href="#脚本要求" class="headerlink" title="脚本要求"></a>脚本要求</h2><blockquote>
+<p>仅适用于centos7<br>vps架构必须为KVM<br>centos7的内核大部分为3.10，不能正确安装，必须升级（已经集成在脚本中）</p>
+</blockquote>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>1、下载并执行脚本：</p>
+<blockquote>
+</blockquote>
+<pre><code>wget https://raw.githubusercontent.com/yobabyshark/wireguard/master/wireguard_install.sh &amp;&amp; chmod +x wireguard_install.sh &amp;&amp; ./wireguard_install.sh
+</code></pre><p><img src="https://i.loli.net/2018/11/14/5bec1723904fd.png" alt="01.png"></p>
+<p>2、输入“1”升级内核，按照提示重启。  </p>
+<p>3、重启完成后，再次执行脚本：</p>
+<blockquote>
+</blockquote>
+<pre><code>./wireguard_install.sh
+</code></pre><p>4、输入“2”安装WireGuard。  </p>
+<p>5、使用ftp工具连接vps，将<strong>/etc/wireguard</strong>目录下的client.conf下载到本地。</p>
+<p>6、下载安装TunSafe，这是一个windows端的第三方客户端，因为官方windows版本的还没开发完成，先用这个软件代替，TunSafe已经开源，可以放心使用。<br>官网下载：<a href="https://tunsafe.com/download" target="_blank" rel="noopener">TunSafe</a></p>
+<p>7、打开TunSafe，单击file，选择import file，将下载的client.conf导入到软件中。  </p>
+<p>8、导入后会自动进行连接，进入全局代理模式，也就是所有流量都会被代理。</p>
+<h1 id="其它平台客户端"><a href="#其它平台客户端" class="headerlink" title="其它平台客户端"></a>其它平台客户端</h1><h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>1、下载WireGuard安卓客户端：  </p>
+<blockquote>
+<p>Android客户端：<a href="https://f-droid.org/repo/com.wireguard.android_439.apk" target="_blank" rel="noopener">点此下载</a></p>
+</blockquote>
+<p>2、打开app，点击加号导入client.conf文件。</p>
+<blockquote>
+<p>这里可能会提示错误，原因是没有文件操作权限，去权限管理里给软件勾上存储权限即可。</p>
+</blockquote>
+<h1 id="速度测试"><a href="#速度测试" class="headerlink" title="速度测试"></a>速度测试</h1><p>Youtube视频地址：<a href="https://youtu.be/A1tdPsdBATw" target="_blank" rel="noopener">点击观看</a></p>
+]]></content>
+      <categories>
+        <category>VPS</category>
+      </categories>
+      <tags>
+        <tag>科学上网</tag>
+        <tag>VPS</tag>
+        <tag>WireGuard</tag>
       </tags>
   </entry>
   <entry>
@@ -3561,54 +3614,6 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime #修改时区
         <tag>虚拟化</tag>
         <tag>运维</tag>
         <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>科学上网工具 - WireGuard</title>
-    <url>/2018/11/14/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%B7%A5%E5%85%B7-WireGuard/</url>
-    <content><![CDATA[<h1 id="WireGuard是什么？"><a href="#WireGuard是什么？" class="headerlink" title="WireGuard是什么？"></a>WireGuard是什么？</h1><p>WireGuard是一个构建快速、现代、安全的VPN的协议和工具套件，它具有以下优点：</p>
-<blockquote>
-</blockquote>
-<p>使用最先进的加密技术，防范攻击（RSA，SHA广被诟病都将被淘汰）<br>性能远超OpenVPN<br>效率极高，WireGuard协议作为Linux内核模块运行<br>通用用途，支持嵌入式和非嵌入式设备<br>跨平台，初期只在Linux平台发布，现已支持所有平台<br>易用，用过OpenVPN等工具集的人都明白这其中的痛苦<br>工作在3层（链路层），支持漫游，地址变更对用户无感知，使用更简单，切换更平滑<br>使用UDP传输数据，轻量、高效、节能、节省带宽（适用于 IOT 领域）<br>基于GPLv2Linux Kernel 基于 GPLv2）免费开源  </p>
-<p>Linus Torvalds对WireGuard的评价：</p>
-<blockquote>
-<p>Can I just once again state my love for it and hope it gets merged soon? Maybe the code isn’t perfect, but I’ve skimmed it, and compared to the horrors that are OpenVPN and IPSec, it’s a work of art.</p>
-</blockquote>
-<h1 id="脚本安装"><a href="#脚本安装" class="headerlink" title="脚本安装"></a>脚本安装</h1><h2 id="脚本要求"><a href="#脚本要求" class="headerlink" title="脚本要求"></a>脚本要求</h2><blockquote>
-<p>仅适用于centos7<br>vps架构必须为KVM<br>centos7的内核大部分为3.10，不能正确安装，必须升级（已经集成在脚本中）</p>
-</blockquote>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>1、下载并执行脚本：</p>
-<blockquote>
-</blockquote>
-<pre><code>wget https://raw.githubusercontent.com/yobabyshark/wireguard/master/wireguard_install.sh &amp;&amp; chmod +x wireguard_install.sh &amp;&amp; ./wireguard_install.sh
-</code></pre><p><img src="https://i.loli.net/2018/11/14/5bec1723904fd.png" alt="01.png"></p>
-<p>2、输入“1”升级内核，按照提示重启。  </p>
-<p>3、重启完成后，再次执行脚本：</p>
-<blockquote>
-</blockquote>
-<pre><code>./wireguard_install.sh
-</code></pre><p>4、输入“2”安装WireGuard。  </p>
-<p>5、使用ftp工具连接vps，将<strong>/etc/wireguard</strong>目录下的client.conf下载到本地。</p>
-<p>6、下载安装TunSafe，这是一个windows端的第三方客户端，因为官方windows版本的还没开发完成，先用这个软件代替，TunSafe已经开源，可以放心使用。<br>官网下载：<a href="https://tunsafe.com/download" target="_blank" rel="noopener">TunSafe</a></p>
-<p>7、打开TunSafe，单击file，选择import file，将下载的client.conf导入到软件中。  </p>
-<p>8、导入后会自动进行连接，进入全局代理模式，也就是所有流量都会被代理。</p>
-<h1 id="其它平台客户端"><a href="#其它平台客户端" class="headerlink" title="其它平台客户端"></a>其它平台客户端</h1><h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>1、下载WireGuard安卓客户端：  </p>
-<blockquote>
-<p>Android客户端：<a href="https://f-droid.org/repo/com.wireguard.android_439.apk" target="_blank" rel="noopener">点此下载</a></p>
-</blockquote>
-<p>2、打开app，点击加号导入client.conf文件。</p>
-<blockquote>
-<p>这里可能会提示错误，原因是没有文件操作权限，去权限管理里给软件勾上存储权限即可。</p>
-</blockquote>
-<h1 id="速度测试"><a href="#速度测试" class="headerlink" title="速度测试"></a>速度测试</h1><p>Youtube视频地址：<a href="https://youtu.be/A1tdPsdBATw" target="_blank" rel="noopener">点击观看</a></p>
-]]></content>
-      <categories>
-        <category>VPS</category>
-      </categories>
-      <tags>
-        <tag>科学上网</tag>
-        <tag>VPS</tag>
-        <tag>WireGuard</tag>
       </tags>
   </entry>
   <entry>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2021-01-15T06:30:37.973Z</updated>
+  <updated>2021-01-18T12:22:16.014Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://cyneliu.github.io/2021/01/18/test/"/>
+    <id>https://cyneliu.github.io/2021/01/18/test/</id>
+    <published>2021-01-18T12:22:15.000Z</published>
+    <updated>2021-01-18T12:22:16.014Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>RHEL使用CentOS的yum源</title>
@@ -541,35 +555,6 @@
       <category term="VPN" scheme="https://cyneliu.github.io/tags/VPN/"/>
     
       <category term="IPSec" scheme="https://cyneliu.github.io/tags/IPSec/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在ESXI环境中部署fuel openstack虚拟环境</title>
-    <link href="https://cyneliu.github.io/2019/03/20/%E5%9C%A8ESXI%E7%8E%AF%E5%A2%83%E4%B8%AD%E9%83%A8%E7%BD%B2fuel-openstack%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
-    <id>https://cyneliu.github.io/2019/03/20/在ESXI环境中部署fuel-openstack虚拟环境/</id>
-    <published>2019-03-20T12:02:15.000Z</published>
-    <updated>2019-03-26T01:10:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>一年之前就开始接触OpenStack，但是还没入门就放弃了，因为实验环境实在是太难装了，尝试了很多次均以失败告终，大多教程中都是安装devstack的方式进行部署，但是作为一个刚入门的小白，个人觉得这种方式可能并不是太友好。最近看了一份教程，了解到fuel openstack的部署方式，决定再尝试一下，据说这也是企业生产环境中经常用到的方式。<br>由于自己的电脑配置比较低，在笔记本上安装虚拟环境体验不是很好，正好身边有一套ESXI环境，所以尝试在ESXI环境中进行部署，尝试了很多次之后终于成功，在此记录一下部署过程，以供参考。</p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>首先下载fuel openstack镜像文件，主要有两个途径可以获取到fuel的镜像，第一个是fuel的官网，目前可以下载到9.0的版本。第二个是OpenStack的wiki，目前提供的最新版本是11.0：</p><blockquote></blockquote><p><a href="https://www.mirantis.com/software/openstack/" target="_blank" rel="noopener">https://www.mirantis.com/software/openstack/</a><br><a href="https://wiki.openstack.org/wiki/Fuel#Where_to_get_Fuel" target="_blank" rel="noopener">https://wiki.openstack.org/wiki/Fuel#Where_to_get_Fuel</a></p><h1 id="规划网络"><a href="#规划网络" class="headerlink" title="规划网络"></a>规划网络</h1><p>我的esxi主机所在网络为192.168.100.0/24网段，此网段对OpenStack来说也就是公网（Public），此外还需要有一个PXE网段，用于fuel部署系统，此外还有management、storage、private等网段，我们使用三块网卡来连接这三个网段。</p><h2 id="在ESXI中部署网络"><a href="#在ESXI中部署网络" class="headerlink" title="在ESXI中部署网络"></a>在ESXI中部署网络</h2><p>首先是创建两个新的虚拟交换机，选中esxi主机，点击配置，网络，添加网络：<br><img src="https://i.loli.net/2019/03/21/5c9394143c777.png" alt="01.png"><br>连接类型选择虚拟机：<br><img src="https://i.loli.net/2019/03/21/5c93948b28789.png" alt="02.png"><br>选择创建vSphere标准交换机，将下面的网卡取消勾选：<br><img src="https://i.loli.net/2019/03/21/5c9394ff6c53d.png" alt="03.png"><br>网络标签可以自行修改，vlan id选择全部：<br><img src="https://i.loli.net/2019/03/21/5c93955b01f35.png" alt="04.png"><br>编辑vSwitch属性，开启混杂模式：<br><img src="https://i.loli.net/2019/03/21/5c9395965b223.png" alt="05.png"><br>要注意左边列表中的两项都要开启<br><img src="https://i.loli.net/2019/03/21/5c939596595d3.png" alt="06.png"><br>用相同的方法再创建一个vSwitch，我这里分别是fuel_pxe和fuel_private：<br><img src="https://i.loli.net/2019/03/21/5c9394143c777.png" alt="01.png"><br>最后再修改以下vSwitch0的属性，修改如下两项：<br><img src="https://i.loli.net/2019/03/26/5c99754ebeec5.png" alt="31.png"><br><img src="https://i.loli.net/2019/03/26/5c99754ed633c.png" alt="32.png"></p><h1 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h1><p>fuel的架构如下图所示：<br><img src="https://i.loli.net/2019/03/21/5c93976f857b9.png" alt="09.png"><br>这里我没有部署单独的Storage节点，只部署三个节点：master、controller和compute，三个节点的配置及网卡连接情况如下：  </p><blockquote><p>master节点：</p><blockquote><p>8核 8G内存 100G存储 fuel_pxe vmnet vmnet</p></blockquote></blockquote><blockquote><p>controller节点：</p><blockquote><p>8核 8G内存 100G存储 fuel_pxe vmnet fuel_private</p></blockquote></blockquote><blockquote><p>compute节点</p><blockquote><p>8核 16G内存 200G存储 fuel_pxe vmnet fuel_private</p></blockquote></blockquote><h2 id="master节点配置"><a href="#master节点配置" class="headerlink" title="master节点配置"></a>master节点配置</h2><p>新建名称为fuel_master的虚拟机,网卡配置如下图所示：<br><img src="https://i.loli.net/2019/03/21/5c9395966aa1c.png" alt="07.png"><br>开机并挂载fuel镜像：<br><img src="https://i.loli.net/2019/03/21/5c939597b4d7e.png" alt="08.png"><br>选择第一项直接开始安装，安装时间较长，耐心等待其安装完成。<br>安装完成后登录master节点，修改一些配置，首先是配置一个我们可以连接的ip，默认情况下eth0的ip地址已经设置为10.20.0.2，我这里选择使用eth1进行修改：</p><blockquote></blockquote><pre><code>vim /etc/sysconfig/network-scrips/eth1</code></pre><p>将配置文件中的ONBOOT=no改为yes,ip地址我这里使用的是dhcp分配的方式，当然你也可以手工指定。<br>修改完成后保存退出并重启网络:</p><blockquote></blockquote><pre><code>service network restart</code></pre><p>然后允许ssh登录，默认情况下是只允许10.20.0.0/24这个网段登录的：</p><blockquote></blockquote><pre><code>iptables -A INPUT -p tcp --dport 22 -j ACCEPTiptables -A OUTPUT -p tcp --sport 22 -j ACCEPTservice iptables saveservice iptables restart</code></pre><p>查看eth1的ip地址，这时我们就可以使用eth1的ip访问mater的web界面了(浏览器通常会阻止访问，点击继续访问或添加例外即可)：<br><img src="https://i.loli.net/2019/03/22/5c943671a130c.png" alt="11.png"><br>使用默认用户名/密码：admin/admin登录，登录进去之后会提示修改密码，暂时先不修改。此外因为安装时master节点并没有连接外网，所以这时会有如下提示信息：<br><img src="https://i.loli.net/2019/03/22/5c94373142e10.png" alt="10.png"><br>有以下两种解决方式：</p><h3 id="联网方式"><a href="#联网方式" class="headerlink" title="联网方式"></a>联网方式</h3><p>根据提示信息执行命令：</p><blockquote></blockquote><pre><code>fuel-bootstrap build --activate</code></pre><p>这种方式的前提是master节点可以连接到外网，而且根据网络环境的不同可能时间会比较长。另外这条命令在11.0的版本可以正常使用，而在9.0版本中貌似有些源已经访问不到了，所以推荐使用本地源。</p><h3 id="本地方式"><a href="#本地方式" class="headerlink" title="本地方式"></a>本地方式</h3><p>下载以下两个文件(如果失效可以自己google)：<br><em>mirrors.zip</em>：<a href="https://pan.baidu.com/s/1npQ2MBps6ypx2X_ebCJ2jg" target="_blank" rel="noopener">密码：j0yk</a><br><em>bootstraps.zip</em>：<a href="https://pan.baidu.com/s/1EeLLaenosPr2OLULw-VB_w" target="_blank" rel="noopener">密码：miwf</a></p><p>解压bootstrap.zip，上传“bootstrap”文件夹至master节点的<em>/var/www/nailgun/</em>目录下，覆盖原有bootstrap目录，然后执行如下命令：</p><blockquote></blockquote><pre><code>fuel-bootstrap activate d01c72e6-83f4-4a19-bb86-6085e40416e6  #激活bootstrapfuel-bootstrap list   #查看处于活动状态的bootstrap</code></pre><p>解压mirrors.zip，上传解压的“mirrors”文件夹至master节点的<em>/var/www/nailgun/</em>目录，</p><blockquote></blockquote><pre><code>fuel-createmirror   #在处于离线状态的master节点运行命令（会报错，直接忽略）</code></pre><p>注意以上两个解压文件不要出现同名嵌套的文件夹，比如bootstrap文件夹下还有一个bootstrap文件夹。</p><h2 id="controller和compute节点"><a href="#controller和compute节点" class="headerlink" title="controller和compute节点"></a>controller和compute节点</h2><p>新建两台虚拟机，配置可以自行设置，我这里按上面预先规划的配置进行设置，重点是两个节点的网卡配置，如下分别是我的controller节点和compute节点配置：<br><img src="https://i.loli.net/2019/03/25/5c98db1d162a3.png" alt="27.png"><br><img src="https://i.loli.net/2019/03/25/5c98db1ce03c4.png" alt="26.png"><br>启动controller和compute两个节点，两个节点会自动从pxe完成启动进入bootstrap，登录fuel的web界面，mater节点已经获取到两个节点的基本信息：<br><img src="https://i.loli.net/2019/03/22/5c943c595f95c.png" alt="14.png"></p><h1 id="创建OpenStack环境"><a href="#创建OpenStack环境" class="headerlink" title="创建OpenStack环境"></a>创建OpenStack环境</h1><p>点击“New OpenStack Enviroment”创建一个OpenStack环境：<br><img src="https://i.loli.net/2019/03/22/5c943a1e20593.png" alt="12.png"><br>相关选项根据需要自己修改，我这里全部保持默认，点击<em>create</em>完成创建。  </p><h2 id="修改网络配置"><a href="#修改网络配置" class="headerlink" title="修改网络配置"></a>修改网络配置</h2><p>点击Networks进入网络配置页面，修改Public网段，即连接外网的网段：<br><img src="https://i.loli.net/2019/03/22/5c943da406cf0.png" alt="15.png"><br>同时需要修改L3的网络配置，L3需要跟Public处在同一网段且地址块不能重叠：<br><img src="https://i.loli.net/2019/03/22/5c943dff6d1ac.png" alt="16.png"><br>修改DNS：<br><img src="https://i.loli.net/2019/03/22/5c943e66ecd60.png" alt="17.png"><br>其它配置，建议勾选此选项，并将两个server地址设置为master节点的地址：10.20.0.2<br><img src="https://i.loli.net/2019/03/25/5c98dbe04cab6.png" alt="28.png"></p><h2 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h2><p>进入<em>Nodes</em>页面，点击<em>Add Nodes</em>添加已经发现到的两个节点并选择相应的角色：<br><img src="https://i.loli.net/2019/03/22/5c948f7d7dd43.png" alt="20.png"><br>上图是我第一遍操作时截的图，没有选择cinder角色，后来重新部署的时候遵从建议选择了cinder角色（fuel建议至少有一个cinder节点），这里也推荐大家部署cinder角色。在controller节点安装了cinder角色，补一个部署之后的截图：<br><img src="https://i.loli.net/2019/03/25/5c98de4957eac.png" alt="29.png"><br>点击节点右侧的齿轮按钮，设置一下接口配置，我的两个节点接口配置：<br><img src="https://i.loli.net/2019/03/22/5c94916f9bbc6.png" alt="22.png"></p><h2 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h2><p>以上操作完成后到<em>Network</em>页面检查一下网络配置是否正确：<br><img src="https://i.loli.net/2019/03/22/5c949006bed85.png" alt="21.png"><br>检查通过就可以开始部署了，回到<em>Dashboard</em>页面，点击<em>Deploy Changes</em>开始部署：<br><img src="https://i.loli.net/2019/03/22/5c949299188fc.png" alt="24.png"><br>经过漫长的等待，最后部署成功：<br><img src="https://i.loli.net/2019/03/25/5c98df0dd505a.png" alt="30.png"><br>点击Horizon即可访问dashboard，输入用户名/密码：admin/admin登录：<br><img src="https://i.loli.net/2019/03/25/5c98df780c4df.png" alt="66.png"></p><h1 id="错误汇总"><a href="#错误汇总" class="headerlink" title="错误汇总"></a>错误汇总</h1><h2 id="sync-time-error"><a href="#sync-time-error" class="headerlink" title="sync_time error"></a>sync_time error</h2><p>时间同步错误，原因在于fuel主节点没有合适的时间同步，所以子节点无法完成时间同步，修改fuel主节点的ntp配置即可解决：</p><blockquote></blockquote><pre><code>vim /etc/ntp.conf</code></pre><p>在server段添加如下内容,并将原来的server注释掉。</p><blockquote></blockquote><pre><code>server asia.pool.ntp.org  iburst minpoll 3 maxpoll 9</code></pre><p>重启ntp服务：</p><blockquote></blockquote><pre><code>systemctl restart ntpdate.servicesystemctl restart ntpd.service</code></pre><h2 id="build-deploy-image-error"><a href="#build-deploy-image-error" class="headerlink" title="build_deploy_image error"></a>build_deploy_image error</h2><p>错误提示信息：<br>All nodes are finished. Failed tasks: Task[build_deploy_image/master] Stopping the deployment process!<br><img src="https://i.loli.net/2019/03/22/5c94aaf11fd3a.png" alt="25.png"><br>原因是master节点无法连接外网，修改相关网络配置即可，我这里是启用eth1网卡连接外网。</p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.51cto.com/goome/1916247" target="_blank" rel="noopener">https://blog.51cto.com/goome/1916247</a><br><a href="https://www.cnblogs.com/shoufengwei/p/6901173.html" target="_blank" rel="noopener">https://www.cnblogs.com/shoufengwei/p/6901173.html</a><br><a href="https://blog.csdn.net/qq_35180983/article/details/82181496" target="_blank" rel="noopener">https://blog.csdn.net/qq_35180983/article/details/82181496</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;一年之前就开始接触OpenStack，但是还没入门就放弃了，因为实验环境实在是太难装了，尝试了很多次均以失败告终，大多教程中都是安装devstack的方式进行部署，但是作为一个刚入门的小白，个人觉得这种方式可能并不是太友好。最近看了一份教程，了解到fuel openstac
-      
-    
-    </summary>
-    
-      <category term="OpenStack" scheme="https://cyneliu.github.io/categories/OpenStack/"/>
-    
-    
-      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
-    
-      <category term="Esxi" scheme="https://cyneliu.github.io/tags/Esxi/"/>
-    
-      <category term="fuel" scheme="https://cyneliu.github.io/tags/fuel/"/>
     
   </entry>
   
