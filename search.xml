@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>1.OpenFlow建立连接交互流程</title>
+    <url>/2018/09/13/1-OpenFlow%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="OpenFlow协议简介"><a href="#OpenFlow协议简介" class="headerlink" title="OpenFlow协议简介"></a>OpenFlow协议简介</h1><p>2006年，斯坦福大学Clean Slate计划资助的Ethane项目开始部署，致力于企业网架构的创新，OpenFlow协议的雏形就诞生于这个项目。2008年，Nick McKeown教授的一篇重要论文“OpenFlow：Enabling Innovation in Campus Networks”使得OpenFlow正式进入人们的视野，继而成为了标准化组织ONF（Open Network Foundation，开放网络基金会）主推的南向接口协议。经过多年的发展，OpenFlow现已成为SDN的主流南向接口协议之一。目前，OpenFlow协议还在不断地演进中，本实验采用OpenFlow v1.3协议，并对控制器与OpenFlow交换机之间的交互过程进行深入分析。<br>OpenFlow主要有3种类型的消息，分别是Controller-to-Switch、Asynchronous和Symmetric，其中每个类型又包含多个子类型。Controller-to-Switch消息由控制器发起，用于管理、查看交换机的状态。Asynchronous消息由交换机发起，向控制器汇报交换机的事件和改变。Symmetric消息由控制器或交换机任一方发起，无需请求直接发起消息。详细信息如下表所示：<br><img src="https://i.loli.net/2018/09/13/5b99fc6a1c7b0.png" alt="1.png"></p>
+<h1 id="OpenFlow连接建立交互流程"><a href="#OpenFlow连接建立交互流程" class="headerlink" title="OpenFlow连接建立交互流程"></a>OpenFlow连接建立交互流程</h1><p><img src="https://i.loli.net/2018/09/13/5b99fd98251f8.png" alt="2.png"><br>在OpenFlow1.3协议的情况下，控制器与OpenFlow交换机的消息完整交互流程如下：<br>1、 控制器与OpenFlow交换机通过TCP“三次握手”，建立有效的连接。其中，控制器一端的端口号为6633。<br>2、 控制器与OpenFlow交换机之间相互发送Hello消息，用于协商双方的OpenFlow版本号。在双方支持的最高版本号不一致的情况下，协商的结果将以较低的OpenFlow版本为准。如果双方协商不一致，还会产生Error消息。<br>3、 控制器向OpenFlow交换机发送Features Request消息，请求OpenFlow交换机上传自己的详细参数。OpenFlow交换机收到请求后，向控制器发送Features Reply消息，详细汇报自身参数，包括支持的buffer数目、流表数以及Actions等。<br>4、 控制器通过Set Config消息下发配置参数，然后通过Get config Request消息请求OpenFlow交换机上传修改后的配置信息。OpenFlow交换机通过Get config Reply消息向控制器发送当前的配置信息。<br>5、 控制器与OpenFlow交换机之间发送Packet_out、Packet_in消息，通过Packet_out中内置的LLDP包，进行网络拓扑的探测。<br>6、 控制器与OpenFlow交换机之间通过发送Multipart Request、Mutipart Reply消息，控制器能获取OpenFlow交换机的状态信息，包括流的信息、端口信息等。<br>7、 控制器与OpenFlow交换机之间通过发送Echo Request、Echo Reply消息，保证二者之间存在有效连接，避免失联。  </p>
+<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/13/5b9a0b09e2b9b.png" alt="3.png"></p>
+<h1 id="捕获数据包"><a href="#捕获数据包" class="headerlink" title="捕获数据包"></a>捕获数据包</h1><p>步骤1 登录Floodlight控制器，启动抓包工具Wireshark，捕获控制器与交换机建立连接过程中的数据包，通过分析这些数据包了解控制器与交换机基于OpenFlow协议进行交互的流程。执行以下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo wireshark
+</code></pre><p>步骤2 双击eth0网卡，查看eth0网卡上数据包收发情况，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0ba6a9fb7.png" alt="4.png"><br>步骤3 登录Mininet虚拟机，启动Mininet。通过“—controller”参数设置Mininet连接远程控制器，并指定控制器的IP和端口号。</p>
+<blockquote>
+</blockquote>
+<pre><code>sudo mn --controller=remote,ip=30.0.1.3,port=6633 --switch=ovsk,protocols=OpenFlow13
+</code></pre><p><img src="https://i.loli.net/2018/09/13/5b9a0bf62d0be.png" alt="5.png"><br>步骤4 登录Floodlight控制器，停止Wireshark，观察数据包列表，可以看出控制器与交换机的基本交互流程。<br><img src="https://i.loli.net/2018/09/13/5b9a0c1ddbc4e.png" alt="6.png"></p>
+<h1 id="OpenFlow1-3交互流程分析"><a href="#OpenFlow1-3交互流程分析" class="headerlink" title="OpenFlow1.3交互流程分析"></a>OpenFlow1.3交互流程分析</h1><p>步骤1 交换机连接控制器的6633端口，经过3次握手后双方建立TCP连接。查看捕获到的数据包，分析交换机与控制器建立TCP连接的流程。分析TCP连接建立过程，需要先了解TCP的状态位，主要包括SYN、FIN、ACK、PSH、RST和URG。SYN表示建立连接，FIN表示关闭连接，ACK表示响应，PSH表示有DATA数据传输，RST表示连接重置。可以看出交换机与控制器经历一次连接重置后，成功完成三次握手，建立TCP连接，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0c63cdbf7.png" alt="7.png"><br>步骤2 当控制器与交换机建立TCP连接后，由其中某一方发起Hello消息，双方协调协OpenFlow议版本号。控制器和交换机都会向对方发送一条Hello消息，消息中附上自己支持的OpenFlow的最高版本。接收到对方Hello消息后，判断自己能否支持对方发送的版本，能支持则版本协商成功，不能支持则回复一条OFPT_ERROR消息。查看Hello消息详情，本实验中由于交换机和控制器都能支持OpenFlow1.3版本，所以版本协商为1.3，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0c8900db0.png" alt="8.png"><br>步骤3 OpenFlow版本协商完成后，控制器发送一条features_request消息获取交换机的特性信息，包括交换机的ID（DPID）、缓冲区数量、端口及端口属性等等。相应的，交换机回复features_reply消息，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0cb6bf243.png" alt="9.png"><br>查看数据包详情，ofpt_feature_request消息只有包头，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0ce6d0540.png" alt="10.png"><br>ofpt_feature_reply数据包详情如下，交换机的DPID是数据通道独一无二的标识符，低48位是一个MAC地址，高16位是自定义的。本实验中交换机缓冲区数量（n_buffers）为256，交换机支持的流表数量（n_tables）为254，交换机所支持的功能，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d1008f0a.png" alt="11.png"><br>步骤4 OpenFlow1.0协议中feature_reply消息还包含交换机端口信息，OpenFlow 1.3协议将‘stats’框架更名为‘multipart’框架，并且将端口描述移植到multipart消息中。其中OPPT_PORT_DESC类型的multipart消息就是用于获取交换机端口信息的。<br><img src="https://i.loli.net/2018/09/13/5b9a0d34705f8.png" alt="12.png"><br>查看OPPT_PORT_DESC类型multipart_reply消息，消息中列出了交换机的端口以及每个端口的详细信息，包括端口名称和mac地址等，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d5f30b72.png" alt="13.png"><br>步骤5 OFPMP_DESC类型的multipart_reply消息包含了交换机的其他信息，包括交换机厂商名称、交换机名称以及交换机版本等。本实验中使用的是Mininet仿真软件中自带的开源交换机Open vSwitch(2.0.2)，而Open vSwitch是由Nicira Networks主导开发的，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d8d31133.png" alt="14.png"><br>步骤6 在连接过程中，控制器不断的发送echo_request消息给交换机，确认交换机与控制器之间的连接状态。相应的，交换机会回复echo_reply消息，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0db731025.png" alt="15.png"></p>
+]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>SDN</tag>
+        <tag>实验</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>3.Open vSwitch流表管理</title>
     <url>/2018/09/14/3-Open-vSwitch%E6%B5%81%E8%A1%A8%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow是用于管理交换机流表的协议，ovs-ofctl是Open vSwitch提供的命令行工具。在没有配置OpenFlow控制器的模式下，用户可以使用ovs-ofctl命令通过OpenFlow协议去连接Open vSwitch，创建、修改或删除Open vSwitch中的流表项，并对Open vSwitch的运行状况进行动态监控。  </p>
@@ -129,22 +154,6 @@ ovs-ofctl dump-flows br0
       </tags>
   </entry>
   <entry>
-    <title>Anaconda开始菜单失踪</title>
-    <url>/2018/09/10/Anaconda%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95%E5%A4%B1%E8%B8%AA/</url>
-    <content><![CDATA[<p>今天想打开Anaconda写python程序的时候，突然发现Anaconda在开始菜单中神秘失踪了。<br>这时候只需要打开cmd，切换到Anaconda的安装目录的Lib文件夹下，执行如下命令：</p>
-<blockquote>
-</blockquote>
-<pre><code>python _nsis.py mkmenus
-</code></pre><p>重新生成一下开始菜单即可。<br><img src="https://i.loli.net/2018/09/10/5b9670b820c45.png" alt="snipaste_20180909_124542.png"></p>
-]]></content>
-      <categories>
-        <category>疑难杂症</category>
-      </categories>
-      <tags>
-        <tag>Anaconda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>5.OpenFlow实现示例之中继器HUB</title>
     <url>/2018/09/15/5-OpenFlow%E5%AE%9E%E7%8E%B0%E7%A4%BA%E4%BE%8B%E4%B9%8B%E4%B8%AD%E7%BB%A7%E5%99%A8HUB/</url>
     <content><![CDATA[<h1 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h1><p>OpenFlow的流表项主要由3部分组成，分别是用于数据分组匹配的分组头域（Head Field），用于保存与条目相关统计信息的计数器（Counter），还有匹配表项后需要对数据分组执行的动作表（Action）。分组头域是数据分组匹配流表项时参照的依据，作用上类似于传统交换机进行二层交换时匹配数据分组的MAC地址，路由器进行三层路由时匹配的IP地址。流表项中的计数器用来统计相关“流”的一些信息，例如查找次数、收发分组数、生存时间等。另外，OpenFlow针对每张表、每个流表项、每个端口、每个队列也都会维护它们相应的计数器。动作表指定了OpenFlow交换机处理相应“流”的行为。相比于传统网络设备对数据分组只能进行较为单一的转发操作，流表项根据指定动作字段来指导OF交换机如何处理“流”。动作表可以包含0个或多个动作，交换机会按照这些动作的先后顺序依次执行，如果其中不包含转发（Forward）动作的话，数据分组就会被丢弃掉，如果包含转发动作，数据分组会得到相应的转发处理，但是OpenFlow v1.0无法保证不同的数据分组的转发顺序。动作可以分为两种类型：必选动作（Required Action）和可选动作（Optional Action）。必选动作是默认支持的，而交换机需要通知控制器它支持的可选动作。另外，当流表项中存在OpenFlow交换机不支持的动作时将向控制器返回错误消息。在SDN网络中，控制器下发流表主要有两种模式，分别是reactive模式和proactive模式。  </p>
@@ -228,31 +237,6 @@ ovs-ofctl dump-flows br0
 <h1 id="reactive模式"><a href="#reactive模式" class="headerlink" title="reactive模式"></a>reactive模式</h1><p>reactive模式需要依赖SDN控制器的反应，实现较为复杂，在此仅进行方案介绍，不做实验操作，有兴趣的同学可自行拓展学习。  </p>
 <p>步骤1 reactive模式的触发机制就是交换机将接收到数据包转发给控制器，交换机转发数据包给控制器的情况有两种：一个是交换机接收到未知数据包；另一个就是流表action要求交换机将数据包转发给控制器。因此设置reactive模式的第一步是下发一条流表，priority设置为最高65535，匹配条件为ANY，actions是将数据包output到controller。<br><img src="https://i.loli.net/2018/09/15/5b9d1a21ac061.png" alt="11.png"><br>流表项设置好后，当host1发送数据包时，交换机接收到数据包后会发送packet_in消息给控制器。  </p>
 <p>步骤2 控制器接收到packet_in消息后对消息中的内容进行判断，计算分析后发送packet_out消息给交换机，告知交换机如何处理该数据包。本实验中控制器会要求交换机将数据包转发到除入端口外的所有端口，从而实验中继器的功能。<br><img src="https://i.loli.net/2018/09/15/5b9d1a4af035d.png" alt="12.png"></p>
-]]></content>
-      <categories>
-        <category>SDN</category>
-      </categories>
-      <tags>
-        <tag>SDN</tag>
-        <tag>实验</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>1.OpenFlow建立连接交互流程</title>
-    <url>/2018/09/13/1-OpenFlow%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="OpenFlow协议简介"><a href="#OpenFlow协议简介" class="headerlink" title="OpenFlow协议简介"></a>OpenFlow协议简介</h1><p>2006年，斯坦福大学Clean Slate计划资助的Ethane项目开始部署，致力于企业网架构的创新，OpenFlow协议的雏形就诞生于这个项目。2008年，Nick McKeown教授的一篇重要论文“OpenFlow：Enabling Innovation in Campus Networks”使得OpenFlow正式进入人们的视野，继而成为了标准化组织ONF（Open Network Foundation，开放网络基金会）主推的南向接口协议。经过多年的发展，OpenFlow现已成为SDN的主流南向接口协议之一。目前，OpenFlow协议还在不断地演进中，本实验采用OpenFlow v1.3协议，并对控制器与OpenFlow交换机之间的交互过程进行深入分析。<br>OpenFlow主要有3种类型的消息，分别是Controller-to-Switch、Asynchronous和Symmetric，其中每个类型又包含多个子类型。Controller-to-Switch消息由控制器发起，用于管理、查看交换机的状态。Asynchronous消息由交换机发起，向控制器汇报交换机的事件和改变。Symmetric消息由控制器或交换机任一方发起，无需请求直接发起消息。详细信息如下表所示：<br><img src="https://i.loli.net/2018/09/13/5b99fc6a1c7b0.png" alt="1.png"></p>
-<h1 id="OpenFlow连接建立交互流程"><a href="#OpenFlow连接建立交互流程" class="headerlink" title="OpenFlow连接建立交互流程"></a>OpenFlow连接建立交互流程</h1><p><img src="https://i.loli.net/2018/09/13/5b99fd98251f8.png" alt="2.png"><br>在OpenFlow1.3协议的情况下，控制器与OpenFlow交换机的消息完整交互流程如下：<br>1、 控制器与OpenFlow交换机通过TCP“三次握手”，建立有效的连接。其中，控制器一端的端口号为6633。<br>2、 控制器与OpenFlow交换机之间相互发送Hello消息，用于协商双方的OpenFlow版本号。在双方支持的最高版本号不一致的情况下，协商的结果将以较低的OpenFlow版本为准。如果双方协商不一致，还会产生Error消息。<br>3、 控制器向OpenFlow交换机发送Features Request消息，请求OpenFlow交换机上传自己的详细参数。OpenFlow交换机收到请求后，向控制器发送Features Reply消息，详细汇报自身参数，包括支持的buffer数目、流表数以及Actions等。<br>4、 控制器通过Set Config消息下发配置参数，然后通过Get config Request消息请求OpenFlow交换机上传修改后的配置信息。OpenFlow交换机通过Get config Reply消息向控制器发送当前的配置信息。<br>5、 控制器与OpenFlow交换机之间发送Packet_out、Packet_in消息，通过Packet_out中内置的LLDP包，进行网络拓扑的探测。<br>6、 控制器与OpenFlow交换机之间通过发送Multipart Request、Mutipart Reply消息，控制器能获取OpenFlow交换机的状态信息，包括流的信息、端口信息等。<br>7、 控制器与OpenFlow交换机之间通过发送Echo Request、Echo Reply消息，保证二者之间存在有效连接，避免失联。  </p>
-<h1 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h1><p><img src="https://i.loli.net/2018/09/13/5b9a0b09e2b9b.png" alt="3.png"></p>
-<h1 id="捕获数据包"><a href="#捕获数据包" class="headerlink" title="捕获数据包"></a>捕获数据包</h1><p>步骤1 登录Floodlight控制器，启动抓包工具Wireshark，捕获控制器与交换机建立连接过程中的数据包，通过分析这些数据包了解控制器与交换机基于OpenFlow协议进行交互的流程。执行以下命令：</p>
-<blockquote>
-</blockquote>
-<pre><code>sudo wireshark
-</code></pre><p>步骤2 双击eth0网卡，查看eth0网卡上数据包收发情况，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0ba6a9fb7.png" alt="4.png"><br>步骤3 登录Mininet虚拟机，启动Mininet。通过“—controller”参数设置Mininet连接远程控制器，并指定控制器的IP和端口号。</p>
-<blockquote>
-</blockquote>
-<pre><code>sudo mn --controller=remote,ip=30.0.1.3,port=6633 --switch=ovsk,protocols=OpenFlow13
-</code></pre><p><img src="https://i.loli.net/2018/09/13/5b9a0bf62d0be.png" alt="5.png"><br>步骤4 登录Floodlight控制器，停止Wireshark，观察数据包列表，可以看出控制器与交换机的基本交互流程。<br><img src="https://i.loli.net/2018/09/13/5b9a0c1ddbc4e.png" alt="6.png"></p>
-<h1 id="OpenFlow1-3交互流程分析"><a href="#OpenFlow1-3交互流程分析" class="headerlink" title="OpenFlow1.3交互流程分析"></a>OpenFlow1.3交互流程分析</h1><p>步骤1 交换机连接控制器的6633端口，经过3次握手后双方建立TCP连接。查看捕获到的数据包，分析交换机与控制器建立TCP连接的流程。分析TCP连接建立过程，需要先了解TCP的状态位，主要包括SYN、FIN、ACK、PSH、RST和URG。SYN表示建立连接，FIN表示关闭连接，ACK表示响应，PSH表示有DATA数据传输，RST表示连接重置。可以看出交换机与控制器经历一次连接重置后，成功完成三次握手，建立TCP连接，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0c63cdbf7.png" alt="7.png"><br>步骤2 当控制器与交换机建立TCP连接后，由其中某一方发起Hello消息，双方协调协OpenFlow议版本号。控制器和交换机都会向对方发送一条Hello消息，消息中附上自己支持的OpenFlow的最高版本。接收到对方Hello消息后，判断自己能否支持对方发送的版本，能支持则版本协商成功，不能支持则回复一条OFPT_ERROR消息。查看Hello消息详情，本实验中由于交换机和控制器都能支持OpenFlow1.3版本，所以版本协商为1.3，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0c8900db0.png" alt="8.png"><br>步骤3 OpenFlow版本协商完成后，控制器发送一条features_request消息获取交换机的特性信息，包括交换机的ID（DPID）、缓冲区数量、端口及端口属性等等。相应的，交换机回复features_reply消息，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0cb6bf243.png" alt="9.png"><br>查看数据包详情，ofpt_feature_request消息只有包头，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0ce6d0540.png" alt="10.png"><br>ofpt_feature_reply数据包详情如下，交换机的DPID是数据通道独一无二的标识符，低48位是一个MAC地址，高16位是自定义的。本实验中交换机缓冲区数量（n_buffers）为256，交换机支持的流表数量（n_tables）为254，交换机所支持的功能，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d1008f0a.png" alt="11.png"><br>步骤4 OpenFlow1.0协议中feature_reply消息还包含交换机端口信息，OpenFlow 1.3协议将‘stats’框架更名为‘multipart’框架，并且将端口描述移植到multipart消息中。其中OPPT_PORT_DESC类型的multipart消息就是用于获取交换机端口信息的。<br><img src="https://i.loli.net/2018/09/13/5b9a0d34705f8.png" alt="12.png"><br>查看OPPT_PORT_DESC类型multipart_reply消息，消息中列出了交换机的端口以及每个端口的详细信息，包括端口名称和mac地址等，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d5f30b72.png" alt="13.png"><br>步骤5 OFPMP_DESC类型的multipart_reply消息包含了交换机的其他信息，包括交换机厂商名称、交换机名称以及交换机版本等。本实验中使用的是Mininet仿真软件中自带的开源交换机Open vSwitch(2.0.2)，而Open vSwitch是由Nicira Networks主导开发的，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0d8d31133.png" alt="14.png"><br>步骤6 在连接过程中，控制器不断的发送echo_request消息给交换机，确认交换机与控制器之间的连接状态。相应的，交换机会回复echo_reply消息，如下图所示。<br><img src="https://i.loli.net/2018/09/13/5b9a0db731025.png" alt="15.png"></p>
 ]]></content>
       <categories>
         <category>SDN</category>
@@ -431,6 +415,22 @@ ovs-ofctl dump-flows br-sw
       <tags>
         <tag>SDN</tag>
         <tag>实验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Anaconda开始菜单失踪</title>
+    <url>/2018/09/10/Anaconda%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95%E5%A4%B1%E8%B8%AA/</url>
+    <content><![CDATA[<p>今天想打开Anaconda写python程序的时候，突然发现Anaconda在开始菜单中神秘失踪了。<br>这时候只需要打开cmd，切换到Anaconda的安装目录的Lib文件夹下，执行如下命令：</p>
+<blockquote>
+</blockquote>
+<pre><code>python _nsis.py mkmenus
+</code></pre><p>重新生成一下开始菜单即可。<br><img src="https://i.loli.net/2018/09/10/5b9670b820c45.png" alt="snipaste_20180909_124542.png"></p>
+]]></content>
+      <categories>
+        <category>疑难杂症</category>
+      </categories>
+      <tags>
+        <tag>Anaconda</tag>
       </tags>
   </entry>
   <entry>
@@ -784,21 +784,28 @@ Extended IP access list 100
       </tags>
   </entry>
   <entry>
-    <title>IBM System x3650 M2硬盘亮黄灯</title>
-    <url>/2019/05/10/IBM-System-x3650-M2%E7%A1%AC%E7%9B%98%E4%BA%AE%E9%BB%84%E7%81%AF/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>服务器之前做了RAID1并且装了ESXI，在开机状态下拔掉一块硬盘后，硬盘黄灯亮起并发出连续的滴滴警报声，硬件故障检测板DASD亮起，百度尝试了很多方式，比如拔掉电源后重启等均无效。</p>
-<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>因为服务器并没有跑虚拟机和存数据，所以最后直接重做了RAID，过程如下：  </p>
-<h2 id="进入WebBIOS"><a href="#进入WebBIOS" class="headerlink" title="进入WebBIOS"></a>进入WebBIOS</h2><p>服务器重启按F1进入BIOS，找到<strong>Sytem Settings → Adapters and UEFI Drivers → Please press ENTER to compile the list of drivers</strong>，然后选择“LSI EFI SAS Driver”下面那一行，然后回车，根据提示输入 1 并再次回车进入WebBIOS。</p>
-<h2 id="更改硬盘状态"><a href="#更改硬盘状态" class="headerlink" title="更改硬盘状态"></a>更改硬盘状态</h2><p>进入BIOS之后，点击<strong>Physical View</strong>,可以看到亮黄灯的那块硬盘出啊先“Unconfigured Bad”的提示信息：<br><img src="https://i.loli.net/2019/05/10/5cd56a133ea99.jpg" alt="02.jpg"><br>点击进入那块出错的硬盘，勾选”Make Unconf Good”，然后点击”Go”,不再做其它设置<br><img src="https://i.loli.net/2019/05/10/5cd569dc9c984.jpg" alt="01.jpg"><br>这样在之后配置RAID的时候就可以发现这块硬盘并做相应的添加等操作了。</p>
-<h2 id="配置RAID"><a href="#配置RAID" class="headerlink" title="配置RAID"></a>配置RAID</h2><p>进入WebBIOS后选择Configuration Wizard配置向导：<br><img src="https://i.loli.net/2019/05/10/5cd5498c4f727.png" alt="01.png"><br>选择New Configuration，代表清除原有阵列信息并重新配置：<br><img src="https://i.loli.net/2019/05/10/5cd54a72d2279.png" alt="02.png"><br>选择Yes确定：<br><img src="https://i.loli.net/2019/05/10/5cd54ac271c11.png" alt="03.png"><br>然后选择手动配置：Manual Configuration<br><img src="https://i.loli.net/2019/05/10/5cd54b7a74da1.png" alt="04.png"><br>选择要配置在RAID中的硬盘，按Add to Array从左边的Drivers中选到右边的Driver Groups中。<br><img src="https://i.loli.net/2019/05/10/5cd54dce6fec6.png" alt="05.png"><br>选好硬盘后，选择Accept DG后点击Next<br><img src="https://i.loli.net/2019/05/10/5cd54dfd61eb8.png" alt="06.png"><br>在左侧的ArrayWithFreeSpace中选中刚刚做好的Disk Groups按Add to SPAN添加到右侧的span中，然后选择Next<br><img src="https://i.loli.net/2019/05/10/5cd54ef819426.png" alt="07.png"><br>最后会进入Virtual Disk配置界面，RAID级别选择RAID1，需要注意的是Select size的设置，在右侧会有提示，根据提示填入相应的大小即可，点选Accept接受配置，最后选择Next。  </p>
-<p>最后还会重新出现一次之前的配置界面，直接无视就可以，Accept和Next即可。</p>
+    <title>GPT分区安装操作系统后无法引导启动</title>
+    <url>/2019/12/30/GPT%E5%88%86%E5%8C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%95%E5%AF%BC%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<p>记得之前写过一篇<a href="https://cyneliu.gitee.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/" target="_blank" rel="noopener">《秒懂MBR和GPT分区表》</a>，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。  </p>
+<p>然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终于发现了问题。  </p>
+<h1 id="EFI分区"><a href="#EFI分区" class="headerlink" title="EFI分区"></a>EFI分区</h1><p>EFI系统分区（EFI system partition，简称ESP），是一个FAT16或FAT32格式的物理分区，但是其分区标识是EF (十六进制) 而非常规的0E或0C，因此，该分区在Windows操作系统下一般是不可见的。ESP分区在UEFI BIOS引导系统时使用，用来存储BIOS/EFI NAND芯片存储不下的那部分EFI扩展功能。支持EFI模式的电脑需要从ESP启动系统，EFI固件可从ESP加载EFI启动程序或应用，ESP是系统引导分区。</p>
+<h1 id="MSR分区"><a href="#MSR分区" class="headerlink" title="MSR分区"></a>MSR分区</h1><p>MSR分区（Microsoft Reserved Partition，缩写MSR）即Microsoft 保留 (MSR) 分区。是每个 在GUID 分区表 (GPT) 上的 Windows操作系统（windows7以上）都要求的分区。系统组件可以将 MSR 分区的部分分配到新的分区以供它们使用。<br>MSR 分区的大小会因 GPT 磁盘的大小不同而发生变化。对于小于 16 GB 的磁盘，MSR 分区为 32 MB。对于大于 16 GB 的磁盘，MSR 分区为 128 MB。MSR 分区在“磁盘管理”中不可见，在Diskpart、Diskgenius等磁盘工具里可见，但是用户无法在 MSR 分区上存储或删除数据。</p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>我使用的PE是<a href="http://www.wepe.com.cn/" target="_blank" rel="noopener">WEPE</a>  </p>
+<p>首先我们需要确认一下当前系统磁盘是GPT磁盘，如下图所示，如果之前装过操作系统的话我们打开分区助手应该是可以看到ESP和MSR这两个隐藏分区的，或者只有一个ESP分区，如果是新硬盘的话使用快速分区也可以自动生成这两个分区。<br><img src="https://i.loli.net/2019/12/31/Mw3tbGRjBvdr5yx.png" alt="00.png"></p>
+<p>为了重现我之前遇到的问题，我们把系统分区和这两个隐藏分区都删掉，然后重建系统分区，然后按照BIOS+MBR的方式安装操作系统（这就是安装完系统无法引导的原因），其实Windows安装器在安装时也会有错误提示，EFI PART的灯是红色的，说明我们选择的引导驱动器并非EFI引导分区。</p>
+<blockquote>
+<p>UEFI+GPT方式安装操作系统时，不能像之前BIOS方式那样将引导分区设置为系统分区，而是需要设置为ESP分区。  </p>
+</blockquote>
+<p><img src="https://i.loli.net/2019/12/31/KHTAOxuNlICfm7v.png" alt="01.png"></p>
+<p>所以我们需要手动去创建ESP和MSR分区，打开DiskGenius,选择未分配空间，创建新分区，文件系统类型选择“EFI system partition”,大小100M就可以了。<br><img src="https://i.loli.net/2019/12/31/1oxUQH8umG3yeV5.png" alt="02.png"><br>然后新建MSR分区，文件系统类型选择“Microsoft Reserved Partition”，大小128M。<br><img src="https://i.loli.net/2019/12/31/9XY7IAWwzbSF2Oe.png" alt="03.png"><br>然后在根据自己需要进行其它分区的配置，我这里因为使用的是虚拟机，硬盘比较少，只做演示。<br><img src="https://i.loli.net/2019/12/31/zC3OpMylkdYUmqi.png" alt="04.png"><br>分区完成后保存更改。再次打开Windows安装器，引导驱动器选择ESP分区，这时安装器就显示正常了。<br><img src="https://i.loli.net/2019/12/31/USf9ymFMxwpgqu5.png" alt="05.png"></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://bbs.wuyou.net/forum.php?mod=viewthread&amp;tid=374959&amp;page=1" target="_blank" rel="noopener">MSR分区到底有什么功能</a></p>
 ]]></content>
       <categories>
-        <category>服务器</category>
+        <category>打鱼晒网</category>
       </categories>
       <tags>
-        <tag>IBM</tag>
-        <tag>服务器</tag>
+        <tag>GPT</tag>
+        <tag>重装系统</tag>
       </tags>
   </entry>
   <entry>
@@ -826,25 +833,21 @@ Extended IP access list 100
       </tags>
   </entry>
   <entry>
-    <title>Linux下的命令行网盘</title>
-    <url>/2018/10/09/Linux%E4%B8%8B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BD%91%E7%9B%98/</url>
-    <content><![CDATA[<p>之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。  </p>
-<p>这款工具的名字叫做<strong>transfer.sh</strong>，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：  </p>
-<p><img src="https://i.loli.net/2018/10/09/5bbc835018e45.png" alt="01.png"></p>
-<p>上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.sh”。那么我们只需要执行如下命令即可：</p>
-<blockquote>
-</blockquote>
-<pre><code>curl --upload-file ./bbr.sh https://transfer.sh/bbr2.sh
-</code></pre><p>上传完毕后就会返回一个分享链接，也就是“<a href="https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。" target="_blank" rel="noopener">https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。</a>  </p>
-<p><img src="https://i.loli.net/2018/10/09/5bbc8491c4b3b.png" alt="02.png"></p>
-<p>除此之外，transfer.sh还提供其它多种方式，比如一次性上传多个文件等，感兴趣的可以访问官网。  </p>
-<p><strong><em>官网：</em></strong><br><a href="https://transfer.sh/" target="_blank" rel="noopener">https://transfer.sh/</a><br><strong><em>Github:</em></strong><br><a href="https://github.com/dutchcoders/transfer.sh/" target="_blank" rel="noopener">https://github.com/dutchcoders/transfer.sh/</a></p>
+    <title>IBM System x3650 M2硬盘亮黄灯</title>
+    <url>/2019/05/10/IBM-System-x3650-M2%E7%A1%AC%E7%9B%98%E4%BA%AE%E9%BB%84%E7%81%AF/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>服务器之前做了RAID1并且装了ESXI，在开机状态下拔掉一块硬盘后，硬盘黄灯亮起并发出连续的滴滴警报声，硬件故障检测板DASD亮起，百度尝试了很多方式，比如拔掉电源后重启等均无效。</p>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>因为服务器并没有跑虚拟机和存数据，所以最后直接重做了RAID，过程如下：  </p>
+<h2 id="进入WebBIOS"><a href="#进入WebBIOS" class="headerlink" title="进入WebBIOS"></a>进入WebBIOS</h2><p>服务器重启按F1进入BIOS，找到<strong>Sytem Settings → Adapters and UEFI Drivers → Please press ENTER to compile the list of drivers</strong>，然后选择“LSI EFI SAS Driver”下面那一行，然后回车，根据提示输入 1 并再次回车进入WebBIOS。</p>
+<h2 id="更改硬盘状态"><a href="#更改硬盘状态" class="headerlink" title="更改硬盘状态"></a>更改硬盘状态</h2><p>进入BIOS之后，点击<strong>Physical View</strong>,可以看到亮黄灯的那块硬盘出啊先“Unconfigured Bad”的提示信息：<br><img src="https://i.loli.net/2019/05/10/5cd56a133ea99.jpg" alt="02.jpg"><br>点击进入那块出错的硬盘，勾选”Make Unconf Good”，然后点击”Go”,不再做其它设置<br><img src="https://i.loli.net/2019/05/10/5cd569dc9c984.jpg" alt="01.jpg"><br>这样在之后配置RAID的时候就可以发现这块硬盘并做相应的添加等操作了。</p>
+<h2 id="配置RAID"><a href="#配置RAID" class="headerlink" title="配置RAID"></a>配置RAID</h2><p>进入WebBIOS后选择Configuration Wizard配置向导：<br><img src="https://i.loli.net/2019/05/10/5cd5498c4f727.png" alt="01.png"><br>选择New Configuration，代表清除原有阵列信息并重新配置：<br><img src="https://i.loli.net/2019/05/10/5cd54a72d2279.png" alt="02.png"><br>选择Yes确定：<br><img src="https://i.loli.net/2019/05/10/5cd54ac271c11.png" alt="03.png"><br>然后选择手动配置：Manual Configuration<br><img src="https://i.loli.net/2019/05/10/5cd54b7a74da1.png" alt="04.png"><br>选择要配置在RAID中的硬盘，按Add to Array从左边的Drivers中选到右边的Driver Groups中。<br><img src="https://i.loli.net/2019/05/10/5cd54dce6fec6.png" alt="05.png"><br>选好硬盘后，选择Accept DG后点击Next<br><img src="https://i.loli.net/2019/05/10/5cd54dfd61eb8.png" alt="06.png"><br>在左侧的ArrayWithFreeSpace中选中刚刚做好的Disk Groups按Add to SPAN添加到右侧的span中，然后选择Next<br><img src="https://i.loli.net/2019/05/10/5cd54ef819426.png" alt="07.png"><br>最后会进入Virtual Disk配置界面，RAID级别选择RAID1，需要注意的是Select size的设置，在右侧会有提示，根据提示填入相应的大小即可，点选Accept接受配置，最后选择Next。  </p>
+<p>最后还会重新出现一次之前的配置界面，直接无视就可以，Accept和Next即可。</p>
 ]]></content>
       <categories>
-        <category>脚本</category>
+        <category>服务器</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>IBM</tag>
+        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -866,6 +869,28 @@ Extended IP access list 100
         <tag>IBM</tag>
         <tag>服务器</tag>
         <tag>IMM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux下的命令行网盘</title>
+    <url>/2018/10/09/Linux%E4%B8%8B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%BD%91%E7%9B%98/</url>
+    <content><![CDATA[<p>之前浏览别人博客的时候发现了一个非常好用的文件上传分享工具，而且是在Linux下的，今天试着用了一下，用起来方便快捷，感觉很不错。  </p>
+<p>这款工具的名字叫做<strong>transfer.sh</strong>，transfer.sh的使用也非常简单，可以使用curl的upload-file来上传文件。我这里测试用的是我的一台用作ssr的centos：  </p>
+<p><img src="https://i.loli.net/2018/10/09/5bbc835018e45.png" alt="01.png"></p>
+<p>上图中我是要把当前目录下的“bbr.sh”文件上传分享出去，并且重命名为“bbr2.sh”。那么我们只需要执行如下命令即可：</p>
+<blockquote>
+</blockquote>
+<pre><code>curl --upload-file ./bbr.sh https://transfer.sh/bbr2.sh
+</code></pre><p>上传完毕后就会返回一个分享链接，也就是“<a href="https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。" target="_blank" rel="noopener">https://transfer.sh/9edgU/bbr2.sh”，把这个链接发给别人就可以下载了。</a>  </p>
+<p><img src="https://i.loli.net/2018/10/09/5bbc8491c4b3b.png" alt="02.png"></p>
+<p>除此之外，transfer.sh还提供其它多种方式，比如一次性上传多个文件等，感兴趣的可以访问官网。  </p>
+<p><strong><em>官网：</em></strong><br><a href="https://transfer.sh/" target="_blank" rel="noopener">https://transfer.sh/</a><br><strong><em>Github:</em></strong><br><a href="https://github.com/dutchcoders/transfer.sh/" target="_blank" rel="noopener">https://github.com/dutchcoders/transfer.sh/</a></p>
+]]></content>
+      <categories>
+        <category>脚本</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1101,6 +1126,29 @@ server {
       </tags>
   </entry>
   <entry>
+    <title>Nova的16种操作</title>
+    <url>/2019/04/03/Nova%E7%9A%8416%E7%A7%8D%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<p><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160607-1465256704490062241.png" alt="00.png"></p>
+<h1 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h1><h2 id="Resize"><a href="#Resize" class="headerlink" title="Resize"></a>Resize</h2><p>通过更改flavor调整分配给instance的资源。</p>
+<h2 id="Lock-UnLock"><a href="#Lock-UnLock" class="headerlink" title="Lock/UnLock"></a>Lock/UnLock</h2><p>防止对instance的误操作。</p>
+<h2 id="Pause-Suspend-Resume"><a href="#Pause-Suspend-Resume" class="headerlink" title="Pause/Suspend/Resume"></a>Pause/Suspend/Resume</h2><p>暂停当前的instance，并在以后恢复。<br>Pause 和 Suspend 的区别在于 Pause 将 instance 的运行状态保存在计算节点的内存中，而 Suspend 保存在磁盘上。</p>
+<h2 id="Snapshot"><a href="#Snapshot" class="headerlink" title="Snapshot"></a>Snapshot</h2><p>备份 instance 到 Glance。产生的 image 可用于故障恢复，或者以此为模板部署新的 instance。</p>
+<h1 id="故障处理"><a href="#故障处理" class="headerlink" title="故障处理"></a>故障处理</h1><h2 id="计划内"><a href="#计划内" class="headerlink" title="计划内"></a>计划内</h2><h3 id="Migrate"><a href="#Migrate" class="headerlink" title="Migrate"></a>Migrate</h3><p>将 instance 迁移到其他计算节点。<br>迁移之前，instance 会被 Shut Off，支持共享存储和非共享存储。</p>
+<h3 id="Live-Migrate"><a href="#Live-Migrate" class="headerlink" title="Live Migrate"></a>Live Migrate</h3><p>与 Migrate 不同，Live Migrate 能不停机在线地迁移 instance，保证了业务的连续性。也支持共享存储和非共享存储（Block Migration）</p>
+<h3 id="Shelve-Unshelve"><a href="#Shelve-Unshelve" class="headerlink" title="Shelve/Unshelve"></a>Shelve/Unshelve</h3><p>Shelve 将 instance 保存到 Glance 上，之后可通过 Unshelve 重新部署。<br>Shelve 操作成功后，instance 会从原来的计算节点上删除。<br>Unshelve 会重新选择节点部署，可能不是原节点。</p>
+<h2 id="计划外"><a href="#计划外" class="headerlink" title="计划外"></a>计划外</h2><h3 id="Rescue-Unrescue"><a href="#Rescue-Unrescue" class="headerlink" title="Rescue/Unrescue"></a>Rescue/Unrescue</h3><p>用指定的启动盘启动，进入 Rescue 模式，修复受损的系统盘。成功修复后，通过 Unrescue 正常启动 instance。</p>
+<h3 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a>Rebuild</h3><p>如果 Rescue 无法修复，则只能通过 Rebuild 从已有的备份恢复。 Instance 的备份是通过 snapshot 创建的，所以需要有备份策略定期备份。</p>
+<h3 id="Evacuate"><a href="#Evacuate" class="headerlink" title="Evacuate"></a>Evacuate</h3><p>利用共享存储上 Instance 的镜像文件在其他计算节点上重建 Instance。<br>所以提前规划共享存储是关键。</p>
+]]></content>
+      <categories>
+        <category>OpenStack</category>
+      </categories>
+      <tags>
+        <tag>OpenStack</tag>
+        <tag>Nova</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx的简单安装</title>
     <url>/2018/10/30/Nginx%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<p>过几天参加比赛要用到nginx的安装部署，写一个简单的安装方式，方便赛前温习。</p>
@@ -1131,54 +1179,6 @@ server {
       <tags>
         <tag>Web服务器</tag>
         <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GPT分区安装操作系统后无法引导启动</title>
-    <url>/2019/12/30/GPT%E5%88%86%E5%8C%BA%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%95%E5%AF%BC%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<p>记得之前写过一篇<a href="https://cyneliu.gitee.io/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/" target="_blank" rel="noopener">《秒懂MBR和GPT分区表》</a>，当时是因为帮别人重装系统，因为是GPT分区，所以装完系统一直引导不起来，后来查了一下是GPT的原因，当时因为着急直接把GPT转成MBR了。  </p>
-<p>然后最近又被这个GPT给绊倒了，前几天帮朋友重装系统，也是GPT分区，先是把分区信息都给删干净了，然后傻乎乎的就开始重装系统了，不出意外，系统又引导不起来，提示“System not found”，捣鼓了半天终于发现了问题。  </p>
-<h1 id="EFI分区"><a href="#EFI分区" class="headerlink" title="EFI分区"></a>EFI分区</h1><p>EFI系统分区（EFI system partition，简称ESP），是一个FAT16或FAT32格式的物理分区，但是其分区标识是EF (十六进制) 而非常规的0E或0C，因此，该分区在Windows操作系统下一般是不可见的。ESP分区在UEFI BIOS引导系统时使用，用来存储BIOS/EFI NAND芯片存储不下的那部分EFI扩展功能。支持EFI模式的电脑需要从ESP启动系统，EFI固件可从ESP加载EFI启动程序或应用，ESP是系统引导分区。</p>
-<h1 id="MSR分区"><a href="#MSR分区" class="headerlink" title="MSR分区"></a>MSR分区</h1><p>MSR分区（Microsoft Reserved Partition，缩写MSR）即Microsoft 保留 (MSR) 分区。是每个 在GUID 分区表 (GPT) 上的 Windows操作系统（windows7以上）都要求的分区。系统组件可以将 MSR 分区的部分分配到新的分区以供它们使用。<br>MSR 分区的大小会因 GPT 磁盘的大小不同而发生变化。对于小于 16 GB 的磁盘，MSR 分区为 32 MB。对于大于 16 GB 的磁盘，MSR 分区为 128 MB。MSR 分区在“磁盘管理”中不可见，在Diskpart、Diskgenius等磁盘工具里可见，但是用户无法在 MSR 分区上存储或删除数据。</p>
-<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>我使用的PE是<a href="http://www.wepe.com.cn/" target="_blank" rel="noopener">WEPE</a>  </p>
-<p>首先我们需要确认一下当前系统磁盘是GPT磁盘，如下图所示，如果之前装过操作系统的话我们打开分区助手应该是可以看到ESP和MSR这两个隐藏分区的，或者只有一个ESP分区，如果是新硬盘的话使用快速分区也可以自动生成这两个分区。<br><img src="https://i.loli.net/2019/12/31/Mw3tbGRjBvdr5yx.png" alt="00.png"></p>
-<p>为了重现我之前遇到的问题，我们把系统分区和这两个隐藏分区都删掉，然后重建系统分区，然后按照BIOS+MBR的方式安装操作系统（这就是安装完系统无法引导的原因），其实Windows安装器在安装时也会有错误提示，EFI PART的灯是红色的，说明我们选择的引导驱动器并非EFI引导分区。</p>
-<blockquote>
-<p>UEFI+GPT方式安装操作系统时，不能像之前BIOS方式那样将引导分区设置为系统分区，而是需要设置为ESP分区。  </p>
-</blockquote>
-<p><img src="https://i.loli.net/2019/12/31/KHTAOxuNlICfm7v.png" alt="01.png"></p>
-<p>所以我们需要手动去创建ESP和MSR分区，打开DiskGenius,选择未分配空间，创建新分区，文件系统类型选择“EFI system partition”,大小100M就可以了。<br><img src="https://i.loli.net/2019/12/31/1oxUQH8umG3yeV5.png" alt="02.png"><br>然后新建MSR分区，文件系统类型选择“Microsoft Reserved Partition”，大小128M。<br><img src="https://i.loli.net/2019/12/31/9XY7IAWwzbSF2Oe.png" alt="03.png"><br>然后在根据自己需要进行其它分区的配置，我这里因为使用的是虚拟机，硬盘比较少，只做演示。<br><img src="https://i.loli.net/2019/12/31/zC3OpMylkdYUmqi.png" alt="04.png"><br>分区完成后保存更改。再次打开Windows安装器，引导驱动器选择ESP分区，这时安装器就显示正常了。<br><img src="https://i.loli.net/2019/12/31/USf9ymFMxwpgqu5.png" alt="05.png"></p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://bbs.wuyou.net/forum.php?mod=viewthread&amp;tid=374959&amp;page=1" target="_blank" rel="noopener">MSR分区到底有什么功能</a></p>
-]]></content>
-      <categories>
-        <category>打鱼晒网</category>
-      </categories>
-      <tags>
-        <tag>GPT</tag>
-        <tag>重装系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nova的16种操作</title>
-    <url>/2019/04/03/Nova%E7%9A%8416%E7%A7%8D%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<p><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160607-1465256704490062241.png" alt="00.png"></p>
-<h1 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h1><h2 id="Resize"><a href="#Resize" class="headerlink" title="Resize"></a>Resize</h2><p>通过更改flavor调整分配给instance的资源。</p>
-<h2 id="Lock-UnLock"><a href="#Lock-UnLock" class="headerlink" title="Lock/UnLock"></a>Lock/UnLock</h2><p>防止对instance的误操作。</p>
-<h2 id="Pause-Suspend-Resume"><a href="#Pause-Suspend-Resume" class="headerlink" title="Pause/Suspend/Resume"></a>Pause/Suspend/Resume</h2><p>暂停当前的instance，并在以后恢复。<br>Pause 和 Suspend 的区别在于 Pause 将 instance 的运行状态保存在计算节点的内存中，而 Suspend 保存在磁盘上。</p>
-<h2 id="Snapshot"><a href="#Snapshot" class="headerlink" title="Snapshot"></a>Snapshot</h2><p>备份 instance 到 Glance。产生的 image 可用于故障恢复，或者以此为模板部署新的 instance。</p>
-<h1 id="故障处理"><a href="#故障处理" class="headerlink" title="故障处理"></a>故障处理</h1><h2 id="计划内"><a href="#计划内" class="headerlink" title="计划内"></a>计划内</h2><h3 id="Migrate"><a href="#Migrate" class="headerlink" title="Migrate"></a>Migrate</h3><p>将 instance 迁移到其他计算节点。<br>迁移之前，instance 会被 Shut Off，支持共享存储和非共享存储。</p>
-<h3 id="Live-Migrate"><a href="#Live-Migrate" class="headerlink" title="Live Migrate"></a>Live Migrate</h3><p>与 Migrate 不同，Live Migrate 能不停机在线地迁移 instance，保证了业务的连续性。也支持共享存储和非共享存储（Block Migration）</p>
-<h3 id="Shelve-Unshelve"><a href="#Shelve-Unshelve" class="headerlink" title="Shelve/Unshelve"></a>Shelve/Unshelve</h3><p>Shelve 将 instance 保存到 Glance 上，之后可通过 Unshelve 重新部署。<br>Shelve 操作成功后，instance 会从原来的计算节点上删除。<br>Unshelve 会重新选择节点部署，可能不是原节点。</p>
-<h2 id="计划外"><a href="#计划外" class="headerlink" title="计划外"></a>计划外</h2><h3 id="Rescue-Unrescue"><a href="#Rescue-Unrescue" class="headerlink" title="Rescue/Unrescue"></a>Rescue/Unrescue</h3><p>用指定的启动盘启动，进入 Rescue 模式，修复受损的系统盘。成功修复后，通过 Unrescue 正常启动 instance。</p>
-<h3 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a>Rebuild</h3><p>如果 Rescue 无法修复，则只能通过 Rebuild 从已有的备份恢复。 Instance 的备份是通过 snapshot 创建的，所以需要有备份策略定期备份。</p>
-<h3 id="Evacuate"><a href="#Evacuate" class="headerlink" title="Evacuate"></a>Evacuate</h3><p>利用共享存储上 Instance 的镜像文件在其他计算节点上重建 Instance。<br>所以提前规划共享存储是关键。</p>
-]]></content>
-      <categories>
-        <category>OpenStack</category>
-      </categories>
-      <tags>
-        <tag>OpenStack</tag>
-        <tag>Nova</tag>
       </tags>
   </entry>
   <entry>
@@ -1260,34 +1260,6 @@ user_name, action_name, current_time)
       </tags>
   </entry>
   <entry>
-    <title>SDN中的南向接口和北向接口</title>
-    <url>/2018/09/11/SDN%E4%B8%AD%E7%9A%84%E5%8D%97%E5%90%91%E6%8E%A5%E5%8F%A3%E5%92%8C%E5%8C%97%E5%90%91%E6%8E%A5%E5%8F%A3/</url>
-    <content><![CDATA[<h1 id="SDN的意义"><a href="#SDN的意义" class="headerlink" title="SDN的意义"></a>SDN的意义</h1><p>SDN网络的最终目标是服务于多样化的业务应用创新。因此随着SDN技术的部署和推广，将会有越来越多的业务应用被研发，这类应用将能够便捷地通过SDN北向接口调用底层网络能力，按需使用网络资源。  </p>
-<p>SDN推动业务创新已经是业界不争的事实，它可以被广泛地应用在云数据中心、宽带传输网络、移动网络等种种场景中，其中为云计算业务提供网络资源服 务就是一个非常典型的案例。众所周知，在当前的云计算业务中，服务器虚拟化、存储虚拟化都已经被广泛应用，它们将底层的物理资源进行池化共享，进而按需分配给用户使用。相比之下，传统的网络资源远远没有达到类似的灵活性，而SDN的引入则能够很好地解决这一问题。</p>
-<h1 id="南向接口"><a href="#南向接口" class="headerlink" title="南向接口"></a>南向接口</h1><p>SDN通过标准的南向接口屏蔽了底层物理转发设备的差异，实现了资源的虚拟化，同时开放了灵活的北向接口供上层业务按需进行网络配置并调用网络资源。  </p>
-<p>云计算领域中知名的OpenStack就是可以工作在SDN应用层的云管理平台，通过在其网络资源管理组件中增加SDN管理插件，管理者和使用者可利 用SDN北向接口便捷地调用SDN控制器对外开放的网络能力。当有云主机组网需求(例如建立用户专有的VLAN)被发出时，相关的网络策略和配置可以在 OpenStack管理平台的界面上集中制定并进而驱动SDN控制器统一地自动下发到相关的网络设备上。  </p>
-<p>当前，最知名的南向接口莫过于ONF倡导的OpenFlow协议。作为一个开放的协议，OpenFlow突破了传统网络设备厂商对设备能力接口的壁垒，经过多年的发展，在业界的共同努力下，当前已经日臻完善，能够全面解决SDN网络中面临的各种问题。  </p>
-<p>因此，网络资源可以和其他类型的虚拟化资源一样，以抽象的资源能力的面貌统一呈现给业务应用开发者，开发者无需针对底层网络设备的差异耗费大量开销从事额外的适配工作，这有助于业务应用的快速创新。</p>
-<h1 id="控制层"><a href="#控制层" class="headerlink" title="控制层"></a>控制层</h1><p>控制层是SDN的大脑，负责对底层转发设备的集中统一控制，同时向上层业务提供网络能力调用的接口，在SDN架构中具有举足轻重的作用，SDN控制 器也是SDN关注的焦点。从技术实现上看，控制器除了南向的网络控制和北向的业务支撑外，还需要关注东西的扩展，以避免SDN集中控制导致的性能和安全瓶颈问题，SDN控制器也在南向、北向、东西向上引入了相应的核心技术，有效解决与各层通信以及控制集群横向扩展的难题。  </p>
-<p>当前，业界有很多基于OpenFlow控制协议的开源的控制器实现，例如NOX、Onix、Floodlight等，它们都有各自的特色设计，能够实现链路发现、拓扑管理、策略制定、表项下发等支持SDN网络运行的基本操作。虽然不同的控制器在功能和性能上仍旧存在差异，但是从中已经可以总结出SDN控制器应当具备的技术特征，从这些开源系统的研发与实践中得到的经验和教训将有助于推动SDN控制器的规范化发展。  </p>
-<p>另外，用于网络集中化控制的控制器作为SDN网络的核心，其性能和安全性非常重要，其可能存在的负载过大、单点失效等问题一直是SDN领域中亟待解决的问题。当前，业界对此也有了很多探讨，从部署架构、技术措施等多个方面提出了很多有创见的方法。  </p>
-<p>SDN控制器对网络的控制主要是通过南向接口协议实现,包括链路发现、拓扑管理、策略制定、表项下发等，其中链路发现和拓扑管理主要是控制其利用南 向接口的上行通道对底层交换设备上报信息进行统一监控和统计;而策略制定和表项下发则是控制器利用南向接口的下行通道对网络设备进行统一控制。</p>
-<h1 id="北向接口"><a href="#北向接口" class="headerlink" title="北向接口"></a>北向接口</h1><p>SDN北向接口是通过控制器向上层业务应用开放的接口，其目标是使得业务应用能够便利地调用底层的网络资源和能力。通过北向接口，网络业务的开发者 能以软件编程的形式调用各种网络资源;同时上层的网络资源管理系统可以通过控制器的北向接口全局把控整个网网络的资源状态，并对资源进行统一调度。因为北 向接口是直接为业务应用服务的，因此其设计需要密切联系业务应用需求，具有多样化的特征。同时，北向接口的设计是否合理、便捷，以便能被业务应用广泛调用，会直接影响到SDN控制器厂商的市场前景。  </p>
-<p>与南向接口方面已有OpenFlow等国际标准不同，北向接口方面还缺少业界公认的标准，因此，北向接口的协议制定成为当前SDN领域竞争的焦点， 不同的参与者或者从用户角度出发，或者从运营角度出发，或者从产品能力角度出发提出了很多方案。据悉,目前至少有20种控制器,每种控制器会对外提供北向 接口用于上层应用开发和资源编排。虽然北向接口标准当前还很难达成共识，但是充分的开放性、便捷性、灵活性将是衡量接口优劣的重要标准，例如REST API就是上层业务应用的开发者比较喜欢的接口形式。部分传统的网络设备厂商在其现有设备上提供了编程接口供业务应用直接调用，也可被视作是北向接口之一，其目的是在不改变其现有设备架构的条件下提升配置管理灵活性，应对开放协议的竞争。</p>
-<h1 id="SDN交换机"><a href="#SDN交换机" class="headerlink" title="SDN交换机"></a>SDN交换机</h1><p>SDN的核心理念之一就是将控制功能从网络设备中剥离出来，通过中央控制器实现网络可编程，从而实现资源的优化利用，提升网络管控效率。  </p>
-<p>工作在基础设施层的SDN交换机虽然不在需要对逻辑控制进行过多考虑，但作为SDN网络中负责具体数据转发处理的设备，为了完成高速数据转发，还是 要遵循交换机工作原理。本质上看，传统设备中无论是交换机还是路由器，其工作原理都是在收到数据包时，将数据包中的某些特征域与设备自身存储的一些表项进 行比对，当发现匹配时则按照表项的要求进行相应处理。SDN交换机也是类似的原理，但是与传统设备存在差异的是，设备中的各个表项并非是由设备自身根据周 边的网络环境在本地自行生成的，而是由远程控制器统一下发的，因此各种复杂的控制逻辑(例如链路发现、地址学习、路由计算等等)都无需在SDN交换机中实现。  </p>
-<p>SDN交换机可以忽略控制逻辑的实现，全力关注基于表项的数据处理，而数据处理的性能也就成为评价SDN交换机优劣的最关键指标，因此，很多高性能 转发技术被提出，例如基于多张表以流水线方式进行高速处理的技术。另外，考虑到SDN和传统网络的混合工作问题，支持混合模式的SDN交换机也是当前设备 层技术研发的焦点。同时，随着虚拟化技术的出现和完善，虚拟化环境将是SDN交换机的一个重要应用场景，因此SDN交换机可能会有硬件、软件等多种形态。 例如，OVS(Open vSwitch，开放虚拟交换标准)交换机就是一款基于开源软件技术实现的能够集成在服务器虚拟化Hypervisor中的交换机，具备完善的交换机功能，在虚拟化组网中起到了非常重要的作用。  </p>
-<p>SDN交换机的出现，对传统的网络设备厂商造成了最直接的威胁，如何将新兴的网络技术与传统设备产品的优势相融合，是这些厂商正在苦苦思索的问题。 虽然SDN交换机已经对传统的网络产业链造成了巨大的冲击，但是仅凭单独的数据转发设备还不足以支撑起整个SDN的天空，未来更激烈地竞争必将会在SDN的控制层和应用层发生。</p>
-]]></content>
-      <categories>
-        <category>SDN</category>
-      </categories>
-      <tags>
-        <tag>SDN</tag>
-        <tag>概念</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RHEL使用CentOS的yum源</title>
     <url>/2021/01/15/RHEL%E4%BD%BF%E7%94%A8CentOS%E7%9A%84yum%E6%BA%90/</url>
     <content><![CDATA[<h1 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h1><p>RHEL 7.7</p>
@@ -1328,6 +1300,34 @@ rpm -qa | grep yum | xargs rpm -e --nodeps
       <tags>
         <tag>RHEL</tag>
         <tag>yum源</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SDN中的南向接口和北向接口</title>
+    <url>/2018/09/11/SDN%E4%B8%AD%E7%9A%84%E5%8D%97%E5%90%91%E6%8E%A5%E5%8F%A3%E5%92%8C%E5%8C%97%E5%90%91%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<h1 id="SDN的意义"><a href="#SDN的意义" class="headerlink" title="SDN的意义"></a>SDN的意义</h1><p>SDN网络的最终目标是服务于多样化的业务应用创新。因此随着SDN技术的部署和推广，将会有越来越多的业务应用被研发，这类应用将能够便捷地通过SDN北向接口调用底层网络能力，按需使用网络资源。  </p>
+<p>SDN推动业务创新已经是业界不争的事实，它可以被广泛地应用在云数据中心、宽带传输网络、移动网络等种种场景中，其中为云计算业务提供网络资源服 务就是一个非常典型的案例。众所周知，在当前的云计算业务中，服务器虚拟化、存储虚拟化都已经被广泛应用，它们将底层的物理资源进行池化共享，进而按需分配给用户使用。相比之下，传统的网络资源远远没有达到类似的灵活性，而SDN的引入则能够很好地解决这一问题。</p>
+<h1 id="南向接口"><a href="#南向接口" class="headerlink" title="南向接口"></a>南向接口</h1><p>SDN通过标准的南向接口屏蔽了底层物理转发设备的差异，实现了资源的虚拟化，同时开放了灵活的北向接口供上层业务按需进行网络配置并调用网络资源。  </p>
+<p>云计算领域中知名的OpenStack就是可以工作在SDN应用层的云管理平台，通过在其网络资源管理组件中增加SDN管理插件，管理者和使用者可利 用SDN北向接口便捷地调用SDN控制器对外开放的网络能力。当有云主机组网需求(例如建立用户专有的VLAN)被发出时，相关的网络策略和配置可以在 OpenStack管理平台的界面上集中制定并进而驱动SDN控制器统一地自动下发到相关的网络设备上。  </p>
+<p>当前，最知名的南向接口莫过于ONF倡导的OpenFlow协议。作为一个开放的协议，OpenFlow突破了传统网络设备厂商对设备能力接口的壁垒，经过多年的发展，在业界的共同努力下，当前已经日臻完善，能够全面解决SDN网络中面临的各种问题。  </p>
+<p>因此，网络资源可以和其他类型的虚拟化资源一样，以抽象的资源能力的面貌统一呈现给业务应用开发者，开发者无需针对底层网络设备的差异耗费大量开销从事额外的适配工作，这有助于业务应用的快速创新。</p>
+<h1 id="控制层"><a href="#控制层" class="headerlink" title="控制层"></a>控制层</h1><p>控制层是SDN的大脑，负责对底层转发设备的集中统一控制，同时向上层业务提供网络能力调用的接口，在SDN架构中具有举足轻重的作用，SDN控制 器也是SDN关注的焦点。从技术实现上看，控制器除了南向的网络控制和北向的业务支撑外，还需要关注东西的扩展，以避免SDN集中控制导致的性能和安全瓶颈问题，SDN控制器也在南向、北向、东西向上引入了相应的核心技术，有效解决与各层通信以及控制集群横向扩展的难题。  </p>
+<p>当前，业界有很多基于OpenFlow控制协议的开源的控制器实现，例如NOX、Onix、Floodlight等，它们都有各自的特色设计，能够实现链路发现、拓扑管理、策略制定、表项下发等支持SDN网络运行的基本操作。虽然不同的控制器在功能和性能上仍旧存在差异，但是从中已经可以总结出SDN控制器应当具备的技术特征，从这些开源系统的研发与实践中得到的经验和教训将有助于推动SDN控制器的规范化发展。  </p>
+<p>另外，用于网络集中化控制的控制器作为SDN网络的核心，其性能和安全性非常重要，其可能存在的负载过大、单点失效等问题一直是SDN领域中亟待解决的问题。当前，业界对此也有了很多探讨，从部署架构、技术措施等多个方面提出了很多有创见的方法。  </p>
+<p>SDN控制器对网络的控制主要是通过南向接口协议实现,包括链路发现、拓扑管理、策略制定、表项下发等，其中链路发现和拓扑管理主要是控制其利用南 向接口的上行通道对底层交换设备上报信息进行统一监控和统计;而策略制定和表项下发则是控制器利用南向接口的下行通道对网络设备进行统一控制。</p>
+<h1 id="北向接口"><a href="#北向接口" class="headerlink" title="北向接口"></a>北向接口</h1><p>SDN北向接口是通过控制器向上层业务应用开放的接口，其目标是使得业务应用能够便利地调用底层的网络资源和能力。通过北向接口，网络业务的开发者 能以软件编程的形式调用各种网络资源;同时上层的网络资源管理系统可以通过控制器的北向接口全局把控整个网网络的资源状态，并对资源进行统一调度。因为北 向接口是直接为业务应用服务的，因此其设计需要密切联系业务应用需求，具有多样化的特征。同时，北向接口的设计是否合理、便捷，以便能被业务应用广泛调用，会直接影响到SDN控制器厂商的市场前景。  </p>
+<p>与南向接口方面已有OpenFlow等国际标准不同，北向接口方面还缺少业界公认的标准，因此，北向接口的协议制定成为当前SDN领域竞争的焦点， 不同的参与者或者从用户角度出发，或者从运营角度出发，或者从产品能力角度出发提出了很多方案。据悉,目前至少有20种控制器,每种控制器会对外提供北向 接口用于上层应用开发和资源编排。虽然北向接口标准当前还很难达成共识，但是充分的开放性、便捷性、灵活性将是衡量接口优劣的重要标准，例如REST API就是上层业务应用的开发者比较喜欢的接口形式。部分传统的网络设备厂商在其现有设备上提供了编程接口供业务应用直接调用，也可被视作是北向接口之一，其目的是在不改变其现有设备架构的条件下提升配置管理灵活性，应对开放协议的竞争。</p>
+<h1 id="SDN交换机"><a href="#SDN交换机" class="headerlink" title="SDN交换机"></a>SDN交换机</h1><p>SDN的核心理念之一就是将控制功能从网络设备中剥离出来，通过中央控制器实现网络可编程，从而实现资源的优化利用，提升网络管控效率。  </p>
+<p>工作在基础设施层的SDN交换机虽然不在需要对逻辑控制进行过多考虑，但作为SDN网络中负责具体数据转发处理的设备，为了完成高速数据转发，还是 要遵循交换机工作原理。本质上看，传统设备中无论是交换机还是路由器，其工作原理都是在收到数据包时，将数据包中的某些特征域与设备自身存储的一些表项进 行比对，当发现匹配时则按照表项的要求进行相应处理。SDN交换机也是类似的原理，但是与传统设备存在差异的是，设备中的各个表项并非是由设备自身根据周 边的网络环境在本地自行生成的，而是由远程控制器统一下发的，因此各种复杂的控制逻辑(例如链路发现、地址学习、路由计算等等)都无需在SDN交换机中实现。  </p>
+<p>SDN交换机可以忽略控制逻辑的实现，全力关注基于表项的数据处理，而数据处理的性能也就成为评价SDN交换机优劣的最关键指标，因此，很多高性能 转发技术被提出，例如基于多张表以流水线方式进行高速处理的技术。另外，考虑到SDN和传统网络的混合工作问题，支持混合模式的SDN交换机也是当前设备 层技术研发的焦点。同时，随着虚拟化技术的出现和完善，虚拟化环境将是SDN交换机的一个重要应用场景，因此SDN交换机可能会有硬件、软件等多种形态。 例如，OVS(Open vSwitch，开放虚拟交换标准)交换机就是一款基于开源软件技术实现的能够集成在服务器虚拟化Hypervisor中的交换机，具备完善的交换机功能，在虚拟化组网中起到了非常重要的作用。  </p>
+<p>SDN交换机的出现，对传统的网络设备厂商造成了最直接的威胁，如何将新兴的网络技术与传统设备产品的优势相融合，是这些厂商正在苦苦思索的问题。 虽然SDN交换机已经对传统的网络产业链造成了巨大的冲击，但是仅凭单独的数据转发设备还不足以支撑起整个SDN的天空，未来更激烈地竞争必将会在SDN的控制层和应用层发生。</p>
+]]></content>
+      <categories>
+        <category>SDN</category>
+      </categories>
+      <tags>
+        <tag>SDN</tag>
+        <tag>概念</tag>
       </tags>
   </entry>
   <entry>
@@ -1743,6 +1743,21 @@ netstat -an | grep 6633 #onos OF监听端口
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu开机网卡无法正常启动</title>
+    <url>/2019/08/06/Ubuntu%E5%BC%80%E6%9C%BA%E7%BD%91%E5%8D%A1%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>之前在学校实训的时候用到一台Ubuntu虚拟机，一开始不知道为什么重启之后网卡无法正常启动和加载，执行ifconfig命令之后只显示有本地环回网卡，当时折腾了半天也没找到原因。  </p>
+<p>今天又打开这个虚拟机，突然发现系统这不是给出了错误提示吗？<br><img src="https://i.loli.net/2019/08/06/mCMdLzTGOarEYSj.png" alt="00.png"><br>查了一下misplaced是不适宜的意思（没办法词汇量匮乏），也就是说，interfaces文件的第一行有错误了。</p>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>既然定位到了问题根源，那就追根溯源，去查看一下interfaces文件，打眼一看一点问题都没有。<br><img src="https://i.loli.net/2019/08/06/Pz3ZwEmshAKY7cH.png" alt="01.png"><br>等等，第一行不应该是注释么？有可能是之前不小心误删了，改之。<br><img src="https://i.loli.net/2019/08/06/nCihLwIHWDJ6vrx.png" alt="02.png"><br>注释行颜色亮起的那一刻我就知道问题解决了，重启一下网络，问题解决。<br><img src="https://i.loli.net/2019/08/06/7b5udhXcSPiB24R.png" alt="03.png"></p>
+<p>这样一个小的错误，小到犹豫半天要不要写这篇博客，最后还是决定简单记录一下，就当给自己提个醒吧，而且也不违背当时写博客的初衷——是记录，亦是成长。</p>
+]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu16.04安装OpenDaylight Carbon</title>
     <url>/2019/03/14/Ubuntu16-04%E5%AE%89%E8%A3%85OpenDaylight-Carbon/</url>
     <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="JRE安装配置"><a href="#JRE安装配置" class="headerlink" title="JRE安装配置"></a>JRE安装配置</h2><p><a href="https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/server-jre8-downloads-2133154.html</a><br>我这里下载的是目前的最新版本：</p>
@@ -1835,21 +1850,6 @@ export PATH=$PATH:$JRE_HOME/bin
       </categories>
       <tags>
         <tag>Ventoy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu开机网卡无法正常启动</title>
-    <url>/2019/08/06/Ubuntu%E5%BC%80%E6%9C%BA%E7%BD%91%E5%8D%A1%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>之前在学校实训的时候用到一台Ubuntu虚拟机，一开始不知道为什么重启之后网卡无法正常启动和加载，执行ifconfig命令之后只显示有本地环回网卡，当时折腾了半天也没找到原因。  </p>
-<p>今天又打开这个虚拟机，突然发现系统这不是给出了错误提示吗？<br><img src="https://i.loli.net/2019/08/06/mCMdLzTGOarEYSj.png" alt="00.png"><br>查了一下misplaced是不适宜的意思（没办法词汇量匮乏），也就是说，interfaces文件的第一行有错误了。</p>
-<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>既然定位到了问题根源，那就追根溯源，去查看一下interfaces文件，打眼一看一点问题都没有。<br><img src="https://i.loli.net/2019/08/06/Pz3ZwEmshAKY7cH.png" alt="01.png"><br>等等，第一行不应该是注释么？有可能是之前不小心误删了，改之。<br><img src="https://i.loli.net/2019/08/06/nCihLwIHWDJ6vrx.png" alt="02.png"><br>注释行颜色亮起的那一刻我就知道问题解决了，重启一下网络，问题解决。<br><img src="https://i.loli.net/2019/08/06/7b5udhXcSPiB24R.png" alt="03.png"></p>
-<p>这样一个小的错误，小到犹豫半天要不要写这篇博客，最后还是决定简单记录一下，就当给自己提个醒吧，而且也不违背当时写博客的初衷——是记录，亦是成长。</p>
-]]></content>
-      <categories>
-        <category>打鱼晒网</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -2022,6 +2022,36 @@ ws.Run &quot;d:\sendEmail-156\sendemail.bat&quot;,0
         <tag>Windows</tag>
         <tag>监控</tag>
         <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux系统配置检测工具——Superbench</title>
+    <url>/2018/10/10/linux%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Superbench/</url>
+    <content><![CDATA[<p>我曾经就暗暗吐槽Linux没有一条可以查看配置信息的命令，只能一项一项的查看，体验不是很好。今天无意中发现了一个叫做<strong>Superbench</strong>的脚本，试着用了一下，非常方便，在这里推荐一下。  </p>
+<p>这个脚本主要有以下几个特点：</p>
+<blockquote>
+<p>采用颜色显示，便于区分查找  </p>
+<p>磁盘I/O测试分别使用小文件、中等文件、大文件进行测试，最终计算平均值。  </p>
+<p>网速测试通过多个节点进行测试，其中CM,CU,CT分别代表移动、联通和电信。</p>
+<blockquote>
+<p>ps:<br>中国移动：CMCC ，全称ChinaMobile Communication Company<br>中国联通：CUCC，全称China unicom Communications Corporation<br>中国电信：CTC，全称China Telecommunications Corporation  </p>
+</blockquote>
+</blockquote>
+<h1 id="脚本使用"><a href="#脚本使用" class="headerlink" title="脚本使用"></a>脚本使用</h1><p>执行如下命令:</p>
+<blockquote>
+</blockquote>
+<pre><code>wget -qO- git.io/superbench.sh | bash
+</code></pre><p>稍等一会就会打印出详细的配置信息：  </p>
+<p><img src="https://i.loli.net/2018/10/10/5bbdccb7a8783.png" alt="01.png"><br><img src="https://i.loli.net/2018/10/10/5bbdccb7aa383.png" alt="02.png"><br>同时我们看到最后还附带了一个分享链接用于分享我们的配置信息，在浏览器打开是这个样子的：  </p>
+<p><img src="https://i.loli.net/2018/10/10/5bbdccb7b6cd2.png" alt="03.png"></p>
+]]></content>
+      <categories>
+        <category>脚本</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>脚本</tag>
+        <tag>配置检测</tag>
       </tags>
   </entry>
   <entry>
@@ -2252,36 +2282,6 @@ $content-desktop = 900px
       </tags>
   </entry>
   <entry>
-    <title>linux系统配置检测工具——Superbench</title>
-    <url>/2018/10/10/linux%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Superbench/</url>
-    <content><![CDATA[<p>我曾经就暗暗吐槽Linux没有一条可以查看配置信息的命令，只能一项一项的查看，体验不是很好。今天无意中发现了一个叫做<strong>Superbench</strong>的脚本，试着用了一下，非常方便，在这里推荐一下。  </p>
-<p>这个脚本主要有以下几个特点：</p>
-<blockquote>
-<p>采用颜色显示，便于区分查找  </p>
-<p>磁盘I/O测试分别使用小文件、中等文件、大文件进行测试，最终计算平均值。  </p>
-<p>网速测试通过多个节点进行测试，其中CM,CU,CT分别代表移动、联通和电信。</p>
-<blockquote>
-<p>ps:<br>中国移动：CMCC ，全称ChinaMobile Communication Company<br>中国联通：CUCC，全称China unicom Communications Corporation<br>中国电信：CTC，全称China Telecommunications Corporation  </p>
-</blockquote>
-</blockquote>
-<h1 id="脚本使用"><a href="#脚本使用" class="headerlink" title="脚本使用"></a>脚本使用</h1><p>执行如下命令:</p>
-<blockquote>
-</blockquote>
-<pre><code>wget -qO- git.io/superbench.sh | bash
-</code></pre><p>稍等一会就会打印出详细的配置信息：  </p>
-<p><img src="https://i.loli.net/2018/10/10/5bbdccb7a8783.png" alt="01.png"><br><img src="https://i.loli.net/2018/10/10/5bbdccb7aa383.png" alt="02.png"><br>同时我们看到最后还附带了一个分享链接用于分享我们的配置信息，在浏览器打开是这个样子的：  </p>
-<p><img src="https://i.loli.net/2018/10/10/5bbdccb7b6cd2.png" alt="03.png"></p>
-]]></content>
-      <categories>
-        <category>脚本</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>脚本</tag>
-        <tag>配置检测</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mininet gave up after 3 retries问题</title>
     <url>/2019/03/02/mininet-gave-up-after-3-retries%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在使用mn创建拓扑时，出现以下错误：</p>
@@ -2433,8 +2433,8 @@ sudo apt-get update
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>科学上网</tag>
         <tag>脚本</tag>
+        <tag>科学上网</tag>
         <tag>vps</tag>
         <tag>网站</tag>
       </tags>
@@ -2598,26 +2598,6 @@ lscpu | grep Virtualization
       </tags>
   </entry>
   <entry>
-    <title>同时使用Github和码云部署博客</title>
-    <url>/2019/07/18/%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8Github%E5%92%8C%E7%A0%81%E4%BA%91%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="Gitee-Pages"><a href="#Gitee-Pages" class="headerlink" title="Gitee Pages"></a>Gitee Pages</h1><p>Gitee Pages是码云推出的一个静态网站服务，与Github Pages类似，这是官方给出的简单介绍：</p>
-<blockquote>
-</blockquote>
-<p>码云Pages是一个免费的静态网页托管服务，您可以使用码云Pages托管博客、项目官网等静态网页。目前码云Pages支持Jekyll、Hugo、Hexo编译静态资源。</p>
-<p>之前在部署自己博客的时候使用的是Hexo + Github Pages的方式，但是这种方式有一个最大的问题就是博客的访问速度问题，根据不同的运营商不同地点的网络，访问速度还会有些差别。忍无可忍，决定把博客迁移到码云上，但是使用了码云后发现这家伙有个特别人性化的功能——从GitHub同步。  </p>
-<p>既然如此，与其迁移，还不如同时在两个仓库中同时部署。</p>
-<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>首先注册一个<a href="https://gitee.com" target="_blank" rel="noopener">码云</a>账号，注册之后新建一个仓库：<br><img src="https://i.loli.net/2019/07/18/5d302cf5bed5a24580.png" alt="01.png"><br>到最下面找到导入已有仓库，点击并填写自己的GitHub仓库地址(.git结尾的链接)<br><img src="https://i.loli.net/2019/07/18/5d302db6c8dbf86321.png" alt="02.png"><br>仓库导入之后进入仓库，点击<strong>服务</strong>→<strong>Gitee Pages</strong>，部署目录不填，点击部署即可。<br><img src="https://i.loli.net/2019/07/18/5d302f3d46d7b67296.png" alt="03.png"><br>上图是我已经部署好之后的截图，当时忘记截图了，部署之后的网址应该是<strong>*.gitee.io/name这样的链接，我们打开这个链接会看到下面这样的网页：<br><img src="https://i.loli.net/2019/07/18/5d302fee7596d45273.png" alt="04.png"><br>原因是由于路径的问题，无法正确加载样式，我们只需要将链接后的二级目录去掉就好了。点击</strong>管理**，将仓库的路径设置为与用户名一样即可。<br><img src="https://i.loli.net/2019/07/18/5d3030e002a3d39741.png" alt="05.png"><br>访问Gitee Pages，幸福感扑面而来。</p>
-]]></content>
-      <categories>
-        <category>打鱼晒网</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>Github</tag>
-        <tag>Gitee</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>华为交换机console口密码重置</title>
     <url>/2019/10/24/%E5%8D%8E%E4%B8%BA%E4%BA%A4%E6%8D%A2%E6%9C%BAconsole%E5%8F%A3%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="设置console密码"><a href="#设置console密码" class="headerlink" title="设置console密码"></a>设置console密码</h1><p>因为之前已经把console密码删掉了，为了重现一下，重新设置一下console密码：</p>
@@ -2640,35 +2620,23 @@ lscpu | grep Virtualization
       </tags>
   </entry>
   <entry>
-    <title>在ESXI镜像中集成第三方驱动</title>
-    <url>/2019/12/04/%E5%9C%A8ESXI%E9%95%9C%E5%83%8F%E4%B8%AD%E9%9B%86%E6%88%90%E7%AC%AC%E4%B8%89%E6%96%B9%E9%A9%B1%E5%8A%A8/</url>
-    <content><![CDATA[<p>在使用VMware官方的ESXI6.0镜像在浪潮服务器安装时，安装程序发现不了RAID，服务器的具体型号是NF5270M5，在网上搜索了一下发现是驱动的问题，折腾了一上午终于搞定了，简单记录一下过程。</p>
-<h1 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h1><ul>
-<li>ESXi-Customizer-v2.7.2</li>
-<li>RAID驱动</li>
-<li>ESXI6.0镜像</li>
-</ul>
-<p>1.<strong>ESXi-Customizer</strong>，是一个专门用来向ESXI封装驱动的工具，下载地址可自行百度，也可以从我的百度云下载：<a href="https://pan.baidu.com/s/18328xWRZYN--UC27NwIRhA" target="_blank" rel="noopener">提取码：riel</a>。下载之后运行.exe文件解压出来就可以了，然后有一点需要注意的是win10无法运行（亲测win7是可以的），会报如下图所示的错误：<br><img src="https://i.loli.net/2019/12/04/mZ3H6b4suJgCvcl.png" alt="04.png"><br>解决方法很简单，用编辑器打开ESXi-Customizer.cmd，删除下面这行：</p>
+    <title>同时使用Github和码云部署博客</title>
+    <url>/2019/07/18/%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8Github%E5%92%8C%E7%A0%81%E4%BA%91%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1 id="Gitee-Pages"><a href="#Gitee-Pages" class="headerlink" title="Gitee Pages"></a>Gitee Pages</h1><p>Gitee Pages是码云推出的一个静态网站服务，与Github Pages类似，这是官方给出的简单介绍：</p>
 <blockquote>
 </blockquote>
-<pre><code>if &quot;!WinVer!&quot; LSS &quot;5.1&quot; call :earlyFatal Unsupported Windows Version: !WinVer!. At least Windows XP is required &amp; exit /b 1
-</code></pre><p>再运行就正常了：<br><img src="https://i.loli.net/2019/12/04/pXlmDvcGjfSwdNP.png" alt="03.png"></p>
-<p>2.下载驱动程序，下载驱动我们首先需要确定硬件的型号信息，开机进入RAID控制器查看RAID卡型号，然后到<a href="http://www.inspur.com/eportal/ui?pageId=2317460&amp;type=0" target="_blank" rel="noopener">浪潮官网</a>下载对应驱动。  </p>
-<p>3.最后还需要准备一个ESXI镜像。</p>
-<h1 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h1><p>1.解压下载的驱动程序文件，得到.vib文件。<br>2.运行ESXi-Customizer，第一项选择原始ESXI镜像，第二项选择驱动文件，第三项选择新镜像存放的位置，然后将“Enable…”取消勾选，点击RUN开始封装。<br><img src="https://i.loli.net/2019/12/04/KLkoDY72IzNjf8T.png" alt="05.png"></p>
-<p>3.将封装好的镜像文件写入U盘，ok！</p>
-<h1 id="添加网卡驱动-20201009更"><a href="#添加网卡驱动-20201009更" class="headerlink" title="添加网卡驱动(20201009更)"></a>添加网卡驱动(20201009更)</h1><h2 id="确认网卡型号等信息"><a href="#确认网卡型号等信息" class="headerlink" title="确认网卡型号等信息"></a>确认网卡型号等信息</h2><p>添加驱动首先要知道我们的硬件设备型号或其它等定位到具体驱动的信息，硬件设备的型号，大部分服务器在服务器带外管理中就可查看到硬件的详细型号信息。<br>也可以通过我们安装的ESXI来查找，安装好ESXI后，我们可以在配置-高级设置-配置直通中查看相应设备的VID和DID：<br><img src="https://i.loli.net/2020/10/16/R68ixJcVbhqyDrG.png" alt="02.png"><br>当然肯定还会有其它方式来查看到硬件型号信息，如果有更好的方式欢迎留言分享。</p>
-<h2 id="查找驱动"><a href="#查找驱动" class="headerlink" title="查找驱动"></a>查找驱动</h2><p>在VMware的官方网站上查找我们的硬件驱动，打开VMware兼容性列表的官方：<a href="http://www.vmware.com/resources/compatibility/search.php" target="_blank" rel="noopener">http://www.vmware.com/resources/compatibility/search.php</a>，选择IO Devices<br><img src="https://i.loli.net/2020/10/16/kMl59tgWnimoCbY.png" alt="01.png"><br>可以通过左边的ESXI版本、供应商、设备类型来找到该网卡的，但是更为便捷的方式是在右侧输入产品的VID（供应商ID）和DID(设备ID)还快速定位到该网卡。  </p>
-<p><img src="https://i.loli.net/2020/10/16/51Y7Mce9hjOdrxK.png" alt="03.png"><br>输入ID后搜索并下载相应型号设备的相应版本驱动即可。<br><img src="https://i.loli.net/2020/10/16/ECTzjg7QYuOUtaZ.png" alt="04.png"></p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.51cto.com/huanwenli/1749298" target="_blank" rel="noopener">https://blog.51cto.com/huanwenli/1749298</a><br><a href="https://vibsdepot.v-front.de/wiki/index.php/Welcome" target="_blank" rel="noopener">https://vibsdepot.v-front.de/wiki/index.php/Welcome</a><br><a href="https://vmware.lenovo.com/content/custom_iso/" target="_blank" rel="noopener">https://vmware.lenovo.com/content/custom_iso/</a></p>
+<p>码云Pages是一个免费的静态网页托管服务，您可以使用码云Pages托管博客、项目官网等静态网页。目前码云Pages支持Jekyll、Hugo、Hexo编译静态资源。</p>
+<p>之前在部署自己博客的时候使用的是Hexo + Github Pages的方式，但是这种方式有一个最大的问题就是博客的访问速度问题，根据不同的运营商不同地点的网络，访问速度还会有些差别。忍无可忍，决定把博客迁移到码云上，但是使用了码云后发现这家伙有个特别人性化的功能——从GitHub同步。  </p>
+<p>既然如此，与其迁移，还不如同时在两个仓库中同时部署。</p>
+<h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>首先注册一个<a href="https://gitee.com" target="_blank" rel="noopener">码云</a>账号，注册之后新建一个仓库：<br><img src="https://i.loli.net/2019/07/18/5d302cf5bed5a24580.png" alt="01.png"><br>到最下面找到导入已有仓库，点击并填写自己的GitHub仓库地址(.git结尾的链接)<br><img src="https://i.loli.net/2019/07/18/5d302db6c8dbf86321.png" alt="02.png"><br>仓库导入之后进入仓库，点击<strong>服务</strong>→<strong>Gitee Pages</strong>，部署目录不填，点击部署即可。<br><img src="https://i.loli.net/2019/07/18/5d302f3d46d7b67296.png" alt="03.png"><br>上图是我已经部署好之后的截图，当时忘记截图了，部署之后的网址应该是<strong>*.gitee.io/name这样的链接，我们打开这个链接会看到下面这样的网页：<br><img src="https://i.loli.net/2019/07/18/5d302fee7596d45273.png" alt="04.png"><br>原因是由于路径的问题，无法正确加载样式，我们只需要将链接后的二级目录去掉就好了。点击</strong>管理**，将仓库的路径设置为与用户名一样即可。<br><img src="https://i.loli.net/2019/07/18/5d3030e002a3d39741.png" alt="05.png"><br>访问Gitee Pages，幸福感扑面而来。</p>
 ]]></content>
       <categories>
-        <category>虚拟化</category>
+        <category>打鱼晒网</category>
       </categories>
       <tags>
-        <tag>ESXI</tag>
-        <tag>iso</tag>
-        <tag>驱动</tag>
+        <tag>hexo</tag>
+        <tag>Github</tag>
+        <tag>Gitee</tag>
       </tags>
   </entry>
   <entry>
@@ -2760,6 +2728,38 @@ systemctl restart ntpd.service
         <tag>OpenStack</tag>
         <tag>Esxi</tag>
         <tag>fuel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在ESXI镜像中集成第三方驱动</title>
+    <url>/2019/12/04/%E5%9C%A8ESXI%E9%95%9C%E5%83%8F%E4%B8%AD%E9%9B%86%E6%88%90%E7%AC%AC%E4%B8%89%E6%96%B9%E9%A9%B1%E5%8A%A8/</url>
+    <content><![CDATA[<p>在使用VMware官方的ESXI6.0镜像在浪潮服务器安装时，安装程序发现不了RAID，服务器的具体型号是NF5270M5，在网上搜索了一下发现是驱动的问题，折腾了一上午终于搞定了，简单记录一下过程。</p>
+<h1 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h1><ul>
+<li>ESXi-Customizer-v2.7.2</li>
+<li>RAID驱动</li>
+<li>ESXI6.0镜像</li>
+</ul>
+<p>1.<strong>ESXi-Customizer</strong>，是一个专门用来向ESXI封装驱动的工具，下载地址可自行百度，也可以从我的百度云下载：<a href="https://pan.baidu.com/s/18328xWRZYN--UC27NwIRhA" target="_blank" rel="noopener">提取码：riel</a>。下载之后运行.exe文件解压出来就可以了，然后有一点需要注意的是win10无法运行（亲测win7是可以的），会报如下图所示的错误：<br><img src="https://i.loli.net/2019/12/04/mZ3H6b4suJgCvcl.png" alt="04.png"><br>解决方法很简单，用编辑器打开ESXi-Customizer.cmd，删除下面这行：</p>
+<blockquote>
+</blockquote>
+<pre><code>if &quot;!WinVer!&quot; LSS &quot;5.1&quot; call :earlyFatal Unsupported Windows Version: !WinVer!. At least Windows XP is required &amp; exit /b 1
+</code></pre><p>再运行就正常了：<br><img src="https://i.loli.net/2019/12/04/pXlmDvcGjfSwdNP.png" alt="03.png"></p>
+<p>2.下载驱动程序，下载驱动我们首先需要确定硬件的型号信息，开机进入RAID控制器查看RAID卡型号，然后到<a href="http://www.inspur.com/eportal/ui?pageId=2317460&amp;type=0" target="_blank" rel="noopener">浪潮官网</a>下载对应驱动。  </p>
+<p>3.最后还需要准备一个ESXI镜像。</p>
+<h1 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h1><p>1.解压下载的驱动程序文件，得到.vib文件。<br>2.运行ESXi-Customizer，第一项选择原始ESXI镜像，第二项选择驱动文件，第三项选择新镜像存放的位置，然后将“Enable…”取消勾选，点击RUN开始封装。<br><img src="https://i.loli.net/2019/12/04/KLkoDY72IzNjf8T.png" alt="05.png"></p>
+<p>3.将封装好的镜像文件写入U盘，ok！</p>
+<h1 id="添加网卡驱动-20201009更"><a href="#添加网卡驱动-20201009更" class="headerlink" title="添加网卡驱动(20201009更)"></a>添加网卡驱动(20201009更)</h1><h2 id="确认网卡型号等信息"><a href="#确认网卡型号等信息" class="headerlink" title="确认网卡型号等信息"></a>确认网卡型号等信息</h2><p>添加驱动首先要知道我们的硬件设备型号或其它等定位到具体驱动的信息，硬件设备的型号，大部分服务器在服务器带外管理中就可查看到硬件的详细型号信息。<br>也可以通过我们安装的ESXI来查找，安装好ESXI后，我们可以在配置-高级设置-配置直通中查看相应设备的VID和DID：<br><img src="https://i.loli.net/2020/10/16/R68ixJcVbhqyDrG.png" alt="02.png"><br>当然肯定还会有其它方式来查看到硬件型号信息，如果有更好的方式欢迎留言分享。</p>
+<h2 id="查找驱动"><a href="#查找驱动" class="headerlink" title="查找驱动"></a>查找驱动</h2><p>在VMware的官方网站上查找我们的硬件驱动，打开VMware兼容性列表的官方：<a href="http://www.vmware.com/resources/compatibility/search.php" target="_blank" rel="noopener">http://www.vmware.com/resources/compatibility/search.php</a>，选择IO Devices<br><img src="https://i.loli.net/2020/10/16/kMl59tgWnimoCbY.png" alt="01.png"><br>可以通过左边的ESXI版本、供应商、设备类型来找到该网卡的，但是更为便捷的方式是在右侧输入产品的VID（供应商ID）和DID(设备ID)还快速定位到该网卡。  </p>
+<p><img src="https://i.loli.net/2020/10/16/51Y7Mce9hjOdrxK.png" alt="03.png"><br>输入ID后搜索并下载相应型号设备的相应版本驱动即可。<br><img src="https://i.loli.net/2020/10/16/ECTzjg7QYuOUtaZ.png" alt="04.png"></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.51cto.com/huanwenli/1749298" target="_blank" rel="noopener">https://blog.51cto.com/huanwenli/1749298</a><br><a href="https://vibsdepot.v-front.de/wiki/index.php/Welcome" target="_blank" rel="noopener">https://vibsdepot.v-front.de/wiki/index.php/Welcome</a><br><a href="https://vmware.lenovo.com/content/custom_iso/" target="_blank" rel="noopener">https://vmware.lenovo.com/content/custom_iso/</a></p>
+]]></content>
+      <categories>
+        <category>虚拟化</category>
+      </categories>
+      <tags>
+        <tag>ESXI</tag>
+        <tag>iso</tag>
+        <tag>驱动</tag>
       </tags>
   </entry>
   <entry>
@@ -2889,23 +2889,6 @@ mn --controller=remote,ip=192.168.1.31 --switch=ovsk,protocols=OpenFlow13 --topo
       </categories>
       <tags>
         <tag>SDN实验环境</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>无vCenter的ESXI环境克隆虚拟机</title>
-    <url>/2019/10/15/%E6%97%A0vCenter%E7%9A%84ESXI%E7%8E%AF%E5%A2%83%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
-    <content><![CDATA[<p>最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。</p>
-<h1 id="两个文件"><a href="#两个文件" class="headerlink" title="两个文件"></a>两个文件</h1><p><strong>.vmx:</strong>VMware虚拟机配置文件，为虚拟机系统文件，通常通过打开这个虚拟机文件以启动系统；通过编辑该文件可以实现某种配置需求。<br><strong>.vmdk:</strong>VMware虚拟磁盘文件，相当于真实PC的硬盘。</p>
-<h1 id="克隆方法"><a href="#克隆方法" class="headerlink" title="克隆方法"></a>克隆方法</h1><p>首先选中要克隆虚拟机的服务器，然后选择“配置”，然后选择“存储器”，在右侧的存储器中选择你要克隆的虚拟机所在的数据存储。<br><img src="https://i.loli.net/2019/10/21/vL8lIVe7bBxXumf.png" alt="01.png"><br>右键“浏览数据存储”，新建一个文件夹（用于存放克隆的虚拟机文件），在左侧选择要克隆的虚拟机所在的文件夹，复制<strong>.vmx</strong>和<strong>.vmdk</strong>两个文件到新建的文件夹中。<br><img src="https://i.loli.net/2019/10/21/WSCz8nE3QBcpG7L.png" alt="02.png"><br>复制完成后，右键复制后的.vmx文件，选择添加到清单即可。<br>虚拟机启动后会有如下提示，选择“I Copied It”即可。<br><img src="https://i.loli.net/2019/10/21/3ut1DF7MfcdK2LU.png" alt="开启复制的虚拟机时.png"></p>
-<h1 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h1><p>在实际的操作中，我发现了一点需要注意的小细节，如果只是单纯的复制我在上图标出来两个文件的话，那么你克隆出来的虚拟机会是你新装的操作系统时的状态，如果想完整克隆虚拟机的当前状态，应该复制虚拟机当前引用的磁盘文件。<br>编辑虚拟机设置，查看被克隆的虚拟机引用的磁盘文件。<br><img src="https://i.loli.net/2019/10/21/Q9CoxLidFsS4mUA.png" alt="03.png"><br>然后复制该文件：<br><img src="https://i.loli.net/2019/10/21/hGkLngAoWC9rE35.png" alt="04.png"></p>
-]]></content>
-      <categories>
-        <category>虚拟化</category>
-      </categories>
-      <tags>
-        <tag>ESXI</tag>
-        <tag>vCenter</tag>
-        <tag>虚拟机克隆</tag>
       </tags>
   </entry>
   <entry>
@@ -3128,6 +3111,23 @@ $   跳转到行末
       </tags>
   </entry>
   <entry>
+    <title>无vCenter的ESXI环境克隆虚拟机</title>
+    <url>/2019/10/15/%E6%97%A0vCenter%E7%9A%84ESXI%E7%8E%AF%E5%A2%83%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
+    <content><![CDATA[<p>最近在公司的服务器上新装了ESXI，因为没有装vCenter，不支持虚拟机克隆功能，无奈只能手动克隆，今天有时间简单记录一下克隆的方法和一个小细节。</p>
+<h1 id="两个文件"><a href="#两个文件" class="headerlink" title="两个文件"></a>两个文件</h1><p><strong>.vmx:</strong>VMware虚拟机配置文件，为虚拟机系统文件，通常通过打开这个虚拟机文件以启动系统；通过编辑该文件可以实现某种配置需求。<br><strong>.vmdk:</strong>VMware虚拟磁盘文件，相当于真实PC的硬盘。</p>
+<h1 id="克隆方法"><a href="#克隆方法" class="headerlink" title="克隆方法"></a>克隆方法</h1><p>首先选中要克隆虚拟机的服务器，然后选择“配置”，然后选择“存储器”，在右侧的存储器中选择你要克隆的虚拟机所在的数据存储。<br><img src="https://i.loli.net/2019/10/21/vL8lIVe7bBxXumf.png" alt="01.png"><br>右键“浏览数据存储”，新建一个文件夹（用于存放克隆的虚拟机文件），在左侧选择要克隆的虚拟机所在的文件夹，复制<strong>.vmx</strong>和<strong>.vmdk</strong>两个文件到新建的文件夹中。<br><img src="https://i.loli.net/2019/10/21/WSCz8nE3QBcpG7L.png" alt="02.png"><br>复制完成后，右键复制后的.vmx文件，选择添加到清单即可。<br>虚拟机启动后会有如下提示，选择“I Copied It”即可。<br><img src="https://i.loli.net/2019/10/21/3ut1DF7MfcdK2LU.png" alt="开启复制的虚拟机时.png"></p>
+<h1 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h1><p>在实际的操作中，我发现了一点需要注意的小细节，如果只是单纯的复制我在上图标出来两个文件的话，那么你克隆出来的虚拟机会是你新装的操作系统时的状态，如果想完整克隆虚拟机的当前状态，应该复制虚拟机当前引用的磁盘文件。<br>编辑虚拟机设置，查看被克隆的虚拟机引用的磁盘文件。<br><img src="https://i.loli.net/2019/10/21/Q9CoxLidFsS4mUA.png" alt="03.png"><br>然后复制该文件：<br><img src="https://i.loli.net/2019/10/21/hGkLngAoWC9rE35.png" alt="04.png"></p>
+]]></content>
+      <categories>
+        <category>虚拟化</category>
+      </categories>
+      <tags>
+        <tag>ESXI</tag>
+        <tag>vCenter</tag>
+        <tag>虚拟机克隆</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>浅谈几种快充技术</title>
     <url>/2018/11/07/%E6%B5%85%E8%B0%88%E5%87%A0%E7%A7%8D%E5%BF%AB%E5%85%85%E6%8A%80%E6%9C%AF/</url>
     <content><![CDATA[<p>原来的充电宝丢了，今天又在某宝上溜达买了一个，溜达的时候发现了好多的新名词，就索性查了一下，整理一下写在这里了。</p>
@@ -3158,51 +3158,30 @@ $   跳转到行末
       </tags>
   </entry>
   <entry>
-    <title>科学上网工具 - WireGuard</title>
-    <url>/2018/11/14/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%B7%A5%E5%85%B7-WireGuard/</url>
-    <content><![CDATA[<h1 id="WireGuard是什么？"><a href="#WireGuard是什么？" class="headerlink" title="WireGuard是什么？"></a>WireGuard是什么？</h1><p>WireGuard是一个构建快速、现代、安全的VPN的协议和工具套件，它具有以下优点：</p>
-<blockquote>
-</blockquote>
-<p>使用最先进的加密技术，防范攻击（RSA，SHA广被诟病都将被淘汰）<br>性能远超OpenVPN<br>效率极高，WireGuard协议作为Linux内核模块运行<br>通用用途，支持嵌入式和非嵌入式设备<br>跨平台，初期只在Linux平台发布，现已支持所有平台<br>易用，用过OpenVPN等工具集的人都明白这其中的痛苦<br>工作在3层（链路层），支持漫游，地址变更对用户无感知，使用更简单，切换更平滑<br>使用UDP传输数据，轻量、高效、节能、节省带宽（适用于 IOT 领域）<br>基于GPLv2Linux Kernel 基于 GPLv2）免费开源  </p>
-<p>Linus Torvalds对WireGuard的评价：</p>
-<blockquote>
-<p>Can I just once again state my love for it and hope it gets merged soon? Maybe the code isn’t perfect, but I’ve skimmed it, and compared to the horrors that are OpenVPN and IPSec, it’s a work of art.</p>
-</blockquote>
-<h1 id="脚本安装"><a href="#脚本安装" class="headerlink" title="脚本安装"></a>脚本安装</h1><h2 id="脚本要求"><a href="#脚本要求" class="headerlink" title="脚本要求"></a>脚本要求</h2><blockquote>
-<p>仅适用于centos7<br>vps架构必须为KVM<br>centos7的内核大部分为3.10，不能正确安装，必须升级（已经集成在脚本中）</p>
-</blockquote>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>1、下载并执行脚本：</p>
-<blockquote>
-</blockquote>
-<pre><code>wget https://raw.githubusercontent.com/yobabyshark/wireguard/master/wireguard_install.sh &amp;&amp; chmod +x wireguard_install.sh &amp;&amp; ./wireguard_install.sh
-</code></pre><p><img src="https://i.loli.net/2018/11/14/5bec1723904fd.png" alt="01.png"></p>
-<p>2、输入“1”升级内核，按照提示重启。  </p>
-<p>3、重启完成后，再次执行脚本：</p>
-<blockquote>
-</blockquote>
-<pre><code>./wireguard_install.sh
-</code></pre><p>4、输入“2”安装WireGuard。  </p>
-<p>5、使用ftp工具连接vps，将<strong>/etc/wireguard</strong>目录下的client.conf下载到本地。</p>
-<p>6、下载安装TunSafe，这是一个windows端的第三方客户端，因为官方windows版本的还没开发完成，先用这个软件代替，TunSafe已经开源，可以放心使用。<br>官网下载：<a href="https://tunsafe.com/download" target="_blank" rel="noopener">TunSafe</a></p>
-<p>7、打开TunSafe，单击file，选择import file，将下载的client.conf导入到软件中。  </p>
-<p>8、导入后会自动进行连接，进入全局代理模式，也就是所有流量都会被代理。</p>
-<h1 id="其它平台客户端"><a href="#其它平台客户端" class="headerlink" title="其它平台客户端"></a>其它平台客户端</h1><h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>1、下载WireGuard安卓客户端：  </p>
-<blockquote>
-<p>Android客户端：<a href="https://f-droid.org/repo/com.wireguard.android_439.apk" target="_blank" rel="noopener">点此下载</a></p>
-</blockquote>
-<p>2、打开app，点击加号导入client.conf文件。</p>
-<blockquote>
-<p>这里可能会提示错误，原因是没有文件操作权限，去权限管理里给软件勾上存储权限即可。</p>
-</blockquote>
-<h1 id="速度测试"><a href="#速度测试" class="headerlink" title="速度测试"></a>速度测试</h1><p>Youtube视频地址：<a href="https://youtu.be/A1tdPsdBATw" target="_blank" rel="noopener">点击观看</a></p>
+    <title>秒懂MBR和GPT分区表</title>
+    <url>/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h1><p>全新硬盘未初始化之前，必须对其进行分区，硬盘分区初始化的格式包括MBR和GPT两种，另外对于基于PowerPC的Mac电脑还有专门的Apple分区图。<br>MBR的全称是Master Boot Record（主引导记录），MBR早在1983年IBM PC DOS 2.0中就已经提出。之所以叫“主引导记录”，是因为它是存在于驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统的启动加载器和驱动器的逻辑分区信息。主引导扇区是硬盘的第一扇区。它由三个部分组成，主引导记录MBR、硬盘分区表DPT和硬盘有效标志。在总共512字节的主引导扇区里MBR占446个字节，偏移地址（0000H–0088H），它负责从活动分区中装载，并运行系统引导程序；第二部分是Partition table区（DPT分区表），占64个字节；第三部分是Magic number，占2个字节。 </p>
+<h1 id="MBR分区表系统"><a href="#MBR分区表系统" class="headerlink" title="MBR分区表系统"></a>MBR分区表系统</h1><p>所谓启动加载器，是一小段代码，用于加载驱动器上其他分区上更大的加载器。如果你安装了Windows，Windows启动加载器的初始信息就放在这个区域里——如果MBR的信息被覆盖导致Windows不能启动，你就需要使用Windows的MBR修复功能来使其恢复正常。如果你安装了Linux，则位于MBR里的通常会是GRUB加载器。  </p>
+<p>分区表偏移地址为01BEH–01FDH，每个分区表项长16个字节，共64字节为分区项1、分区项2、分区项3、分区项4，分别对应MBR的四个主分区。Magic number也就是结束标志字，偏移地址01FE–01FF的2个字节，固定为55AA，如果该标志错误系统就不能启动。   </p>
+<p>MBR最大支持2.2TB磁盘，它无法处理大于2.2TB容量的磁盘。MBR还只支持最多4个主分区——如果你想要更多分区，你需要创建所谓“扩展分区”，并在其中创建逻辑分区。 </p>
+<h1 id="GPT分区表系统"><a href="#GPT分区表系统" class="headerlink" title="GPT分区表系统"></a>GPT分区表系统</h1><p>GPT的全称是Globally Unique Identifier Partition Table，意即GUID分区表，它的推出是和UEFI BIOS相辅相成的，鉴于MBR的磁盘容量和分区数量已经不能满足硬件发展的需求，GPT首要的任务就是突破了2.2T分区的限制，最大支持18EB的分区。 </p>
+<p>而在分区数量上，GPT会为每一个分区分配一个全局唯一的标识符，理论上GPT支持无限个磁盘分区，不过在Windows系统上由于系统的限制，最多只能支持128个磁盘分区，基本可以满足所有用户的存储需求。在每一个分区上，这个标识符是一个随机生成的字符串，可以保证为地球上的每一个GPT分区都分配完全唯一的标识符。   </p>
+<p>而在安全性方面，GPT分区表也进行了全方位改进。在早期的MBR磁盘上，分区和启动信息是保存在一起的。如果这部分数据被覆盖或破坏，事情就麻烦了。相对的，GPT在整个磁盘上保存多个这部分信息的副本，因此它更为健壮，并可以恢复被破坏的这部分信息。GPT还为这些信息保存了循环冗余校验码（CRC）以保证其完整和正确——如果数据被破坏，GPT会发觉这些破坏，并从磁盘上的其他地方进行恢复。  </p>
+<p>小结：所以对于新平台用户（Intel 6系以后/AMD 900系列以后和A系列）来说，都强烈推荐使用GPT分区表格式，目前包括Windows Vista、7、8、8.1、10已经都支持读取和使用GPT分区表。而对于使用Windows 8、8.1、10的用户，换用GPT后开机启动速度也可以进一步得到显著提升。 </p>
+<h1 id="BIOS-MBR"><a href="#BIOS-MBR" class="headerlink" title="BIOS+MBR"></a>BIOS+MBR</h1><p>这种方式是目前最常见的装机方式，所有的系统都会支持，兼容较老硬件，目前新电脑大多出厂时就使用UEFI方式启动。</p>
+<h1 id="UEFI-GPT"><a href="#UEFI-GPT" class="headerlink" title="UEFI+GPT"></a>UEFI+GPT</h1><p>GPT与UEFI是相辅相成的，如果分区表系统是GPT，那么必须使用UEFI，传统的BIOS方式无法启动，这也就是为什么现在很多人在给新机器重装系统时无法启动的原因。  </p>
+<p>UEFI+GPT还有一个优点就是开机速度更快，原因是开机时跳过外设检测，并且可以实现启动时原生分辨率，搭载固态硬盘开机时间很短，十秒左右。  </p>
+<p>UEFI可用鼠标操作图形界面，不再是枯燥的蓝底白字的英文。由Intel提出，用于取代BIOS。UEFI的优越特性：可操作性、安全性、兼容性、可扩展性。  </p>
+<p>主板为了兼容MBR分区表，一般会提供Legacy BIOS和UEFI BIOS启动模式选项，可以把UEFI设置成Legacy模式（传统模式）、打开CSM兼容模块，让其支持传统MBR启动，此时效果同BIOS+MBR。如果要使用UEFI模式安装Windows，就必须开启UEFI启动模式。</p>
+<h1 id="系统支持性"><a href="#系统支持性" class="headerlink" title="系统支持性"></a>系统支持性</h1><p>目前64bit Windows Vista、7、8、8.1、10都已经支持GPT分区表，而Windows 8、8.1、10都已经原生支持UEFI，安装这些系统的时候：只要硬盘设置为GPT分区表，主板设置为UEFI启动后，就可以直接开始安装操作系统了。 而对于Windows Vista、7系统，就需要手动添加UEFI支持：我们可以找一份Windows 8或者10安装镜像，从安装文件中提取Bootmgfw.efi文件，重命名为BOOTX64.EFI，拷贝到win7安装文件的\EFI\Boot\下，如果没有BOOT文件夹新建一个即可。 </p>
+<h1 id="修改为传统方式启动"><a href="#修改为传统方式启动" class="headerlink" title="修改为传统方式启动"></a>修改为传统方式启动</h1><p>如果实在是搞不明白或者像之前的我一样不太懂的话，可以使用分区助手将GPT改为MBR，如图：<br><img src="https://i.loli.net/2018/09/13/5b9a589d17e85.jpg" alt="1.jpg"><br>选中磁盘，在左侧菜单中选择“转换到MBR磁盘”：<br><img src="https://i.loli.net/2018/09/13/5b9a589cddfb3.jpg" alt="2.jpg"><br>转换成功：<br><img src="https://i.loli.net/2018/09/13/5b9a589d066d8.jpg" alt="3.jpg"><br>转换完成进行分区后，不要忘了把装系统的分区转换成活动分区：<br><img src="https://i.loli.net/2018/09/13/5b9a589d099b4.jpg" alt="4.jpg"><br>最后还是建议大家花几分钟时间了解一下UEFI的方式，这必定是未来的一个趋势，并不推荐采用上图将GPT修改为MBR的方式重装系统。</p>
 ]]></content>
       <categories>
-        <category>VPS</category>
+        <category>打鱼晒网</category>
       </categories>
       <tags>
-        <tag>科学上网</tag>
-        <tag>VPS</tag>
-        <tag>WireGuard</tag>
+        <tag>装机</tag>
+        <tag>硬件</tag>
       </tags>
   </entry>
   <entry>
@@ -3234,33 +3213,6 @@ $   跳转到行末
       </tags>
   </entry>
   <entry>
-    <title>秒懂MBR和GPT分区表</title>
-    <url>/2018/09/13/%E7%A7%92%E6%87%82MBR%E5%92%8CGPT%E5%88%86%E5%8C%BA%E8%A1%A8/</url>
-    <content><![CDATA[<h1 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h1><p>全新硬盘未初始化之前，必须对其进行分区，硬盘分区初始化的格式包括MBR和GPT两种，另外对于基于PowerPC的Mac电脑还有专门的Apple分区图。<br>MBR的全称是Master Boot Record（主引导记录），MBR早在1983年IBM PC DOS 2.0中就已经提出。之所以叫“主引导记录”，是因为它是存在于驱动器开始部分的一个特殊的启动扇区。这个扇区包含了已安装的操作系统的启动加载器和驱动器的逻辑分区信息。主引导扇区是硬盘的第一扇区。它由三个部分组成，主引导记录MBR、硬盘分区表DPT和硬盘有效标志。在总共512字节的主引导扇区里MBR占446个字节，偏移地址（0000H–0088H），它负责从活动分区中装载，并运行系统引导程序；第二部分是Partition table区（DPT分区表），占64个字节；第三部分是Magic number，占2个字节。 </p>
-<h1 id="MBR分区表系统"><a href="#MBR分区表系统" class="headerlink" title="MBR分区表系统"></a>MBR分区表系统</h1><p>所谓启动加载器，是一小段代码，用于加载驱动器上其他分区上更大的加载器。如果你安装了Windows，Windows启动加载器的初始信息就放在这个区域里——如果MBR的信息被覆盖导致Windows不能启动，你就需要使用Windows的MBR修复功能来使其恢复正常。如果你安装了Linux，则位于MBR里的通常会是GRUB加载器。  </p>
-<p>分区表偏移地址为01BEH–01FDH，每个分区表项长16个字节，共64字节为分区项1、分区项2、分区项3、分区项4，分别对应MBR的四个主分区。Magic number也就是结束标志字，偏移地址01FE–01FF的2个字节，固定为55AA，如果该标志错误系统就不能启动。   </p>
-<p>MBR最大支持2.2TB磁盘，它无法处理大于2.2TB容量的磁盘。MBR还只支持最多4个主分区——如果你想要更多分区，你需要创建所谓“扩展分区”，并在其中创建逻辑分区。 </p>
-<h1 id="GPT分区表系统"><a href="#GPT分区表系统" class="headerlink" title="GPT分区表系统"></a>GPT分区表系统</h1><p>GPT的全称是Globally Unique Identifier Partition Table，意即GUID分区表，它的推出是和UEFI BIOS相辅相成的，鉴于MBR的磁盘容量和分区数量已经不能满足硬件发展的需求，GPT首要的任务就是突破了2.2T分区的限制，最大支持18EB的分区。 </p>
-<p>而在分区数量上，GPT会为每一个分区分配一个全局唯一的标识符，理论上GPT支持无限个磁盘分区，不过在Windows系统上由于系统的限制，最多只能支持128个磁盘分区，基本可以满足所有用户的存储需求。在每一个分区上，这个标识符是一个随机生成的字符串，可以保证为地球上的每一个GPT分区都分配完全唯一的标识符。   </p>
-<p>而在安全性方面，GPT分区表也进行了全方位改进。在早期的MBR磁盘上，分区和启动信息是保存在一起的。如果这部分数据被覆盖或破坏，事情就麻烦了。相对的，GPT在整个磁盘上保存多个这部分信息的副本，因此它更为健壮，并可以恢复被破坏的这部分信息。GPT还为这些信息保存了循环冗余校验码（CRC）以保证其完整和正确——如果数据被破坏，GPT会发觉这些破坏，并从磁盘上的其他地方进行恢复。  </p>
-<p>小结：所以对于新平台用户（Intel 6系以后/AMD 900系列以后和A系列）来说，都强烈推荐使用GPT分区表格式，目前包括Windows Vista、7、8、8.1、10已经都支持读取和使用GPT分区表。而对于使用Windows 8、8.1、10的用户，换用GPT后开机启动速度也可以进一步得到显著提升。 </p>
-<h1 id="BIOS-MBR"><a href="#BIOS-MBR" class="headerlink" title="BIOS+MBR"></a>BIOS+MBR</h1><p>这种方式是目前最常见的装机方式，所有的系统都会支持，兼容较老硬件，目前新电脑大多出厂时就使用UEFI方式启动。</p>
-<h1 id="UEFI-GPT"><a href="#UEFI-GPT" class="headerlink" title="UEFI+GPT"></a>UEFI+GPT</h1><p>GPT与UEFI是相辅相成的，如果分区表系统是GPT，那么必须使用UEFI，传统的BIOS方式无法启动，这也就是为什么现在很多人在给新机器重装系统时无法启动的原因。  </p>
-<p>UEFI+GPT还有一个优点就是开机速度更快，原因是开机时跳过外设检测，并且可以实现启动时原生分辨率，搭载固态硬盘开机时间很短，十秒左右。  </p>
-<p>UEFI可用鼠标操作图形界面，不再是枯燥的蓝底白字的英文。由Intel提出，用于取代BIOS。UEFI的优越特性：可操作性、安全性、兼容性、可扩展性。  </p>
-<p>主板为了兼容MBR分区表，一般会提供Legacy BIOS和UEFI BIOS启动模式选项，可以把UEFI设置成Legacy模式（传统模式）、打开CSM兼容模块，让其支持传统MBR启动，此时效果同BIOS+MBR。如果要使用UEFI模式安装Windows，就必须开启UEFI启动模式。</p>
-<h1 id="系统支持性"><a href="#系统支持性" class="headerlink" title="系统支持性"></a>系统支持性</h1><p>目前64bit Windows Vista、7、8、8.1、10都已经支持GPT分区表，而Windows 8、8.1、10都已经原生支持UEFI，安装这些系统的时候：只要硬盘设置为GPT分区表，主板设置为UEFI启动后，就可以直接开始安装操作系统了。 而对于Windows Vista、7系统，就需要手动添加UEFI支持：我们可以找一份Windows 8或者10安装镜像，从安装文件中提取Bootmgfw.efi文件，重命名为BOOTX64.EFI，拷贝到win7安装文件的\EFI\Boot\下，如果没有BOOT文件夹新建一个即可。 </p>
-<h1 id="修改为传统方式启动"><a href="#修改为传统方式启动" class="headerlink" title="修改为传统方式启动"></a>修改为传统方式启动</h1><p>如果实在是搞不明白或者像之前的我一样不太懂的话，可以使用分区助手将GPT改为MBR，如图：<br><img src="https://i.loli.net/2018/09/13/5b9a589d17e85.jpg" alt="1.jpg"><br>选中磁盘，在左侧菜单中选择“转换到MBR磁盘”：<br><img src="https://i.loli.net/2018/09/13/5b9a589cddfb3.jpg" alt="2.jpg"><br>转换成功：<br><img src="https://i.loli.net/2018/09/13/5b9a589d066d8.jpg" alt="3.jpg"><br>转换完成进行分区后，不要忘了把装系统的分区转换成活动分区：<br><img src="https://i.loli.net/2018/09/13/5b9a589d099b4.jpg" alt="4.jpg"><br>最后还是建议大家花几分钟时间了解一下UEFI的方式，这必定是未来的一个趋势，并不推荐采用上图将GPT修改为MBR的方式重装系统。</p>
-]]></content>
-      <categories>
-        <category>打鱼晒网</category>
-      </categories>
-      <tags>
-        <tag>装机</tag>
-        <tag>硬件</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>简单识别Linux vps架构(xen,openvz,kvm)</title>
     <url>/2018/11/14/%E7%AE%80%E5%8D%95%E8%AF%86%E5%88%ABLinux-vps%E6%9E%B6%E6%9E%84-xen-openvz-kvm/</url>
     <content><![CDATA[<h1 id="安装virt-what"><a href="#安装virt-what" class="headerlink" title="安装virt-what"></a>安装virt-what</h1><blockquote>
@@ -3277,6 +3229,24 @@ $   跳转到行末
       <tags>
         <tag>VPS</tag>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自建ssr服务器</title>
+    <url>/2018/05/07/%E8%87%AA%E5%BB%BAssr%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="VPS购买"><a href="#VPS购买" class="headerlink" title="VPS购买"></a>VPS购买</h1><p><img src="https://i.loli.net/2018/05/07/5af051641868c.png" alt="vpsAO">昨天晚上看见了一个便宜的VPS没怎么想就买了，毕竟3.5刀一年，虽然平时对富强上网需求不是特别大，但是想借着这个便宜主机了解一下SSR的搭建使用，所以这点钱花的还是很值的我自己觉得。当然便宜也就意味着配置不会好了，96M内存，不过做SSR足够了。</p>
+<h1 id="SSR安装部署"><a href="#SSR安装部署" class="headerlink" title="SSR安装部署"></a>SSR安装部署</h1><p>在这之前就有过搭建SSR的想法，所以当时找了一个比较不错的教程，写的比较详细，毕竟搭建SSR还是比较傻瓜的，没什么难度，按照提示写参数就行，教程地址：<a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">点这里</a>。<br>唯一的一个遗憾就是我买的这个VPS不支持教程里说的谷歌BBR加速，而且不知道是不是因为这个原因，我做出来的这个SSR延迟还是比较高的。如图：<br><img src="https://i.loli.net/2018/05/07/5af0549490164.png" alt="网速测试.png"><br>当然，网速还是不太稳定的，下午测试的时候是1M左右，晚上就到6.9M了，不过这也都无所谓了。</p>
+<h1 id="SSR客户端"><a href="#SSR客户端" class="headerlink" title="SSR客户端"></a>SSR客户端</h1><p>最后附上Win和Android端的客户端  </p>
+<blockquote>
+<p>Windows：<a href="https://github.com/shadowsocksr-backup/shadowsocksr-csharp/releases" target="_blank" rel="noopener">下载地址</a><br>Android：<a href="https://github.com/shadowsocksr-backup/shadowsocksr-android/releases/download/3.4.0.8/shadowsocksr-release.apk" target="_blank" rel="noopener">下载地址</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>打鱼晒网</category>
+      </categories>
+      <tags>
+        <tag>VPS</tag>
+        <tag>SSR</tag>
       </tags>
   </entry>
   <entry>
@@ -3578,24 +3548,6 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime #修改时区
       </tags>
   </entry>
   <entry>
-    <title>自建ssr服务器</title>
-    <url>/2018/05/07/%E8%87%AA%E5%BB%BAssr%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="VPS购买"><a href="#VPS购买" class="headerlink" title="VPS购买"></a>VPS购买</h1><p><img src="https://i.loli.net/2018/05/07/5af051641868c.png" alt="vpsAO">昨天晚上看见了一个便宜的VPS没怎么想就买了，毕竟3.5刀一年，虽然平时对富强上网需求不是特别大，但是想借着这个便宜主机了解一下SSR的搭建使用，所以这点钱花的还是很值的我自己觉得。当然便宜也就意味着配置不会好了，96M内存，不过做SSR足够了。</p>
-<h1 id="SSR安装部署"><a href="#SSR安装部署" class="headerlink" title="SSR安装部署"></a>SSR安装部署</h1><p>在这之前就有过搭建SSR的想法，所以当时找了一个比较不错的教程，写的比较详细，毕竟搭建SSR还是比较傻瓜的，没什么难度，按照提示写参数就行，教程地址：<a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">点这里</a>。<br>唯一的一个遗憾就是我买的这个VPS不支持教程里说的谷歌BBR加速，而且不知道是不是因为这个原因，我做出来的这个SSR延迟还是比较高的。如图：<br><img src="https://i.loli.net/2018/05/07/5af0549490164.png" alt="网速测试.png"><br>当然，网速还是不太稳定的，下午测试的时候是1M左右，晚上就到6.9M了，不过这也都无所谓了。</p>
-<h1 id="SSR客户端"><a href="#SSR客户端" class="headerlink" title="SSR客户端"></a>SSR客户端</h1><p>最后附上Win和Android端的客户端  </p>
-<blockquote>
-<p>Windows：<a href="https://github.com/shadowsocksr-backup/shadowsocksr-csharp/releases" target="_blank" rel="noopener">下载地址</a><br>Android：<a href="https://github.com/shadowsocksr-backup/shadowsocksr-android/releases/download/3.4.0.8/shadowsocksr-release.apk" target="_blank" rel="noopener">下载地址</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>打鱼晒网</category>
-      </categories>
-      <tags>
-        <tag>VPS</tag>
-        <tag>SSR</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>虚拟化运维笔记——vsphere</title>
     <url>/2018/07/11/%E8%99%9A%E6%8B%9F%E5%8C%96%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94vsphere/</url>
     <content><![CDATA[<h1 id="设置虚拟机随主机自动启动"><a href="#设置虚拟机随主机自动启动" class="headerlink" title="设置虚拟机随主机自动启动"></a>设置虚拟机随主机自动启动</h1><h2 id="0、选择虚拟机所在主机"><a href="#0、选择虚拟机所在主机" class="headerlink" title="0、选择虚拟机所在主机"></a>0、选择虚拟机所在主机</h2><p>单击选择虚拟机所在的主机，在后侧选项卡中选择“配置”<br><img src="https://i.loli.net/2018/07/11/5b45e78a91f56.png" alt="snipaste_20180711_190241.png"></p>
@@ -3609,6 +3561,54 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime #修改时区
         <tag>虚拟化</tag>
         <tag>运维</tag>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>科学上网工具 - WireGuard</title>
+    <url>/2018/11/14/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%B7%A5%E5%85%B7-WireGuard/</url>
+    <content><![CDATA[<h1 id="WireGuard是什么？"><a href="#WireGuard是什么？" class="headerlink" title="WireGuard是什么？"></a>WireGuard是什么？</h1><p>WireGuard是一个构建快速、现代、安全的VPN的协议和工具套件，它具有以下优点：</p>
+<blockquote>
+</blockquote>
+<p>使用最先进的加密技术，防范攻击（RSA，SHA广被诟病都将被淘汰）<br>性能远超OpenVPN<br>效率极高，WireGuard协议作为Linux内核模块运行<br>通用用途，支持嵌入式和非嵌入式设备<br>跨平台，初期只在Linux平台发布，现已支持所有平台<br>易用，用过OpenVPN等工具集的人都明白这其中的痛苦<br>工作在3层（链路层），支持漫游，地址变更对用户无感知，使用更简单，切换更平滑<br>使用UDP传输数据，轻量、高效、节能、节省带宽（适用于 IOT 领域）<br>基于GPLv2Linux Kernel 基于 GPLv2）免费开源  </p>
+<p>Linus Torvalds对WireGuard的评价：</p>
+<blockquote>
+<p>Can I just once again state my love for it and hope it gets merged soon? Maybe the code isn’t perfect, but I’ve skimmed it, and compared to the horrors that are OpenVPN and IPSec, it’s a work of art.</p>
+</blockquote>
+<h1 id="脚本安装"><a href="#脚本安装" class="headerlink" title="脚本安装"></a>脚本安装</h1><h2 id="脚本要求"><a href="#脚本要求" class="headerlink" title="脚本要求"></a>脚本要求</h2><blockquote>
+<p>仅适用于centos7<br>vps架构必须为KVM<br>centos7的内核大部分为3.10，不能正确安装，必须升级（已经集成在脚本中）</p>
+</blockquote>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>1、下载并执行脚本：</p>
+<blockquote>
+</blockquote>
+<pre><code>wget https://raw.githubusercontent.com/yobabyshark/wireguard/master/wireguard_install.sh &amp;&amp; chmod +x wireguard_install.sh &amp;&amp; ./wireguard_install.sh
+</code></pre><p><img src="https://i.loli.net/2018/11/14/5bec1723904fd.png" alt="01.png"></p>
+<p>2、输入“1”升级内核，按照提示重启。  </p>
+<p>3、重启完成后，再次执行脚本：</p>
+<blockquote>
+</blockquote>
+<pre><code>./wireguard_install.sh
+</code></pre><p>4、输入“2”安装WireGuard。  </p>
+<p>5、使用ftp工具连接vps，将<strong>/etc/wireguard</strong>目录下的client.conf下载到本地。</p>
+<p>6、下载安装TunSafe，这是一个windows端的第三方客户端，因为官方windows版本的还没开发完成，先用这个软件代替，TunSafe已经开源，可以放心使用。<br>官网下载：<a href="https://tunsafe.com/download" target="_blank" rel="noopener">TunSafe</a></p>
+<p>7、打开TunSafe，单击file，选择import file，将下载的client.conf导入到软件中。  </p>
+<p>8、导入后会自动进行连接，进入全局代理模式，也就是所有流量都会被代理。</p>
+<h1 id="其它平台客户端"><a href="#其它平台客户端" class="headerlink" title="其它平台客户端"></a>其它平台客户端</h1><h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>1、下载WireGuard安卓客户端：  </p>
+<blockquote>
+<p>Android客户端：<a href="https://f-droid.org/repo/com.wireguard.android_439.apk" target="_blank" rel="noopener">点此下载</a></p>
+</blockquote>
+<p>2、打开app，点击加号导入client.conf文件。</p>
+<blockquote>
+<p>这里可能会提示错误，原因是没有文件操作权限，去权限管理里给软件勾上存储权限即可。</p>
+</blockquote>
+<h1 id="速度测试"><a href="#速度测试" class="headerlink" title="速度测试"></a>速度测试</h1><p>Youtube视频地址：<a href="https://youtu.be/A1tdPsdBATw" target="_blank" rel="noopener">点击观看</a></p>
+]]></content>
+      <categories>
+        <category>VPS</category>
+      </categories>
+      <tags>
+        <tag>科学上网</tag>
+        <tag>VPS</tag>
+        <tag>WireGuard</tag>
       </tags>
   </entry>
   <entry>
