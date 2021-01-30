@@ -89,18 +89,38 @@
 
 
 
-<meta name="description" content="环境准备本文使用的系统及软件版本为：    Redhat 7.7   Oracle 19C    操作系统及Oracle数据库下载地址为：    Redhat ISO Oracle   如使用Redhat安装需先修改系统自带的yum源，详细步骤可参考之前的文章《RHEL使用CentOS的yum源》;如无特别需要可直接使用CentOS进行安装；  安装过程修改完yum源后， 参考链接https://">
+<meta name="description" content="环境准备本文使用的系统及软件版本为：    Redhat 7.7   Oracle 19C   Xmanager 5  操作系统及Oracle数据库下载地址为：    Redhat ISO Oracle   如使用Redhat安装需先修改系统自带的yum源，详细步骤可参考之前的文章《RHEL使用CentOS的yum源》;如无特别需要可直接使用CentOS进行安装；  安装过程准备工作修改完yum源">
 <meta name="keywords" content="Linux,Oracle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="红帽系Linux安装Oracle 19C数据库">
 <meta property="og:url" content="https://cyneliu.github.io/2021/01/19/红帽系Linux安装Oracle-19C数据库/index.html">
 <meta property="og:site_name" content="Cyne&#39;s Blog">
-<meta property="og:description" content="环境准备本文使用的系统及软件版本为：    Redhat 7.7   Oracle 19C    操作系统及Oracle数据库下载地址为：    Redhat ISO Oracle   如使用Redhat安装需先修改系统自带的yum源，详细步骤可参考之前的文章《RHEL使用CentOS的yum源》;如无特别需要可直接使用CentOS进行安装；  安装过程修改完yum源后， 参考链接https://">
+<meta property="og:description" content="环境准备本文使用的系统及软件版本为：    Redhat 7.7   Oracle 19C   Xmanager 5  操作系统及Oracle数据库下载地址为：    Redhat ISO Oracle   如使用Redhat安装需先修改系统自带的yum源，详细步骤可参考之前的文章《RHEL使用CentOS的yum源》;如无特别需要可直接使用CentOS进行安装；  安装过程准备工作修改完yum源">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-20T10:57:08.219Z">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/C1QfZHcdejl6F9q.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/zXyvYBW6E7MARg2.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/YX7AFrcaWB4Nzwx.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/5c9buj2XNfrvS4F.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/JjBRX8WZFd9rhlO.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/w1IJPOmlFc7s6LE.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/l5rqzojEg78sC9U.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/Fj3kabYUQeM64IW.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/3UmRWdcKy5SDO27.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/nSGaK57N3rWDZPX.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/Wfot7OVyQlbguCA.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/zkFLngASvcNTPdE.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/J9DxPvHZiRFoApX.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/j3SPO7IRiFh4JwV.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/jqogtc6lrkizwmR.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/YIo6RSsey3pJ89a.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/52MjFDrCov7wOkp.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/L8bkspSQFf6HhZP.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/30/X2JZguprHMUx36j.png">
+<meta property="og:updated_time" content="2021-01-30T08:40:14.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="红帽系Linux安装Oracle 19C数据库">
-<meta name="twitter:description" content="环境准备本文使用的系统及软件版本为：    Redhat 7.7   Oracle 19C    操作系统及Oracle数据库下载地址为：    Redhat ISO Oracle   如使用Redhat安装需先修改系统自带的yum源，详细步骤可参考之前的文章《RHEL使用CentOS的yum源》;如无特别需要可直接使用CentOS进行安装；  安装过程修改完yum源后， 参考链接https://">
+<meta name="twitter:description" content="环境准备本文使用的系统及软件版本为：    Redhat 7.7   Oracle 19C   Xmanager 5  操作系统及Oracle数据库下载地址为：    Redhat ISO Oracle   如使用Redhat安装需先修改系统自带的yum源，详细步骤可参考之前的文章《RHEL使用CentOS的yum源》;如无特别需要可直接使用CentOS进行安装；  安装过程准备工作修改完yum源">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/30/C1QfZHcdejl6F9q.png">
 
 
 
@@ -401,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  122
+                  721
                 </span>
               
 
@@ -417,7 +437,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -442,6 +462,7 @@
 <ul>
 <li>Redhat 7.7  </li>
 <li>Oracle 19C  </li>
+<li>Xmanager 5</li>
 </ul>
 <p>操作系统及Oracle数据库下载地址为：  </p>
 <ul>
@@ -451,7 +472,127 @@
 <blockquote>
 <p>如使用Redhat安装需先修改系统自带的yum源，详细步骤可参考之前的文章<a href="https://cyneliu.github.io/2021/01/15/RHEL%E4%BD%BF%E7%94%A8CentOS%E7%9A%84yum%E6%BA%90/">《RHEL使用CentOS的yum源》</a>;如无特别需要可直接使用CentOS进行安装；</p>
 </blockquote>
-<h1 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h1><p>修改完yum源后，</p>
+<h1 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>修改完yum源后，首先创建组和用户</p>
+<blockquote>
+</blockquote>
+<pre><code>/usr/sbin/groupadd -g 54321 oinstall  
+/usr/sbin/groupadd -g 54322 dba
+/usr/sbin/groupadd -g 54323 oper
+/usr/sbin/useradd -u 54321 -g oinstall -G dba,oper oracle
+</code></pre><p>然后修改oracle用户的密码</p>
+<blockquote>
+</blockquote>
+<pre><code>passwd oracle
+</code></pre><p>关闭防火墙</p>
+<blockquote>
+</blockquote>
+<pre><code>systemctl stop firewalld.service
+systemctl disable firewalld.service
+setenforce 0
+vi /etc/selinux/config
+</code></pre><p>关闭SELinux</p>
+<blockquote>
+</blockquote>
+<pre><code>setenforce 0
+vi /etc/selinux/config
+</code></pre><p><img src="https://i.loli.net/2021/01/30/C1QfZHcdejl6F9q.png" alt="01.png"></p>
+<p>创建工作的目录，赋予相应权限</p>
+<blockquote>
+</blockquote>
+<pre><code>mkdir -p /u01/app/oracle/product/19.2.0/db_1
+chown -R oracle:oinstall /u01/
+chmod -R 775 /u01/
+</code></pre><p>切换至oracle用户</p>
+<blockquote>
+</blockquote>
+<pre><code>su - oracle
+</code></pre><p>配置oracle的环境变量</p>
+<blockquote>
+</blockquote>
+<pre><code>vi .bash_profile
+
+ORACLE_SID=sanshi;export ORACLE_SID
+ORACLE_UNQNAME=sanshi;export ORACLE_UNQNAME
+ORACLE_BASE=/u01/app/oracle; export ORACLE_BASE
+ORACLE_HOME=$ORACLE_BASE/product/19.2.0/db_1; export ORACLE_HOME
+NLS_DATE_FORMAT=&quot;YYYY:MM:DDHH24:MI:SS&quot;; export NLS_DATE_FORMAT
+NLS_LANG=american_america.ZHS16GBK; export NLS_LANG
+TNS_ADMIN=$ORACLE_HOME/network/admin; export TNS_ADMIN
+ORA_NLS11=$ORACLE_HOME/nls/data; export ORA_NLS11
+PATH=.:${JAVA_HOME}/bin:${PATH}:$HOME/bin:$ORACLE_HOME/bin:$ORA_CRS_HOME/bin
+PATH=${PATH}:/usr/bin:/bin:/usr/bin/X11:/usr/local/bin
+export PATH
+LD_LIBRARY_PATH=$ORACLE_HOME/lib
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$ORACLE_HOME/oracm/lib
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/lib:/usr/lib:/usr/local/lib
+export LD_LIBRARY_PATH
+CLASSPATH=$ORACLE_HOME/JRE
+CLASSPATH=${CLASSPATH}:$ORACLE_HOME/jlib
+CLASSPATH=${CLASSPATH}:$ORACLE_HOME/rdbms/jlib
+CLASSPATH=${CLASSPATH}:$ORACLE_HOME/network/jlib
+export CLASSPATH
+THREADS_FLAG=native; export THREADS_FLAG
+export TEMP=/tmp
+export TMPDIR=/tmp
+umask 022
+</code></pre><p>退出，切换至root用户，修改内核参数</p>
+<blockquote>
+</blockquote>
+<pre><code>vi /etc/sysctl.conf
+
+fs.file-max = 6815744
+kernel.sem = 250 32000 100 128
+kernel.shmmni = 4096
+kernel.shmall = 1073741824
+kernel.shmmax = 4398046511104
+kernel.panic_on_oops = 1
+net.core.rmem_default = 262144
+net.core.rmem_max = 4194304
+net.core.wmem_default = 262144
+net.core.wmem_max = 1048576
+fs.aio-max-nr = 1048576
+net.ipv4.ip_local_port_range = 9000 65500
+</code></pre><p>加载所有配置文件</p>
+<blockquote>
+</blockquote>
+<pre><code>sysctl --system
+</code></pre><p>安装所需软件包</p>
+<blockquote>
+</blockquote>
+<pre><code>yum -y install bc gcc gcc-c++ binutils compat-libcap1 compat-libstdc++ dtrace-modules dtrace-modules-headers dtrace-modules-provider-headers dtrace-utils elfutils-libelf elfutils-libelf-devel fontconfig-devel glibc glibc-devel ksh libaio libaio-devel libdtrace-ctf-devel libX11 libXau libXi libXtst libXrender libXrender-devel libgcc librdmacm-devel libstdc++ libstdc++-devel libxcb make smartmontools sysstat
+</code></pre><p>将本地的Oracle安装包上传<br><img src="https://i.loli.net/2021/01/30/zXyvYBW6E7MARg2.png" alt="02.png"></p>
+<p>解压压缩包文件</p>
+<blockquote>
+</blockquote>
+<pre><code>yum -y install unzip
+mv LINUX.X64_193000_db_home.zip /home/oracle/
+su - oracle
+unzip LINUX.X64_193000_db_home.zip -d /u01/app/oracle/product/19.2.0/db_1/
+</code></pre><p>退出切换至root用户，验证x11图形化展示<br>首先双击打开Xmanager - Passive<br><img src="https://i.loli.net/2021/01/30/YX7AFrcaWB4Nzwx.png" alt="03.png"></p>
+<blockquote>
+</blockquote>
+<pre><code>yum install xorg-x11-apps
+export DISPLAY=192.168.66.88:0.0 #IP为自己Windows的IP地址
+xclock
+</code></pre><p><img src="https://i.loli.net/2021/01/30/5c9buj2XNfrvS4F.png" alt="04.png"><br>正常弹出时钟表示配置成功    </p>
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><p>切换至oracle用户</p>
+<blockquote>
+</blockquote>
+<pre><code>su - oracle
+cd /u01/app/oracle/product/19.2.0/db_1/
+export DISPLAY=192.168.66.88:0.0 #IP为自己Windows与服务器连接的IP地址
+LANG=en_US ./runInstaller
+</code></pre><p>下面开始安装Oracle数据库(鼠标无法点击可使用键盘操作)：<br><img src="https://i.loli.net/2021/01/30/JjBRX8WZFd9rhlO.png" alt="install_01.png"><br><img src="https://i.loli.net/2021/01/30/w1IJPOmlFc7s6LE.png" alt="install_02.png"><br><img src="https://i.loli.net/2021/01/30/l5rqzojEg78sC9U.png" alt="install_03.png"><br><img src="https://i.loli.net/2021/01/30/Fj3kabYUQeM64IW.png" alt="install_04.png"><br><img src="https://i.loli.net/2021/01/30/3UmRWdcKy5SDO27.png" alt="install_05.png"><br><img src="https://i.loli.net/2021/01/30/nSGaK57N3rWDZPX.png" alt="install_06.png"><br><img src="https://i.loli.net/2021/01/30/Wfot7OVyQlbguCA.png" alt="install_07.png"><br><img src="https://i.loli.net/2021/01/30/zkFLngASvcNTPdE.png" alt="install_08.png"><br><img src="https://i.loli.net/2021/01/30/J9DxPvHZiRFoApX.png" alt="install_09.png"><br><img src="https://i.loli.net/2021/01/30/j3SPO7IRiFh4JwV.png" alt="install_10.png"><br><img src="https://i.loli.net/2021/01/30/jqogtc6lrkizwmR.png" alt="install_11.png"><br><img src="https://i.loli.net/2021/01/30/YIo6RSsey3pJ89a.png" alt="install_12.png"><br><img src="https://i.loli.net/2021/01/30/52MjFDrCov7wOkp.png" alt="install_13.png"></p>
+<p>出现以上提示时，按提示操作即可<br>root用户登录</p>
+<blockquote>
+</blockquote>
+<pre><code>cd /u01/app/oraInventory
+bash orainstRoot.sh
+cd /u01/app/oracle/product/19.2.0/db_1/
+bash root.sh
+</code></pre><p><img src="https://i.loli.net/2021/01/30/L8bkspSQFf6HhZP.png" alt="install_14.png"></p>
+<p><img src="https://i.loli.net/2021/01/30/X2JZguprHMUx36j.png" alt="install_15.png"></p>
+<p>## </p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.cnblogs.com/xuzhaoyang/p/11264557.html" target="_blank" rel="noopener">https://www.cnblogs.com/xuzhaoyang/p/11264557.html</a><br><a href="http://blog.itpub.net/35489/viewspace-733880/" target="_blank" rel="noopener">http://blog.itpub.net/35489/viewspace-733880/</a><br><a href="https://blog.51cto.com/3241766/2165798" target="_blank" rel="noopener">https://blog.51cto.com/3241766/2165798</a>  </p>
 
       
@@ -676,7 +817,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装过程"><span class="nav-number">2.</span> <span class="nav-text">安装过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装过程"><span class="nav-number">2.</span> <span class="nav-text">安装过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始安装"><span class="nav-number">2.2.</span> <span class="nav-text">开始安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -728,7 +869,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共55.7k字</span>
+  <span class="post-count">博客全站共56.3k字</span>
 </div>
 
         
