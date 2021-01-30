@@ -134,6 +134,9 @@
 
 
 
+
+<script data-ad-client="ca-pub-8673604776782298" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <title>标签: linux | Cyne's Blog</title>
   
 
@@ -402,7 +405,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -502,7 +505,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共55.6k字</span>
+  <span class="post-count">博客全站共55.7k字</span>
 </div>
 
         
@@ -1076,7 +1079,25 @@
   <script type="text/javascript" src="/js/src/love.js"></script>
 </body>
 </html>
-   $('.search-icon').click(inputEventFunction);
+t !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
             input.addEventListener('keypress', function (event) {
               if (event.keyCode === 13) {
                 inputEventFunction();

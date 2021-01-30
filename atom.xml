@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2021-01-18T12:22:16.014Z</updated>
+  <updated>2021-01-20T10:57:08.219Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -17,16 +17,32 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>test</title>
-    <link href="https://cyneliu.github.io/2021/01/18/test/"/>
-    <id>https://cyneliu.github.io/2021/01/18/test/</id>
-    <published>2021-01-18T12:22:15.000Z</published>
-    <updated>2021-01-18T12:22:16.014Z</updated>
+    <title>红帽系Linux安装Oracle 19C数据库</title>
+    <link href="https://cyneliu.github.io/2021/01/19/%E7%BA%A2%E5%B8%BD%E7%B3%BBLinux%E5%AE%89%E8%A3%85Oracle-19C%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>https://cyneliu.github.io/2021/01/19/红帽系Linux安装Oracle-19C数据库/</id>
+    <published>2021-01-19T01:34:35.000Z</published>
+    <updated>2021-01-20T10:57:08.219Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>本文使用的系统及软件版本为：  </p><ul><li>Redhat 7.7  </li><li>Oracle 19C  </li></ul><p>操作系统及Oracle数据库下载地址为：  </p><ul><li><a href="https://www.kclouder.cn/download/" target="_blank" rel="noopener">Redhat ISO</a></li><li><a href="https://www.oracle.com/database/technologies/oracle-database-software-downloads.html" target="_blank" rel="noopener">Oracle</a></li></ul><blockquote><p>如使用Redhat安装需先修改系统自带的yum源，详细步骤可参考之前的文章<a href="https://cyneliu.github.io/2021/01/15/RHEL%E4%BD%BF%E7%94%A8CentOS%E7%9A%84yum%E6%BA%90/">《RHEL使用CentOS的yum源》</a>;如无特别需要可直接使用CentOS进行安装；</p></blockquote><h1 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h1><p>修改完yum源后，</p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.cnblogs.com/xuzhaoyang/p/11264557.html" target="_blank" rel="noopener">https://www.cnblogs.com/xuzhaoyang/p/11264557.html</a><br><a href="http://blog.itpub.net/35489/viewspace-733880/" target="_blank" rel="noopener">http://blog.itpub.net/35489/viewspace-733880/</a><br><a href="https://blog.51cto.com/3241766/2165798" target="_blank" rel="noopener">https://blog.51cto.com/3241766/2165798</a>  </p>]]></content>
     
     <summary type="html">
     
+      
+      
+        &lt;h1 id=&quot;环境准备&quot;&gt;&lt;a href=&quot;#环境准备&quot; class=&quot;headerlink&quot; title=&quot;环境准备&quot;&gt;&lt;/a&gt;环境准备&lt;/h1&gt;&lt;p&gt;本文使用的系统及软件版本为：  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Redhat 7.7  &lt;/li&gt;
+&lt;li&gt;Oracle 19C
+      
+    
     </summary>
     
+      <category term="软件工具" scheme="https://cyneliu.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
+    
+      <category term="Oracle" scheme="https://cyneliu.github.io/tags/Oracle/"/>
     
   </entry>
   
@@ -360,9 +376,9 @@
       <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
-      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
-    
       <category term="服务器" scheme="https://cyneliu.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
     
       <category term="IMM" scheme="https://cyneliu.github.io/tags/IMM/"/>
     
@@ -467,9 +483,9 @@
       <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
-      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
-    
       <category term="服务器" scheme="https://cyneliu.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
     
   </entry>
   
