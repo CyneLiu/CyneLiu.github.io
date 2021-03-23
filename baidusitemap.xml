@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://cyneliu.github.io/2021/03/22/OpenvSwitch%E7%9A%84%E4%B8%A4%E7%A7%8Dfail-mode/</loc>
+    <lastmod>2021-03-22</lastmod>
+  </url>
+  <url>
     <loc>https://cyneliu.github.io/2021/01/19/%E7%BA%A2%E5%B8%BD%E7%B3%BBLinux%E5%AE%89%E8%A3%85Oracle-19C%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2021-01-30</lastmod>
   </url>
