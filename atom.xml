@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2021-03-22T12:18:52.334Z</updated>
+  <updated>2021-10-18T10:36:41.945Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows11安装绕过TPM检测</title>
+    <link href="https://cyneliu.github.io/2021/10/18/Windows11%E5%AE%89%E8%A3%85%E7%BB%95%E8%BF%87TPM%E6%A3%80%E6%B5%8B/"/>
+    <id>https://cyneliu.github.io/2021/10/18/Windows11安装绕过TPM检测/</id>
+    <published>2021-10-18T01:43:03.000Z</published>
+    <updated>2021-10-18T10:36:41.945Z</updated>
+    
+    <content type="html"><![CDATA[<p>Windows11已经发布了一段时间了，今天有时间刚好想装台虚拟机体验一下，下载镜像，挂载安装，一通操作发现安装不了。</p><p><img src="https://i.loli.net/2021/10/18/fJMUxhjERo39Vdk.png" alt="02.png"></p><p>看了一下微软官网的系统要求说明，win11增加了TPM2.0的检测。</p><p><img src="https://i.loli.net/2021/10/18/oNW7fOZjxFbdrCw.png" alt="01.png"></p><p>上网搜了一下国外大神已开发出相关工具，使用很简单，这里简单做下记录。</p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p><a href="https://next.itellyou.cn/Original/Index?id=7ab5f0cb-7607-4bbe-9e88-50716dc43de6#cbp=Product?ID=42e87ac8-9cd6-eb11-bdf8-e0d4e850c9c6" target="_blank" rel="noopener">官方Windows11镜像</a><br><a href="https://pan.baidu.com/s/1Jk2Ozxh5r8GMUP6JsbmOSw" target="_blank" rel="noopener">Win_11_Boot_And_Upgrade_FiX_KiT_v2.0(提取码：6z25)</a>  </p><h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>下载以上所需文件，如链接失效可按文件名网上搜索。<br>解压Win_11_Boot_And_Upgrade_FiX_KiT_v2.0.zip压缩包文件，将win11原始镜像拷贝到Win_11_Boot_And_Upgrade_FiX_KiT_v2.0\Source_ISO\W11目录下：<br><img src="https://i.loli.net/2021/10/18/cA1Z8fOJj5Up3Hh.png" alt="03.png"><br>然后回到解压路径，右键以<strong>管理员身份运行</strong>Win_11_Boot_And_Upgrade_FiX_KiT_v2.0.cmd(或另外一个汉化之后的程序也可)，输入2后回车，修改镜像以取消一系列系统环境校验：<br><img src="https://i.loli.net/2021/10/18/TXCu9pZeAF8lND6.png" alt="05.png"><br>待修改完成后会在当前目录生成新的镜像文件：<br><img src="https://i.loli.net/2021/10/18/n38j5Z1BEcRIWu7.png" alt="04.png"><br>使用新生成的镜像文件安装系统即可，亲测在ESXi6.0及物理PC均可正常安装。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Windows11已经发布了一段时间了，今天有时间刚好想装台虚拟机体验一下，下载镜像，挂载安装，一通操作发现安装不了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2021/10/18/fJMUxhjERo39Vdk.png&quot; alt=&quot;02.p
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="Windows" scheme="https://cyneliu.github.io/tags/Windows/"/>
+    
+      <category term="iso" scheme="https://cyneliu.github.io/tags/iso/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenvSwitch的两种fail mode</title>
@@ -544,34 +572,6 @@
     
     
       <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nova的16种操作</title>
-    <link href="https://cyneliu.github.io/2019/04/03/Nova%E7%9A%8416%E7%A7%8D%E6%93%8D%E4%BD%9C/"/>
-    <id>https://cyneliu.github.io/2019/04/03/Nova的16种操作/</id>
-    <published>2019-04-03T13:03:57.000Z</published>
-    <updated>2019-04-03T13:17:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160607-1465256704490062241.png" alt="00.png"></p><h1 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h1><h2 id="Resize"><a href="#Resize" class="headerlink" title="Resize"></a>Resize</h2><p>通过更改flavor调整分配给instance的资源。</p><h2 id="Lock-UnLock"><a href="#Lock-UnLock" class="headerlink" title="Lock/UnLock"></a>Lock/UnLock</h2><p>防止对instance的误操作。</p><h2 id="Pause-Suspend-Resume"><a href="#Pause-Suspend-Resume" class="headerlink" title="Pause/Suspend/Resume"></a>Pause/Suspend/Resume</h2><p>暂停当前的instance，并在以后恢复。<br>Pause 和 Suspend 的区别在于 Pause 将 instance 的运行状态保存在计算节点的内存中，而 Suspend 保存在磁盘上。</p><h2 id="Snapshot"><a href="#Snapshot" class="headerlink" title="Snapshot"></a>Snapshot</h2><p>备份 instance 到 Glance。产生的 image 可用于故障恢复，或者以此为模板部署新的 instance。</p><h1 id="故障处理"><a href="#故障处理" class="headerlink" title="故障处理"></a>故障处理</h1><h2 id="计划内"><a href="#计划内" class="headerlink" title="计划内"></a>计划内</h2><h3 id="Migrate"><a href="#Migrate" class="headerlink" title="Migrate"></a>Migrate</h3><p>将 instance 迁移到其他计算节点。<br>迁移之前，instance 会被 Shut Off，支持共享存储和非共享存储。</p><h3 id="Live-Migrate"><a href="#Live-Migrate" class="headerlink" title="Live Migrate"></a>Live Migrate</h3><p>与 Migrate 不同，Live Migrate 能不停机在线地迁移 instance，保证了业务的连续性。也支持共享存储和非共享存储（Block Migration）</p><h3 id="Shelve-Unshelve"><a href="#Shelve-Unshelve" class="headerlink" title="Shelve/Unshelve"></a>Shelve/Unshelve</h3><p>Shelve 将 instance 保存到 Glance 上，之后可通过 Unshelve 重新部署。<br>Shelve 操作成功后，instance 会从原来的计算节点上删除。<br>Unshelve 会重新选择节点部署，可能不是原节点。</p><h2 id="计划外"><a href="#计划外" class="headerlink" title="计划外"></a>计划外</h2><h3 id="Rescue-Unrescue"><a href="#Rescue-Unrescue" class="headerlink" title="Rescue/Unrescue"></a>Rescue/Unrescue</h3><p>用指定的启动盘启动，进入 Rescue 模式，修复受损的系统盘。成功修复后，通过 Unrescue 正常启动 instance。</p><h3 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a>Rebuild</h3><p>如果 Rescue 无法修复，则只能通过 Rebuild 从已有的备份恢复。 Instance 的备份是通过 snapshot 创建的，所以需要有备份策略定期备份。</p><h3 id="Evacuate"><a href="#Evacuate" class="headerlink" title="Evacuate"></a>Evacuate</h3><p>利用共享存储上 Instance 的镜像文件在其他计算节点上重建 Instance。<br>所以提前规划共享存储是关键。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;http://7xo6kd.com1.z0.glb.clouddn.com/upload-ueditor-image-20160607-1465256704490062241.png&quot; alt=&quot;00.png&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;常规操作&quot;&gt;&lt;a
-      
-    
-    </summary>
-    
-      <category term="OpenStack" scheme="https://cyneliu.github.io/categories/OpenStack/"/>
-    
-    
-      <category term="OpenStack" scheme="https://cyneliu.github.io/tags/OpenStack/"/>
-    
-      <category term="Nova" scheme="https://cyneliu.github.io/tags/Nova/"/>
     
   </entry>
   
