@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cyneliu.github.io/"/>
-  <updated>2021-10-18T10:36:41.945Z</updated>
+  <updated>2022-05-09T17:11:36.445Z</updated>
   <id>https://cyneliu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux系统如何在网卡上配置VLAN</title>
+    <link href="https://cyneliu.github.io/2022/05/09/Linux%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%9C%A8%E7%BD%91%E5%8D%A1%E4%B8%8A%E9%85%8D%E7%BD%AEVLAN/"/>
+    <id>https://cyneliu.github.io/2022/05/09/Linux系统如何在网卡上配置VLAN/</id>
+    <published>2022-05-09T11:45:41.000Z</published>
+    <updated>2022-05-09T17:11:36.445Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近北京疫情又又又严重了，疫情原因只能远程到客户环境部署软件，服务器对端管理交换机当时调试时配置成了trunk模式放行vlan 1345，现在无法远程配置交换机，只能是在服务器上封装vlan tag，配置比较简单，简单记录分享下。</p><h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p><strong>系统：</strong>Centos7.5<br><strong>网卡：</strong>Intel Corporation I350 Gigabit Network Connection</p><h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>进入network-scripts路径下，copy一份物理网卡文件并重命名为“网卡名.VLAN”。<br>如我这里物理网卡名为ens6f0，VLAN为1345，物理网卡配置文件为ifcfg-ens6f0，复制得到的配置文件名便为ifcfg-ens6f0.1345；</p><p><img src="https://s2.loli.net/2022/05/10/SpRhn3OcdZGvKIr.png" alt="01.png"></p><p>然后编辑子接口配置文件，配置IP、掩码信息，我这里是配置的静态IP，然后NAME和DEVICE修改为子接口名，并添加VLAN=yes。</p><blockquote></blockquote><p>注意这里网关无需配置，后面我们写在network文件中即可；</p><p><img src="https://s2.loli.net/2022/05/10/qMLOZPm5GvVRswb.png" alt="02.png"></p><p>编辑network文件，添加网关地址；</p><p><img src="https://s2.loli.net/2022/05/10/RXT1qwzIDmQgEdO.png" alt="05.png"></p><p>配置修改完后保存，然后重启网络即可。</p><h1 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h1><p>最后我们抓包验证下，这里我用服务器长ping网关：</p><p><img src="https://s2.loli.net/2022/05/10/Sm4wzgn2D9MlXNf.png" alt="03.png"></p><p>然后在物理网卡抓包，可以看到经过网卡的流量都打上了VLAN 1345的tag。</p><p><img src="https://s2.loli.net/2022/05/10/DveHdWuQVBYr7qC.png" alt="04.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近北京疫情又又又严重了，疫情原因只能远程到客户环境部署软件，服务器对端管理交换机当时调试时配置成了trunk模式放行vlan 1345，现在无法远程配置交换机，只能是在服务器上封装vlan tag，配置比较简单，简单记录分享下。&lt;/p&gt;
+&lt;h1 id=&quot;环境&quot;&gt;&lt;a hr
+      
+    
+    </summary>
+    
+      <category term="打鱼晒网" scheme="https://cyneliu.github.io/categories/%E6%89%93%E9%B1%BC%E6%99%92%E7%BD%91/"/>
+    
+    
+      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
+    
+      <category term="VLAN" scheme="https://cyneliu.github.io/tags/VLAN/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows11安装绕过TPM检测</title>
@@ -434,9 +462,9 @@
       <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
-      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
-    
       <category term="服务器" scheme="https://cyneliu.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
     
       <category term="IMM" scheme="https://cyneliu.github.io/tags/IMM/"/>
     
@@ -541,37 +569,9 @@
       <category term="服务器" scheme="https://cyneliu.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
-      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
-    
       <category term="服务器" scheme="https://cyneliu.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Linux中的几个查找命令</title>
-    <link href="https://cyneliu.github.io/2019/04/04/Linux%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/"/>
-    <id>https://cyneliu.github.io/2019/04/04/Linux中的几个查找命令/</id>
-    <published>2019-04-04T01:07:27.000Z</published>
-    <updated>2019-04-04T02:08:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><p>可以查找任何类型的文件。<br>语法格式：</p><blockquote></blockquote><pre><code>find path -option [-print] [-exec -ok command] {} \;</code></pre><p>path:搜索的目录及其子目录，缺省为当前目录<br>-name:按文件名称查找<br>-user:按文件的属主查找<br>-group:按文件的属组查找<br>-perm:按文件权限查找<br>-prune:不在当前指定目录查找(除了此目录外进行查找)</p><h1 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h1><p>locate命令与“find -name”的作用类似，但原理完全不同。<br>它比find快得多，因为它不搜索具体目录，而是在一个数据库(/var/lib/locatedb)中搜索指定的文件。此数据库含有本地文件的所有信息，这个数据库是linux系统自动创建的，数据库由updatedb程序来更新，updatedb是由cron daemon周期性建立的，默认情况下为每天更新一次，所以用locate命令你搜索不到最新更新的文件，除非你在用locate命令查找文件之前手动的用updatedb命令更新数据库。<br>也就是说在没有手动更新的前提下，如果删除掉之前存在文件，locate依然可以搜索到它。</p><h1 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h1><p>只能查找二进制文件(-b)，源代码文件(-s)和说明文件(-m)。<br>如果省略参数则返回所有的信息。</p><h1 id="which"><a href="#which" class="headerlink" title="which"></a>which</h1><p>在PATH变量指定的路径中搜索指定的系统命令的位置。</p><blockquote></blockquote><pre><code>which find/bin/find</code></pre><h1 id="type"><a href="#type" class="headerlink" title="type"></a>type</h1><p>type命令主要用于区分一个命令到底是shell自带的还是外部独立的二进制文件提供的。如果是shell自带的则会提示此命令为shell buildin,否则会列出命令的位置。</p><blockquote></blockquote><pre><code>type cdcd is a shell builtintype sshssh is /usr/bin/ssh</code></pre><p>原文链接：<a href="https://www.cnblogs.com/ginvip/p/6357352.html" target="_blank" rel="noopener">https://www.cnblogs.com/ginvip/p/6357352.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;find&quot;&gt;&lt;a href=&quot;#find&quot; class=&quot;headerlink&quot; title=&quot;find&quot;&gt;&lt;/a&gt;find&lt;/h1&gt;&lt;p&gt;可以查找任何类型的文件。&lt;br&gt;语法格式：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;cod
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="https://cyneliu.github.io/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="https://cyneliu.github.io/tags/Linux/"/>
+      <category term="IBM" scheme="https://cyneliu.github.io/tags/IBM/"/>
     
   </entry>
   

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://cyneliu.github.io/2022/05/09/Linux%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%9C%A8%E7%BD%91%E5%8D%A1%E4%B8%8A%E9%85%8D%E7%BD%AEVLAN/</loc>
+    <lastmod>2022-05-09</lastmod>
+  </url>
+  <url>
+    <loc>https://cyneliu.github.io/2018/03/03/hexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2022-05-09</lastmod>
+  </url>
+  <url>
     <loc>https://cyneliu.github.io/2021/10/18/Windows11%E5%AE%89%E8%A3%85%E7%BB%95%E8%BF%87TPM%E6%A3%80%E6%B5%8B/</loc>
     <lastmod>2021-10-18</lastmod>
   </url>
@@ -10,10 +18,6 @@
   </url>
   <url>
     <loc>https://cyneliu.github.io/2021/01/19/%E7%BA%A2%E5%B8%BD%E7%B3%BBLinux%E5%AE%89%E8%A3%85Oracle-19C%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2021-01-30</lastmod>
-  </url>
-  <url>
-    <loc>https://cyneliu.github.io/2018/03/03/hexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2021-01-30</lastmod>
   </url>
   <url>
