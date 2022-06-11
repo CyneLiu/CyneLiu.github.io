@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/05/10/RXT1qwzIDmQgEdO.png">
 <meta property="og:image" content="https://s2.loli.net/2022/05/10/Sm4wzgn2D9MlXNf.png">
 <meta property="og:image" content="https://s2.loli.net/2022/05/10/DveHdWuQVBYr7qC.png">
-<meta property="og:updated_time" content="2022-05-09T17:11:36.445Z">
+<meta property="og:updated_time" content="2022-06-11T14:40:32.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux系统如何在网卡上配置VLAN">
 <meta name="twitter:description" content="最近北京疫情又又又严重了，疫情原因只能远程到客户环境部署软件，服务器对端管理交换机当时调试时配置成了trunk模式放行vlan 1345，现在无法远程配置交换机，只能是在服务器上封装vlan tag，配置比较简单，简单记录分享下。 环境系统：Centos7.5网卡：Intel Corporation I350 Gigabit Network Connection 配置进入network-scrip">
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  312
+                  393
                 </span>
               
 
@@ -457,7 +457,20 @@
 <p><img src="https://s2.loli.net/2022/05/10/Sm4wzgn2D9MlXNf.png" alt="03.png"></p>
 <p>然后在物理网卡抓包，可以看到经过网卡的流量都打上了VLAN 1345的tag。</p>
 <p><img src="https://s2.loli.net/2022/05/10/DveHdWuQVBYr7qC.png" alt="04.png"></p>
-
+<p>#问题记录<br>今天在别的系统中这样配置后重启网络失败，使用ifup <eth-name>激活网卡提示：</eth-name></p>
+<blockquote>
+</blockquote>
+<pre><code>Error:Connection activation failed: No suitable device found for this connection
+</code></pre><p>关闭NetworkManager后解决：</p>
+<blockquote>
+</blockquote>
+<pre><code>systemctl stop NetworkManager     # 停止NetworkManager   
+</code></pre><p>如果不使用NetworkManager可直接禁用掉：</p>
+<blockquote>
+</blockquote>
+<pre><code>systemctl mask NetworkManager　　　# 禁用NetworkManager
+systemctl disable NetworkManager   # 开机不启动
+</code></pre>
       
     </div>
     
@@ -513,6 +526,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/06/11/Intel网卡固件升-降级/" rel="prev" title="Intel网卡固件升/降级">
+                Intel网卡固件升/降级 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -594,7 +611,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -616,7 +633,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -732,7 +749,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共57.2k字</span>
+  <span class="post-count">博客全站共57.6k字</span>
 </div>
 
         
@@ -908,6 +925,7 @@
         avatar:'mm',
         guest_info:guest,
         pageSize:'10' || 10,
+		serverURLs: '<%= theme.valine.serverURLs %>',
     });
   </script>
 

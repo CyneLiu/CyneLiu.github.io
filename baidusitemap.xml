@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://cyneliu.github.io/2022/06/11/Intel%E7%BD%91%E5%8D%A1%E5%9B%BA%E4%BB%B6%E5%8D%87-%E9%99%8D%E7%BA%A7/</loc>
+    <lastmod>2022-06-11</lastmod>
+  </url>
+  <url>
     <loc>https://cyneliu.github.io/2022/05/09/Linux%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%9C%A8%E7%BD%91%E5%8D%A1%E4%B8%8A%E9%85%8D%E7%BD%AEVLAN/</loc>
-    <lastmod>2022-05-09</lastmod>
+    <lastmod>2022-06-11</lastmod>
   </url>
   <url>
     <loc>https://cyneliu.github.io/2018/03/03/hexo%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/</loc>
