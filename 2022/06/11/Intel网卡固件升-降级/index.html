@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/06/11/xuRNnByGZzcH4K7.png">
 <meta property="og:image" content="https://s2.loli.net/2022/06/11/9JHNWcsPvKLGj2F.png">
 <meta property="og:image" content="https://s2.loli.net/2022/06/11/DZyxXGEqMTAdWc6.png">
-<meta property="og:updated_time" content="2022-06-11T15:39:49.019Z">
+<meta property="og:updated_time" content="2022-06-20T07:01:09.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Intel网卡固件升&#x2F;降级">
 <meta name="twitter:description" content="今天部署旧版本dpdk环境绑定接口时因网卡固件版本不兼容，需对网卡固件进行降级操作，简单记录下过程。 环境系统:Centos 7.5网卡：Intel Corporation Ethernet Connection X722-DA2 for 10GbE SFP+网卡固件版本：5.30 0x80002a29 1.2926.0 固件准备访问英特尔官网，进入支持-下载中心-以太网产品页面，搜索下载需要的固">
@@ -407,7 +407,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  401
+                  517
                 </span>
               
 
@@ -474,6 +474,9 @@
 </code></pre><p><img src="https://s2.loli.net/2022/06/11/DZyxXGEqMTAdWc6.png" alt="07.png"></p>
 <p>可以看到固件版本已经由5.30降至5.00。</p>
 <h1 id="遗留问题"><a href="#遗留问题" class="headerlink" title="遗留问题"></a>遗留问题</h1><p>通过操作系统查看的firmware-version与Intel官网的NVM的版本对应关系是什么或者怎么通过操作系统怎么直接查看，希望知道的朋友不吝赐教。</p>
+<blockquote>
+</blockquote>
+<p>2022年6月20号更新：本文中固件版本与Intel官网NVM不对应的原因是网卡是华三的，并非英特尔原厂网卡；我这里由于华三引进该型号网卡时间比较晚，没有比较老的固件包，所以只能用Intel的NVM降级包，<strong>建议大家还是使用相应的固件包操作，特别是有生产数据是更要谨慎操作，联系厂商售后处理。</strong></p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.csdn.net/u013592609/article/details/121007647" target="_blank" rel="noopener">https://blog.csdn.net/u013592609/article/details/121007647</a></p>
 
       
@@ -752,7 +755,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共57.6k字</span>
+  <span class="post-count">博客全站共57.8k字</span>
 </div>
 
         
